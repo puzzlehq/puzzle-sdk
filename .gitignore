@@ -1,0 +1,49 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+#archived projects
+apps/portfolio-v1
+apps/uni
+
+# next.js
+.next/
+out/
+build
+
+# misc
+.DS_Store
+*.pem
+.idea/*
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*/.tsbuildinfo
+
+# local env files
+**/.env.testnet
+**/.env.mainnet
+**/.env.localnet
+
+# turbo
+.turbo
+.vercel
+firenze.code-workspace
+.vscode/launch.json
+
+.history
+
+apps/wiseguy/prisma/generated/zod/index.ts
+apps/wallet/public/manifest.json
+apps/wiseguy/.env
+apps/wallet/dist.zip
+apps/**/dist
