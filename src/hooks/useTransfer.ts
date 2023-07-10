@@ -1,5 +1,5 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@web3modal/sign-react';
+import { useRequest } from '@walletconnect/modal-sign-react';
 
 export interface TransferRequestData {
   assetId: String;
