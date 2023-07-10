@@ -2,7 +2,7 @@ import {
   ConnectMessage,
   ConnectRejMessage,
   ConnectResMessage,
-} from '../../../apps/wallet/src/messaging/index.js';
+} from './data/connect.js';
 
 export type MessageType =
   | ConnectMessage
@@ -15,19 +15,9 @@ export type WindowMessageType = MessageType & {
 };
 
 export * from './web3modal.js';
-export * from './proof_request_data.js';
 export * from './provider/provider.js';
 export * from './hooks/index.js';
 export * from './data/asset.js';
 export * from './data/types.js';
 export * from './data/walletconnect.js';
 export * from './data/coins/dai.js';
-
-export { type WalletConnectError } from '../../../apps/wallet/src/messaging/dappRequest/index.js';
-
-export {
-  GrumpkinAddress,
-  type AssetValue,
-  EthAddress,
-  ProofId,
-} from 'barretenberg';

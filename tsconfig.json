@@ -24,6 +24,5 @@
   },
   "include": [
     "src",
-    "../../apps/wallet/src/wallet_core/puzzle_wallet_client.ts"
   ]
 }
