@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Your portal to a private web3 experience.",
   "main": "./src/index.ts",
   "type": "module",
@@ -31,7 +31,7 @@
     "rxjs": "^7.8.1",
     "superjson": "^1.12.3",
     "tslib": "^2.5.0",
-    "zustand": "^4.1.4"
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",
