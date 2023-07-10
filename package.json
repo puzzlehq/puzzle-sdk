@@ -1,5 +1,5 @@
 {
-  "name": "@puzzle/sdk",
+  "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
   "version": "0.0.0",
   "description": "Your portal to a private web3 experience.",
@@ -43,5 +43,22 @@
     "@vitejs/plugin-react-swc": "^3.3.0",
     "typescript": "^4.9.4",
     "vite": "^4.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medici-collective/puzzle-sdk.git"
+  },
+  "keywords": [
+    "puzzle",
+    "aleo",
+    "aztec",
+    "web3",
+    "crypto\\"
+  ],
+  "author": "Puzzle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/medici-collective/puzzle-sdk/issues"
+  },
+  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme"
 }
