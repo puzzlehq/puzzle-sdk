@@ -68,7 +68,11 @@ dependencies:
     specifier: ^2.5.0
     version: 2.6.0
   zustand:
+<<<<<<< HEAD
     specifier: ^4.3.9
+=======
+    specifier: ^4.1.4
+>>>>>>> 8bda701db2f197dab019379ee5f5048d77b98346
     version: 4.3.9(immer@9.0.21)(react@18.2.0)
 
 devDependencies:
