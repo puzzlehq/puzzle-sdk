@@ -1,9 +1,13 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 
-export interface BalanceRequestData {
+export type BalanceRequestData = {
   assetId?: String; // No id = aleo credits
-}
+};
+
+export type BalanceResponseData = { 
+  balance: number;
+};
 
 export const useBalance = (balanceRequestData?: BalanceRequestData) => {
   const [session, chainId] = useClientWalletStore((state) => [
