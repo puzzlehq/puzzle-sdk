@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import { useInitPuzzleWallet } from '../index.js';
 
-type props = {
+type Props = {
   children?: React.ReactNode;
 };
 
-export const PuzzleWalletProvider = ({ children }: props) => {
+export const PuzzleWalletProvider: React.FC<Props> = ({ children }) => {
   useInitPuzzleWallet();
 
   return <>{children}</>;

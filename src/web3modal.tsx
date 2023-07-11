@@ -1,7 +1,8 @@
+import React from 'react';
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-react';
 import { projectId, web3modal_puzzle_props } from './data/walletconnect.js';
 
-export const PuzzleWeb3Modal = () => {
+export const PuzzleWeb3Modal: React.FC<{}> = () => {
   return (
     <WalletConnectModalSign
       projectId={projectId}
