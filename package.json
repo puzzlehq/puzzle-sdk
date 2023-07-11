@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Your portal to a private web3 experience.",
   "main": "./src/index.ts",
   "type": "module",
@@ -23,6 +23,7 @@
     "@walletconnect/web3wallet": "^1.7.5",
     "immer": "^9.0.19",
     "react": "^18.2.0",
+    "rxjs": "^7.8.1",
     "superjson": "^1.12.3",
     "tslib": "^2.5.0",
     "zustand": "^4.3.9"
