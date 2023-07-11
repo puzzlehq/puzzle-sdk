@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useInitPuzzleWallet } from '../index.js';
 
 type props = {
