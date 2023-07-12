@@ -5,11 +5,12 @@ import { ISignClient, SessionTypes } from '@walletconnect/types';
 import { SignClient } from '@walletconnect/sign-client';
 
 export const usePuzzleWallet = () => {
-  const [setSession, setAccount, setAccounts] = useClientWalletStore(
-    (state) => [state.setSession, state.setAccount, state.setAccounts]
+  const [setSession, setAccount, setAccounts, session] = useClientWalletStore(
+    (state) => [state.setSession, state.setAccount, state.setAccounts, state.session]
   );
 
   const addSession = async (session: SessionTypes.Struct) => {
+    console.log("Adding new session"); 
     setSession(session);
 
     const accounts = session.namespaces.aleo.accounts.map((account) => {
@@ -24,7 +25,7 @@ export const usePuzzleWallet = () => {
     accounts[0] && setAccount(accounts[0]);
   };
 
-  return { addSession };
+  return { addSession, session };
 };
 
 export const useInitPuzzleWallet = () => {

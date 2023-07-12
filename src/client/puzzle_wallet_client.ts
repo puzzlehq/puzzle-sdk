@@ -3,7 +3,7 @@ import {
   ConnectMessage,
   ConnectRejMessage,
   ConnectResMessage,
-} from '../data/connect.js';
+} from '../messaging/connect.js';
 
 // Only accessible from the /wc route of the portfolio.
 export const connectPuzzle = async (

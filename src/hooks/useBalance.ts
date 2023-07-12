@@ -1,5 +1,8 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useRequest, useSession } from '@walletconnect/modal-sign-react';
+import { useEffect, useState } from 'react';
+import { usePuzzleAccount } from './useAccount.js';
+import { usePuzzleWallet } from './useWallet.js';
 
 export type BalanceRequestData = {
   assetId?: String; // No id = aleo credits
@@ -9,21 +12,37 @@ export type BalanceResponseData = {
   balance: number;
 };
 
-export const useBalance = (balanceRequestData?: BalanceRequestData) => {
-  const [session, chainId] = useClientWalletStore((state) => [
-    state.session,
-    state.chainId,
-  ]);
+export const useBalance: {data?: BalanceResponseData, error?: Error} = () => {
+  const { session } = usePuzzleWallet(); 
 
-  // TODO: (darvish) Make this real
-  const { request, data, error, loading } = useRequest({
-    topic: session?.topic ?? '',
-    chainId: chainId ?? 'aleo:1337',
+  const { request, data: BalanceResponseData, balanceError, loading } = useRequest({
+    topic:   session?.topic,
+    chainId: 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
       method: 'aleo_getBalance',
-      params: balanceRequestData,
     },
-  });
+  })
+
+  const [balance, setBalance] = useState<number | null>(null); 
+  const [error, setError] = useState<Error | null>(null); 
+   
+  useEffect( () => { 
+    if(session) { 
+      //console.log("balance request sending");
+      request();
+      if (balanceError) { 
+        setError(balanceError); 
+      }
+  
+      // if(data) { 
+      //   setBalance(data.balance); 
+      // }
+    } else { 
+      console.log("no session");
+    }
+  }, [session]);
+  
+  return { balance, error }; 
 };

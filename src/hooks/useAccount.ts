@@ -33,5 +33,6 @@ export const usePuzzleAccount = () => {
     account,
     accounts,
     isConnected: !!account,
+    session
   };
 };
