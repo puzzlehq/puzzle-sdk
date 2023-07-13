@@ -13,6 +13,8 @@ export const usePuzzleWallet = () => {
     console.log("Adding new session"); 
     setSession(session);
 
+    window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE'); // remove to prevent walletconnect from redirecting to the wallet page
+
     const accounts = session.namespaces.aleo.accounts.map((account) => {
       const split = account.split(':');
       return {
@@ -44,6 +46,8 @@ export const useInitPuzzleWallet = () => {
         lastKeyIndex >= 0
           ? signClient.session.getAll()[lastKeyIndex]
           : undefined;
+      
+      console.log(lastSession)
 
       if (lastSession) {
         addSession(lastSession);
