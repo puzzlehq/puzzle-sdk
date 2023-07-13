@@ -1,5 +1,5 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useRequest } from '@web3modal/sign-react';
 
 export interface ExecuteProgramRequestData {
   programId: String;

@@ -1,5 +1,5 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest, useSession } from '@walletconnect/modal-sign-react';
+import { useRequest, useSession } from '@web3modal/sign-react';
 import { useEffect, useState } from 'react';
 import { usePuzzleAccount } from './useAccount.js';
 import { usePuzzleWallet } from './useWallet.js';
@@ -12,16 +12,18 @@ export type BalanceResponseData = {
   balance: number;
 };
 
-export const useBalance: {data?: BalanceResponseData, error?: Error} = () => {
+export const useBalance = () => {
   const { session } = usePuzzleWallet(); 
+  const [signClient] = useClientWalletStore((state) => [state.signClient])
 
-  const { request, data: BalanceResponseData, balanceError, loading } = useRequest({
+  const { request, data, balanceError, loading } = useRequest({
     topic:   session?.topic,
     chainId: 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
       method: 'aleo_getBalance',
+      params: undefined
     },
   })
 
@@ -30,7 +32,7 @@ export const useBalance: {data?: BalanceResponseData, error?: Error} = () => {
    
   useEffect( () => { 
     if(session) { 
-      //console.log("balance request sending");
+      console.log("balance request sending");
       request();
       if (balanceError) { 
         setError(balanceError); 
