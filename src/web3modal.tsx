@@ -2,16 +2,23 @@ import React from 'react';
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-react';
 import { projectId, web3modal_puzzle_props } from './data/walletconnect.js';
 
-export const PuzzleWeb3Modal: React.FC<{}> = () => {
+type props = {
+  dAppName: string,
+  dAppDescription: string,
+  dAppUrl: string,
+  dAppIconURL: string,
+}
+
+export const PuzzleWeb3Modal = ({  dAppName, dAppDescription, dAppUrl, dAppIconURL}: props) => {
   return (
     <WalletConnectModalSign
       projectId={projectId}
       metadata={{
-        name: 'Puzzle Portfolio',
-        description: 'Your portal to web3 privacy',
-        url: 'localhost:3331/',
+        name: dAppName,
+        description: dAppDescription,
+        url: dAppUrl,
         icons: [
-          'https://www.gonucleo.xyz/static/media/full_logo.2bbf808101dcbe20a648.png',
+          dAppIconURL
         ],
       }}
       modalOptions={{ ...web3modal_puzzle_props }}

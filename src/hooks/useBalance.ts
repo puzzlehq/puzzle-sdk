@@ -34,15 +34,7 @@ export const useBalance = () => {
   useEffect( () => { 
     if (session && signClient) { 
       console.log("balance request sending");
-      // signClient.request({
-      //   chainId: 'aleo:1',
-      //   topic: session.topic,
-      //   request: {
-      //     method: 'aleo_getBalance',
-      //     params: undefined,
-      //   }
-      // })
-      request();
+      // request();
       if (balanceError) { 
         setError(balanceError); 
       }
