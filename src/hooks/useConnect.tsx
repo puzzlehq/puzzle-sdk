@@ -1,4 +1,4 @@
-import { useConnect } from '@web3modal/sign-react';
+import { useConnect } from '@walletconnect/modal-sign-react';
 import {
   wc_aleo_chains,
   wc_aleo_methods,

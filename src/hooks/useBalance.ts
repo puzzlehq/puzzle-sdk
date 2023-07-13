@@ -1,8 +1,9 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest, useSession } from '@web3modal/sign-react';
+import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
 import { usePuzzleAccount } from './useAccount.js';
 import { usePuzzleWallet } from './useWallet.js';
+import { SignClient } from '@walletconnect/sign-client';
 
 export type BalanceRequestData = {
   assetId?: String; // No id = aleo credits
@@ -31,8 +32,16 @@ export const useBalance = () => {
   const [error, setError] = useState<Error | null>(null); 
    
   useEffect( () => { 
-    if(session) { 
+    if (session && signClient) { 
       console.log("balance request sending");
+      // signClient.request({
+      //   chainId: 'aleo:1',
+      //   topic: session.topic,
+      //   request: {
+      //     method: 'aleo_getBalance',
+      //     params: undefined,
+      //   }
+      // })
       request();
       if (balanceError) { 
         setError(balanceError); 
