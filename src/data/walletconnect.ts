@@ -23,7 +23,7 @@ export const wc_aleo_methods = [
 export const wc_aleo_chains = ['aleo:1']; //placeholder
 
 // events originating from wallet
-export const wc_events = ['chainChanged', 'accountsChanged'];
+export const wc_events = ['chainChanged', 'accountsChanged', 'balanceChanged'];
 
 export const projectId = '2133b10d21f9fcf851eb9ef8f057acea';
 export const walletURL = 'http://localhost:3331/';

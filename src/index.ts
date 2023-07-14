@@ -5,4 +5,4 @@ export * from './data/asset.js';
 export * from './data/types.js';
 export * from './data/walletconnect.js';
 export * from './data/coins/dai.js';
-export * from './messaging/walletconnecterror.js'
+export * from './messaging/index.js';
