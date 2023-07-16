@@ -9,8 +9,7 @@ export const useBalance = () => {
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
 
-  let data: GetBalanceResMessage | GetBalanceRejMessage | undefined;
-  const { request, data: _data, error, loading } = useRequest({
+  const { request, data, error, loading } = useRequest({
     topic: session?.topic,
     chainId: 'aleo:1',
     request: {
@@ -26,7 +25,6 @@ export const useBalance = () => {
     },
   })
 
-  data = _data
 
   useEffect(() => {
     if (!(signClient && session)) return;
@@ -43,19 +41,10 @@ export const useBalance = () => {
   useEffect(() => { 
     (async () => {
       if (session) {
-        console.log("balance request sending");
         request();
-      } else {
-        console.log("no session");
       }
     })()
   }, [session]);
-  
-  useEffect(() => {
-    if (data && data.type === 'GET_BALANCE_RES') {
-      setBalance(data.data.balance)
-    } 
-  }, [data])
 
-  return { request, data, error, loading, balance }; 
+  return { loading, balance }; 
 };
