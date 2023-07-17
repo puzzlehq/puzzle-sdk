@@ -3,11 +3,13 @@ import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
 import { usePuzzleWallet } from './useWallet.js';
 import { GetBalanceMessage, GetBalanceRejMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { usePuzzleAccount } from './useAccount.js';
 
 export const useBalance = () => {
   const { session } = usePuzzleWallet(); 
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
+  const { account } = usePuzzleAccount();
 
   const { request, data, error, loading } = useRequest({
     topic: session?.topic,
@@ -44,7 +46,7 @@ export const useBalance = () => {
         request();
       }
     })()
-  }, [session]);
+  }, [session, account]);
 
   return { loading, balance }; 
 };
