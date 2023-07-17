@@ -8,9 +8,9 @@ export const useBalance = () => {
   const { session } = usePuzzleWallet(); 
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  let data: GetBalanceResMessage | GetBalanceRejMessage | undefined;
-  const { request, data: _data, error, loading } = useRequest({
+  const { request, data, error, _ } = useRequest({
     topic: session?.topic,
     chainId: 'aleo:1',
     request: {
@@ -24,38 +24,38 @@ export const useBalance = () => {
         }
       } as GetBalanceMessage
     },
-  })
+  });
 
-  data = _data
-
+  // listen for wallet-originated balance updates
   useEffect(() => {
-    if (!(signClient && session)) return;
-
-    signClient.events.on('session_event', ({ id, params, topic }) => {
-      const eventName = params.event.name;
-      if (topic !== topic || eventName !== 'balanceChanged') return;
-      
-      const newBalance: number = params.event.data;
-      setBalance(newBalance);
-    })
+    if (signClient && session) {
+      signClient.events.on('session_event', ({ id, params, topic }) => {
+        const eventName = params.event.name;
+        if (topic !== topic || eventName !== 'balanceChanged') return;
+        const newBalance: number = params.event.data;
+        setBalance(newBalance);
+      });
+    }
   }, [signClient, session])
 
+  // send balance request...
   useEffect(() => { 
-    (async () => {
-      if (session) {
-        console.log("balance request sending");
-        request();
-      } else {
-        console.log("no session");
-      }
-    })()
+    if (session) {
+      setLoading(true);
+      request();
+    }
   }, [session]);
-  
-  useEffect(() => {
-    if (data && data.type === 'GET_BALANCE_RES') {
-      setBalance(data.data.balance)
-    } 
-  }, [data])
 
-  return { request, data, error, loading, balance }; 
+  // ...and listen for response
+  useEffect(() => { 
+    if (error) {
+      /// todo -- pipe this to the frontend
+    } else if (data) {
+      const response = data as GetBalanceResMessage;
+      setLoading(false);
+      setBalance(response.data.balance);
+    }
+  }, [data, error]);
+
+  return { loading, balance };
 };
