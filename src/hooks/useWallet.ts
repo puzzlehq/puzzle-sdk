@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { PuzzleAccount, projectId } from '../index.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { ISignClient, SessionTypes } from '@walletconnect/types';
-import { SignClient } from '@walletconnect/sign-client';
+import { SignClient  } from '@walletconnect/sign-client';
+import { Core } from '@walletconnect/core';
+import { Local } from '../data/Local.js';
 
 export const usePuzzleWallet = () => {
   const [setSession, setAccount, setAccounts, session] = useClientWalletStore(
@@ -39,7 +41,29 @@ export const useInitPuzzleWallet = () => {
 
   useEffect(() => {
     (async () => {
-      const signClient: ISignClient = await SignClient.init({ projectId });
+      const core = new Core({
+        projectId,
+        storage: {
+          async getKeys(): Promise<string[]> {
+            return Local.getKeys()
+          },
+          async getEntries<T = any>(): Promise<[string, T][]> {
+            return Local.getEntries()
+          },
+          async getItem<T = any>(key: string): Promise<T | undefined> {
+            return Local.getItem(key)
+          },
+          async setItem<T = any>(key: string, value: T): Promise<void> {
+            Local.setItem(key, value);
+          },
+          async removeItem(key: string): Promise<void> {
+            Local.removeItem(key)
+          },
+        },
+      });
+      await core.start();
+      const signClient: ISignClient = await SignClient.init({
+       core });
       setSignClient(signClient);
       const lastKeyIndex = signClient.session.getAll().length - 1;
       const lastSession =
