@@ -1,28 +1,37 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
-
-export interface DeployProgramRequestData {
-  program: String; // Leo code
-  fee: number;
-}
+import { DeployMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useDeployProgram = (
-  deployProgramRequestData?: DeployProgramRequestData
+  deployProgramRequestData?: DeployMessageInputData
 ) => {
+  const [ loading, setLoading ] = useState(false); 
   const [session, chainId] = useClientWalletStore((state) => [
     state.session,
     state.chainId,
   ]);
 
-  // TODO: (darvish) Make this real
-  const { request, data, error, loading } = useRequest({
+  const { request: sendRequest, data, error } = useRequest({
     topic: session?.topic ?? '',
-    chainId: chainId ?? 'aleo:1337',
+    chainId: 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
       method: 'aleo_deploy',
-      params: deployProgramRequestData,
+      params: {
+        type: 'DEPLOY', 
+        data: deployProgramRequestData,
+      } as DeployMessage,
     },
   });
+
+  const deploy = () => { 
+    if (deployProgramRequestData !== null) {
+      sendRequest(); 
+    }
+  }
+
+  return { deploy };
+  
 };
