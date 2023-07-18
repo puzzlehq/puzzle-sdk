@@ -32,7 +32,7 @@ export const useBalance = () => {
       signClient.events.on('session_event', ({ id, params, topic }) => {
         const eventName = params.event.name;
         if (topic !== topic || eventName !== 'balanceChanged') return;
-        const newBalance: number = params.event.data;
+        const newBalance: number = Number(params.event.data);
         setBalance(newBalance);
       });
     }
