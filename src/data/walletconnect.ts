@@ -17,7 +17,7 @@ export const wc_aleo_methods = [
   'aleo_getSpendingPublicKey',
   'aleo_transfer',
   'aleo_execute',
-  'aleo_deploy',
+  'aleo_deployProgram',
   'aleo_getBalance',
 ];
 export const wc_aleo_chains = ['aleo:1']; //placeholder

@@ -2,7 +2,7 @@ import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
 import { usePuzzleWallet } from './useWallet.js';
-import { GetBalanceMessage, GetBalanceRejMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
 
 export const useBalance = () => {
   const { session } = usePuzzleWallet(); 

@@ -1,11 +1,11 @@
-import { ProposalTypes } from "@walletconnect/types";
+import { SessionTypes } from "@walletconnect/types";
 
 export type DeployMessage = {
   type: 'DEPLOY';
   data: {
     data: DeployMessageInputData,
-    wc: {
-      proposal?: ProposalTypes.Struct
+    wc?: {
+      session: SessionTypes.Struct
     };
   };
 };
