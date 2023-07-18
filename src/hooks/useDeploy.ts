@@ -21,7 +21,9 @@ export const useDeployProgram = (
       method: 'aleo_deploy',
       params: {
         type: 'DEPLOY', 
-        data: deployProgramRequestData,
+        data: {
+          data: deployProgramRequestData,
+        },
       } as DeployMessage,
     },
   });

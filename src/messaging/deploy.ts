@@ -1,10 +1,18 @@
+import { ProposalTypes } from "@walletconnect/types";
+
 export type DeployMessage = {
   type: 'DEPLOY';
-  data: DeployMessageInputData;
+  data: {
+    data: DeployMessageInputData,
+    wc: {
+      proposal?: ProposalTypes.Struct
+    };
+  };
 };
 
 export type DeployMessageInputData = {
-    aleoCode: string;
+  aleoCode: string;
+  programName: string;
 }
 
 export type DeployResMessage = {
@@ -20,3 +28,4 @@ export type DeployRejMessage = {
     error?: string;
   }
 };
+
