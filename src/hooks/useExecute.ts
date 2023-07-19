@@ -13,13 +13,18 @@ export const useExecuteProgram = (
   // TODO: (darvish) Make this real
   const { request, data, error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: chainId ?? 'aleo:1337',
+    chainId: 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
-      method: 'aleo_execute',
+      method: 'aleo_executeProgram',
       params: executeProgramRequestData,
     },
   });
-  return { request, data, error, loading };
+  const execute = () => {
+    if (executeProgramRequestData !== null) {
+      request(); 
+    }
+  }
+  return { execute, data, error, loading };
 };

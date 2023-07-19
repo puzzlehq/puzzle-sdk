@@ -16,7 +16,6 @@ export const wc_aleo_methods = [
   'aleo_getAccountPublicKey',
   'aleo_getSpendingPublicKey',
   'aleo_transfer',
-  'aleo_execute',
   'aleo_deployProgram',
   'aleo_getBalance',
   'aleo_executeProgram'
