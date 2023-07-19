@@ -3,7 +3,6 @@ import { useRequest } from "@walletconnect/modal-sign-react";
 
 export interface EstimateDeployFeeRequestData {
     program: String; // Leo code
-    fee: number;
 }
 
 export const useEstimateDeployFee = (
