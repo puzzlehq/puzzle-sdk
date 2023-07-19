@@ -19,6 +19,7 @@ export const wc_aleo_methods = [
   'aleo_execute',
   'aleo_deployProgram',
   'aleo_getBalance',
+  'aleo_executeProgram'
 ];
 export const wc_aleo_chains = ['aleo:1']; //placeholder
 
