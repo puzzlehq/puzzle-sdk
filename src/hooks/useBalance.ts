@@ -30,10 +30,15 @@ export const useBalance = () => {
   useEffect(() => {
     if (signClient && session) {
       signClient.events.on('session_event', ({ id, params, topic }) => {
+        if (topic !== session.topic) return;
         const eventName = params.event.name;
-        if (topic !== topic || eventName !== 'balanceChanged') return;
-        const newBalance: number = Number(params.event.data);
-        setBalance(newBalance);
+        if (eventName === 'accountChanged') {
+          setLoading(true)
+        } else if (eventName === 'balanceChanged') {
+          const newBalance: number = Number(params.event.data);
+          setBalance(newBalance);
+          setLoading(false)
+        }
       });
     }
   }, [signClient, session])
