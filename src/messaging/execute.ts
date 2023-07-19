@@ -11,9 +11,9 @@ export type ExecuteMessage = {
 };
 
 export type ExecuteProgramRequestData = {
-    programId: String;
-    functionName: String;
-    inputs: any;
+    programId: string;
+    functionName: string;
+    inputs: string;
 };
 
 export type ExecuteResMessage = {
