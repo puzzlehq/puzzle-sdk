@@ -1,13 +1,6 @@
+import { ExecuteProgramRequestData } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
-
-export interface ExecuteProgramRequestData {
-  programId: String;
-  functionName: String;
-  inputs: any;
-  fee: number;
-  // Fee record handled under the hood
-}
 
 export const useExecuteProgram = (
   executeProgramRequestData?: ExecuteProgramRequestData
@@ -20,12 +13,18 @@ export const useExecuteProgram = (
   // TODO: (darvish) Make this real
   const { request, data, error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: chainId ?? 'aleo:1337',
+    chainId: 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
-      method: 'aleo_execute',
+      method: 'aleo_executeProgram',
       params: executeProgramRequestData,
     },
   });
+  const execute = () => {
+    if (executeProgramRequestData !== null) {
+      request(); 
+    }
+  }
+  return { execute, data, error, loading };
 };

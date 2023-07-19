@@ -3,16 +3,17 @@ import { SessionTypes } from "@walletconnect/types";
 export type ExecuteMessage = {
     type: "EXECUTE";
     data: {
-        data: ExecuteMessageInputData;
+        data: ExecuteProgramRequestData;
         wc?: {
             session: SessionTypes.Struct;
         };
     };
 };
 
-export type ExecuteMessageInputData = {
-    aleoCode: string;
-    programName: string;
+export type ExecuteProgramRequestData = {
+    programId: string;
+    functionName: string;
+    inputs: string;
 };
 
 export type ExecuteResMessage = {
