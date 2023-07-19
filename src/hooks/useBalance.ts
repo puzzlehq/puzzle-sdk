@@ -32,7 +32,7 @@ export const useBalance = () => {
       signClient.events.on('session_event', ({ id, params, topic }) => {
         if (topic !== session.topic) return;
         const eventName = params.event.name;
-        if (eventName === 'accountChanged') {
+        if (eventName === 'accountsChanged') {
           setLoading(true)
         } else if (eventName === 'balanceChanged') {
           const newBalance: number = Number(params.event.data);
@@ -43,7 +43,7 @@ export const useBalance = () => {
     }
   }, [signClient, session])
 
-  // send balance request...
+  // send initial balance request...
   useEffect(() => { 
     if (session) {
       setLoading(true);
