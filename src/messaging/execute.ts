@@ -24,7 +24,7 @@ export type ExecuteResMessage = {
 };
 
 export type ExecuteRejMessage = {
-    type: "DEPLOY_REJ";
+    type: "EXECUTE_REJ";
     data: {
         error?: string;
     };

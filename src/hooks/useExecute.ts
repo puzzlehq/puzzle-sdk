@@ -18,12 +18,17 @@ export const useExecuteProgram = (
       id: 1,
       jsonrpc: '2.0',
       method: 'aleo_executeProgram',
-      params: executeProgramRequestData,
-    },
+      params: {
+        type: 'EXECUTE',
+        data: {
+          data: executeProgramRequestData,
+        },
+      },
+    }
   });
   const execute = () => {
     if (executeProgramRequestData !== null) {
-      request(); 
+      request();
     }
   }
   return { execute, data, error, loading };
