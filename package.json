@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Your portal to a private web3 experience.",
   "main": "./src/index.ts",
   "type": "module",
