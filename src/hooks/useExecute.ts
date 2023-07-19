@@ -1,13 +1,6 @@
+import { ExecuteProgramRequestData } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
-
-export interface ExecuteProgramRequestData {
-  programId: String;
-  functionName: String;
-  inputs: any;
-  fee: number;
-  // Fee record handled under the hood
-}
 
 export const useExecuteProgram = (
   executeProgramRequestData?: ExecuteProgramRequestData
