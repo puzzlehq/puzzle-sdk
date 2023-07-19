@@ -28,4 +28,5 @@ export const useExecuteProgram = (
       params: executeProgramRequestData,
     },
   });
+  return { request, data, error, loading };
 };
