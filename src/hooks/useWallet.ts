@@ -41,29 +41,28 @@ export const useInitPuzzleWallet = () => {
 
   useEffect(() => {
     (async () => {
-      const core = new Core({
-        projectId,
-        storage: {
-          async getKeys(): Promise<string[]> {
-            return Local.getKeys()
-          },
-          async getEntries<T = any>(): Promise<[string, T][]> {
-            return Local.getEntries()
-          },
-          async getItem<T = any>(key: string): Promise<T | undefined> {
-            return Local.getItem(key)
-          },
-          async setItem<T = any>(key: string, value: T): Promise<void> {
-            Local.setItem(key, value);
-          },
-          async removeItem(key: string): Promise<void> {
-            Local.removeItem(key)
-          },
-        },
-      });
-      await core.start();
-      const signClient: ISignClient = await SignClient.init({
-       core });
+      // const core = new Core({
+      //   projectId,
+      //   storage: {
+      //     async getKeys(): Promise<string[]> {
+      //       return Local.getKeys()
+      //     },
+      //     async getEntries<T = any>(): Promise<[string, T][]> {
+      //       return Local.getEntries()
+      //     },
+      //     async getItem<T = any>(key: string): Promise<T | undefined> {
+      //       return Local.getItem(key)
+      //     },
+      //     async setItem<T = any>(key: string, value: T): Promise<void> {
+      //       Local.setItem(key, value);
+      //     },
+      //     async removeItem(key: string): Promise<void> {
+      //       Local.removeItem(key)
+      //     },
+      //   },
+      // });
+      // await core.start();
+      const signClient: ISignClient = await SignClient.init({ projectId });
       setSignClient(signClient);
       const lastKeyIndex = signClient.session.getAll().length - 1;
       const lastSession =
