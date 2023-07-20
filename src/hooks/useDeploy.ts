@@ -1,6 +1,6 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
-import { DeployMessage, DeployMessageInputData } from '../messaging/deploy.js';
+import { DeployMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
 
 export const useDeployProgram = (
   deployProgramRequestData?: DeployMessageInputData
@@ -10,7 +10,7 @@ export const useDeployProgram = (
     state.chainId,
   ]);
 
-  const { request, data, error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -25,6 +25,9 @@ export const useDeployProgram = (
       } as DeployMessage,
     },
   });
+
+  const data: DeployResMessage = wc_data;
+  const error: DeployRejMessage = wc_error;
 
   const deploy = () => { 
     if (deployProgramRequestData !== null) {

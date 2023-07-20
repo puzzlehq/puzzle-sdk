@@ -1,4 +1,4 @@
-import { ExecuteProgramRequestData } from '../messaging/execute.js';
+import { ExecuteProgramRequestData, ExecuteRejMessage, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 
@@ -11,7 +11,7 @@ export const useExecuteProgram = (
   ]);
 
   // TODO: (darvish) Make this real
-  const { request, data, error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
     chainId: 'aleo:1',
     request: {
@@ -26,10 +26,15 @@ export const useExecuteProgram = (
       },
     }
   });
+
+  const data: ExecuteResMessage = wc_data;
+  const error: ExecuteRejMessage = wc_error;
+
   const execute = () => {
     if (executeProgramRequestData !== null) {
       request();
     }
   }
+
   return { execute, data, error, loading };
 };
