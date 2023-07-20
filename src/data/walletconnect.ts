@@ -10,7 +10,7 @@ export const wc_aztec_methods = [
 export const wc_aztec_chains = ['aztec:1337'];
 
 export const wc_aleo_methods = [
-  // aztec methods
+  // aleo methods
   'aleo_connect',
   'aleo_disconnect',
   'aleo_getAccountPublicKey',
@@ -18,12 +18,13 @@ export const wc_aleo_methods = [
   'aleo_transfer',
   'aleo_deployProgram',
   'aleo_getBalance',
-  'aleo_executeProgram'
+  'aleo_executeProgram',
+  'aleo_getRecords'
 ];
-export const wc_aleo_chains = ['aleo:1']; //placeholder
+export const wc_aleo_chains = ['aleo:1']; //placeholder until there are multiple chains
 
 // events originating from wallet
-export const wc_events = ['chainChanged', 'accountsChanged', 'balanceChanged'];
+export const wc_events = ['chainChanged', 'accountsChanged', 'balanceChanged', 'recordsChanged'];
 
 export const projectId = '2133b10d21f9fcf851eb9ef8f057acea';
 export const walletURL = 'https://walletconnect.puzzle.online/';
