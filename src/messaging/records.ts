@@ -9,7 +9,7 @@ export type GetRecordsMessage = {
 export type GetRecordsResMessage = {
   type: 'GET_RECORDS_RES';
   data: {
-    records: RecordPlaintext[];
+    records: string[];
   }
 };
 

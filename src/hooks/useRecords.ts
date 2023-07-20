@@ -8,7 +8,7 @@ import { RecordPlaintext } from '@aleohq/nodejs';
 export const useRecords = () => {
   const { session } = usePuzzleWallet(); 
   const { signClient } = useClientWalletStore();
-  const [records, setRecords] = useState<RecordPlaintext[]>([]);
+  const [records, setRecords] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { request, data, error, _ } = useRequest({
@@ -33,7 +33,7 @@ export const useRecords = () => {
         if (eventName === 'accountsChanged') {
           setLoading(true)
         } else if (eventName === 'recordsChanged') {
-          const newRecords: RecordPlaintext[] = params.event.data;
+          const newRecords: string[] = params.event.data;
           setRecords(newRecords);
           setLoading(false)
         }
