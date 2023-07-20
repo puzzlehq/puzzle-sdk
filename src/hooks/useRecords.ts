@@ -3,12 +3,12 @@ import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
 import { usePuzzleWallet } from './useWallet.js';
 import { GetRecordsMessage, GetRecordsResMessage } from '../messaging/records.js';
-import { Record } from '../../../firenze/apps/wiseguy/prisma/generated/zod/index.js';
+import { RecordPlaintext } from '../../../firenze/packages/aleo-sdk/aleo.js';
 
 export const useRecords = () => {
   const { session } = usePuzzleWallet(); 
   const { signClient } = useClientWalletStore();
-  const [records, setRecords] = useState<Record[]>([]);
+  const [records, setRecords] = useState<RecordPlaintext[]>([]);
   const [loading, setLoading] = useState(false);
 
   const { request, data, error, _ } = useRequest({
@@ -33,7 +33,7 @@ export const useRecords = () => {
         if (eventName === 'accountsChanged') {
           setLoading(true)
         } else if (eventName === 'recordsChanged') {
-          const newRecords: Record[] = params.event.data;
+          const newRecords: RecordPlaintext[] = params.event.data;
           setRecords(newRecords);
           setLoading(false)
         }
