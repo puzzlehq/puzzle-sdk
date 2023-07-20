@@ -1,5 +1,3 @@
-import { RecordPlaintext } from '@aleohq/nodejs';
-
 export type GetRecordsMessage = {
   type: 'GET_RECORDS';
   data?: string;

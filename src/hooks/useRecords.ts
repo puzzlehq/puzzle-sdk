@@ -3,7 +3,6 @@ import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
 import { usePuzzleWallet } from './useWallet.js';
 import { GetRecordsMessage, GetRecordsResMessage } from '../messaging/records.js';
-import { RecordPlaintext } from '@aleohq/nodejs';
 
 export const useRecords = () => {
   const { session } = usePuzzleWallet(); 
