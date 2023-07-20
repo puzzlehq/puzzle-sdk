@@ -1,4 +1,4 @@
-import { RecordPlaintext } from '../../../firenze/packages/aleo-sdk/aleo.js';
+import { RecordPlaintext } from '@aleohq/nodejs';
 
 export type GetRecordsMessage = {
   type: 'GET_RECORDS';

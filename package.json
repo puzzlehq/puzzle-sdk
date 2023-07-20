@@ -9,6 +9,7 @@
     "build": "tsc"
   },
   "dependencies": {
+    "@aleohq/sdk": "^0.5.1",
     "@extend-chrome/messages": "^1.2.2",
     "@tanstack/react-query": "^4.29.5",
     "@trpc/client": "^10.9.0",
@@ -16,11 +17,11 @@
     "@trpc/server": "^10.8.1",
     "@walletconnect/core": "^2.9.0",
     "@walletconnect/jsonrpc-types": "^1.0.3",
+    "@walletconnect/modal-sign-react": "^2.6.0",
     "@walletconnect/sign-client": "^2.9.0",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.0",
     "@walletconnect/web3wallet": "^1.8.6",
-    "@walletconnect/modal-sign-react": "^2.6.0",
     "immer": "^9.0.19",
     "localforage": "^1.10.0",
     "react": "^18.2.0",

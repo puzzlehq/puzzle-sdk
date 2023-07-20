@@ -57,7 +57,7 @@ export const web3modal_puzzle_props = {
   ],
   walletImages:{
     // Override manual wallet image
-    puzzle: 'https://imgur.com/a/tYkQvkD'
+    puzzle: 'https://i.imgur.com/UkmDl9Q.png'
   }
 };
 
