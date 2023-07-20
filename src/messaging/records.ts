@@ -1,4 +1,4 @@
-import { Record } from '../../../firenze/apps/wiseguy/prisma/generated/zod/index.js';
+import { RecordPlaintext } from '../../../firenze/packages/aleo-sdk/aleo.js';
 
 export type GetRecordsMessage = {
   type: 'GET_RECORDS';
@@ -9,7 +9,7 @@ export type GetRecordsMessage = {
 export type GetRecordsResMessage = {
   type: 'GET_RECORDS_RES';
   data: {
-    records: Record[];
+    records: RecordPlaintext[];
   }
 };
 
