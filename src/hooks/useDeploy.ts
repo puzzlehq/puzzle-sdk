@@ -26,8 +26,9 @@ export const useDeployProgram = (
     },
   });
 
-  const data: DeployResMessage = wc_data;
-  const error: DeployRejMessage = wc_error;
+  const error: DeployRejMessage = wc_data.type === 'DEPLOY_REJ' ? wc_data : undefined;
+  const puzzleData: DeployResMessage = wc_data.type === 'DEPLOY_RES' ? wc_data : undefined;
+  const data: DeployResMessage = puzzleData;
 
   const deploy = () => { 
     if (deployProgramRequestData !== null) {
@@ -35,5 +36,5 @@ export const useDeployProgram = (
     }
   }
 
-  return { deploy, data, error, loading };
+  return { deploy, data, error, wc_error, loading };
 };
