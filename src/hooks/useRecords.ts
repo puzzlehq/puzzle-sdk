@@ -5,7 +5,7 @@ import { usePuzzleWallet } from './useWallet.js';
 import { GetRecordsMessage, GetRecordsResMessage } from '../messaging/records.js';
 import { Record } from '../../../firenze/apps/wiseguy/prisma/generated/zod/index.js';
 
-export const useBalance = () => {
+export const useRecords = () => {
   const { session } = usePuzzleWallet(); 
   const { signClient } = useClientWalletStore();
   const [records, setRecords] = useState<Record[]>([]);
