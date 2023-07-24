@@ -2,22 +2,30 @@ import { useEffect } from 'react';
 import { PuzzleAccount, projectId } from '../index.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { ISignClient, SessionTypes } from '@walletconnect/types';
+import { getSdkError } from '@walletconnect/utils';
 import { SignClient  } from '@walletconnect/sign-client';
 import { Core } from '@walletconnect/core';
 import { Local } from '../data/Local.js';
 
 export const useWallet = () => {
-  const [setSession, setAccount, setAccounts, session] = useClientWalletStore(
-    (state) => [state.setSession, state.setAccount, state.setAccounts, state.session]
+  const [setSession, setAccount, setAccounts, session, signClient] = useClientWalletStore(
+    (state) => [state.setSession, state.setAccount, state.setAccounts, state.session, state.signClient]
   );
 
-  const addSession = async (session: SessionTypes.Struct) => {
+  const addSession = async (newSession: SessionTypes.Struct) => {
+    console.log("Removing old session"); 
+    if (session && signClient) {
+      await signClient.disconnect({
+        topic: session.topic,
+        reason: getSdkError('USER_DISCONNECTED')
+      })
+    }
     console.log("Adding new session"); 
-    setSession(session);
+    setSession(newSession);
 
     window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE'); // remove to prevent walletconnect from redirecting to the wallet page
 
-    const accounts = session.namespaces.aleo.accounts.map((account) => {
+    const accounts = newSession.namespaces.aleo.accounts.map((account) => {
       const split = account.split(':');
       return {
         network: split[0],
@@ -63,6 +71,7 @@ export const useInitWallet = () => {
       // });
       // await core.start();
       const signClient: ISignClient = await SignClient.init({ projectId });
+
       setSignClient(signClient);
       const lastKeyIndex = signClient.session.getAll().length - 1;
       const lastSession =
