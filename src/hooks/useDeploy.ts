@@ -26,7 +26,7 @@ export const useDeployProgram = (
     },
   });
 
-  const error: string | undefined | Error = wc_error ? wc_error : (wc_data && wc_data.type === 'DEPLOY_REJ' ? wc_data.data.error : undefined);
+  const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.type === 'DEPLOY_REJ' ? wc_data.data.error : undefined);
   const puzzleData: DeployResMessage | undefined =  wc_data &&  wc_data.type === 'DEPLOY_RES' ? wc_data : undefined;
   const transactionId = puzzleData?.data.transactionId;
 

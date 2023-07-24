@@ -9,7 +9,7 @@ export const useBalance = () => {
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | Error |undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
 
   const { request, data: wc_data, error: wc_error, _ } = useRequest({
     topic: session?.topic,
@@ -56,7 +56,7 @@ export const useBalance = () => {
   useEffect(() => { 
     if (wc_error) {
       setBalance(0);
-      setError(wc_error);
+      setError(wc_error.message);
     } else if (wc_data) {
       const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
       const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;

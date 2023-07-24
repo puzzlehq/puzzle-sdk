@@ -27,7 +27,7 @@ export const useExecuteProgram = (
     }
   });
 
-  const error: ExecuteRejMessage | undefined | Error = wc_error ? wc_error : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
+  const error: ExecuteRejMessage | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
   const puzzleData: ExecuteResMessage | undefined =  wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined;
   const transactionId: string | undefined = puzzleData?.data.transactionId;
 

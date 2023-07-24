@@ -9,7 +9,7 @@ export const useRecords = () => {
   const { signClient } = useClientWalletStore();
   const [records, setRecords] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | Error | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
 
   const { request, data, error: wc_error, _ } = useRequest({
     topic: session?.topic,
@@ -52,7 +52,7 @@ export const useRecords = () => {
   // ...and listen for response
   useEffect(() => { 
     if (wc_error) {
-      setError(wc_error);
+      setError(wc_error.message);
       setLoading(false);
     } else if (data) {
       const response = data as GetRecordsResMessage | GetRecordsRejMessage;
