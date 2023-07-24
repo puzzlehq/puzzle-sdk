@@ -27,9 +27,9 @@ export const useExecuteProgram = (
     }
   });
 
-  const error: ExecuteRejMessage | undefined | any = wc_error ? wc_error : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
+  const error: ExecuteRejMessage | undefined | Error = wc_error ? wc_error : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
   const puzzleData: ExecuteResMessage | undefined =  wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined;
-  const data: ExecuteResMessage | undefined = puzzleData;
+  const transactionId: string | undefined = puzzleData?.data.transactionId;
 
   const execute = () => {
     if (executeProgramRequestData !== null) {
@@ -37,5 +37,5 @@ export const useExecuteProgram = (
     }
   }
 
-  return { execute, data, error, loading };
+  return { execute, transactionId, error, loading };
 };

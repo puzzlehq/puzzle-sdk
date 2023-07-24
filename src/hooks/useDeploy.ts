@@ -26,9 +26,9 @@ export const useDeployProgram = (
     },
   });
 
-  const error: DeployRejMessage | undefined | any = wc_error ? wc_error : (wc_data && wc_data.type === 'DEPLOY_REJ' ? wc_data : undefined);
-  const puzzleData: DeployResMessage =  wc_data &&  wc_data.type === 'DEPLOY_RES' ? wc_data : undefined;
-  const data: DeployResMessage = puzzleData;
+  const error: string | undefined | Error = wc_error ? wc_error : (wc_data && wc_data.type === 'DEPLOY_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: DeployResMessage | undefined =  wc_data &&  wc_data.type === 'DEPLOY_RES' ? wc_data : undefined;
+  const transactionId = puzzleData?.data.transactionId;
 
   const deploy = () => { 
     if (deployProgramRequestData !== null) {
@@ -36,5 +36,5 @@ export const useDeployProgram = (
     }
   }
 
-  return { deploy, data, error, loading };
+  return { deploy, transactionId, loading, error };
 };

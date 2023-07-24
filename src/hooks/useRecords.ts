@@ -9,7 +9,7 @@ export const useRecords = () => {
   const { signClient } = useClientWalletStore();
   const [records, setRecords] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<GetRecordsResMessage | any | undefined>(undefined);
+  const [error, setError] = useState<string | Error | undefined>(undefined);
 
   const { request, data, error: wc_error, _ } = useRequest({
     topic: session?.topic,
