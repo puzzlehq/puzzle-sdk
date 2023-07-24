@@ -16,9 +16,9 @@ export const useTransferCredits = (
   ]);
 
   // TODO: (darvish) Make this real
-  const { request, data, error, loading } = useRequest({
+  const { request: transfer, data, error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: chainId ?? 'aleo:1337',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -27,5 +27,5 @@ export const useTransferCredits = (
     },
   });
 
-  return data;
+  return { transfer, data, error, loading };
 };

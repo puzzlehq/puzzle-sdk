@@ -1,16 +1,17 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { usePuzzleWallet } from './useWallet.js';
-import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { useWallet } from './useWallet.js';
+import { GetBalanceMessage, GetBalanceRejMessage, GetBalanceResMessage } from '../messaging/balance.js';
 
 export const useBalance = () => {
-  const { session } = usePuzzleWallet(); 
+  const { session } = useWallet(); 
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState< GetBalanceRejMessage | any |undefined>(undefined);
 
-  const { request, data, error, _ } = useRequest({
+  const { request, data: wc_data, error: wc_error, _ } = useRequest({
     topic: session?.topic,
     chainId: 'aleo:1',
     request: {
@@ -53,14 +54,18 @@ export const useBalance = () => {
 
   // ...and listen for response
   useEffect(() => { 
-    if (error) {
-      /// todo -- pipe this to the frontend
-    } else if (data) {
-      const response = data as GetBalanceResMessage;
+    if (wc_error) {
+      setBalance(0);
+      setError(wc_error);
+    } else if (wc_data) {
+      const error: GetBalanceRejMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data : undefined;
+      const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
+      const balance = puzzleData?.data.balance ?? 0;
       setLoading(false);
-      setBalance(response.data.balance);
+      setError(error);
+      setBalance(balance);
     }
-  }, [data, error]);
+  }, [wc_data, wc_error]);
 
-  return { loading, balance };
+  return { loading, balance, error };
 };

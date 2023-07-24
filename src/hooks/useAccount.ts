@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useClientWalletStore from './clientWalletStore.js';
 
-export const usePuzzleAccount = () => {
+export const useAccount = () => {
   const [account, accounts, session, signClient, setAccount] =
     useClientWalletStore((state) => [
       state.account,

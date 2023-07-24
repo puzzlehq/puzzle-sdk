@@ -6,7 +6,7 @@ import { SignClient  } from '@walletconnect/sign-client';
 import { Core } from '@walletconnect/core';
 import { Local } from '../data/Local.js';
 
-export const usePuzzleWallet = () => {
+export const useWallet = () => {
   const [setSession, setAccount, setAccounts, session] = useClientWalletStore(
     (state) => [state.setSession, state.setAccount, state.setAccounts, state.session]
   );
@@ -32,8 +32,8 @@ export const usePuzzleWallet = () => {
   return { addSession, session };
 };
 
-export const useInitPuzzleWallet = () => {
-  const { addSession } = usePuzzleWallet();
+export const useInitWallet = () => {
+  const { addSession } = useWallet();
   const [signClient, setSignClient] = useClientWalletStore((state) => [
     state.signClient,
     state.setSignClient,

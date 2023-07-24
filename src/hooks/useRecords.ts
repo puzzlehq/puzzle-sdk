@@ -1,16 +1,17 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { usePuzzleWallet } from './useWallet.js';
-import { GetRecordsMessage, GetRecordsResMessage } from '../messaging/records.js';
+import { useWallet } from './useWallet.js';
+import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage } from '../messaging/records.js';
 
 export const useRecords = () => {
-  const { session } = usePuzzleWallet(); 
+  const { session } = useWallet(); 
   const { signClient } = useClientWalletStore();
   const [records, setRecords] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<GetRecordsResMessage | any | undefined>(undefined);
 
-  const { request, data, error, _ } = useRequest({
+  const { request, data, error: wc_error, _ } = useRequest({
     topic: session?.topic,
     chainId: 'aleo:1',
     request: {
@@ -50,14 +51,18 @@ export const useRecords = () => {
 
   // ...and listen for response
   useEffect(() => { 
-    if (error) {
-      /// todo -- pipe this to the frontend
-    } else if (data) {
-      const response = data as GetRecordsResMessage;
+    if (wc_error) {
+      setError(wc_error);
       setLoading(false);
-      setRecords(response.data.records);
+    } else if (data) {
+      const response = data as GetRecordsResMessage | GetRecordsRejMessage;
+      const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
+      const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
+      setLoading(false);
+      setRecords(records);
+      setError(error)
     }
-  }, [data, error]);
+  }, [data, wc_error]);
 
-  return { loading, records };
+  return { records, loading, error };
 };
