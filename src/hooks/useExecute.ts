@@ -1,4 +1,4 @@
-import { ExecuteProgramRequestData, ExecuteRejMessage, ExecuteResMessage } from '../messaging/execute.js';
+import { ExecuteProgramRequestData, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 
@@ -27,7 +27,7 @@ export const useExecuteProgram = (
     }
   });
 
-  const error: ExecuteRejMessage | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
   const puzzleData: ExecuteResMessage | undefined =  wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined;
   const transactionId: string | undefined = puzzleData?.data.transactionId;
 
