@@ -3,7 +3,8 @@ import { PuzzleAccount, projectId } from '../index.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { ISignClient, SessionTypes } from '@walletconnect/types';
 import { getSdkError } from '@walletconnect/utils';
-import { SignClient  } from '@walletconnect/sign-client';
+import { SignClient } from '@walletconnect/sign-client';
+import { useRequest } from '@walletconnect/modal-sign-react';
 import { Core } from '@walletconnect/core';
 import { Local } from '../data/Local.js';
 
@@ -12,13 +13,28 @@ export const useWallet = () => {
     (state) => [state.setSession, state.setAccount, state.setAccounts, state.session, state.signClient]
   );
 
+  const { request: disconnect } = useRequest({
+    topic: session?.topic,
+    chainId: 'aleo:1',
+    request: {
+      id: 1,
+      jsonrpc: '2.0',
+      method: 'aleo_disconnect'
+    },
+  });
+
   const addSession = async (newSession: SessionTypes.Struct) => {
     console.log("Removing old session"); 
     if (session && signClient) {
-      await signClient.disconnect({
-        topic: session.topic,
-        reason: getSdkError('USER_DISCONNECTED')
-      })
+      try {
+        await disconnect()
+        await signClient.disconnect({
+          topic: session.topic,
+          reason: getSdkError('USER_DISCONNECTED')
+        })
+      } catch (e) {
+        console.error(e)
+      }
     }
     console.log("Adding new session"); 
     setSession(newSession);

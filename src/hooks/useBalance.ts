@@ -2,16 +2,15 @@ import useClientWalletStore from './clientWalletStore.js';
 import { useRequest } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
 import { useWallet } from './useWallet.js';
-import { GetBalanceMessage, GetBalanceRejMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
 
 export const useBalance = () => {
   const { session } = useWallet(); 
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const { request, data: wc_data, error: wc_error, _ } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
     chainId: 'aleo:1',
     request: {
@@ -33,12 +32,9 @@ export const useBalance = () => {
       signClient.events.on('session_event', ({ id, params, topic }) => {
         if (topic !== session.topic) return;
         const eventName = params.event.name;
-        if (eventName === 'accountsChanged') {
-          setLoading(true)
-        } else if (eventName === 'balanceChanged') {
+        if (eventName === 'balanceChanged') {
           const newBalance: number = Number(params.event.data);
           setBalance(newBalance);
-          setLoading(false)
         }
       });
     }
@@ -47,7 +43,6 @@ export const useBalance = () => {
   // send initial balance request...
   useEffect(() => { 
     if (session) {
-      setLoading(true);
       request();
     }
   }, [session]);
@@ -61,7 +56,6 @@ export const useBalance = () => {
       const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
       const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
       const balance = puzzleData?.data.balance ?? 0;
-      setLoading(false);
       setError(error);
       setBalance(balance);
     }
