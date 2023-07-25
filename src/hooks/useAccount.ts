@@ -12,9 +12,10 @@ export const useAccount = () => {
     ]);
 
   useEffect(() => {
-    if (!signClient) return;
+    if (!signClient || !session) return;
+    let currentSession = session;
     signClient.events.on('session_event', ({ id, params, topic }) => {
-      if (topic !== session?.topic) return;
+      if (topic !== currentSession?.topic) return;
       const eventName = params.event.name;
       const address = params.event.data[0];
       const network = params.chainId.split(':')[0];

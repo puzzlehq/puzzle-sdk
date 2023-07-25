@@ -25,16 +25,17 @@ export const useRecords = () => {
 
   // listen for wallet-originated balance updates
   useEffect(() => {
-    if (signClient && session) {
-      signClient.events.on('session_event', ({ id, params, topic }) => {
-        if (topic !== session.topic) return;
-        const eventName = params.event.name;
-        if (eventName === 'recordsChanged') {
-          const newRecords: string[] = params.event.data;
-          setRecords(newRecords);
-        }
-      });
-    }
+    if (!signClient || !session) return;
+    let currentSession = session;
+    signClient.events.on('session_event', ({ id, params, topic }) => {
+      if (topic !== currentSession.topic) return;
+      const eventName = params.event.name;
+      if (eventName === 'recordsChanged') {
+        const newRecords: string[] = params.event.data;
+        setRecords(newRecords);
+      }
+    });
+    
   }, [signClient, session])
 
   // send initial records request...
@@ -53,7 +54,7 @@ export const useRecords = () => {
       const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
       const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
       setRecords(records);
-      setError(error)
+      setError(error);
     }
   }, [data, wc_error]);
 

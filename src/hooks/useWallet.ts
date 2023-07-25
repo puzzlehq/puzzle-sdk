@@ -13,28 +13,17 @@ export const useWallet = () => {
     (state) => [state.setSession, state.setAccount, state.setAccounts, state.session, state.signClient]
   );
 
-  const { request: disconnect } = useRequest({
-    topic: session?.topic,
-    chainId: 'aleo:1',
-    request: {
-      id: 1,
-      jsonrpc: '2.0',
-      method: 'aleo_disconnect'
-    },
-  });
-
   const addSession = async (newSession: SessionTypes.Struct) => {
-    console.log("Removing old session"); 
     if (session && signClient) {
+      console.log("Removing old session"); 
       try {
-        await disconnect()
-      } catch (e) {
-        try {
-          await signClient.disconnect({
-            topic: session.topic,
-            reason: getSdkError('USER_DISCONNECTED')
-          })
-        } catch (e) { }
+        await signClient.disconnect({
+          topic: session.topic,
+          reason: getSdkError('USER_DISCONNECTED')
+        })
+      } catch (e) { 
+        console.error('addSession Error 1')
+        console.error((e as Error).message)
       }
     }
     console.log("Adding new session"); 

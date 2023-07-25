@@ -28,16 +28,16 @@ export const useBalance = () => {
 
   // listen for wallet-originated balance updates
   useEffect(() => {
-    if (signClient && session) {
-      signClient.events.on('session_event', ({ id, params, topic }) => {
-        if (topic !== session.topic) return;
-        const eventName = params.event.name;
-        if (eventName === 'balanceChanged') {
-          const newBalance: number = Number(params.event.data);
-          setBalance(newBalance);
-        }
-      });
-    }
+    if (!signClient || !session) return;
+    let currentSession = session;
+    signClient.events.on('session_event', ({ id, params, topic }) => {
+      if (topic !== currentSession.topic) return;
+      const eventName = params.event.name;
+      if (eventName === 'balanceChanged') {
+        const newBalance: number = Number(params.event.data);
+        setBalance(newBalance);
+      }
+    });
   }, [signClient, session])
 
   // send initial balance request...
