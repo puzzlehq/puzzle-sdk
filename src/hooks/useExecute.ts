@@ -27,9 +27,14 @@ export const useExecuteProgram = (
     }
   });
 
-  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined);
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_REJ' ? wc_data.data.error : undefined);
   const puzzleData: ExecuteResMessage | undefined =  wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined;
   const transactionId: string | undefined = puzzleData?.data.transactionId;
+
+  console.log('in useExecute')
+  console.log('error', error);
+  console.log('puzzleData', puzzleData)
+  console.log('transactionId', transactionId);
 
   const execute = () => {
     if (executeProgramRequestData !== null) {
