@@ -33,6 +33,7 @@ export const useRecords = () => {
       if (eventName === 'recordsChanged') {
         const newRecords: string[] = params.event.data;
         setRecords(newRecords);
+        setError(undefined);
       }
     });
     

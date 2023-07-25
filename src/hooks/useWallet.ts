@@ -15,7 +15,7 @@ export const useWallet = () => {
 
   const addSession = async (newSession: SessionTypes.Struct) => {
     if (session && signClient) {
-      console.log("Removing old session"); 
+      console.log("Removing old session", session); 
       try {
         await signClient.disconnect({
           topic: session.topic,
@@ -26,7 +26,6 @@ export const useWallet = () => {
         console.error((e as Error).message)
       }
     }
-    console.log("Adding new session"); 
     setSession(newSession);
 
     window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE'); // remove to prevent walletconnect from redirecting to the wallet page

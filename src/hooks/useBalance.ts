@@ -45,7 +45,6 @@ export const useBalance = () => {
   useEffect(() => { 
     if (session) {
       request();
-      console.log('sent balance request')
     }
   }, [session]);
 

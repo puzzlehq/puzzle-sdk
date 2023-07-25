@@ -33,7 +33,6 @@ export const useDeployProgram = (
   const deploy = () => { 
     if (!deployProgramRequestData) return;
     request(); 
-    console.log('deploy request sent')
   }
 
   return { deploy, transactionId, loading, error };
