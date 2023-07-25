@@ -28,13 +28,14 @@ export const useWallet = () => {
     if (session && signClient) {
       try {
         await disconnect()
-      } catch (e) {}
-      try {
-        await signClient.disconnect({
-          topic: session.topic,
-          reason: getSdkError('USER_DISCONNECTED')
-        })
-      } catch (e) {}
+      } catch (e) {
+        try {
+          await signClient.disconnect({
+            topic: session.topic,
+            reason: getSdkError('USER_DISCONNECTED')
+          })
+        } catch (e) { }
+      }
     }
     console.log("Adding new session"); 
     setSession(newSession);
