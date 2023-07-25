@@ -36,6 +36,7 @@ export const useBalance = () => {
       if (eventName === 'balanceChanged') {
         const newBalance: number = Number(params.event.data);
         setBalance(newBalance);
+        setError(undefined);
       }
     });
   }, [signClient, session])
@@ -44,14 +45,15 @@ export const useBalance = () => {
   useEffect(() => { 
     if (session) {
       request();
+      console.log('sent balance request')
     }
   }, [session]);
 
   // ...and listen for response
   useEffect(() => { 
     if (wc_error) {
-      setBalance(0);
       setError(wc_error.message);
+      setBalance(0);
     } else if (wc_data) {
       const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
       const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;

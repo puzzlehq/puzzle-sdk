@@ -31,9 +31,9 @@ export const useDeployProgram = (
   const transactionId = puzzleData?.data.transactionId;
 
   const deploy = () => { 
-    if (deployProgramRequestData !== null) {
-      request(); 
-    }
+    if (!deployProgramRequestData) return;
+    request(); 
+    console.log('deploy request sent')
   }
 
   return { deploy, transactionId, loading, error };
