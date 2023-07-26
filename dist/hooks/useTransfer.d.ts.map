@@ -1,1 +1,0 @@
-{"version":3,"file":"useTransfer.d.ts","sourceRoot":"","sources":["../../src/hooks/useTransfer.ts"],"names":[],"mappings":"AAIA,MAAM,WAAW,mBAAmB;IAClC,OAAO,EAAE,MAAM,CAAC;IAChB,SAAS,EAAE,MAAM,CAAC;IAClB,KAAK,EAAE,MAAM,CAAC;CACf;AAED,eAAO,MAAM,kBAAkB,yBACP,mBAAmB;;;;;CAoB1C,CAAC"}

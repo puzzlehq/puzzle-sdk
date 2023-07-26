@@ -3,10 +3,10 @@
   "displayName": "Puzzle SDK",
   "version": "0.0.57",
   "description": "Your portal to a private web3 experience.",
-  "main": "./dist/index.js",
+  "main": "./dist/puzzle.umd.js",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "vite build"
   },
   "dependencies": {
     "@aleohq/sdk": "^0.5.1",
@@ -34,7 +34,8 @@
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^4.4.7"
   },
   "repository": {
     "type": "git",

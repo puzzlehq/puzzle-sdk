@@ -1,1 +1,0 @@
-{"version":3,"file":"web3modal.d.ts","sourceRoot":"","sources":["../src/web3modal.tsx"],"names":[],"mappings":"AAIA,KAAK,KAAK,GAAG;IACX,QAAQ,EAAE,MAAM,CAAC;IACjB,eAAe,EAAE,MAAM,CAAC;IACxB,OAAO,EAAE,MAAM,CAAC;IAChB,WAAW,EAAE,MAAM,CAAC;CACrB,CAAA;AAED,eAAO,MAAM,eAAe,wDAAyD,KAAK,gBAezF,CAAC"}
