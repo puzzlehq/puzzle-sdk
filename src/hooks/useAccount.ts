@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useRequest, useSession, useOnSessionEvent } from '@walletconnect/modal-sign-react';
 import { GetSelectedAccountMessage, GetSelectedAccountResMessage } from '../messaging/account.js';
+import { SessionTypes } from '@walletconnect/types';
 
 export const useAccount = () => {
-  const [account, accounts, session, signClient, chainId, setAccount] =
+  const session: SessionTypes.Struct = useSession();
+
+  const [account, accounts, chainId, setAccount] =
     useClientWalletStore((state) => [
       state.account,
       state.accounts,
-      state.session,
-      state.signClient,
       state.chainId,
       state.setAccount,
     ]);
@@ -29,25 +30,20 @@ export const useAccount = () => {
     });
 
   // listen for wallet-originated account updates
-  useEffect(() => {
-    if (!signClient || !session) return;
-    let currentSession = session;
-    signClient.events.on('session_event', ({ id, params, topic }) => {
-      if (topic !== currentSession?.topic) return;
-      const eventName = params.event.name;
-      if (eventName === 'accountsChanged') {
-        const address = params.event.data[0];
-        const network = params.chainId.split(':')[0];
-        const chainId = params.chainId.split(':')[1];
-        setAccount({
-          network,
-          chainId,
-          address,
-        });
-        setError(undefined);
-      }
-    });
-  }, [session, signClient]);
+  useOnSessionEvent(({ params }) => {
+    const eventName = params.event.name;
+    if (eventName === 'accountsChanged') {
+      const address = params.event.data[0];
+      const network = params.chainId.split(':')[0];
+      const chainId = params.chainId.split(':')[1];
+      setAccount({
+        network,
+        chainId,
+        address,
+      });
+      setError(undefined);
+    }
+  });
 
   // send initial account request...
   useEffect(() => {

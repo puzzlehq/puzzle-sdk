@@ -18,7 +18,6 @@
     "@walletconnect/core": "^2.9.0",
     "@walletconnect/jsonrpc-types": "^1.0.3",
     "@walletconnect/modal-sign-react": "^2.6.0",
-    "@walletconnect/sign-client": "^2.9.0",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.0",
     "@walletconnect/web3wallet": "^1.8.6",
@@ -53,5 +52,11 @@
   "bugs": {
     "url": "https://github.com/medici-collective/puzzle-sdk/issues"
   },
-  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme"
+  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme",
+  "pnpm": {
+    "patchedDependencies": {
+      "@walletconnect/modal-sign-react@2.6.0": "patches/@walletconnect__modal-sign-react@2.6.0.patch",
+      "@walletconnect/modal-sign-html@2.6.0": "patches/@walletconnect__modal-sign-html@2.6.0.patch"
+    }
+  }
 }

@@ -1,12 +1,13 @@
+import { SessionTypes } from '@walletconnect/types';
 import { ExecuteMessage, ExecuteProgramRequestData, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 
 export const useExecuteProgram = (
   executeProgramRequestData?: ExecuteProgramRequestData
 ) => {
-  const [session, chainId] = useClientWalletStore((state) => [
-    state.session,
+  const session: SessionTypes.Struct = useSession();
+  const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 

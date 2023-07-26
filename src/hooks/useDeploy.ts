@@ -1,12 +1,13 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { DeployMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
+import { SessionTypes } from '@walletconnect/types';
 
 export const useDeployProgram = (
   deployProgramRequestData?: DeployMessageInputData
 ) => {
-  const [session, chainId] = useClientWalletStore((state) => [
-    state.session,
+  const session: SessionTypes.Struct = useSession();
+  const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 

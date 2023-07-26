@@ -6,7 +6,7 @@ import {
 } from '../data/walletconnect.js';
 
 export const useConnect = () => {
-  return useWalletConnect({
+  const {connect: wc_connect, data, error, loading} = useWalletConnect({
     requiredNamespaces: {
       aleo: {
         methods: wc_aleo_methods,
@@ -15,4 +15,10 @@ export const useConnect = () => {
       },
     },
   });
+  const connect = async () => {
+    try {
+      await wc_connect();
+    } catch (e) {}
+  }
+  return { connect, data, error, loading };
 };
