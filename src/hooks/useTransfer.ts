@@ -1,5 +1,6 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useRequest, useSession } from '@walletconnect/modal-sign-react';
+import {ISession, SessionTypes} from '@walletconnect/types'
 
 export interface TransferRequestData {
   assetId: String;
@@ -10,15 +11,15 @@ export interface TransferRequestData {
 export const useTransferCredits = (
   transferRequestData?: TransferRequestData
 ) => {
-  const [session, chainId] = useClientWalletStore((state) => [
-    state.session,
+  const session: SessionTypes.Struct = useSession();
+  const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 
   // TODO: (darvish) Make this real
-  const { request, data, error, loading } = useRequest({
+  const { request: transfer, data, error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: chainId ?? 'aleo:1337',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -27,5 +28,5 @@ export const useTransferCredits = (
     },
   });
 
-  return data;
+  return { transfer, data, error, loading };
 };

@@ -1,20 +1,19 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
-import { DeployMessage, DeployMessageInputData } from '../messaging/deploy.js';
-import { useState } from 'react';
+import { useRequest, useSession } from '@walletconnect/modal-sign-react';
+import { DeployMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
+import { SessionTypes } from '@walletconnect/types';
 
 export const useDeployProgram = (
   deployProgramRequestData?: DeployMessageInputData
 ) => {
-  const [ loading, setLoading ] = useState(false); 
-  const [session, chainId] = useClientWalletStore((state) => [
-    state.session,
+  const session: SessionTypes.Struct = useSession();
+  const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 
-  const { request: sendRequest, data, error } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: 'aleo:1',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -28,12 +27,14 @@ export const useDeployProgram = (
     },
   });
 
+  const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.type === 'DEPLOY_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: DeployResMessage | undefined =  wc_data &&  wc_data.type === 'DEPLOY_RES' ? wc_data : undefined;
+  const transactionId = puzzleData?.data.transactionId;
+
   const deploy = () => { 
-    if (deployProgramRequestData !== null) {
-      sendRequest(); 
-    }
+    if (!deployProgramRequestData) return;
+    request(); 
   }
 
-  return { deploy };
-  
+  return { deploy, transactionId, loading, error };
 };

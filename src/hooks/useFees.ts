@@ -11,7 +11,7 @@ export interface Fee {
 export const usePuzzleFees = () => {
   const [status, setStatus] = useState<{
     loading: boolean;
-    error?: Error;
+    error?: string;
     fees?: Fee[];
   }>({
     loading: true,

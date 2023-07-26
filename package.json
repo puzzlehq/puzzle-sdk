@@ -1,14 +1,16 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.26",
+  "version": "0.0.59",
   "description": "Your portal to a private web3 experience.",
-  "main": "./src/index.ts",
+  "main": "./dist/puzzle.es.js",
+  "types": "./dist/types/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types"
   },
   "dependencies": {
+    "@aleohq/sdk": "^0.5.1",
     "@extend-chrome/messages": "^1.2.2",
     "@tanstack/react-query": "^4.29.5",
     "@trpc/client": "^10.9.0",
@@ -16,11 +18,10 @@
     "@trpc/server": "^10.8.1",
     "@walletconnect/core": "^2.9.0",
     "@walletconnect/jsonrpc-types": "^1.0.3",
-    "@walletconnect/sign-client": "^2.9.0",
+    "@walletconnect/modal-sign-react": "^2.6.0",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.0",
     "@walletconnect/web3wallet": "^1.8.6",
-    "@walletconnect/modal-sign-react": "^2.6.0",
     "immer": "^9.0.19",
     "localforage": "^1.10.0",
     "react": "^18.2.0",
@@ -34,7 +35,8 @@
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^4.4.7"
   },
   "repository": {
     "type": "git",
@@ -52,5 +54,11 @@
   "bugs": {
     "url": "https://github.com/medici-collective/puzzle-sdk/issues"
   },
-  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme"
+  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme",
+  "pnpm": {
+    "patchedDependencies": {
+      "@walletconnect/modal-sign-react@2.6.0": "patches/@walletconnect__modal-sign-react@2.6.0.patch",
+      "@walletconnect/modal-sign-html@2.6.0": "patches/@walletconnect__modal-sign-html@2.6.0.patch"
+    }
+  }
 }

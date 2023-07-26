@@ -1,18 +1,22 @@
 import useClientWalletStore from './clientWalletStore.js';
-import { useRequest } from '@walletconnect/modal-sign-react';
+import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { usePuzzleWallet } from './useWallet.js';
 import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
-  const { session } = usePuzzleWallet(); 
-  const { signClient } = useClientWalletStore();
+  const session: SessionTypes.Struct = useSession();
+  const [chainId] = useClientWalletStore((state) => [
+    state.chainId,
+  ]);
+
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
 
-  const { request, data, error, _ } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
     topic: session?.topic,
-    chainId: 'aleo:1',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -27,40 +31,39 @@ export const useBalance = () => {
   });
 
   // listen for wallet-originated balance updates
-  useEffect(() => {
-    if (signClient && session) {
-      signClient.events.on('session_event', ({ id, params, topic }) => {
-        if (topic !== session.topic) return;
-        const eventName = params.event.name;
-        if (eventName === 'accountsChanged') {
-          setLoading(true)
-        } else if (eventName === 'balanceChanged') {
-          const newBalance: number = Number(params.event.data);
-          setBalance(newBalance);
-          setLoading(false)
-        }
-      });
+  useOnSessionEvent(({ id, params, topic }) => {
+    const eventName = params.event.name;
+    if (eventName === 'balanceChanged') {
+      const newBalance: number = Number(params.event.data);
+      setBalance(newBalance);
+      setError(undefined);
+      setLoading(false);
     }
-  }, [signClient, session])
+  });
 
   // send initial balance request...
   useEffect(() => { 
     if (session) {
-      setLoading(true);
       request();
+      setLoading(true);
     }
   }, [session]);
 
   // ...and listen for response
   useEffect(() => { 
-    if (error) {
-      /// todo -- pipe this to the frontend
-    } else if (data) {
-      const response = data as GetBalanceResMessage;
+    if (wc_error) {
+      setBalance(0);
+      setError(wc_error.message);
       setLoading(false);
-      setBalance(response.data.balance);
+    } else if (wc_data) {
+      const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
+      const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
+      const balance = puzzleData?.data.balance ?? 0;
+      setBalance(balance);
+      setError(error);
+      setLoading(false)
     }
-  }, [data, error]);
+  }, [wc_data, wc_error]);
 
-  return { loading, balance };
+  return { loading, balance, error };
 };
