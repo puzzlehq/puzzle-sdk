@@ -1,0 +1,1 @@
+{"version":3,"file":"useFees.d.ts","sourceRoot":"","sources":["../../src/hooks/useFees.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,KAAK,EAAa,MAAM,kBAAkB,CAAC;AAEpD,MAAM,WAAW,GAAG;IAClB,KAAK,EAAE,MAAM,CAAC;IACd,KAAK,EAAE,MAAM,CAAC;IACd,MAAM,EAAE,KAAK,CAAC;IACd,MAAM,EAAE,KAAK,CAAC;CACf;AAED,eAAO,MAAM,aAAa;aAEb,OAAO;;;CAgCnB,CAAC"}

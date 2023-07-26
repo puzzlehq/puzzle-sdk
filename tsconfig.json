@@ -4,7 +4,6 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
-    "noEmit": true,
     "lib": ["dom", "esnext", "es2017.object", "webworker"],
     "types": ["node"],
     "strict": true,
@@ -20,7 +19,8 @@
     "importHelpers": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "dist"
   },
   "include": [
     "src"
