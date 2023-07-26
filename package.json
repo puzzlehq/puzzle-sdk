@@ -3,10 +3,11 @@
   "displayName": "Puzzle SDK",
   "version": "0.0.58",
   "description": "Your portal to a private web3 experience.",
-  "main": "./dist/puzzle.umd.js",
+  "main": "./dist/puzzle.es.js",
+  "types": "./dist/types/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types"
   },
   "dependencies": {
     "@aleohq/sdk": "^0.5.1",
