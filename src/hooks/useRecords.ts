@@ -5,7 +5,10 @@ import { useWallet } from './useWallet.js';
 import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage } from '../messaging/records.js';
 
 export const useRecords = () => {
-  const { session } = useWallet(); 
+  const [session, chainId] = useClientWalletStore((state) => [
+    state.session,
+    state.chainId,
+  ]);
   const { signClient } = useClientWalletStore();
   const [records, setRecords] = useState<string[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);

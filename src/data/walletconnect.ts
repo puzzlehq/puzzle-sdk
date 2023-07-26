@@ -13,8 +13,7 @@ export const wc_aleo_methods = [
   // aleo methods
   'aleo_connect',
   'aleo_disconnect',
-  'aleo_getAccountPublicKey',
-  'aleo_getSpendingPublicKey',
+  'aleo_getSelectedAccount',
   'aleo_transfer',
   'aleo_deployProgram',
   'aleo_getBalance',

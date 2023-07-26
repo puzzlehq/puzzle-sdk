@@ -4,7 +4,6 @@ import useClientWalletStore from './clientWalletStore.js';
 import { ISignClient, SessionTypes } from '@walletconnect/types';
 import { getSdkError } from '@walletconnect/utils';
 import { SignClient } from '@walletconnect/sign-client';
-import { useRequest } from '@walletconnect/modal-sign-react';
 import { Core } from '@walletconnect/core';
 import { Local } from '../data/Local.js';
 
@@ -22,7 +21,7 @@ export const useWallet = () => {
           reason: getSdkError('USER_DISCONNECTED')
         })
       } catch (e) { 
-        console.error('addSession Error 1')
+        console.error('addSession: error disconnecting from old session');
         console.error((e as Error).message)
       }
     }
@@ -84,8 +83,6 @@ export const useInitWallet = () => {
           ? signClient.session.getAll()[lastKeyIndex]
           : undefined;
       
-      console.log(lastSession)
-
       if (lastSession) {
         addSession(lastSession);
       }

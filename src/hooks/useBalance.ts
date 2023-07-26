@@ -5,14 +5,18 @@ import { useWallet } from './useWallet.js';
 import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
 
 export const useBalance = () => {
-  const { session } = useWallet(); 
+  const [session, chainId] = useClientWalletStore((state) => [
+    state.session,
+    state.chainId,
+  ]);
+  
   const { signClient } = useClientWalletStore();
   const [balance, setBalance] = useState(0);
   const [error, setError] = useState<string | undefined>(undefined);
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
-    chainId: 'aleo:1',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -51,14 +55,14 @@ export const useBalance = () => {
   // ...and listen for response
   useEffect(() => { 
     if (wc_error) {
-      setError(wc_error.message);
       setBalance(0);
+      setError(wc_error.message);
     } else if (wc_data) {
-      const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
       const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
+      const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
       const balance = puzzleData?.data.balance ?? 0;
-      setError(error);
       setBalance(balance);
+      setError(error);
     }
   }, [wc_data, wc_error]);
 
