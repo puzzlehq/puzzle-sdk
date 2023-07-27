@@ -1031,7 +1031,7 @@ let Bl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-33e78407.js");
+      await import("./index-abe9809b.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -8659,7 +8659,7 @@ const mb = [
   "aleo_getBalance",
   "aleo_executeProgram",
   "aleo_getRecords"
-], Hs = ["aleo:1"], ps = ["chainChanged", "accountsChanged", "balanceChanged", "recordsChanged"], _b = "2133b10d21f9fcf851eb9ef8f057acea", Ja = "https://walletconnect.puzzle.online/", wb = {
+], Hs = ["aleo:1"], ps = ["chainChanged", "accountsChanged", "balanceChanged", "recordsChanged"], _b = "f0aaeffe71b636da453fce042d79d723", Ja = "https://walletconnect.puzzle.online/", wb = {
   standaloneChains: Mu.concat(Hs),
   enableExplorer: !1,
   enableAccountView: !0,
