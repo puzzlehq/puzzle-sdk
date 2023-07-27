@@ -25,7 +25,7 @@ export const wc_aleo_chains = ['aleo:1']; //placeholder until there are multiple
 // events originating from wallet
 export const wc_events = ['chainChanged', 'accountsChanged', 'balanceChanged', 'recordsChanged'];
 
-export const projectId = '2133b10d21f9fcf851eb9ef8f057acea';
+export const projectId = 'f0aaeffe71b636da453fce042d79d723';
 export const walletURL = 'https://walletconnect.puzzle.online/';
 
 export const web3modal_puzzle_props = {
