@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
-export const useRecords = () => {
+export const useRecords = ( programId?: string ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
@@ -22,6 +22,7 @@ export const useRecords = () => {
       method: 'aleo_getRecords',
       params: {
         type: 'GET_RECORDS',
+        programId: programId,
       } as GetRecordsMessage
     },
   });
@@ -38,7 +39,7 @@ export const useRecords = () => {
   });
 
   // send initial records request...
-  useEffect(() => { 
+  useEffect(() => {
     if (session) {
       request();
       setLoading(true);
@@ -46,7 +47,7 @@ export const useRecords = () => {
   }, [session]);
 
   // ...and listen for response
-  useEffect(() => { 
+  useEffect(() => {
     if (wc_error) {
       setRecords([]);
       setError(wc_error.message);

@@ -1,6 +1,6 @@
 export type GetRecordsMessage = {
   type: 'GET_RECORDS';
-  data?: string;
+  programId?: string;
   sender?: string;
 };
 
