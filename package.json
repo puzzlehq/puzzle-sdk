@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.62",
+  "version": "0.0.66",
   "description": "Your portal to a private web3 experience.",
   "main": "./dist/puzzle.es.js",
   "types": "./dist/types/index.d.ts",
@@ -50,11 +50,5 @@
   "bugs": {
     "url": "https://github.com/medici-collective/puzzle-sdk/issues"
   },
-  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme",
-  "pnpm": {
-    "patchedDependencies": {
-      "@walletconnect/modal-sign-react@2.6.0": "patches/@walletconnect__modal-sign-react@2.6.0.patch",
-      "@walletconnect/modal-sign-html@2.6.0": "patches/@walletconnect__modal-sign-html@2.6.0.patch"
-    }
-  }
+  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme"
 }

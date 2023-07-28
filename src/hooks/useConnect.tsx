@@ -4,9 +4,11 @@ import {
   wc_aleo_methods,
   wc_events,
 } from '../data/walletconnect.js';
+import { useEffect, useState } from 'react';
 
 export const useConnect = () => {
-  const {connect: wc_connect, data, error, loading} = useWalletConnect({
+  const [error, setError] = useState<string | undefined>(undefined);
+  const {connect: wc_connect, data, error: wc_error, loading} = useWalletConnect({
     requiredNamespaces: {
       aleo: {
         methods: wc_aleo_methods,
@@ -18,7 +20,15 @@ export const useConnect = () => {
   const connect = async () => {
     try {
       await wc_connect();
+      setError(undefined);
     } catch (e) {}
   }
+
+  useEffect(() => {
+    if (wc_error) {
+      setError(wc_error.message);
+    }
+  }, [wc_error])
+  
   return { connect, data, error, loading };
 };

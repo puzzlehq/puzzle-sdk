@@ -20,6 +20,10 @@ export type ExecuteResMessage = {
     type: "EXECUTE_RES";
     data: {
         transactionId: string;
+        outputPrivate: string;
+        outputRecords: string;
+        outputPublic: string;
+        outputConstant: string; 
     };
 };
 
