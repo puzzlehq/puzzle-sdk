@@ -30,6 +30,10 @@ export const useExecuteProgram = (
   const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_REJ' ? wc_data.data.error : undefined);
   const puzzleData: ExecuteResMessage | undefined =  wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined;
   const transactionId: string | undefined = puzzleData?.data.transactionId;
+  const outputPrivate: string | undefined = puzzleData?.data.outputPrivate;
+  const outputPublic: string | undefined = puzzleData?.data.outputPublic;
+  const outputRecords: string | undefined = puzzleData?.data.outputRecords;
+  const outputConstant: string | undefined = puzzleData?.data.outputConstant;
 
   const execute = () => {
     if (!executeProgramRequestData) return
@@ -37,5 +41,5 @@ export const useExecuteProgram = (
     console.log('sent execute request')
   }
 
-  return { execute, transactionId, error, loading };
+  return { execute, transactionId, outputConstant, outputPrivate, outputRecords, outputPublic, error, loading };
 };
