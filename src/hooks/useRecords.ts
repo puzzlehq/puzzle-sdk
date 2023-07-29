@@ -1,15 +1,15 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage } from '../messaging/records.js';
+import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
-export const useRecords = ( programId?: string ) => {
+export const useRecords = ( filter?: RecordsFilter ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
-  const [records, setRecords] = useState<string[]>([]);
+  const [records, setRecords] = useState<Record[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +22,7 @@ export const useRecords = ( programId?: string ) => {
       method: 'aleo_getRecords',
       params: {
         type: 'GET_RECORDS',
-        programId: programId,
+        filter: filter
       } as GetRecordsMessage
     },
   });
@@ -31,7 +31,7 @@ export const useRecords = ( programId?: string ) => {
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'recordsChanged') {
-      const newRecords: string[] = params.event.data;
+      const newRecords: Record[] = params.event.data;
       setRecords(newRecords);
       setError(undefined);
       setLoading(false);
