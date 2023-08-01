@@ -1064,7 +1064,7 @@ let Yl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-7da60f6a.js");
+      await import("./index-c58c8860.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9435,9 +9435,9 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
   Js(({ id: D, params: x, topic: P }) => {
     x.event.name === "accountSynced" && e && e.topic === P && (f(), u(!0));
   });
-  const S = e && r;
+  const S = !!e && !!r;
   return St(() => {
-    console.log("readyToRequest balance", S), S && (f(), u(!0), console.log("sending balance request in useBalance!"));
+    console.log("readyToRequest balance", S), S && (f(), u(!0));
   }, [S, r]), St(() => {
     if (b)
       n(0), l(b.message), u(!1);
@@ -9534,9 +9534,9 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
   Js(({ id: x, params: P, topic: M }) => {
     P.event.name === "accountSynced" && t && t.topic === M && (h(), f(!0));
   });
-  const D = t && i;
+  const D = !!t && !!i;
   return St(() => {
-    console.log("readyToRequest records", D), D && (h(), f(!0), console.log("sending records request in useRecords!"));
+    console.log("readyToRequest records", D), D && (h(), f(!0));
   }, [D, i]), St(() => {
     console.log(t);
   }, [t]), St(() => {
