@@ -6,8 +6,8 @@ import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
   const session: SessionTypes.Struct = useSession();
-  const [chainId] = useClientWalletStore((state) => [
-    state.chainId,
+  const [chainId, account] = useClientWalletStore((state) => [
+    state.chainId, state.account
   ]);
 
   const [balance, setBalance] = useState(0);
@@ -31,23 +31,22 @@ export const useBalance = () => {
   });
 
   // listen for wallet-originated balance updates
-  useOnSessionEvent(({ id, params, topic }) => {
+  useOnSessionEvent(({ _, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'balanceChanged') {
-      const newBalance: number = Number(params.event.data);
-      setBalance(newBalance);
-      setError(undefined);
-      setLoading(false);
+    if (eventName === 'accountSynced' && session && session.topic === topic) {
+      request();
+      setLoading(true);
     }
   });
 
   // send initial balance request...
+  const readyToRequest = !!session && !!account;
   useEffect(() => { 
-    if (session) {
+    if (readyToRequest) {
       request();
       setLoading(true);
     }
-  }, [session]);
+  }, [readyToRequest, account]);
 
   // ...and listen for response
   useEffect(() => { 

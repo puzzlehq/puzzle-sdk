@@ -30,10 +30,10 @@ export const useAccount = () => {
     });
 
   // listen for wallet-originated account updates
-  useOnSessionEvent(({ params }) => {
+  useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountsChanged') {
-      const address = params.event.data[0];
+    if (eventName === 'accountSelected' && session && session.topic === topic) {
+      const address = params.event.data;
       const network = params.chainId.split(':')[0];
       const chainId = params.chainId.split(':')[1];
       setAccount({

@@ -1,10 +1,17 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.66",
+  "version": "0.0.70",
   "description": "Your portal to a private web3 experience.",
-  "main": "./dist/puzzle.es.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/puzzle.umd.js",
+  "module": "./dist/puzzle.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/puzzle.es.js",
+      "require": "./dist/puzzle.umd.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
   "type": "module",
   "scripts": {
     "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types"
