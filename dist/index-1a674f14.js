@@ -1,4 +1,4 @@
-import Xr, { memo as Dl, useEffect as St, useState as Lt, useDebugValue as Ol } from "react";
+import Xr, { memo as Dl, useEffect as xt, useState as Lt, useDebugValue as Ol } from "react";
 var Nt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function Os(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
@@ -1064,7 +1064,7 @@ let Yl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-c58c8860.js");
+      await import("./index-c7875ec0.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -2246,39 +2246,39 @@ function Nc() {
     level: "info"
   }, Rr.PINO_CUSTOM_CONTEXT_KEY = "custom_context"), Rr;
 }
-var Dt = {}, Qo;
+var St = {}, Qo;
 function Hf() {
   if (Qo)
-    return Dt;
-  Qo = 1, Object.defineProperty(Dt, "__esModule", { value: !0 }), Dt.generateChildLogger = Dt.formatChildLoggerContext = Dt.getLoggerContext = Dt.setBrowserLoggerContext = Dt.getBrowserLoggerContext = Dt.getDefaultLoggerOptions = void 0;
+    return St;
+  Qo = 1, Object.defineProperty(St, "__esModule", { value: !0 }), St.generateChildLogger = St.formatChildLoggerContext = St.getLoggerContext = St.setBrowserLoggerContext = St.getBrowserLoggerContext = St.getDefaultLoggerOptions = void 0;
   const e = Nc();
   function t(a) {
     return Object.assign(Object.assign({}, a), { level: (a == null ? void 0 : a.level) || e.PINO_LOGGER_DEFAULTS.level });
   }
-  Dt.getDefaultLoggerOptions = t;
+  St.getDefaultLoggerOptions = t;
   function r(a, l = e.PINO_CUSTOM_CONTEXT_KEY) {
     return a[l] || "";
   }
-  Dt.getBrowserLoggerContext = r;
+  St.getBrowserLoggerContext = r;
   function i(a, l, f = e.PINO_CUSTOM_CONTEXT_KEY) {
     return a[f] = l, a;
   }
-  Dt.setBrowserLoggerContext = i;
+  St.setBrowserLoggerContext = i;
   function n(a, l = e.PINO_CUSTOM_CONTEXT_KEY) {
     let f = "";
     return typeof a.bindings > "u" ? f = r(a, l) : f = a.bindings().context || "", f;
   }
-  Dt.getLoggerContext = n;
+  St.getLoggerContext = n;
   function s(a, l, f = e.PINO_CUSTOM_CONTEXT_KEY) {
     const h = n(a, f);
     return h.trim() ? `${h}/${l}` : l;
   }
-  Dt.formatChildLoggerContext = s;
+  St.formatChildLoggerContext = s;
   function u(a, l, f = e.PINO_CUSTOM_CONTEXT_KEY) {
     const h = s(a, l, f), b = a.child({ context: h });
     return i(b, h, f);
   }
-  return Dt.generateChildLogger = u, Dt;
+  return St.generateChildLogger = u, St;
 }
 (function(e) {
   Object.defineProperty(e, "__esModule", { value: !0 }), e.pino = void 0;
@@ -4920,26 +4920,26 @@ const Fp = {
 function su(e, t) {
   return e.includes(":") ? [e] : t.chains || [];
 }
-const ou = "base10", xt = "base16", us = "base64pad", $s = "utf8", au = 0, Fr = 1, Mp = 0, da = 1, ls = 12, Fs = 32;
+const ou = "base10", It = "base16", us = "base64pad", $s = "utf8", au = 0, Fr = 1, Mp = 0, da = 1, ls = 12, Fs = 32;
 function jp() {
   const e = Ns.generateKeyPair();
-  return { privateKey: Rt(e.secretKey, xt), publicKey: Rt(e.publicKey, xt) };
+  return { privateKey: Rt(e.secretKey, It), publicKey: Rt(e.publicKey, It) };
 }
 function fs() {
   const e = Zr.randomBytes(Fs);
-  return Rt(e, xt);
+  return Rt(e, It);
 }
 function Bp(e, t) {
-  const r = Ns.sharedKey(Tt(e, xt), Tt(t, xt)), i = new op(gn.SHA256, r).expand(Fs);
-  return Rt(i, xt);
+  const r = Ns.sharedKey(Tt(e, It), Tt(t, It)), i = new op(gn.SHA256, r).expand(Fs);
+  return Rt(i, It);
 }
 function qp(e) {
-  const t = gn.hash(Tt(e, xt));
-  return Rt(t, xt);
+  const t = gn.hash(Tt(e, It));
+  return Rt(t, It);
 }
 function Hr(e) {
   const t = gn.hash(Tt(e, $s));
-  return Rt(t, xt);
+  return Rt(t, It);
 }
 function zp(e) {
   return Tt(`${e}`, ou);
@@ -4951,11 +4951,11 @@ function Vp(e) {
   const t = zp(typeof e.type < "u" ? e.type : au);
   if (Pi(t) === Fr && typeof e.senderPublicKey > "u")
     throw new Error("Missing sender public key for type 1 envelope");
-  const r = typeof e.senderPublicKey < "u" ? Tt(e.senderPublicKey, xt) : void 0, i = typeof e.iv < "u" ? Tt(e.iv, xt) : Zr.randomBytes(ls), n = new Cs.ChaCha20Poly1305(Tt(e.symKey, xt)).seal(i, Tt(e.message, $s));
+  const r = typeof e.senderPublicKey < "u" ? Tt(e.senderPublicKey, It) : void 0, i = typeof e.iv < "u" ? Tt(e.iv, It) : Zr.randomBytes(ls), n = new Cs.ChaCha20Poly1305(Tt(e.symKey, It)).seal(i, Tt(e.message, $s));
   return kp({ type: t, sealed: n, iv: i, senderPublicKey: r });
 }
 function Kp(e) {
-  const t = new Cs.ChaCha20Poly1305(Tt(e.symKey, xt)), { sealed: r, iv: i } = Zi(e.encoded), n = t.open(i, r);
+  const t = new Cs.ChaCha20Poly1305(Tt(e.symKey, It)), { sealed: r, iv: i } = Zi(e.encoded), n = t.open(i, r);
   if (n === null)
     throw new Error("Failed to decrypt");
   return Rt(n, $s);
@@ -4979,7 +4979,7 @@ function Zi(e) {
 }
 function Wp(e, t) {
   const r = Zi(e);
-  return cu({ type: Pi(r.type), senderPublicKey: typeof r.senderPublicKey < "u" ? Rt(r.senderPublicKey, xt) : void 0, receiverPublicKey: t == null ? void 0 : t.receiverPublicKey });
+  return cu({ type: Pi(r.type), senderPublicKey: typeof r.senderPublicKey < "u" ? Rt(r.senderPublicKey, It) : void 0, receiverPublicKey: t == null ? void 0 : t.receiverPublicKey });
 }
 function cu(e) {
   const t = (e == null ? void 0 : e.type) || au;
@@ -5227,14 +5227,14 @@ function Ni(e, t) {
 function Di(e) {
   return Object.getPrototypeOf(e) === Object.prototype && Object.keys(e).length;
 }
-function It(e) {
+function Ot(e) {
   return typeof e > "u";
 }
 function lt(e, t) {
-  return t && It(e) ? !0 : typeof e == "string" && !!e.trim().length;
+  return t && Ot(e) ? !0 : typeof e == "string" && !!e.trim().length;
 }
 function qs(e, t) {
-  return t && It(e) ? !0 : typeof e == "number" && !isNaN(e);
+  return t && Ot(e) ? !0 : typeof e == "number" && !isNaN(e);
 }
 function Sg(e, t) {
   const { requiredNamespaces: r } = t, i = Object.keys(e.namespaces), n = Object.keys(r);
@@ -5365,13 +5365,13 @@ function Fg(e) {
   return !(!e || typeof e != "object" || !e.code || !qs(e.code, !1) || !e.message || !lt(e.message, !1));
 }
 function Mg(e) {
-  return !(It(e) || !lt(e.method, !1));
+  return !(Ot(e) || !lt(e.method, !1));
 }
 function jg(e) {
-  return !(It(e) || It(e.result) && It(e.error) || !qs(e.id, !1) || !lt(e.jsonrpc, !1));
+  return !(Ot(e) || Ot(e.result) && Ot(e.error) || !qs(e.id, !1) || !lt(e.jsonrpc, !1));
 }
 function Bg(e) {
-  return !(It(e) || !lt(e.name, !1));
+  return !(Ot(e) || !lt(e.name, !1));
 }
 function wa(e, t) {
   return !(!tn(t) || !bg(e).includes(t));
@@ -6590,7 +6590,7 @@ class yb {
       return Pi(s.type);
     }, this.getPayloadSenderPublicKey = (n) => {
       const s = Zi(n);
-      return s.senderPublicKey ? Rt(s.senderPublicKey, xt) : void 0;
+      return s.senderPublicKey ? Rt(s.senderPublicKey, It) : void 0;
     }, this.core = t, this.logger = Te.generateChildLogger(r, this.name), this.keychain = i || new gb(this.core, this.logger);
   }
   get context() {
@@ -6707,7 +6707,7 @@ class vb extends Xf {
   rpcPublish(t, r, i, n, s, u, a) {
     var l, f, h, b;
     const w = { method: Gi(n.protocol).publish, params: { topic: t, message: r, ttl: i, prompt: s, tag: u }, id: a };
-    return It((l = w.params) == null ? void 0 : l.prompt) && ((f = w.params) == null || delete f.prompt), It((h = w.params) == null ? void 0 : h.tag) && ((b = w.params) == null || delete b.tag), this.logger.debug("Outgoing Relay Payload"), this.logger.trace({ type: "message", direction: "outgoing", request: w }), this.relayer.request(w);
+    return Ot((l = w.params) == null ? void 0 : l.prompt) && ((f = w.params) == null || delete f.prompt), Ot((h = w.params) == null ? void 0 : h.tag) && ((b = w.params) == null || delete b.tag), this.logger.debug("Outgoing Relay Payload"), this.logger.trace({ type: "message", direction: "outgoing", request: w }), this.relayer.request(w);
   }
   onPublish(t) {
     this.queue.delete(t);
@@ -7178,7 +7178,7 @@ class mn extends Zf {
   constructor(t, r, i, n = vr, s = void 0) {
     super(t, r, i, n), this.core = t, this.logger = r, this.name = i, this.map = /* @__PURE__ */ new Map(), this.version = nb, this.cached = [], this.initialized = !1, this.storagePrefix = vr, this.init = async () => {
       this.initialized || (this.logger.trace("Initialized"), await this.restore(), this.cached.forEach((u) => {
-        this.getKey && u !== null && !It(u) ? this.map.set(this.getKey(u), u) : Ig(u) ? this.map.set(u.id, u) : xg(u) && this.map.set(u.topic, u);
+        this.getKey && u !== null && !Ot(u) ? this.map.set(this.getKey(u), u) : Ig(u) ? this.map.set(u.id, u) : xg(u) && this.map.set(u.topic, u);
       }), this.cached = [], this.initialized = !0);
     }, this.set = async (u, a) => {
       this.isInitialized(), this.map.has(u) ? await this.update(u, a) : (this.logger.debug("Setting value"), this.logger.trace({ type: "method", method: "set", key: u, value: a }), this.map.set(u, a), await this.persist());
@@ -8050,11 +8050,11 @@ class t1 extends nh {
         throw new Error(l);
       }
       const { pairingTopic: i, requiredNamespaces: n, optionalNamespaces: s, sessionProperties: u, relays: a } = r;
-      if (It(i) || await this.isValidPairingTopic(i), !Ug(a, !0)) {
+      if (Ot(i) || await this.isValidPairingTopic(i), !Ug(a, !0)) {
         const { message: l } = X("MISSING_OR_INVALID", `connect() relays: ${a}`);
         throw new Error(l);
       }
-      !It(n) && Di(n) !== 0 && this.validateNamespaces(n, "requiredNamespaces"), !It(s) && Di(s) !== 0 && this.validateNamespaces(s, "optionalNamespaces"), It(u) || this.validateSessionProps(u, "sessionProperties");
+      !Ot(n) && Di(n) !== 0 && this.validateNamespaces(n, "requiredNamespaces"), !Ot(s) && Di(s) !== 0 && this.validateNamespaces(s, "optionalNamespaces"), Ot(u) || this.validateSessionProps(u, "sessionProperties");
     }, this.validateNamespaces = (r, i) => {
       const n = Lg(r, "connect()", i);
       if (n)
@@ -8074,7 +8074,7 @@ class t1 extends nh {
         const { message: h } = X("MISSING_OR_INVALID", `approve() relayProtocol: ${s}`);
         throw new Error(h);
       }
-      It(u) || this.validateSessionProps(u, "sessionProperties");
+      Ot(u) || this.validateSessionProps(u, "sessionProperties");
     }, this.isValidReject = async (r) => {
       if (!At(r)) {
         const { message: s } = X("MISSING_OR_INVALID", `reject() params: ${r}`);
@@ -8424,15 +8424,15 @@ var o1 = Object.defineProperty, a1 = Object.defineProperties, c1 = Object.getOwn
   if (t.has(e))
     throw TypeError("Cannot add the same private member more than once");
   t instanceof WeakSet ? t.add(e) : t.set(e, r);
-}, nn = (e, t, r, i) => (Ys(e, t, "write to private field"), i ? i.call(e, r) : t.set(e, r), r), _t = (e, t, r) => (Ys(e, t, "access private method"), r), Cr, kr, wi, ct, gs, Bu, wt, Ot, ys, Za;
+}, nn = (e, t, r, i) => (Ys(e, t, "write to private field"), i ? i.call(e, r) : t.set(e, r), r), _t = (e, t, r) => (Ys(e, t, "access private method"), r), Cr, kr, wi, ct, gs, Bu, wt, Dt, ys, Za;
 let d1 = class {
   constructor(t) {
-    Ar(this, gs), Ar(this, wt), Ar(this, ys), Ar(this, Cr, void 0), Ar(this, kr, void 0), Ar(this, wi, void 0), Ar(this, ct, void 0), nn(this, Cr, t), nn(this, kr, _t(this, gs, Bu).call(this)), _t(this, wt, Ot).call(this);
+    Ar(this, gs), Ar(this, wt), Ar(this, ys), Ar(this, Cr, void 0), Ar(this, kr, void 0), Ar(this, wi, void 0), Ar(this, ct, void 0), nn(this, Cr, t), nn(this, kr, _t(this, gs, Bu).call(this)), _t(this, wt, Dt).call(this);
   }
   async connect(t) {
     const { requiredNamespaces: r, optionalNamespaces: i } = t;
     return new Promise(async (n, s) => {
-      await _t(this, wt, Ot).call(this);
+      await _t(this, wt, Dt).call(this);
       const u = ze(this, kr).subscribeModal((f) => {
         f.open || (u(), s(new Error("Modal closed")));
       }), { uri: a, approval: l } = await ze(this, ct).connect(t);
@@ -8455,46 +8455,46 @@ let d1 = class {
     });
   }
   async disconnect(t) {
-    await _t(this, wt, Ot).call(this), await ze(this, ct).disconnect(t);
+    await _t(this, wt, Dt).call(this), await ze(this, ct).disconnect(t);
   }
   async request(t) {
-    return await _t(this, wt, Ot).call(this), await ze(this, ct).request(t);
+    return await _t(this, wt, Dt).call(this), await ze(this, ct).request(t);
   }
   async getSessions() {
-    return await _t(this, wt, Ot).call(this), ze(this, ct).session.getAll();
+    return await _t(this, wt, Dt).call(this), ze(this, ct).session.getAll();
   }
   async getSession() {
-    return await _t(this, wt, Ot).call(this), ze(this, ct).session.getAll().at(-1);
+    return await _t(this, wt, Dt).call(this), ze(this, ct).session.getAll().at(-1);
   }
   async onSessionEvent(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).on("session_event", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).on("session_event", t);
   }
   async offSessionEvent(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).off("session_event", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).off("session_event", t);
   }
   async onSessionUpdate(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).on("session_update", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).on("session_update", t);
   }
   async offSessionUpdate(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).off("session_update", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).off("session_update", t);
   }
   async onSessionDelete(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).on("session_delete", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).on("session_delete", t);
   }
   async offSessionDelete(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).off("session_delete", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).off("session_delete", t);
   }
   async onSessionExpire(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).on("session_expire", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).on("session_expire", t);
   }
   async offSessionExpire(t) {
-    await _t(this, wt, Ot).call(this), ze(this, ct).off("session_expire", t);
+    await _t(this, wt, Dt).call(this), ze(this, ct).off("session_expire", t);
   }
 };
 Cr = /* @__PURE__ */ new WeakMap(), kr = /* @__PURE__ */ new WeakMap(), wi = /* @__PURE__ */ new WeakMap(), ct = /* @__PURE__ */ new WeakMap(), gs = /* @__PURE__ */ new WeakSet(), Bu = function() {
   const { modalOptions: e, projectId: t } = ze(this, Cr);
   return new Yl(h1(f1({}, e), { projectId: t }));
-}, wt = /* @__PURE__ */ new WeakSet(), Ot = async function() {
+}, wt = /* @__PURE__ */ new WeakSet(), Dt = async function() {
   return ze(this, ct) ? !0 : (!ze(this, wi) && typeof window < "u" && nn(this, wi, _t(this, ys, Za).call(this)), ze(this, wi));
 }, ys = /* @__PURE__ */ new WeakSet(), Za = async function() {
   nn(this, ct, await s1.init({ metadata: ze(this, Cr).metadata, projectId: ze(this, Cr).projectId, relayUrl: ze(this, Cr).relayUrl }));
@@ -8538,7 +8538,7 @@ async function Jt() {
   });
 }
 function y1(e) {
-  return St(() => {
+  return xt(() => {
     g1(e);
   }, []), null;
 }
@@ -8563,7 +8563,7 @@ function v1(e) {
   return { data: t, error: r, loading: i, connect: a };
 }
 function zu(e) {
-  St(() => (Jt().then((t) => {
+  xt(() => (Jt().then((t) => {
     t.onSessionDelete(e);
   }), () => {
     Jt().then((t) => {
@@ -8572,7 +8572,7 @@ function zu(e) {
   }), [e]);
 }
 function Js(e) {
-  St(() => (Jt().then((t) => {
+  xt(() => (Jt().then((t) => {
     t.onSessionEvent(e);
   }), () => {
     Jt().then((t) => {
@@ -8581,7 +8581,7 @@ function Js(e) {
   }), [e]);
 }
 function m1(e) {
-  St(() => (Jt().then((t) => {
+  xt(() => (Jt().then((t) => {
     t.onSessionExpire(e);
   }), () => {
     Jt().then((t) => {
@@ -8590,7 +8590,7 @@ function m1(e) {
   }), [e]);
 }
 function _1(e) {
-  St(() => (Jt().then((t) => {
+  xt(() => (Jt().then((t) => {
     t.onSessionUpdate(e);
   }), () => {
     Jt().then((t) => {
@@ -8632,7 +8632,7 @@ function Mr() {
     }
   }), m1((r) => {
     e && r.topic === (e == null ? void 0 : e.topic) && t(void 0);
-  }), St(() => {
+  }), xt(() => {
     async function r() {
       const i = await (await Jt()).getSession();
       t(i);
@@ -9396,9 +9396,9 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
         address: D
       }), u(void 0);
     }
-  }), St(() => {
+  }), xt(() => {
     e && a();
-  }, [e]), St(() => {
+  }, [e]), xt(() => {
     if (f)
       u(f.message);
     else if (l) {
@@ -9432,13 +9432,13 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
       }
     }
   });
-  Js(({ id: D, params: x, topic: P }) => {
+  Js(({ _: D, params: x, topic: P }) => {
     x.event.name === "accountSynced" && e && e.topic === P && (f(), u(!0));
   });
   const S = !!e && !!r;
-  return St(() => {
-    console.log("readyToRequest balance", S), S && (f(), u(!0));
-  }, [S, r]), St(() => {
+  return xt(() => {
+    S && (f(), u(!0));
+  }, [S, r]), xt(() => {
     if (b)
       n(0), l(b.message), u(!1);
     else if (h) {
@@ -9461,7 +9461,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
     } catch {
     }
   };
-  return St(() => {
+  return xt(() => {
     n && t(n.message);
   }, [n]), { connect: u, data: i, error: e, loading: s };
 }, Av = (e) => {
@@ -9512,7 +9512,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
   const [e, t] = Lt({
     loading: !0
   });
-  return St(() => {
+  return xt(() => {
   }, []), { ...e };
 }, Pv = (e) => {
   const t = Mr(), [r, i] = jr((x) => [
@@ -9535,11 +9535,9 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
     P.event.name === "accountSynced" && t && t.topic === M && (h(), f(!0));
   });
   const D = !!t && !!i;
-  return St(() => {
-    console.log("readyToRequest records", D), D && (h(), f(!0));
-  }, [D, i]), St(() => {
-    console.log(t);
-  }, [t]), St(() => {
+  return xt(() => {
+    D && (h(), f(!0));
+  }, [D, i]), xt(() => {
     if (w)
       s([]), a(w.message), f(!1);
     else if (b) {
@@ -9566,7 +9564,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
     i.setAccount,
     i.setAccounts
   ]);
-  St(() => {
+  xt(() => {
     if (e) {
       window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
       const i = e.namespaces.aleo.accounts.map((n) => {
