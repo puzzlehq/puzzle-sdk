@@ -40,13 +40,15 @@ export const useBalance = () => {
   });
 
   // send initial balance request...
+  const readyToRequest = session && account;
   useEffect(() => { 
-    if (session) {
+    console.log('readyToRequest balance', readyToRequest)
+    if (readyToRequest) {
       request();
       setLoading(true);
       console.log('sending balance request in useBalance!')
     }
-  }, [session, account]);
+  }, [readyToRequest, account]);
 
   // ...and listen for response
   useEffect(() => { 
