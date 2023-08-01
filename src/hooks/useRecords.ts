@@ -39,16 +39,11 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   // send initial records request...
   const readyToRequest = !!session && !!account;
   useEffect(() => {
-    console.log('readyToRequest records', readyToRequest)
     if (readyToRequest) {
       request();
       setLoading(true);
     }
   }, [readyToRequest, account]);
-
-  useEffect(() => {
-    console.log(session)
-  }, [session])
 
   // ...and listen for response
   useEffect(() => {
