@@ -1,4 +1,5 @@
 export type Record = {
+    plaintext: string;
     id: string;
     height: number;
     timestamp: string;
@@ -8,9 +9,9 @@ export type Record = {
     transition_id: string;
     transaction_id: string;
     output_index: number;
+    ownerId: string | null;
     spent: boolean;
     serialNumber: string | null;
-    plaintext: string;
 };
 export type RecordsFilter = {
     program_id?: string;

@@ -6,14 +6,14 @@ import { SessionTypes } from '@walletconnect/types';
 
 export const useRecords = ( filter?: RecordsFilter ) => {
   const session: SessionTypes.Struct = useSession();
-  const [chainId] = useClientWalletStore((state) => [
-    state.chainId,
+  const [chainId, account] = useClientWalletStore((state) => [
+    state.chainId, state.account
   ]);
   const [records, setRecords] = useState<Record[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
-  const { request, data, error: wc_error, loading: wc_loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
     topic: session?.topic,
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -30,21 +30,24 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   // listen for wallet-originated balance updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'recordsChanged') {
-      const newRecords: Record[] = params.event.data;
-      setRecords(newRecords);
-      setError(undefined);
-      setLoading(false);
+    if (eventName === 'accountSynced' && session && session.topic === topic) {
+      request();
+      setLoading(true);
     }
   });
 
   // send initial records request...
   useEffect(() => {
-    if (session) {
+    if (session && account) {
       request();
       setLoading(true);
+      console.log('sending records request in useRecords!')
     }
-  }, [session]);
+  }, [session, account]);
+
+  useEffect(() => {
+    console.log(session)
+  }, [session])
 
   // ...and listen for response
   useEffect(() => {
@@ -52,15 +55,15 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       setRecords([]);
       setError(wc_error.message);
       setLoading(false);
-    } else if (data) {
-      const response = data as GetRecordsResMessage | GetRecordsRejMessage;
+    } else if (wc_data) {
+      const response = wc_data as GetRecordsResMessage | GetRecordsRejMessage;
       const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
       const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
       setRecords(records);
       setError(error);
       setLoading(false);
     }
-  }, [data, wc_error]);
+  }, [wc_data, wc_error]);
 
   return { records, error, loading };
 };
