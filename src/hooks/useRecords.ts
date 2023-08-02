@@ -13,7 +13,11 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
-  const { request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
+  if (filter?.program_id === '') {
+    filter.program_id = undefined
+  }
+
+  const { request: wc_request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
     topic: session?.topic,
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -31,7 +35,7 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSynced' && session && session.topic === topic) {
-      request();
+      wc_request();
       setLoading(true);
     }
   });
@@ -40,7 +44,7 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   const readyToRequest = !!session && !!account;
   useEffect(() => {
     if (readyToRequest) {
-      request();
+      wc_request();
       setLoading(true);
     }
   }, [readyToRequest, account]);
@@ -61,5 +65,13 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     }
   }, [wc_data, wc_error]);
 
-  return { records, error, loading };
+  const request = () => {
+    const readyToRequest = !!session && !!account;
+    if (readyToRequest) {
+      wc_request();
+      setLoading(true);
+    }
+  }
+
+  return { request, records, error, loading };
 };
