@@ -1,22 +1,9 @@
 export type TransferMessage = {
   type: 'TRANSFER';
   data: {
-    recipient: string;
+    recipientAddress: string;
     amount: number;
+    privateTransfer?: boolean;
   };
   sender?: string;
-};
-
-export type TransferResMessage = {
-  type: 'TRANSFER_RES';
-  data: {
-    transactionId: string;
-  };
-};
-
-export type TransferRejMessage = {
-  type: 'TRANSFER_REJ';
-  data: {
-    error: string;
-  };
 };
