@@ -1,20 +1,6 @@
+import { TransferRequestData } from "../index.js";
 export type TransferMessage = {
     type: 'TRANSFER';
-    data: {
-        recipient: string;
-        amount: number;
-    };
+    data: TransferRequestData;
     sender?: string;
-};
-export type TransferResMessage = {
-    type: 'TRANSFER_RES';
-    data: {
-        transactionId: string;
-    };
-};
-export type TransferRejMessage = {
-    type: 'TRANSFER_REJ';
-    data: {
-        error: string;
-    };
 };

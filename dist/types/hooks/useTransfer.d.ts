@@ -1,7 +1,7 @@
 export interface TransferRequestData {
-    assetId: String;
-    recipient: String;
-    value: number;
+    recipientAddress: string;
+    amount: number;
+    privateTransfer?: boolean;
 }
 export declare const useTransferCredits: (transferRequestData?: TransferRequestData) => {
     transfer: any;

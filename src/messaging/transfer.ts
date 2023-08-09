@@ -1,9 +1,7 @@
+import { TransferRequestData } from "../index.js";
+
 export type TransferMessage = {
   type: 'TRANSFER';
-  data: {
-    recipientAddress: string;
-    amount: number;
-    privateTransfer?: boolean;
-  };
+  data: TransferRequestData;
   sender?: string;
 };
