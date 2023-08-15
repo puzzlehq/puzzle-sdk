@@ -12,13 +12,15 @@ export const wc_aztec_chains = ['aztec:1337'];
 export const wc_aleo_methods = [
   // aleo methods
   'aleo_connect',
+  'aleo_decrypt',
   'aleo_disconnect',
   'aleo_getSelectedAccount',
-  'aleo_transfer',
   'aleo_deployProgram',
   'aleo_getBalance',
   'aleo_executeProgram',
-  'aleo_getRecords'
+  'aleo_getRecords',
+  'aleo_transfer',
+
 ];
 export const wc_aleo_chains = ['aleo:1']; //placeholder until there are multiple chains
 
