@@ -16,15 +16,20 @@ export type ExecuteProgramRequestData = {
     inputs: string;
 };
 
-export type ExecuteResMessage = {
-    type: "EXECUTE_RES";
-    data: {
-        transactionId: string;
+export type ExecuteResData = {
+    transactionId: string,
+    execution: {
+        transitionId: string,
         outputPrivate: string;
         outputRecords: string;
         outputPublic: string;
-        outputConstant: string; 
-    };
+        outputConstant: string;
+    }[]
+}
+
+export type ExecuteResMessage = {
+    type: "EXECUTE_RES";
+    data: ExecuteResData
 };
 
 export type ExecuteRejMessage = {
