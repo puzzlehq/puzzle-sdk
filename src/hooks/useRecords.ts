@@ -73,5 +73,12 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     }
   }
 
+  // clear the records on disconnect
+  useEffect(() => {
+    if (account === undefined) {
+      setRecords([]);
+    }
+  }, [account])
+
   return { request, records, error, loading };
 };

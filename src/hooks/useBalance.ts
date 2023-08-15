@@ -64,5 +64,12 @@ export const useBalance = () => {
     }
   }, [wc_data, wc_error]);
 
+  // clear the balance on disconnect
+  useEffect(() => {
+    if (account === undefined) {
+      setBalance(0);
+    }
+  }, [account])
+
   return { loading, balance, error };
 };
