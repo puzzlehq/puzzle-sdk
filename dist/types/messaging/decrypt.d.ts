@@ -1,14 +1,13 @@
+import { ExecuteResData } from "./execute.js";
 export type DecryptReqMessage = {
     type: 'DECRYPT';
     data: {
-        ciphertext: string;
+        transactionId: string;
     };
 };
 export type DecryptResMessage = {
     type: 'DECRYPT_RES';
-    data: {
-        decryptedText: string;
-    };
+    data: ExecuteResData;
 };
 export type DecryptRejMessage = {
     type: 'DECRYPT_REJ';

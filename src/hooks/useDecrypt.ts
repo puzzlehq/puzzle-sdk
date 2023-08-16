@@ -4,7 +4,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { DecryptReqMessage, DecryptRejMessage, DecryptResMessage} from '../messaging/decrypt.js';
 
 export const useDecrypt = (
-  ciphertext?: string
+  transactionId?: string
 ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
@@ -21,7 +21,7 @@ export const useDecrypt = (
       params: {
         type: 'DECRYPT', 
         data: {
-          ciphertext,
+          transactionId,
         },
       } as DecryptReqMessage,
     },
@@ -29,12 +29,12 @@ export const useDecrypt = (
 
   const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.type === 'DECRYPT_REJ' ? wc_data.data.error : undefined);
   const puzzleData: DecryptResMessage | undefined =  wc_data &&  wc_data.type === 'DECRYPT_RES' ? wc_data : undefined;
-  const decryptedText = puzzleData?.data.decryptedText;
+  const transitions = puzzleData?.data.execution;
 
   const decrypt = () => { 
-    if (!ciphertext) return;
+    if (!transactionId || !transactionId.startsWith('at1') || transactionId.length !== 61) return;
     request(); 
   }
 
-  return { decrypt, decryptedText, loading, error };
+  return { decrypt, transitions, loading, error };
 };
