@@ -46,7 +46,7 @@ export const useBalance = () => {
       request();
       setLoading(true);
     }
-  }, [readyToRequest, account]);
+  }, [readyToRequest, account, session]);
 
   // ...and listen for response
   useEffect(() => { 

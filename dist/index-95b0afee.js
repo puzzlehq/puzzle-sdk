@@ -1064,7 +1064,7 @@ let Yl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-68061cd7.js");
+      await import("./index-8f8da7f1.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9445,7 +9445,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
   const S = !!e && !!r;
   return gt(() => {
     S && (f(), u(!0));
-  }, [S, r]), gt(() => {
+  }, [S, r, e]), gt(() => {
     if (b)
       n(0), l(b.message), u(!1);
     else if (h) {
@@ -9548,7 +9548,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
   const D = !!t && !!i;
   gt(() => {
     D && (h(), f(!0));
-  }, [D, i]), gt(() => {
+  }, [D, i, t]), gt(() => {
     if (E)
       s([]), a(E.message), f(!1);
     else if (b) {
