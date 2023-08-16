@@ -32,6 +32,8 @@ export type TransitionOutputs = {
 
 export type ExecuteData = {
     transitionId: string;
+    program: string;
+    function: string;
     inputs: TransitionInputs;
     outputs: TransitionOutputs;
 };
