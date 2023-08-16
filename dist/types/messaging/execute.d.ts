@@ -32,7 +32,7 @@ export type ExecuteData = {
 };
 export type ExecuteResData = {
     transactionId: string;
-    execution: ExecuteData[];
+    transitions: ExecuteData[];
 };
 export type ExecuteResMessage = {
     type: "EXECUTE_RES";

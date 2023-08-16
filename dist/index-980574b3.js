@@ -1064,7 +1064,7 @@ let Yl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-d4a2f868.js");
+      await import("./index-8d1151b9.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9482,7 +9482,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
         }
       }
     }
-  }), a = s ? s.message : n && n.type === "DECRYPT_REJ" ? n.data.error : void 0, l = n && n.type === "DECRYPT_RES" ? n : void 0, f = l == null ? void 0 : l.data.execution;
+  }), a = s ? s.message : n && n.type === "DECRYPT_REJ" ? n.data.error : void 0, l = n && n.type === "DECRYPT_RES" ? n : void 0, f = l == null ? void 0 : l.data.transitions;
   return { decrypt: () => {
     !e || !e.startsWith("at1") || e.length !== 61 || i();
   }, transitions: f, loading: u, error: a };
@@ -9526,7 +9526,7 @@ const ev = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
         }
       }
     }
-  }), u = n ? n.message : i && i.type === "EXECUTE_REJ" ? i.data.error : void 0, a = i && i.type === "EXECUTE_RES" ? i : void 0, l = a == null ? void 0 : a.data.transactionId, f = a == null ? void 0 : a.data.execution;
+  }), u = n ? n.message : i && i.type === "EXECUTE_REJ" ? i.data.error : void 0, a = i && i.type === "EXECUTE_RES" ? i : void 0, l = a == null ? void 0 : a.data.transactionId, f = a == null ? void 0 : a.data.transitions;
   return { execute: () => {
     e && (r(), console.log("sent execute request"));
   }, transactionId: l, transitions: f, error: u, loading: s };

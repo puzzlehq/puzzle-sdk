@@ -29,7 +29,7 @@ export const useDecrypt = (
 
   const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.type === 'DECRYPT_REJ' ? wc_data.data.error : undefined);
   const puzzleData: DecryptResMessage | undefined =  wc_data &&  wc_data.type === 'DECRYPT_RES' ? wc_data : undefined;
-  const transitions = puzzleData?.data.execution;
+  const transitions = puzzleData?.data.transitions;
 
   const decrypt = () => { 
     if (!transactionId || !transactionId.startsWith('at1') || transactionId.length !== 61) return;
