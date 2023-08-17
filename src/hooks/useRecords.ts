@@ -47,7 +47,7 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       wc_request();
       setLoading(true);
     }
-  }, [readyToRequest, account]);
+  }, [readyToRequest, account, session]);
 
   // ...and listen for response
   useEffect(() => {
@@ -72,6 +72,13 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       setLoading(true);
     }
   }
+
+  // clear the records on disconnect
+  useEffect(() => {
+    if (account === undefined) {
+      setRecords([]);
+    }
+  }, [account])
 
   return { request, records, error, loading };
 };

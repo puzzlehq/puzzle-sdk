@@ -6,8 +6,8 @@ import { useOnSessionDelete, useSession } from '@walletconnect/modal-sign-react'
 
 export const useInitWallet = () => {
   const session: SessionTypes.Struct = useSession();
-  const [setAccount, setAccounts] = useClientWalletStore((state) => [
-    state.setAccount, state.setAccounts
+  const [setAccount, setAccounts, disconnect] = useClientWalletStore((state) => [
+    state.setAccount, state.setAccounts, state.disconnect
   ]);
 
   useEffect(() => {
@@ -28,5 +28,6 @@ export const useInitWallet = () => {
 
   useOnSessionDelete(({ id, topic }) => {
     console.log('session deleted! topic: ', topic);
+    disconnect();
   })
 };
