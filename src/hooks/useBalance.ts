@@ -46,7 +46,7 @@ export const useBalance = () => {
       request();
       setLoading(true);
     }
-  }, [readyToRequest, account]);
+  }, [readyToRequest, account, session]);
 
   // ...and listen for response
   useEffect(() => { 
@@ -63,6 +63,13 @@ export const useBalance = () => {
       setLoading(false)
     }
   }, [wc_data, wc_error]);
+
+  // clear the balance on disconnect
+  useEffect(() => {
+    if (account === undefined) {
+      setBalance(0);
+    }
+  }, [account])
 
   return { loading, balance, error };
 };
