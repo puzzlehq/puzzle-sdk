@@ -14,16 +14,16 @@ export type ExecuteProgramRequestData = {
     inputs: string;
 };
 export type TransitionInputs = {
-    inputPrivate: string;
-    inputRecords: string;
-    inputPublic: string;
-    inputConstant: string;
+    inputPrivate: string[];
+    inputRecords: string[];
+    inputPublic: string[];
+    inputConstant: string[];
 };
 export type TransitionOutputs = {
-    outputPrivate: string;
-    outputRecords: string;
-    outputPublic: string;
-    outputConstant: string;
+    outputPrivate: string[];
+    outputRecords: string[];
+    outputPublic: string[];
+    outputConstant: string[];
 };
 export type ExecuteData = {
     transitionId: string;
