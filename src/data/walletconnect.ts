@@ -19,8 +19,6 @@ export const wc_aleo_methods = [
   'aleo_getBalance',
   'aleo_executeProgram',
   'aleo_getRecords',
-  'aleo_transfer',
-
 ];
 export const wc_aleo_chains = ['aleo:1']; //placeholder until there are multiple chains
 
