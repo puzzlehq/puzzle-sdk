@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { Balances, GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
@@ -10,7 +10,7 @@ export const useBalance = () => {
     state.chainId, state.account
   ]);
 
-  const [balance, setBalance] = useState(0);
+  const [balances, setBalances] = useState<Balances | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -51,25 +51,24 @@ export const useBalance = () => {
   // ...and listen for response
   useEffect(() => { 
     if (wc_error) {
-      setBalance(0);
+      setBalances(undefined);
       setError(wc_error.message);
       setLoading(false);
     } else if (wc_data) {
       const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
       const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
-      const balance = puzzleData?.data.balance ?? 0;
-      setBalance(balance);
+      setBalances(puzzleData?.data.balances);
       setError(error);
-      setLoading(false)
+      setLoading(false);
     }
   }, [wc_data, wc_error]);
 
   // clear the balance on disconnect
   useEffect(() => {
     if (account === undefined) {
-      setBalance(0);
+      setBalances(undefined);
     }
   }, [account])
 
-  return { loading, balance, error };
+  return { loading, balances, error };
 };

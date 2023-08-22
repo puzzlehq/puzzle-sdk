@@ -1064,7 +1064,7 @@ let bf = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-f7b2cb2f.js");
+      await import("./index-2db17ac1.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Gt.setIsUiLoaded(!0);
     }
@@ -10763,7 +10763,7 @@ const J1 = (e) => (t, r, n) => (n.setState = (i, s, ...o) => {
   const e = mr(), [t, r] = wr((w) => [
     w.chainId,
     w.account
-  ]), [n, i] = $t(0), [s, o] = $t(!1), [a, f] = $t(void 0), { request: l, data: h, error: y, loading: g } = Br({
+  ]), [n, i] = $t(void 0), [s, o] = $t(!1), [a, f] = $t(void 0), { request: l, data: h, error: y, loading: g } = Br({
     topic: e == null ? void 0 : e.topic,
     chainId: t ?? "aleo:1",
     request: {
@@ -10786,14 +10786,14 @@ const J1 = (e) => (t, r, n) => (n.setState = (i, s, ...o) => {
     v && (l(), o(!0));
   }, [v, r, e]), gt(() => {
     if (y)
-      i(0), f(y.message), o(!1);
+      i(void 0), f(y.message), o(!1);
     else if (h) {
-      const w = h && h.type === "GET_BALANCE_RES" ? h : void 0, I = h && h.type === "GET_BALANCE_REJ" ? h.data.error : void 0, A = (w == null ? void 0 : w.data.balance) ?? 0;
-      i(A), f(I), o(!1);
+      const w = h && h.type === "GET_BALANCE_RES" ? h : void 0, I = h && h.type === "GET_BALANCE_REJ" ? h.data.error : void 0;
+      i(w == null ? void 0 : w.data.balances), f(I), o(!1);
     }
   }, [h, y]), gt(() => {
-    r === void 0 && i(0);
-  }, [r]), { loading: s, balance: n, error: a };
+    r === void 0 && i(void 0);
+  }, [r]), { loading: s, balances: n, error: a };
 }, Dm = () => {
   const [e, t] = $t(void 0), { connect: r, data: n, error: i, loading: s } = p1({
     requiredNamespaces: {
