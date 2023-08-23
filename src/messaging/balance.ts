@@ -7,10 +7,15 @@ export type GetBalanceMessage = {
   sender?: string;
 };
 
+export type Balances = {
+  privateBalance: number,
+  publicBalance: number,
+}
+
 export type GetBalanceResMessage = {
   type: 'GET_BALANCE_RES';
   data: {
-    balance: number;
+    balances?: Balances
   }
 };
 
