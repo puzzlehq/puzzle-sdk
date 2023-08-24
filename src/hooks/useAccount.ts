@@ -47,10 +47,10 @@ export const useAccount = () => {
 
   // send initial account request...
   useEffect(() => {
-    if (session) {
+    if (session && !loading) {
       request();
     }
-  }, [session])
+  }, [session?.topic])
 
   // ...and listen for response
   useEffect(() => { 
