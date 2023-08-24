@@ -1064,7 +1064,7 @@ let bf = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-dfd0353a.js");
+      await import("./index-fa430a0e.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), kt.setIsUiLoaded(!0);
     }
@@ -10917,7 +10917,7 @@ const J1 = (e) => (t, r, n) => (n.setState = (i, s, ...o) => {
     }
   }, [l, h]);
   const v = () => {
-    !!t && !!n && !y && (console.log("wc_requesting records!"), f());
+    !!t && !!n && !y && f();
   };
   return gt(() => {
     n === void 0 && s([]);

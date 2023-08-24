@@ -63,7 +63,6 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   const request = () => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
-      console.log('wc_requesting records!')
       wc_request();
     }
   }
