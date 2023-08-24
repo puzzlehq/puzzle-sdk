@@ -11,10 +11,9 @@ export const useBalance = () => {
   ]);
 
   const [balances, setBalances] = useState<Balances | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
-  const { request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -35,7 +34,6 @@ export const useBalance = () => {
     const eventName = params.event.name;
     if (eventName === 'accountSynced' && session && session.topic === topic) {
       request();
-      setLoading(true);
     }
   });
 
@@ -44,7 +42,6 @@ export const useBalance = () => {
   useEffect(() => { 
     if (readyToRequest) {
       request();
-      setLoading(true);
     }
   }, [readyToRequest, account, session]);
 
@@ -53,13 +50,11 @@ export const useBalance = () => {
     if (wc_error) {
       setBalances(undefined);
       setError(wc_error.message);
-      setLoading(false);
     } else if (wc_data) {
       const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
       const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
       setBalances(puzzleData?.data.balances);
       setError(error);
-      setLoading(false);
     }
   }, [wc_data, wc_error]);
 

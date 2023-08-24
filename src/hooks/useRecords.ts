@@ -11,13 +11,12 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   ]);
   const [records, setRecords] = useState<Record[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
 
   if (filter?.program_id === '') {
     filter.program_id = undefined
   }
 
-  const { request: wc_request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
+  const { request: wc_request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -36,40 +35,35 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     const eventName = params.event.name;
     if (eventName === 'accountSynced' && session && session.topic === topic) {
       wc_request();
-      setLoading(true);
     }
   });
 
   // send initial records request...
   const readyToRequest = !!session && !!account;
   useEffect(() => {
-    if (readyToRequest) {
+    if (readyToRequest && !loading) {
       wc_request();
-      setLoading(true);
     }
-  }, [readyToRequest, account, session]);
+  }, [readyToRequest, account]);
 
   // ...and listen for response
   useEffect(() => {
     if (wc_error) {
       setRecords([]);
       setError(wc_error.message);
-      setLoading(false);
     } else if (wc_data) {
       const response = wc_data as GetRecordsResMessage | GetRecordsRejMessage;
       const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
       const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
       setRecords(records);
       setError(error);
-      setLoading(false);
     }
   }, [wc_data, wc_error]);
 
   const request = () => {
     const readyToRequest = !!session && !!account;
-    if (readyToRequest) {
+    if (readyToRequest && !loading) {
       wc_request();
-      setLoading(true);
     }
   }
 
