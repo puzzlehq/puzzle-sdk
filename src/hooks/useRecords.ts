@@ -6,7 +6,13 @@ import { SessionTypes } from '@walletconnect/types';
 
 export const RECORDS_PER_PAGE = 50;
 
-export const useRecords = ( filter?: RecordsFilter, page?: number ) => {
+type UseRecordsParams = {
+  filter?: RecordsFilter,
+  page?: number,
+  formatted?: boolean
+}
+
+export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
@@ -26,7 +32,8 @@ export const useRecords = ( filter?: RecordsFilter, page?: number ) => {
       params: {
         type: 'GET_RECORDS',
         filter: filter,
-        page
+        page,
+        formatted
       } as GetRecordsMessage
     },
   });
@@ -58,6 +65,7 @@ export const useRecords = ( filter?: RecordsFilter, page?: number ) => {
   const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_RECORDS_REJ' ? wc_data.data.error : undefined);
   const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
   const records: Record[] | undefined = puzzleData?.data.records;
+  const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
 
-  return { request, records, error, loading };
+  return { request, records, error, loading, totalRecordCount };
 };
