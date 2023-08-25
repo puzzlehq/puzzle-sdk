@@ -17,6 +17,7 @@ export const useConnect = () => {
       },
     },
   });
+  
   const connect = async () => {
     try {
       await wc_connect();
