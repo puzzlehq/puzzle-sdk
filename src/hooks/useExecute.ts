@@ -13,7 +13,7 @@ export const useExecuteProgram = (
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: 'aleo:1',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -35,7 +35,6 @@ export const useExecuteProgram = (
   const execute = () => {
     if (!executeProgramRequestData) return
     request();
-    console.log('sent execute request')
   }
 
   return { execute, transactionId, transitions, error, loading };

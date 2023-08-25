@@ -9,8 +9,6 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
   ]);
-  const [records, setRecords] = useState<Record[]>([]);
-  const [error, setError] = useState<string | undefined>(undefined);
 
   if (filter?.program_id === '') {
     filter.program_id = undefined
@@ -46,20 +44,6 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     }
   }, [readyToRequest, account]);
 
-  // ...and listen for response
-  useEffect(() => {
-    if (wc_error) {
-      setRecords([]);
-      setError(wc_error.message);
-    } else if (wc_data) {
-      const response = wc_data as GetRecordsResMessage | GetRecordsRejMessage;
-      const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
-      const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
-      setRecords(records);
-      setError(error);
-    }
-  }, [wc_data, wc_error]);
-
   const request = () => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
@@ -67,12 +51,9 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     }
   }
 
-  // clear the records on disconnect
-  useEffect(() => {
-    if (account === undefined) {
-      setRecords([]);
-    }
-  }, [account])
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_RECORDS_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
+  const records: Record[] | undefined = puzzleData?.data.records;
 
   return { request, records, error, loading };
 };

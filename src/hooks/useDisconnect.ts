@@ -1,29 +1,27 @@
 import { useSession, useDisconnect as useWalletDisconnect } from '@walletconnect/modal-sign-react';
 import { getSdkError } from '@walletconnect/utils';
 import { SessionTypes } from '@walletconnect/types';
-import { useEffect, useState } from 'react';
+import useClientWalletStore from './clientWalletStore.js';
 
 export const useDisconnect = () => {
-  const session: SessionTypes.Struct = useSession();
-  const [error, setError] = useState<string | undefined>(undefined);
+  const session: SessionTypes.Struct | undefined = useSession();
+  const [disconnect_store] = useClientWalletStore((state) => [
+    state.disconnect
+  ]);
 
   const {disconnect: wc_disconnect, error: wc_error, loading} = useWalletDisconnect({
-    topic: session.topic,
+    topic: session?.topic,
     reason: getSdkError('USER_DISCONNECTED'),
   });
 
   const disconnect = async () => {
-    try {
+    if (session) {
       await wc_disconnect();
-      setError(undefined);
-    } catch (e) {}
+      disconnect_store()
+    }
   }
 
-  useEffect(() => {
-    if (wc_error) {
-      setError(wc_error.message);
-    }
-  }, [wc_error])
+  const error: string | undefined = wc_error ? wc_error.message : undefined;
   
   return { disconnect, error, loading };
 };

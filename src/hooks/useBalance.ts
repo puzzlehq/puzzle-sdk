@@ -5,13 +5,10 @@ import { Balances, GetBalanceMessage, GetBalanceResMessage } from '../messaging/
 import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
   ]);
-
-  const [balances, setBalances] = useState<Balances | undefined>(undefined);
-  const [error, setError] = useState<string | undefined>(undefined);
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
@@ -33,6 +30,7 @@ export const useBalance = () => {
   useOnSessionEvent(({ _, params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSynced' && session && session.topic === topic) {
+      console.log('balance requested 1!')
       request();
     }
   });
@@ -41,29 +39,16 @@ export const useBalance = () => {
   const readyToRequest = !!session && !!account;
   useEffect(() => { 
     if (readyToRequest) {
+      console.log('balance requested 2!');
       request();
     }
-  }, [readyToRequest, account, session]);
+  }, [readyToRequest]);
 
-  // ...and listen for response
-  useEffect(() => { 
-    if (wc_error) {
-      setBalances(undefined);
-      setError(wc_error.message);
-    } else if (wc_data) {
-      const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
-      const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
-      setBalances(puzzleData?.data.balances);
-      setError(error);
-    }
-  }, [wc_data, wc_error]);
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: GetBalanceResMessage | undefined =  wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
+  const balances: Balances | undefined = puzzleData?.data.balances;
 
-  // clear the balance on disconnect
-  useEffect(() => {
-    if (account === undefined) {
-      setBalances(undefined);
-    }
-  }, [account])
+  console.log('wc_data', wc_data);
 
   return { loading, balances, error };
 };

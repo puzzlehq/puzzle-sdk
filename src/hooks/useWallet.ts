@@ -5,7 +5,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionDelete, useSession } from '@walletconnect/modal-sign-react';
 
 export const useInitWallet = () => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
   const [setAccount, setAccounts, disconnect] = useClientWalletStore((state) => [
     state.setAccount, state.setAccounts, state.disconnect
   ]);
@@ -24,7 +24,7 @@ export const useInitWallet = () => {
     setAccounts(accounts ?? []);
     accounts[0] && setAccount(accounts[0]);
     }  
-  }, [session])
+  }, [session?.topic])
 
   useOnSessionDelete(({ id, topic }) => {
     console.log('session deleted! topic: ', topic);
