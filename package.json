@@ -25,6 +25,7 @@
     "@trpc/server": "^10.8.1",
     "@walletconnect/modal-sign-react": "^2.6.1",
     "@walletconnect/types": "^2.9.0",
+    "@walletconnect/utils": "^2.9.1",
     "immer": "^9.0.19",
     "localforage": "^1.10.0",
     "react": "^18.2.0",

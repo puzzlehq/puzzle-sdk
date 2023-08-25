@@ -16,8 +16,12 @@ export const useDisconnect = () => {
 
   const disconnect = async () => {
     if (session) {
-      await wc_disconnect();
-      disconnect_store()
+      try {
+        wc_disconnect();
+      } catch (e) {
+        console.log('could not disconnect session entirely')
+      }
+      disconnect_store();
     }
   }
 

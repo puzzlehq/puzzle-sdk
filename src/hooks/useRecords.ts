@@ -1,10 +1,12 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
-export const useRecords = ( filter?: RecordsFilter ) => {
+export const RECORDS_PER_PAGE = 50;
+
+export const useRecords = ( filter?: RecordsFilter, page?: number ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
@@ -23,7 +25,8 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       method: 'aleo_getRecords',
       params: {
         type: 'GET_RECORDS',
-        filter: filter
+        filter: filter,
+        page
       } as GetRecordsMessage
     },
   });
@@ -43,6 +46,7 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       wc_request();
     }
   }, [readyToRequest, account]);
+
 
   const request = () => {
     const readyToRequest = !!session && !!account;

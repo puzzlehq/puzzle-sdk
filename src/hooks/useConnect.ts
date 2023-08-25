@@ -1,4 +1,4 @@
-import { useConnect as useWalletConnect } from '@walletconnect/modal-sign-react';
+import { useSession, useConnect as useWalletConnect } from '@walletconnect/modal-sign-react';
 import {
   wc_aleo_chains,
   wc_aleo_methods,
@@ -6,6 +6,7 @@ import {
 } from '../data/walletconnect.js';
 
 export const useConnect = () => {
+  const session = useSession();
   const {connect, data, error, loading} = useWalletConnect({
     requiredNamespaces: {
       aleo: {
@@ -16,5 +17,5 @@ export const useConnect = () => {
     },
   });
 
-  return { connect, data, error, loading };
+  return { connect, data, error, loading, session };
 };

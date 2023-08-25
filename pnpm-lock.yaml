@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@aleohq/sdk':
     specifier: ^0.5.1
@@ -9,22 +13,25 @@ dependencies:
     version: 1.2.2
   '@tanstack/react-query':
     specifier: ^4.29.5
-    version: 4.29.5(react@18.2.0)
+    version: 4.29.5(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
     specifier: ^10.9.0
     version: 10.9.0(@trpc/server@10.8.1)
   '@trpc/react-query':
     specifier: ^10.9.0
-    version: 10.9.0(@tanstack/react-query@4.29.5)(@trpc/client@10.9.0)(@trpc/server@10.8.1)(react@18.2.0)
+    version: 10.9.0(@tanstack/react-query@4.29.5)(@trpc/client@10.9.0)(@trpc/server@10.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/server':
     specifier: ^10.8.1
     version: 10.8.1
   '@walletconnect/modal-sign-react':
     specifier: ^2.6.1
-    version: 2.6.1(react@18.2.0)
+    version: 2.6.1(react-dom@18.2.0)(react@18.2.0)
   '@walletconnect/types':
     specifier: ^2.9.0
     version: 2.9.0
+  '@walletconnect/utils':
+    specifier: ^2.9.1
+    version: 2.9.1
   immer:
     specifier: ^9.0.19
     version: 9.0.19
@@ -508,7 +515,7 @@ packages:
     resolution: {integrity: sha512-xXIiyQ/4r9KfaJ3k6kejqcaqFXXBTzN2aOJ5H1J6aTJE9hl/nbgAdfF6oiIu0CD5xowejJEJ6bBg8TO7BN4NuQ==}
     dev: false
 
-  /@tanstack/react-query@4.29.5(react@18.2.0):
+  /@tanstack/react-query@4.29.5(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-F87cibC3s3eG0Q90g2O+hqntpCrudKFnR8P24qkH9uccEhXErnJxBC/AAI4cJRV2bfMO8IeGZQYf3WyYgmSg0w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -522,6 +529,7 @@ packages:
     dependencies:
       '@tanstack/query-core': 4.29.5
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
@@ -533,7 +541,7 @@ packages:
       '@trpc/server': 10.8.1
     dev: false
 
-  /@trpc/react-query@10.9.0(@tanstack/react-query@4.29.5)(@trpc/client@10.9.0)(@trpc/server@10.8.1)(react@18.2.0):
+  /@trpc/react-query@10.9.0(@tanstack/react-query@4.29.5)(@trpc/client@10.9.0)(@trpc/server@10.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-I7xtdFj/AETwc9HfY2bGxKINij39r26LvfIiTBfz2pBj1ELrcgucWmPeI2eS6pon/uI1E9Nqa6fQCg/zkg764Q==}
     peerDependencies:
       '@tanstack/react-query': ^4.3.8
@@ -542,10 +550,11 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@tanstack/react-query': 4.29.5(react@18.2.0)
+      '@tanstack/react-query': 4.29.5(react-dom@18.2.0)(react@18.2.0)
       '@trpc/client': 10.9.0(@trpc/server@10.8.1)
       '@trpc/server': 10.8.1
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@trpc/server@10.8.1:
@@ -752,7 +761,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@walletconnect/modal-sign-react@2.6.1(react@18.2.0):
+  /@walletconnect/modal-sign-react@2.6.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Q7r+7hcppi5dgxp8KwESD9HWrqfYmWzHBz0Og8uFLXI2oDHlHiCx6FGdJYcVze/elCUJmS164z7VrrGa63/wLw==}
     peerDependencies:
       react: '>=17'
@@ -761,6 +770,7 @@ packages:
       '@walletconnect/modal-sign-html': 2.6.1(react@18.2.0)
       mitt: 3.0.1
       react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
       - bufferutil
@@ -1453,6 +1463,16 @@ packages:
     resolution: {integrity: sha512-tYC1Q1hgyRuHgloV/YXs2w15unPVh8qfu/qCTfhTYamaw7fyhumKa2yGpdSo87vY32rIclj+4fWYQXUMs9EHvg==}
     dev: false
 
+  /react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.2.0
+      scheduler: 0.23.0
+    dev: false
+
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
     engines: {node: '>=0.10.0'}
@@ -1514,6 +1534,12 @@ packages:
   /safe-stable-stringify@2.4.3:
     resolution: {integrity: sha512-e2bDA2WJT0wxseVd4lsDP4+3ONX6HpMXQa1ZhFQ7SU+GjvORCmShbCMltrtIDfkYhVHrOcPtj+KhmDBdPdZD1g==}
     engines: {node: '>=10'}
+    dev: false
+
+  /scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+    dependencies:
+      loose-envify: 1.4.0
     dev: false
 
   /set-blocking@2.0.0:
@@ -1772,7 +1798,3 @@ packages:
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
