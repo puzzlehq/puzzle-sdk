@@ -3,6 +3,7 @@ import { PuzzleAccount } from '../index.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionDelete, useSession } from '@walletconnect/modal-sign-react';
+import { log_sdk } from '../utils/logger.js';
 
 export const useInitWallet = () => {
   const session: SessionTypes.Struct | undefined = useSession();
@@ -29,7 +30,7 @@ export const useInitWallet = () => {
   }, [session?.topic])
 
   useOnSessionDelete(({ id, topic }) => {
-    console.log('session deleted! topic: ', topic);
+    log_sdk('session deleted! topic: ', topic);
     disconnect();
   })
 };

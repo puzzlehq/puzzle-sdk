@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@aleohq/sdk':
     specifier: ^0.5.1
-    version: 0.5.1
+    version: 0.5.1(debug@4.3.4)
   '@extend-chrome/messages':
     specifier: ^1.2.2
     version: 1.2.2
@@ -23,6 +23,9 @@ dependencies:
   '@trpc/server':
     specifier: ^10.8.1
     version: 10.8.1
+  '@types/debug':
+    specifier: ^4.1.7
+    version: 4.1.7
   '@walletconnect/modal-sign-react':
     specifier: ^2.6.1
     version: 2.6.1(react-dom@18.2.0)(react@18.2.0)
@@ -32,6 +35,9 @@ dependencies:
   '@walletconnect/utils':
     specifier: ^2.9.1
     version: 2.9.1
+  debug:
+    specifier: ^4.3.4
+    version: 4.3.4
   immer:
     specifier: ^9.0.19
     version: 9.0.19
@@ -80,11 +86,11 @@ packages:
     resolution: {integrity: sha512-Sws/KogKEpJpKQKVyle2n08n5D+gaFXiXAwODZe8CdtKTfNkxSgu5WpvokuMw5HCMrFiRGNoeu+ChsKBamoYNQ==}
     dev: false
 
-  /@aleohq/sdk@0.5.1:
+  /@aleohq/sdk@0.5.1(debug@4.3.4):
     resolution: {integrity: sha512-c26rbY6MGX5yHwehzZS372v2xZL+Xz4K1YrbkncmF30RJ+IsxiDgAXk4dlX6/DtH077eAIuhTre73ao8fTqyGQ==}
     dependencies:
       '@aleohq/nodejs': 0.5.1
-      axios: 1.4.0
+      axios: 1.4.0(debug@4.3.4)
       jsdoc: 3.6.11
       unfetch: 5.0.0
     transitivePeerDependencies:
@@ -574,6 +580,12 @@ packages:
       '@types/filesystem': 0.0.32
     dev: false
 
+  /@types/debug@4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: false
+
   /@types/filesystem@0.0.32:
     resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
     dependencies:
@@ -599,6 +611,10 @@ packages:
 
   /@types/mdurl@1.0.2:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
+    dev: false
+
+  /@types/ms@0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: false
 
   /@types/node@13.13.52:
@@ -935,10 +951,10 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: false
 
-  /axios@1.4.0:
+  /axios@1.4.0(debug@4.3.4):
     resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2(debug@4.3.4)
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -997,6 +1013,18 @@ packages:
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: true
+
+  /debug@4.3.4:
+    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+    dev: false
 
   /decamelize@1.2.0:
     resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
@@ -1106,7 +1134,7 @@ packages:
       path-exists: 4.0.0
     dev: false
 
-  /follow-redirects@1.15.2:
+  /follow-redirects@1.15.2(debug@4.3.4):
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -1114,6 +1142,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 4.3.4
     dev: false
 
   /form-data@4.0.0:
@@ -1334,6 +1364,10 @@ packages:
       '@motionone/types': 10.15.1
       '@motionone/utils': 10.15.1
       '@motionone/vue': 10.16.2
+    dev: false
+
+  /ms@2.1.2:
+    resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: false
 
   /multiformats@9.9.0:

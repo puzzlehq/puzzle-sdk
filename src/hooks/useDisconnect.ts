@@ -2,6 +2,7 @@ import { useSession, useDisconnect as useWalletDisconnect } from '@walletconnect
 import { getSdkError } from '@walletconnect/utils';
 import { SessionTypes } from '@walletconnect/types';
 import useClientWalletStore from './clientWalletStore.js';
+import { log_sdk } from '../utils/logger.js';
 
 export const useDisconnect = () => {
   const session: SessionTypes.Struct | undefined = useSession();
@@ -19,7 +20,7 @@ export const useDisconnect = () => {
       try {
         wc_disconnect();
       } catch (e) {
-        console.log('could not disconnect session entirely')
+        log_sdk('could not disconnect session entirely')
       }
       disconnect_store();
     }
