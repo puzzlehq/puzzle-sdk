@@ -29,7 +29,7 @@ export const useBalance = () => {
   // listen for wallet-originated balance updates
   useOnSessionEvent(({ _, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic) {
+    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
       request();
     }
   });
@@ -37,7 +37,7 @@ export const useBalance = () => {
   // send initial balance request...
   const readyToRequest = !!session && !!account;
   useEffect(() => { 
-    if (readyToRequest) {
+    if (readyToRequest && !loading) {
       request();
     }
   }, [readyToRequest, account]);

@@ -1064,7 +1064,7 @@ let Yl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-e9021c9a.js");
+      await import("./index-d9c9a43c.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9453,11 +9453,11 @@ const tv = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
     }
   });
   Xs(({ _: b, params: S, topic: E }) => {
-    S.event.name === "accountSynced" && e && e.topic === E && i();
+    S.event.name === "accountSynced" && e && e.topic === E && !u && i();
   });
   const a = !!e && !!r;
   zt(() => {
-    a && i();
+    a && !u && i();
   }, [a, r]);
   const l = s ? s.message : n && n.type === "GET_BALANCE_REJ" ? n.data.error : void 0, f = n && n.type === "GET_BALANCE_RES" ? n : void 0, h = f == null ? void 0 : f.data.balances;
   return { loading: u, balances: h, error: l };
@@ -9580,7 +9580,7 @@ const tv = (e) => (t, r, i) => (i.setState = (n, s, ...u) => {
     }
   });
   Xs(({ id: N, params: B, topic: m }) => {
-    B.event.name === "accountSynced" && i && i.topic === m && u();
+    B.event.name === "accountSynced" && i && i.topic === m && !f && u();
   });
   const h = !!i && !!s;
   zt(() => {

@@ -41,7 +41,7 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
   // listen for wallet-originated balance updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic) {
+    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
       wc_request();
     }
   });
