@@ -12,21 +12,19 @@ export const useInitWallet = () => {
   ]);
 
   useEffect(() => {
-    (async () => {
-      if (session) {
-        window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE'); // remove to prevent walletconnect from redirecting to the wallet page
-        const accounts = session.namespaces.aleo.accounts.map((account) => {
-          const split = account.split(':');
-          return {
-            network: split[0],
-            chainId: split[1],
-            address: split[2],
-          } as PuzzleAccount;
-        });
-        setAccounts(accounts ?? []);
-        accounts[0] && setAccount(accounts[0]);
-      }  
-    })()
+    if (session) {
+      window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE'); // remove to prevent walletconnect from redirecting to the wallet page
+      const accounts = session.namespaces.aleo.accounts.map((account) => {
+        const split = account.split(':');
+        return {
+          network: split[0],
+          chainId: split[1],
+          address: split[2],
+        } as PuzzleAccount;
+      });
+      setAccounts(accounts ?? []);
+      accounts[0] && setAccount(accounts[0]);
+    }  
   }, [session?.topic])
 
   useOnSessionDelete(({ id, topic }) => {

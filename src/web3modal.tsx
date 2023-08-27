@@ -22,7 +22,6 @@ export const PuzzleWeb3Modal = ({  dAppName, dAppDescription, dAppUrl, dAppIconU
         ],
       }}
       modalOptions={{ ...web3modal_puzzle_props }}
-      
     />
   );
 };

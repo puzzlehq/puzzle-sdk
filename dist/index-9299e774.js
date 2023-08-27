@@ -1064,7 +1064,7 @@ let Zl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-fe4a60a1.js");
+      await import("./index-73244392.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9913,20 +9913,18 @@ const qv = () => {
     i.disconnect
   ]);
   zt(() => {
-    (async () => {
-      if (e) {
-        window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
-        const i = e.namespaces.aleo.accounts.map((s) => {
-          const u = s.split(":");
-          return {
-            network: u[0],
-            chainId: u[1],
-            address: u[2]
-          };
-        });
-        r(i ?? []), i[0] && t(i[0]);
-      }
-    })();
+    if (e) {
+      window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
+      const i = e.namespaces.aleo.accounts.map((s) => {
+        const u = s.split(":");
+        return {
+          network: u[0],
+          chainId: u[1],
+          address: u[2]
+        };
+      });
+      r(i ?? []), i[0] && t(i[0]);
+    }
   }, [e == null ? void 0 : e.topic]), Wu(({ id: i, topic: s }) => {
     co("session deleted! topic: ", s), n();
   });
