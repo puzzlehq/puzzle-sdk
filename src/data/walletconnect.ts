@@ -11,7 +11,6 @@ export const wc_aztec_chains = ['aztec:1337'];
 
 export const wc_aleo_methods = [
   // aleo methods
-  'aleo_connect',
   'aleo_decrypt',
   'aleo_disconnect',
   'aleo_getSelectedAccount',

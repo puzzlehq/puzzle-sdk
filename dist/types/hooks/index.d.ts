@@ -3,6 +3,7 @@ export * from './useBalance.js';
 export * from './useConnect.js';
 export * from './useDecrypt.js';
 export * from './useDeploy.js';
+export * from './useDisconnect.js';
 export * from './useExecute.js';
 export * from './useFees.js';
 export * from './useRecords.js';

@@ -20,12 +20,15 @@ export type RecordsFilter = {
 export type GetRecordsMessage = {
     type: 'GET_RECORDS';
     filter?: RecordsFilter;
+    page?: number;
+    formatted?: boolean;
     sender?: string;
 };
 export type GetRecordsResMessage = {
     type: 'GET_RECORDS_RES';
     data: {
         records: Record[];
+        totalRecordCount: number;
     };
 };
 export type GetRecordsRejMessage = {

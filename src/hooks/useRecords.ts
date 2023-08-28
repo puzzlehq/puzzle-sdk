@@ -1,16 +1,22 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
-export const useRecords = ( filter?: RecordsFilter ) => {
+export const RECORDS_PER_PAGE = 50;
+
+type UseRecordsParams = {
+  filter?: RecordsFilter,
+  page?: number,
+  formatted?: boolean
+}
+
+export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
   ]);
-  const [records, setRecords] = useState<Record[]>([]);
-  const [error, setError] = useState<string | undefined>(undefined);
 
   if (filter?.program_id === '') {
     filter.program_id = undefined
@@ -25,7 +31,9 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       method: 'aleo_getRecords',
       params: {
         type: 'GET_RECORDS',
-        filter: filter
+        filter: filter,
+        page,
+        formatted
       } as GetRecordsMessage
     },
   });
@@ -33,7 +41,7 @@ export const useRecords = ( filter?: RecordsFilter ) => {
   // listen for wallet-originated balance updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic) {
+    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
       wc_request();
     }
   });
@@ -46,19 +54,6 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     }
   }, [readyToRequest, account]);
 
-  // ...and listen for response
-  useEffect(() => {
-    if (wc_error) {
-      setRecords([]);
-      setError(wc_error.message);
-    } else if (wc_data) {
-      const response = wc_data as GetRecordsResMessage | GetRecordsRejMessage;
-      const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
-      const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
-      setRecords(records);
-      setError(error);
-    }
-  }, [wc_data, wc_error]);
 
   const request = () => {
     const readyToRequest = !!session && !!account;
@@ -67,12 +62,10 @@ export const useRecords = ( filter?: RecordsFilter ) => {
     }
   }
 
-  // clear the records on disconnect
-  useEffect(() => {
-    if (account === undefined) {
-      setRecords([]);
-    }
-  }, [account])
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_RECORDS_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
+  const records: Record[] | undefined = puzzleData?.data.records;
+  const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
 
-  return { request, records, error, loading };
+  return { request, records, error, loading, totalRecordCount };
 };

@@ -6,7 +6,7 @@ import { DecryptReqMessage, DecryptRejMessage, DecryptResMessage} from '../messa
 export const useDecrypt = (
   transactionId?: string
 ) => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
