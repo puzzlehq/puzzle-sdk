@@ -1,16 +1,24 @@
 import { SessionTypes } from '@walletconnect/types';
-import { ExecuteMessage, ExecuteProgramRequestData, ExecuteResMessage } from '../messaging/execute.js';
+import { ExecuteMessage, ExecuteProgramRequestData, ExecuteProgramInputData, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 
 export const useExecuteProgram = (
-  executeProgramRequestData?: ExecuteProgramRequestData
+  executeProgramRequestData?: ExecuteProgramInputData
 ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 
+  const inputs = executeProgramRequestData?.inputs.map(
+    (input) => {
+      if (typeof input === 'string') {
+        return input
+      }
+      return input.plaintext
+    }).join(' ')
+  
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
     chainId: chainId ?? 'aleo:1',
@@ -21,7 +29,10 @@ export const useExecuteProgram = (
       params: {
         type: 'EXECUTE',
         data: {
-          data: executeProgramRequestData,
+          data: {
+            ...executeProgramRequestData,
+            inputs: inputs ?? '',
+          },
         },
       } as ExecuteMessage,
     }

@@ -1,4 +1,5 @@
 export type Record = {
+  plaintext: string;
   data: any;
   id: string;
   height: number;

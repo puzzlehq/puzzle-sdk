@@ -11,6 +11,14 @@ type UseRecordsParams = {
   page?: number,
 }
 
+export const getFormattedRecordPlaintext = (data: any) => {
+  try {
+    return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
+  } catch {
+    return '';
+  }
+}
+
 export const useRecords = ( {filter, page }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
@@ -59,26 +67,10 @@ export const useRecords = ( {filter, page }: UseRecordsParams) => {
     }
   }
 
-  const getRecordPlaintext = (data: any) => {
-    try {
-      return JSON.stringify(data).replaceAll('\"', '') ?? '';
-    } catch {
-      return '';
-    }
-  }
-
-  const getFormattedRecordPlaintext = (data: any) => {
-    try {
-      return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
-    } catch {
-      return '';
-    }
-  }
-
   const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_RECORDS_REJ' ? wc_data.data.error : undefined);
   const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
   const records: Record[] | undefined = puzzleData?.data.records;
   const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
 
-  return { request, records, error, loading, totalRecordCount, getFormattedRecordPlaintext, getRecordPlaintext };
+  return { request, records, error, loading, totalRecordCount };
 };
