@@ -1,5 +1,6 @@
 export type Record = {
     plaintext: string;
+    data: any;
     id: string;
     height: number;
     timestamp: string;
@@ -21,7 +22,6 @@ export type GetRecordsMessage = {
     type: 'GET_RECORDS';
     filter?: RecordsFilter;
     page?: number;
-    formatted?: boolean;
     sender?: string;
 };
 export type GetRecordsResMessage = {

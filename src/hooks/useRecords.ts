@@ -9,10 +9,17 @@ export const RECORDS_PER_PAGE = 50;
 type UseRecordsParams = {
   filter?: RecordsFilter,
   page?: number,
-  formatted?: boolean
 }
 
-export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
+export const getFormattedRecordPlaintext = (data: any) => {
+  try {
+    return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
+  } catch {
+    return '';
+  }
+}
+
+export const useRecords = ( {filter, page }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
@@ -33,7 +40,6 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
         type: 'GET_RECORDS',
         filter: filter,
         page,
-        formatted
       } as GetRecordsMessage
     },
   });
@@ -53,7 +59,6 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
       wc_request();
     }
   }, [readyToRequest, account]);
-
 
   const request = () => {
     const readyToRequest = !!session && !!account;

@@ -18,8 +18,10 @@ export const useConnect = () => {
   });
 
   const connect = async () => {
-    await wc_connect();
+    try {
+      await wc_connect();
+    } catch (e) { }
   }
 
-  return { connect, data, error, loading, session };
+  return { connect, data, error, loading, session, isConnected: !!session };
 };

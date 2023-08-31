@@ -3,9 +3,9 @@ export declare const RECORDS_PER_PAGE = 50;
 type UseRecordsParams = {
     filter?: RecordsFilter;
     page?: number;
-    formatted?: boolean;
 };
-export declare const useRecords: ({ filter, page, formatted }: UseRecordsParams) => {
+export declare const getFormattedRecordPlaintext: (data: any) => string;
+export declare const useRecords: ({ filter, page }: UseRecordsParams) => {
     request: () => void;
     records: Record[] | undefined;
     error: string | undefined;

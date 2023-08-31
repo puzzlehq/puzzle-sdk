@@ -4,6 +4,18 @@ import { useRequest, useSession, useOnSessionEvent } from '@walletconnect/modal-
 import { GetSelectedAccountMessage, GetSelectedAccountResMessage } from '../messaging/account.js';
 import { SessionTypes } from '@walletconnect/types';
 
+/// ADDRESSES AND ALIASES
+export const shortenAddress = (
+  address: string
+) => {
+  const length = 5;
+  if (address.length < length * 2) return address;
+  return `${address.slice(
+    0,
+    length + 'aleo1'.length
+  )}...${address.slice(address.length - length, address.length)}`;
+};
+
 export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
 
@@ -39,6 +51,7 @@ export const useAccount = () => {
         network,
         chainId,
         address,
+        shortenedAddress: shortenAddress(address)
       });
     }
   });
@@ -66,8 +79,6 @@ export const useAccount = () => {
   return {
     account,
     accounts,
-    isConnected: !!account,
-    session,
     error,
     loading
   };

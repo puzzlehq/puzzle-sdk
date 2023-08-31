@@ -1,4 +1,5 @@
 import { SessionTypes } from "@walletconnect/types";
+import { type Record } from "./records.js";
 
 export type ExecuteMessage = {
     type: "EXECUTE";
@@ -15,6 +16,13 @@ export type ExecuteProgramRequestData = {
     functionName: string;
     inputs: string;
 };
+
+export type ExecuteProgramInputData = {
+    programId: string;
+    functionName: string;
+    inputs: (Record | string)[];
+};
+
 
 export type TransitionInputs = {
     inputPrivate: string[];
