@@ -1064,7 +1064,7 @@ let Zl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-10a8c7ff.js");
+      await import("./index-5b9f03a2.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9470,7 +9470,10 @@ const sv = (e) => (t, r, n) => (n.setState = (i, s, ...u) => {
     }
   });
   return { connect: async () => {
-    await t();
+    try {
+      await t();
+    } catch {
+    }
   }, data: r, error: n, loading: i, session: e, isConnected: !!e };
 }, jv = (e) => {
   const t = sr(), [r] = lr((g) => [
