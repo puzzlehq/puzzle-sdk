@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { PuzzleAccount } from '../index.js';
+import { PuzzleAccount, shortenAddress } from '../index.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionDelete, useSession } from '@walletconnect/modal-sign-react';
@@ -20,6 +20,7 @@ export const useInitWallet = () => {
           network: split[0],
           chainId: split[1],
           address: split[2],
+          shortenedAddress: shortenAddress(split[2])
         } as PuzzleAccount;
       });
       setAccounts(accounts ?? []);
