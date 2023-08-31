@@ -3,17 +3,15 @@ import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-
 import { useEffect } from 'react';
 import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
-import jsyaml from 'js-yaml'
 
 export const RECORDS_PER_PAGE = 50;
 
 type UseRecordsParams = {
   filter?: RecordsFilter,
   page?: number,
-  formatted?: boolean
 }
 
-export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
+export const useRecords = ( {filter, page }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
@@ -34,7 +32,6 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
         type: 'GET_RECORDS',
         filter: filter,
         page,
-        formatted
       } as GetRecordsMessage
     },
   });
@@ -55,11 +52,26 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
     }
   }, [readyToRequest, account]);
 
-
   const request = () => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
       wc_request();
+    }
+  }
+
+  const getRecordPlaintext = (data: any) => {
+    try {
+      return JSON.stringify(data).replaceAll('\"', '') ?? '';
+    } catch {
+      return '';
+    }
+  }
+
+  const getFormattedRecordPlaintext = (data: any) => {
+    try {
+      return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
+    } catch {
+      return '';
     }
   }
 
@@ -68,13 +80,5 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
   const records: Record[] | undefined = puzzleData?.data.records;
   const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
 
-  if (records) {
-    records.forEach((record) => {
-      console.log(record);
-      const ob = jsyaml.load(record.plaintext);
-      console.log(ob);
-    })
-  }
-
-  return { request, records, error, loading, totalRecordCount };
+  return { request, records, error, loading, totalRecordCount, getFormattedRecordPlaintext, getRecordPlaintext };
 };
