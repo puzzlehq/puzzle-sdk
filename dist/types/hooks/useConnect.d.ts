@@ -4,4 +4,5 @@ export declare const useConnect: () => {
     error: any;
     loading: any;
     session: any;
+    isConnected: boolean;
 };

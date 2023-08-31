@@ -21,5 +21,5 @@ export const useConnect = () => {
     await wc_connect();
   }
 
-  return { connect, data, error, loading, session };
+  return { connect, data, error, loading, session, isConnected: !!session };
 };

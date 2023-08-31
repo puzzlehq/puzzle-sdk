@@ -66,8 +66,6 @@ export const useAccount = () => {
   return {
     account,
     accounts,
-    isConnected: !!account,
-    session,
     error,
     loading
   };

@@ -3,6 +3,7 @@ import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-
 import { useEffect } from 'react';
 import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
+import jsyaml from 'js-yaml'
 
 export const RECORDS_PER_PAGE = 50;
 
@@ -66,6 +67,14 @@ export const useRecords = ( {filter, page, formatted }: UseRecordsParams) => {
   const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
   const records: Record[] | undefined = puzzleData?.data.records;
   const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
+
+  if (records) {
+    records.forEach((record) => {
+      console.log(record);
+      const ob = jsyaml.load(record.plaintext);
+      console.log(ob);
+    })
+  }
 
   return { request, records, error, loading, totalRecordCount };
 };
