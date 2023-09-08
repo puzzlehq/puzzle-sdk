@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect } from 'react';
-import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
+import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsRequestData, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const RECORDS_PER_PAGE = 50;
@@ -38,10 +38,14 @@ export const useRecords = ( {filter, page }: UseRecordsParams) => {
       method: 'aleo_getRecords',
       params: {
         type: 'GET_RECORDS',
-        filter: filter,
-        page,
-      } as GetRecordsMessage
-    },
+        data: {
+         data: {
+          filter: filter,
+          page,
+         }  as GetRecordsRequestData
+        }
+      } as GetRecordsMessage,
+    }
   });
 
   // listen for wallet-originated balance updates
