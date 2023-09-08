@@ -21,13 +21,13 @@ export type ExecuteProgramInputData = {
 };
 export type TransitionInputs = {
     inputPrivate: string[];
-    inputRecords: string[];
+    inputRecords: Record[];
     inputPublic: string[];
     inputConstant: string[];
 };
 export type TransitionOutputs = {
     outputPrivate: string[];
-    outputRecords: string[];
+    outputRecords: Record[];
     outputPublic: string[];
     outputConstant: string[];
 };
