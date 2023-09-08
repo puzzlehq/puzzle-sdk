@@ -11,14 +11,6 @@ type UseRecordsParams = {
   page?: number,
 }
 
-export const getFormattedRecordPlaintext = (data: any) => {
-  try {
-    return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
-  } catch {
-    return '';
-  }
-}
-
 export const useRecords = ( {filter, page }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
