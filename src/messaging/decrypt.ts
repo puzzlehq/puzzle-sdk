@@ -1,3 +1,4 @@
+import { DeployResData } from "./deploy.js";
 import { ExecuteResData } from "./execute.js";
 
 export type DecryptReqMessage = {
@@ -9,7 +10,7 @@ export type DecryptReqMessage = {
 
 export type DecryptResMessage = {
   type: 'DECRYPT_RES';
-  data: ExecuteResData
+  data: ExecuteResData | DeployResData
 };
 
 export type DecryptRejMessage = {

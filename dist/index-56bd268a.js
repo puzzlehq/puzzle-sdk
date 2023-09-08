@@ -1064,7 +1064,7 @@ let ef = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-1174987a.js");
+      await import("./index-4e511f0a.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9496,10 +9496,10 @@ const ov = (e) => (t, r, n) => (n.setState = (i, s, ...u) => {
         }
       }
     }
-  }), a = s ? s.message : i && i.type === "DECRYPT_REJ" ? i.data.error : void 0, l = i && i.type === "DECRYPT_RES" ? i : void 0, h = l == null ? void 0 : l.data.transitions;
+  }), a = s ? s.message : i && i.type === "DECRYPT_REJ" ? i.data.error : void 0, l = i && i.type === "DECRYPT_RES" ? i : void 0, h = l == null ? void 0 : l.data;
   return { decrypt: () => {
     !e || !e.startsWith("at1") || e.length !== 61 || n();
-  }, transitions: h, loading: u, error: a };
+  }, data: h, loading: u, error: a };
 }, qv = (e) => {
   const t = sr(), [r] = lr((g) => [
     g.chainId

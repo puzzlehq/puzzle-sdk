@@ -15,11 +15,17 @@ export type DeployMessageInputData = {
   programName: string;
 }
 
+export type DeployResData = {
+  type: "DEPLOYMENT"
+  transactionId: string,
+  timestamp: number,
+  version: number,
+  program: string,
+}
+
 export type DeployResMessage = {
   type: 'DEPLOY_RES';
-  data: {
-    transactionId: string;
-  }
+  data: DeployResData
 };
 
 export type DeployRejMessage = {

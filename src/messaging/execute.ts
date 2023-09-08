@@ -47,6 +47,7 @@ export type ExecuteData = {
 };
 
 export type ExecuteResData = {
+    type: "EXECUTION"
     transactionId: string,
     timestamp: number,
     transitions: ExecuteData[]

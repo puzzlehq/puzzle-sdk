@@ -1,6 +1,6 @@
 export declare const useDecrypt: (transactionId?: string) => {
     decrypt: () => void;
-    transitions: import("../index.js").ExecuteData[] | undefined;
+    data: import("../index.js").DeployResData | import("../index.js").ExecuteResData | undefined;
     loading: any;
     error: string | undefined;
 };
