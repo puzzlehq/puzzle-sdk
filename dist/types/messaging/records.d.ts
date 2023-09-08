@@ -1,3 +1,4 @@
+import { SessionTypes } from "@walletconnect/types";
 export type Record = {
     plaintext: string;
     data: any;
@@ -20,6 +21,14 @@ export type RecordsFilter = {
 };
 export type GetRecordsMessage = {
     type: 'GET_RECORDS';
+    data: {
+        data: GetRecordsRequestData;
+        wc?: {
+            session: SessionTypes.Struct;
+        };
+    };
+};
+export type GetRecordsRequestData = {
     filter?: RecordsFilter;
     page?: number;
     sender?: string;

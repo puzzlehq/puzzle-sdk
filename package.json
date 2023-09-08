@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.79",
+  "version": "0.0.81",
   "description": "Your portal to a private web3 experience.",
   "main": "./dist/puzzle.umd.js",
   "module": "./dist/puzzle.es.js",
