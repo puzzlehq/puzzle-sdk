@@ -1064,7 +1064,7 @@ let ef = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-1174987a.js");
+      await import("./index-c394561d.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9893,8 +9893,12 @@ const zv = () => {
       method: "aleo_getRecords",
       params: {
         type: "GET_RECORDS",
-        filter: e,
-        page: t
+        data: {
+          data: {
+            filter: e,
+            page: t
+          }
+        }
       }
     }
   });
