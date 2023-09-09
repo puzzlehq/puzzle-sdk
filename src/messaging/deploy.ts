@@ -21,6 +21,7 @@ export type DeployResData = {
   timestamp: number,
   version: number,
   program: string,
+  programName: string,
 }
 
 export type DeployResMessage = {
