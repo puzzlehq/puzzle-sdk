@@ -4,7 +4,7 @@ type UseRecordsParams = {
     filter?: RecordsFilter;
     page?: number;
 };
-export declare const getFormattedRecordPlaintext: (data: any) => string;
+export declare const getFormattedRecordPlaintext: (input: string) => string;
 export declare const useRecords: ({ filter, page }: UseRecordsParams) => {
     request: () => void;
     records: Record[] | undefined;
