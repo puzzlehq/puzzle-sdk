@@ -1,7 +1,6 @@
 import { SessionTypes } from "@walletconnect/types";
 export type Record = {
     plaintext: string;
-    data: any;
     id: string;
     height: number;
     timestamp: string;

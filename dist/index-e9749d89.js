@@ -1064,7 +1064,7 @@ let ef = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-c394561d.js");
+      await import("./index-f3c4471c.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Yt.setIsUiLoaded(!0);
     }
@@ -9874,7 +9874,7 @@ const zv = () => {
   }, []), { ...e };
 }, kv = 50, Wv = (e) => {
   try {
-    return JSON.stringify(e, null, 2).replaceAll('"', "") ?? "";
+    return e.replaceAll('"', "") ?? "";
   } catch {
     return "";
   }

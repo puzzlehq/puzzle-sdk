@@ -11,9 +11,9 @@ type UseRecordsParams = {
   page?: number,
 }
 
-export const getFormattedRecordPlaintext = (data: any) => {
+export const getFormattedRecordPlaintext = (input: string) => {
   try {
-    return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
+    return input.replaceAll('\"', '') ?? '';
   } catch {
     return '';
   }
