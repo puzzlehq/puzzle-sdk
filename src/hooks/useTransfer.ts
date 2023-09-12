@@ -1,12 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
-
-export interface TransferRequestData {
-  recipientAddress: string;
-  amount: number;
-  privateTransfer?: boolean;
-}
+import { TransferRequestData } from '../index.js';
 
 export const useTransferCredits = (
   transferRequestData?: TransferRequestData

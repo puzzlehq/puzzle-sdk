@@ -1,8 +1,4 @@
-export interface TransferRequestData {
-    recipientAddress: string;
-    amount: number;
-    privateTransfer?: boolean;
-}
+import { TransferRequestData } from '../index.js';
 export declare const useTransferCredits: (transferRequestData?: TransferRequestData) => {
     transfer: any;
     data: any;
