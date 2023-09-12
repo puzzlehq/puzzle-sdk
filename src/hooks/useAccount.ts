@@ -1,11 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession, useOnSessionEvent } from '@walletconnect/modal-sign-react';
 import { GetSelectedAccountMessage, GetSelectedAccountResMessage } from '../messaging/account.js';
 import { SessionTypes } from '@walletconnect/types';
 
+/// ADDRESSES AND ALIASES
+export const shortenAddress = (
+  address: string
+) => {
+  const length = 5;
+  if (address.length < length * 2) return address;
+  return `${address.slice(
+    0,
+    length + 'aleo1'.length
+  )}...${address.slice(address.length - length, address.length)}`;
+};
+
 export const useAccount = () => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
 
   const [account, accounts, chainId, setAccount] =
     useClientWalletStore((state) => [
@@ -14,7 +26,6 @@ export const useAccount = () => {
       state.chainId,
       state.setAccount,
     ]);
-    const [error, setError] = useState<string | undefined>(undefined)
   
     const { request, data: wc_data, error: wc_error, loading } = useRequest({
       topic: session?.topic,
@@ -40,38 +51,34 @@ export const useAccount = () => {
         network,
         chainId,
         address,
+        shortenedAddress: shortenAddress(address)
       });
-      setError(undefined);
     }
   });
 
   // send initial account request...
   useEffect(() => {
-    if (session) {
+    if (session && !loading) {
       request();
     }
-  }, [session])
+  }, [session?.topic])
 
   // ...and listen for response
   useEffect(() => { 
-    if (wc_error) {
-      setError(wc_error.message);
-    } else if (wc_data) {
+    if (wc_data) {
       const puzzleData: GetSelectedAccountResMessage | undefined = wc_data && wc_data.type === 'GET_SELECTED_ACCOUNT_RES' ? wc_data : undefined;
-      const error: string | undefined = wc_data && wc_data.type === 'GET_SELECTED_ACCOUNT_RES' ? wc_data.data.error : undefined;
       const account = puzzleData?.data.account;
       if (account) {
         setAccount(account);
       }
-      setError(error);
     }
-  }, [wc_data, wc_error]);
+  }, [wc_data]);
+
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_SELECTED_ACCOUNT_REJ' ? wc_data.data.error : undefined);
 
   return {
     account,
     accounts,
-    isConnected: !!account,
-    session,
     error,
     loading
   };

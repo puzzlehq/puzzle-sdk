@@ -6,6 +6,7 @@ type ClientWalletState = {
     setAccounts: (accounts: PuzzleAccount[]) => void;
     setAccount: (account: PuzzleAccount) => void;
     setChainId: (chainId: string) => void;
+    disconnect: () => void;
 };
 declare const useClientWalletStore: import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<ClientWalletState>, "setState"> & {
     setState(nextStateOrUpdater: ClientWalletState | Partial<ClientWalletState> | ((state: import("immer/dist/internal.js").WritableDraft<ClientWalletState>) => void), shouldReplace?: boolean | undefined): void;

@@ -1,23 +1,35 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { useEffect, useState } from 'react';
-import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
+import { useEffect } from 'react';
+import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsRequestData, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
-export const useRecords = ( filter?: RecordsFilter ) => {
+export const RECORDS_PER_PAGE = 50;
+
+type UseRecordsParams = {
+  filter?: RecordsFilter,
+  page?: number,
+}
+
+export const getFormattedRecordPlaintext = (data: any) => {
+  try {
+    return JSON.stringify(data, null, 2).replaceAll('\"', '') ?? '';
+  } catch {
+    return '';
+  }
+}
+
+export const useRecords = ( {filter, page }: UseRecordsParams) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
   ]);
-  const [records, setRecords] = useState<Record[]>([]);
-  const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
 
   if (filter?.program_id === '') {
     filter.program_id = undefined
   }
 
-  const { request: wc_request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
+  const { request: wc_request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -26,52 +38,43 @@ export const useRecords = ( filter?: RecordsFilter ) => {
       method: 'aleo_getRecords',
       params: {
         type: 'GET_RECORDS',
-        filter: filter
-      } as GetRecordsMessage
-    },
+        data: {
+         data: {
+          filter: filter,
+          page,
+         }  as GetRecordsRequestData
+        }
+      } as GetRecordsMessage,
+    }
   });
 
   // listen for wallet-originated balance updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic) {
+    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
       wc_request();
-      setLoading(true);
     }
   });
 
   // send initial records request...
   const readyToRequest = !!session && !!account;
   useEffect(() => {
-    if (readyToRequest) {
+    if (readyToRequest && !loading) {
       wc_request();
-      setLoading(true);
     }
   }, [readyToRequest, account]);
 
-  // ...and listen for response
-  useEffect(() => {
-    if (wc_error) {
-      setRecords([]);
-      setError(wc_error.message);
-      setLoading(false);
-    } else if (wc_data) {
-      const response = wc_data as GetRecordsResMessage | GetRecordsRejMessage;
-      const error = response.type === 'GET_RECORDS_REJ' ? response.data.error : undefined;
-      const records = response.type === 'GET_RECORDS_RES' ? response.data.records : [];
-      setRecords(records);
-      setError(error);
-      setLoading(false);
-    }
-  }, [wc_data, wc_error]);
-
   const request = () => {
     const readyToRequest = !!session && !!account;
-    if (readyToRequest) {
+    if (readyToRequest && !loading) {
       wc_request();
-      setLoading(true);
     }
   }
 
-  return { request, records, error, loading };
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_RECORDS_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
+  const records: Record[] | undefined = puzzleData?.data.records;
+  const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
+
+  return { request, records, error, loading, totalRecordCount };
 };

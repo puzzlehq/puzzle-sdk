@@ -1,4 +1,5 @@
 import { SessionTypes } from "@walletconnect/types";
+import { type Record } from "./records.js";
 
 export type ExecuteMessage = {
     type: "EXECUTE";
@@ -16,15 +17,45 @@ export type ExecuteProgramRequestData = {
     inputs: string;
 };
 
+export type ExecuteProgramInputData = {
+    programId: string;
+    functionName: string;
+    inputs: (Record | string)[];
+};
+
+
+export type TransitionInputs = {
+    inputPrivate: string[];
+    inputRecords: string[];
+    inputPublic: string[];
+    inputConstant: string[];
+}
+
+export type TransitionOutputs = {
+    outputPrivate: string[];
+    outputRecords: string[];
+    outputPublic: string[];
+    outputConstant: string[];
+}
+
+export type ExecuteData = {
+    transitionId: string;
+    program: string;
+    function: string;
+    inputs: TransitionInputs;
+    outputs: TransitionOutputs;
+};
+
+export type ExecuteResData = {
+    type: "EXECUTION"
+    transactionId: string,
+    timestamp: number,
+    transitions: ExecuteData[]
+}
+
 export type ExecuteResMessage = {
     type: "EXECUTE_RES";
-    data: {
-        transactionId: string;
-        outputPrivate: string;
-        outputRecords: string;
-        outputPublic: string;
-        outputConstant: string; 
-    };
+    data: ExecuteResData
 };
 
 export type ExecuteRejMessage = {

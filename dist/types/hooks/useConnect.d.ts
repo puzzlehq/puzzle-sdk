@@ -1,6 +1,8 @@
 export declare const useConnect: () => {
     connect: () => Promise<void>;
     data: any;
-    error: string | undefined;
+    error: any;
     loading: any;
+    session: any;
+    isConnected: boolean;
 };

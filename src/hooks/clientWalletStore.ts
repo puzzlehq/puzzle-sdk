@@ -10,6 +10,7 @@ type ClientWalletState = {
   setAccounts: (accounts: PuzzleAccount[]) => void;
   setAccount: (account: PuzzleAccount) => void;
   setChainId: (chainId: string) => void;
+  disconnect: () => void;
 };
 
 const useClientWalletStore = create<ClientWalletState>()(
@@ -26,6 +27,13 @@ const useClientWalletStore = create<ClientWalletState>()(
     setChainId: (chainId: string) => {
       set({ chainId });
     },
+    disconnect: () => {
+      set({
+        account: undefined,
+        accounts: [],
+        chainId: undefined,
+      })
+    }
   }))
 );
 

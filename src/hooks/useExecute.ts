@@ -1,19 +1,27 @@
 import { SessionTypes } from '@walletconnect/types';
-import { ExecuteMessage, ExecuteProgramRequestData, ExecuteResMessage } from '../messaging/execute.js';
+import { ExecuteMessage, ExecuteProgramRequestData, ExecuteProgramInputData, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 
 export const useExecuteProgram = (
-  executeProgramRequestData?: ExecuteProgramRequestData
+  executeProgramRequestData?: ExecuteProgramInputData
 ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 
+  const inputs = executeProgramRequestData?.inputs.map(
+    (input) => {
+      if (typeof input === 'string') {
+        return input
+      }
+      return input.plaintext
+    }).join(' ')
+  
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
-    chainId: 'aleo:1',
+    chainId: chainId ?? 'aleo:1',
     request: {
       id: 1,
       jsonrpc: '2.0',
@@ -21,7 +29,10 @@ export const useExecuteProgram = (
       params: {
         type: 'EXECUTE',
         data: {
-          data: executeProgramRequestData,
+          data: {
+            ...executeProgramRequestData,
+            inputs: inputs ?? '',
+          },
         },
       } as ExecuteMessage,
     }
@@ -30,16 +41,12 @@ export const useExecuteProgram = (
   const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'EXECUTE_REJ' ? wc_data.data.error : undefined);
   const puzzleData: ExecuteResMessage | undefined =  wc_data && wc_data.type === 'EXECUTE_RES' ? wc_data : undefined;
   const transactionId: string | undefined = puzzleData?.data.transactionId;
-  const outputPrivate: string | undefined = puzzleData?.data.outputPrivate;
-  const outputPublic: string | undefined = puzzleData?.data.outputPublic;
-  const outputRecords: string | undefined = puzzleData?.data.outputRecords;
-  const outputConstant: string | undefined = puzzleData?.data.outputConstant;
+  const transitions = puzzleData?.data.transitions;
 
   const execute = () => {
     if (!executeProgramRequestData) return
     request();
-    console.log('sent execute request')
   }
 
-  return { execute, transactionId, outputConstant, outputPrivate, outputRecords, outputPublic, error, loading };
+  return { execute, transactionId, transitions, error, loading };
 };

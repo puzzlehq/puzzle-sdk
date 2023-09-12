@@ -1,7 +1,15 @@
 import { Record, RecordsFilter } from '../messaging/records.js';
-export declare const useRecords: (filter?: RecordsFilter) => {
-    request: () => void;
-    records: Record[];
-    error: string | undefined;
-    loading: boolean;
+export declare const RECORDS_PER_PAGE = 50;
+type UseRecordsParams = {
+    filter?: RecordsFilter;
+    page?: number;
 };
+export declare const getFormattedRecordPlaintext: (data: any) => string;
+export declare const useRecords: ({ filter, page }: UseRecordsParams) => {
+    request: () => void;
+    records: Record[] | undefined;
+    error: string | undefined;
+    loading: any;
+    totalRecordCount: number;
+};
+export {};

@@ -1,20 +1,16 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { Balances, GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
   ]);
 
-  const [balance, setBalance] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
-
-  const { request, data: wc_data, error: wc_error, loading: wc_loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic,
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -33,36 +29,22 @@ export const useBalance = () => {
   // listen for wallet-originated balance updates
   useOnSessionEvent(({ _, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic) {
+    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
       request();
-      setLoading(true);
     }
   });
 
   // send initial balance request...
   const readyToRequest = !!session && !!account;
   useEffect(() => { 
-    if (readyToRequest) {
+    if (readyToRequest && !loading) {
       request();
-      setLoading(true);
     }
   }, [readyToRequest, account]);
 
-  // ...and listen for response
-  useEffect(() => { 
-    if (wc_error) {
-      setBalance(0);
-      setError(wc_error.message);
-      setLoading(false);
-    } else if (wc_data) {
-      const puzzleData: GetBalanceResMessage | undefined = wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
-      const error: string | undefined = wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined;
-      const balance = puzzleData?.data.balance ?? 0;
-      setBalance(balance);
-      setError(error);
-      setLoading(false)
-    }
-  }, [wc_data, wc_error]);
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined);
+  const puzzleData: GetBalanceResMessage | undefined =  wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
+  const balances: Balances | undefined = puzzleData?.data.balances;
 
-  return { loading, balance, error };
+  return { loading, balances, error };
 };
