@@ -1,12 +1,17 @@
-import { ExecuteResData } from "./execute.js";
+export type TransferVisibility = 'transfer_private' | 'transfer_public' | 'transfer_private_to_public' | 'transfer_public_to_private' 
+export const transferVisibilities: TransferVisibility[] = ['transfer_private', 'transfer_public', 'transfer_private_to_public', 'transfer_public_to_private']
+
+export const isPrivateTransfer = (transferVisibility: TransferVisibility) => {
+  return ['transfer_private', 'transfer_private_to_public'].includes(transferVisibility)
+}
 
 export interface TransferRequestData {
   recipientAddress: string;
   amount: number;
-  record?: string;
-  feeAmount: number;
-  recordFee: string;
-  visibility?:  'transfer_private' | 'transfer_public' | 'transfer_private_to_public' | 'transfer_public_to_private' // default 'transfer_private'
+  amountRecord?: string;
+  fee: number;
+  feeRecord: string;
+  visibility?: TransferVisibility // default 'transfer_private'
 }
 
 export type TransferReqMessage = {
@@ -15,14 +20,4 @@ export type TransferReqMessage = {
   sender?: string;
 };
 
-export type TransferResMessage = {
-  type: 'TRANSFER_RES';
-  data: ExecuteResData;
-};
-
-export type TransferRejMessage = {
-  type: 'TRANSFER_REJ';
-  data: {
-    error?: string;
-  }
-};
+// note: message return type is ExecuteResMessage | ExecuteRejMessage
