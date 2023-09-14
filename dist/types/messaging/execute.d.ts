@@ -39,7 +39,9 @@ export type ExecuteData = {
     outputs: TransitionOutputs;
 };
 export type ExecuteResData = {
+    type: "EXECUTION";
     transactionId: string;
+    timestamp: number;
     transitions: ExecuteData[];
 };
 export type ExecuteResMessage = {
