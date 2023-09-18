@@ -1,4 +1,4 @@
-export type GetBalanceMessage = {
+export type GetBalanceReqMessage = {
   type: 'GET_BALANCE';
   data?: {
     assetId?: string;

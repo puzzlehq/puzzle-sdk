@@ -1,5 +1,5 @@
 import { SessionTypes } from '@walletconnect/types';
-import { ExecuteMessage, ExecuteProgramRequestData, ExecuteProgramInputData, ExecuteResMessage } from '../messaging/execute.js';
+import { ExecuteReqMessage, ExecuteProgramRequestData, ExecuteProgramInputData, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 
@@ -34,7 +34,7 @@ export const useExecuteProgram = (
             inputs: inputs ?? '',
           },
         },
-      } as ExecuteMessage,
+      } as ExecuteReqMessage,
     }
   });
 
