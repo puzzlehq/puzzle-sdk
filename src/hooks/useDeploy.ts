@@ -1,6 +1,6 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { DeployReqMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
+import { DeployMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const useDeployProgram = (
@@ -23,7 +23,7 @@ export const useDeployProgram = (
         data: {
           data: deployProgramRequestData,
         },
-      } as DeployReqMessage,
+      } as DeployMessage,
     },
   });
 
