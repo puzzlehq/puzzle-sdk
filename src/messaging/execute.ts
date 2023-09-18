@@ -23,7 +23,6 @@ export type ExecuteProgramInputData = {
     inputs: (Record | string)[];
 };
 
-
 export type TransitionInputs = {
     inputPrivate: string[];
     inputRecords: string[];
