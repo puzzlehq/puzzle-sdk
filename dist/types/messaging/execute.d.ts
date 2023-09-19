@@ -13,6 +13,8 @@ export type ExecuteProgramRequestData = {
     programId: string;
     functionName: string;
     inputs: string;
+    fee?: number;
+    feeRecord?: string;
 };
 export type ExecuteProgramInputData = {
     programId: string;
