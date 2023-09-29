@@ -22,7 +22,7 @@ export type RecordsFilter = {
   type: 'all' | 'spent' | 'unspent';
 };
 
-export type GetRecordsReqMessage = {
+export type GetRecordsMessage = {
   type: 'GET_RECORDS';
   data: {
     data: GetRecordsRequestData; 

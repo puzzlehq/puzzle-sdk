@@ -19,7 +19,7 @@ export type RecordsFilter = {
     program_id?: string;
     type: 'all' | 'spent' | 'unspent';
 };
-export type GetRecordsReqMessage = {
+export type GetRecordsMessage = {
     type: 'GET_RECORDS';
     data: {
         data: GetRecordsRequestData;

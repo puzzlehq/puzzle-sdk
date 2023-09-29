@@ -1,6 +1,6 @@
 import { PuzzleAccount } from "../index.js";
 
-export type GetSelectedAccountReqMessage = {
+export type GetSelectedAccountMessage = {
   type: 'GET_SELECTED_ACCOUNT';
   data?: string;
   sender?: string;

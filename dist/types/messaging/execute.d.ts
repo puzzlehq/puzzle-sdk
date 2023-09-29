@@ -1,6 +1,6 @@
 import { SessionTypes } from "@walletconnect/types";
 import { type Record } from "./records.js";
-export type ExecuteReqMessage = {
+export type ExecuteMessage = {
     type: "EXECUTE";
     data: {
         data: ExecuteProgramRequestData;

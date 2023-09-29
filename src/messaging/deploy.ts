@@ -1,6 +1,6 @@
 import { SessionTypes } from "@walletconnect/types";
 
-export type DeployReqMessage = {
+export type DeployMessage = {
   type: 'DEPLOY';
   data: {
     data: DeployMessageInputData,

@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect, useState } from 'react';
-import { Balances, GetBalanceReqMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { Balances, GetBalanceMessage, GetBalanceResMessage } from '../messaging/balance.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
@@ -22,7 +22,7 @@ export const useBalance = () => {
         data: {
           assetId: undefined
         }
-      } as GetBalanceReqMessage
+      } as GetBalanceMessage
     },
   });
 
