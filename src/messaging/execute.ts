@@ -15,6 +15,8 @@ export type ExecuteProgramRequestData = {
     programId: string;
     functionName: string;
     inputs: string;
+    fee?: number;
+    feeRecord?: string;
 };
 
 export type ExecuteProgramInputData = {
@@ -22,7 +24,6 @@ export type ExecuteProgramInputData = {
     functionName: string;
     inputs: (Record | string)[];
 };
-
 
 export type TransitionInputs = {
     inputPrivate: string[];
