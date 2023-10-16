@@ -1,5 +1,5 @@
 import { DeployMessageInputData } from '../messaging/deploy.js';
-export declare const useDeployProgram: (deployProgramRequestData?: DeployMessageInputData) => {
+export declare const useDeployProgram: (deployProgramReqData?: DeployMessageInputData) => {
     deploy: () => void;
     transactionId: string | undefined;
     loading: any;

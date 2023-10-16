@@ -1,17 +1,17 @@
 import { SessionTypes } from '@walletconnect/types';
-import { ExecuteMessage, ExecuteProgramRequestData, ExecuteProgramInputData, ExecuteResMessage } from '../messaging/execute.js';
+import { ExecuteReqMessage, ExecuteProgramInputData, ExecuteResMessage } from '../messaging/execute.js';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 
 export const useExecuteProgram = (
-  executeProgramRequestData?: ExecuteProgramInputData
+  executeProgramReqData?: ExecuteProgramInputData
 ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
 
-  const inputs = executeProgramRequestData?.inputs.map(
+  const inputs = executeProgramReqData?.inputs.map(
     (input) => {
       if (typeof input === 'string') {
         return input
@@ -30,11 +30,11 @@ export const useExecuteProgram = (
         type: 'EXECUTE',
         data: {
           data: {
-            ...executeProgramRequestData,
+            ...executeProgramReqData,
             inputs: inputs ?? '',
           },
         },
-      } as ExecuteMessage,
+      } as ExecuteReqMessage,
     }
   });
 
@@ -44,7 +44,7 @@ export const useExecuteProgram = (
   const transitions = puzzleData?.data.transitions;
 
   const execute = () => {
-    if (!executeProgramRequestData) return
+    if (!executeProgramReqData) return
     request();
   }
 

@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
-import { DecryptReqMessage, DecryptRejMessage, DecryptResMessage} from '../messaging/decrypt.js';
+import { DecryptReqMessage, DecryptResMessage} from '../messaging/decrypt.js';
 
 export const useDecrypt = (
   transactionId?: string

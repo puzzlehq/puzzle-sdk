@@ -1,10 +1,10 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
-import { TransferRequestData } from '../index.js';
+import { TransferReqData } from '../index.js';
 
 export const useTransferCredits = (
-  transferRequestData?: TransferRequestData
+  transferReqData?: TransferReqData
 ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
@@ -19,7 +19,7 @@ export const useTransferCredits = (
       id: 1,
       jsonrpc: '2.0',
       method: 'aleo_transfer',
-      params: transferRequestData,
+      params: transferReqData,
     },
   });
 

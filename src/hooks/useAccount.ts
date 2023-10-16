@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession, useOnSessionEvent } from '@walletconnect/modal-sign-react';
-import { GetSelectedAccountMessage, GetSelectedAccountResMessage } from '../messaging/account.js';
+import { GetSelectedAccountReqMessage, GetSelectedAccountResMessage } from '../messaging/account.js';
 import { SessionTypes } from '@walletconnect/types';
 
 /// ADDRESSES AND ALIASES
@@ -36,7 +36,7 @@ export const useAccount = () => {
         method: 'aleo_getSelectedAccount',
         params: {
           type: 'GET_SELECTED_ACCOUNT',
-        } as GetSelectedAccountMessage
+        } as GetSelectedAccountReqMessage
       },
     });
 

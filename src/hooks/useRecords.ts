@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect } from 'react';
-import { GetRecordsMessage, GetRecordsRejMessage, GetRecordsRequestData, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
+import { GetRecordsReqMessage, GetRecordsReqData, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const RECORDS_PER_PAGE = 50;
@@ -42,9 +42,9 @@ export const useRecords = ( {filter, page }: UseRecordsParams) => {
          data: {
           filter: filter,
           page,
-         }  as GetRecordsRequestData
+         }  as GetRecordsReqData
         }
-      } as GetRecordsMessage,
+      } as GetRecordsReqMessage,
     }
   });
 

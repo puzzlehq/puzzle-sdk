@@ -5,7 +5,7 @@ export const isPrivateTransfer = (transferVisibility: TransferVisibility) => {
   return ['transfer_private', 'transfer_private_to_public'].includes(transferVisibility)
 }
 
-export interface TransferRequestData {
+export interface TransferReqData {
   recipientAddress: string;
   amount: number;
   amountRecord?: string;
@@ -16,7 +16,7 @@ export interface TransferRequestData {
 
 export type TransferReqMessage = {
   type: 'TRANSFER';
-  data: TransferRequestData;
+  data: TransferReqData;
   sender?: string;
 };
 

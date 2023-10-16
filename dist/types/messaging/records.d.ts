@@ -19,16 +19,16 @@ export type RecordsFilter = {
     program_id?: string;
     type: 'all' | 'spent' | 'unspent';
 };
-export type GetRecordsMessage = {
+export type GetRecordsReqMessage = {
     type: 'GET_RECORDS';
     data: {
-        data: GetRecordsRequestData;
+        data: GetRecordsReqData;
         wc?: {
             session: SessionTypes.Struct;
         };
     };
 };
-export type GetRecordsRequestData = {
+export type GetRecordsReqData = {
     filter?: RecordsFilter;
     page?: number;
     sender?: string;

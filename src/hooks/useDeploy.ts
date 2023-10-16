@@ -1,10 +1,10 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { DeployMessage, DeployMessageInputData, DeployRejMessage, DeployResMessage } from '../messaging/deploy.js';
+import { DeployReqMessage, DeployMessageInputData, DeployResMessage } from '../messaging/deploy.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const useDeployProgram = (
-  deployProgramRequestData?: DeployMessageInputData
+  deployProgramReqData?: DeployMessageInputData
 ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
@@ -21,9 +21,9 @@ export const useDeployProgram = (
       params: {
         type: 'DEPLOY', 
         data: {
-          data: deployProgramRequestData,
+          data: deployProgramReqData,
         },
-      } as DeployMessage,
+      } as DeployReqMessage,
     },
   });
 
@@ -32,7 +32,7 @@ export const useDeployProgram = (
   const transactionId = puzzleData?.data.transactionId;
 
   const deploy = () => { 
-    if (!deployProgramRequestData) return;
+    if (!deployProgramReqData) return;
     request(); 
   }
 

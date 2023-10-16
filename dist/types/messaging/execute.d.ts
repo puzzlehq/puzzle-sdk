@@ -1,15 +1,15 @@
 import { SessionTypes } from "@walletconnect/types";
 import { type Record } from "./records.js";
-export type ExecuteMessage = {
+export type ExecuteReqMessage = {
     type: "EXECUTE";
     data: {
-        data: ExecuteProgramRequestData;
+        data: ExecuteProgramReqData;
         wc?: {
             session: SessionTypes.Struct;
         };
     };
 };
-export type ExecuteProgramRequestData = {
+export type ExecuteProgramReqData = {
     programId: string;
     functionName: string;
     inputs: string;
