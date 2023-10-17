@@ -1,19 +1,17 @@
 import { SessionTypes } from "@walletconnect/types";
 export type Record = {
-    plaintext: string;
-    data: any;
     id: string;
     height: number;
-    timestamp: string;
-    record_ciphertext: string;
-    program_id: string;
-    function_name: string;
-    transition_id: string;
-    transaction_id: string;
-    output_index: number;
-    ownerId: string | null;
+    ciphertext: string;
+    program: string;
+    function: string;
+    transitionId: string;
+    transactionId: string;
+    ownerAddress: string;
+    eventId: string;
     spent: boolean;
     serialNumber: string | null;
+    plaintext: string;
 };
 export type RecordsFilter = {
     program_id?: string;
