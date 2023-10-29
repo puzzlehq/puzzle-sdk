@@ -7,6 +7,6 @@ export interface Fee {
 }
 export declare const usePuzzleFees: () => {
     loading: boolean;
-    error?: string | undefined;
-    fees?: Fee[] | undefined;
+    error?: string;
+    fees?: Fee[];
 };

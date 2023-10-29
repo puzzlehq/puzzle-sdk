@@ -1,4 +1,4 @@
-import { n as _t, s as ce, T as N, o as ot, R as Uo, a as E, t as U, p as q, y as gt } from "./index-9f9c39c7.js";
+import { n as _t, s as ce, T as N, o as ot, R as Uo, a as E, t as U, p as q, y as gt } from "./index-48da5c50.js";
 import "react";
 /**
  * @license
@@ -514,7 +514,7 @@ let Go = class {
   }
 };
 const Nr = ue.litHtmlPolyfillSupport;
-Nr == null || Nr(Kt, Jt), ((Ae = ue.litHtmlVersions) !== null && Ae !== void 0 ? Ae : ue.litHtmlVersions = []).push("2.7.5");
+Nr == null || Nr(Kt, Jt), ((Ae = ue.litHtmlVersions) !== null && Ae !== void 0 ? Ae : ue.litHtmlVersions = []).push("2.8.0");
 const Qo = (e, t, r) => {
   var n, o;
   const i = (n = r == null ? void 0 : r.renderBefore) !== null && n !== void 0 ? n : t;

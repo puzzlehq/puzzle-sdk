@@ -1,10 +1,11 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.87",
-  "description": "Your portal to a private web3 experience.",
+  "version": "0.0.88",
+  "description": "Your portal to privacy",
   "main": "./dist/puzzle.umd.js",
   "module": "./dist/puzzle.es.js",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/puzzle.es.js",
@@ -17,16 +18,15 @@
     "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types"
   },
   "dependencies": {
-    "@aleohq/sdk": "^0.5.1",
     "@extend-chrome/messages": "^1.2.2",
     "@tanstack/react-query": "^4.29.5",
     "@trpc/client": "^10.9.0",
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.8.1",
     "@types/debug": "^4.1.7",
-    "@walletconnect/modal-sign-react": "^2.6.1",
+    "@walletconnect/modal-sign-react": "^2.6.2",
     "@walletconnect/types": "^2.9.0",
-    "@walletconnect/utils": "^2.9.1",
+    "@walletconnect/utils": "^2.9.2",
     "debug": "^4.3.4",
     "immer": "^9.0.19",
     "localforage": "^1.10.0",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/medici-collective/puzzle-sdk.git"
+    "url": "git+https://github.com/puzzlehq/puzzle-sdk.git"
   },
   "keywords": [
     "puzzle",
@@ -58,7 +58,7 @@
   "author": "Puzzle",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/medici-collective/puzzle-sdk/issues"
+    "url": "https://github.com/puzzlehq/puzzle-sdk/issues"
   },
-  "homepage": "https://github.com/medici-collective/puzzle-sdk#readme"
+  "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme"
 }
