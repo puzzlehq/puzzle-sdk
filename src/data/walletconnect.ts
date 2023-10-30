@@ -1,12 +1,12 @@
 // methods called from dApp
 export const wc_aleo_methods = [
   // aleo methods
-  'createEvent',
   'decrypt',
   'disconnect',
   'getSelectedAccount',
   'getBalance',
-  'getRecords'
+  'getRecords',
+  'requestCreateEvent'
 ];
 export const wc_aleo_chains = ['aleo:1']; //placeholder until there are multiple chains
 
