@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect } from 'react';
-import { GetRecordsReqMessage, GetRecordsReqData, GetRecordsResMessage, Record, RecordsFilter } from '../messaging/records.js';
+import { GetRecordsRequest, GetRecordsResponse, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const RECORDS_PER_PAGE = 50;
@@ -35,16 +35,11 @@ export const useRecords = ( {filter, page }: UseRecordsParams) => {
     request: {
       id: 1,
       jsonrpc: '2.0',
-      method: 'aleo_getRecords',
+      method: 'getRecords',
       params: {
-        type: 'GET_RECORDS',
-        data: {
-         data: {
-          filter: filter,
-          page,
-         }  as GetRecordsReqData
-        }
-      } as GetRecordsReqMessage,
+        filter: filter,
+        page,
+      } as GetRecordsRequest,
     }
   });
 
@@ -71,10 +66,10 @@ export const useRecords = ( {filter, page }: UseRecordsParams) => {
     }
   }
 
-  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_RECORDS_REJ' ? wc_data.data.error : undefined);
-  const puzzleData: GetRecordsResMessage | undefined =  wc_data && wc_data.type === 'GET_RECORDS_RES' ? wc_data : undefined;
-  const records: Record[] | undefined = puzzleData?.data.records;
-  const totalRecordCount = puzzleData?.data.totalRecordCount ?? 0;
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
+  const response: GetRecordsResponse | undefined =  wc_data;
+  const records: Record[] | undefined = response?.records;
+  const totalRecordCount = response?.totalRecordCount ?? 0;
 
   return { request, records, error, loading, totalRecordCount };
 };

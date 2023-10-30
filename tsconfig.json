@@ -1,26 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2022",
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "lib": ["dom", "esnext", "es2017.object", "webworker"],
     "types": ["node"],
-    "strict": true,
+    "strict": false,
     "jsx": "react-jsx",
     "noImplicitAny": false,
     "noImplicitThis": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
-    "inlineSourceMap": true,
     "importHelpers": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "outDir": "dist"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

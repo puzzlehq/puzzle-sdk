@@ -9,6 +9,6 @@ type ClientWalletState = {
     disconnect: () => void;
 };
 declare const useClientWalletStore: import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<ClientWalletState>, "setState"> & {
-    setState(nextStateOrUpdater: ClientWalletState | Partial<ClientWalletState> | ((state: import("immer/dist/internal.js").WritableDraft<ClientWalletState>) => void), shouldReplace?: boolean | undefined): void;
+    setState(nextStateOrUpdater: ClientWalletState | Partial<ClientWalletState> | ((state: import("immer/dist/internal.js").WritableDraft<ClientWalletState>) => void), shouldReplace?: boolean): void;
 }>;
 export default useClientWalletStore;

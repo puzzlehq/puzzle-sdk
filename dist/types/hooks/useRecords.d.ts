@@ -7,8 +7,8 @@ type UseRecordsParams = {
 export declare const getFormattedRecordPlaintext: (data: any) => string;
 export declare const useRecords: ({ filter, page }: UseRecordsParams) => {
     request: () => void;
-    records: Record[] | undefined;
-    error: string | undefined;
+    records: Record[];
+    error: string;
     loading: any;
     totalRecordCount: number;
 };
