@@ -35,6 +35,7 @@
     "rxjs": "^7.8.1",
     "superjson": "^1.12.3",
     "tslib": "^2.5.0",
+    "ws": "^8.13.0",
     "zustand": "^4.3.9"
   },
   "devDependencies": {

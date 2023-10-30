@@ -56,6 +56,9 @@ dependencies:
   tslib:
     specifier: ^2.5.0
     version: 2.5.0
+  ws:
+    specifier: ^8.13.0
+    version: 8.14.2
   zustand:
     specifier: ^4.3.9
     version: 4.3.9(immer@9.0.19)(react@18.2.0)
@@ -1520,6 +1523,19 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
+
+  /ws@8.14.2:
+    resolution: {integrity: sha512-wEBG1ftX4jcglPxgFCMJmZ2PLtSbJ2Peg6TmpJFTbe9GZYOQCDPdMYu/Tm0/bGZkw8paZnJY45J4K2PZrLYq8g==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
     peerDependenciesMeta:
       bufferutil:
         optional: true
