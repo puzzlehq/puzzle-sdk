@@ -6,4 +6,4 @@ export * from './useDisconnect.js';
 export * from './useFees.js';
 export * from './useRecords.js';
 export * from './useWallet.js';
-export * from './useCreateEvent.js';
+export * from './useRequestCreateEvent.js';
