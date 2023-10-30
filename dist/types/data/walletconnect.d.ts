@@ -1,5 +1,3 @@
-export declare const wc_aztec_methods: string[];
-export declare const wc_aztec_chains: string[];
 export declare const wc_aleo_methods: string[];
 export declare const wc_aleo_chains: string[];
 export declare const wc_events: string[];
@@ -33,11 +31,6 @@ export declare const web3modal_puzzle_props: {
 };
 export declare const signClient_puzzleProps: {
     requiredNamespaces: {
-        aztec: {
-            methods: string[];
-            chains: string[];
-            events: string[];
-        };
         aleo: {
             methods: string[];
             chains: string[];

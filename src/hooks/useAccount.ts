@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession, useOnSessionEvent } from '@walletconnect/modal-sign-react';
-import { GetSelectedAccountReqMessage, GetSelectedAccountResMessage } from '../messaging/account.js';
+import { GetSelectedAccountResponse } from '../messaging/account.js';
 import { SessionTypes } from '@walletconnect/types';
 
 /// ADDRESSES AND ALIASES
@@ -33,10 +33,7 @@ export const useAccount = () => {
       request: {
         id: 1,
         jsonrpc: '2.0',
-        method: 'aleo_getSelectedAccount',
-        params: {
-          type: 'GET_SELECTED_ACCOUNT',
-        } as GetSelectedAccountReqMessage
+        method: 'getSelectedAccount'
       },
     });
 
@@ -66,15 +63,15 @@ export const useAccount = () => {
   // ...and listen for response
   useEffect(() => { 
     if (wc_data) {
-      const puzzleData: GetSelectedAccountResMessage | undefined = wc_data && wc_data.type === 'GET_SELECTED_ACCOUNT_RES' ? wc_data : undefined;
-      const account = puzzleData?.data.account;
+      const puzzleData: GetSelectedAccountResponse | undefined = wc_data;
+      const account = puzzleData?.account;
       if (account) {
         setAccount(account);
       }
     }
   }, [wc_data]);
 
-  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_SELECTED_ACCOUNT_REJ' ? wc_data.data.error : undefined);
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
 
   return {
     account,

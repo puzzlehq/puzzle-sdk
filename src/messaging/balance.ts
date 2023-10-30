@@ -1,27 +1,14 @@
-export type GetBalanceReqMessage = {
-  type: 'GET_BALANCE';
-  data?: {
-    assetId?: string;
-    address?: string;
-  };
-  sender?: string;
+export type GetBalancesRequest = {
+  assetId?: string;
+  address?: string;
 };
 
-export type Balances = {
-  privateBalance: number,
-  publicBalance: number,
+export type Balance = {
+  private: number;
+  public: number;
 }
 
-export type GetBalanceResMessage = {
-  type: 'GET_BALANCE_RES';
-  data: {
-    balances?: Balances
-  }
-};
-
-export type GetBalanceRejMessage = {
-  type: 'GET_BALANCE_REJ';
-  data: {
-    error?: string;
-  }
-};
+export type GetBalancesResponse = {
+  balances?: Balance[];
+  error?: string;
+}

@@ -1,11 +1,13 @@
 import { SessionTypes } from '@walletconnect/types';
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { CreateEventRequestData, CreateEventRequest } from '../messaging/createEvent.js';
+import { CreateEventRequestData, CreateEventRequest, CreateEventResponse } from '../messaging/createEvent.js';
+import { log_sdk } from '../utils/logger.js';
 
-export const useCreateEvent = (
-  requestData: CreateEventRequestData
+export const useRequestCreateEvent = (
+  requestData?: CreateEventRequestData
 ) => {
+  log_sdk('useRequestCreateEvent', requestData);
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
@@ -19,7 +21,7 @@ export const useCreateEvent = (
       return input.plaintext;
     });
   
-  const { request, data: response, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
     chainId: chainId ?? 'aleo:1',
     request: {
@@ -36,13 +38,18 @@ export const useCreateEvent = (
     }
   });
 
-  const error: string | undefined = wc_error ? wc_error.message : response.error;
-  const eventId = response?.data?.eventId;
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
+  const response: CreateEventResponse | undefined = wc_data;
 
-  const createEvent = () => {
-    if (!requestData) return;
-    request();
+  log_sdk('useRequestCreateEvent error', error);
+  log_sdk('useRequestCreateEvent response', wc_data);
+
+  const requestCreateEvent = () => {
+    if (requestData) {
+      log_sdk('useRequestCreateEvent requesting...', requestData);
+      request();
+    }
   };
 
-  return { createEvent, eventId, error, loading };
+  return { requestCreateEvent, eventId: response?.eventId, error, loading };
 };

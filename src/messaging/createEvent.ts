@@ -1,3 +1,4 @@
+import { SessionTypes } from "@walletconnect/types";
 import { type Record } from "./records.js";
 
 export enum EventType {
@@ -17,24 +18,28 @@ export enum Visibility {
   Public = 'Public'
 }
 
+/// dapps send this to the sdk
 export type CreateEventRequestData = {
-  type: EventType,
-  programId: string,
-  functionId: string,
-  fee: number,
-  inputs: (Record | string)[]
+  type: EventType;
+  programId: string;
+  functionId: string;
+  fee: number;
+  inputs: (Record | string)[];
 }
 
+/// sdk maps records to ciphertexts
 export type CreateEventRequest = {
-  type: EventType,
-  programId: string,
-  functionId: string,
-  fee: number,
-  /// Records in request data are mapped to strings
-  inputs: string[]
+  type: EventType;
+  programId: string;
+  functionId: string;
+  fee: number;
+  inputs: string[];
+  wcSession?: SessionTypes.Struct;
 }
 
+/// wallet passes this back to dapp
 export type CreateEventResponse = {
   eventId?: string;
+  /// pass in whole event here?
   error?: string;
 }

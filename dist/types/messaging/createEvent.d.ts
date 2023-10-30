@@ -1,3 +1,4 @@
+import { SessionTypes } from "@walletconnect/types";
 import { type Record } from "./records.js";
 export declare enum EventType {
     Unknown = "Unknown",
@@ -27,6 +28,7 @@ export type CreateEventRequest = {
     functionId: string;
     fee: number;
     inputs: string[];
+    wcSession?: SessionTypes.Struct;
 };
 export type CreateEventResponse = {
     eventId?: string;

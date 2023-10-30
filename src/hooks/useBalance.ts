@@ -1,7 +1,7 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { useEffect } from 'react';
-import { Balances, GetBalanceReqMessage, GetBalanceResMessage } from '../messaging/balance.js';
+import { Balance, GetBalancesRequest, GetBalancesResponse } from '../messaging/balance.js';
 import { SessionTypes } from '@walletconnect/types';
 
 export const useBalance = () => {
@@ -16,13 +16,10 @@ export const useBalance = () => {
     request: {
       id: 1,
       jsonrpc: '2.0',
-      method: 'aleo_getBalance',
+      method: 'getBalance',
       params: {
-        type: 'GET_BALANCE',
-        data: {
-          assetId: undefined
-        }
-      } as GetBalanceReqMessage
+        assetId: undefined
+      } as GetBalancesRequest
     },
   });
 
@@ -42,9 +39,9 @@ export const useBalance = () => {
     }
   }, [readyToRequest, account]);
 
-  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.type === 'GET_BALANCE_REJ' ? wc_data.data.error : undefined);
-  const puzzleData: GetBalanceResMessage | undefined =  wc_data && wc_data.type === 'GET_BALANCE_RES' ? wc_data : undefined;
-  const balances: Balances | undefined = puzzleData?.data.balances;
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
+  const response: GetBalancesResponse | undefined =  wc_data;
+  const balances: Balance[] | undefined = response?.balances;
 
   return { loading, balances, error };
 };

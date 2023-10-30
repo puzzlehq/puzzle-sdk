@@ -7,7 +7,7 @@ export type Record = {
     function: string;
     transitionId: string;
     transactionId: string;
-    ownerAddress: string;
+    owner: string;
     eventId: string;
     spent: boolean;
     serialNumber: string | null;
@@ -17,30 +17,13 @@ export type RecordsFilter = {
     program_id?: string;
     type: 'all' | 'spent' | 'unspent';
 };
-export type GetRecordsReqMessage = {
-    type: 'GET_RECORDS';
-    data: {
-        data: GetRecordsReqData;
-        wc?: {
-            session: SessionTypes.Struct;
-        };
-    };
-};
-export type GetRecordsReqData = {
+export type GetRecordsRequest = {
     filter?: RecordsFilter;
     page?: number;
-    sender?: string;
+    wc_session?: SessionTypes.Struct;
 };
-export type GetRecordsResMessage = {
-    type: 'GET_RECORDS_RES';
-    data: {
-        records: Record[];
-        totalRecordCount: number;
-    };
-};
-export type GetRecordsRejMessage = {
-    type: 'GET_RECORDS_REJ';
-    data: {
-        error?: string;
-    };
+export type GetRecordsResponse = {
+    records?: Record[];
+    totalRecordCount?: number;
+    error?: string;
 };

@@ -1,11 +1,13 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
-import { DecryptReqMessage, DecryptResMessage} from '../messaging/decrypt.js';
+import { DecryptRequest, DecryptResponse} from '../messaging/decrypt.js';
+import { log_sdk } from '../utils/logger.js';
 
 export const useDecrypt = (
-  transactionId?: string
+  ciphertexts?: string[]
 ) => {
+  log_sdk('useDecrypt', ciphertexts);
   const session: SessionTypes.Struct | undefined = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
@@ -17,24 +19,21 @@ export const useDecrypt = (
     request: {
       id: 1,
       jsonrpc: '2.0',
-      method: 'aleo_decrypt',
+      method: 'decrypt',
       params: {
-        type: 'DECRYPT', 
-        data: {
-          transactionId,
-        },
-      } as DecryptReqMessage,
+        ciphertexts: ciphertexts!
+      } as DecryptRequest,
     },
   });
 
-  const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.type === 'DECRYPT_REJ' ? wc_data.data.error : undefined);
-  const puzzleData: DecryptResMessage | undefined =  wc_data &&  wc_data.type === 'DECRYPT_RES' ? wc_data : undefined;
-  const data = puzzleData?.data;
+  const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.error);
+  const response: DecryptResponse | undefined =  wc_data;
 
-  const decrypt = () => { 
-    if (!transactionId || !transactionId.startsWith('at1') || transactionId.length !== 61) return;
-    request(); 
+  const decrypt = () => {
+    if (ciphertexts) {
+      request();
+    }
   }
 
-  return { decrypt, data, loading, error };
+  return { decrypt, plaintexts: response?.plaintexts, loading, error };
 };
