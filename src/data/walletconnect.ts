@@ -1,6 +1,5 @@
 // methods called from dApp
 export const wc_aleo_methods = [
-  // aleo methods
   'decrypt',
   'disconnect',
   'getSelectedAccount',
@@ -8,7 +7,7 @@ export const wc_aleo_methods = [
   'getRecords',
   'requestCreateEvent'
 ];
-export const wc_aleo_chains = ['aleo:1']; //placeholder until there are multiple chains
+export const wc_aleo_chains = ['aleo:1'];
 
 // events originating from wallet
 export const wc_events = ['chainChanged', 'accountSelected', 'accountSynced'];
@@ -43,7 +42,6 @@ export const web3modal_puzzle_props = {
     },
   ],
   walletImages:{
-    // Override manual wallet image
     puzzle: 'https://i.imgur.com/p9tHaFC.png'
   }
 };

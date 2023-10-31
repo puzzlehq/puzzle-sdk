@@ -1,4 +1,3 @@
-import { SessionTypes } from "@walletconnect/types";
 import { type Record } from "./records.js";
 
 export enum EventType {
@@ -34,7 +33,6 @@ export type CreateEventRequest = {
   functionId: string;
   fee: number;
   inputs: string[];
-  wcSession?: SessionTypes.Struct;
 }
 
 /// wallet passes this back to dapp

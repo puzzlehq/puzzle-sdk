@@ -29,7 +29,7 @@ export const useAccount = () => {
   
     const { request, data: wc_data, error: wc_error, loading } = useRequest({
       topic: session?.topic,
-      chainId: chainId ?? 'aleo:1',
+      chainId: chainId,
       request: {
         id: 1,
         jsonrpc: '2.0',

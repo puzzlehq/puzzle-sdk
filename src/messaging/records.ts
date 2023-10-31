@@ -1,5 +1,3 @@
-import { SessionTypes } from "@walletconnect/types";
-
 export type Record = {
   id: string;
   height: number;
@@ -16,18 +14,17 @@ export type Record = {
 };
 
 export type RecordsFilter = {
-  program_id?: string;
+  programId?: string;
   type: 'all' | 'spent' | 'unspent';
 };
 
 export type GetRecordsRequest = {
   filter?: RecordsFilter;
   page?: number;
-  wc_session?: SessionTypes.Struct;
 };
 
 export type GetRecordsResponse = {
   records?: Record[];
-  totalRecordCount?: number;
+  pageCount?: number;
   error?: string;
 };
