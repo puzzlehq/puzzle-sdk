@@ -1,15 +1,5 @@
-export type Record = {
-    id: string;
-    height: number;
-    ciphertext: string;
-    program: string;
-    function: string;
-    transitionId: string;
-    transactionId: string;
-    owner: string;
-    eventId: string;
-    spent: boolean;
-    serialNumber: string | null;
+import { Record as RecordWithoutPlaintext } from '@puzzlehq/types';
+export type Record = RecordWithoutPlaintext & {
     plaintext: string;
 };
 export type RecordsFilter = {

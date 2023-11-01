@@ -8,7 +8,7 @@ type props = {
   dAppIconURL: string,
 }
 
-export const PuzzleWeb3Modal = ({  dAppName, dAppDescription, dAppUrl, dAppIconURL}: props) => {
+export const PuzzleWeb3Modal = ({ dAppName, dAppDescription, dAppUrl, dAppIconURL }: props) => {
   return (
     <WalletConnectModalSign
       projectId={projectId}

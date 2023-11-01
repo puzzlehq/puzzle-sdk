@@ -1,21 +1,5 @@
 import { type Record } from "./records.js";
-
-export enum EventType {
-  Unknown = 'Unknown',
-  Deploy = 'Deploy',
-  Execute = 'Execute',
-  Send = 'Send',
-  Receive = 'Receive',
-  Join = 'Join',
-  Split = 'Split',
-  Shield = 'Shield',
-  Unshield = 'Unshield'
-}
-
-export enum Visibility {
-  Private = 'Private',
-  Public = 'Public'
-}
+import { EventType } from '@puzzlehq/types';
 
 /// dapps send this to the sdk
 export type CreateEventRequestData = {

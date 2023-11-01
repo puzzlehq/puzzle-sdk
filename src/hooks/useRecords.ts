@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { GetRecordsRequest, GetRecordsResponse, Record, RecordsFilter } from '../messaging/records.js';
 import { SessionTypes } from '@walletconnect/types';
 
-export const RECORDS_PER_PAGE = 50;
-
 type UseRecordsOptions = {
   filter?: RecordsFilter,
   page?: number,

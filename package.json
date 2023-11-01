@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.0.88",
+  "version": "0.0.89",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.umd.js",
   "module": "./dist/puzzle.es.js",
@@ -33,6 +33,7 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
+    "@puzzlehq/types": "~/code/puzzle/firenze/packages/types",
     "@types/chrome": "^0.0.228",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",

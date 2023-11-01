@@ -1,15 +1,7 @@
-import { EventType } from "./createEvent.js";
-
-export type Event = {
-  id: string;
-  type: EventType;
-  programId?: string;
-  functionId?: string;
-  inputs: string[];
-};
+import { Event, EventType } from '@puzzlehq/types';
 
 export type EventsFilter = {
-  type?: EventType;
+  types?: EventType[];
   programId?: string;
 };
 
@@ -20,6 +12,6 @@ export type GetEventsRequest = {
 
 export type GetEventsResponse = {
   events?: Event[];
-  totalEventCount?: number;
+  pageCount?: number;
   error?: string;
 }

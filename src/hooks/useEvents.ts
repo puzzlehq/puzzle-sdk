@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
-import { Event, EventsFilter, GetEventsRequest, GetEventsResponse } from '../messaging/events.js';
+import { EventsFilter, GetEventsRequest, GetEventsResponse } from '../messaging/events.js';
+import { Event } from '@puzzlehq/types';
 
 type UseEventsOptions = {
   filter?: EventsFilter,
   page?: number
 }
 
-const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => {
+export const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId,
@@ -62,10 +63,8 @@ const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => {
 
   const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
   const response: GetEventsResponse | undefined =  wc_data;
-  const records: Event[] | undefined = response?.events;
-  const totalRecordCount = response?.events ?? 0;
-
-  return { fetchPage, records, error, loading, totalRecordCount };
+  const events: Event[] | undefined = response?.events;
+  const pageCount = response?.pageCount ?? 0;
+  
+  return { fetchPage, events, error, loading, page, pageCount };
 };
-
-export default useEvents;

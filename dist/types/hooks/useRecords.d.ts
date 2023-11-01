@@ -1,5 +1,4 @@
 import { Record, RecordsFilter } from '../messaging/records.js';
-export declare const RECORDS_PER_PAGE = 50;
 type UseRecordsOptions = {
     filter?: RecordsFilter;
     page?: number;

@@ -1,13 +1,15 @@
-import { Event, EventsFilter } from '../messaging/events.js';
+import { EventsFilter } from '../messaging/events.js';
+import { Event } from '@puzzlehq/types';
 type UseEventsOptions = {
     filter?: EventsFilter;
     page?: number;
 };
-declare const useEvents: ({ filter, page: initialPage }: UseEventsOptions) => {
+export declare const useEvents: ({ filter, page: initialPage }: UseEventsOptions) => {
     fetchPage: () => void;
-    records: Event[];
+    events: Event[];
     error: string;
     loading: any;
-    totalRecordCount: number | Event[];
+    page: number;
+    pageCount: number;
 };
-export default useEvents;
+export {};

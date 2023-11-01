@@ -1,19 +1,5 @@
 import { type Record } from "./records.js";
-export declare enum EventType {
-    Unknown = "Unknown",
-    Deploy = "Deploy",
-    Execute = "Execute",
-    Send = "Send",
-    Receive = "Receive",
-    Join = "Join",
-    Split = "Split",
-    Shield = "Shield",
-    Unshield = "Unshield"
-}
-export declare enum Visibility {
-    Private = "Private",
-    Public = "Public"
-}
+import { EventType } from '@puzzlehq/types';
 export type CreateEventRequestData = {
     type: EventType;
     programId: string;
