@@ -10,7 +10,7 @@ type UseEventsOptions = {
   page?: number
 }
 
-export const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => {
+export const useEvents = ( { filter, page }: UseEventsOptions ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId,
@@ -22,8 +22,6 @@ export const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => 
   if (filter?.programId === '') {
     filter.programId = undefined;
   }
-
-  const [page, setPage] = useState(initialPage ?? 0);
 
   console.log('requesting events', { filter, page });
 
@@ -57,11 +55,9 @@ export const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => 
     }
   }, [readyToRequest, account]);
 
-  const fetchPage = (page: number) => {
+  const fetchPage = () => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
-      // setPage(prev => prev + 1);
-      setPage(page);
       request();
     }
   }

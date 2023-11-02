@@ -4,8 +4,8 @@ type UseEventsOptions = {
     filter?: EventsFilter;
     page?: number;
 };
-export declare const useEvents: ({ filter, page: initialPage }: UseEventsOptions) => {
-    fetchPage: (page: number) => void;
+export declare const useEvents: ({ filter, page }: UseEventsOptions) => {
+    fetchPage: () => void;
     events: Event[];
     error: string;
     loading: any;
