@@ -17,11 +17,15 @@ export const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => 
     state.account
   ]);
 
+  console.log('useEvents filter', filter);
+
   if (filter?.programId === '') {
     filter.programId = undefined;
   }
 
   const [page, setPage] = useState(initialPage ?? 0);
+
+  console.log('requesting events', { filter, page });
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
@@ -53,10 +57,11 @@ export const useEvents = ( { filter, page: initialPage }: UseEventsOptions ) => 
     }
   }, [readyToRequest, account]);
 
-  const fetchPage = () => {
+  const fetchPage = (page: number) => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
-      setPage(prev => prev + 1);
+      // setPage(prev => prev + 1);
+      setPage(page);
       request();
     }
   }

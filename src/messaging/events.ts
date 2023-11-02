@@ -1,7 +1,7 @@
 import { Event, EventType } from '@puzzlehq/types';
 
 export type EventsFilter = {
-  types?: EventType[];
+  type?: EventType;
   programId?: string;
 };
 

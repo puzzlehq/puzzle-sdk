@@ -1040,7 +1040,7 @@ let sf = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-8bebe45d.js");
+      await import("./index-2b94bf3a.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Jt.setIsUiLoaded(!0);
     }
@@ -9917,8 +9917,10 @@ const W1 = (e) => {
     $.chainId,
     $.account
   ]);
-  (e == null ? void 0 : e.programId) === "" && (e.programId = void 0);
-  const [s, u] = Di(t ?? 0), { request: a, data: l, error: f, loading: h } = ii({
+  console.log("useEvents filter", e), (e == null ? void 0 : e.programId) === "" && (e.programId = void 0);
+  const [s, u] = Di(t ?? 0);
+  console.log("requesting events", { filter: e, page: s });
+  const { request: a, data: l, error: f, loading: h } = ii({
     topic: (r == null ? void 0 : r.topic) ?? "",
     chainId: i,
     request: {
@@ -9938,8 +9940,8 @@ const W1 = (e) => {
   Vt(() => {
     p && !h && a();
   }, [p, n]);
-  const y = () => {
-    !!r && !!n && !h && (u((E) => E + 1), a());
+  const y = ($) => {
+    !!r && !!n && !h && (u($), a());
   }, m = f ? f.message : l && l.error, D = l, I = D == null ? void 0 : D.events, P = (D == null ? void 0 : D.pageCount) ?? 0;
   return { fetchPage: y, events: I, error: m, loading: h, page: s, pageCount: P };
 }, Y1 = (e) => {
