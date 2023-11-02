@@ -17,7 +17,7 @@ const useClientWalletStore = create<ClientWalletState>()(
   immer((set, get) => ({
     account: undefined,
     accounts: [],
-    chainId: undefined,
+    chainId: 'aleo:1', // todo - figure out how to populate this from useConnect
     setAccounts: (accounts: PuzzleAccount[]) => {
       set({ accounts });
     },

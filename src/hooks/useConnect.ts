@@ -19,8 +19,10 @@ export const useConnect = () => {
 
   const connect = async () => {
     try {
-      await wc_connect();
-    } catch (e) { }
+      const response = await wc_connect();
+    } catch (e) {
+      console.error('connect error', (e as Error).message);
+    }
   }
 
   return { connect, data, error, loading, session, isConnected: !!session };
