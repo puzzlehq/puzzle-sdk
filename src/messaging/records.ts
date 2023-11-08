@@ -7,6 +7,7 @@ export type RecordsFilter = {
 };
 
 export type GetRecordsRequest = {
+  address?: string;
   filter?: RecordsFilter;
   page?: number;
 };

@@ -7,6 +7,7 @@ export type RecordsFilter = {
     type: 'all' | 'spent' | 'unspent';
 };
 export type GetRecordsRequest = {
+    address?: string;
     filter?: RecordsFilter;
     page?: number;
 };

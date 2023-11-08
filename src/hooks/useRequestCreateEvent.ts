@@ -28,10 +28,7 @@ export const useRequestCreateEvent = (
       jsonrpc: '2.0',
       method: 'requestCreateEvent',
       params: {
-        type: requestData.type,
-        programId: requestData.programId,
-        functionId: requestData.functionId,
-        fee: requestData.fee,
+        ...requestData,
         inputs
       } as CreateEventRequest,
     }

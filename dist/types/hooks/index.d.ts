@@ -7,3 +7,4 @@ export * from './useEvents.js';
 export * from './useRecords.js';
 export * from './useWallet.js';
 export * from './useRequestCreateEvent.js';
+export * from './useCreateSharedState.js';

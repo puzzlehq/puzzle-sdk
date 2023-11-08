@@ -5,6 +5,7 @@ import { GetRecordsRequest, GetRecordsResponse, Record, RecordsFilter } from '..
 import { SessionTypes } from '@walletconnect/types';
 
 type UseRecordsOptions = {
+  address?: string;
   filter?: RecordsFilter,
   page?: number,
 }
@@ -17,7 +18,7 @@ export const getFormattedRecordPlaintext = (data: any) => {
   }
 }
 
-export const useRecords = ( { filter, page }: UseRecordsOptions ) => {
+export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId, account] = useClientWalletStore((state) => [
     state.chainId, state.account
@@ -35,6 +36,7 @@ export const useRecords = ( { filter, page }: UseRecordsOptions ) => {
       jsonrpc: '2.0',
       method: 'getRecords',
       params: {
+        address,
         filter,
         page,
       } as GetRecordsRequest,
