@@ -1,9 +1,9 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
-import { CreateSharedStateResponse } from '../index.js';
+import { ImportSharedStateRequest, ImportSharedStateResponse } from '../index.js';
 
-export const useCreateSharedState = async () => {
+export const useImportSharedState = async (privateKey: string) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
@@ -15,17 +15,19 @@ export const useCreateSharedState = async () => {
     request: {
       id: 1,
       jsonrpc: '2.0',
-      method: 'createSharedState',
-      params: {},
+      method: 'importSharedState',
+      params: {
+        privateKey
+      } as ImportSharedStateRequest,
     },
   });
 
   const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.error);
-  const response: CreateSharedStateResponse | undefined =  wc_data;
+  const response: ImportSharedStateResponse | undefined =  wc_data;
 
-  const createSharedState = () => {
+  const importSharedState = () => {
     request();
   };
 
-  return { createSharedState, privateKey: response?.privateKey, loading, error };
+  return { importSharedState, address: response?.address, loading, error };
 };
