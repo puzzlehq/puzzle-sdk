@@ -1040,7 +1040,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-1adaeb4b.js");
+      await import("./index-23f2b116.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -10059,7 +10059,7 @@ const W1 = (e) => {
   return { importSharedState: () => {
     i();
   }, address: l == null ? void 0 : l.address, loading: u, error: a };
-}, em = async (e, t) => {
+}, em = (e, t) => {
   const r = Wt(), [i] = Zt((p) => [
     p.chainId
   ]), { request: n, data: s, error: u, loading: a } = pr({
@@ -10068,7 +10068,7 @@ const W1 = (e) => {
     request: {
       id: 1,
       jsonrpc: "2.0",
-      method: "importSharedState",
+      method: "requestSignature",
       params: {
         message: e,
         address: t
