@@ -27,5 +27,5 @@ export const useCreateSharedState = async () => {
     request();
   }
 
-  return { creaeSharedState, address: response?.address, loading, error };
+  return { creaeSharedState, privateKey: response?.privateKey, loading, error };
 };

@@ -1,4 +1,4 @@
 export type CreateSharedStateResponse = {
-    address?: string;
+    privateKey?: string;
     error?: string;
 };

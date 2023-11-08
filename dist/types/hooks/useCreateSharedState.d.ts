@@ -1,6 +1,6 @@
 export declare const useCreateSharedState: () => Promise<{
     creaeSharedState: () => void;
-    address: string;
+    privateKey: string;
     loading: any;
     error: string;
 }>;

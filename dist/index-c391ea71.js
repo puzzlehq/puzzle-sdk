@@ -1040,7 +1040,7 @@ let sf = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-da27cb29.js");
+      await import("./index-965bd77d.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Jt.setIsUiLoaded(!0);
     }
@@ -10037,7 +10037,7 @@ const W1 = (e) => {
   }), u = n ? n.message : i && i.error, a = i;
   return { creaeSharedState: () => {
     r();
-  }, address: a == null ? void 0 : a.address, loading: s, error: u };
+  }, privateKey: a == null ? void 0 : a.privateKey, loading: s, error: u };
 }, Z1 = 50;
 export {
   q1 as A,
