@@ -1,9 +1,9 @@
 import useClientWalletStore from './clientWalletStore.js';
 import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
-import { RequestSignatureRequest, RequestSignatureResponse } from '../index.js';
+import { SignatureRequest, SignatureResponse } from '../index.js';
 
-export const useRequestSignature = async (message: string, address: string) => {
+export const useSignature = async (message: string, address: string) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
@@ -19,12 +19,12 @@ export const useRequestSignature = async (message: string, address: string) => {
       params: {
         message,
         address
-      } as RequestSignatureRequest,
+      } as SignatureRequest,
     },
   });
 
   const error: string | undefined  = wc_error ? wc_error.message : (wc_data && wc_data.error);
-  const response: RequestSignatureResponse | undefined =  wc_data;
+  const response: SignatureResponse | undefined =  wc_data;
 
   const requestSignature = () => {
     request();

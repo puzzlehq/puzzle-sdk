@@ -6,5 +6,5 @@ export * from './events.js';
 export * from './records.js';
 export * from './createSharedState.js';
 export * from './importSharedState.js';
-export * from './requestSignature.js';
+export * from './signature.js';
 export declare const PAGE_SIZE = 50;

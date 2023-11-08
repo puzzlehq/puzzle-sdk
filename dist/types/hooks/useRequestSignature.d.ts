@@ -1,4 +1,4 @@
-export declare const useRequestSignature: (message: string, address: string) => Promise<{
+export declare const useSignature: (message: string, address: string) => Promise<{
     requestSignature: () => void;
     signature: string;
     loading: any;

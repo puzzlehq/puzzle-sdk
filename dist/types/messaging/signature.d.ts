@@ -1,8 +1,8 @@
-export type RequestSignatureRequest = {
+export type SignatureRequest = {
     message: string;
     address: string;
 };
-export type RequestSignatureResponse = {
+export type SignatureResponse = {
     signature?: string;
     error?: string;
 };
