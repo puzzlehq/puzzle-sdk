@@ -30,5 +30,5 @@ export const useSignature = (message: string, address: string) => {
     request();
   };
 
-  return { requestSignature, signature: response?.signature, loading, error };
+  return { requestSignature, response, loading, error };
 };

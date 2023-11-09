@@ -5,5 +5,6 @@ export type SignatureRequest = {
 
 export type SignatureResponse = {
   signature?: string;
+  messageFields?: string;
   error?: string;
 }

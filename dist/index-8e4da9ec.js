@@ -1040,7 +1040,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-3f9fe145.js");
+      await import("./index-41715a94.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -10074,10 +10074,10 @@ const W1 = (e) => {
         address: t
       }
     }
-  }), l = u ? u.message : s && s.error, h = s;
+  }), l = u ? u.message : s && s.error;
   return { requestSignature: () => {
     n();
-  }, signature: h == null ? void 0 : h.signature, loading: a, error: l };
+  }, response: s, loading: a, error: l };
 }, tm = 50;
 export {
   hc as A,
