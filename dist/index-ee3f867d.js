@@ -1040,7 +1040,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-23f2b116.js");
+      await import("./index-3f9fe145.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -10040,7 +10040,7 @@ const W1 = (e) => {
   }), u = n ? n.message : i && i.error, a = i;
   return { createSharedState: () => {
     r();
-  }, privateKey: a == null ? void 0 : a.privateKey, loading: s, error: u };
+  }, seed: a == null ? void 0 : a.seed, loading: s, error: u };
 }, Z1 = async (e) => {
   const t = Wt(), [r] = Zt((f) => [
     f.chainId
@@ -10052,7 +10052,7 @@ const W1 = (e) => {
       jsonrpc: "2.0",
       method: "importSharedState",
       params: {
-        privateKey: e
+        seed: e
       }
     }
   }), a = s ? s.message : n && n.error, l = n;

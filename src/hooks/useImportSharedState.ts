@@ -3,7 +3,7 @@ import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
 import { ImportSharedStateRequest, ImportSharedStateResponse } from '../index.js';
 
-export const useImportSharedState = async (privateKey: string) => {
+export const useImportSharedState = async (seed: string) => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
@@ -17,7 +17,7 @@ export const useImportSharedState = async (privateKey: string) => {
       jsonrpc: '2.0',
       method: 'importSharedState',
       params: {
-        privateKey
+        seed
       } as ImportSharedStateRequest,
     },
   });

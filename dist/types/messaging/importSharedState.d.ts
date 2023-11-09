@@ -1,5 +1,5 @@
 export type ImportSharedStateRequest = {
-    privateKey: string;
+    seed: string;
 };
 export type ImportSharedStateResponse = {
     address?: string;

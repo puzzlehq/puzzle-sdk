@@ -3,6 +3,7 @@ export type Record = RecordWithoutPlaintext & { plaintext: string };
 
 export type RecordsFilter = {
   programId?: string;
+  function?: string;
   type: 'all' | 'spent' | 'unspent';
 };
 

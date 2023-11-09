@@ -1,4 +1,4 @@
 export type CreateSharedStateResponse = {
-    privateKey?: string;
+    seed?: string;
     error?: string;
 };
