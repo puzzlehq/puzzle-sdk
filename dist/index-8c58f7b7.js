@@ -1040,7 +1040,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-41715a94.js");
+      await import("./index-892bc0c7.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -9978,7 +9978,7 @@ const W1 = (e) => {
     f && !h && u();
   }, [f, s]);
   const p = () => {
-    !!i && !!s && !h && u();
+    !!i && !!s && !h && (console.log("requesting", r), u());
   }, y = l ? l.message : a && a.error, m = a, D = m == null ? void 0 : m.records, I = (m == null ? void 0 : m.pageCount) ?? 0;
   return { fetchPage: p, records: D, error: y, loading: h, page: r, pageCount: I };
 }, _1 = () => {
