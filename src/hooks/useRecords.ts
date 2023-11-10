@@ -62,7 +62,6 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
     }
   }, [page, readyToRequest])
 
-
   useEffect(() => {
     if (wc_data) {
       console.log('fetched records', wc_data.records);
