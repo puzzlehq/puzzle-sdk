@@ -65,7 +65,6 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
     }
   }, [page, readyToRequest, loading])
 
-
   useEffect(() => {
     console.log('response useEffect');
     if (wc_data) {
