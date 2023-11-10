@@ -5,7 +5,7 @@ export type Record = RecordWithoutPlaintext & {
 };
 export type RecordsFilter = {
     programId?: string;
-    function?: string;
+    functionId?: string;
     type: 'all' | 'spent' | 'unspent';
 };
 export type GetRecordsRequest = {

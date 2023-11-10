@@ -34,6 +34,8 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
     filter.programId = undefined;
   }
 
+  console.log('filter', filter);
+
   const { request, data: wc_data, error: wc_error } = useRequest({
     topic: session?.topic,
     chainId: chainId,
@@ -51,25 +53,29 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
 
   const runRequest = useCallback(async () => {
     request();
-  },[request])
+  }, [request])
       
   useEffect(() => {
     if (readyToRequest) {
+      console.log('running request');
       runRequest()
     }
-  },[page, readyToRequest])
+  }, [page, readyToRequest])
 
 
   useEffect(() => {
     if (wc_data) {
+      console.log('fetched records', wc_data.records);
       setAllRecords(oldRecords => [...oldRecords,...wc_data.records])
       if (page < wc_data.pageCount - 1) {
+        console.log('setting page', page + 1);
         setPage(page => page + 1);
       } else {
+        console.log('done');
         setLoading(false);
       }
     }
-  },[wc_data])
+  }, [wc_data])
 
   const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
   const response: GetRecordsResponse | undefined =  wc_data;
@@ -89,6 +95,7 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
     setPage(0);
   };
 
+  console.log('error', error);
 
   return { records: allRecords, error, loading: page !== pageCount - 1, refetch };
 };
