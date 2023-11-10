@@ -7,6 +7,7 @@ import {
 
 export const useConnect = () => {
   const session = useSession();
+  
   const {connect: wc_connect, data, error, loading} = useWalletConnect({
     requiredNamespaces: {
       aleo: {

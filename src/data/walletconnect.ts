@@ -1,5 +1,3 @@
-import useClientWalletStore from "../hooks/clientWalletStore.js";
-
 // methods called from dApp
 export const wc_aleo_methods = [
   'decrypt',
@@ -8,7 +6,10 @@ export const wc_aleo_methods = [
   'getBalance',
   'getRecords',
   'requestCreateEvent',
-  'getEvents'
+  'getEvents',
+  'createSharedState',
+  'importSharedState',
+  'requestSignature',
 ];
 export const wc_aleo_chains = ['aleo:1'];
 

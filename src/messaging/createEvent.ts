@@ -3,6 +3,7 @@ import { EventType } from '@puzzlehq/types';
 
 /// dapps send this to the sdk
 export type CreateEventRequestData = {
+  address?: string;
   type: EventType;
   programId: string;
   functionId: string;
@@ -12,6 +13,7 @@ export type CreateEventRequestData = {
 
 /// sdk maps records to ciphertexts
 export type CreateEventRequest = {
+  address?: string;
   type: EventType;
   programId: string;
   functionId: string;

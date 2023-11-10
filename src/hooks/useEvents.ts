@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
 import useClientWalletStore from './clientWalletStore.js';
 import { useOnSessionEvent, useRequest, useSession } from '@walletconnect/modal-sign-react';
@@ -17,13 +17,9 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
     state.account
   ]);
 
-  console.log('useEvents filter', filter);
-
   if (filter?.programId === '') {
     filter.programId = undefined;
   }
-
-  console.log('requesting events', { filter, page });
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
