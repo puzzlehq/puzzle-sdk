@@ -1040,7 +1040,7 @@ let oh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-81355116.js");
+      await import("./index-6b40fedd.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -9955,7 +9955,7 @@ const G1 = (e) => {
     b.chainId,
     b.account
   ]), [s, u] = Ur(0), [a, l] = Ur([]), [h, f] = Ur(!0), p = Fl(() => !!r && !!n, [r, n]);
-  (t == null ? void 0 : t.programId) === "" && (t.programId = void 0), console.log("filter", t);
+  (t == null ? void 0 : t.programId) === "" && (t.programId = void 0), console.log("filter, page", { filter: t, page: s });
   const { request: y, data: m, error: D } = pr({
     topic: r == null ? void 0 : r.topic,
     chainId: i,
@@ -9969,22 +9969,20 @@ const G1 = (e) => {
         page: s
       }
     }
-  }), I = $l(async () => {
+  }), I = D ? D.message : m && m.error, A = m, $ = (A == null ? void 0 : A.pageCount) ?? 0, E = $l(async () => {
     y();
   }, [y]);
   Ft(() => {
-    p && (console.log("running request"), I());
-  }, [s, p]), Ft(() => {
-    m && (console.log("fetched records", m.records), l((b) => [...b, ...m.records]), s < m.pageCount - 1 ? (console.log("setting page", s + 1), u((b) => b + 1)) : (console.log("done"), f(!1)));
-  }, [m]);
-  const A = D ? D.message : m && m.error, $ = m, E = ($ == null ? void 0 : $.pageCount) ?? 0;
-  Rn(({ params: b, topic: _ }) => {
+    p && h && (console.log("running request"), E());
+  }, [s, p, h]), Ft(() => {
+    console.log("response useEffect"), m ? (console.log("fetched records", m.records), l((b) => [...b, ...m.records]), s < m.pageCount - 1 ? (console.log("setting page", s + 1), u((b) => b + 1)) : (console.log("done"), f(!1))) : console.log("could not fetch records", m);
+  }, [m]), Rn(({ params: b, topic: _ }) => {
     b.event.name === "accountSynced" && r && r.topic === _ && !h && O();
   });
   const O = () => {
-    l([]), f(!0), u(0);
+    f(!0), l([]), u(0);
   };
-  return console.log("error", A), { records: a, error: A, loading: s !== E - 1, refetch: O };
+  return console.log("response", A), console.log("pageCount", $), console.log("error", I), { records: a, error: I, loading: s !== $ - 1, refetch: O };
 }, S1 = () => {
   const e = Wt(), [t, r, i] = Zt((n) => [
     n.setAccount,

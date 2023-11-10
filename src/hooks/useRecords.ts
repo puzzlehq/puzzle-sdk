@@ -34,7 +34,7 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
     filter.programId = undefined;
   }
 
-  console.log('filter', filter);
+  console.log('filter, page', { filter, page });
 
   const { request, data: wc_data, error: wc_error } = useRequest({
     topic: session?.topic,
@@ -50,20 +50,24 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
       } as GetRecordsRequest,
     }
   });
+  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
+  const response: GetRecordsResponse | undefined =  wc_data;
+  const pageCount = response?.pageCount ?? 0;
 
   const runRequest = useCallback(async () => {
     request();
   }, [request])
       
   useEffect(() => {
-    if (readyToRequest) {
+    if (readyToRequest && loading) {
       console.log('running request');
       runRequest()
     }
-  }, [page, readyToRequest])
+  }, [page, readyToRequest, loading])
 
 
   useEffect(() => {
+    console.log('response useEffect');
     if (wc_data) {
       console.log('fetched records', wc_data.records);
       setAllRecords(oldRecords => [...oldRecords,...wc_data.records])
@@ -74,12 +78,10 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
         console.log('done');
         setLoading(false);
       }
+    } else {
+      console.log('could not fetch records', wc_data);
     }
   }, [wc_data])
-
-  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
-  const response: GetRecordsResponse | undefined =  wc_data;
-  const pageCount = response?.pageCount ?? 0;
 
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
@@ -90,11 +92,13 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
   });
 
   const refetch = () => {
-    setAllRecords([]);
     setLoading(true);
+    setAllRecords([]);
     setPage(0);
   };
 
+  console.log('response', response);
+  console.log('pageCount', pageCount);
   console.log('error', error);
 
   return { records: allRecords, error, loading: page !== pageCount - 1, refetch };
