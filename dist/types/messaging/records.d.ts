@@ -1,6 +1,7 @@
 import { Record as RecordWithoutPlaintext } from '@puzzlehq/types';
 export type Record = RecordWithoutPlaintext & {
     plaintext: string;
+    data: any;
 };
 export type RecordsFilter = {
     programId?: string;
