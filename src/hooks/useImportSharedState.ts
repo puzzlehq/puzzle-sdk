@@ -4,7 +4,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { ImportSharedStateRequest, ImportSharedStateResponse } from '../index.js';
 
 export const useImportSharedState = (seed: string) => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,
   ]);
@@ -26,6 +26,7 @@ export const useImportSharedState = (seed: string) => {
   const response: ImportSharedStateResponse | undefined =  wc_data;
 
   const importSharedState = () => {
+    if (!session) return;
     request();
   };
 
