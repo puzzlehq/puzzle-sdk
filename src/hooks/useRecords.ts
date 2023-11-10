@@ -55,7 +55,6 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
       
   useEffect(() => {
     if (readyToRequest) {
-      console.log("running request")
       runRequest()
     }
   },[page, readyToRequest])
@@ -63,7 +62,6 @@ export const useRecords = ( { address, filter }: UseRecordsOptions ) => {
 
   useEffect(() => {
     if (wc_data) {
-      console.log('fetched records', wc_data.records.length);
       setAllRecords(oldRecords => [...oldRecords,...wc_data.records])
       if (page < wc_data.pageCount - 1) {
         setPage(page => page + 1);

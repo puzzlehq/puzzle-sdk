@@ -1040,7 +1040,7 @@ let oh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-46034c11.js");
+      await import("./index-858b4465.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -9973,9 +9973,9 @@ const G1 = (e) => {
     y();
   }, [y]);
   Ft(() => {
-    p && (console.log("running request"), I());
+    p && I();
   }, [s, p]), Ft(() => {
-    m && (console.log("fetched records", m.records.length), l((b) => [...b, ...m.records]), s < m.pageCount - 1 ? u((b) => b + 1) : f(!1));
+    m && (l((b) => [...b, ...m.records]), s < m.pageCount - 1 ? u((b) => b + 1) : f(!1));
   }, [m]);
   const P = D ? D.message : m && m.error, $ = m, E = ($ == null ? void 0 : $.pageCount) ?? 0;
   Rn(({ params: b, topic: _ }) => {
