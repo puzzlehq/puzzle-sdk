@@ -3,7 +3,7 @@ import { useRequest, useSession } from '@walletconnect/modal-sign-react';
 import { SessionTypes } from '@walletconnect/types';
 import { CreateSharedStateResponse } from '../index.js';
 
-export const useCreateSharedState = async () => {
+export const useCreateSharedState = () => {
   const session: SessionTypes.Struct = useSession();
   const [chainId] = useClientWalletStore((state) => [
     state.chainId,

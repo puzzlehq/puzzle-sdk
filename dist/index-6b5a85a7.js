@@ -1040,7 +1040,7 @@ let oh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-858b4465.js");
+      await import("./index-e0df96ee.js");
       const t = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", t), Qt.setIsUiLoaded(!0);
     }
@@ -10029,7 +10029,7 @@ const G1 = (e) => {
   return { requestCreateEvent: () => {
     e && (qi("useRequestCreateEvent requesting...", e), n());
   }, eventId: h == null ? void 0 : h.eventId, error: l, loading: a };
-}, em = async () => {
+}, em = () => {
   const e = Wt(), [t] = Zt((h) => [
     h.chainId
   ]), { request: r, data: i, error: n, loading: s } = pr({
@@ -10045,7 +10045,7 @@ const G1 = (e) => {
   return { createSharedState: () => {
     r();
   }, seed: a == null ? void 0 : a.seed, loading: s, error: u };
-}, tm = async (e) => {
+}, tm = (e) => {
   const t = Wt(), [r] = Zt((f) => [
     f.chainId
   ]), { request: i, data: n, error: s, loading: u } = pr({
