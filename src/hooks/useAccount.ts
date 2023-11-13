@@ -1,43 +1,55 @@
-import { useEffect } from 'react';
-import useClientWalletStore from './clientWalletStore.js';
-import { useRequest, useSession, useOnSessionEvent } from '@walletconnect/modal-sign-react';
-import { GetSelectedAccountResponse } from '../messaging/account.js';
+import { getWalletConnectModalSignClient } from '../client.js';
+import { useEffect, useState } from 'react';
+import { GetSelectedAccountResponse } from '../messages/account.js';
+import { PuzzleAccount } from '../index.js';
 import { SessionTypes } from '@walletconnect/types';
+import { useSession } from './wc/useSession.js';
+import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
+import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
+import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
 /// ADDRESSES AND ALIASES
-export const shortenAddress = (
-  address: string
-) => {
+export const shortenAddress = (address: string) => {
   const length = 5;
   if (address.length < length * 2) return address;
-  return `${address.slice(
-    0,
-    length + 'aleo1'.length
-  )}...${address.slice(address.length - length, address.length)}`;
+  return `${address.slice(0, length + 'aleo1'.length)}...${address.slice(
+    address.length - length,
+    address.length
+  )}`;
 };
 
 export const useAccount = () => {
+  const chainId = 'aleo:1';
+
+  const [account, setAccount] = useState<PuzzleAccount | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
+
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const [account, accounts, chainId, setAccount] =
-    useClientWalletStore((state) => [
-      state.account,
-      state.accounts,
-      state.chainId,
-      state.setAccount,
-    ]);
-  
-    const { request, data: wc_data, error: wc_error, loading } = useRequest({
-      topic: session?.topic,
-      chainId: chainId,
-      request: {
-        id: 1,
-        jsonrpc: '2.0',
-        method: 'getSelectedAccount'
-      },
-    });
+  const request = async () => {
+    if (!session) return;
+    try {
+      setLoading(true);
+      const connection = await getWalletConnectModalSignClient();
+      const result: GetSelectedAccountResponse = await connection.request({
+        topic: session?.topic,
+        chainId: chainId,
+        request: {
+          id: 1,
+          jsonrpc: '2.0',
+          method: 'getSelectedAccount',
+        },
+      });
+      setAccount(result.account);
+      setError(result.error);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // listen for wallet-originated account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSelected' && session && session.topic === topic) {
@@ -48,9 +60,25 @@ export const useAccount = () => {
         network,
         chainId,
         address,
-        shortenedAddress: shortenAddress(address)
+        shortenedAddress: shortenAddress(address),
       });
     }
+  });
+
+  useOnSessionUpdate(({ params, topic }) => {
+    const address = params.event.data;
+    const network = params.chainId.split(':')[0];
+    const chainId = params.chainId.split(':')[1];
+    setAccount({
+      network,
+      chainId,
+      address,
+      shortenedAddress: shortenAddress(address),
+    });
+  });
+
+  useOnSessionDelete(({ params, topic }) => {
+    setAccount(undefined);
   });
 
   // send initial account request...
@@ -58,25 +86,14 @@ export const useAccount = () => {
     if (session && !loading) {
       request();
     }
-  }, [session?.topic])
-
-  // ...and listen for response
-  useEffect(() => { 
-    if (wc_data) {
-      const puzzleData: GetSelectedAccountResponse | undefined = wc_data;
-      const account = puzzleData?.account;
-      if (account) {
-        setAccount(account);
-      }
+    if (!session) {
+      setAccount(undefined);
     }
-  }, [wc_data]);
-
-  const error: string | undefined = wc_error ? wc_error.message : (wc_data && wc_data.error);
+  }, [session]);
 
   return {
     account,
-    accounts,
     error,
-    loading
+    loading,
   };
 };

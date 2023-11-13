@@ -45,9 +45,9 @@ export const web3modal_puzzle_props = {
       },
     },
   ],
-  walletImages:{
-    puzzle: 'https://i.imgur.com/p9tHaFC.png'
-  }
+  walletImages: {
+    puzzle: 'https://i.imgur.com/p9tHaFC.png',
+  },
 };
 
 export const signClient_puzzleProps = {
