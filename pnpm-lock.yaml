@@ -20,6 +20,9 @@ dependencies:
   '@types/debug':
     specifier: ^4.1.7
     version: 4.1.7
+  '@walletconnect/modal-sign-html':
+    specifier: ^2.6.2
+    version: 2.6.2(@types/react@18.0.27)(react@18.2.0)
   '@walletconnect/modal-sign-react':
     specifier: ^2.6.2
     version: 2.6.2(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)
@@ -35,6 +38,9 @@ dependencies:
   immer:
     specifier: ^9.0.19
     version: 9.0.19
+  mitt:
+    specifier: ^3.0.1
+    version: 3.0.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
