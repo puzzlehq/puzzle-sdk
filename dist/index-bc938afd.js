@@ -388,7 +388,7 @@ let ju = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-5706242a.js");
+      await import("./index-a46181d2.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8462,8 +8462,8 @@ export {
   Iu as R,
   na as T,
   ht as a,
-  A1 as b,
-  on as c,
+  on as b,
+  A1 as c,
   Oc as d,
   Ui as e,
   a1 as f,
