@@ -10,7 +10,7 @@ export type WalletConnectModalSignInstance = InstanceType<
   typeof WalletConnectModalSign
 >;
 
-export function setConnection(
+export function configureConnection(
   dAppName: string,
   dAppDescription: string,
   dAppUrl: string,
