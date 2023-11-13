@@ -5,7 +5,7 @@ export type Record = RecordWithoutPlaintext & {
 };
 export type RecordsFilter = {
     programId?: string;
-    functionId?: string;
+    function?: string;
     type: 'all' | 'spent' | 'unspent';
 };
 export type GetRecordsRequest = {
@@ -18,3 +18,4 @@ export type GetRecordsResponse = {
     pageCount?: number;
     error?: string;
 };
+export declare const getRecords: ({ address, filter, page, }: GetRecordsRequest) => Promise<GetRecordsResponse>;

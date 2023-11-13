@@ -1,6 +1,6 @@
-import { Balance } from '../messaging/balance.js';
+import { Balance } from '../messages/balance.js';
 export declare const useBalance: () => {
-    loading: any;
     balances: Balance[];
     error: string;
+    loading: boolean;
 };

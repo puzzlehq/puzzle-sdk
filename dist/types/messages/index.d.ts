@@ -1,10 +1,12 @@
 export * from './account.js';
 export * from './balance.js';
+export * from './connect.js';
 export * from './createEvent.js';
-export * from './decrypt.js';
-export * from './events.js';
-export * from './records.js';
 export * from './createSharedState.js';
+export * from './decrypt.js';
+export * from './disconnect.js';
+export * from './events.js';
 export * from './importSharedState.js';
-export * from './signature.js';
+export * from './records.js';
+export * from './requestSignature.js';
 export declare const PAGE_SIZE = 50;

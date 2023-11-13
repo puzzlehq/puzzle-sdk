@@ -7,3 +7,4 @@ export type SignatureResponse = {
     messageFields?: string;
     error?: string;
 };
+export declare const requestSignature: (message: string, address: string) => Promise<SignatureResponse>;

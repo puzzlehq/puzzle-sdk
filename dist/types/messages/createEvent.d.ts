@@ -1,4 +1,4 @@
-import { type Record } from "./records.js";
+import { type Record } from './records.js';
 import { EventType } from '@puzzlehq/types';
 export type CreateEventRequestData = {
     address?: string;
@@ -20,3 +20,4 @@ export type CreateEventResponse = {
     eventId?: string;
     error?: string;
 };
+export declare const requestCreateEvent: (requestData?: CreateEventRequestData) => Promise<CreateEventResponse>;

@@ -10,3 +10,4 @@ export type GetBalancesResponse = {
     balances?: Balance[];
     error?: string;
 };
+export declare const getBalance: () => Promise<GetBalancesResponse>;

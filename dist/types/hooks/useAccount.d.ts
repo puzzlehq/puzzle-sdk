@@ -1,7 +1,7 @@
+import { PuzzleAccount } from '../index.js';
 export declare const shortenAddress: (address: string) => string;
 export declare const useAccount: () => {
-    account: import("../index.js").PuzzleAccount;
-    accounts: import("../index.js").PuzzleAccount[];
+    account: PuzzleAccount;
     error: string;
-    loading: any;
+    loading: boolean;
 };
