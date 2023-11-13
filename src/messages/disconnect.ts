@@ -17,7 +17,6 @@ export const disconnect = async (): Promise<{ error?: string }> => {
       topic: session.topic,
     });
     emitter.emit('session_change');
-    emitter.emit('session_delete');
     return {};
   } catch (e) {
     const error = (e as Error).message;
