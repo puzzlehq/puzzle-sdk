@@ -18,10 +18,10 @@ export const connect = async () => {
         },
       },
     });
+    emitter.emit('session_change');
+    
     // remove to prevent walletconnect from redirecting to the wallet page
     window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
-
-    emitter.emit('session_change');
 
     return session;
   } catch (e) {
