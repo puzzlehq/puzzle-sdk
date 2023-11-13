@@ -2,7 +2,11 @@ import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 
 export type CreateSharedStateResponse = {
-  seed?: string;
+  data?: {
+    address: string,
+    seed: string,
+    viewKey: string,
+  }
   error?: string;
 };
 

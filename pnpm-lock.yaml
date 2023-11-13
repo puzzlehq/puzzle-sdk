@@ -23,9 +23,6 @@ dependencies:
   '@walletconnect/modal-sign-html':
     specifier: ^2.6.2
     version: 2.6.2(@types/react@18.0.27)(react@18.2.0)
-  '@walletconnect/modal-sign-react':
-    specifier: ^2.6.2
-    version: 2.6.2(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0)
   '@walletconnect/types':
     specifier: ^2.9.0
     version: 2.9.0
@@ -698,24 +695,6 @@ packages:
       - bufferutil
       - lokijs
       - react
-      - utf-8-validate
-    dev: false
-
-  /@walletconnect/modal-sign-react@2.6.2(@types/react@18.0.27)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-tyXRUWx/yhSCVaIQACiC7H/4TGXUUk4gcIX+TBlXaX8RDifmXmY92sfcgc31cUrQ7UtHvWAPQDNqNrz+IhZVGg==}
-    peerDependencies:
-      react: '>=17'
-      react-dom: '>=17'
-    dependencies:
-      '@walletconnect/modal-sign-html': 2.6.2(@types/react@18.0.27)(react@18.2.0)
-      mitt: 3.0.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    transitivePeerDependencies:
-      - '@react-native-async-storage/async-storage'
-      - '@types/react'
-      - bufferutil
-      - lokijs
       - utf-8-validate
     dev: false
 

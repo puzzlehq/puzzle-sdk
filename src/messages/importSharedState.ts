@@ -6,7 +6,11 @@ export type ImportSharedStateRequest = {
 };
 
 export type ImportSharedStateResponse = {
-  address?: string;
+  data?: {
+    address: string,
+    seed: string,
+    viewKey: string,
+  },
   error?: string;
 };
 

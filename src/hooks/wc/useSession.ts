@@ -39,10 +39,13 @@ export function useSession() {
     getActiveSession();
 
     // WORKAROUND: This needs to be replaced with new session_connect event
+    emitter.on('session_update', getActiveSession);
     emitter.on('session_change', getActiveSession);
 
     return () => {
+      emitter.off('session_update', getActiveSession);
       emitter.off('session_change', getActiveSession);
+
     };
   }, []);
 
