@@ -12,7 +12,7 @@ export type Balance = {
 };
 
 export type GetBalancesResponse = {
-  balances?: Balance[]; // [ALEO, PIECE];
+  balances?: Balance[]; // [ALEO, PIECES];
   error?: string;
 };
 
