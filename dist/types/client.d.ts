@@ -1,5 +1,7 @@
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
-export declare const emitter: any;
+import { Emitter } from 'mitt';
+/** @ts-ignore-next-line */
+export declare const emitter: Emitter<any>;
 export type WalletConnectModalSignInstance = InstanceType<typeof WalletConnectModalSign>;
 export declare function configureConnection(options: {
     dAppName: string;

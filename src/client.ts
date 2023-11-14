@@ -1,8 +1,9 @@
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
 import { projectId, web3modal_puzzle_props } from './data/walletconnect.js';
-import mitt from 'mitt';
+import mitt, { Emitter } from 'mitt';
 
-export const emitter = (mitt as any)();
+/** @ts-ignore-next-line */
+export const emitter: Emitter<any> = mitt<any>();
 
 let connection: WalletConnectModalSign | undefined = undefined;
 
