@@ -1,6 +1,6 @@
 export type SignatureRequest = {
     message: string;
-    address: string;
+    address?: string;
 };
 export type SignatureResponse = {
     signature?: string;

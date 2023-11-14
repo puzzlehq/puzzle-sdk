@@ -3,7 +3,7 @@ import { getWalletConnectModalSignClient } from '../client.js';
 
 export type SignatureRequest = {
   message: string;
-  address: string;
+  address?: string;
 };
 
 export type SignatureResponse = {
