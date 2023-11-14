@@ -388,7 +388,7 @@ let ju = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-5706242a.js");
+      await import("./index-12b862ec.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8061,14 +8061,14 @@ function u1(t) {
 }
 const Ui = u1();
 let Qr;
-function A1(t, e, r, i) {
+function A1(t) {
   Qr = new o1({
     projectId: a1,
     metadata: {
-      name: t,
-      description: e,
-      url: r,
-      icons: [i]
+      name: t.dAppName,
+      description: t.dAppDescription,
+      url: t.dAppUrl,
+      icons: [t.dAppIconURL]
     },
     modalOptions: { ...c1 }
   }), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
@@ -8462,8 +8462,8 @@ export {
   Iu as R,
   na as T,
   ht as a,
-  A1 as b,
-  on as c,
+  on as b,
+  A1 as c,
   Oc as d,
   Ui as e,
   a1 as f,

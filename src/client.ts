@@ -10,19 +10,19 @@ export type WalletConnectModalSignInstance = InstanceType<
   typeof WalletConnectModalSign
 >;
 
-export function setConnection(
+export function configureConnection(options: {
   dAppName: string,
   dAppDescription: string,
   dAppUrl: string,
   dAppIconURL: string
-) {
+}) {
   connection = new WalletConnectModalSign({
     projectId,
     metadata: {
-      name: dAppName,
-      description: dAppDescription,
-      url: dAppUrl,
-      icons: [dAppIconURL],
+      name: options.dAppName,
+      description: options.dAppDescription,
+      url: options.dAppUrl,
+      icons: [options.dAppIconURL],
     },
     modalOptions: { ...web3modal_puzzle_props },
   });

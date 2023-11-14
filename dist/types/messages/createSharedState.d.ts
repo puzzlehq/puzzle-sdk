@@ -1,8 +1,7 @@
 export type CreateSharedStateResponse = {
     data?: {
-        address: string;
         seed: string;
-        viewKey: string;
+        address: string;
     };
     error?: string;
 };

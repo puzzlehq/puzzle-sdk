@@ -3,10 +3,9 @@ import { getWalletConnectModalSignClient } from '../client.js';
 
 export type CreateSharedStateResponse = {
   data?: {
-    address: string,
-    seed: string,
-    viewKey: string,
-  }
+    seed: string;
+    address: string;
+  };
   error?: string;
 };
 
