@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.7",
+  "version": "0.1.11",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.umd.js",
   "module": "./dist/puzzle.es.js",
@@ -24,7 +24,6 @@
     "@trpc/server": "^10.8.1",
     "@types/debug": "^4.1.7",
     "@walletconnect/modal-sign-html": "^2.6.2",
-    "@walletconnect/modal-sign-react": "^2.6.2",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.2",
     "debug": "^4.3.4",
