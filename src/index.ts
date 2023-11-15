@@ -21,7 +21,7 @@ const wc_keys = [
   'wc@2:client:0.3//session',
   'wc@2:core:0.3//expirer',
   'WCM_WALLETCONNECT_CLIENT_ID',
-  'wc @2: core: 0.3//pairing',
+  'wc@2:core:0.3//pairing',
   'debug'
 ]
 

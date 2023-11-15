@@ -449,7 +449,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-f775da16.js");
+      await import("./index-d6c43e9a.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8524,7 +8524,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   "wc@2:client:0.3//session",
   "wc@2:core:0.3//expirer",
   "WCM_WALLETCONNECT_CLIENT_ID",
-  "wc @2: core: 0.3//pairing",
+  "wc@2:core:0.3//pairing",
   "debug"
 ], na = Mu.version, P1 = localStorage.getItem("puzzle-sdk-version");
 na !== P1 && (T1.forEach((t) => {
