@@ -12,9 +12,10 @@ export type SignatureResponse = {
   error?: string;
 };
 
-export const requestSignature = async (
-  message: string,
-  address: string
+export const requestSignature = async ({
+  message,
+  address
+  }: SignatureRequest
 ): Promise<SignatureResponse> => {
   const connection = await getWalletConnectModalSignClient();
 

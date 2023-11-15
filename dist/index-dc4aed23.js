@@ -1,5 +1,5 @@
 import { useEffect as br, useState as yr } from "react";
-const mu = "@puzzlehq/sdk", vu = "Puzzle SDK", _u = "0.1.17", Eu = "Your portal to privacy", Du = "./dist/puzzle.umd.js", Su = "./dist/puzzle.es.js", Iu = "./dist/types/src/index.d.ts", xu = {
+const mu = "@puzzlehq/sdk", vu = "Puzzle SDK", _u = "0.1.18", Eu = "Your portal to privacy", Du = "./dist/puzzle.umd.js", Su = "./dist/puzzle.es.js", Iu = "./dist/types/src/index.d.ts", xu = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.umd.js",
@@ -449,7 +449,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-987a241d.js");
+      await import("./index-8724b83e.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8490,7 +8490,10 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const h = c.message;
     return console.error("getRecords error", h), { error: h };
   }
-}, cb = async (t, e) => {
+}, cb = async ({
+  message: t,
+  address: e
+}) => {
   const r = await Ue(), i = await (r == null ? void 0 : r.getSession()), s = "aleo:1";
   if (!i || !s || !r)
     return { error: "no session, chainId, or connection" };
