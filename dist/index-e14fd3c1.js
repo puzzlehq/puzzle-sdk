@@ -1,5 +1,5 @@
 import { useEffect as br, useState as yr } from "react";
-const mu = "@puzzlehq/sdk", vu = "Puzzle SDK", _u = "0.1.15", Eu = "Your portal to privacy", Du = "./dist/puzzle.umd.js", Su = "./dist/puzzle.es.js", Iu = "./dist/types/index.d.ts", xu = {
+const mu = "@puzzlehq/sdk", vu = "Puzzle SDK", _u = "0.1.16", Eu = "Your portal to privacy", Du = "./dist/puzzle.umd.js", Su = "./dist/puzzle.es.js", Iu = "./dist/types/index.d.ts", xu = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.umd.js",
@@ -449,7 +449,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-2e305116.js");
+      await import("./index-97247092.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8248,7 +8248,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   }), an(({ params: l, topic: p }) => {
     r(void 0);
   }), br(() => {
-    c && !n && h(), c || r(void 0);
+    c && !n && h(), c || (r(void 0), u(!1));
   }, [c]), {
     account: e,
     error: i,

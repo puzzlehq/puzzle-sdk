@@ -23,17 +23,12 @@ export const useAccount = () => {
 
   const [account, setAccount] = useState<PuzzleAccount | undefined>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const session: SessionTypes.Struct | undefined = useSession();
 
   const request = async () => {
-    console.log('sdk request');
-    if (!session) {
-      console.log('no session');
-      setLoading(false);
-      return;
-    }
+    if (!session) return;
     try {
       setLoading(true);
       const connection = await getWalletConnectModalSignClient();
@@ -88,7 +83,7 @@ export const useAccount = () => {
 
   // send initial account request...
   useEffect(() => {
-    if (session && loading) {
+    if (session && !loading) {
       request();
     }
     if (!session) {
