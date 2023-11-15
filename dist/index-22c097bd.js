@@ -1,9 +1,9 @@
 import { useEffect as br, useState as yr } from "react";
-const mu = "@puzzlehq/sdk", vu = "Puzzle SDK", _u = "0.1.16", Eu = "Your portal to privacy", Du = "./dist/puzzle.umd.js", Su = "./dist/puzzle.es.js", Iu = "./dist/types/index.d.ts", xu = {
+const mu = "@puzzlehq/sdk", vu = "Puzzle SDK", _u = "0.1.17", Eu = "Your portal to privacy", Du = "./dist/puzzle.umd.js", Su = "./dist/puzzle.es.js", Iu = "./dist/types/src/index.d.ts", xu = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.umd.js",
-    types: "./dist/types/index.d.ts"
+    types: "./dist/types/src/index.d.ts"
   }
 }, Ou = "module", Au = {
   build: "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types"
@@ -449,7 +449,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-c1a66143.js");
+      await import("./index-987a241d.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
