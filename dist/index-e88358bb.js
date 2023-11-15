@@ -388,7 +388,7 @@ let ju = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-de03919a.js");
+      await import("./index-5bf4e32d.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8146,25 +8146,28 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   t.length - 5,
   t.length
 )}`, C1 = () => {
-  const t = "aleo:1", [e, r] = yr(void 0), [i, s] = yr(void 0), [n, u] = yr(!1), c = Cc(), h = async () => {
-    if (c)
-      try {
-        u(!0);
-        const p = await (await Ue()).request({
-          topic: c == null ? void 0 : c.topic,
-          chainId: t,
-          request: {
-            id: 1,
-            jsonrpc: "2.0",
-            method: "getSelectedAccount"
-          }
-        });
-        r(p.account), s(p.error);
-      } catch (l) {
-        s(l.message);
-      } finally {
-        u(!1);
-      }
+  const t = "aleo:1", [e, r] = yr(void 0), [i, s] = yr(void 0), [n, u] = yr(!0), c = Cc(), h = async () => {
+    if (console.log("sdk request"), !c) {
+      console.log("no session"), u(!1);
+      return;
+    }
+    try {
+      u(!0);
+      const p = await (await Ue()).request({
+        topic: c == null ? void 0 : c.topic,
+        chainId: t,
+        request: {
+          id: 1,
+          jsonrpc: "2.0",
+          method: "getSelectedAccount"
+        }
+      });
+      r(p.account), s(p.error);
+    } catch (l) {
+      s(l.message);
+    } finally {
+      u(!1);
+    }
   };
   return Nc(({ params: l, topic: p }) => {
     if (l.event.name === "accountSelected" && c && c.topic === p) {
@@ -8187,7 +8190,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   }), an(({ params: l, topic: p }) => {
     r(void 0);
   }), br(() => {
-    c && !n && h(), c || r(void 0);
+    c && n && h(), c || (r(void 0), u(!1));
   }, [c]), {
     account: e,
     error: i,
