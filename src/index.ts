@@ -1,4 +1,3 @@
-
 import pkg from '../package.json';
 
 export * from './client.js';
