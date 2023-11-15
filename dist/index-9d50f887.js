@@ -375,7 +375,7 @@ var Ju = Object.defineProperty, En = Object.getOwnPropertySymbols, Qu = Object.p
       Xu.call(e, r) && Dn(t, r, e[r]);
   return t;
 };
-const Sn = ht.isMobile(), Mt = tr({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), L1 = { state: Mt, async getRecomendedWallets() {
+const Sn = ht.isMobile(), Mt = tr({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), R1 = { state: Mt, async getRecomendedWallets() {
   const { explorerRecommendedWalletIds: t, explorerExcludedWalletIds: e } = Nr.state;
   if (t === "NONE" || e === "ALL" && !t)
     return Mt.recomendedWallets;
@@ -436,7 +436,7 @@ const $r = tr({ themeMode: sh() ? "dark" : "light" }), On = { state: $r, subscri
 }, setThemeConfig(t) {
   const { themeMode: e, themeVariables: r } = t;
   e && ($r.themeMode = e), r && ($r.themeVariables = ih({}, r));
-} }, cr = tr({ open: !1, message: "", variant: "success" }), U1 = { state: cr, subscribe(t) {
+} }, cr = tr({ open: !1, message: "", variant: "success" }), L1 = { state: cr, subscribe(t) {
   return wr(cr, () => t(cr));
 }, openToast(t, e) {
   cr.open = !0, cr.message = t, cr.variant = e;
@@ -449,7 +449,7 @@ let nh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-97247092.js");
+      await import("./index-c1a66143.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rt.setIsUiLoaded(!0);
     }
@@ -8095,7 +8095,7 @@ const Oc = [
   walletImages: {
     puzzle: "https://i.imgur.com/p9tHaFC.png"
   }
-}, Y1 = {
+}, G1 = {
   requiredNamespaces: {
     aleo: {
       methods: Oc,
@@ -8122,7 +8122,7 @@ function C1(t) {
 }
 const Ui = C1();
 let Qr;
-function J1(t) {
+function Y1(t) {
   Qr = new x1({
     projectId: O1,
     metadata: {
@@ -8206,7 +8206,7 @@ function Tc(t) {
 const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   t.length - 5,
   t.length
-)}`, Q1 = () => {
+)}`, J1 = () => {
   const t = "aleo:1", [e, r] = yr(void 0), [i, s] = yr(void 0), [n, u] = yr(!1), c = Nc(), h = async () => {
     if (c)
       try {
@@ -8254,7 +8254,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     error: i,
     loading: n
   };
-}, X1 = () => {
+}, Q1 = () => {
   const t = "aleo:1", [e, r] = yr(void 0), [i, s] = yr(void 0), [n, u] = yr(!1), c = Nc(), h = async () => {
     try {
       u(!0);
@@ -8284,7 +8284,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   }), br(() => {
     c && !n && h(), c || r(void 0);
   }, [c]), { balances: e, error: i, loading: n };
-}, Z1 = async () => {
+}, X1 = async () => {
   const t = await Ue(), e = await t.getSession(), r = "aleo:1";
   if (!e || !r || !t)
     return { error: "no session, chainId, or connection" };
@@ -8302,7 +8302,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const s = i.message;
     return console.error("getAccount error", s), { error: s };
   }
-}, eb = async () => {
+}, Z1 = async () => {
   const t = await Ue(), e = await t.getSession(), r = "aleo:1";
   if (!e || !r || !t)
     return { error: "no session, chainId, or connection" };
@@ -8323,7 +8323,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const s = i.message;
     return console.error("getBalance error", s), { error: s };
   }
-}, tb = async () => {
+}, eb = async () => {
   const t = await Ue();
   if (!t)
     throw new Error("call setConnection() first!");
@@ -8341,7 +8341,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   } catch (e) {
     console.error("connect error", e.message);
   }
-}, rb = async (t) => {
+}, tb = async (t) => {
   const e = await Ue(), r = await (e == null ? void 0 : e.getSession()), i = "aleo:1";
   if (!r || !i || !e)
     return { error: "no session, chainId, or connection" };
@@ -8364,7 +8364,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const u = n.message;
     return console.error("createEvent error", u), { error: u };
   }
-}, ib = async () => {
+}, rb = async () => {
   const t = await Ue(), e = await (t == null ? void 0 : t.getSession()), r = "aleo:1";
   if (!e || !r || !t)
     return { error: "no session, chainId, or connection" };
@@ -8383,7 +8383,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const s = i.message;
     return console.error("createSharedState error", s), { error: s };
   }
-}, sb = async (t) => {
+}, ib = async (t) => {
   const e = await Ue(), r = await (e == null ? void 0 : e.getSession()), i = "aleo:1";
   if (!r || !i || !e)
     return { error: "no session, chainId, or connection" };
@@ -8403,7 +8403,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   } catch (s) {
     return console.error("decrypt error", s.message), { error: s.message };
   }
-}, nb = async () => {
+}, sb = async () => {
   const t = await Ue(), e = await (t == null ? void 0 : t.getSession());
   if (!e || !t)
     return { error: "no session, or connection" };
@@ -8416,7 +8416,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const i = r.message;
     return console.error("error disconnecting", i), { error: i };
   }
-}, ob = async (t) => {
+}, nb = async (t) => {
   const e = await Ue(), r = await (e == null ? void 0 : e.getSession()), i = "aleo:1";
   if (!r || !i || !e)
     return { events: void 0, error: "no session, chainId, or connection" };
@@ -8440,7 +8440,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const u = n.message;
     return console.error("getEvents error", u), { error: u };
   }
-}, ab = async (t) => {
+}, ob = async (t) => {
   const e = await Ue(), r = await (e == null ? void 0 : e.getSession()), i = "aleo:1";
   if (!r || !i || !e)
     return { error: "no session, chainId, or connection" };
@@ -8461,7 +8461,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const n = s.message;
     return console.error("importSharedState error", n), { error: n };
   }
-}, cb = async ({
+}, ab = async ({
   address: t,
   filter: e,
   page: r = 0
@@ -8490,7 +8490,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const h = c.message;
     return console.error("getRecords error", h), { error: h };
   }
-}, ub = async (t, e) => {
+}, cb = async (t, e) => {
   const r = await Ue(), i = await (r == null ? void 0 : r.getSession()), s = "aleo:1";
   if (!i || !s || !r)
     return { error: "no session, chainId, or connection" };
@@ -8512,7 +8512,7 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     const u = n.message;
     return console.error("signature error", u), { error: u };
   }
-}, hb = 50, T1 = [
+}, ub = 50, T1 = [
   "wc@2:client:0.3//proposal",
   "wc@2:core:0.3//subscription",
   "wc@2:core:0.3//keychain",
@@ -8523,48 +8523,53 @@ const sa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   "WCM_WALLETCONNECT_CLIENT_ID",
   "wc@2:core:0.3//pairing",
   "debug"
-], na = Mu.version, P1 = localStorage.getItem("puzzle-sdk-version");
-na !== P1 && (T1.forEach((t) => {
-  localStorage.removeItem(t);
-}), localStorage.setItem("puzzle-sdk-version", na));
+], na = Mu.version;
+try {
+  const t = localStorage.getItem("puzzle-sdk-version");
+  na !== t && (T1.forEach((e) => {
+    localStorage.removeItem(e);
+  }), localStorage.setItem("puzzle-sdk-version", na));
+} catch (t) {
+  console.error(t);
+}
 export {
-  eb as A,
-  tb as B,
-  rb as C,
-  ib as D,
-  sb as E,
-  nb as F,
-  ob as G,
-  ab as H,
-  cb as I,
-  ub as J,
-  hb as P,
+  Z1 as A,
+  eb as B,
+  tb as C,
+  rb as D,
+  ib as E,
+  sb as F,
+  nb as G,
+  ob as H,
+  ab as I,
+  cb as J,
+  ub as P,
   Vu as R,
   oa as T,
   ht as a,
   on as b,
-  J1 as c,
+  Y1 as c,
   Ac as d,
   Ui as e,
   O1 as f,
   Ue as g,
   ia as h,
   A1 as i,
-  Y1 as j,
+  G1 as j,
   sa as k,
-  X1 as l,
+  Q1 as l,
   an as m,
   On as n,
-  U1 as o,
+  L1 as o,
   Rt as p,
   Tc as q,
   N1 as r,
   Ji as s,
-  L1 as t,
-  Q1 as u,
+  R1 as t,
+  J1 as u,
   Cc as v,
   Oc as w,
   Nc as x,
   Nr as y,
-  Z1 as z
+  X1 as z
 };
