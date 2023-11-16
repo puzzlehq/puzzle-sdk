@@ -21,7 +21,7 @@ yarn add @puzzlehq/sdk
 ```
 
 ### Test the wallet out
-Visit our devtools site at [dev.puzzle.online](dev.puzzle.online) to:
+Visit our devtools site at [dev.puzzle.online](https://dev.puzzle.online) to:
 - Deploy an aleo program
 - Execute an Aleo program
 - Sign a message
