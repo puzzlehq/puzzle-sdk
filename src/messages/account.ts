@@ -1,6 +1,7 @@
 import { PuzzleAccount } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
+import useWalletStore from '../store.js';
 
 export type GetSelectedAccountResponse = {
   account?: PuzzleAccount;
@@ -27,6 +28,7 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
         method: 'getSelectedAccount',
       },
     });
+    useWalletStore.setState({ account: response.account });
     return response;
   } catch (e) {
     const error = (e as Error).message;

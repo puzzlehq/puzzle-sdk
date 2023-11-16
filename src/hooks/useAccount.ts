@@ -1,12 +1,12 @@
 import { getWalletConnectModalSignClient } from '../client.js';
 import { useEffect, useState } from 'react';
 import { GetSelectedAccountResponse } from '../messages/account.js';
-import { PuzzleAccount } from '../index.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
+import useWalletStore from '../store.js';
 
 /// ADDRESSES AND ALIASES
 export const shortenAddress = (address: string) => {
@@ -21,7 +21,7 @@ export const shortenAddress = (address: string) => {
 export const useAccount = () => {
   const chainId = 'aleo:1';
 
-  const [account, setAccount] = useState<PuzzleAccount | undefined>(undefined);
+  const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -85,10 +85,6 @@ export const useAccount = () => {
   useEffect(() => {
     if (session && !loading) {
       request();
-    }
-    if (!session) {
-      setAccount(undefined);
-      setLoading(false);
     }
   }, [session]);
 

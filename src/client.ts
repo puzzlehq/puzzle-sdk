@@ -1,6 +1,7 @@
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
 import { projectId, web3modal_puzzle_props } from './data/walletconnect.js';
 import mitt, { Emitter } from 'mitt';
+import useWalletStore from './store.js';
 
 /** @ts-ignore-next-line */
 export const emitter: Emitter<any> = mitt<any>();
@@ -27,7 +28,7 @@ export function configureConnection(options: {
     },
     modalOptions: { ...web3modal_puzzle_props },
   });
-
+  useWalletStore.setState({account: undefined});
   // remove to prevent walletconnect from redirecting to the wallet page
   window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 }
