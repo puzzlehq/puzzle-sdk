@@ -1,5 +1,5 @@
 import $i, { useDebugValue as Fu, useEffect as yr, useState as xr } from "react";
-const Mu = "@puzzlehq/sdk", $u = "Puzzle SDK", ju = "0.1.19", qu = "Your portal to privacy", zu = "./dist/puzzle.umd.js", Bu = "./dist/puzzle.es.js", Ku = "./dist/types/src/index.d.ts", Hu = {
+const Mu = "@puzzlehq/sdk", $u = "Puzzle SDK", ju = "0.1.20", qu = "Your portal to privacy", zu = "./dist/puzzle.umd.js", Bu = "./dist/puzzle.es.js", Ku = "./dist/types/src/index.d.ts", Hu = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.umd.js",
@@ -449,7 +449,7 @@ let Sl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-0f4399ec.js");
+      await import("./index-047f88cb.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Pt.setIsUiLoaded(!0);
     }
