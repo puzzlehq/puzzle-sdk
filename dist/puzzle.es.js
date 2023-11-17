@@ -1,4 +1,4 @@
-import { P as t, c as n, B as o, D as c, E as r, F as i, e as u, z as l, A as d, G as p, I as S, g, H as _, f as m, C, J as E, j as h, i as v, u as w, k as z, l as A, m as O, q as f, r as q, v as x, x as B, b as I, w as P, d as b, h as j } from "./index-e501d7bd.js";
+import { P as t, c as n, C as o, E as c, F as r, G as i, e as u, A as l, B as d, H as p, J as S, g, I as _, f as m, D as C, K as E, j as h, i as v, u as w, k as z, l as A, m as O, q as f, r as q, v as x, x as B, z as D, b as I, w as P, d as b, h as j } from "./index-58811ba1.js";
 import "react";
 export {
   t as PAGE_SIZE,
@@ -22,11 +22,12 @@ export {
   w as useAccount,
   z as useBalance,
   A as useConnect,
-  O as useOnSessionDelete,
-  f as useOnSessionEvent,
-  q as useOnSessionExpire,
-  x as useOnSessionUpdate,
-  B as useSession,
+  O as useDisconnect,
+  f as useOnSessionDelete,
+  q as useOnSessionEvent,
+  x as useOnSessionExpire,
+  B as useOnSessionUpdate,
+  D as useSession,
   I as wc_aleo_chains,
   P as wc_aleo_methods,
   b as wc_events,
