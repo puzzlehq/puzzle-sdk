@@ -17,7 +17,6 @@ export const wc_aleo_chains = ['aleo:1'];
 export const wc_events = ['chainChanged', 'accountSelected', 'accountSynced'];
 
 export const projectId = 'f0aaeffe71b636da453fce042d79d723';
-export const walletURL = 'https://walletconnect.puzzle.online/';
 
 export const web3modal_puzzle_props = {
   standaloneChains: wc_aleo_chains,
@@ -31,7 +30,7 @@ export const web3modal_puzzle_props = {
       name: 'Puzzle Wallet',
       links: {
         native: '',
-        universal: walletURL,
+        universal: 'https://jigsaw-dev.puzzle.online/',
       },
     },
   ],
@@ -41,7 +40,7 @@ export const web3modal_puzzle_props = {
       name: 'Puzzle Wallet',
       links: {
         native: '',
-        universal: walletURL,
+        universal: 'https://walletconnect.puzzle.online/',
       },
     },
   ],

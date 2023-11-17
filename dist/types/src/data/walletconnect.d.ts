@@ -2,7 +2,6 @@ export declare const wc_aleo_methods: string[];
 export declare const wc_aleo_chains: string[];
 export declare const wc_events: string[];
 export declare const projectId = "f0aaeffe71b636da453fce042d79d723";
-export declare const walletURL = "https://walletconnect.puzzle.online/";
 export declare const web3modal_puzzle_props: {
     standaloneChains: string[];
     enableExplorer: boolean;

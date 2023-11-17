@@ -28,9 +28,7 @@ export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
 
   const request = async () => {
-    console.log('sdk request');
     if (!session) {
-      console.log('no session');
       setLoading(false);
       return;
     }
