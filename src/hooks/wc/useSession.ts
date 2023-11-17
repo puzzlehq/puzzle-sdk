@@ -4,6 +4,7 @@ import { emitter, getWalletConnectModalSignClient } from '../../client.js';
 import { useOnSessionDelete } from './useOnSessionDelete.js';
 import { useOnSessionExpire } from './useOnSessionExpire.js';
 import { useOnSessionUpdate } from './useOnSessionUpdate.js';
+import { SessionTypes } from '@walletconnect/types';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['getSession']>>;
 
@@ -33,7 +34,8 @@ export function useSession() {
   useEffect(() => {
     async function getActiveSession() {
       const client = await getWalletConnectModalSignClient();
-      const response = await client.getSession();
+      const response: SessionTypes.Struct = await client.getSession();
+      
       setSession(response);
     }
     getActiveSession();

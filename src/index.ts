@@ -21,21 +21,25 @@ const wc_keys = [
   'wc@2:client:0.3//session',
   'wc@2:core:0.3//expirer',
   'WCM_WALLETCONNECT_CLIENT_ID',
-  'wc @2: core: 0.3//pairing',
+  'wc@2:core:0.3//pairing',
   'debug'
 ]
 
 const packageVersion = pkg.version;
 
-// Get the version from localStorage
-const localStorageVersion = localStorage.getItem('puzzle-sdk-version');
+try {
+  // Get the version from localStorage
+  const localStorageVersion = localStorage.getItem('puzzle-sdk-version');
 
-// If versions don't match, clear WalletConnect localStorage items
-if (packageVersion !== localStorageVersion) {
-  wc_keys.forEach((key) => {
-    localStorage.removeItem(key)
-  })
+  // If versions don't match, clear WalletConnect localStorage items
+  if (packageVersion !== localStorageVersion) {
+    wc_keys.forEach((key) => {
+      localStorage.removeItem(key)
+    })
 
-  // Store the current version to localStorage
-  localStorage.setItem('puzzle-sdk-version', packageVersion);
+    // Store the current version to localStorage
+    localStorage.setItem('puzzle-sdk-version', packageVersion);
+  }
+} catch (e) {
+  console.error(e);
 }

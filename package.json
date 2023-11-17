@@ -1,16 +1,16 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.16",
+  "version": "0.1.22",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.umd.js",
   "module": "./dist/puzzle.es.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/puzzle.es.js",
       "require": "./dist/puzzle.umd.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/src/index.d.ts"
     }
   },
   "type": "module",
