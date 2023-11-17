@@ -29,7 +29,7 @@ export const web3modal_puzzle_props = {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
-        native: '',
+        native: 'puzzleapp://',
         universal: 'https://jigsaw-dev.puzzle.online/',
       },
     },
