@@ -1,5 +1,5 @@
 import $i, { useDebugValue as Uu, useEffect as yr, useState as xr } from "react";
-const Fu = "@puzzlehq/sdk", Mu = "Puzzle SDK", $u = "0.1.23", ju = "Your portal to privacy", qu = "./dist/puzzle.umd.js", zu = "./dist/puzzle.es.js", Bu = "./dist/types/src/index.d.ts", Ku = {
+const Fu = "@puzzlehq/sdk", Mu = "Puzzle SDK", $u = "0.1.24", ju = "Your portal to privacy", qu = "./dist/puzzle.umd.js", zu = "./dist/puzzle.es.js", Bu = "./dist/types/src/index.d.ts", Ku = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.umd.js",
@@ -449,7 +449,7 @@ let El = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-0ed36f31.js");
+      await import("./index-a8114c69.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Pt.setIsUiLoaded(!0);
     }
@@ -8814,7 +8814,8 @@ const wa = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     }
   };
   return kc(({ params: h, topic: p }) => {
-    h.event.name === "accountSynced" && c && c.topic === p && !s && l();
+    const b = h.event.name;
+    (b === "accountSynced" || b === "accountSelected") && c && c.topic === p && !s && l();
   }), bs(({ params: h, topic: p }) => {
     r(void 0);
   }), yr(() => {
