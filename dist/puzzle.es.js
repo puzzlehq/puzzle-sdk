@@ -1,4 +1,4 @@
-import { P as t, c as n, A as o, C as c, D as r, E as i, e as u, x as l, z as d, F as p, H as S, g, G as _, f as m, B as E, I as h, j as C, i as v, u as w, k as z, l as A, m as O, q as f, r as q, v as x, b as B, w as I, d as P, h as b } from "./index-f8f06193.js";
+import { P as t, c as n, B as o, D as c, E as r, F as i, e as u, z as l, A as d, G as p, I as S, g, H as _, f as m, C, J as E, j as h, i as v, u as w, k as z, l as A, m as O, q as f, r as q, v as x, x as B, b as I, w as P, d as b, h as j } from "./index-e501d7bd.js";
 import "react";
 export {
   t as PAGE_SIZE,
@@ -15,19 +15,20 @@ export {
   g as getWalletConnectModalSignClient,
   _ as importSharedState,
   m as projectId,
-  E as requestCreateEvent,
-  h as requestSignature,
-  C as shortenAddress,
+  C as requestCreateEvent,
+  E as requestSignature,
+  h as shortenAddress,
   v as signClient_puzzleProps,
   w as useAccount,
   z as useBalance,
-  A as useOnSessionDelete,
-  O as useOnSessionEvent,
-  f as useOnSessionExpire,
-  q as useOnSessionUpdate,
-  x as useSession,
-  B as wc_aleo_chains,
-  I as wc_aleo_methods,
-  P as wc_events,
-  b as web3modal_puzzle_props
+  A as useConnect,
+  O as useOnSessionDelete,
+  f as useOnSessionEvent,
+  q as useOnSessionExpire,
+  x as useOnSessionUpdate,
+  B as useSession,
+  I as wc_aleo_chains,
+  P as wc_aleo_methods,
+  b as wc_events,
+  j as web3modal_puzzle_props
 };
