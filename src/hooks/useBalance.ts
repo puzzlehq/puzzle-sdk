@@ -47,7 +47,7 @@ export const useBalance = () => {
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (
-      eventName === 'accountSynced' &&
+      (eventName === 'accountSynced' || eventName === 'accountSelected') &&
       session &&
       session.topic === topic &&
       !loading
