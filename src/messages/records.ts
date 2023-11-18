@@ -3,7 +3,7 @@ import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 export type Record = RecordWithoutPlaintext & {
   plaintext: string;
-  data: any;
+  data: { [key: string]: string };
 };
 
 export type RecordsFilter = {

@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { wc_aleo_chains, wc_aleo_methods, wc_events } from '../data/walletconnect.js'
 
 export function useConnect() {
-  // const { data, error, loading, setData, setError, setLoading } = useAsyncAction<Data>()
   const [data, setData] = useState<SessionTypes.Struct | undefined>(undefined);
   const [error, setError] = useState<string | undefined>();
   const [loading, setLoading] = useState(false);

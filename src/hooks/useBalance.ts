@@ -11,13 +11,13 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
 export const useBalance = () => {
+  const session: SessionTypes.Struct | undefined = useSession();
+
   const chainId = 'aleo:1';
 
   const [balances, setBalances] = useState<Balance[] | undefined>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-
-  const session: SessionTypes.Struct | undefined = useSession();
 
   const request = async () => {
     try {
