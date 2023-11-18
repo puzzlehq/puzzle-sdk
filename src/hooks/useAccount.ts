@@ -19,13 +19,12 @@ export const shortenAddress = (address: string) => {
 };
 
 export const useAccount = () => {
+  const session: SessionTypes.Struct | undefined = useSession();
   const chainId = 'aleo:1';
 
   const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-
-  const session: SessionTypes.Struct | undefined = useSession();
 
   const request = async () => {
     if (!session) {

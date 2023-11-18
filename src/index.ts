@@ -5,6 +5,8 @@ export * from './data/types.js';
 export * from './data/walletconnect.js';
 export * from './hooks/useAccount.js';
 export * from './hooks/useBalance.js';
+export * from './hooks/useConnect.js';
+export * from './hooks/useDisconnect.js';
 export * from './hooks/wc/useOnSessionDelete.js';
 export * from './hooks/wc/useOnSessionEvent.js';
 export * from './hooks/wc/useOnSessionExpire.js';
