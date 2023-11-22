@@ -1,4 +1,4 @@
-import { type Record } from './records.js';
+import { type RecordWithPlaintext } from './records.js';
 import { EventType } from '@puzzlehq/types';
 export type CreateEventRequestData = {
     address?: string;
@@ -6,7 +6,7 @@ export type CreateEventRequestData = {
     programId: string;
     functionId: string;
     fee: number;
-    inputs: (Record | string)[];
+    inputs: (RecordWithPlaintext | string)[];
 };
 export type CreateEventRequest = {
     address?: string;

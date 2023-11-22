@@ -1,5 +1,5 @@
-import { Record as RecordWithoutPlaintext } from '@puzzlehq/types';
-export type Record = RecordWithoutPlaintext & {
+import { Record } from '@puzzlehq/types';
+export type RecordWithPlaintext = Record & {
     plaintext: string;
     data: {
         [key: string]: string;
@@ -16,7 +16,7 @@ export type GetRecordsRequest = {
     page?: number;
 };
 export type GetRecordsResponse = {
-    records?: Record[];
+    records?: RecordWithPlaintext[];
     pageCount?: number;
     error?: string;
 };
