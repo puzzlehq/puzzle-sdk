@@ -6,3 +6,4 @@ export type PuzzleAccount = {
 };
 
 export * from '@puzzlehq/types';
+export * from '@walletconnect/types';

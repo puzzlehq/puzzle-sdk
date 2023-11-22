@@ -1,4 +1,4 @@
-import { Event, EventType } from '@puzzlehq/types';
+import { Event, EventType } from '../data/types.js';
 export type EventsFilter = {
     type?: EventType;
     programId?: string;

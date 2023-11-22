@@ -1,5 +1,5 @@
 import { type RecordWithPlaintext } from './records.js';
-import { EventType } from '@puzzlehq/types';
+import { EventType } from '../data/types.js';
 export type CreateEventRequestData = {
     address?: string;
     type: EventType;
