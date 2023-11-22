@@ -1,7 +1,8 @@
-import { Record as RecordWithoutPlaintext } from '@puzzlehq/types';
+import { Record } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-export type Record = RecordWithoutPlaintext & {
+
+export type RecordWithPlaintext = Record & {
   plaintext: string;
   data: { [key: string]: string };
 };
@@ -19,7 +20,7 @@ export type GetRecordsRequest = {
 };
 
 export type GetRecordsResponse = {
-  records?: Record[];
+  records?: RecordWithPlaintext[];
   pageCount?: number;
   error?: string;
 };

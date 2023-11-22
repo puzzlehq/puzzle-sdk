@@ -1,4 +1,4 @@
-import { type Record } from './records.js';
+import { type RecordWithPlaintext } from './records.js';
 import { EventType } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
@@ -10,7 +10,7 @@ export type CreateEventRequestData = {
   programId: string;
   functionId: string;
   fee: number;
-  inputs: (Record | string)[];
+  inputs: (RecordWithPlaintext | string)[];
 };
 
 /// sdk maps records to ciphertexts
