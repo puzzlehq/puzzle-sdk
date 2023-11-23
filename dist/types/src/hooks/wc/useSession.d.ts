@@ -1,1 +1,2 @@
-export declare function useSession(): any;
+import { SessionTypes } from '@walletconnect/types';
+export declare function useSession(): SessionTypes.Struct;
