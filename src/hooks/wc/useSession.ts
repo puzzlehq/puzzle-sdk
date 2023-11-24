@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import type { WalletConnectModalSignInstance } from '../../client.js';
 import { emitter, getWalletConnectModalSignClient } from '../../client.js';
 import { useOnSessionDelete } from './useOnSessionDelete.js';
 import { useOnSessionExpire } from './useOnSessionExpire.js';
 import { useOnSessionUpdate } from './useOnSessionUpdate.js';
 import { SessionTypes } from '@walletconnect/types';
 
-type Data = Awaited<ReturnType<WalletConnectModalSignInstance['getSession']>>;
-
 export function useSession() {
-  const [session, setSession] = useState<Data | undefined>(undefined);
+  const [session, setSession] = useState<SessionTypes.Struct | undefined>(undefined);
 
   useOnSessionDelete((event) => {
     if (event.topic === session?.topic) {
