@@ -23,7 +23,7 @@ const zu = "@puzzlehq/sdk", Bu = "Puzzle SDK", Ku = "0.1.34", Hu = "Your portal 
   ws: "^8.13.0",
   zustand: "^4.3.9"
 }, Xu = {
-  "@puzzlehq/types": "1.0.3",
+  "@puzzlehq/types": "1.0.4",
   "@types/chrome": "^0.0.228",
   "@types/node": "^18.11.18",
   "@types/react": "^18.0.27",
@@ -449,7 +449,7 @@ let xl = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-37cda190.js");
+      await import("./index-2cfa2f10.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Ut.setIsUiLoaded(!0);
     }
@@ -8680,7 +8680,7 @@ async function Re() {
 }
 var Da;
 (function(t) {
-  t.Unknown = "Unknown", t.Deploy = "Deploy", t.Execute = "Execute", t.Send = "Send", t.Receive = "Receive", t.Join = "Join", t.Split = "Split", t.Shield = "Shield", t.Unshield = "Unshield";
+  t.Deploy = "Deploy", t.Execute = "Execute", t.Send = "Send", t.Receive = "Receive", t.Join = "Join", t.Split = "Split", t.Shield = "Shield", t.Unshield = "Unshield";
 })(Da || (Da = {}));
 var Ia;
 (function(t) {
