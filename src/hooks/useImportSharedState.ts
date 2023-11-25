@@ -3,7 +3,7 @@ import { ImportSharedStateRequest, ImportSharedStateResponse, useSession } from 
 import { useRequest } from './wc/useReact.js';
 
 export const useImportSharedState = (seed: string) => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',

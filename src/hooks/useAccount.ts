@@ -7,6 +7,7 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import useWalletStore from '../store.js';
+import { PuzzleAccount } from '../index.js';
 
 /// ADDRESSES AND ALIASES
 export const shortenAddress = (address: string) => {
@@ -22,7 +23,7 @@ export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
   const chainId = 'aleo:1';
 
-  const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
+  const [_account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -89,6 +90,8 @@ export const useAccount = () => {
       request();
     }
   }, [session]);
+
+  const account: PuzzleAccount | undefined = _account;
 
   return {
     account,

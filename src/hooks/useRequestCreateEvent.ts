@@ -7,8 +7,8 @@ import { useSession } from './wc/useSession.js';
 export const useRequestCreateEvent = (
   requestData?: CreateEventRequestData
 ) => {
-  const session: SessionTypes.Struct = useSession();
-  const inputs = requestData.inputs.map(
+  const session: SessionTypes.Struct | undefined = useSession();
+  const inputs = requestData?.inputs.map(
     (input) => {
       if (typeof input === 'string') {
         return input;

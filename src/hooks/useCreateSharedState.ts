@@ -3,7 +3,7 @@ import { CreateSharedStateResponse, useSession } from '../index.js';
 import { useRequest } from './wc/useReact.js';
 
 export const useCreateSharedState = () => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',
@@ -23,5 +23,5 @@ export const useCreateSharedState = () => {
     request();
   };
 
-  return { createSharedState, data: response.data, loading, error };
+  return { createSharedState, data: response?.data, loading, error };
 };

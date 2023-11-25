@@ -6,7 +6,7 @@ type UseRecordsOptions = {
 export declare const getFormattedRecordPlaintext: (data: any) => string;
 export declare const useRecords: ({ address, filter }: UseRecordsOptions) => {
     records: RecordWithPlaintext[];
-    error: string;
+    error: string | undefined;
     loading: boolean;
     refetch: () => void;
 };

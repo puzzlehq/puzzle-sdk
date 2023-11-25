@@ -1,8 +1,8 @@
 import { PuzzleAccount } from './index.js';
 type WalletState = {
-    account?: PuzzleAccount;
+    account: PuzzleAccount | undefined;
     chainId?: string;
-    setAccount: (account?: PuzzleAccount) => void;
+    setAccount: (account: PuzzleAccount | undefined) => void;
     setChainId: (chainId: string) => void;
     disconnect: () => void;
 };

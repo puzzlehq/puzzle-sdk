@@ -3,5 +3,5 @@ export declare function useRequest<Result>(params: WalletConnectModalSignRequest
     data: any;
     error: unknown;
     loading: boolean;
-    request: (paramsOverride?: WalletConnectModalSignRequestArguments) => Promise<any>;
+    request: (paramsOverride?: any) => Promise<any>;
 };

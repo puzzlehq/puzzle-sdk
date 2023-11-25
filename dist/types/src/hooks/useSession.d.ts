@@ -1,7 +1,7 @@
 import { SignatureResponse } from '../index.js';
 export declare const useSignature: (message: string, address: string) => {
     requestSignature: () => void;
-    response: SignatureResponse;
+    response: SignatureResponse | undefined;
     loading: boolean;
-    error: string;
+    error: string | undefined;
 };

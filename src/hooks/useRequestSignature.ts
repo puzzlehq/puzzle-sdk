@@ -3,7 +3,7 @@ import { SignatureRequest, SignatureResponse, useSession } from '../index.js';
 import { useRequest } from './wc/useReact.js';
 
 export const useRequestSignature = (message: string, address: string) => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest({
     topic: session?.topic ?? '',

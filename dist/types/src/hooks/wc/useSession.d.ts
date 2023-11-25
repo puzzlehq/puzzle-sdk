@@ -1,2 +1,2 @@
 import { SessionTypes } from '@walletconnect/types';
-export declare function useSession(): SessionTypes.Struct;
+export declare function useSession(): SessionTypes.Struct | undefined;

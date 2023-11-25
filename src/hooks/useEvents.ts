@@ -11,7 +11,7 @@ type UseEventsOptions = {
 }
 
 export const useEvents = ( { filter, page }: UseEventsOptions ) => {
-  const session: SessionTypes.Struct = useSession();
+  const session: SessionTypes.Struct | undefined = useSession();
   const { account } = useAccount();
 
   if (filter?.programId === '') {

@@ -6,10 +6,10 @@ type UseEventsOptions = {
 };
 export declare const useEvents: ({ filter, page }: UseEventsOptions) => {
     fetchPage: () => void;
-    events: Event[];
-    error: string;
+    events: Event[] | undefined;
+    error: string | undefined;
     loading: boolean;
-    page: number;
+    page: number | undefined;
     pageCount: number;
 };
 export {};

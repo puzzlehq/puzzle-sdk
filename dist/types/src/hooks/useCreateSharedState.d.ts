@@ -3,7 +3,7 @@ export declare const useCreateSharedState: () => {
     data: {
         seed: string;
         address: string;
-    };
+    } | undefined;
     loading: boolean;
-    error: string;
+    error: string | undefined;
 };
