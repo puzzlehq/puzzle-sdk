@@ -23,7 +23,7 @@ export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
   const chainId = 'aleo:1';
 
-  const [_account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
+  const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -55,7 +55,7 @@ export const useAccount = () => {
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSelected' && session && session.topic === topic) {
+    if ((eventName === 'accountSelected' || eventName === 'accountSynced') && session && session.topic === topic) {
       const address = params.event.data;
       const network = params.chainId.split(':')[0];
       const chainId = params.chainId.split(':')[1];
@@ -90,8 +90,6 @@ export const useAccount = () => {
       request();
     }
   }, [session]);
-
-  const account: PuzzleAccount | undefined = _account;
 
   return {
     account,
