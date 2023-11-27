@@ -48,7 +48,9 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
+    console.log(eventName)
+    const _address = params.event.address;
+    if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && session && session.topic === topic && !loading) {
       request();
     }
   });
@@ -59,10 +61,9 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
     if (readyToRequest && !loading) {
       request();
     }
-  }, [readyToRequest, account]);
+  }, [readyToRequest]);
 
   const fetchPage = () => {
-    const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
       request();
     }

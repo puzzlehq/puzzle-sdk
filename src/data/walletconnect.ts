@@ -14,7 +14,7 @@ export const wc_aleo_methods = [
 export const wc_aleo_chains = ['aleo:1'];
 
 // events originating from wallet
-export const wc_events = ['chainChanged', 'accountSelected', 'accountSynced'];
+export const wc_events = ['chainChanged', 'accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'];
 
 export const projectId = 'f0aaeffe71b636da453fce042d79d723';
 

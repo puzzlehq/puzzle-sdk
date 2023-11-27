@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
 import { EventsFilter, GetEventsRequest, GetEventsResponse } from '../messages/events.js';
 import { Event } from '@puzzlehq/types';
-import { useAccount, useOnSessionEvent, useSession } from '../index.js';
+import { useOnSessionEvent, useSession } from '../index.js';
 import { useRequest } from './wc/useReact.js';
+import useWalletStore from '../store.js';
 
 type UseEventsOptions = {
   filter?: EventsFilter,
@@ -12,7 +13,7 @@ type UseEventsOptions = {
 
 export const useEvents = ( { filter, page }: UseEventsOptions ) => {
   const session: SessionTypes.Struct | undefined = useSession();
-  const { account } = useAccount();
+  const [account] = useWalletStore((state) => [state.account]);
 
   if (filter?.programId === '') {
     filter.programId = undefined;
@@ -35,7 +36,8 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
+    const address = params.event.address;
+    if (eventName === 'selectedAccountSynced' && session && session.topic === topic && address === account?.address && !loading) {
       request();
     }
   });
@@ -46,7 +48,7 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
     if (readyToRequest && !loading) {
       request();
     }
-  }, [readyToRequest, account]);
+  }, [readyToRequest]);
 
   const fetchPage = () => {
     const readyToRequest = !!session && !!account;

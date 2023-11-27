@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   Balance,
   GetBalancesRequest,
@@ -8,9 +8,11 @@ import { useSession } from './wc/useSession.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useRequest } from './wc/useReact.js';
+import useWalletStore from '../store.js';
 
 export const useBalance = () => {
   const session: SessionTypes.Struct | undefined = useSession();
+  const [account] = useWalletStore((state) => [state.account]);
 
   const chainId = 'aleo:1';
 
@@ -29,10 +31,12 @@ export const useBalance = () => {
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
+    const address = params.event.address;
     if (
-      (eventName === 'accountSynced' || eventName === 'accountSelected') &&
+      (eventName === 'selectedAccountSynced' || eventName === 'accountSelected') &&
       session &&
       session.topic === topic &&
+      address === account?.address &&
       !loading
     ) {
       request();
