@@ -38,7 +38,9 @@ export function useSession() {
     getActiveSession();
 
     // WORKAROUND: This needs to be replaced with new session_connect event
-    emitter.on('session_change', getActiveSession);
+    if (!emitter.eventNames().includes('session_change')) {
+      emitter.on('session_change', getActiveSession);
+    }
 
     return () => {
       emitter.off('session_change', getActiveSession);

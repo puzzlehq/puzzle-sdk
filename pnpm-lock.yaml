@@ -32,12 +32,15 @@ dependencies:
   debug:
     specifier: ^4.3.4
     version: 4.3.4
+  eventemitter3:
+    specifier: ^5.0.1
+    version: 5.0.1
+  events:
+    specifier: ^3.3.0
+    version: 3.3.0
   immer:
     specifier: ^9.0.19
     version: 9.0.19
-  mitt:
-    specifier: ^3.0.1
-    version: 3.0.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -959,6 +962,10 @@ packages:
       '@esbuild/win32-x64': 0.18.17
     dev: true
 
+  /eventemitter3@5.0.1:
+    resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
+    dev: false
+
   /events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
@@ -1058,10 +1065,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
-
-  /mitt@3.0.1:
-    resolution: {integrity: sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==}
     dev: false
 
   /motion@10.16.2:

@@ -1,5 +1,4 @@
-import { getWalletConnectModalSignClient } from '../client.js';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { GetSelectedAccountResponse } from '../messages/account.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';
@@ -7,7 +6,7 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import useWalletStore from '../store.js';
-import { PuzzleAccount } from '../index.js';
+import { useRequest } from './wc/useReact.js';
 
 /// ADDRESSES AND ALIASES
 export const shortenAddress = (address: string) => {
@@ -24,34 +23,16 @@ export const useAccount = () => {
   const chainId = 'aleo:1';
 
   const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
-  const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
 
-  const request = async () => {
-    if (!session) {
-      setLoading(false);
-      return;
-    }
-    try {
-      setLoading(true);
-      const connection = await getWalletConnectModalSignClient();
-      const result: GetSelectedAccountResponse = await connection.request({
-        topic: session?.topic,
-        chainId: chainId,
-        request: {
-          id: 1,
-          jsonrpc: '2.0',
-          method: 'getSelectedAccount',
-        },
-      });
-      setAccount(result.account);
-      setError(result.error);
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+    topic: session?.topic,
+    chainId: chainId,
+    request: {
+      id: 1,
+      jsonrpc: '2.0',
+      method: 'getSelectedAccount'
+    },
+  });
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
@@ -83,13 +64,26 @@ export const useAccount = () => {
   useOnSessionDelete(({ params, topic }) => {
     setAccount(undefined);
   });
-
+  request
   // send initial account request...
   useEffect(() => {
     if (session && !loading) {
       request();
     }
-  }, [session]);
+  }, [session?.topic]);
+
+  // ...and listen for a response
+  useEffect(() => { 
+    if (wc_data) {
+      const puzzleData: GetSelectedAccountResponse | undefined = wc_data;
+      const account = puzzleData?.account;
+      if (account) {
+        setAccount(account);
+      }
+    }
+  }, [wc_data]);
+
+  const error: string | undefined = wc_error ? (wc_error as Error).message : (wc_data && wc_data.error);
 
   return {
     account,

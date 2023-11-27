@@ -13,7 +13,7 @@ type WalletState = {
 
 const useWalletStore = create<WalletState>()(
   persist((set, get) => ({
-    account:undefined,
+    account: undefined,
     chainId: 'aleo:1', // todo - figure out how to populate this from useConnect
     setAccount: (account: PuzzleAccount | undefined) => {
       set({ account });
