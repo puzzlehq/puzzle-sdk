@@ -48,10 +48,8 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const _address = params.event.address;
-    eventName === 'accountSelected' && console.log('!!! ACCOUNT SELECTED CALLED !!!')
     if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && session && session.topic === topic && !loading) {
       request();
-      console.log('REQUESTED RECORDS!!!')
     }
   });
 

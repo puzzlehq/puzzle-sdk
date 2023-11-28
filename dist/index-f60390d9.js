@@ -450,7 +450,7 @@ let Ll = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-ebd40115.js");
+      await import("./index-b3c8b2bd.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Ft.setIsUiLoaded(!0);
     }
@@ -9479,7 +9479,7 @@ const bm = ({ filter: t, page: e }) => {
   });
   ni(({ params: E, topic: F }) => {
     const w = E.event.name, D = E.event.address;
-    w === "accountSelected" && console.log("!!! ACCOUNT SELECTED CALLED !!!"), (w === "selectedAccountSynced" || w === "accountSelected" || w === "sharedAccountSynced" && D === t) && n && n.topic === F && !h && (u(), console.log("REQUESTED RECORDS!!!"));
+    (w === "selectedAccountSynced" || w === "accountSelected" || w === "sharedAccountSynced" && D === t) && n && n.topic === F && !h && u();
   });
   const f = !!n && !!s;
   Kt(() => {
