@@ -29,7 +29,6 @@ export function configureConnection(options: {
     },
     modalOptions: { ...web3modal_puzzle_props },
   });
-  useWalletStore.setState({account: undefined});
   // remove to prevent walletconnect from redirecting to the wallet page
   window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 }

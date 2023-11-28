@@ -26,10 +26,6 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
     state.chainId, state.account
   ]);
 
-  if (filter?.programId === '') {
-    filter.programId = undefined;
-  }
-
   const { request, data: wc_data, error: wc_error, loading } = useRequest<GetRecordsResponse | undefined>({
     topic: session?.topic,
     chainId: chainId,

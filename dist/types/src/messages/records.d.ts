@@ -6,7 +6,7 @@ export type RecordWithPlaintext = Record & {
     };
 };
 export type RecordsFilter = {
-    programId?: string;
+    programIds?: string[];
     functionId?: string;
     type: 'all' | 'spent' | 'unspent';
 };

@@ -8,7 +8,7 @@ export type RecordWithPlaintext = Record & {
 };
 
 export type RecordsFilter = {
-  programId?: string;
+  programIds?: string[];
   functionId?: string;
   type: 'all' | 'spent' | 'unspent';
 };
@@ -38,10 +38,6 @@ export const getRecords = async ({
 
   if (!session || !chainId || !connection) {
     return { error: 'no session, chainId, or connection' };
-  }
-
-  if (filter?.programId === '') {
-    filter.programId = undefined;
   }
 
   const fetchPage = async (page = 0) => {
