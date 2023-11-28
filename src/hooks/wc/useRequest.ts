@@ -1,11 +1,9 @@
 import type { WalletConnectModalSignRequestArguments } from '@walletconnect/modal-sign-html'
 import { getWalletConnectModalSignClient } from '../../client.js'
-import { useState } from 'react'
+import { useAsyncAction } from './_useAsyncAction.js'
 
 export function useRequest<Result>(params: WalletConnectModalSignRequestArguments) {
-  const [data, setData] = useState<any | undefined>(undefined)
-  const [error, setError] = useState<unknown | undefined>(undefined)
-  const [loading, setLoading] = useState(false)
+  const { data, error, loading, setData, setError, setLoading } = useAsyncAction<Result>()
 
   async function request(paramsOverride?: WalletConnectModalSignRequestArguments) {
     try {

@@ -1,7 +1,7 @@
 import { SessionTypes } from '@walletconnect/types';
 import { CreateEventRequestData, CreateEventRequest, CreateEventResponse } from '../messages/createEvent.js';
 import { log_sdk } from '../utils/logger.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
 import { useSession } from './wc/useSession.js';
 
 export const useRequestCreateEvent = (
@@ -16,11 +16,10 @@ export const useRequestCreateEvent = (
       return input.plaintext;
     });
   
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<CreateEventResponse | undefined>({
     topic: session?.topic ?? '',
     chainId: 'aleo:1',
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'requestCreateEvent',
       params: {

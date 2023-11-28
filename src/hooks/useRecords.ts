@@ -3,7 +3,7 @@ import { GetRecordsRequest, GetRecordsResponse, RecordWithPlaintext, RecordsFilt
 import { SessionTypes } from '@walletconnect/types';
 import useWalletStore from '../store.js';
 import { useSession } from './wc/useSession.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
 type UseRecordsOptions = {
@@ -30,11 +30,10 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
     filter.programId = undefined;
   }
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetRecordsResponse | undefined>({
     topic: session?.topic,
     chainId: chainId,
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'getRecords',
       params: {
@@ -48,10 +47,11 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    console.log(eventName)
     const _address = params.event.address;
+    eventName === 'accountSelected' && console.log('!!! ACCOUNT SELECTED CALLED !!!')
     if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && session && session.topic === topic && !loading) {
       request();
+      console.log('REQUESTED RECORDS!!!')
     }
   });
 

@@ -31,8 +31,7 @@ export const importSharedState = async (
       topic: session?.topic ?? '',
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'importSharedState',
         params: {
           seed,

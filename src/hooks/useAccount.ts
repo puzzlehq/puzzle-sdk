@@ -6,7 +6,8 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import useWalletStore from '../store.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
+import { GetRecordsResponse } from '../index.js';
 
 /// ADDRESSES AND ALIASES
 export const shortenAddress = (address: string) => {
@@ -24,11 +25,10 @@ export const useAccount = () => {
 
   const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetSelectedAccountResponse | undefined>({
     topic: session?.topic,
     chainId: chainId,
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'getSelectedAccount'
     },
@@ -64,7 +64,7 @@ export const useAccount = () => {
   useOnSessionDelete(({ params, topic }) => {
     setAccount(undefined);
   });
-  request
+  
   // send initial account request...
   useEffect(() => {
     if (session && !loading) {

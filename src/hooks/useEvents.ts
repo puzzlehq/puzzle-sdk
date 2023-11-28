@@ -3,7 +3,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { EventsFilter, GetEventsRequest, GetEventsResponse } from '../messages/events.js';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
 type UseEventsOptions = {
@@ -19,11 +19,10 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
     filter.programId = undefined;
   }
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetEventsResponse | undefined>({
     topic: session?.topic ?? '',
     chainId: 'aleo:1',
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'getEvents',
       params: {

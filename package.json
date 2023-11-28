@@ -25,7 +25,7 @@
     "@types/debug": "^4.1.7",
     "@walletconnect/modal-sign-html": "^2.6.2",
     "@walletconnect/types": "^2.9.0",
-    "@walletconnect/utils": "^2.9.2",
+    "@walletconnect/utils": "^2.9.0",
     "debug": "^4.3.4",
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",

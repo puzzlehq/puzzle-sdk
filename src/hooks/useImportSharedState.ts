@@ -1,15 +1,14 @@
 import { SessionTypes } from '@walletconnect/types';
 import { ImportSharedStateRequest, ImportSharedStateResponse, useSession } from '../index.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
 
 export const useImportSharedState = (seed: string) => {
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<ImportSharedStateResponse | undefined>({
     topic: session?.topic ?? '',
     chainId: 'aleo:1',
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'importSharedState',
       params: {

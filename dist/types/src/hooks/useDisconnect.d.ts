@@ -1,5 +1,5 @@
 export declare function useDisconnect(): {
-    error: string | undefined;
+    error: unknown;
     loading: boolean;
     disconnect: () => Promise<void>;
 };

@@ -9,7 +9,7 @@ export type RecordWithPlaintext = Record & {
 
 export type RecordsFilter = {
   programId?: string;
-  function?: string;
+  functionId?: string;
   type: 'all' | 'spent' | 'unspent';
 };
 
@@ -49,8 +49,7 @@ export const getRecords = async ({
       topic: session.topic,
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'getRecords',
         params: {
           address,

@@ -2,7 +2,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { DecryptRequest, DecryptResponse} from '../messages/decrypt.js';
 import { log_sdk } from '../utils/logger.js';
 import { useSession } from '../index.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
 
 export const useDecrypt = (
   ciphertexts?: string[]
@@ -10,11 +10,10 @@ export const useDecrypt = (
   log_sdk('useDecrypt', ciphertexts);
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<DecryptResponse | undefined>({
     topic: session?.topic ?? '',
     chainId: 'aleo:1',
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'decrypt',
       params: {

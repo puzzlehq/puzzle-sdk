@@ -20,6 +20,7 @@ export function configureConnection(options: {
 }) {
   connection = new WalletConnectModalSign({
     projectId,
+    
     metadata: {
       name: options.dAppName,
       description: options.dAppDescription,

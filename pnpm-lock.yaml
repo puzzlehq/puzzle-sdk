@@ -27,7 +27,7 @@ dependencies:
     specifier: ^2.9.0
     version: 2.9.0
   '@walletconnect/utils':
-    specifier: ^2.9.2
+    specifier: ^2.9.0
     version: 2.10.0
   debug:
     specifier: ^4.3.4

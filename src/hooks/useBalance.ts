@@ -7,7 +7,7 @@ import {
 import { useSession } from './wc/useSession.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequest } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
 export const useBalance = () => {
@@ -16,11 +16,10 @@ export const useBalance = () => {
 
   const chainId = 'aleo:1';
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
+  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetBalancesResponse | undefined>({
     topic: session?.topic,
     chainId: chainId,
     request: {
-      id: 1,
       jsonrpc: '2.0',
       method: 'getBalance',
       params: {
