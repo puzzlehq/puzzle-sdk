@@ -36,7 +36,7 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
-    "@puzzlehq/types": "1.0.4",
+    "@puzzlehq/types": "1.0.7",
     "@types/chrome": "^0.0.228",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",

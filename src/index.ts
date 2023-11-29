@@ -22,6 +22,8 @@ export * from './hooks/wc/useOnSessionUpdate.js';
 export * from './hooks/wc/useSession.js';
 export * from './messages/index.js';
 
+export * from "@puzzlehq/types";
+
 const wc_keys = [
   'wc@2:client:0.3//proposal', 
   'wc@2:core:0.3//subscription',

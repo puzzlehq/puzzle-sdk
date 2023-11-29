@@ -58,8 +58,8 @@ dependencies:
 
 devDependencies:
   '@puzzlehq/types':
-    specifier: 1.0.4
-    version: 1.0.4
+    specifier: 1.0.7
+    version: 1.0.7
   '@types/chrome':
     specifier: ^0.0.228
     version: 0.0.228
@@ -350,8 +350,10 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@puzzlehq/types@1.0.4:
-    resolution: {integrity: sha512-PoNskZ//7skrUq56xazZ3jPTBpvYDLgWZ70yVHKCjMAB5cBnrQEUSNxh2diYj3lT5yamu0ti69tpMSN591X7Og==}
+  /@puzzlehq/types@1.0.7:
+    resolution: {integrity: sha512-S390V3mxSKFehbrR9MPs3IWn06uF9jpoFVyftOd3/gfu2Rf5F8HDA1m5sS1CSdAUMB3b45nrtzk3K6p0jRpCKw==}
+    dependencies:
+      zod: 3.21.1
     dev: true
 
   /@stablelib/aead@1.0.1:
@@ -1497,6 +1499,10 @@ packages:
       y18n: 4.0.3
       yargs-parser: 18.1.3
     dev: false
+
+  /zod@3.21.1:
+    resolution: {integrity: sha512-+dTu2m6gmCbO9Ahm4ZBDapx2O6ZY9QSPXst2WXjcznPMwf2YNpn3RevLx4KkZp1OPW/ouFcoBtBzFz/LeY69oA==}
+    dev: true
 
   /zustand@4.3.9(immer@9.0.19)(react@18.2.0):
     resolution: {integrity: sha512-Tat5r8jOMG1Vcsj8uldMyqYKC5IZvQif8zetmLHs9WoZlntTHmIoNM8TpLRY31ExncuUvUOXehd0kvahkuHjDw==}

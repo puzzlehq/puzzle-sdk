@@ -19,3 +19,4 @@ export * from './hooks/wc/useOnSessionExpire.js';
 export * from './hooks/wc/useOnSessionUpdate.js';
 export * from './hooks/wc/useSession.js';
 export * from './messages/index.js';
+export * from "@puzzlehq/types";
