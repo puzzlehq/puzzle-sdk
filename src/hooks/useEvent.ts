@@ -6,7 +6,7 @@ import { useOnSessionEvent, useSession } from '../index.js';
 import { useRequest } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
-export const useEvent = ( id: string ) => {
+export const useEvent = ( id?: string ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
@@ -23,7 +23,7 @@ export const useEvent = ( id: string ) => {
   });
 
   // listen for wallet-originating account updates
-  useOnSessionEvent(({ id, params, topic }) => {
+  useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const address = params.event.address;
     if (eventName === 'selectedAccountSynced' && session && session.topic === topic && address === account?.address && !loading) {
