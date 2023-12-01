@@ -1,5 +1,5 @@
 import hs, { useEffect as Cr, useState as Bi, useDebugValue as eh } from "react";
-const th = "@puzzlehq/sdk", rh = "Puzzle SDK", nh = "0.1.35", ih = "Your portal to privacy", sh = "./dist/puzzle.umd.js", oh = "./dist/puzzle.es.js", ah = "./dist/types/src/index.d.ts", ch = {
+const th = "@puzzlehq/sdk", rh = "Puzzle SDK", nh = "0.1.36", ih = "Your portal to privacy", sh = "./dist/puzzle.umd.js", oh = "./dist/puzzle.es.js", ah = "./dist/types/src/index.d.ts", ch = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.umd.js",
@@ -456,7 +456,7 @@ let qh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-dad6f36c.js");
+      await import("./index-55e051dc.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), pr.setIsUiLoaded(!0);
     }
@@ -1625,7 +1625,7 @@ var xu = { exports: {} };
         });
         return y(U, I), U;
       }
-      function ot(m, I, x, U) {
+      function at(m, I, x, U) {
         var N = this;
         m = S(m);
         var M = new d(function(B, J) {
@@ -1642,7 +1642,7 @@ var xu = { exports: {} };
               }, function(Pe) {
                 if (Pe.code === Pe.QUOTA_ERR) {
                   if (U > 0) {
-                    B(ot.apply(N, [m, ee, x, U - 1]));
+                    B(at.apply(N, [m, ee, x, U - 1]));
                     return;
                   }
                   J(Pe);
@@ -1654,7 +1654,7 @@ var xu = { exports: {} };
         return y(M, x), M;
       }
       function nt(m, I, x) {
-        return ot.apply(this, [m, I, x, 1]);
+        return at.apply(this, [m, I, x, 1]);
       }
       function lt(m, I) {
         var x = this;
@@ -3794,8 +3794,8 @@ var Mu = {};
       k[l] = $[l] - P[l];
   }
   function a(k, $, P) {
-    let l, T, se = 0, ae = 0, Fe = 0, Se = 0, je = 0, ze = 0, Je = 0, Qe = 0, Ue = 0, Ne = 0, Re = 0, Te = 0, Ie = 0, xe = 0, Ee = 0, be = 0, Ae = 0, Me = 0, _e = 0, $e = 0, ke = 0, Be = 0, qe = 0, Ve = 0, Xt = 0, Gt = 0, ur = 0, zt = 0, Rt = 0, Xr = 0, wn = 0, ot = P[0], nt = P[1], lt = P[2], ht = P[3], ft = P[4], it = P[5], yt = P[6], mt = P[7], vt = P[8], bt = P[9], _t = P[10], dt = P[11], pt = P[12], Xe = P[13], wt = P[14], Et = P[15];
-    l = $[0], se += l * ot, ae += l * nt, Fe += l * lt, Se += l * ht, je += l * ft, ze += l * it, Je += l * yt, Qe += l * mt, Ue += l * vt, Ne += l * bt, Re += l * _t, Te += l * dt, Ie += l * pt, xe += l * Xe, Ee += l * wt, be += l * Et, l = $[1], ae += l * ot, Fe += l * nt, Se += l * lt, je += l * ht, ze += l * ft, Je += l * it, Qe += l * yt, Ue += l * mt, Ne += l * vt, Re += l * bt, Te += l * _t, Ie += l * dt, xe += l * pt, Ee += l * Xe, be += l * wt, Ae += l * Et, l = $[2], Fe += l * ot, Se += l * nt, je += l * lt, ze += l * ht, Je += l * ft, Qe += l * it, Ue += l * yt, Ne += l * mt, Re += l * vt, Te += l * bt, Ie += l * _t, xe += l * dt, Ee += l * pt, be += l * Xe, Ae += l * wt, Me += l * Et, l = $[3], Se += l * ot, je += l * nt, ze += l * lt, Je += l * ht, Qe += l * ft, Ue += l * it, Ne += l * yt, Re += l * mt, Te += l * vt, Ie += l * bt, xe += l * _t, Ee += l * dt, be += l * pt, Ae += l * Xe, Me += l * wt, _e += l * Et, l = $[4], je += l * ot, ze += l * nt, Je += l * lt, Qe += l * ht, Ue += l * ft, Ne += l * it, Re += l * yt, Te += l * mt, Ie += l * vt, xe += l * bt, Ee += l * _t, be += l * dt, Ae += l * pt, Me += l * Xe, _e += l * wt, $e += l * Et, l = $[5], ze += l * ot, Je += l * nt, Qe += l * lt, Ue += l * ht, Ne += l * ft, Re += l * it, Te += l * yt, Ie += l * mt, xe += l * vt, Ee += l * bt, be += l * _t, Ae += l * dt, Me += l * pt, _e += l * Xe, $e += l * wt, ke += l * Et, l = $[6], Je += l * ot, Qe += l * nt, Ue += l * lt, Ne += l * ht, Re += l * ft, Te += l * it, Ie += l * yt, xe += l * mt, Ee += l * vt, be += l * bt, Ae += l * _t, Me += l * dt, _e += l * pt, $e += l * Xe, ke += l * wt, Be += l * Et, l = $[7], Qe += l * ot, Ue += l * nt, Ne += l * lt, Re += l * ht, Te += l * ft, Ie += l * it, xe += l * yt, Ee += l * mt, be += l * vt, Ae += l * bt, Me += l * _t, _e += l * dt, $e += l * pt, ke += l * Xe, Be += l * wt, qe += l * Et, l = $[8], Ue += l * ot, Ne += l * nt, Re += l * lt, Te += l * ht, Ie += l * ft, xe += l * it, Ee += l * yt, be += l * mt, Ae += l * vt, Me += l * bt, _e += l * _t, $e += l * dt, ke += l * pt, Be += l * Xe, qe += l * wt, Ve += l * Et, l = $[9], Ne += l * ot, Re += l * nt, Te += l * lt, Ie += l * ht, xe += l * ft, Ee += l * it, be += l * yt, Ae += l * mt, Me += l * vt, _e += l * bt, $e += l * _t, ke += l * dt, Be += l * pt, qe += l * Xe, Ve += l * wt, Xt += l * Et, l = $[10], Re += l * ot, Te += l * nt, Ie += l * lt, xe += l * ht, Ee += l * ft, be += l * it, Ae += l * yt, Me += l * mt, _e += l * vt, $e += l * bt, ke += l * _t, Be += l * dt, qe += l * pt, Ve += l * Xe, Xt += l * wt, Gt += l * Et, l = $[11], Te += l * ot, Ie += l * nt, xe += l * lt, Ee += l * ht, be += l * ft, Ae += l * it, Me += l * yt, _e += l * mt, $e += l * vt, ke += l * bt, Be += l * _t, qe += l * dt, Ve += l * pt, Xt += l * Xe, Gt += l * wt, ur += l * Et, l = $[12], Ie += l * ot, xe += l * nt, Ee += l * lt, be += l * ht, Ae += l * ft, Me += l * it, _e += l * yt, $e += l * mt, ke += l * vt, Be += l * bt, qe += l * _t, Ve += l * dt, Xt += l * pt, Gt += l * Xe, ur += l * wt, zt += l * Et, l = $[13], xe += l * ot, Ee += l * nt, be += l * lt, Ae += l * ht, Me += l * ft, _e += l * it, $e += l * yt, ke += l * mt, Be += l * vt, qe += l * bt, Ve += l * _t, Xt += l * dt, Gt += l * pt, ur += l * Xe, zt += l * wt, Rt += l * Et, l = $[14], Ee += l * ot, be += l * nt, Ae += l * lt, Me += l * ht, _e += l * ft, $e += l * it, ke += l * yt, Be += l * mt, qe += l * vt, Ve += l * bt, Xt += l * _t, Gt += l * dt, ur += l * pt, zt += l * Xe, Rt += l * wt, Xr += l * Et, l = $[15], be += l * ot, Ae += l * nt, Me += l * lt, _e += l * ht, $e += l * ft, ke += l * it, Be += l * yt, qe += l * mt, Ve += l * vt, Xt += l * bt, Gt += l * _t, ur += l * dt, zt += l * pt, Rt += l * Xe, Xr += l * wt, wn += l * Et, se += 38 * Ae, ae += 38 * Me, Fe += 38 * _e, Se += 38 * $e, je += 38 * ke, ze += 38 * Be, Je += 38 * qe, Qe += 38 * Ve, Ue += 38 * Xt, Ne += 38 * Gt, Re += 38 * ur, Te += 38 * zt, Ie += 38 * Rt, xe += 38 * Xr, Ee += 38 * wn, T = 1, l = se + T + 65535, T = Math.floor(l / 65536), se = l - T * 65536, l = ae + T + 65535, T = Math.floor(l / 65536), ae = l - T * 65536, l = Fe + T + 65535, T = Math.floor(l / 65536), Fe = l - T * 65536, l = Se + T + 65535, T = Math.floor(l / 65536), Se = l - T * 65536, l = je + T + 65535, T = Math.floor(l / 65536), je = l - T * 65536, l = ze + T + 65535, T = Math.floor(l / 65536), ze = l - T * 65536, l = Je + T + 65535, T = Math.floor(l / 65536), Je = l - T * 65536, l = Qe + T + 65535, T = Math.floor(l / 65536), Qe = l - T * 65536, l = Ue + T + 65535, T = Math.floor(l / 65536), Ue = l - T * 65536, l = Ne + T + 65535, T = Math.floor(l / 65536), Ne = l - T * 65536, l = Re + T + 65535, T = Math.floor(l / 65536), Re = l - T * 65536, l = Te + T + 65535, T = Math.floor(l / 65536), Te = l - T * 65536, l = Ie + T + 65535, T = Math.floor(l / 65536), Ie = l - T * 65536, l = xe + T + 65535, T = Math.floor(l / 65536), xe = l - T * 65536, l = Ee + T + 65535, T = Math.floor(l / 65536), Ee = l - T * 65536, l = be + T + 65535, T = Math.floor(l / 65536), be = l - T * 65536, se += T - 1 + 37 * (T - 1), T = 1, l = se + T + 65535, T = Math.floor(l / 65536), se = l - T * 65536, l = ae + T + 65535, T = Math.floor(l / 65536), ae = l - T * 65536, l = Fe + T + 65535, T = Math.floor(l / 65536), Fe = l - T * 65536, l = Se + T + 65535, T = Math.floor(l / 65536), Se = l - T * 65536, l = je + T + 65535, T = Math.floor(l / 65536), je = l - T * 65536, l = ze + T + 65535, T = Math.floor(l / 65536), ze = l - T * 65536, l = Je + T + 65535, T = Math.floor(l / 65536), Je = l - T * 65536, l = Qe + T + 65535, T = Math.floor(l / 65536), Qe = l - T * 65536, l = Ue + T + 65535, T = Math.floor(l / 65536), Ue = l - T * 65536, l = Ne + T + 65535, T = Math.floor(l / 65536), Ne = l - T * 65536, l = Re + T + 65535, T = Math.floor(l / 65536), Re = l - T * 65536, l = Te + T + 65535, T = Math.floor(l / 65536), Te = l - T * 65536, l = Ie + T + 65535, T = Math.floor(l / 65536), Ie = l - T * 65536, l = xe + T + 65535, T = Math.floor(l / 65536), xe = l - T * 65536, l = Ee + T + 65535, T = Math.floor(l / 65536), Ee = l - T * 65536, l = be + T + 65535, T = Math.floor(l / 65536), be = l - T * 65536, se += T - 1 + 37 * (T - 1), k[0] = se, k[1] = ae, k[2] = Fe, k[3] = Se, k[4] = je, k[5] = ze, k[6] = Je, k[7] = Qe, k[8] = Ue, k[9] = Ne, k[10] = Re, k[11] = Te, k[12] = Ie, k[13] = xe, k[14] = Ee, k[15] = be;
+    let l, T, se = 0, ae = 0, Fe = 0, Se = 0, je = 0, ze = 0, Je = 0, Qe = 0, Ue = 0, Ne = 0, Re = 0, Te = 0, Ie = 0, xe = 0, Ee = 0, be = 0, Ae = 0, Me = 0, _e = 0, $e = 0, ke = 0, Be = 0, qe = 0, Ve = 0, Xt = 0, Gt = 0, ur = 0, zt = 0, Rt = 0, Xr = 0, wn = 0, at = P[0], nt = P[1], lt = P[2], ht = P[3], ft = P[4], it = P[5], yt = P[6], mt = P[7], vt = P[8], bt = P[9], _t = P[10], dt = P[11], pt = P[12], Xe = P[13], wt = P[14], Et = P[15];
+    l = $[0], se += l * at, ae += l * nt, Fe += l * lt, Se += l * ht, je += l * ft, ze += l * it, Je += l * yt, Qe += l * mt, Ue += l * vt, Ne += l * bt, Re += l * _t, Te += l * dt, Ie += l * pt, xe += l * Xe, Ee += l * wt, be += l * Et, l = $[1], ae += l * at, Fe += l * nt, Se += l * lt, je += l * ht, ze += l * ft, Je += l * it, Qe += l * yt, Ue += l * mt, Ne += l * vt, Re += l * bt, Te += l * _t, Ie += l * dt, xe += l * pt, Ee += l * Xe, be += l * wt, Ae += l * Et, l = $[2], Fe += l * at, Se += l * nt, je += l * lt, ze += l * ht, Je += l * ft, Qe += l * it, Ue += l * yt, Ne += l * mt, Re += l * vt, Te += l * bt, Ie += l * _t, xe += l * dt, Ee += l * pt, be += l * Xe, Ae += l * wt, Me += l * Et, l = $[3], Se += l * at, je += l * nt, ze += l * lt, Je += l * ht, Qe += l * ft, Ue += l * it, Ne += l * yt, Re += l * mt, Te += l * vt, Ie += l * bt, xe += l * _t, Ee += l * dt, be += l * pt, Ae += l * Xe, Me += l * wt, _e += l * Et, l = $[4], je += l * at, ze += l * nt, Je += l * lt, Qe += l * ht, Ue += l * ft, Ne += l * it, Re += l * yt, Te += l * mt, Ie += l * vt, xe += l * bt, Ee += l * _t, be += l * dt, Ae += l * pt, Me += l * Xe, _e += l * wt, $e += l * Et, l = $[5], ze += l * at, Je += l * nt, Qe += l * lt, Ue += l * ht, Ne += l * ft, Re += l * it, Te += l * yt, Ie += l * mt, xe += l * vt, Ee += l * bt, be += l * _t, Ae += l * dt, Me += l * pt, _e += l * Xe, $e += l * wt, ke += l * Et, l = $[6], Je += l * at, Qe += l * nt, Ue += l * lt, Ne += l * ht, Re += l * ft, Te += l * it, Ie += l * yt, xe += l * mt, Ee += l * vt, be += l * bt, Ae += l * _t, Me += l * dt, _e += l * pt, $e += l * Xe, ke += l * wt, Be += l * Et, l = $[7], Qe += l * at, Ue += l * nt, Ne += l * lt, Re += l * ht, Te += l * ft, Ie += l * it, xe += l * yt, Ee += l * mt, be += l * vt, Ae += l * bt, Me += l * _t, _e += l * dt, $e += l * pt, ke += l * Xe, Be += l * wt, qe += l * Et, l = $[8], Ue += l * at, Ne += l * nt, Re += l * lt, Te += l * ht, Ie += l * ft, xe += l * it, Ee += l * yt, be += l * mt, Ae += l * vt, Me += l * bt, _e += l * _t, $e += l * dt, ke += l * pt, Be += l * Xe, qe += l * wt, Ve += l * Et, l = $[9], Ne += l * at, Re += l * nt, Te += l * lt, Ie += l * ht, xe += l * ft, Ee += l * it, be += l * yt, Ae += l * mt, Me += l * vt, _e += l * bt, $e += l * _t, ke += l * dt, Be += l * pt, qe += l * Xe, Ve += l * wt, Xt += l * Et, l = $[10], Re += l * at, Te += l * nt, Ie += l * lt, xe += l * ht, Ee += l * ft, be += l * it, Ae += l * yt, Me += l * mt, _e += l * vt, $e += l * bt, ke += l * _t, Be += l * dt, qe += l * pt, Ve += l * Xe, Xt += l * wt, Gt += l * Et, l = $[11], Te += l * at, Ie += l * nt, xe += l * lt, Ee += l * ht, be += l * ft, Ae += l * it, Me += l * yt, _e += l * mt, $e += l * vt, ke += l * bt, Be += l * _t, qe += l * dt, Ve += l * pt, Xt += l * Xe, Gt += l * wt, ur += l * Et, l = $[12], Ie += l * at, xe += l * nt, Ee += l * lt, be += l * ht, Ae += l * ft, Me += l * it, _e += l * yt, $e += l * mt, ke += l * vt, Be += l * bt, qe += l * _t, Ve += l * dt, Xt += l * pt, Gt += l * Xe, ur += l * wt, zt += l * Et, l = $[13], xe += l * at, Ee += l * nt, be += l * lt, Ae += l * ht, Me += l * ft, _e += l * it, $e += l * yt, ke += l * mt, Be += l * vt, qe += l * bt, Ve += l * _t, Xt += l * dt, Gt += l * pt, ur += l * Xe, zt += l * wt, Rt += l * Et, l = $[14], Ee += l * at, be += l * nt, Ae += l * lt, Me += l * ht, _e += l * ft, $e += l * it, ke += l * yt, Be += l * mt, qe += l * vt, Ve += l * bt, Xt += l * _t, Gt += l * dt, ur += l * pt, zt += l * Xe, Rt += l * wt, Xr += l * Et, l = $[15], be += l * at, Ae += l * nt, Me += l * lt, _e += l * ht, $e += l * ft, ke += l * it, Be += l * yt, qe += l * mt, Ve += l * vt, Xt += l * bt, Gt += l * _t, ur += l * dt, zt += l * pt, Rt += l * Xe, Xr += l * wt, wn += l * Et, se += 38 * Ae, ae += 38 * Me, Fe += 38 * _e, Se += 38 * $e, je += 38 * ke, ze += 38 * Be, Je += 38 * qe, Qe += 38 * Ve, Ue += 38 * Xt, Ne += 38 * Gt, Re += 38 * ur, Te += 38 * zt, Ie += 38 * Rt, xe += 38 * Xr, Ee += 38 * wn, T = 1, l = se + T + 65535, T = Math.floor(l / 65536), se = l - T * 65536, l = ae + T + 65535, T = Math.floor(l / 65536), ae = l - T * 65536, l = Fe + T + 65535, T = Math.floor(l / 65536), Fe = l - T * 65536, l = Se + T + 65535, T = Math.floor(l / 65536), Se = l - T * 65536, l = je + T + 65535, T = Math.floor(l / 65536), je = l - T * 65536, l = ze + T + 65535, T = Math.floor(l / 65536), ze = l - T * 65536, l = Je + T + 65535, T = Math.floor(l / 65536), Je = l - T * 65536, l = Qe + T + 65535, T = Math.floor(l / 65536), Qe = l - T * 65536, l = Ue + T + 65535, T = Math.floor(l / 65536), Ue = l - T * 65536, l = Ne + T + 65535, T = Math.floor(l / 65536), Ne = l - T * 65536, l = Re + T + 65535, T = Math.floor(l / 65536), Re = l - T * 65536, l = Te + T + 65535, T = Math.floor(l / 65536), Te = l - T * 65536, l = Ie + T + 65535, T = Math.floor(l / 65536), Ie = l - T * 65536, l = xe + T + 65535, T = Math.floor(l / 65536), xe = l - T * 65536, l = Ee + T + 65535, T = Math.floor(l / 65536), Ee = l - T * 65536, l = be + T + 65535, T = Math.floor(l / 65536), be = l - T * 65536, se += T - 1 + 37 * (T - 1), T = 1, l = se + T + 65535, T = Math.floor(l / 65536), se = l - T * 65536, l = ae + T + 65535, T = Math.floor(l / 65536), ae = l - T * 65536, l = Fe + T + 65535, T = Math.floor(l / 65536), Fe = l - T * 65536, l = Se + T + 65535, T = Math.floor(l / 65536), Se = l - T * 65536, l = je + T + 65535, T = Math.floor(l / 65536), je = l - T * 65536, l = ze + T + 65535, T = Math.floor(l / 65536), ze = l - T * 65536, l = Je + T + 65535, T = Math.floor(l / 65536), Je = l - T * 65536, l = Qe + T + 65535, T = Math.floor(l / 65536), Qe = l - T * 65536, l = Ue + T + 65535, T = Math.floor(l / 65536), Ue = l - T * 65536, l = Ne + T + 65535, T = Math.floor(l / 65536), Ne = l - T * 65536, l = Re + T + 65535, T = Math.floor(l / 65536), Re = l - T * 65536, l = Te + T + 65535, T = Math.floor(l / 65536), Te = l - T * 65536, l = Ie + T + 65535, T = Math.floor(l / 65536), Ie = l - T * 65536, l = xe + T + 65535, T = Math.floor(l / 65536), xe = l - T * 65536, l = Ee + T + 65535, T = Math.floor(l / 65536), Ee = l - T * 65536, l = be + T + 65535, T = Math.floor(l / 65536), be = l - T * 65536, se += T - 1 + 37 * (T - 1), k[0] = se, k[1] = ae, k[2] = Fe, k[3] = Se, k[4] = je, k[5] = ze, k[6] = Je, k[7] = Qe, k[8] = Ue, k[9] = Ne, k[10] = Re, k[11] = Te, k[12] = Ie, k[13] = xe, k[14] = Ee, k[15] = be;
   }
   function g(k, $) {
     a(k, $, $);
@@ -6571,7 +6571,7 @@ es.exports;
     return E ? "Symbol(src)_1." + E : "";
   }(), ke = be.toString, Be = RegExp(
     "^" + Me.call(_e).replace(ve, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
-  ), qe = T ? $.Buffer : void 0, Ve = $.Symbol, Xt = $.Uint8Array, Gt = be.propertyIsEnumerable, ur = xe.splice, zt = Ve ? Ve.toStringTag : void 0, Rt = Object.getOwnPropertySymbols, Xr = qe ? qe.isBuffer : void 0, wn = Te(Object.keys, Object), ot = Ge($, "DataView"), nt = Ge($, "Map"), lt = Ge($, "Promise"), ht = Ge($, "Set"), ft = Ge($, "WeakMap"), it = Ge(Object, "create"), yt = tn(ot), mt = tn(nt), vt = tn(lt), bt = tn(ht), _t = tn(ft), dt = Ve ? Ve.prototype : void 0, pt = dt ? dt.valueOf : void 0;
+  ), qe = T ? $.Buffer : void 0, Ve = $.Symbol, Xt = $.Uint8Array, Gt = be.propertyIsEnumerable, ur = xe.splice, zt = Ve ? Ve.toStringTag : void 0, Rt = Object.getOwnPropertySymbols, Xr = qe ? qe.isBuffer : void 0, wn = Te(Object.keys, Object), at = Ge($, "DataView"), nt = Ge($, "Map"), lt = Ge($, "Promise"), ht = Ge($, "Set"), ft = Ge($, "WeakMap"), it = Ge(Object, "create"), yt = tn(at), mt = tn(nt), vt = tn(lt), bt = tn(ht), _t = tn(ft), dt = Ve ? Ve.prototype : void 0, pt = dt ? dt.valueOf : void 0;
   function Xe(E) {
     var L = -1, H = E == null ? 0 : E.length;
     for (this.clear(); ++L < H; ) {
@@ -6703,12 +6703,12 @@ es.exports;
   wr.prototype.clear = Fs, wr.prototype.delete = zn, wr.prototype.get = Us, wr.prototype.has = Ms, wr.prototype.set = m;
   function I(E, L) {
     var H = Ri(E), he = !H && Gl(E), rt = !H && !he && ks(E), Oe = !H && !he && !rt && wa(E), gt = H || he || rt || Oe, Dt = gt ? Je(E.length, String) : [], Tt = Dt.length;
-    for (var at in E)
-      (L || _e.call(E, at)) && !(gt && // Safari 9 has enumerable `arguments.length` in strict mode.
-      (at == "length" || // Node.js 0.10 has enumerable non-index properties on buffers.
-      rt && (at == "offset" || at == "parent") || // PhantomJS 2 has enumerable non-index properties on typed arrays.
-      Oe && (at == "buffer" || at == "byteLength" || at == "byteOffset") || // Skip index properties.
-      js(at, Tt))) && Dt.push(at);
+    for (var ct in E)
+      (L || _e.call(E, ct)) && !(gt && // Safari 9 has enumerable `arguments.length` in strict mode.
+      (ct == "length" || // Node.js 0.10 has enumerable non-index properties on buffers.
+      rt && (ct == "offset" || ct == "parent") || // PhantomJS 2 has enumerable non-index properties on typed arrays.
+      Oe && (ct == "buffer" || ct == "byteLength" || ct == "byteOffset") || // Skip index properties.
+      js(ct, Tt))) && Dt.push(ct);
     return Dt;
   }
   function x(E, L) {
@@ -6731,9 +6731,9 @@ es.exports;
     return E === L ? !0 : E == null || L == null || !Bn(E) && !Bn(L) ? E !== E && L !== L : J(E, L, H, he, B, rt);
   }
   function J(E, L, H, he, rt, Oe) {
-    var gt = Ri(E), Dt = Ri(L), Tt = gt ? u : ir(E), at = Dt ? u : ir(L);
-    Tt = Tt == o ? w : Tt, at = at == o ? w : at;
-    var er = Tt == w, hr = at == w, Pt = Tt == at;
+    var gt = Ri(E), Dt = Ri(L), Tt = gt ? u : ir(E), ct = Dt ? u : ir(L);
+    Tt = Tt == o ? w : Tt, ct = ct == o ? w : ct;
+    var er = Tt == w, hr = ct == w, Pt = Tt == ct;
     if (Pt && ks(E)) {
       if (!ks(L))
         return !1;
@@ -6771,9 +6771,9 @@ es.exports;
     var gt = H & i, Dt = E.length, Tt = L.length;
     if (Dt != Tt && !(gt && Tt > Dt))
       return !1;
-    var at = Oe.get(E);
-    if (at && Oe.get(L))
-      return at == L;
+    var ct = Oe.get(E);
+    if (ct && Oe.get(L))
+      return ct == L;
     var er = -1, hr = !0, Pt = H & s ? new En() : void 0;
     for (Oe.set(E, L), Oe.set(L, E); ++er < Dt; ) {
       var sr = E[er], or = L[er];
@@ -6823,9 +6823,9 @@ es.exports;
         var Tt = he & i;
         if (Dt || (Dt = Ie), E.size != L.size && !Tt)
           return !1;
-        var at = gt.get(E);
-        if (at)
-          return at == L;
+        var ct = gt.get(E);
+        if (ct)
+          return ct == L;
         he |= s, gt.set(E, L);
         var er = de(Dt(E), Dt(L), he, rt, Oe, gt);
         return gt.delete(E), er;
@@ -6836,7 +6836,7 @@ es.exports;
     return !1;
   }
   function Ze(E, L, H, he, rt, Oe) {
-    var gt = H & i, Dt = He(E), Tt = Dt.length, at = He(L), er = at.length;
+    var gt = H & i, Dt = He(E), Tt = Dt.length, ct = He(L), er = ct.length;
     if (Tt != er && !gt)
       return !1;
     for (var hr = Tt; hr--; ) {
@@ -6892,7 +6892,7 @@ es.exports;
       return Gt.call(E, L);
     }));
   } : Ql, ir = N;
-  (ot && ir(new ot(new ArrayBuffer(1))) != W || nt && ir(new nt()) != C || lt && ir(lt.resolve()) != O || ht && ir(new ht()) != p || ft && ir(new ft()) != F) && (ir = function(E) {
+  (at && ir(new at(new ArrayBuffer(1))) != W || nt && ir(new nt()) != C || lt && ir(lt.resolve()) != O || ht && ir(new ht()) != p || ft && ir(new ft()) != F) && (ir = function(E) {
     var L = N(E), H = L == w ? E.constructor : void 0, he = H ? tn(H) : "";
     if (he)
       switch (he) {
@@ -9363,6 +9363,7 @@ const da = [
   "getBalance",
   "getRecords",
   "requestCreateEvent",
+  "getEvent",
   "getEvents",
   "createSharedState",
   "importSharedState",
@@ -9532,7 +9533,7 @@ function rw(t) {
     modalOptions: { ...ob }
   }), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
 }
-async function ut() {
+async function ot() {
   return new Promise((t) => {
     if (ti)
       t(ti);
@@ -10923,13 +10924,13 @@ mr.create = (t, e) => new mr({
   ...Ce(e)
 });
 function Cn(t) {
-  if (t instanceof ct) {
+  if (t instanceof ut) {
     const e = {};
     for (const r in t.shape) {
       const n = t.shape[r];
       e[r] = kr.create(Cn(n));
     }
-    return new ct({
+    return new ut({
       ...t._def,
       shape: () => e
     });
@@ -10939,7 +10940,7 @@ function Cn(t) {
       type: Cn(t.element)
     }) : t instanceof kr ? kr.create(Cn(t.unwrap())) : t instanceof yn ? yn.create(Cn(t.unwrap())) : t instanceof Ar ? Ar.create(t.items.map((e) => Cn(e))) : t;
 }
-class ct extends Le {
+class ut extends Le {
   constructor() {
     super(...arguments), this._cached = null, this.nonstrict = this.passthrough, this.augment = this.extend;
   }
@@ -11017,7 +11018,7 @@ class ct extends Le {
     return this._def.shape();
   }
   strict(e) {
-    return pe.errToObj, new ct({
+    return pe.errToObj, new ut({
       ...this._def,
       unknownKeys: "strict",
       ...e !== void 0 ? {
@@ -11034,13 +11035,13 @@ class ct extends Le {
     });
   }
   strip() {
-    return new ct({
+    return new ut({
       ...this._def,
       unknownKeys: "strip"
     });
   }
   passthrough() {
-    return new ct({
+    return new ut({
       ...this._def,
       unknownKeys: "passthrough"
     });
@@ -11063,7 +11064,7 @@ class ct extends Le {
   //     }) as any;
   //   };
   extend(e) {
-    return new ct({
+    return new ut({
       ...this._def,
       shape: () => ({
         ...this._def.shape(),
@@ -11077,7 +11078,7 @@ class ct extends Le {
    * upgrade if you are experiencing issues.
    */
   merge(e) {
-    return new ct({
+    return new ut({
       unknownKeys: e._def.unknownKeys,
       catchall: e._def.catchall,
       shape: () => ({
@@ -11147,7 +11148,7 @@ class ct extends Le {
   //   return merged;
   // }
   catchall(e) {
-    return new ct({
+    return new ut({
       ...this._def,
       catchall: e
     });
@@ -11156,7 +11157,7 @@ class ct extends Le {
     const r = {};
     return We.objectKeys(e).forEach((n) => {
       e[n] && this.shape[n] && (r[n] = this.shape[n]);
-    }), new ct({
+    }), new ut({
       ...this._def,
       shape: () => r
     });
@@ -11165,7 +11166,7 @@ class ct extends Le {
     const r = {};
     return We.objectKeys(this.shape).forEach((n) => {
       e[n] || (r[n] = this.shape[n]);
-    }), new ct({
+    }), new ut({
       ...this._def,
       shape: () => r
     });
@@ -11181,7 +11182,7 @@ class ct extends Le {
     return We.objectKeys(this.shape).forEach((n) => {
       const i = this.shape[n];
       e && !e[n] ? r[n] = i : r[n] = i.optional();
-    }), new ct({
+    }), new ut({
       ...this._def,
       shape: () => r
     });
@@ -11197,7 +11198,7 @@ class ct extends Le {
           s = s._def.innerType;
         r[n] = s;
       }
-    }), new ct({
+    }), new ut({
       ...this._def,
       shape: () => r
     });
@@ -11206,21 +11207,21 @@ class ct extends Le {
     return Ml(We.objectKeys(this.shape));
   }
 }
-ct.create = (t, e) => new ct({
+ut.create = (t, e) => new ut({
   shape: () => t,
   unknownKeys: "strip",
   catchall: zr.create(),
   typeName: me.ZodObject,
   ...Ce(e)
 });
-ct.strictCreate = (t, e) => new ct({
+ut.strictCreate = (t, e) => new ut({
   shape: () => t,
   unknownKeys: "strict",
   catchall: zr.create(),
   typeName: me.ZodObject,
   ...Ce(e)
 });
-ct.lazycreate = (t, e) => new ct({
+ut.lazycreate = (t, e) => new ut({
   shape: t,
   unknownKeys: "strip",
   catchall: zr.create(),
@@ -12107,7 +12108,7 @@ const $l = (t, e = {}, r) => t ? Ln.create().superRefine((n, i) => {
     i.addIssue({ code: "custom", ...h, fatal: u });
   }
 }) : Ln.create(), xb = {
-  object: ct.lazycreate
+  object: ut.lazycreate
 };
 var me;
 (function(t) {
@@ -12115,7 +12116,7 @@ var me;
 })(me || (me = {}));
 const Db = (t, e = {
   message: `Input not instance of ${t.name}`
-}) => $l((r) => r instanceof t, e), kl = gr.create, zl = Gr.create, Ib = ls.create, Ob = Zr.create, ql = ui.create, Cb = pn.create, Tb = os.create, Ab = li.create, Nb = hi.create, Rb = Ln.create, Pb = dn.create, Lb = zr.create, Fb = as.create, Ub = mr.create, Mb = ct.create, jb = ct.strictCreate, $b = fi.create, kb = xs.create, zb = di.create, qb = Ar.create, Bb = pi.create, Vb = cs.create, Kb = gn.create, Hb = Nn.create, Wb = gi.create, Gb = yi.create, Zb = Yr.create, Yb = mi.create, Jb = Fn.create, nu = vr.create, Qb = kr.create, Xb = yn.create, e_ = vr.createWithPreprocess, t_ = Ci.create, r_ = () => kl().optional(), n_ = () => zl().optional(), i_ = () => ql().optional(), s_ = {
+}) => $l((r) => r instanceof t, e), kl = gr.create, zl = Gr.create, Ib = ls.create, Ob = Zr.create, ql = ui.create, Cb = pn.create, Tb = os.create, Ab = li.create, Nb = hi.create, Rb = Ln.create, Pb = dn.create, Lb = zr.create, Fb = as.create, Ub = mr.create, Mb = ut.create, jb = ut.strictCreate, $b = fi.create, kb = xs.create, zb = di.create, qb = Ar.create, Bb = pi.create, Vb = cs.create, Kb = gn.create, Hb = Nn.create, Wb = gi.create, Gb = yi.create, Zb = Yr.create, Yb = mi.create, Jb = Fn.create, nu = vr.create, Qb = kr.create, Xb = yn.create, e_ = vr.createWithPreprocess, t_ = Ci.create, r_ = () => kl().optional(), n_ = () => zl().optional(), i_ = () => ql().optional(), s_ = {
   string: (t) => gr.create({ ...t, coerce: !0 }),
   number: (t) => Gr.create({ ...t, coerce: !0 }),
   boolean: (t) => ui.create({
@@ -12163,7 +12164,7 @@ var br = /* @__PURE__ */ Object.freeze({
   ZodNever: zr,
   ZodVoid: as,
   ZodArray: mr,
-  ZodObject: ct,
+  ZodObject: ut,
   ZodUnion: fi,
   ZodDiscriminatedUnion: xs,
   ZodIntersection: di,
@@ -12347,28 +12348,28 @@ class Aw {
   }
 }
 function Bl(t) {
-  Cr(() => (ut().then((e) => {
+  Cr(() => (ot().then((e) => {
     e.onSessionDelete(t);
   }), () => {
-    ut().then((e) => {
+    ot().then((e) => {
       e.offSessionDelete(t);
     });
   }), [t]);
 }
 function p_(t) {
-  Cr(() => (ut().then((e) => {
+  Cr(() => (ot().then((e) => {
     e.onSessionExpire(t);
   }), () => {
-    ut().then((e) => {
+    ot().then((e) => {
       e.offSessionExpire(t);
     });
   }), [t]);
 }
 function Vl(t) {
-  Cr(() => (ut().then((e) => {
+  Cr(() => (ot().then((e) => {
     e.onSessionUpdate(t);
   }), () => {
-    ut().then((e) => {
+    ot().then((e) => {
       e.offSessionUpdate(t);
     });
   }), [t]);
@@ -12386,7 +12387,7 @@ function _r() {
     t && r.topic === (t == null ? void 0 : t.topic) && e(void 0);
   }), Cr(() => {
     async function r() {
-      const i = await (await ut()).getSession();
+      const i = await (await ot()).getSession();
       e(i);
     }
     return r(), Pn.on("session_change", r), () => {
@@ -12395,10 +12396,10 @@ function _r() {
   }, []), t;
 }
 function Ds(t) {
-  Cr(() => (ut().then((e) => {
+  Cr(() => (ot().then((e) => {
     e.onSessionEvent(t);
   }), () => {
-    ut().then((e) => {
+    ot().then((e) => {
       e.offSessionEvent(t);
     });
   }), [t]);
@@ -12946,7 +12947,7 @@ function Rr(t) {
   async function o(u) {
     try {
       c(!0), s(void 0);
-      const f = await (await ut()).request(u ?? t);
+      const f = await (await ot()).request(u ?? t);
       return i(f), f;
     } catch (h) {
       throw s(h), h;
@@ -13028,7 +13029,7 @@ function Pw() {
   async function c() {
     try {
       s(!0), i(void 0);
-      const u = await (await ut()).connect({
+      const u = await (await ot()).connect({
         requiredNamespaces: {
           aleo: {
             methods: da,
@@ -13398,7 +13399,7 @@ function Mw() {
   const t = _r(), { error: e, loading: r, setError: n, setLoading: i } = ga();
   async function s() {
     try {
-      i(!0), n(void 0), await (await ut()).disconnect({
+      i(!0), n(void 0), await (await ot()).disconnect({
         topic: t == null ? void 0 : t.topic,
         reason: xt("USER_DISCONNECTED")
       }), Pn.emit("session_change"), _n.setState({ account: void 0 });
@@ -13520,7 +13521,7 @@ const jw = ({ filter: t, page: e }) => {
     n();
   }, response: i, loading: c, error: o };
 }, Vw = async () => {
-  const t = await ut(), e = await t.getSession(), r = "aleo:1";
+  const t = await ot(), e = await t.getSession(), r = "aleo:1";
   if (!e || !r || !t)
     return { error: "no session, chainId, or connection" };
   try {
@@ -13538,7 +13539,7 @@ const jw = ({ filter: t, page: e }) => {
     return console.error("getAccount error", i), { error: i };
   }
 }, Kw = async () => {
-  const t = await ut(), e = await t.getSession(), r = "aleo:1";
+  const t = await ot(), e = await t.getSession(), r = "aleo:1";
   if (!e || !r || !t)
     return { error: "no session, chainId, or connection" };
   try {
@@ -13558,7 +13559,7 @@ const jw = ({ filter: t, page: e }) => {
     return console.error("getBalance error", i), { error: i };
   }
 }, Hw = async () => {
-  const t = await ut();
+  const t = await ot();
   if (!t)
     throw new Error("call setConnection() first!");
   try {
@@ -13576,7 +13577,7 @@ const jw = ({ filter: t, page: e }) => {
     console.error("connect error", e.message);
   }
 }, Ww = async (t) => {
-  const e = await ut(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
+  const e = await ot(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
   if (!r || !n || !e)
     return { error: "no session, chainId, or connection" };
   const i = t == null ? void 0 : t.inputs.map((s) => typeof s == "string" ? s : s.plaintext);
@@ -13598,7 +13599,7 @@ const jw = ({ filter: t, page: e }) => {
     return console.error("createEvent error", c), { error: c };
   }
 }, Gw = async () => {
-  const t = await ut(), e = await (t == null ? void 0 : t.getSession()), r = "aleo:1";
+  const t = await ot(), e = await (t == null ? void 0 : t.getSession()), r = "aleo:1";
   if (!e || !r || !t)
     return { error: "no session, chainId, or connection" };
   try {
@@ -13616,7 +13617,7 @@ const jw = ({ filter: t, page: e }) => {
     return console.error("createSharedState error", i), { error: i };
   }
 }, Zw = async (t) => {
-  const e = await ut(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
+  const e = await ot(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
   if (!r || !n || !e)
     return { error: "no session, chainId, or connection" };
   try {
@@ -13635,7 +13636,7 @@ const jw = ({ filter: t, page: e }) => {
     return console.error("decrypt error", i.message), { error: i.message };
   }
 }, Yw = async () => {
-  const t = await ut(), e = await (t == null ? void 0 : t.getSession());
+  const t = await ot(), e = await (t == null ? void 0 : t.getSession());
   if (!e || !t)
     return { error: "no session, or connection" };
   try {
@@ -13648,7 +13649,28 @@ const jw = ({ filter: t, page: e }) => {
     return console.error("error disconnecting", n), { error: n };
   }
 }, Jw = async (t) => {
-  const e = await ut(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
+  const e = await ot(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
+  if (!r || !n || !e)
+    return { event: void 0, error: "no session, chainId, or connection" };
+  const i = async () => await e.request({
+    topic: (r == null ? void 0 : r.topic) ?? "",
+    chainId: n,
+    request: {
+      jsonrpc: "2.0",
+      method: "getEvent",
+      params: {
+        id: t
+      }
+    }
+  });
+  try {
+    return await i();
+  } catch (s) {
+    const c = s.message;
+    return console.error("getEvents error", c), { error: c };
+  }
+}, Qw = async (t) => {
+  const e = await ot(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
   if (!r || !n || !e)
     return { events: void 0, error: "no session, chainId, or connection" };
   (t == null ? void 0 : t.programId) === "" && (t.programId = void 0);
@@ -13670,8 +13692,8 @@ const jw = ({ filter: t, page: e }) => {
     const c = s.message;
     return console.error("getEvents error", c), { error: c };
   }
-}, Qw = async (t) => {
-  const e = await ut(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
+}, Xw = async (t) => {
+  const e = await ot(), r = await (e == null ? void 0 : e.getSession()), n = "aleo:1";
   if (!r || !n || !e)
     return { error: "no session, chainId, or connection" };
   try {
@@ -13690,12 +13712,12 @@ const jw = ({ filter: t, page: e }) => {
     const s = i.message;
     return console.error("importSharedState error", s), { error: s };
   }
-}, Xw = async ({
+}, e1 = async ({
   address: t,
   filter: e,
   page: r = 0
 }) => {
-  const n = await ut(), i = await (n == null ? void 0 : n.getSession()), s = "aleo:1";
+  const n = await ot(), i = await (n == null ? void 0 : n.getSession()), s = "aleo:1";
   if (!i || !s || !n)
     return { error: "no session, chainId, or connection" };
   const c = async (o = 0) => await n.request({
@@ -13717,11 +13739,11 @@ const jw = ({ filter: t, page: e }) => {
     const u = o.message;
     return console.error("getRecords error", u), { error: u };
   }
-}, e1 = async ({
+}, t1 = async ({
   message: t,
   address: e
 }) => {
-  const r = await ut(), n = await (r == null ? void 0 : r.getSession()), i = "aleo:1";
+  const r = await ot(), n = await (r == null ? void 0 : r.getSession()), i = "aleo:1";
   if (!n || !i || !r)
     return { error: "no session, chainId, or connection" };
   try {
@@ -13741,7 +13763,7 @@ const jw = ({ filter: t, page: e }) => {
     const c = s.message;
     return console.error("signature error", c), { error: c };
   }
-}, t1 = 50, F_ = [
+}, r1 = 50, F_ = [
   "wc@2:client:0.3//proposal",
   "wc@2:core:0.3//subscription",
   "wc@2:core:0.3//keychain",
@@ -13814,7 +13836,7 @@ export {
   p_ as ak,
   Vl as al,
   _r as am,
-  t1 as an,
+  r1 as an,
   Vw as ao,
   Kw as ap,
   Hw as aq,
@@ -13826,12 +13848,13 @@ export {
   Qw as aw,
   Xw as ax,
   e1 as ay,
+  t1 as az,
   Mo as b,
   rw as c,
   hw as d,
   Pn as e,
   fw as f,
-  ut as g,
+  ot as g,
   dw as h,
   a_ as i,
   c_ as j,

@@ -6,6 +6,7 @@ export const wc_aleo_methods = [
   'getBalance',
   'getRecords',
   'requestCreateEvent',
+  'getEvent',
   'getEvents',
   'createSharedState',
   'importSharedState',
