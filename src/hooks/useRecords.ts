@@ -8,6 +8,7 @@ import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
 type UseRecordsOptions = {
   address?: string;
+  multisig?: boolean;
   filter?: RecordsFilter,
   page?: number,
 }
@@ -20,7 +21,7 @@ export const getFormattedRecordPlaintext = (data: any) => {
   }
 }
 
-export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
+export const useRecords = ( { address, multisig = false, filter, page }: UseRecordsOptions ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [chainId, account] = useWalletStore((state) => [
     state.chainId, state.account
@@ -40,17 +41,18 @@ export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
     }
   });
 
+  const readyToRequest = !!session && !!account && (multisig ? !!address : true);
+
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const _address = params.event.address;
-    if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && session && session.topic === topic && !loading) {
+    if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && readyToRequest && session.topic === topic ) {
       request();
     }
   });
 
   // send initial records request
-  const readyToRequest = !!session && !!account;
   useEffect(() => {
     if (readyToRequest && !loading) {
       request();
