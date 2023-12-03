@@ -33,7 +33,7 @@ export const useBalance = ({address}: {address?: string}) => {
     const eventName = params.event.name;
     const address = params.event.address;
     if (
-      (eventName === 'selectedAccountSynced' || eventName === 'accountSelected') &&
+      ['accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'].includes(eventName)&&
       session &&
       session.topic === topic &&
       address === account?.address &&

@@ -456,7 +456,7 @@ let qh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-c488c1cb.js");
+      await import("./index-cb1f5adf.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), pr.setIsUiLoaded(!0);
     }
@@ -13017,7 +13017,7 @@ const fu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   });
   Ds(({ params: d, topic: y }) => {
     const _ = d.event.name, S = d.event.address;
-    (_ === "selectedAccountSynced" || _ === "accountSelected") && e && e.topic === y && S === (r == null ? void 0 : r.address) && !o && i();
+    ["accountSelected", "selectedAccountSynced", "sharedAccountSynced"].includes(_) && e && e.topic === y && S === (r == null ? void 0 : r.address) && !o && i();
   }), Or(() => {
     e && !o && i();
   }, [e == null ? void 0 : e.topic]);
