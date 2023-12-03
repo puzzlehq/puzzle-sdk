@@ -6,8 +6,6 @@ export type EventsFilter = {
   type?: EventType;
   programId?: string;
   functionId?: string;
-  id?: string; // mongo id
-  txId?: string; // aleo id
 };
 
 export type GetEventsRequest = {

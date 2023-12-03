@@ -4,6 +4,7 @@ import { SessionTypes } from '@walletconnect/types';
 
 export type GetEventRequest = {
   id: string;
+  address?: string;
 }
 
 export type GetEventResponse = {
@@ -11,9 +12,10 @@ export type GetEventResponse = {
   error?: string;
 };
 
-export const getEvent = async (
-  id: string
-): Promise<GetEventResponse> => {
+export const getEvent = async ({
+  id,
+  address
+}: GetEventRequest): Promise<GetEventResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
   const session: SessionTypes.Struct | undefined =
@@ -32,7 +34,8 @@ export const getEvent = async (
         jsonrpc: '2.0',
         method: 'getEvent',
         params: {
-          id
+          id,
+          address
         } as GetEventRequest,
       },
     });

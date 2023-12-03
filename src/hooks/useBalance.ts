@@ -10,7 +10,7 @@ import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useRequest } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
-export const useBalance = () => {
+export const useBalance = ({address}: {address?: string}) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
@@ -23,7 +23,8 @@ export const useBalance = () => {
       jsonrpc: '2.0',
       method: 'getBalance',
       params: {
-        assetId: undefined
+        assetId: undefined,
+        address
       } as GetBalancesRequest
     },
   });

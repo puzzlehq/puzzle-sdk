@@ -16,7 +16,7 @@ export type GetBalancesResponse = {
   error?: string;
 };
 
-export const getBalance = async (): Promise<GetBalancesResponse> => {
+export const getBalance = async ({address}: {address?: string}): Promise<GetBalancesResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection.getSession();
@@ -35,6 +35,7 @@ export const getBalance = async (): Promise<GetBalancesResponse> => {
         method: 'getBalance',
         params: {
           assetId: undefined,
+          address,
         } as GetBalancesRequest,
       },
     });

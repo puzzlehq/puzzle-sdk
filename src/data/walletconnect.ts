@@ -32,7 +32,6 @@ export const web3modal_puzzle_props = {
       links: {
         native: 'puzzleapp://',
         universal: '',
-        // universal: 'https://jigsaw-dev.puzzle.online/',
       },
     },
   ],
