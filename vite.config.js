@@ -5,6 +5,7 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: '@puzzlehq/sdk',
+      formats: ['cjs', 'es', 'umd'],
       fileName: (format) => `puzzle.${format}.js`
     },
     rollupOptions: {
@@ -14,7 +15,8 @@ export default defineConfig({
         // Provide global variables to use in the UMD build for externalized deps
         globals: {
           react: 'React'
-        }
+        },
+        extend: true
       }
     }
   }

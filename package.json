@@ -3,13 +3,15 @@
   "displayName": "Puzzle SDK",
   "version": "0.1.36",
   "description": "Your portal to privacy",
-  "main": "./dist/puzzle.umd.js",
-  "module": "./dist/puzzle.es.js",
+  "main": "./dist/puzzle.cjs.js",
+  "module": "./dist/puzzle.esm.js",
+  "browser": "./dist/puzzle.umd.js",
   "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/puzzle.es.js",
-      "require": "./dist/puzzle.umd.js",
+      "import": "./dist/puzzle.esm.js",
+      "require": "./dist/puzzle.cjs.js",
+      "browser": "./dist/puzzle.umd.js",
       "types": "./dist/types/src/index.d.ts"
     }
   },
