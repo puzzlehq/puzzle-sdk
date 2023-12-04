@@ -9,6 +9,7 @@ async function fetchRequest<Result>(params: WalletConnectModalSignRequestArgumen
 }
 
 type UseRequestParams<Result> = {
+  queryKey: QueryKey, 
   wcParams: WalletConnectModalSignRequestArguments, 
   queryOptions?: UseQueryOptions<Result>,
   enabled?: boolean
