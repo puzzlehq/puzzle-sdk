@@ -3,22 +3,32 @@ import { SessionTypes } from '@walletconnect/types';
 import { GetEventRequest, GetEventResponse } from '../messages/event.js';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
-import { useRequest } from './wc/useRequest.js';
+import { useRequestQuery } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
-export const useEvent = ( id?: string ) => {
+type UseEventParams = {
+  id?: string;
+  address?: string;
+  multisig?: boolean;
+}
+
+export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetEventResponse | undefined>({
-    topic: session?.topic ?? '',
-    chainId: 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'getEvent',
-      params: {
-        id,
-      } as GetEventRequest
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventResponse | undefined>({
+    queryKey: ['useEvent', id ?? ''],
+    enabled: !!id && !!session && (multisig ? !!address : true),
+    wcParams: {
+      topic: session?.topic ?? '',
+      chainId: 'aleo:1',
+      request: {
+        jsonrpc: '2.0',
+        method: 'getEvent',
+        params: {
+          id,
+        } as GetEventRequest
+      }
     }
   });
 
@@ -27,7 +37,7 @@ export const useEvent = ( id?: string ) => {
     const eventName = params.event.name;
     const address = params.event.address;
     if (eventName === 'selectedAccountSynced' && session && session.topic === topic && address === account?.address && !loading) {
-      request();
+      refetch();
     }
   });
 
@@ -35,14 +45,14 @@ export const useEvent = ( id?: string ) => {
   const readyToRequest = !!session && !!account;
   useEffect(() => {
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }, [readyToRequest]);
 
   const fetchEvent = () => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }
 

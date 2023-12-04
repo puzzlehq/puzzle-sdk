@@ -3,15 +3,15 @@ import { SessionTypes } from '@walletconnect/types';
 import { EventsFilter, GetEventsRequest, GetEventsResponse } from '../messages/events.js';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
-import { useRequest } from './wc/useRequest.js';
+import { useRequest, useRequestQuery } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
-type UseEventsOptions = {
+type UseEventsParams = {
   filter?: EventsFilter,
   page?: number
 }
 
-export const useEvents = ( { filter, page }: UseEventsOptions ) => {
+export const useEvents = ( { filter, page }: UseEventsParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
@@ -19,16 +19,20 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
     filter.programId = undefined;
   }
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetEventsResponse | undefined>({
-    topic: session?.topic ?? '',
-    chainId: 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'getEvents',
-      params: {
-        filter,
-        page,
-      } as GetEventsRequest
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventsResponse | undefined>({
+    queryKey: ['useEvents', account?.address ?? '', filter, page],
+    enabled: !!session,
+    wcParams: {
+      topic: session?.topic ?? '',
+      chainId: 'aleo:1',
+      request: {
+        jsonrpc: '2.0',
+        method: 'getEvents',
+        params: {
+          filter,
+          page,
+        } as GetEventsRequest
+      }
     }
   });
 
@@ -37,7 +41,7 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
     const eventName = params.event.name;
     const address = params.event.address;
     if (eventName === 'selectedAccountSynced' && session && session.topic === topic && address === account?.address && !loading) {
-      request();
+      refetch();
     }
   });
 
@@ -45,14 +49,14 @@ export const useEvents = ( { filter, page }: UseEventsOptions ) => {
   const readyToRequest = !!session && !!account;
   useEffect(() => {
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }, [readyToRequest]);
 
   const fetchPage = () => {
     const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }
 

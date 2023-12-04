@@ -7,7 +7,7 @@ import {
 import { useSession } from './wc/useSession.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useRequest } from './wc/useRequest.js';
+import { useRequestQuery } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
 export const useBalance = ({address}: {address?: string}) => {
@@ -16,17 +16,21 @@ export const useBalance = ({address}: {address?: string}) => {
 
   const chainId = 'aleo:1';
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetBalancesResponse | undefined>({
-    topic: session?.topic,
-    chainId: chainId,
-    request: {
-      jsonrpc: '2.0',
-      method: 'getBalance',
-      params: {
-        assetId: undefined,
-        address
-      } as GetBalancesRequest
-    },
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
+    queryKey: ['useBalance', address ?? account?.address ?? ''],
+    enabled: !!session,
+    wcParams: {
+      topic: session?.topic,
+      chainId: chainId,
+      request: {
+        jsonrpc: '2.0',
+        method: 'getBalance',
+        params: {
+          assetId: undefined,
+          address
+        } as GetBalancesRequest
+      },
+    }
   });
 
   useOnSessionEvent(({ params, topic }) => {
@@ -39,14 +43,14 @@ export const useBalance = ({address}: {address?: string}) => {
       address === account?.address &&
       !loading
     ) {
-      request();
+      refetch();
     }
   });
 
   // send initial balance request...
   useEffect(() => {
     if (session && !loading) {
-      request();
+      refetch();
     }
   }, [session?.topic]);
 

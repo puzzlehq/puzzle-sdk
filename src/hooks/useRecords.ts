@@ -3,10 +3,10 @@ import { GetRecordsRequest, GetRecordsResponse, RecordWithPlaintext, RecordsFilt
 import { SessionTypes } from '@walletconnect/types';
 import useWalletStore from '../store.js';
 import { useSession } from './wc/useSession.js';
-import { useRequest } from './wc/useRequest.js';
+import { useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
-type UseRecordsOptions = {
+type UseRecordsParams = {
   address?: string;
   multisig?: boolean;
   filter?: RecordsFilter,
@@ -21,23 +21,27 @@ export const getFormattedRecordPlaintext = (data: any) => {
   }
 }
 
-export const useRecords = ( { address, multisig = false, filter, page }: UseRecordsOptions ) => {
+export const useRecords = ( { address, multisig = false, filter, page }: UseRecordsParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [chainId, account] = useWalletStore((state) => [
     state.chainId, state.account
   ]);
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetRecordsResponse | undefined>({
-    topic: session?.topic,
-    chainId: chainId,
-    request: {
-      jsonrpc: '2.0',
-      method: 'getRecords',
-      params: {
-        address,
-        filter,
-        page,
-      } as GetRecordsRequest,
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
+    queryKey: ['useRecords', address, filter, page],
+    enabled: (multisig ? !!address : true) && !!session,
+    wcParams: {
+      topic: session?.topic,
+      chainId: chainId,
+      request: {
+        jsonrpc: '2.0',
+        method: 'getRecords',
+        params: {
+          address,
+          filter,
+          page,
+        } as GetRecordsRequest,
+      }
     }
   });
 
@@ -48,20 +52,20 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     const eventName = params.event.name;
     const _address = params.event.address;
     if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && readyToRequest && session.topic === topic ) {
-      request();
+      refetch();
     }
   });
 
   // send initial records request
   useEffect(() => {
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }, [readyToRequest]);
 
   const fetchPage = () => {
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }
 
