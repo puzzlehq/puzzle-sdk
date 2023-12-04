@@ -1,7 +1,7 @@
 import hs, { useEffect as Or, useState as Bi, useDebugValue as eh } from "react";
-const th = "@puzzlehq/sdk", rh = "Puzzle SDK", nh = "0.1.36", ih = "Your portal to privacy", sh = "./dist/puzzle.cjs.js", oh = "./dist/puzzle.esm.js", ah = "./dist/puzzle.umd.js", ch = "./dist/types/src/index.d.ts", uh = {
+const th = "@puzzlehq/sdk", rh = "Puzzle SDK", nh = "0.1.36", ih = "Your portal to privacy", sh = "./dist/puzzle.cjs.js", oh = "./dist/puzzle.es.js", ah = "./dist/puzzle.umd.js", ch = "./dist/types/src/index.d.ts", uh = {
   ".": {
-    import: "./dist/puzzle.esm.js",
+    import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
     browser: "./dist/puzzle.umd.js",
     types: "./dist/types/src/index.d.ts"
@@ -458,7 +458,7 @@ let Bh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-0f2e9e84.js");
+      await import("./index-9e3c91e9.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), pr.setIsUiLoaded(!0);
     }

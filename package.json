@@ -4,12 +4,12 @@
   "version": "0.1.36",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
-  "module": "./dist/puzzle.esm.js",
+  "module": "./dist/puzzle.es.js",
   "browser": "./dist/puzzle.umd.js",
   "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/puzzle.esm.js",
+      "import": "./dist/puzzle.es.js",
       "require": "./dist/puzzle.cjs.js",
       "browser": "./dist/puzzle.umd.js",
       "types": "./dist/types/src/index.d.ts"
