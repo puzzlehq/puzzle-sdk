@@ -40,7 +40,7 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    const address = params.event.address;
+    const address = params.event.address ?? params.event.data.address;
     if (
       ['accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'].includes(eventName)&&
       session &&

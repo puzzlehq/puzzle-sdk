@@ -1,6 +1,6 @@
 import * as ir from "react";
 import Pn, { useEffect as Dr, useState as hi } from "react";
-const Yh = "@puzzlehq/sdk", Jh = "Puzzle SDK", Xh = "0.1.39", ef = "Your portal to privacy", tf = "./dist/puzzle.cjs.js", rf = "./dist/puzzle.es.js", nf = "./dist/puzzle.umd.js", sf = "./dist/types/src/index.d.ts", of = {
+const Yh = "@puzzlehq/sdk", Jh = "Puzzle SDK", Xh = "0.1.40", ef = "Your portal to privacy", tf = "./dist/puzzle.cjs.js", rf = "./dist/puzzle.es.js", nf = "./dist/puzzle.umd.js", sf = "./dist/types/src/index.d.ts", of = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -460,7 +460,7 @@ let $f = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-2429c05a.js");
+      await import("./index-3bf9caad.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rr.setIsUiLoaded(!0);
     }
@@ -14593,7 +14593,9 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   });
   Zs(({ params: l, topic: f }) => {
     if (l.event.name === "accountSelected" && t && t.topic === f) {
-      const y = l.event.address, m = l.chainId.split(":")[0], E = l.chainId.split(":")[1];
+      const y = l.event.data.address;
+      console.log("useOnSessionEvent params", l);
+      const m = l.chainId.split(":")[0], E = l.chainId.split(":")[1];
       n({
         network: m,
         chainId: E,
@@ -14602,7 +14604,9 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
       });
     }
   }), Rh(({ params: l, topic: f }) => {
-    const d = l.event.address, y = l.chainId.split(":")[0], m = l.chainId.split(":")[1];
+    const d = l.accounts[0].address;
+    console.log("useOnSessionUpdate params", l);
+    const y = l.chainId.split(":")[0], m = l.chainId.split(":")[1];
     n({
       network: y,
       chainId: m,
@@ -14616,7 +14620,7 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   }, [t == null ? void 0 : t.topic]), Dr(() => {
     if (i) {
       const l = i, f = l == null ? void 0 : l.account;
-      f && n(f);
+      console.log("useEffect data", l), f && n(f);
     }
   }, [i]);
   const u = a ? a.message : i && i.error;

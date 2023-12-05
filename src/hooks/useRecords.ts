@@ -50,7 +50,7 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    const _address = params.event.address;
+    const _address = params.event.address ?? params.event.data.address;
     if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && readyToRequest && session.topic === topic ) {
       refetch();
     }

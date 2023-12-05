@@ -37,7 +37,7 @@ export const useAccount = () => {
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSelected' && session && session.topic === topic) {
-      const address = params.event.address;
+      const address = params.event.address ?? params.event.data.address;
       const network = params.chainId.split(':')[0];
       const chainId = params.chainId.split(':')[1];
       setAccount({
@@ -50,7 +50,7 @@ export const useAccount = () => {
   });
 
   useOnSessionUpdate(({ params, topic }) => {
-    const address = params.event.address;
+    const address = params.event.address ?? params.event.data.address;
     const network = params.chainId.split(':')[0];
     const chainId = params.chainId.split(':')[1];
     setAccount({
