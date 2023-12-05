@@ -1,6 +1,6 @@
 import * as ir from "react";
 import Pn, { useEffect as Dr, useState as hi } from "react";
-const Yh = "@puzzlehq/sdk", Jh = "Puzzle SDK", Xh = "0.1.38", ef = "Your portal to privacy", tf = "./dist/puzzle.cjs.js", rf = "./dist/puzzle.es.js", nf = "./dist/puzzle.umd.js", sf = "./dist/types/src/index.d.ts", of = {
+const Yh = "@puzzlehq/sdk", Jh = "Puzzle SDK", Xh = "0.1.39", ef = "Your portal to privacy", tf = "./dist/puzzle.cjs.js", rf = "./dist/puzzle.es.js", nf = "./dist/puzzle.umd.js", sf = "./dist/types/src/index.d.ts", of = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -460,7 +460,7 @@ let $f = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-8bdc1b32.js");
+      await import("./index-2429c05a.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rr.setIsUiLoaded(!0);
     }
@@ -16075,11 +16075,11 @@ try {
 }
 export {
   Wi as $,
-  o_ as A,
-  Et as B,
-  ea as C,
-  Au as D,
-  Xo as E,
+  Au as A,
+  Qn as B,
+  o_ as C,
+  Et as D,
+  ea as E,
   J1 as F,
   X1 as G,
   dE as H,
@@ -16141,29 +16141,29 @@ export {
   ME as ax,
   jE as ay,
   kE as az,
-  iw as b,
-  uw as c,
-  aw as d,
-  cw as e,
-  lw as f,
-  hw as g,
-  ow as h,
-  Q1 as i,
-  G1 as j,
-  K1 as k,
-  Z1 as l,
-  B1 as m,
+  Xo as b,
+  iw as c,
+  uw as d,
+  aw as e,
+  cw as f,
+  lw as g,
+  hw as h,
+  ow as i,
+  Q1 as j,
+  G1 as k,
+  K1 as l,
+  Z1 as m,
   ic as n,
   S1 as o,
   Rr as p,
-  V1 as q,
-  H1 as r,
+  B1 as q,
+  V1 as r,
   io as s,
   E1 as t,
-  W1 as u,
-  z1 as v,
-  Y1 as w,
-  Qn as x,
+  H1 as u,
+  W1 as v,
+  z1 as w,
+  Y1 as x,
   Gn as y,
   q1 as z
 };
