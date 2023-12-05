@@ -20,4 +20,5 @@ export * from './hooks/wc/useOnSessionUpdate.js';
 export * from './hooks/wc/useSession.js';
 export * from './messages/index.js';
 export * from './provider/PuzzleWalletProvider.js';
-export * from "@puzzlehq/types";
+import { type Account, type Asset, type AssetType, type AssetValue, type Event, type EventCreate, type EventStatus, type EventType, type Network, type Record, type Visibility, aleoAddressRegex, aleoFieldRegex, aleoPrivateKeyRegex, aleoTransactionIdRegex, aleoU32, aleoU64, aleoViewKeyRegex, zodAddress, zodEventStatus, zodEventType, zodField, zodNetwork, zodPrivateKey, zodTransactionId, zodU32, zodU64, zodViewKey, zodVisibility } from "@puzzlehq/types";
+export { type Account, type Asset, type AssetType, type AssetValue, type Event, type EventCreate, type EventStatus, type EventType, type Network, type Record, type Visibility, aleoAddressRegex, aleoFieldRegex, aleoPrivateKeyRegex, aleoTransactionIdRegex, aleoU32, aleoU64, aleoViewKeyRegex, zodAddress, zodEventStatus, zodEventType, zodField, zodNetwork, zodPrivateKey, zodTransactionId, zodU32, zodU64, zodViewKey, zodVisibility };

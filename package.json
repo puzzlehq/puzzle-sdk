@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.38",
+  "version": "0.1.39",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -27,8 +27,10 @@
     "@trpc/server": "^10.8.1",
     "@types/debug": "^4.1.7",
     "@walletconnect/modal-sign-html": "^2.6.2",
+    "@walletconnect/keyvaluestorage": "1.0.2",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.0",
+    "@puzzlehq/types": "1.0.8",
     "debug": "^4.3.4",
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
@@ -38,7 +40,6 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
-    "@puzzlehq/types": "1.0.7",
     "@types/chrome": "^0.0.228",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
