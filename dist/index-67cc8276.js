@@ -459,7 +459,7 @@ let jf = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-d4051d34.js");
+      await import("./index-a9504a31.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rr.setIsUiLoaded(!0);
     }
@@ -14602,7 +14602,7 @@ const Gu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
 }, fE = ({ address: t }) => {
   const e = Fr(), [r] = gn((d) => [d.account]), n = "aleo:1", { refetch: i, data: s, error: a, isLoading: o } = Ys({
     queryKey: ["useBalance", t ?? (r == null ? void 0 : r.address) ?? ""],
-    enabled: !!e,
+    enabled: !!e && !!r,
     wcParams: {
       topic: e == null ? void 0 : e.topic,
       chainId: n,
@@ -14998,8 +14998,8 @@ function yE() {
 }
 const vE = ({ id: t, address: e, multisig: r = !1 }) => {
   const n = Fr(), [i] = gn((E) => [E.account]), { refetch: s, data: a, error: o, isLoading: u } = Ys({
-    queryKey: ["useEvent", t ?? ""],
-    enabled: !!t && !!n && (r ? !!e : !0),
+    queryKey: ["useEvent", e ?? (i == null ? void 0 : i.address) ?? "", t ?? ""],
+    enabled: !!t && !!n && !!i && (r ? !!e : !0),
     wcParams: {
       topic: (n == null ? void 0 : n.topic) ?? "",
       chainId: "aleo:1",
@@ -15029,7 +15029,7 @@ const vE = ({ id: t, address: e, multisig: r = !1 }) => {
   (t == null ? void 0 : t.programId) === "" && (t.programId = void 0);
   const { refetch: i, data: s, error: a, isLoading: o } = Ys({
     queryKey: ["useEvents", (n == null ? void 0 : n.address) ?? "", t, e],
-    enabled: !!r,
+    enabled: !!r && !!n,
     wcParams: {
       topic: (r == null ? void 0 : r.topic) ?? "",
       chainId: "aleo:1",
@@ -15081,8 +15081,8 @@ const vE = ({ id: t, address: e, multisig: r = !1 }) => {
     P.chainId,
     P.account
   ]), { refetch: o, data: u, error: l, isLoading: f } = Ys({
-    queryKey: ["useRecords", t, r, n],
-    enabled: (e ? !!t : !0) && !!i,
+    queryKey: ["useRecords", t ?? (a == null ? void 0 : a.address) ?? "", r, n],
+    enabled: (e ? !!t : !0) && !!i && !!a,
     wcParams: {
       topic: i == null ? void 0 : i.topic,
       chainId: s,

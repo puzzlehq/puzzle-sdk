@@ -18,7 +18,7 @@ export const useBalance = ({address}: {address?: string}) => {
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
     queryKey: ['useBalance', address ?? account?.address ?? ''],
-    enabled: !!session,
+    enabled: !!session && !!account,
     wcParams: {
       topic: session?.topic,
       chainId: chainId,

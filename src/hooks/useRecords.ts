@@ -28,8 +28,8 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
   ]);
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
-    queryKey: ['useRecords', address, filter, page],
-    enabled: (multisig ? !!address : true) && !!session,
+    queryKey: ['useRecords', address ?? account?.address ?? '', filter, page],
+    enabled: (multisig ? !!address : true) && !!session && !!account,
     wcParams: {
       topic: session?.topic,
       chainId: chainId,

@@ -17,8 +17,8 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   const [account] = useWalletStore((state) => [state.account]);
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventResponse | undefined>({
-    queryKey: ['useEvent', id ?? ''],
-    enabled: !!id && !!session && (multisig ? !!address : true),
+    queryKey: ['useEvent', address ?? account?.address ?? '', id ?? ''],
+    enabled: !!id && !!session && !!account && (multisig ? !!address : true) ,
     wcParams: {
       topic: session?.topic ?? '',
       chainId: 'aleo:1',
