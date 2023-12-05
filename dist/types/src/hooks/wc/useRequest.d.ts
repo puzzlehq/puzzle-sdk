@@ -11,6 +11,6 @@ export declare function useRequest<Result>(params: WalletConnectModalSignRequest
     data: Result | undefined;
     error: unknown;
     loading: boolean;
-    request: (paramsOverride?: any) => Promise<Result>;
+    request: (paramsOverride?: any) => Promise<Result | undefined>;
 };
 export {};

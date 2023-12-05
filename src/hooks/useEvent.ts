@@ -27,6 +27,7 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
         method: 'getEvent',
         params: {
           id,
+          address
         } as GetEventRequest
       }
     }

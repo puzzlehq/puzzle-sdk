@@ -2,10 +2,15 @@ import type { WalletConnectModalSignRequestArguments } from '@walletconnect/moda
 import { getWalletConnectModalSignClient } from '../../client.js'
 import { QueryKey, UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { useAsyncAction } from './_useAsyncAction.js';
+import { queryClient } from '../../index.js';
 
-async function fetchRequest<Result>(params: WalletConnectModalSignRequestArguments): Promise<Result> {
+async function fetchRequest<Result>(params: WalletConnectModalSignRequestArguments, queryKey?: QueryKey): Promise<Result | undefined> {
   const client = await getWalletConnectModalSignClient()
-  return client.request<Result>(params);
+  const result = await client.request<Result>(params);
+  if (result === undefined && queryKey) {
+    return queryClient.getQueryData<Result>(queryKey);
+  }
+  return result;
 }
 
 type UseRequestParams<Result> = {
@@ -18,7 +23,7 @@ type UseRequestParams<Result> = {
 export function useRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions }: UseRequestParams<Result>) {
   return useQuery(
     queryKey,
-    () => fetchRequest<Result>(wcParams),
+    () => fetchRequest<Result>(wcParams, queryKey),
     queryOptions ??
     {
       staleTime: 7_500,

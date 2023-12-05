@@ -10,7 +10,7 @@ type PuzzleWalletProviderProps = {
   children: React.ReactNode
 }
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export const PuzzleWalletProvider = ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children }: PuzzleWalletProviderProps) => {
   useEffect(() => {

@@ -1,8 +1,11 @@
 import { Balance } from '../messages/balance.js';
-export declare const useBalance: ({ address }: {
-    address?: string | undefined;
-}) => {
+type UseBalanceParams = {
+    address?: string;
+    multisig?: boolean;
+};
+export declare const useBalance: ({ address, multisig }: UseBalanceParams) => {
     balances: Balance[] | undefined;
     error: string | undefined;
     loading: boolean;
 };
+export {};

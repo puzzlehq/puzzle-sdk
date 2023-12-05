@@ -10,15 +10,20 @@ import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useRequestQuery } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
-export const useBalance = ({address}: {address?: string}) => {
+type UseBalanceParams = {
+  address?: string;
+  multisig?: boolean;
+}
+
+export const useBalance = ({address, multisig}: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
   const chainId = 'aleo:1';
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
-    queryKey: ['useBalance', address ?? account?.address ?? ''],
-    enabled: !!session && !!account,
+    queryKey: ['useBalance', address ?? account?.address ?? '', multisig],
+    enabled: !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
       chainId: chainId,

@@ -1,3 +1,4 @@
+import { QueryClient } from "@tanstack/react-query";
 type PuzzleWalletProviderProps = {
     dAppName: string;
     dAppDescription: string;
@@ -5,5 +6,6 @@ type PuzzleWalletProviderProps = {
     dAppIconURL: string;
     children: React.ReactNode;
 };
+export declare const queryClient: QueryClient;
 export declare const PuzzleWalletProvider: ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children }: PuzzleWalletProviderProps) => JSX.Element;
 export {};
