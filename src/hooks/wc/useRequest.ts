@@ -8,7 +8,10 @@ async function fetchRequest<Result>(params: WalletConnectModalSignRequestArgumen
   const client = await getWalletConnectModalSignClient()
   const result = await client.request<Result>(params);
   if (result === undefined && queryKey) {
-    return queryClient.getQueryData<Result>(queryKey);
+    const _result = queryClient.getQueryData<Result>(queryKey);
+    if (_result === undefined) {
+      throw new Error('Result is undefined, retrying...');
+    }
   }
   return result;
 }
@@ -26,10 +29,11 @@ export function useRequestQuery<Result>({ queryKey, wcParams, enabled, queryOpti
     () => fetchRequest<Result>(wcParams, queryKey),
     queryOptions ??
     {
-      staleTime: 7_500,
-      refetchInterval: 5_000,
+      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
+      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
       refetchIntervalInBackground: true,
       enabled,
+      retry: true,
     }
   )
 }

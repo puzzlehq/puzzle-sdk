@@ -1,6 +1,6 @@
 import * as ir from "react";
 import Pn, { useEffect as Dr, useState as hi } from "react";
-const Yh = "@puzzlehq/sdk", Jh = "Puzzle SDK", Xh = "0.1.40", ef = "Your portal to privacy", tf = "./dist/puzzle.cjs.js", rf = "./dist/puzzle.es.js", nf = "./dist/puzzle.umd.js", sf = "./dist/types/src/index.d.ts", of = {
+const Yh = "@puzzlehq/sdk", Jh = "Puzzle SDK", Xh = "0.1.41", ef = "Your portal to privacy", tf = "./dist/puzzle.cjs.js", rf = "./dist/puzzle.es.js", nf = "./dist/puzzle.umd.js", sf = "./dist/types/src/index.d.ts", of = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -460,7 +460,7 @@ let $f = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-3bf9caad.js");
+      await import("./index-02f5fe80.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Rr.setIsUiLoaded(!0);
     }
@@ -14550,17 +14550,20 @@ function za() {
 }
 async function $h(t, e) {
   const n = await (await Et()).request(t);
-  return n === void 0 && e ? zh.getQueryData(e) : n;
+  if (n === void 0 && e && zh.getQueryData(e) === void 0)
+    throw new Error("Result is undefined, retrying...");
+  return n;
 }
 function Yi({ queryKey: t, wcParams: e, enabled: r, queryOptions: n }) {
   return l1(
     t,
     () => $h(e, t),
     n ?? {
-      staleTime: 7500,
-      refetchInterval: 5e3,
+      staleTime: t[0] === "getEvent" ? 7500 : 45e3,
+      refetchInterval: t[0] === "getEvent" ? 5e3 : 3e4,
       refetchIntervalInBackground: !0,
-      enabled: r
+      enabled: r,
+      retry: !0
     }
   );
 }
@@ -14593,9 +14596,7 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   });
   Zs(({ params: l, topic: f }) => {
     if (l.event.name === "accountSelected" && t && t.topic === f) {
-      const y = l.event.data.address;
-      console.log("useOnSessionEvent params", l);
-      const m = l.chainId.split(":")[0], E = l.chainId.split(":")[1];
+      const y = l.event.address ?? l.event.data.address, m = l.chainId.split(":")[0], E = l.chainId.split(":")[1];
       n({
         network: m,
         chainId: E,
@@ -14604,9 +14605,7 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
       });
     }
   }), Rh(({ params: l, topic: f }) => {
-    const d = l.accounts[0].address;
-    console.log("useOnSessionUpdate params", l);
-    const y = l.chainId.split(":")[0], m = l.chainId.split(":")[1];
+    const d = l.event.address ?? l.event.data.address, y = l.chainId.split(":")[0], m = l.chainId.split(":")[1];
     n({
       network: y,
       chainId: m,
@@ -14620,7 +14619,7 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
   }, [t == null ? void 0 : t.topic]), Dr(() => {
     if (i) {
       const l = i, f = l == null ? void 0 : l.account;
-      console.log("useEffect data", l), f && n(f);
+      f && n(f);
     }
   }, [i]);
   const u = a ? a.message : i && i.error;
@@ -14647,7 +14646,7 @@ const Qu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
     }
   });
   Zs(({ params: y, topic: m }) => {
-    const E = y.event.name, O = y.event.address;
+    const E = y.event.name, O = y.event.address ?? y.event.data.address;
     ["accountSelected", "selectedAccountSynced", "sharedAccountSynced"].includes(E) && r && r.topic === m && O === (n == null ? void 0 : n.address) && !u && i();
   }), Dr(() => {
     r && !u && i();
@@ -15048,7 +15047,7 @@ const wE = ({ id: t, address: e, multisig: r = !1 }) => {
     }
   });
   Zs(({ params: E, topic: O }) => {
-    const S = E.event.name, P = E.event.address;
+    const S = E.event.name, P = E.event.address ?? E.event.data.address;
     S === "selectedAccountSynced" && n && n.topic === O && P === (s == null ? void 0 : s.address) && !u && i();
   });
   const l = !!n && !!s;
@@ -15079,7 +15078,7 @@ const wE = ({ id: t, address: e, multisig: r = !1 }) => {
     }
   });
   Zs(({ id: E, params: O, topic: S }) => {
-    const P = O.event.name, _ = O.event.address;
+    const P = O.event.name, _ = O.event.address ?? O.event.data.address;
     P === "selectedAccountSynced" && r && r.topic === S && _ === (n == null ? void 0 : n.address) && !o && s();
   });
   const u = !!r && !!n;
@@ -15133,7 +15132,7 @@ const wE = ({ id: t, address: e, multisig: r = !1 }) => {
     }
   }), d = !!s && !!a && (e ? !!t : !0);
   Zs(({ params: P, topic: _ }) => {
-    const x = P.event.name, w = P.event.address;
+    const x = P.event.name, w = P.event.address ?? P.event.data.address;
     (x === "selectedAccountSynced" || x === "accountSelected" || x === "sharedAccountSynced" && w === t) && d && s.topic === _ && o();
   }), Dr(() => {
     d && !f && o();
