@@ -8,8 +8,8 @@ export type RecordWithPlaintext = Record & {
 };
 
 export type RecordsFilter = {
-  programId?: string;
-  function?: string;
+  programIds?: string[];
+  functionId?: string;
   type: 'all' | 'spent' | 'unspent';
 };
 
@@ -40,17 +40,12 @@ export const getRecords = async ({
     return { error: 'no session, chainId, or connection' };
   }
 
-  if (filter?.programId === '') {
-    filter.programId = undefined;
-  }
-
   const fetchPage = async (page = 0) => {
     const response: GetRecordsResponse = await connection.request({
       topic: session.topic,
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'getRecords',
         params: {
           address,

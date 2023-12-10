@@ -2,6 +2,7 @@ import { Event, EventType } from '../data/types.js';
 export type EventsFilter = {
     type?: EventType;
     programId?: string;
+    functionId?: string;
 };
 export type GetEventsRequest = {
     filter?: EventsFilter;

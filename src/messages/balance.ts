@@ -16,7 +16,7 @@ export type GetBalancesResponse = {
   error?: string;
 };
 
-export const getBalance = async (): Promise<GetBalancesResponse> => {
+export const getBalance = async ({address}: {address?: string}): Promise<GetBalancesResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection.getSession();
@@ -31,11 +31,11 @@ export const getBalance = async (): Promise<GetBalancesResponse> => {
       topic: session?.topic,
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'getBalance',
         params: {
           assetId: undefined,
+          address,
         } as GetBalancesRequest,
       },
     });

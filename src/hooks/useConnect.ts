@@ -1,12 +1,11 @@
-import { emitter, getWalletConnectModalSignClient } from '../client.js'
-import { SessionTypes } from '@walletconnect/types'
-import { useState } from 'react'
+import { WalletConnectModalSignInstance, emitter, getWalletConnectModalSignClient } from '../client.js'
 import { wc_aleo_chains, wc_aleo_methods, wc_events } from '../data/walletconnect.js'
+import { useAsyncAction } from './wc/_useAsyncAction.js'
+
+type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>
 
 export function useConnect() {
-  const [data, setData] = useState<SessionTypes.Struct | undefined>(undefined);
-  const [error, setError] = useState<string | undefined>();
-  const [loading, setLoading] = useState(false);
+  const { data, error, loading, setData, setError, setLoading } = useAsyncAction<Data>()
 
   async function connect() {
     try {

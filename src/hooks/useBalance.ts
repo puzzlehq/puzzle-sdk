@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   Balance,
   GetBalancesRequest,
@@ -7,42 +7,55 @@ import {
 import { useSession } from './wc/useSession.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequestQuery } from './wc/useRequest.js';
+import useWalletStore from '../store.js';
 
-export const useBalance = () => {
+type UseBalanceParams = {
+  address?: string;
+  multisig?: boolean;
+}
+
+export const useBalance = ({address, multisig}: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
+  const [account] = useWalletStore((state) => [state.account]);
 
   const chainId = 'aleo:1';
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
-    topic: session?.topic,
-    chainId: chainId,
-    request: {
-      id: 1,
-      jsonrpc: '2.0',
-      method: 'getBalance',
-      params: {
-        assetId: undefined
-      } as GetBalancesRequest
-    },
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
+    queryKey: ['useBalance', address ?? account?.address ?? '', multisig],
+    enabled: !!session && !!account && (multisig ? !!address : true),
+    wcParams: {
+      topic: session?.topic,
+      chainId: chainId,
+      request: {
+        jsonrpc: '2.0',
+        method: 'getBalance',
+        params: {
+          assetId: undefined,
+          address
+        } as GetBalancesRequest
+      },
+    }
   });
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
+    const address = params.event.address ?? params.event.data.address;
     if (
-      (eventName === 'accountSynced' || eventName === 'accountSelected') &&
+      ['accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'].includes(eventName)&&
       session &&
       session.topic === topic &&
+      address === account?.address &&
       !loading
     ) {
-      request();
+      refetch();
     }
   });
 
   // send initial balance request...
   useEffect(() => {
     if (session && !loading) {
-      request();
+      refetch();
     }
   }, [session?.topic]);
 

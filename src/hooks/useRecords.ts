@@ -3,11 +3,12 @@ import { GetRecordsRequest, GetRecordsResponse, RecordWithPlaintext, RecordsFilt
 import { SessionTypes } from '@walletconnect/types';
 import useWalletStore from '../store.js';
 import { useSession } from './wc/useSession.js';
-import { useRequest } from './wc/useReact.js';
+import { useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
-type UseRecordsOptions = {
+type UseRecordsParams = {
   address?: string;
+  multisig?: boolean;
   filter?: RecordsFilter,
   page?: number,
 }
@@ -20,51 +21,51 @@ export const getFormattedRecordPlaintext = (data: any) => {
   }
 }
 
-export const useRecords = ( { address, filter, page }: UseRecordsOptions ) => {
+export const useRecords = ( { address, multisig = false, filter, page }: UseRecordsParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [chainId, account] = useWalletStore((state) => [
     state.chainId, state.account
   ]);
 
-  if (filter?.programId === '') {
-    filter.programId = undefined;
-  }
-
-  const { request, data: wc_data, error: wc_error, loading } = useRequest({
-    topic: session?.topic,
-    chainId: chainId,
-    request: {
-      id: 1,
-      jsonrpc: '2.0',
-      method: 'getRecords',
-      params: {
-        address,
-        filter,
-        page,
-      } as GetRecordsRequest,
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
+    queryKey: ['useRecords', address ?? account?.address ?? '', filter, page],
+    enabled: (multisig ? !!address : true) && !!session && !!account,
+    wcParams: {
+      topic: session?.topic,
+      chainId: chainId,
+      request: {
+        jsonrpc: '2.0',
+        method: 'getRecords',
+        params: {
+          address,
+          filter,
+          page,
+        } as GetRecordsRequest,
+      }
     }
   });
+
+  const readyToRequest = !!session && !!account && (multisig ? !!address : true);
 
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSynced' && session && session.topic === topic && !loading) {
-      request();
+    const _address = params.event.address ?? params.event.data.address;
+    if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && readyToRequest && session.topic === topic ) {
+      refetch();
     }
   });
 
   // send initial records request
-  const readyToRequest = !!session && !!account;
   useEffect(() => {
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
-  }, [readyToRequest, account]);
+  }, [readyToRequest]);
 
   const fetchPage = () => {
-    const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
-      request();
+      refetch();
     }
   }
 

@@ -1,10 +1,10 @@
 import { EventsFilter } from '../messages/events.js';
 import { Event } from '@puzzlehq/types';
-type UseEventsOptions = {
+type UseEventsParams = {
     filter?: EventsFilter;
     page?: number;
 };
-export declare const useEvents: ({ filter, page }: UseEventsOptions) => {
+export declare const useEvents: ({ filter, page }: UseEventsParams) => {
     fetchPage: () => void;
     events: Event[] | undefined;
     error: string | undefined;

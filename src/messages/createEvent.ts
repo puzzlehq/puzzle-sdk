@@ -54,8 +54,7 @@ export const requestCreateEvent = async (
       topic: session.topic,
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'requestCreateEvent',
         params: {
           ...requestData,

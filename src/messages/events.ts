@@ -5,6 +5,7 @@ import { SessionTypes } from '@walletconnect/types';
 export type EventsFilter = {
   type?: EventType;
   programId?: string;
+  functionId?: string;
 };
 
 export type GetEventsRequest = {
@@ -40,8 +41,7 @@ export const getEvents = async (
       topic: session?.topic ?? '',
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'getEvents',
         params: {
           filter,

@@ -27,8 +27,7 @@ export const decrypt = async (
       topic: session.topic,
       chainId: chainId,
       request: {
-        id: 1,
-        jsonrpc: '2.0',
+          jsonrpc: '2.0',
         method: 'decrypt',
         params: {
           ciphertexts: ciphertexts,

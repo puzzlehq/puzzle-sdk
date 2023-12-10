@@ -5,6 +5,7 @@ export * from './createEvent.js';
 export * from './createSharedState.js';
 export * from './decrypt.js';
 export * from './disconnect.js';
+export * from './event.js';
 export * from './events.js';
 export * from './importSharedState.js';
 export * from './records.js';

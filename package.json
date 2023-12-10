@@ -1,21 +1,24 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.35",
+  "version": "0.1.41",
   "description": "Your portal to privacy",
-  "main": "./dist/puzzle.umd.js",
+  "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
+  "browser": "./dist/puzzle.umd.js",
   "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/puzzle.es.js",
-      "require": "./dist/puzzle.umd.js",
+      "require": "./dist/puzzle.cjs.js",
+      "browser": "./dist/puzzle.umd.js",
       "types": "./dist/types/src/index.d.ts"
     }
   },
   "type": "module",
   "scripts": {
-    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types"
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
@@ -24,8 +27,10 @@
     "@trpc/server": "^10.8.1",
     "@types/debug": "^4.1.7",
     "@walletconnect/modal-sign-html": "^2.6.2",
+    "@walletconnect/keyvaluestorage": "1.0.2",
     "@walletconnect/types": "^2.9.0",
-    "@walletconnect/utils": "^2.9.2",
+    "@walletconnect/utils": "^2.9.0",
+    "@puzzlehq/types": "1.0.8",
     "debug": "^4.3.4",
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
@@ -35,7 +40,6 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
-    "@puzzlehq/types": "1.0.4",
     "@types/chrome": "^0.0.228",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
@@ -59,5 +63,10 @@
   "bugs": {
     "url": "https://github.com/puzzlehq/puzzle-sdk/issues"
   },
-  "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme"
+  "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
+  "pnpm": {
+    "patchedDependencies": {
+      "@walletconnect/keyvaluestorage@1.0.2": "patches/@walletconnect__keyvaluestorage@1.0.2.patch"
+    }
+  }
 }

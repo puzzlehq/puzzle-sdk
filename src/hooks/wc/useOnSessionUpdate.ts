@@ -4,14 +4,14 @@ import { getWalletConnectModalSignClient } from '../../client.js';
 
 export function useOnSessionUpdate(callback: WalletConnectModalEventCallback) {
   useEffect(() => {
-    getWalletConnectModalSignClient().then((client) => {
-      client.onSessionUpdate(callback);
-    });
+    getWalletConnectModalSignClient().then(client => {
+      client.onSessionUpdate(callback)
+    })
 
     return () => {
-      getWalletConnectModalSignClient().then((client) => {
-        client.offSessionUpdate(callback);
-      });
-    };
-  }, [callback]);
+      getWalletConnectModalSignClient().then(client => {
+        client.offSessionUpdate(callback)
+      })
+    }
+  }, [callback])
 }
