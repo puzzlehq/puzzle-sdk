@@ -27,9 +27,12 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     state.chainId, state.account
   ]);
 
+  const enabled = (multisig ? !!address : true) && !!session && !!account;
+  console.log('enabled', enabled);
+
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
-    queryKey: ['useRecords', address ?? account?.address ?? '', filter, page],
-    enabled: (multisig ? !!address : true) && !!session && !!account,
+    queryKey: ['useRecords', account?.address, address, filter, page],
+    enabled,
     wcParams: {
       topic: session?.topic,
       chainId: chainId,
@@ -45,23 +48,9 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     }
   });
 
+  console.log('useRecords wc_data', wc_data);
+
   const readyToRequest = !!session && !!account && (multisig ? !!address : true);
-
-  // listen for wallet-originating account updates
-  useOnSessionEvent(({ params, topic }) => {
-    const eventName = params.event.name;
-    const _address = params.event.address ?? params.event.data.address;
-    if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && readyToRequest && session.topic === topic ) {
-      refetch();
-    }
-  });
-
-  // send initial records request
-  useEffect(() => {
-    if (readyToRequest && !loading) {
-      refetch();
-    }
-  }, [readyToRequest]);
 
   const fetchPage = () => {
     if (readyToRequest && !loading) {

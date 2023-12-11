@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { configureConnection } from "../index.js"
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import EventEmitter from "events";
 
 type PuzzleWalletProviderProps = {
   dAppName: string;
@@ -20,10 +22,12 @@ export const PuzzleWalletProvider = ({ dAppName, dAppDescription, dAppUrl, dAppI
       dAppUrl,
       dAppIconURL
     });
+    EventEmitter.defaultMaxListeners = 100;
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       {children}
     </QueryClientProvider>
   )

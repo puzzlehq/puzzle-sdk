@@ -7,7 +7,7 @@ import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import useWalletStore from '../store.js';
 import { useRequest } from './wc/useRequest.js';
-import { GetRecordsResponse } from '../index.js';
+import { AccountSelectedResponse } from '../index.js';
 
 /// ADDRESSES AND ALIASES
 export const shortenAddress = (address: string) => {
@@ -37,7 +37,9 @@ export const useAccount = () => {
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSelected' && session && session.topic === topic) {
-      const address = params.event.address ?? params.event.data.address;
+      const data: AccountSelectedResponse = params.event.data;
+
+      const address = data.address;
       const network = params.chainId.split(':')[0];
       const chainId = params.chainId.split(':')[1];
       setAccount({
@@ -50,7 +52,9 @@ export const useAccount = () => {
   });
 
   useOnSessionUpdate(({ params, topic }) => {
-    const address = params.event.address ?? params.event.data.address;
+    const data: AccountSelectedResponse = params.event.data;
+
+    const address = data.address;
     const network = params.chainId.split(':')[0];
     const chainId = params.chainId.split(':')[1];
     setAccount({

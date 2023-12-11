@@ -1,6 +1,7 @@
 import pkg from '../package.json';
 
 export * from './client.js';
+export * from './data/events.js';
 export * from './data/types.js';
 export * from './data/walletconnect.js';
 export * from './hooks/useAccount.js';
