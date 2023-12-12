@@ -27,12 +27,9 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     state.chainId, state.account
   ]);
 
-  const enabled = (multisig ? !!address : true) && !!session && !!account;
-  console.log('enabled', enabled);
-
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
-    queryKey: ['useRecords', account?.address, address, filter, page],
-    enabled,
+    queryKey: ['useRecords', account?.address, address, multisig, filter, page],
+    enabled: (multisig ? !!address : true) && !!session && !!account,
     wcParams: {
       topic: session?.topic,
       chainId: chainId,
@@ -48,9 +45,15 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     }
   });
 
-  console.log('useRecords wc_data', wc_data);
 
   const readyToRequest = !!session && !!account && (multisig ? !!address : true);
+
+  useOnSessionEvent(({ params }) => {
+    const eventName = params.event.name;
+    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig)) {
+      refetch();
+    } 
+  })
 
   const fetchPage = () => {
     if (readyToRequest && !loading) {

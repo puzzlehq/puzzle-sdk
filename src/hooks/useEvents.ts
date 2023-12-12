@@ -20,7 +20,7 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
   }
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventsResponse | undefined>({
-    queryKey: ['useEvents', account?.address ?? '', filter, page],
+    queryKey: ['useEvents', account?.address, filter, page],
     enabled: !!session && !!account,
     wcParams: {
       topic: session?.topic ?? '',

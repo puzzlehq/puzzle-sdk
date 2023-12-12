@@ -6,8 +6,6 @@ import { useAsyncAction } from './_useAsyncAction.js';
 async function fetchRequest<Result>(params: WalletConnectModalSignRequestArguments, queryKey?: QueryKey): Promise<Result | undefined> {
   const client = await getWalletConnectModalSignClient()
   const result = await client.request<Result>(params);
-  console.log('fetchRequest queryKey', queryKey);
-  console.log('fetchRequest result', result);
   if (result === undefined && queryKey) {
     console.error('Result is undefined, retrying...');
     throw new Error('Result is undefined, retrying...');
@@ -23,10 +21,9 @@ type UseRequestParams<Result> = {
 }
 
 export function useRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions }: UseRequestParams<Result>) {
-  console.log('useRequestQuery queryKey', queryKey);
   return useQuery(
     queryKey,
-    async () => {return await fetchRequest<Result>(wcParams, queryKey)},
+    async () => fetchRequest<Result>(wcParams, queryKey),
     queryOptions ??
     {
       staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
