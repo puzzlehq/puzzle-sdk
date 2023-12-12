@@ -4,6 +4,7 @@ import { SessionTypes } from '@walletconnect/types';
 
 export type RecordWithPlaintext = Record & {
   plaintext: string;
+  microcredits: number;
   data: { [key: string]: string };
 };
 
