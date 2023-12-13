@@ -468,7 +468,7 @@ let Yd = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-cbd18a46.js");
+      await import("./index-d2bedb60.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), ur.setIsUiLoaded(!0);
     }
@@ -13655,10 +13655,10 @@ function Ms(t) {
   }
   return { data: e, error: r, loading: n, request: a };
 }
-const zu = (t) => t.length < 5 * 2 ? t : `${t.slice(0, 5 + 5)}...${t.slice(
-  t.length - 5,
-  t.length
-)}`, HE = () => {
+const zu = (t, e = !0, r = 4, n = !0) => t ? t.length < r ? t : n ? `(...${t.slice(-r)})` : t.length < r * 2 ? t : `${t.slice(
+  0,
+  r + (e ? 5 : 0)
+)}...${t.slice(t.length - r, t.length)}` : "", HE = () => {
   const t = yr(), e = "aleo:1", [r, n, s] = Qr((h) => [h.account, h.setAccount, h.onDisconnect]), { refetch: i, data: o, error: a, isLoading: l } = Fs({
     queryKey: ["useAccount", t == null ? void 0 : t.topic],
     enabled: !!t,
