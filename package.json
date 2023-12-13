@@ -28,8 +28,10 @@
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.8.1",
     "@types/debug": "^4.1.7",
+    "@walletconnect/core": "^2.10.6",
     "@walletconnect/keyvaluestorage": "1.0.2",
     "@walletconnect/modal-sign-html": "^2.6.2",
+    "@walletconnect/sign-client": "^2.10.6",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.0",
     "debug": "^4.3.4",
@@ -68,7 +70,11 @@
   "pnpm": {
     "patchedDependencies": {
       "@walletconnect/keyvaluestorage@1.0.2": "patches/@walletconnect__keyvaluestorage@1.0.2.patch",
-      "@walletconnect/core@2.10.0": "patches/@walletconnect__core@2.10.0.patch"
+      "@walletconnect/core@2.10.6": "patches/@walletconnect__core@2.10.6.patch"
+    },
+    "overrides": {
+      "@walletconnect/core": "^2.10.6",
+      "@walletconnect/sign-client": "^2.10.6"
     }
   }
 }
