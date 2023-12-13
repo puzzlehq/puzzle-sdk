@@ -32,7 +32,7 @@ export const requestSignature = async ({
       topic: session.topic,
       chainId: chainId,
       request: {
-          jsonrpc: '2.0',
+        jsonrpc: '2.0',
         method: 'requestSignature',
         params: {
           message,
