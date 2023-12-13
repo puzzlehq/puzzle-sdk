@@ -27,7 +27,7 @@ export const PuzzleWalletProvider = ({ dAppName, dAppDescription, dAppUrl, dAppI
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       {children}
     </QueryClientProvider>
   )

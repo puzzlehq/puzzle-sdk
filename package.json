@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.41",
+  "version": "0.1.43",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -67,7 +67,8 @@
   "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
   "pnpm": {
     "patchedDependencies": {
-      "@walletconnect/keyvaluestorage@1.0.2": "patches/@walletconnect__keyvaluestorage@1.0.2.patch"
+      "@walletconnect/keyvaluestorage@1.0.2": "patches/@walletconnect__keyvaluestorage@1.0.2.patch",
+      "@walletconnect/core@2.10.0": "patches/@walletconnect__core@2.10.0.patch"
     }
   }
 }

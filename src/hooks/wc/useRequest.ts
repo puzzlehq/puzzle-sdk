@@ -1,6 +1,6 @@
 import type { WalletConnectModalSignRequestArguments } from '@walletconnect/modal-sign-html'
 import { getWalletConnectModalSignClient } from '../../client.js'
-import { QueryKey, UseQueryOptions, useQuery, hashQueryKey } from '@tanstack/react-query'
+import { QueryKey, UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { useAsyncAction } from './_useAsyncAction.js';
 
 async function fetchRequest<Result>(params: WalletConnectModalSignRequestArguments, queryKey?: QueryKey): Promise<Result | undefined> {

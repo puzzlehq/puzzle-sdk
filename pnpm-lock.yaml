@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@walletconnect/core@2.10.0':
+    hash: jkgnzhzporjb3e7htvje5gzpgu
+    path: patches/@walletconnect__core@2.10.0.patch
   '@walletconnect/keyvaluestorage@1.0.2':
     hash: l7jviqohqttb2voygundzidp2q
     path: patches/@walletconnect__keyvaluestorage@1.0.2.patch
@@ -750,7 +753,7 @@ packages:
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
     dev: false
 
-  /@walletconnect/core@2.10.0:
+  /@walletconnect/core@2.10.0(patch_hash=jkgnzhzporjb3e7htvje5gzpgu):
     resolution: {integrity: sha512-Z8pdorfIMueuiBXLdnf7yloiO9JIiobuxN3j0OTal+MYc4q5/2O7d+jdD1DAXbLi1taJx3x60UXT/FPVkjIqIQ==}
     dependencies:
       '@walletconnect/heartbeat': 1.2.1
@@ -775,6 +778,7 @@ packages:
       - lokijs
       - utf-8-validate
     dev: false
+    patched: true
 
   /@walletconnect/environment@1.0.1:
     resolution: {integrity: sha512-T426LLZtHj8e8rYnKfzsw1aG6+M0BT1ZxayMdv/p8yM0MU+eJDISqNY3/bccxRr4LrF9csq02Rhqt08Ibl0VRg==}
@@ -954,7 +958,7 @@ packages:
   /@walletconnect/sign-client@2.10.0:
     resolution: {integrity: sha512-hbDljDS53kR/It3oXD91UkcOsT6diNnW5+Zzksm0YEfwww5dop/YfNlcdnc8+jKUhWOL/YDPNQCjzsCSNlVzbw==}
     dependencies:
-      '@walletconnect/core': 2.10.0
+      '@walletconnect/core': 2.10.0(patch_hash=jkgnzhzporjb3e7htvje5gzpgu)
       '@walletconnect/events': 1.0.1
       '@walletconnect/heartbeat': 1.2.1
       '@walletconnect/jsonrpc-utils': 1.0.8

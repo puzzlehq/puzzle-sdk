@@ -6,8 +6,7 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import useWalletStore from '../store.js';
-import { useRequest } from './wc/useRequest.js';
-import { AccountSelectedResponse } from '../index.js';
+import { useRequestQuery } from './wc/useRequest.js';
 
 /// ADDRESSES AND ALIASES
 export const shortenAddress = (address: string) => {
@@ -23,23 +22,26 @@ export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
   const chainId = 'aleo:1';
 
-  const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
+  const [account, setAccount, onDisconnect] = useWalletStore((state) => [state.account, state.setAccount, state.onDisconnect]);
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetSelectedAccountResponse | undefined>({
-    topic: session?.topic,
-    chainId: chainId,
-    request: {
-      jsonrpc: '2.0',
-      method: 'getSelectedAccount'
-    },
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetSelectedAccountResponse | undefined>({
+    queryKey: ['useAccount', session?.topic],
+    enabled: !!session,
+    wcParams: {
+      topic: session?.topic,
+      chainId: chainId,
+      request: {
+        jsonrpc: '2.0',
+        method: 'getSelectedAccount'
+      },
+    }
   });
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSelected' && session && session.topic === topic) {
-      const data: AccountSelectedResponse = params.event.data;
+      const address = params.event.address ?? params.event.data.address;
 
-      const address = data.address;
       const network = params.chainId.split(':')[0];
       const chainId = params.chainId.split(':')[1];
       setAccount({
@@ -52,9 +54,8 @@ export const useAccount = () => {
   });
 
   useOnSessionUpdate(({ params, topic }) => {
-    const data: AccountSelectedResponse = params.event.data;
+    const address = params.event.address ?? params.event.data.address;
 
-    const address = data.address;
     const network = params.chainId.split(':')[0];
     const chainId = params.chainId.split(':')[1];
     setAccount({
@@ -66,13 +67,13 @@ export const useAccount = () => {
   });
 
   useOnSessionDelete(({ params, topic }) => {
-    setAccount(undefined);
+    onDisconnect();
   });
   
   // send initial account request...
   useEffect(() => {
     if (session && !loading) {
-      request();
+      refetch();
     }
   }, [session?.topic]);
 

@@ -22,7 +22,7 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
   const chainId = 'aleo:1';
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
-    queryKey: ['useBalance', address ?? account?.address ?? '', multisig],
+    queryKey: ['useBalance', address, account?.address ?? '', multisig, session?.topic],
     enabled: !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
@@ -40,12 +40,12 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    const address = params.event.address ?? params.event.data.address;
+    const _address = params.event.address ?? params.event.data.address;
     if (
       ['accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'].includes(eventName)&&
       session &&
       session.topic === topic &&
-      address === account?.address &&
+      _address === account?.address &&
       !loading
     ) {
       refetch();

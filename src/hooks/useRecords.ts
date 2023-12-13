@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { GetRecordsRequest, GetRecordsResponse, RecordWithPlaintext, RecordsFilter } from '../messages/records.js';
 import { SessionTypes } from '@walletconnect/types';
 import useWalletStore from '../store.js';
@@ -28,7 +27,7 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
   ]);
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
-    queryKey: ['useRecords', account?.address, address, multisig, filter, page],
+    queryKey: ['useRecords', account?.address, address, multisig, filter, page, session?.topic],
     enabled: (multisig ? !!address : true) && !!session && !!account,
     wcParams: {
       topic: session?.topic,
@@ -44,7 +43,6 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
       }
     }
   });
-
 
   const readyToRequest = !!session && !!account && (multisig ? !!address : true);
 

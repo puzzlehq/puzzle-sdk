@@ -8,7 +8,7 @@ type WalletState = {
 
   setAccount: (account: PuzzleAccount | undefined) => void;
   setChainId: (chainId: string) => void;
-  disconnect: () => void;
+  onDisconnect: () => void;
 };
 
 const useWalletStore = create<WalletState>()(
@@ -21,7 +21,7 @@ const useWalletStore = create<WalletState>()(
     setChainId: (chainId: string) => {
       set({ chainId });
     },
-    disconnect: () => {
+    onDisconnect: () => {
       set({
         account: undefined,
         chainId: undefined,
