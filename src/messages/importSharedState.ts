@@ -22,7 +22,7 @@ export const importSharedState = async (
     await connection?.getSession();
 
   if (!session || !connection) {
-    return { error: 'no session, chainId, or connection' };
+    return { error: 'no session or connection' };
   }
 
   try {

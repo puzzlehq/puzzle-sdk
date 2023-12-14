@@ -37,7 +37,7 @@ export const getRecords = async ({
     await connection?.getSession();
 
   if (!session || !connection) {
-    return { error: 'no session, chainId, or connection' };
+    return { error: 'no session or connection' };
   }
 
   const fetchPage = async (page = 0) => {

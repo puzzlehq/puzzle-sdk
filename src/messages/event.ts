@@ -22,7 +22,7 @@ export const getEvent = async ({
     await connection?.getSession();
 
   if (!session || !connection) {
-    return { event: undefined, error: 'no session, chainId, or connection' };
+    return { event: undefined, error: 'no session or connection' };
   }
 
   const fetchEvent = async () => {

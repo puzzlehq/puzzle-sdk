@@ -22,7 +22,7 @@ export const getBalance = async ({address}: {address?: string}): Promise<GetBala
     await connection.getSession();
 
   if (!session || !connection) {
-    return { error: 'no session, chainId, or connection' };
+    return { error: 'no session or connection' };
   }
 
   try {

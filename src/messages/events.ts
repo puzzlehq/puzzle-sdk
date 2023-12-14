@@ -28,7 +28,7 @@ export const getEvents = async (
     await connection?.getSession();
 
   if (!session || !connection) {
-    return { events: undefined, error: 'no session, chainId, or connection' };
+    return { events: undefined, error: 'no session or connection' };
   }
 
   if (filter?.programId === '') {
