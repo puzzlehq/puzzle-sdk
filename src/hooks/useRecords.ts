@@ -22,8 +22,8 @@ export const getFormattedRecordPlaintext = (data: any) => {
 
 export const useRecords = ( { address, multisig = false, filter, page }: UseRecordsParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
-  const [chainId, account] = useWalletStore((state) => [
-    state.chainId, state.account
+  const [account] = useWalletStore((state) => [
+    state.account
   ]);
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
@@ -31,7 +31,7 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     enabled: (multisig ? !!address : true) && !!session && !!account,
     wcParams: {
       topic: session?.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'getRecords',

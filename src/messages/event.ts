@@ -20,16 +20,15 @@ export const getEvent = async ({
 
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
+  if (!session || !connection) {
     return { event: undefined, error: 'no session, chainId, or connection' };
   }
 
   const fetchEvent = async () => {
     const response: GetEventResponse = await connection.request({
       topic: session?.topic ?? '',
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'getEvent',

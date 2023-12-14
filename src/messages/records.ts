@@ -35,16 +35,15 @@ export const getRecords = async ({
 
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
+  if (!session || !connection) {
     return { error: 'no session, chainId, or connection' };
   }
 
   const fetchPage = async (page = 0) => {
     const response: GetRecordsResponse = await connection.request({
       topic: session.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',
         method: 'getRecords',

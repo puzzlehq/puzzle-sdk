@@ -26,9 +26,8 @@ export const getEvents = async (
 
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
+  if (!session || !connection) {
     return { events: undefined, error: 'no session, chainId, or connection' };
   }
 
@@ -39,7 +38,7 @@ export const getEvents = async (
   const fetchPage = async (page = 0) => {
     const response: GetEventsResponse = await connection.request({
       topic: session?.topic ?? '',
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',
         method: 'getEvents',

@@ -28,7 +28,6 @@ export const shortenAddress = (
 
 export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
-  const chainId = 'aleo:1';
 
   const [account, setAccount, onDisconnect] = useWalletStore((state) => [state.account, state.setAccount, state.onDisconnect]);
 
@@ -37,7 +36,7 @@ export const useAccount = () => {
     enabled: !!session,
     wcParams: {
       topic: session?.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'getSelectedAccount'

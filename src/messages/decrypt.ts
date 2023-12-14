@@ -16,16 +16,15 @@ export const decrypt = async (
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
+  if (!session || !connection) {
     return { error: 'no session, chainId, or connection' };
   }
 
   try {
     const response: DecryptResponse = await connection.request({
       topic: session.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',
         method: 'decrypt',

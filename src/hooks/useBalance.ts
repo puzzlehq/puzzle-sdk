@@ -19,14 +19,13 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const chainId = 'aleo:1';
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
     queryKey: ['useBalance', address, account?.address ?? '', multisig, session?.topic],
     enabled: !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'getBalance',
