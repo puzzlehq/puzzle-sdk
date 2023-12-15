@@ -18,7 +18,7 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventResponse | undefined>({
     queryKey: ['useEvent', account?.address, address, multisig, id, session?.topic],
-    enabled: !!id && !!session && !!account && (multisig ? !!address : true) ,
+    enabled: !!id && !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
       chainId: 'aleo:1',

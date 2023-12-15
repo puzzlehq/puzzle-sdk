@@ -9,12 +9,13 @@ type PuzzleWalletProviderProps = {
   dAppDescription: string,
   dAppUrl: string,
   dAppIconURL: string,
-  children: React.ReactNode
+  children: React.ReactNode,
+  debugQuery?: boolean
 }
 
 export const queryClient = new QueryClient();
 
-export const PuzzleWalletProvider = ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children }: PuzzleWalletProviderProps) => {
+export const PuzzleWalletProvider = ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children, debugQuery = false }: PuzzleWalletProviderProps) => {
   useEffect(() => {
     configureConnection({
       dAppName,
@@ -27,7 +28,7 @@ export const PuzzleWalletProvider = ({ dAppName, dAppDescription, dAppUrl, dAppI
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      {debugQuery && <ReactQueryDevtools initialIsOpen={false} />}
       {children}
     </QueryClientProvider>
   )

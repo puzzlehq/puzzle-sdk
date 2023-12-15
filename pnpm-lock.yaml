@@ -12,9 +12,6 @@ patchedDependencies:
   '@walletconnect/core@2.10.6':
     hash: qwvktbbaeeugmduwkatxkfcsf4
     path: patches/@walletconnect__core@2.10.6.patch
-  '@walletconnect/keyvaluestorage@1.0.2':
-    hash: l7jviqohqttb2voygundzidp2q
-    path: patches/@walletconnect__keyvaluestorage@1.0.2.patch
 
 dependencies:
   '@puzzlehq/types':
@@ -41,9 +38,6 @@ dependencies:
   '@walletconnect/core':
     specifier: ^2.10.6
     version: 2.10.6(patch_hash=qwvktbbaeeugmduwkatxkfcsf4)
-  '@walletconnect/keyvaluestorage':
-    specifier: 1.0.2
-    version: 1.0.2(patch_hash=l7jviqohqttb2voygundzidp2q)
   '@walletconnect/modal-sign-html':
     specifier: ^2.6.2
     version: 2.6.2(@types/react@18.2.42)(react@18.2.0)
@@ -856,22 +850,6 @@ packages:
       - bufferutil
       - utf-8-validate
     dev: false
-
-  /@walletconnect/keyvaluestorage@1.0.2(patch_hash=l7jviqohqttb2voygundzidp2q):
-    resolution: {integrity: sha512-U/nNG+VLWoPFdwwKx0oliT4ziKQCEoQ27L5Hhw8YOFGA2Po9A9pULUYNWhDgHkrb0gYDNt//X7wABcEWWBd3FQ==}
-    peerDependencies:
-      '@react-native-async-storage/async-storage': 1.x
-      lokijs: 1.x
-    peerDependenciesMeta:
-      '@react-native-async-storage/async-storage':
-        optional: true
-      lokijs:
-        optional: true
-    dependencies:
-      safe-json-utils: 1.1.1
-      tslib: 1.14.1
-    dev: false
-    patched: true
 
   /@walletconnect/keyvaluestorage@1.1.1:
     resolution: {integrity: sha512-V7ZQq2+mSxAq7MrRqDxanTzu2RcElfK1PfNYiaVnJgJ7Q7G7hTVwF8voIBx92qsRyGHZihrwNPHuZd1aKkd0rA==}
@@ -1917,10 +1895,6 @@ packages:
 
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
-    dev: false
-
-  /safe-json-utils@1.1.1:
-    resolution: {integrity: sha512-SAJWGKDs50tAbiDXLf89PDwt9XYkWyANFWVzn4dTXl5QyI8t2o/bW5/OJl3lvc2WVU4MEpTo9Yz5NVFNsp+OJQ==}
     dev: false
 
   /safe-stable-stringify@2.4.3:

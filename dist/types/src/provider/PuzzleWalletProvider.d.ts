@@ -5,7 +5,8 @@ type PuzzleWalletProviderProps = {
     dAppUrl: string;
     dAppIconURL: string;
     children: React.ReactNode;
+    debugQuery?: boolean;
 };
 export declare const queryClient: QueryClient;
-export declare const PuzzleWalletProvider: ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children }: PuzzleWalletProviderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const PuzzleWalletProvider: ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children, debugQuery }: PuzzleWalletProviderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

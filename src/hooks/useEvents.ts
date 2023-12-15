@@ -39,8 +39,7 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    const _address = params.event.address ?? params.event.data.address;
-    if (eventName === 'selectedAccountSynced' && session && session.topic === topic && _address === account?.address && !loading) {
+    if (eventName === 'selectedAccountSynced') {
       refetch();
     }
   });
