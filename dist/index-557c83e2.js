@@ -475,7 +475,7 @@ let dg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-825d2dec.js");
+      await import("./index-c6ed1112.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -14119,7 +14119,7 @@ function qO() {
 const zO = ({ id: t, address: e, multisig: r = !1 }) => {
   const n = Or(), [s] = Qr((v) => [v.account]), { refetch: i, data: a, error: o, isLoading: u } = Oi({
     queryKey: ["useEvent", s == null ? void 0 : s.address, e, r, t, n == null ? void 0 : n.topic],
-    enabled: !!t && !!n && !!s && (r ? !!e : !0),
+    enabled: t !== void 0 && !!n && !!s && (r ? !!e : !0),
     wcParams: {
       topic: n == null ? void 0 : n.topic,
       chainId: "aleo:1",
@@ -17308,7 +17308,7 @@ var A3 = (t, e = !1) => {
     const e = Kx(() => {
       const [r] = vt(this, rs), [n] = vt(this, ns), [s] = vt(this, ss), [i] = vt(this, is), [a] = vt(this, ts);
       let o;
-      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-fae53981.js")), Yt(this, os, o)), qD(vt(this, hi));
+      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-88277683.js")), Yt(this, os, o)), qD(vt(this, hi));
       const u = this;
       return Rx(o, Ax({
         get queryFlavor() {
