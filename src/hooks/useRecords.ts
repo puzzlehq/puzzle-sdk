@@ -48,7 +48,8 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
 
   useOnSessionEvent(({ params }) => {
     const eventName = params.event.name;
-    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig)) {
+    const _address = params.event.address ?? params.event.data.address;
+    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
       refetch();
     } 
   })

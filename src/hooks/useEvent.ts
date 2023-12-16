@@ -36,7 +36,8 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig)) {
+    const _address = params.event.address ?? params.event.data.address;
+    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
       refetch();
     }
   });
