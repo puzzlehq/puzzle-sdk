@@ -9,7 +9,7 @@ var vt = (t, e, r) => (uu(t, e, "read from private field"), r ? r.call(t) : e.ge
 }, Yt = (t, e, r, n) => (uu(t, e, "write to private field"), n ? n.call(t, r) : e.set(t, r), r);
 import * as Wt from "react";
 import dn, { useEffect as At, useState as js, useRef as xp } from "react";
-const Dp = "@puzzlehq/sdk", Op = "Puzzle SDK", Ip = "0.1.46", Cp = "Your portal to privacy", Rp = "./dist/puzzle.cjs.js", Tp = "./dist/puzzle.es.js", Ap = "./dist/puzzle.umd.js", Pp = "./dist/types/src/index.d.ts", Np = {
+const Dp = "@puzzlehq/sdk", Op = "Puzzle SDK", Ip = "0.1.47", Cp = "Your portal to privacy", Rp = "./dist/puzzle.cjs.js", Tp = "./dist/puzzle.es.js", Ap = "./dist/puzzle.umd.js", Pp = "./dist/types/src/index.d.ts", Np = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -475,7 +475,7 @@ let dg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-c6ed1112.js");
+      await import("./index-24f2f06c.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -17308,7 +17308,7 @@ var A3 = (t, e = !1) => {
     const e = Kx(() => {
       const [r] = vt(this, rs), [n] = vt(this, ns), [s] = vt(this, ss), [i] = vt(this, is), [a] = vt(this, ts);
       let o;
-      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-88277683.js")), Yt(this, os, o)), qD(vt(this, hi));
+      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-a489162d.js")), Yt(this, os, o)), qD(vt(this, hi));
       const u = this;
       return Rx(o, Ax({
         get queryFlavor() {
