@@ -475,7 +475,7 @@ let dg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-3081871e.js");
+      await import("./index-71e2d3d6.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -8699,7 +8699,7 @@ function iE(t) {
       icons: [t.dAppIconURL]
     },
     modalOptions: { ...sE }
-  }), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
+  });
 }
 async function tt() {
   return new Promise((t) => {
@@ -8710,7 +8710,6 @@ async function tt() {
         Fs && (clearInterval(e), t(Fs));
       }, 200);
     }
-    window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
   });
 }
 var Be;
@@ -13759,7 +13758,7 @@ function $O() {
         chainId: f[1],
         address: f[2],
         shortenedAddress: ic(f[0])
-      }), cs.emit("session_change"), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), c;
+      }), cs.emit("session_change"), c;
     } catch (u) {
       throw s(u), u;
     } finally {
@@ -14309,7 +14308,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
         }
       }
     });
-    return cs.emit("session_change"), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), e;
+    return cs.emit("session_change"), e;
   } catch (e) {
     console.error("connect error", e.message);
   }
@@ -17308,7 +17307,7 @@ var P3 = (t, e = !1) => {
     const e = Kx(() => {
       const [r] = vt(this, rs), [n] = vt(this, ns), [s] = vt(this, ss), [i] = vt(this, is), [a] = vt(this, ts);
       let o;
-      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-2c18ca97.js")), Yt(this, os, o)), qD(vt(this, hi));
+      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-1814257b.js")), Yt(this, os, o)), qD(vt(this, hi));
       const u = this;
       return Rx(o, Ax({
         get queryFlavor() {
@@ -17453,7 +17452,7 @@ export {
   _3 as Z,
   w3 as _,
   $t as a,
-  VO as a$,
+  KO as a$,
   Wi as a0,
   d3 as a1,
   D3 as a2,
@@ -17464,33 +17463,33 @@ export {
   Qa as a7,
   Ja as a8,
   Ya as a9,
-  qy as aA,
-  Fy as aB,
-  hO as aC,
-  My as aD,
-  pO as aE,
-  Uy as aF,
-  jy as aG,
-  By as aH,
-  mO as aI,
-  $y as aJ,
-  ky as aK,
-  lO as aL,
-  zy as aM,
-  Vc as aN,
-  jo as aO,
-  Kc as aP,
-  nE as aQ,
-  sE as aR,
-  DO as aS,
-  ic as aT,
-  UO as aU,
-  jO as aV,
-  $O as aW,
-  kO as aX,
-  qO as aY,
-  zO as aZ,
-  BO as a_,
+  Fy as aA,
+  hO as aB,
+  My as aC,
+  pO as aD,
+  Uy as aE,
+  jy as aF,
+  By as aG,
+  mO as aH,
+  $y as aI,
+  ky as aJ,
+  lO as aK,
+  zy as aL,
+  Vc as aM,
+  jo as aN,
+  Kc as aO,
+  nE as aP,
+  sE as aQ,
+  DO as aR,
+  ic as aS,
+  UO as aT,
+  jO as aU,
+  $O as aV,
+  kO as aW,
+  qO as aX,
+  zO as aY,
+  BO as aZ,
+  VO as a_,
   sS as aa,
   cS as ab,
   oS as ac,
@@ -17509,40 +17508,39 @@ export {
   PO as ap,
   IO as aq,
   MO as ar,
-  WD as as,
-  cs as at,
-  iE as au,
-  tt as av,
-  Ly as aw,
-  nO as ax,
-  Vy as ay,
-  wO as az,
+  cs as as,
+  iE as at,
+  tt as au,
+  Ly as av,
+  nO as aw,
+  Vy as ax,
+  wO as ay,
+  qy as az,
   N3 as b,
-  KO as b0,
-  HO as b1,
-  WO as b2,
-  GO as b3,
-  QO as b4,
-  id as b5,
-  xi as b6,
-  fS as b7,
-  od as b8,
-  Or as b9,
-  c3 as ba,
-  ZO as bb,
-  YO as bc,
-  JO as bd,
-  XO as be,
-  e3 as bf,
-  t3 as bg,
-  r3 as bh,
-  n3 as bi,
-  s3 as bj,
-  i3 as bk,
-  o3 as bl,
-  a3 as bm,
-  KD as bn,
-  U3 as bo,
+  HO as b0,
+  WO as b1,
+  GO as b2,
+  QO as b3,
+  id as b4,
+  xi as b5,
+  fS as b6,
+  od as b7,
+  Or as b8,
+  c3 as b9,
+  ZO as ba,
+  YO as bb,
+  JO as bc,
+  XO as bd,
+  e3 as be,
+  t3 as bf,
+  r3 as bg,
+  n3 as bh,
+  s3 as bi,
+  i3 as bj,
+  o3 as bk,
+  a3 as bl,
+  KD as bm,
+  U3 as bn,
   Ht as c,
   Hx as d,
   rr as e,
