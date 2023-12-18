@@ -27,8 +27,6 @@ export function configureConnection(options: {
     },
     modalOptions: { ...web3modal_puzzle_props },
   });
-  // remove to prevent walletconnect from redirecting to the wallet page
-  window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 }
 
 export async function getWalletConnectModalSignClient(): Promise<WalletConnectModalSign> {
@@ -43,8 +41,5 @@ export async function getWalletConnectModalSignClient(): Promise<WalletConnectMo
         }
       }, 200);
     }
-
-    // remove to prevent walletconnect from redirecting to the wallet page
-    window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
   });
 }

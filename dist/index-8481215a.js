@@ -401,7 +401,7 @@ var sg = Object.defineProperty, pu = Object.getOwnPropertySymbols, ig = Object.p
       og.call(e, r) && gu(t, r, e[r]);
   return t;
 };
-const yu = $t.isMobile(), Tr = pn({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), QD = { state: Tr, async getRecomendedWallets() {
+const yu = $t.isMobile(), Tr = pn({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), ZD = { state: Tr, async getRecomendedWallets() {
   const { explorerRecommendedWalletIds: t, explorerExcludedWalletIds: e } = as.state;
   if (t === "NONE" || e === "ALL" && !t)
     return Tr.recomendedWallets;
@@ -462,7 +462,7 @@ const Es = pn({ themeMode: hg() ? "dark" : "light" }), bu = { state: Es, subscri
 }, setThemeConfig(t) {
   const { themeMode: e, themeVariables: r } = t;
   e && (Es.themeMode = e), r && (Es.themeVariables = fg({}, r));
-} }, bn = pn({ open: !1, message: "", variant: "success" }), ZD = { state: bn, subscribe(t) {
+} }, bn = pn({ open: !1, message: "", variant: "success" }), YD = { state: bn, subscribe(t) {
   return Mn(bn, () => t(bn));
 }, openToast(t, e) {
   bn.open = !0, bn.message = t, bn.variant = e;
@@ -475,7 +475,7 @@ let dg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-feb3298e.js");
+      await import("./index-3081871e.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -2234,7 +2234,7 @@ let Ly = class extends jn {
   constructor(e) {
     super(), this.opts = e, this.protocol = "wc", this.version = 2;
   }
-}, rO = class {
+}, nO = class {
   constructor(e, r, n) {
     this.core = e, this.logger = r;
   }
@@ -2258,7 +2258,7 @@ let Ly = class extends jn {
   constructor(e, r, n, s) {
     this.core = e, this.logger = r, this.name = n;
   }
-}, uO = class {
+}, lO = class {
   constructor() {
     this.map = /* @__PURE__ */ new Map();
   }
@@ -2268,7 +2268,7 @@ class ky extends jn {
     super(), this.relayer = e, this.logger = r;
   }
 }
-let fO = class {
+let hO = class {
   constructor(e, r) {
     this.core = e, this.logger = r;
   }
@@ -2278,7 +2278,7 @@ class qy extends jn {
     super(), this.core = e, this.logger = r;
   }
 }
-let dO = class {
+let pO = class {
   constructor(e, r) {
     this.logger = e, this.core = r;
   }
@@ -2286,7 +2286,7 @@ let dO = class {
   constructor(e, r) {
     this.projectId = e, this.logger = r;
   }
-}, yO = class extends pi {
+}, mO = class extends pi {
   constructor() {
     super();
   }
@@ -2294,7 +2294,7 @@ let dO = class {
   constructor(e) {
     this.opts = e, this.protocol = "wc", this.version = 2;
   }
-}, bO = class extends pr.EventEmitter {
+}, wO = class extends pr.EventEmitter {
   constructor() {
     super();
   }
@@ -8679,7 +8679,7 @@ const Vc = [
   walletImages: {
     puzzle: "https://i.imgur.com/p9tHaFC.png"
   }
-}, xO = {
+}, DO = {
   requiredNamespaces: {
     aleo: {
       methods: Vc,
@@ -11408,7 +11408,7 @@ var Dr = /* @__PURE__ */ Object.freeze({
   quotelessJson: oE,
   ZodError: Er
 });
-const sS = /^aleo1.{58}$/i, iS = /^AViewKey1.{44}$/i, oS = /^APrivateKey1.{47}$/i, aS = /^at1.{60}$/i, cS = /^\d+field$/, uS = /^\d+u32$/, lS = /^\d+u64$/, DO = Dr.string().regex(sS), OO = Dr.string().regex(iS), IO = Dr.string().regex(oS), CO = Dr.string().regex(aS), RO = Dr.string().regex(cS), TO = Dr.string().regex(uS), AO = Dr.string().regex(lS);
+const sS = /^aleo1.{58}$/i, iS = /^AViewKey1.{44}$/i, oS = /^APrivateKey1.{47}$/i, aS = /^at1.{60}$/i, cS = /^\d+field$/, uS = /^\d+u32$/, lS = /^\d+u64$/, OO = Dr.string().regex(sS), IO = Dr.string().regex(iS), CO = Dr.string().regex(oS), RO = Dr.string().regex(aS), TO = Dr.string().regex(cS), AO = Dr.string().regex(uS), PO = Dr.string().regex(lS);
 var Qa;
 (function(t) {
   t.Deploy = "Deploy", t.Execute = "Execute", t.Send = "Send", t.Receive = "Receive", t.Join = "Join", t.Split = "Split", t.Shield = "Shield", t.Unshield = "Unshield";
@@ -11429,7 +11429,7 @@ var Ql;
 (function(t) {
   t[t.ALEO = 0] = "ALEO";
 })(Ql || (Ql = {}));
-const PO = Dr.nativeEnum(Qa), NO = Dr.nativeEnum(Za), LO = Dr.nativeEnum(Ja), FO = Dr.nativeEnum(Ya);
+const NO = Dr.nativeEnum(Qa), LO = Dr.nativeEnum(Za), FO = Dr.nativeEnum(Ja), MO = Dr.nativeEnum(Ya);
 function id(t) {
   At(() => (tt().then((e) => {
     e.onSessionDelete(t);
@@ -13665,7 +13665,7 @@ function Ii(t) {
 const ic = (t, e = !0, r = 4, n = !0) => t ? t.length < r ? t : n ? `(...${t.slice(-r)})` : t.length < r * 2 ? t : `${t.slice(
   0,
   r + (e ? 5 : 0)
-)}...${t.slice(t.length - r, t.length)}` : "", MO = () => {
+)}...${t.slice(t.length - r, t.length)}` : "", UO = () => {
   const t = Or(), [e, r, n] = Qr((c) => [c.account, c.setAccount, c.onDisconnect]), { refetch: s, data: i, error: a, isLoading: o } = Oi({
     queryKey: ["useAccount", t == null ? void 0 : t.topic],
     enabled: !!t,
@@ -13712,7 +13712,7 @@ const ic = (t, e = !0, r = 4, n = !0) => t ? t.length < r ? t : n ? `(...${t.sli
     error: u,
     loading: o
   };
-}, UO = ({ address: t, multisig: e }) => {
+}, jO = ({ address: t, multisig: e }) => {
   const r = Or(), [n] = Qr((d) => [d.account]), { refetch: s, data: i, error: a, isLoading: o } = Oi({
     queryKey: ["useBalance", t, (n == null ? void 0 : n.address) ?? "", e, r == null ? void 0 : r.topic],
     enabled: !!r && !!n && (e ? !!t : !0),
@@ -13738,7 +13738,7 @@ const ic = (t, e = !0, r = 4, n = !0) => t ? t.length < r ? t : n ? `(...${t.sli
   const u = a ? a.message : i && i.error, c = i;
   return { balances: c == null ? void 0 : c.balances, error: u, loading: o };
 };
-function jO() {
+function $O() {
   const { data: t, error: e, loading: r, setData: n, setError: s, setLoading: i } = Zc(), [a] = Qr((u) => [u.setAccount]);
   async function o() {
     try {
@@ -13768,7 +13768,7 @@ function jO() {
   }
   return { data: t, error: e, loading: r, connect: o };
 }
-const $O = () => {
+const kO = () => {
   const t = Or(), { request: e, data: r, error: n, loading: s } = Ii({
     topic: (t == null ? void 0 : t.topic) ?? "",
     chainId: "aleo:1",
@@ -14083,7 +14083,7 @@ var fx = lx;
 var hx = oc.exports;
 const dx = /* @__PURE__ */ Oo(hx), Yc = dx("wallet:sdk");
 Yc.enabled = !0;
-const kO = (t) => {
+const qO = (t) => {
   Yc("useDecrypt", t);
   const e = Or(), { request: r, data: n, error: s, loading: i } = Ii({
     topic: (e == null ? void 0 : e.topic) ?? "",
@@ -14100,7 +14100,7 @@ const kO = (t) => {
     t && r();
   }, plaintexts: o == null ? void 0 : o.plaintexts, loading: i, error: a };
 };
-function qO() {
+function zO() {
   const t = Or(), { error: e, loading: r, setError: n, setLoading: s } = Zc();
   async function i() {
     try {
@@ -14116,7 +14116,7 @@ function qO() {
   }
   return { error: e, loading: r, disconnect: i };
 }
-const zO = ({ id: t, address: e, multisig: r = !1 }) => {
+const BO = ({ id: t, address: e, multisig: r = !1 }) => {
   const n = Or(), [s] = Qr((v) => [v.account]), { refetch: i, data: a, error: o, isLoading: u } = Oi({
     queryKey: ["useEvent", s == null ? void 0 : s.address, e, r, t, n == null ? void 0 : n.topic],
     enabled: t !== void 0 && !!n && !!s && (r ? !!e : !0),
@@ -14145,7 +14145,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     !!n && !!s && !u && i();
   }, d = o ? o.message : a && a.error, p = a, m = p == null ? void 0 : p.event;
   return { fetchEvent: f, event: m, error: d, loading: u };
-}, BO = ({ filter: t, page: e }) => {
+}, VO = ({ filter: t, page: e }) => {
   const r = Or(), [n] = Qr((v) => [v.account]);
   (t == null ? void 0 : t.programId) === "" && (t.programId = void 0);
   const { refetch: s, data: i, error: a, isLoading: o } = Oi({
@@ -14175,7 +14175,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     !!r && !!n && !o && s();
   }, f = a ? a.message : i && i.error, d = i, p = d == null ? void 0 : d.events, m = (d == null ? void 0 : d.pageCount) ?? 0;
   return { fetchPage: c, events: p, error: f, loading: o, page: e, pageCount: m };
-}, VO = (t) => {
+}, KO = (t) => {
   const e = Or(), { request: r, data: n, error: s, loading: i } = Ii({
     topic: (e == null ? void 0 : e.topic) ?? "",
     chainId: "aleo:1",
@@ -14190,13 +14190,13 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
   return { importSharedState: () => {
     r();
   }, data: o == null ? void 0 : o.data, loading: i, error: a };
-}, KO = (t) => {
+}, HO = (t) => {
   try {
     return JSON.stringify(t, null, 2).replaceAll('"', "") ?? "";
   } catch {
     return "";
   }
-}, HO = ({ address: t, multisig: e = !1, filter: r, page: n }) => {
+}, WO = ({ address: t, multisig: e = !1, filter: r, page: n }) => {
   const s = Or(), [i] = Qr((S) => [
     S.account
   ]), { refetch: a, data: o, error: u, isLoading: c } = Oi({
@@ -14224,7 +14224,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     f && !c && a();
   }, p = u ? u.message : o && o.error, m = o, v = m == null ? void 0 : m.records, E = (m == null ? void 0 : m.pageCount) ?? 0;
   return { fetchPage: d, records: v, error: p, loading: c, page: n, pageCount: E };
-}, WO = (t, e) => {
+}, GO = (t, e) => {
   const r = Or(), { request: n, data: s, error: i, loading: a } = Ii({
     topic: (r == null ? void 0 : r.topic) ?? "",
     chainId: "aleo:1",
@@ -14240,7 +14240,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
   return { requestSignature: () => {
     n();
   }, response: s, loading: a, error: o };
-}, GO = (t) => {
+}, QO = (t) => {
   const e = Or(), r = t == null ? void 0 : t.inputs.map((f) => typeof f == "string" ? f : f.plaintext), { request: n, data: s, error: i, loading: a } = Ii({
     topic: (e == null ? void 0 : e.topic) ?? "",
     chainId: "aleo:1",
@@ -14256,7 +14256,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
   return { createEvent: () => {
     t && (Yc("useCreateEvent requesting...", t), n());
   }, eventId: u == null ? void 0 : u.eventId, loading: a, error: o };
-}, QO = async () => {
+}, ZO = async () => {
   const t = await tt(), e = await t.getSession();
   if (!e || !t)
     return { error: "no session or connection" };
@@ -14274,7 +14274,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const n = r.message;
     return console.error("getAccount error", n), { error: n };
   }
-}, ZO = async ({ address: t }) => {
+}, YO = async ({ address: t }) => {
   const e = await tt(), r = await e.getSession();
   if (!r || !e)
     return { error: "no session or connection" };
@@ -14295,7 +14295,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const s = n.message;
     return console.error("getBalance error", s), { error: s };
   }
-}, YO = async () => {
+}, JO = async () => {
   const t = await tt();
   if (!t)
     throw new Error("call setConnection() first!");
@@ -14313,7 +14313,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
   } catch (e) {
     console.error("connect error", e.message);
   }
-}, JO = async (t) => {
+}, XO = async (t) => {
   const e = await tt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { error: "no session or connection" };
@@ -14335,7 +14335,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const i = s.message;
     return console.error("createEvent error", i), { error: i };
   }
-}, XO = async () => {
+}, e3 = async () => {
   const t = await tt(), e = await (t == null ? void 0 : t.getSession());
   if (!e || !t)
     return { error: "no session or connection" };
@@ -14353,7 +14353,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const n = r.message;
     return console.error("createSharedState error", n), { error: n };
   }
-}, e3 = async (t) => {
+}, t3 = async (t) => {
   const e = await tt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { error: "no session or connection" };
@@ -14372,7 +14372,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
   } catch (n) {
     return console.error("decrypt error", n.message), { error: n.message };
   }
-}, t3 = async () => {
+}, r3 = async () => {
   const t = await tt(), e = await (t == null ? void 0 : t.getSession());
   if (!e || !t)
     return { error: "no session or connection" };
@@ -14385,7 +14385,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const n = r.message;
     return console.error("error disconnecting", n), { error: n };
   }
-}, r3 = async ({
+}, n3 = async ({
   id: t,
   address: e
 }) => {
@@ -14410,7 +14410,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const a = i.message;
     return console.error("getEvents error", a), { error: a };
   }
-}, n3 = async (t) => {
+}, s3 = async (t) => {
   const e = await tt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { events: void 0, error: "no session or connection" };
@@ -14433,7 +14433,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const i = s.message;
     return console.error("getEvents error", i), { error: i };
   }
-}, s3 = async (t) => {
+}, i3 = async (t) => {
   const e = await tt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { error: "no session or connection" };
@@ -14453,7 +14453,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const s = n.message;
     return console.error("importSharedState error", s), { error: s };
   }
-}, i3 = async ({
+}, o3 = async ({
   address: t,
   filter: e,
   page: r = 0
@@ -14480,7 +14480,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const o = a.message;
     return console.error("getRecords error", o), { error: o };
   }
-}, o3 = async ({
+}, a3 = async ({
   message: t,
   address: e
 }) => {
@@ -14504,7 +14504,7 @@ const zO = ({ id: t, address: e, multisig: r = !1 }) => {
     const i = s.message;
     return console.error("signature error", i), { error: i };
   }
-}, a3 = 50;
+}, c3 = 50;
 var ac = { exports: {} }, As = {};
 /**
  * @license React
@@ -15145,7 +15145,7 @@ var yx = (t, e) => t === e, wo = Symbol("solid-proxy"), bd = Symbol("solid-track
   cleanups: null,
   context: null,
   owner: null
-}, ma = {}, ze = null, va = null, Ve = null, qt = null, Wr = null, zo = 0, [mx, c3] = /* @__PURE__ */ Ht(!1);
+}, ma = {}, ze = null, va = null, Ve = null, qt = null, Wr = null, zo = 0, [mx, u3] = /* @__PURE__ */ Ht(!1);
 function An(t, e) {
   const r = Ve, n = ze, s = t.length === 0, i = e === void 0 ? n : e, a = s ? _d : {
     owned: null,
@@ -15279,7 +15279,7 @@ function vx(t, e, r) {
     }
   ];
 }
-function u3(t) {
+function l3(t) {
   return Ur(t, !1);
 }
 function It(t) {
@@ -15293,7 +15293,7 @@ function It(t) {
     Ve = e;
   }
 }
-function l3(t, e, r) {
+function f3(t, e, r) {
   const n = Array.isArray(t);
   let s, i = r && r.defer;
   return (a) => {
@@ -15318,7 +15318,7 @@ function bx(t) {
 function ii(t) {
   return ze === null || (ze.cleanups === null ? ze.cleanups = [t] : ze.cleanups.push(t)), t;
 }
-function f3() {
+function h3() {
   return Ve;
 }
 function wf() {
@@ -15343,10 +15343,10 @@ function _x(t) {
     return Ur(t, !1), Ve = ze = null, n ? n.done : void 0;
   });
 }
-function h3() {
+function d3() {
   return [mx, _x];
 }
-function d3(t, e) {
+function p3(t, e) {
   const r = Symbol("context");
   return {
     id: r,
@@ -15354,7 +15354,7 @@ function d3(t, e) {
     defaultValue: t
   };
 }
-function p3(t) {
+function g3(t) {
   return ze && ze.context && ze.context[t.id] !== void 0 ? ze.context[t.id] : t.defaultValue;
 }
 function Sd(t) {
@@ -15782,24 +15782,24 @@ function Nx(t) {
   return n.preload = () => r || ((r = t()).then((s) => e = () => s.default), r), n;
 }
 var Lx = 0;
-function g3() {
+function y3() {
   const t = ye.context;
   return t ? `${t.id}${t.count++}` : `cl-${Lx++}`;
 }
 var Rd = (t) => `Stale read from <${t}>.`;
-function y3(t) {
+function m3(t) {
   const e = "fallback" in t && {
     fallback: () => t.fallback
   };
   return rr(Ix(() => t.each, t.children, e || void 0));
 }
-function m3(t) {
+function v3(t) {
   const e = "fallback" in t && {
     fallback: () => t.fallback
   };
   return rr(Cx(() => t.each, t.children, e || void 0));
 }
-function v3(t) {
+function b3(t) {
   const e = t.keyed, r = rr(() => t.when, void 0, {
     equals: (n, s) => e ? n === s : !n == !s
   });
@@ -15824,7 +15824,7 @@ function v3(t) {
     void 0
   );
 }
-function b3(t) {
+function w3(t) {
   let e = !1;
   const r = (i, a) => i[0] === a[0] && (e ? i[1] === a[1] : !i[1] == !a[1]) && i[2] === a[2], n = Sd(() => t.children), s = rr(
     () => {
@@ -15862,7 +15862,7 @@ function b3(t) {
     void 0
   );
 }
-function w3(t) {
+function _3(t) {
   return t;
 }
 var Fx = [
@@ -16094,7 +16094,7 @@ function Kx(t, e, r, n = {}) {
     s(), e.textContent = "";
   };
 }
-function _3(t, e, r) {
+function E3(t, e, r) {
   let n;
   const s = () => {
     const a = document.createElement("template");
@@ -16160,7 +16160,7 @@ function Jx(t, e = {}, r, n) {
     () => s.children = fs(t, e.children, s.children)
   ), Pn(() => e.ref && e.ref(t)), Pn(() => Xx(t, e, r, !0, s, !0)), s;
 }
-function E3(t, e, r) {
+function S3(t, e, r) {
   return It(() => t(e, r));
 }
 function hc(t, e, r, n) {
@@ -16381,7 +16381,7 @@ var sD = "http://www.w3.org/2000/svg";
 function Td(t, e = !1) {
   return e ? document.createElementNS(sD, t) : document.createElement(t);
 }
-function S3(t) {
+function x3(t) {
   const { useShadow: e } = t, r = document.createTextNode(""), n = () => t.mount || document.body, s = wf();
   let i, a = !!ye.context;
   return Ed(
@@ -16409,7 +16409,7 @@ function S3(t) {
     }
   ), r;
 }
-function x3(t) {
+function D3(t) {
   const [e, r] = Px(t, ["component"]), n = rr(() => e.component);
   return rr(() => {
     const s = n();
@@ -17150,42 +17150,42 @@ var On = function() {
       (e = this.allowedErrorProps).push.apply(e, MD([], FD(r)));
     }, t.defaultInstance = new t(), t.serialize = t.defaultInstance.serialize.bind(t.defaultInstance), t.deserialize = t.defaultInstance.deserialize.bind(t.defaultInstance), t.stringify = t.defaultInstance.stringify.bind(t.defaultInstance), t.parse = t.defaultInstance.parse.bind(t.defaultInstance), t.registerClass = t.defaultInstance.registerClass.bind(t.defaultInstance), t.registerSymbol = t.defaultInstance.registerSymbol.bind(t.defaultInstance), t.registerCustom = t.defaultInstance.registerCustom.bind(t.defaultInstance), t.allowErrorProps = t.defaultInstance.allowErrorProps.bind(t.defaultInstance), t;
   }()
-), UD = Kd.serialize, D3 = Kd.stringify;
-function O3(t) {
+), UD = Kd.serialize, O3 = Kd.stringify;
+function I3(t) {
   return t.state.fetchStatus === "fetching" ? "fetching" : t.getObserversCount() ? t.state.fetchStatus === "paused" ? "paused" : t.isStale() ? "stale" : "fresh" : "inactive";
 }
-function I3(t, e) {
+function C3(t, e) {
   return `${t}${e.charAt(0).toUpperCase() + e.slice(1)}`;
 }
-function C3({
+function R3({
   queryState: t,
   observerCount: e,
   isStale: r
 }) {
   return t.fetchStatus === "fetching" ? "blue" : e ? t.fetchStatus === "paused" ? "purple" : r ? "yellow" : "green" : "gray";
 }
-function R3({
+function T3({
   status: t,
   isPaused: e
 }) {
   return e ? "purple" : t === "error" ? "red" : t === "pending" ? "yellow" : t === "success" ? "green" : "gray";
 }
-function T3(t) {
+function A3(t) {
   return t === "fresh" ? "green" : t === "stale" ? "yellow" : t === "paused" ? "purple" : t === "inactive" ? "gray" : "blue";
 }
-var A3 = (t, e = !1) => {
+var P3 = (t, e = !1) => {
   const {
     json: r
   } = UD(t);
   return JSON.stringify(r, null, e ? 2 : void 0);
-}, Vi = (t) => t.state.fetchStatus !== "idle" ? 0 : t.getObserversCount() ? t.isStale() ? 2 : 1 : 3, jD = (t, e) => t.queryHash.localeCompare(e.queryHash), Hd = (t, e) => t.state.dataUpdatedAt < e.state.dataUpdatedAt ? 1 : -1, $D = (t, e) => Vi(t) === Vi(e) ? Hd(t, e) : Vi(t) > Vi(e) ? 1 : -1, P3 = {
+}, Vi = (t) => t.state.fetchStatus !== "idle" ? 0 : t.getObserversCount() ? t.isStale() ? 2 : 1 : 3, jD = (t, e) => t.queryHash.localeCompare(e.queryHash), Hd = (t, e) => t.state.dataUpdatedAt < e.state.dataUpdatedAt ? 1 : -1, $D = (t, e) => Vi(t) === Vi(e) ? Hd(t, e) : Vi(t) > Vi(e) ? 1 : -1, N3 = {
   status: $D,
   "query hash": jD,
   "last updated": Hd
-}, Ki = (t) => t.state.isPaused ? 0 : t.state.status === "error" ? 2 : t.state.status === "pending" ? 1 : 3, Wd = (t, e) => t.state.submittedAt < e.state.submittedAt ? 1 : -1, kD = (t, e) => Ki(t) === Ki(e) ? Wd(t, e) : Ki(t) > Ki(e) ? 1 : -1, N3 = {
+}, Ki = (t) => t.state.isPaused ? 0 : t.state.status === "error" ? 2 : t.state.status === "pending" ? 1 : 3, Wd = (t, e) => t.state.submittedAt < e.state.submittedAt ? 1 : -1, kD = (t, e) => Ki(t) === Ki(e) ? Wd(t, e) : Ki(t) > Ki(e) ? 1 : -1, L3 = {
   status: kD,
   "last updated": Wd
-}, L3 = (t) => t * parseFloat(getComputedStyle(document.documentElement).fontSize), F3 = () => {
+}, F3 = (t) => t * parseFloat(getComputedStyle(document.documentElement).fontSize), M3 = () => {
   const [t, e] = Ht("dark");
   return bx(() => {
     const r = window.matchMedia("(prefers-color-scheme: dark)");
@@ -17308,7 +17308,7 @@ var A3 = (t, e = !1) => {
     const e = Kx(() => {
       const [r] = vt(this, rs), [n] = vt(this, ns), [s] = vt(this, ss), [i] = vt(this, is), [a] = vt(this, ts);
       let o;
-      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-98442ede.js")), Yt(this, os, o)), qD(vt(this, hi));
+      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-2c18ca97.js")), Yt(this, os, o)), qD(vt(this, hi));
       const u = this;
       return Rx(o, Ax({
         get queryFlavor() {
@@ -17378,7 +17378,7 @@ function BD(t) {
 var VD = process.env.NODE_ENV !== "development" ? function() {
   return null;
 } : BD;
-const KD = new zS(), M3 = ({ dAppName: t, dAppDescription: e, dAppUrl: r, dAppIconURL: n, children: s, debugQuery: i = !1 }) => (At(() => {
+const KD = new zS(), U3 = ({ dAppName: t, dAppDescription: e, dAppUrl: r, dAppIconURL: n, children: s, debugQuery: i = !1 }) => (At(() => {
   iE({
     dAppName: t,
     dAppDescription: e,
@@ -17391,7 +17391,7 @@ const KD = new zS(), M3 = ({ dAppName: t, dAppDescription: e, dAppUrl: r, dAppIc
 ] })), HD = [
   "wc@2:client:0.3//proposal",
   "wc@2:core:0.3//subscription",
-  "wc@2:core:0.3//keychain",
+  // 'wc@2:core:0.3//keychain',
   "wc@2:core:0.3//messages",
   "wc@2:core:0.3//history",
   "wc@2:client:0.3//session",
@@ -17399,49 +17399,64 @@ const KD = new zS(), M3 = ({ dAppName: t, dAppDescription: e, dAppUrl: r, dAppIc
   "WCM_WALLETCONNECT_CLIENT_ID",
   "wc@2:core:0.3//pairing",
   "debug"
-], Tf = Kp.version;
+], Tf = Kp.version, WD = async (t) => new Promise((e, r) => {
+  const n = window.indexedDB.open("WALLET_CONNECT_V2_INDEXED_DB");
+  n.onerror = function(s) {
+    console.log("Error opening WALLET_CONNECT_V2_INDEXED_DB", s), r(s);
+  }, n.onsuccess = function(s) {
+    const a = s.target.result.transaction(["keyvaluestorage"], "readwrite"), o = a.objectStore("keyvaluestorage");
+    t.forEach((u) => {
+      const c = o.delete(u);
+      c.onsuccess = function(f) {
+        console.log(`${u} removed successfully`);
+      }, c.onerror = function(f) {
+        console.log(`Error removing ${u}`, f), r(f);
+      };
+    }), a.oncomplete = function() {
+      e();
+    };
+  };
+});
 try {
-  const t = localStorage.getItem("puzzle-sdk-version");
-  Tf !== t && (HD.forEach((e) => {
-    localStorage.removeItem(e);
-  }), localStorage.setItem("puzzle-sdk-version", Tf));
+  const t = window.localStorage.getItem("puzzle-sdk-version");
+  Tf !== t && (WD(HD), window.localStorage.setItem("puzzle-sdk-version", Tf));
 } catch (t) {
   console.error(t);
 }
 export {
   wo as $,
-  A3 as A,
-  u3 as B,
+  P3 as A,
+  l3 as B,
   ii as C,
   bd as D,
-  f3 as E,
-  y3 as F,
-  g3 as G,
-  d3 as H,
-  p3 as I,
-  m3 as J,
+  h3 as E,
+  m3 as F,
+  y3 as G,
+  p3 as H,
+  g3 as I,
+  v3 as J,
   Hi as K,
-  _3 as L,
-  E3 as M,
-  L3 as N,
-  I3 as O,
-  O3 as P,
+  E3 as L,
+  S3 as M,
+  F3 as N,
+  C3 as O,
+  I3 as P,
   It as Q,
   Xp as R,
-  v3 as S,
+  b3 as S,
   Pf as T,
   An as U,
   Px as V,
-  S3 as W,
+  x3 as W,
   Qx as X,
-  D3 as Y,
-  w3 as Z,
-  b3 as _,
+  O3 as Y,
+  _3 as Z,
+  w3 as _,
   $t as a,
   VO as a$,
   Wi as a0,
-  h3 as a1,
-  x3 as a2,
+  d3 as a1,
+  D3 as a2,
   Sd as a3,
   vf as a4,
   Ql as a5,
@@ -17449,26 +17464,26 @@ export {
   Qa as a7,
   Ja as a8,
   Ya as a9,
-  Fy as aA,
-  fO as aB,
-  My as aC,
-  dO as aD,
-  Uy as aE,
-  jy as aF,
-  By as aG,
-  yO as aH,
-  $y as aI,
-  ky as aJ,
-  uO as aK,
-  zy as aL,
-  Vc as aM,
-  jo as aN,
-  Kc as aO,
-  nE as aP,
-  sE as aQ,
-  xO as aR,
-  ic as aS,
-  MO as aT,
+  qy as aA,
+  Fy as aB,
+  hO as aC,
+  My as aD,
+  pO as aE,
+  Uy as aF,
+  jy as aG,
+  By as aH,
+  mO as aI,
+  $y as aJ,
+  ky as aK,
+  lO as aL,
+  zy as aM,
+  Vc as aN,
+  jo as aO,
+  Kc as aP,
+  nE as aQ,
+  sE as aR,
+  DO as aS,
+  ic as aT,
   UO as aU,
   jO as aV,
   $O as aW,
@@ -17483,37 +17498,37 @@ export {
   uS as ae,
   lS as af,
   iS as ag,
-  DO as ah,
-  NO as ai,
-  PO as aj,
-  RO as ak,
-  LO as al,
-  IO as am,
-  CO as an,
-  TO as ao,
-  AO as ap,
-  OO as aq,
-  FO as ar,
-  cs as as,
-  iE as at,
-  tt as au,
-  Ly as av,
-  rO as aw,
-  Vy as ax,
-  bO as ay,
-  qy as az,
-  P3 as b,
+  OO as ah,
+  LO as ai,
+  NO as aj,
+  TO as ak,
+  FO as al,
+  CO as am,
+  RO as an,
+  AO as ao,
+  PO as ap,
+  IO as aq,
+  MO as ar,
+  WD as as,
+  cs as at,
+  iE as au,
+  tt as av,
+  Ly as aw,
+  nO as ax,
+  Vy as ay,
+  wO as az,
+  N3 as b,
   KO as b0,
   HO as b1,
   WO as b2,
   GO as b3,
-  id as b4,
-  xi as b5,
-  fS as b6,
-  od as b7,
-  Or as b8,
-  a3 as b9,
-  QO as ba,
+  QO as b4,
+  id as b5,
+  xi as b6,
+  fS as b7,
+  od as b8,
+  Or as b9,
+  c3 as ba,
   ZO as bb,
   YO as bc,
   JO as bd,
@@ -17525,30 +17540,31 @@ export {
   s3 as bj,
   i3 as bk,
   o3 as bl,
-  KD as bm,
-  M3 as bn,
+  a3 as bm,
+  KD as bn,
+  U3 as bo,
   Ht as c,
   Hx as d,
   rr as e,
   Rx as f,
-  F3 as g,
+  M3 as g,
   Ed as h,
   bx as i,
   hc as j,
   Pn as k,
   Gx as l,
-  N3 as m,
+  L3 as m,
   bu as n,
-  ZD as o,
+  YD as o,
   wr as p,
-  l3 as q,
+  f3 as q,
   fc as r,
   Go as s,
-  QD as t,
-  C3 as u,
-  R3 as v,
+  ZD as t,
+  R3 as u,
+  T3 as v,
   Jx as w,
   Ax as x,
   as as y,
-  T3 as z
+  A3 as z
 };

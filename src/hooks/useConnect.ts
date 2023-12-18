@@ -34,7 +34,6 @@ export function useConnect() {
         shortenedAddress: shortenAddress(account[0])
       });
       emitter.emit('session_change')
-      window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
       return response
     } catch (err) {

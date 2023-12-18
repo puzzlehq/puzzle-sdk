@@ -30,7 +30,7 @@ export { type Account, type Asset, AssetType, type AssetValue, type Event, type 
 const wc_keys = [
   'wc@2:client:0.3//proposal', 
   'wc@2:core:0.3//subscription',
-  'wc@2:core:0.3//keychain',
+  // 'wc@2:core:0.3//keychain',
   'wc@2:core:0.3//messages',
   'wc@2:core:0.3//history',
   'wc@2:client:0.3//session',
@@ -42,18 +42,50 @@ const wc_keys = [
 
 const packageVersion = pkg.version;
 
+const clearKeys = async (keys: string[]) => {
+  return new Promise<void>((resolve, reject) => {
+    const request = window.indexedDB.open('WALLET_CONNECT_V2_INDEXED_DB');
+
+    request.onerror = function(event) {
+      console.log("Error opening WALLET_CONNECT_V2_INDEXED_DB", event);
+      reject(event);
+    };
+
+    request.onsuccess = function (event) {
+      // @ts-ignore:next-line
+      let db = event.target.result;
+      const transaction = db.transaction(['keyvaluestorage'], 'readwrite');
+      const objectStore = transaction.objectStore('keyvaluestorage');
+
+      keys.forEach((key) => {
+        const removeRequest = objectStore.delete(key);
+
+        removeRequest.onsuccess = function(event) {
+          console.log(`${key} removed successfully`);
+        };
+
+        removeRequest.onerror = function(event) {
+          console.log(`Error removing ${key}`, event);
+          reject(event);
+        };
+      });
+
+      transaction.oncomplete = function() {
+        resolve();
+      };
+    };
+  });
+}
+
 try {
   // Get the version from localStorage
-  const localStorageVersion = localStorage.getItem('puzzle-sdk-version');
+  const localStorageVersion = window.localStorage.getItem('puzzle-sdk-version');
 
   // If versions don't match, clear WalletConnect localStorage items
   if (packageVersion !== localStorageVersion) {
-    wc_keys.forEach((key) => {
-      localStorage.removeItem(key)
-    })
-
+    clearKeys(wc_keys);
     // Store the current version to localStorage
-    localStorage.setItem('puzzle-sdk-version', packageVersion);
+    window.localStorage.setItem('puzzle-sdk-version', packageVersion);
   }
 } catch (e) {
   console.error(e);
