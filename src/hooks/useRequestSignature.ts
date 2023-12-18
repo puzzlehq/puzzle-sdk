@@ -22,7 +22,9 @@ export const useRequestSignature = (message: string, address: string) => {
   const response: SignatureResponse | undefined =  wc_data;
 
   const requestSignature = () => {
-    request();
+    if (session && !loading) {
+      request();
+    }
   };
 
   return { requestSignature, response, loading, error };

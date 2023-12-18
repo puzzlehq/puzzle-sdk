@@ -26,7 +26,7 @@ export const useDecrypt = (
   const response: DecryptResponse | undefined =  wc_data;
 
   const decrypt = () => {
-    if (ciphertexts) {
+    if (ciphertexts && session && !loading) {
       request();
     }
   }

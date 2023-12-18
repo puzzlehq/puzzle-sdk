@@ -53,7 +53,6 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
   }, [readyToRequest]);
 
   const fetchPage = () => {
-    const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
       refetch();
     }

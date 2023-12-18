@@ -19,7 +19,7 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
 
   try {
     const response: GetSelectedAccountResponse = await connection.request({
-      topic: session?.topic,
+      topic: session.topic,
       chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',

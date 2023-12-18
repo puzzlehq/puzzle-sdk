@@ -475,7 +475,7 @@ let dg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-71e2d3d6.js");
+      await import("./index-646bf2e5.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -13778,7 +13778,7 @@ const kO = () => {
     }
   }), i = n ? n.message : r && r.error, a = r;
   return { createSharedState: () => {
-    e();
+    t && !s && e();
   }, data: a == null ? void 0 : a.data, loading: s, error: i };
 };
 var oc = { exports: {} }, ya, pf;
@@ -14096,22 +14096,23 @@ const qO = (t) => {
     }
   }), a = s ? s.message : n && n.error, o = n;
   return { decrypt: () => {
-    t && r();
+    t && e && !i && r();
   }, plaintexts: o == null ? void 0 : o.plaintexts, loading: i, error: a };
 };
 function zO() {
   const t = Or(), { error: e, loading: r, setError: n, setLoading: s } = Zc();
   async function i() {
-    try {
-      s(!0), n(void 0), await (await tt()).disconnect({
-        topic: t == null ? void 0 : t.topic,
-        reason: wt("USER_DISCONNECTED")
-      }), cs.emit("session_change"), Qr.setState({ account: void 0 });
-    } catch (a) {
-      throw n(a), a;
-    } finally {
-      s(!1);
-    }
+    if (!(!t || r))
+      try {
+        s(!0), n(void 0), await (await tt()).disconnect({
+          topic: t.topic,
+          reason: wt("USER_DISCONNECTED")
+        }), cs.emit("session_change"), Qr.setState({ account: void 0 });
+      } catch (a) {
+        throw n(a), a;
+      } finally {
+        s(!1);
+      }
   }
   return { error: e, loading: r, disconnect: i };
 }
@@ -14141,7 +14142,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     c && !u && i();
   }, [c]);
   const f = () => {
-    !!n && !!s && !u && i();
+    c && !u && i();
   }, d = o ? o.message : a && a.error, p = a, m = p == null ? void 0 : p.event;
   return { fetchEvent: f, event: m, error: d, loading: u };
 }, VO = ({ filter: t, page: e }) => {
@@ -14171,7 +14172,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     u && !o && s();
   }, [u]);
   const c = () => {
-    !!r && !!n && !o && s();
+    u && !o && s();
   }, f = a ? a.message : i && i.error, d = i, p = d == null ? void 0 : d.events, m = (d == null ? void 0 : d.pageCount) ?? 0;
   return { fetchPage: c, events: p, error: f, loading: o, page: e, pageCount: m };
 }, KO = (t) => {
@@ -14187,7 +14188,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     }
   }), a = s ? s.message : n && n.error, o = n;
   return { importSharedState: () => {
-    r();
+    e && !i && r();
   }, data: o == null ? void 0 : o.data, loading: i, error: a };
 }, HO = (t) => {
   try {
@@ -14237,7 +14238,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     }
   }), o = i ? i.message : s && s.error;
   return { requestSignature: () => {
-    n();
+    r && !a && n();
   }, response: s, loading: a, error: o };
 }, QO = (t) => {
   const e = Or(), r = t == null ? void 0 : t.inputs.map((f) => typeof f == "string" ? f : f.plaintext), { request: n, data: s, error: i, loading: a } = Ii({
@@ -14253,7 +14254,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     }
   }), o = i ? i.message : s && s.error, u = s;
   return { createEvent: () => {
-    t && (Yc("useCreateEvent requesting...", t), n());
+    t && e && !a && (Yc("useCreateEvent requesting...", t), n());
   }, eventId: u == null ? void 0 : u.eventId, loading: a, error: o };
 }, ZO = async () => {
   const t = await tt(), e = await t.getSession();
@@ -14261,7 +14262,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     return { error: "no session or connection" };
   try {
     const r = await t.request({
-      topic: e == null ? void 0 : e.topic,
+      topic: e.topic,
       chainId: "aleo:1",
       request: {
         jsonrpc: "2.0",
@@ -14279,7 +14280,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     return { error: "no session or connection" };
   try {
     return await e.request({
-      topic: r == null ? void 0 : r.topic,
+      topic: r.topic,
       chainId: "aleo:1",
       request: {
         jsonrpc: "2.0",
@@ -14392,7 +14393,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
   if (!n || !r)
     return { event: void 0, error: "no session or connection" };
   const s = async () => await r.request({
-    topic: (n == null ? void 0 : n.topic) ?? "",
+    topic: n.topic,
     chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
@@ -14415,7 +14416,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     return { events: void 0, error: "no session or connection" };
   (t == null ? void 0 : t.programId) === "" && (t.programId = void 0);
   const n = async (s = 0) => await e.request({
-    topic: (r == null ? void 0 : r.topic) ?? "",
+    topic: r.topic,
     chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
@@ -14438,7 +14439,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
     return { error: "no session or connection" };
   try {
     return await e.request({
-      topic: (r == null ? void 0 : r.topic) ?? "",
+      topic: r.topic,
       chainId: "aleo:1",
       request: {
         jsonrpc: "2.0",
@@ -17307,7 +17308,7 @@ var P3 = (t, e = !1) => {
     const e = Kx(() => {
       const [r] = vt(this, rs), [n] = vt(this, ns), [s] = vt(this, ss), [i] = vt(this, is), [a] = vt(this, ts);
       let o;
-      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-1814257b.js")), Yt(this, os, o)), qD(vt(this, hi));
+      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-beedf244.js")), Yt(this, os, o)), qD(vt(this, hi));
       const u = this;
       return Rx(o, Ax({
         get queryFlavor() {

@@ -19,7 +19,9 @@ export const useCreateSharedState = () => {
   const response: CreateSharedStateResponse | undefined =  wc_data;
 
   const createSharedState = () => {
-    request();
+    if (session && !loading) {
+      request();
+    }
   };
 
   return { createSharedState, data: response?.data, loading, error };

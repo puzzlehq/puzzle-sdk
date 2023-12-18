@@ -19,7 +19,7 @@ export const connect = async () => {
       },
     });
     emitter.emit('session_change');
-    
+
     return session;
   } catch (e) {
     console.error('connect error', (e as Error).message);

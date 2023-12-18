@@ -51,7 +51,6 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   }, [readyToRequest]);
 
   const fetchEvent = () => {
-    const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
       refetch();
     }

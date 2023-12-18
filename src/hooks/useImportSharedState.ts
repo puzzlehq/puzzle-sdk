@@ -21,7 +21,9 @@ export const useImportSharedState = (seed: string) => {
   const response: ImportSharedStateResponse | undefined =  wc_data;
 
   const importSharedState = () => {
-    request();
+    if (session && !loading) {
+      request();
+    }
   };
 
   return { importSharedState, data: response?.data, loading, error };

@@ -27,7 +27,7 @@ export const importSharedState = async (
 
   try {
     const response: ImportSharedStateResponse = await connection.request({
-      topic: session?.topic ?? '',
+      topic: session.topic,
       chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',

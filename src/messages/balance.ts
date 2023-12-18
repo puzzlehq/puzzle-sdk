@@ -27,7 +27,7 @@ export const getBalance = async ({address}: {address?: string}): Promise<GetBala
 
   try {
     const response: GetBalancesResponse = await connection.request({
-      topic: session?.topic,
+      topic: session.topic,
       chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',

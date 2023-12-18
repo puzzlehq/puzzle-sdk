@@ -9,26 +9,27 @@ import { useAsyncAction } from './wc/_useAsyncAction.js';
 export function useDisconnect() {
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const { error, loading, setError, setLoading } = useAsyncAction()
+  const { error, loading, setError, setLoading } = useAsyncAction();
 
   async function disconnect() {
+    if (!session || loading) return;
     try {
       setLoading(true);
       setError(undefined);
 
       const client = await getWalletConnectModalSignClient();
       await client.disconnect({
-        topic: session?.topic,
+        topic: session.topic,
         reason: getSdkError('USER_DISCONNECTED')
       });
 
       emitter.emit('session_change');
       useWalletStore.setState({ account: undefined });
     } catch (err) {
-      setError(err)
-      throw err
+      setError(err);
+      throw err;
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
