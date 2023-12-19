@@ -33,7 +33,10 @@ export function useConnect() {
         address: account[2],
         shortenedAddress: shortenAddress(account[0])
       });
-      emitter.emit('session_change')
+      emitter.emit('session_change');
+
+      // remove to prevent walletconnect from redirecting to the wallet page
+      window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
       return response
     } catch (err) {

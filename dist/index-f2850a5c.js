@@ -475,7 +475,7 @@ let dg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-646bf2e5.js");
+      await import("./index-e38eeab5.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -8699,7 +8699,7 @@ function iE(t) {
       icons: [t.dAppIconURL]
     },
     modalOptions: { ...sE }
-  });
+  }), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
 }
 async function tt() {
   return new Promise((t) => {
@@ -8710,6 +8710,7 @@ async function tt() {
         Fs && (clearInterval(e), t(Fs));
       }, 200);
     }
+    window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
   });
 }
 var Be;
@@ -13758,7 +13759,7 @@ function $O() {
         chainId: f[1],
         address: f[2],
         shortenedAddress: ic(f[0])
-      }), cs.emit("session_change"), c;
+      }), cs.emit("session_change"), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), c;
     } catch (u) {
       throw s(u), u;
     } finally {
@@ -14309,7 +14310,7 @@ const BO = ({ id: t, address: e, multisig: r = !1 }) => {
         }
       }
     });
-    return cs.emit("session_change"), e;
+    return cs.emit("session_change"), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), e;
   } catch (e) {
     console.error("connect error", e.message);
   }
@@ -17308,7 +17309,7 @@ var P3 = (t, e = !1) => {
     const e = Kx(() => {
       const [r] = vt(this, rs), [n] = vt(this, ns), [s] = vt(this, ss), [i] = vt(this, is), [a] = vt(this, ts);
       let o;
-      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-beedf244.js")), Yt(this, os, o)), qD(vt(this, hi));
+      vt(this, os) ? o = vt(this, os) : (o = Nx(() => import("./N66J3ZXT-ee654dfe.js")), Yt(this, os, o)), qD(vt(this, hi));
       const u = this;
       return Rx(o, Ax({
         get queryFlavor() {
@@ -17419,7 +17420,14 @@ const KD = new zS(), U3 = ({ dAppName: t, dAppDescription: e, dAppUrl: r, dAppIc
 });
 try {
   const t = window.localStorage.getItem("puzzle-sdk-version");
-  Tf !== t && (WD(HD), window.localStorage.setItem("puzzle-sdk-version", Tf));
+  if (Tf !== t) {
+    try {
+      WD(HD);
+    } catch {
+      console.warn("Could not clear walletconnect storage");
+    }
+    window.localStorage.setItem("puzzle-sdk-version", Tf);
+  }
 } catch (t) {
   console.error(t);
 }

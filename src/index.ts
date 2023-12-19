@@ -83,7 +83,11 @@ try {
 
   // If versions don't match, clear WalletConnect localStorage items
   if (packageVersion !== localStorageVersion) {
-    clearKeys(wc_keys);
+    try {
+      clearKeys(wc_keys);
+    } catch {
+      console.warn(`Could not clear walletconnect storage`);
+    }
     // Store the current version to localStorage
     window.localStorage.setItem('puzzle-sdk-version', packageVersion);
   }
