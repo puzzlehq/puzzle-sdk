@@ -398,7 +398,7 @@ let Hp = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-b928b961.js");
+      await import("./index-3ece4ae3.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -14148,23 +14148,7 @@ const bD = ({ id: t, address: e, multisig: r = !1 }) => {
     f && !c && a();
   }, p = u ? u.message : o && o.error, m = o, v = m == null ? void 0 : m.records, E = (m == null ? void 0 : m.pageCount) ?? 0;
   return { fetchPage: d, records: v, error: p, loading: c, page: n, pageCount: E };
-}, xD = (t, e) => {
-  const r = Dr(), { request: n, data: i, error: s, loading: a } = Is({
-    topic: (r == null ? void 0 : r.topic) ?? "",
-    chainId: "aleo:1",
-    request: {
-      jsonrpc: "2.0",
-      method: "requestSignature",
-      params: {
-        message: t,
-        address: Hc.test(e ?? "") ? e : void 0
-      }
-    }
-  }), o = s ? s.message : i && i.error;
-  return { requestSignature: () => {
-    r && !a && n();
-  }, response: i, loading: a, error: o };
-}, OD = (t) => {
+}, xD = (t) => {
   const e = Dr(), r = t == null ? void 0 : t.inputs.map((f) => typeof f == "string" ? f : f.plaintext), { request: n, data: i, error: s, loading: a } = Is({
     topic: (e == null ? void 0 : e.topic) ?? "",
     chainId: "aleo:1",
@@ -14180,6 +14164,22 @@ const bD = ({ id: t, address: e, multisig: r = !1 }) => {
   return { createEvent: () => {
     t && e && !a && (Jc("useCreateEvent requesting...", t), n());
   }, eventId: u == null ? void 0 : u.eventId, loading: a, error: o };
+}, OD = (t, e) => {
+  const r = Dr(), { request: n, data: i, error: s, loading: a } = Is({
+    topic: (r == null ? void 0 : r.topic) ?? "",
+    chainId: "aleo:1",
+    request: {
+      jsonrpc: "2.0",
+      method: "requestSignature",
+      params: {
+        message: t,
+        address: Hc.test(e ?? "") ? e : void 0
+      }
+    }
+  }), o = s ? s.message : i && i.error;
+  return { requestSignature: () => {
+    r && !a && n();
+  }, response: i, loading: a, error: o };
 }, DD = async () => {
   const t = await tt(), e = await t.getSession();
   if (!e || !t)
@@ -17232,7 +17232,7 @@ var c3 = (t, e = !1) => {
     const e = Sx(() => {
       const [r] = vt(this, ri), [n] = vt(this, ni), [i] = vt(this, ii), [s] = vt(this, si), [a] = vt(this, ti);
       let o;
-      vt(this, oi) ? o = vt(this, oi) : (o = fx(() => import("./N66J3ZXT-fa91c1ca.js")), Yt(this, oi, o)), bO(vt(this, hs));
+      vt(this, oi) ? o = vt(this, oi) : (o = fx(() => import("./N66J3ZXT-40fea053.js")), Yt(this, oi, o)), bO(vt(this, hs));
       const u = this;
       return ax(o, ux({
         get queryFlavor() {
