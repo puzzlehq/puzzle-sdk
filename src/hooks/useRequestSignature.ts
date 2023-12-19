@@ -1,8 +1,8 @@
 import { SessionTypes } from '@walletconnect/types';
-import { SignatureRequest, SignatureResponse, useSession } from '../index.js';
+import { SignatureRequest, SignatureResponse, aleoAddressRegex, useSession } from '../index.js';
 import { useRequest } from './wc/useRequest.js';
 
-export const useRequestSignature = (message: string, address: string) => {
+export const useRequestSignature = (message: string, address?: string) => {
   const session: SessionTypes.Struct | undefined = useSession();
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest<SignatureResponse | undefined>({
@@ -13,7 +13,7 @@ export const useRequestSignature = (message: string, address: string) => {
       method: 'requestSignature',
       params: {
         message,
-        address
+        address: aleoAddressRegex.test(address ?? '') ? address : undefined,
       } as SignatureRequest,
     },
   });

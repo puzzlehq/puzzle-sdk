@@ -1,5 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
+import { aleoAddressRegex } from '../index.js';
 
 export type SignatureRequest = {
   message: string;
@@ -35,7 +36,7 @@ export const requestSignature = async ({
         method: 'requestSignature',
         params: {
           message,
-          address,
+          address: aleoAddressRegex.test(address ?? '') ? address : undefined,
         } as SignatureRequest,
       },
     });
