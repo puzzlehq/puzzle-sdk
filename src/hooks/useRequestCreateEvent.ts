@@ -33,7 +33,7 @@ export const useRequestCreateEvent = (
   const response: CreateEventResponse | undefined =  wc_data;
 
   const createEvent = () => {
-    if (requestData) {
+    if (requestData && session && !loading) {
       log_sdk('useCreateEvent requesting...', requestData);
       request();
     }

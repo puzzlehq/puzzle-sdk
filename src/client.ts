@@ -1,8 +1,6 @@
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
 import { projectId, web3modal_puzzle_props } from './data/walletconnect.js';
-import {EventEmitter} from 'eventemitter3';
-
-import useWalletStore from './store.js';
+import EventEmitter from 'events';
 
 export const emitter = new EventEmitter();
 
@@ -45,7 +43,6 @@ export async function getWalletConnectModalSignClient(): Promise<WalletConnectMo
         }
       }, 200);
     }
-
     // remove to prevent walletconnect from redirecting to the wallet page
     window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
   });

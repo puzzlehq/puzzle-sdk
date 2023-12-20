@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.41",
+  "version": "0.1.48",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -21,16 +21,18 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@puzzlehq/types": "1.0.8",
     "@tanstack/react-query": "^4.29.5",
+    "@tanstack/react-query-devtools": "^5.13.5",
     "@trpc/client": "^10.9.0",
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.8.1",
     "@types/debug": "^4.1.7",
+    "@walletconnect/core": "^2.10.6",
     "@walletconnect/modal-sign-html": "^2.6.2",
-    "@walletconnect/keyvaluestorage": "1.0.2",
+    "@walletconnect/sign-client": "^2.10.6",
     "@walletconnect/types": "^2.9.0",
     "@walletconnect/utils": "^2.9.0",
-    "@puzzlehq/types": "1.0.8",
     "debug": "^4.3.4",
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
@@ -66,7 +68,11 @@
   "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
   "pnpm": {
     "patchedDependencies": {
-      "@walletconnect/keyvaluestorage@1.0.2": "patches/@walletconnect__keyvaluestorage@1.0.2.patch"
+      "@walletconnect/core@2.10.6": "patches/@walletconnect__core@2.10.6.patch"
+    },
+    "overrides": {
+      "@walletconnect/core": "^2.10.6",
+      "@walletconnect/sign-client": "^2.10.6"
     }
   }
 }

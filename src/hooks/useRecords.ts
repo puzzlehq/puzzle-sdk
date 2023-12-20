@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { GetRecordsRequest, GetRecordsResponse, RecordWithPlaintext, RecordsFilter } from '../messages/records.js';
 import { SessionTypes } from '@walletconnect/types';
 import useWalletStore from '../store.js';
@@ -23,16 +22,16 @@ export const getFormattedRecordPlaintext = (data: any) => {
 
 export const useRecords = ( { address, multisig = false, filter, page }: UseRecordsParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
-  const [chainId, account] = useWalletStore((state) => [
-    state.chainId, state.account
+  const [account] = useWalletStore((state) => [
+    state.account
   ]);
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetRecordsResponse | undefined>({
-    queryKey: ['useRecords', address ?? account?.address ?? '', filter, page],
+    queryKey: ['useRecords', account?.address, address, multisig, filter, page, session?.topic],
     enabled: (multisig ? !!address : true) && !!session && !!account,
     wcParams: {
       topic: session?.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'getRecords',
@@ -47,21 +46,13 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
 
   const readyToRequest = !!session && !!account && (multisig ? !!address : true);
 
-  // listen for wallet-originating account updates
-  useOnSessionEvent(({ params, topic }) => {
+  useOnSessionEvent(({ params }) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
-    if ((eventName === 'selectedAccountSynced' || eventName === 'accountSelected' || (eventName === 'sharedAccountSynced' && _address === address)) && readyToRequest && session.topic === topic ) {
+    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
       refetch();
-    }
-  });
-
-  // send initial records request
-  useEffect(() => {
-    if (readyToRequest && !loading) {
-      refetch();
-    }
-  }, [readyToRequest]);
+    } 
+  })
 
   const fetchPage = () => {
     if (readyToRequest && !loading) {

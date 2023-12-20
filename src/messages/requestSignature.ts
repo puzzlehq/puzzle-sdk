@@ -1,5 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
+import { aleoAddressRegex } from '../index.js';
 
 export type SignatureRequest = {
   message: string;
@@ -21,22 +22,21 @@ export const requestSignature = async ({
 
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
-    return { error: 'no session, chainId, or connection' };
+  if (!session || !connection) {
+    return { error: 'no session or connection' };
   }
 
   try {
     const response: SignatureResponse = await connection.request({
       topic: session.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
-          jsonrpc: '2.0',
+        jsonrpc: '2.0',
         method: 'requestSignature',
         params: {
           message,
-          address,
+          address: aleoAddressRegex.test(address ?? '') ? address : undefined,
         } as SignatureRequest,
       },
     });

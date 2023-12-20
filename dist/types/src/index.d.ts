@@ -1,4 +1,5 @@
 export * from './client.js';
+export * from './data/events.js';
 export * from './data/types.js';
 export * from './data/walletconnect.js';
 export * from './hooks/useAccount.js';
@@ -11,8 +12,8 @@ export * from './hooks/useEvent.js';
 export * from './hooks/useEvents.js';
 export * from './hooks/useImportSharedState.js';
 export * from './hooks/useRecords.js';
-export * from './hooks/useRequestSignature.js';
 export * from './hooks/useRequestCreateEvent.js';
+export * from './hooks/useRequestSignature.js';
 export * from './hooks/wc/useOnSessionDelete.js';
 export * from './hooks/wc/useOnSessionEvent.js';
 export * from './hooks/wc/useOnSessionExpire.js';

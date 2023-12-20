@@ -12,16 +12,15 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
-    return { error: 'no session, chainId, or connection' };
+  if (!session || !connection) {
+    return { error: 'no session or connection' };
   }
 
   try {
     const response: GetSelectedAccountResponse = await connection.request({
-      topic: session?.topic,
-      chainId: chainId,
+      topic: session.topic,
+      chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',
         method: 'getSelectedAccount',

@@ -9,7 +9,7 @@ export const disconnect = async (): Promise<{ error?: string }> => {
     await connection?.getSession();
 
   if (!session || !connection) {
-    return { error: 'no session, or connection' };
+    return { error: 'no session or connection' };
   }
 
   try {

@@ -17,10 +17,10 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   const [account] = useWalletStore((state) => [state.account]);
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventResponse | undefined>({
-    queryKey: ['useEvent', address ?? account?.address ?? '', id ?? ''],
-    enabled: !!id && !!session && !!account && (multisig ? !!address : true) ,
+    queryKey: ['useEvent', account?.address, address, multisig, id, session?.topic],
+    enabled: id !== undefined && !!session && !!account && (multisig ? !!address : true),
     wcParams: {
-      topic: session?.topic ?? '',
+      topic: session?.topic,
       chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
@@ -36,8 +36,8 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    const address = params.event.address ?? params.event.data.address;
-    if (eventName === 'selectedAccountSynced' && session && session.topic === topic && address === account?.address && !loading) {
+    const _address = params.event.address ?? params.event.data.address;
+    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
       refetch();
     }
   });
@@ -51,7 +51,6 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   }, [readyToRequest]);
 
   const fetchEvent = () => {
-    const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
       refetch();
     }

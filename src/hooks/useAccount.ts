@@ -6,38 +6,49 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import useWalletStore from '../store.js';
-import { useRequest } from './wc/useRequest.js';
-import { GetRecordsResponse } from '../index.js';
+import { useRequestQuery } from './wc/useRequest.js';
 
-/// ADDRESSES AND ALIASES
-export const shortenAddress = (address: string) => {
-  const length = 5;
+export const shortenAddress = (
+  address?: string,
+  aleo: boolean = true,
+  length: number = 4,
+  short: boolean = true
+) => {
+  if (!address) return '';
+  if (address.length < length) return address;
+  if (short) {
+    return `(...${address.slice(-length)})`;
+  }
   if (address.length < length * 2) return address;
-  return `${address.slice(0, length + 'aleo1'.length)}...${address.slice(
-    address.length - length,
-    address.length
-  )}`;
+  return `${address.slice(
+    0,
+    length + (aleo ? 'aleo1'.length : 0)
+  )}...${address.slice(address.length - length, address.length)}`;
 };
 
 export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
-  const chainId = 'aleo:1';
 
-  const [account, setAccount] = useWalletStore((state) => [state.account, state.setAccount]);
+  const [account, setAccount, onDisconnect] = useWalletStore((state) => [state.account, state.setAccount, state.onDisconnect]);
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<GetSelectedAccountResponse | undefined>({
-    topic: session?.topic,
-    chainId: chainId,
-    request: {
-      jsonrpc: '2.0',
-      method: 'getSelectedAccount'
-    },
+  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetSelectedAccountResponse | undefined>({
+    queryKey: ['useAccount', session?.topic],
+    enabled: !!session,
+    wcParams: {
+      topic: session?.topic,
+      chainId: 'aleo:1',
+      request: {
+        jsonrpc: '2.0',
+        method: 'getSelectedAccount'
+      },
+    }
   });
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSelected' && session && session.topic === topic) {
       const address = params.event.address ?? params.event.data.address;
+
       const network = params.chainId.split(':')[0];
       const chainId = params.chainId.split(':')[1];
       setAccount({
@@ -51,6 +62,7 @@ export const useAccount = () => {
 
   useOnSessionUpdate(({ params, topic }) => {
     const address = params.event.address ?? params.event.data.address;
+
     const network = params.chainId.split(':')[0];
     const chainId = params.chainId.split(':')[1];
     setAccount({
@@ -62,13 +74,13 @@ export const useAccount = () => {
   });
 
   useOnSessionDelete(({ params, topic }) => {
-    setAccount(undefined);
+    onDisconnect();
   });
   
   // send initial account request...
   useEffect(() => {
     if (session && !loading) {
-      request();
+      refetch();
     }
   }, [session?.topic]);
 

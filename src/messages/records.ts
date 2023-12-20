@@ -4,6 +4,7 @@ import { SessionTypes } from '@walletconnect/types';
 
 export type RecordWithPlaintext = Record & {
   plaintext: string;
+  microcredits: number;
   data: { [key: string]: string };
 };
 
@@ -34,16 +35,15 @@ export const getRecords = async ({
 
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
-    return { error: 'no session, chainId, or connection' };
+  if (!session || !connection) {
+    return { error: 'no session or connection' };
   }
 
   const fetchPage = async (page = 0) => {
     const response: GetRecordsResponse = await connection.request({
       topic: session.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',
         method: 'getRecords',

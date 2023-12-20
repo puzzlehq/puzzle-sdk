@@ -36,10 +36,9 @@ export const requestCreateEvent = async (
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection?.getSession();
-  const chainId = 'aleo:1';
 
-  if (!session || !chainId || !connection) {
-    return { error: 'no session, chainId, or connection' };
+  if (!session || !connection) {
+    return { error: 'no session or connection' };
   }
 
   const inputs = requestData?.inputs.map((input) => {
@@ -52,7 +51,7 @@ export const requestCreateEvent = async (
   try {
     const response: CreateEventResponse = await connection.request({
       topic: session.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
           jsonrpc: '2.0',
         method: 'requestCreateEvent',

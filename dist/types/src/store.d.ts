@@ -4,7 +4,7 @@ type WalletState = {
     chainId?: string;
     setAccount: (account: PuzzleAccount | undefined) => void;
     setChainId: (chainId: string) => void;
-    disconnect: () => void;
+    onDisconnect: () => void;
 };
 declare const useWalletStore: import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<WalletState>, "persist"> & {
     persist: {

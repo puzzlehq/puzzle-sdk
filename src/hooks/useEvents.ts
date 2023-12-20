@@ -3,7 +3,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { EventsFilter, GetEventsRequest, GetEventsResponse } from '../messages/events.js';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
-import { useRequest, useRequestQuery } from './wc/useRequest.js';
+import { useRequestQuery } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
 type UseEventsParams = {
@@ -20,7 +20,7 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
   }
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventsResponse | undefined>({
-    queryKey: ['useEvents', account?.address ?? '', filter, page],
+    queryKey: ['useEvents', account?.address, filter, page, session?.topic],
     enabled: !!session && !!account,
     wcParams: {
       topic: session?.topic ?? '',
@@ -39,8 +39,7 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
   // listen for wallet-originating account updates
   useOnSessionEvent(({ id, params, topic }) => {
     const eventName = params.event.name;
-    const address = params.event.address ?? params.event.data.address;
-    if (eventName === 'selectedAccountSynced' && session && session.topic === topic && address === account?.address && !loading) {
+    if (eventName === 'selectedAccountSynced') {
       refetch();
     }
   });
@@ -54,7 +53,6 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
   }, [readyToRequest]);
 
   const fetchPage = () => {
-    const readyToRequest = !!session && !!account;
     if (readyToRequest && !loading) {
       refetch();
     }

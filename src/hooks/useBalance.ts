@@ -19,14 +19,13 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const chainId = 'aleo:1';
 
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
-    queryKey: ['useBalance', address ?? account?.address ?? '', multisig],
+    queryKey: ['useBalance', address, account?.address ?? '', multisig, session?.topic],
     enabled: !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
-      chainId: chainId,
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'getBalance',
@@ -40,14 +39,8 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    const address = params.event.address ?? params.event.data.address;
-    if (
-      ['accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'].includes(eventName)&&
-      session &&
-      session.topic === topic &&
-      address === account?.address &&
-      !loading
-    ) {
+    const _address = params.event.address ?? params.event.data.address;
+    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
       refetch();
     }
   });
