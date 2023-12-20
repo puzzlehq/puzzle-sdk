@@ -3,7 +3,7 @@ import { SessionTypes } from '@walletconnect/types';
 import { EventsFilter, GetEventsRequest, GetEventsResponse } from '../messages/events.js';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
-import { useRequest, useRequestQuery } from './wc/useRequest.js';
+import { useRequestQuery } from './wc/useRequest.js';
 import useWalletStore from '../store.js';
 
 type UseEventsParams = {
