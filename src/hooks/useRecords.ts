@@ -4,6 +4,7 @@ import useWalletStore from '../store.js';
 import { useSession } from './wc/useSession.js';
 import { useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
+import { log_sdk } from '../utils/logger.js';
 
 type UseRecordsParams = {
   address?: string;
@@ -56,6 +57,7 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
 
   const fetchPage = () => {
     if (readyToRequest && !loading) {
+      log_sdk('useRequestSignature refetching...', [address, multisig, filter, page]);
       refetch();
     }
   }
