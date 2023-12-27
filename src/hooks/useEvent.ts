@@ -37,13 +37,13 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
-    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
+    if (!!id && (eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
       refetch();
     }
   });
 
   // send initial events request
-  const readyToRequest = !!session && !!account;
+  const readyToRequest = !!session && !!account && !!id && (multisig ? !!address : true);
   useEffect(() => {
     if (readyToRequest && !loading) {
       refetch();

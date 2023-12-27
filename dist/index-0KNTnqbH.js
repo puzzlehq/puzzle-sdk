@@ -407,7 +407,7 @@ let Zp = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-s6lxq8bI.js");
+      await import("./index-ep1DuP4Y.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -14137,9 +14137,9 @@ const LD = ({ id: t, address: e, multisig: r = !1 }) => {
   });
   Oi(({ params: v, topic: E }) => {
     const S = v.event.name, A = v.event.address ?? v.event.data.address;
-    (S === "selectedAccountSynced" && !r || S === "sharedAccountSynced" && r && A === e) && i();
+    (t && S === "selectedAccountSynced" && !r || S === "sharedAccountSynced" && r && A === e) && i();
   });
-  const c = !!n && !!s;
+  const c = !!n && !!s && !!t && (r ? !!e : !0);
   At(() => {
     c && !u && i();
   }, [c]);
@@ -17310,7 +17310,7 @@ var S3 = (t, e = !1) => {
     const e = Ux(() => {
       const [r] = bt(this, rs), [n] = bt(this, ns), [s] = bt(this, ss), [i] = bt(this, is), [a] = bt(this, ts);
       let o;
-      bt(this, os) ? o = bt(this, os) : (o = Ox(() => import("./N66J3ZXT-6I9HCj9q.js")), Yt(this, os, o)), NO(bt(this, hi));
+      bt(this, os) ? o = bt(this, os) : (o = Ox(() => import("./N66J3ZXT-KzEXE-5a.js")), Yt(this, os, o)), NO(bt(this, hi));
       const u = this;
       return _x(o, Sx({
         get queryFlavor() {
