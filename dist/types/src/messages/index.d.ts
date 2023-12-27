@@ -10,4 +10,4 @@ export * from './events.js';
 export * from './importSharedState.js';
 export * from './records.js';
 export * from './requestSignature.js';
-export declare const PAGE_SIZE = 50;
+export declare const PAGE_SIZE = 25;

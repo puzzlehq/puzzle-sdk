@@ -37,6 +37,7 @@
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
     "immer": "^9.0.19",
+    "process": "^0.11.10",
     "react": "^18.2.0",
     "ws": "^8.13.0",
     "zustand": "^4.3.9"
@@ -67,12 +68,9 @@
   },
   "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
   "pnpm": {
-    "patchedDependencies": {
-      "@walletconnect/core@2.10.6": "patches/@walletconnect__core@2.10.6.patch"
-    },
     "overrides": {
-      "@walletconnect/core": "^2.10.6",
-      "@walletconnect/sign-client": "^2.10.6"
+      "@walletconnect/core": "^2.11.0",
+      "@walletconnect/sign-client": "^2.11.0"
     }
   }
 }

@@ -11,4 +11,4 @@ export * from './importSharedState.js';
 export * from './records.js';
 export * from './requestSignature.js';
 
-export const PAGE_SIZE = 50;
+export const PAGE_SIZE = 25;
