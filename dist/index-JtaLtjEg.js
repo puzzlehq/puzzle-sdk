@@ -407,7 +407,7 @@ let Zp = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-ep1DuP4Y.js");
+      await import("./index-pFcO5HoU.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), wr.setIsUiLoaded(!0);
     }
@@ -6210,7 +6210,7 @@ const Wb = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Hb
 }, Symbol.toStringTag, { value: "Module" })), Dl = /* @__PURE__ */ Ro(Wb);
-var Gb = self.fetch || (self.fetch = Dl.default || Dl);
+var Gb = fetch || (self.fetch = Dl.default || Dl);
 const Qb = /* @__PURE__ */ pi(Gb);
 function Zb(t, e) {
   if (t.length >= 255)
@@ -14301,8 +14301,11 @@ const LD = ({ id: t, address: e, multisig: r = !1 }) => {
   const t = await tt();
   if (!t)
     throw new Error("call setConnection() first!");
+  const e = await t.getSession();
+  if (e)
+    return console.log("Already connected!", e), e;
   try {
-    const e = await t.connect({
+    const r = await t.connect({
       requiredNamespaces: {
         aleo: {
           methods: Wc,
@@ -14311,9 +14314,9 @@ const LD = ({ id: t, address: e, multisig: r = !1 }) => {
         }
       }
     });
-    return cs.emit("session_change"), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), e;
-  } catch (e) {
-    console.error("connect error", e.message);
+    return cs.emit("session_change"), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), r;
+  } catch (r) {
+    console.error("connect error", r.message);
   }
 }, VD = async (t) => {
   const e = await tt(), r = await (e == null ? void 0 : e.getSession());
@@ -17310,7 +17313,7 @@ var S3 = (t, e = !1) => {
     const e = Ux(() => {
       const [r] = bt(this, rs), [n] = bt(this, ns), [s] = bt(this, ss), [i] = bt(this, is), [a] = bt(this, ts);
       let o;
-      bt(this, os) ? o = bt(this, os) : (o = Ox(() => import("./N66J3ZXT-KzEXE-5a.js")), Yt(this, os, o)), NO(bt(this, hi));
+      bt(this, os) ? o = bt(this, os) : (o = Ox(() => import("./N66J3ZXT-sdggAvn_.js")), Yt(this, os, o)), NO(bt(this, hi));
       const u = this;
       return _x(o, Sx({
         get queryFlavor() {

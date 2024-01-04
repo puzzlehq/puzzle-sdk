@@ -17,7 +17,8 @@
   },
   "type": "module",
   "scripts": {
-    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types",
+    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

@@ -8,8 +8,14 @@ export const connect = async () => {
     throw new Error('call setConnection() first!');
   }
 
+  const existingSession: SessionTypes.Struct | undefined = await connection.getSession()
+  if (existingSession) {
+    console.log('Already connected!', existingSession);
+    return existingSession;
+  }
+
   try {
-    const session: SessionTypes.Struct | undefined = await connection.connect({
+    const newSession: SessionTypes.Struct | undefined = await connection.connect({
       requiredNamespaces: {
         aleo: {
           methods: wc_aleo_methods,
@@ -23,7 +29,7 @@ export const connect = async () => {
     // remove to prevent walletconnect from redirecting to the wallet page
     window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
-    return session;
+    return newSession;
   } catch (e) {
     console.error('connect error', (e as Error).message);
   }
