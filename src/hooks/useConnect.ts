@@ -31,7 +31,7 @@ export function useConnect() {
         network: account[0],
         chainId: account[1],
         address: account[2],
-        shortenedAddress: shortenAddress(account[0])
+        shortenedAddress: shortenAddress(account[2])
       });
       emitter.emit('session_change');
 
