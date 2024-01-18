@@ -4,10 +4,13 @@ import { wc_aleo_chains, wc_aleo_methods, wc_events } from '../data/walletconnec
 import { useAsyncAction } from './wc/_useAsyncAction.js'
 import useWalletStore from '../store.js'
 import { shortenAddress } from './useAccount.js'
+import { useSession } from '../index.js'
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>
 
 export function useConnect() {
+  const session: SessionTypes.Struct | undefined = useSession();
+  const isConnected = !!session;
   const { data, error, loading, setData, setError, setLoading } = useAsyncAction<Data>();
   const [setAccount] = useWalletStore((state) => [state.setAccount]);
 
@@ -31,7 +34,7 @@ export function useConnect() {
         network: account[0],
         chainId: account[1],
         address: account[2],
-        shortenedAddress: shortenAddress(account[0])
+        shortenedAddress: shortenAddress(account[2])
       });
       emitter.emit('session_change');
 
@@ -47,5 +50,5 @@ export function useConnect() {
     }
   }
 
-  return { data, error, loading, connect }
+  return { data, error, loading, isConnected, connect }
 }

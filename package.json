@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.1.52",
+  "version": "0.2.0",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -22,7 +22,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@puzzlehq/types": "1.0.8",
+    "@puzzlehq/types": "1.0.9",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/react-query-devtools": "^5.13.5",
     "@trpc/client": "^10.9.0",
