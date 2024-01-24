@@ -44,9 +44,18 @@ export const web3modal_puzzle_props = {
         universal: 'https://walletconnect.puzzle.online/',
       },
     },
+    {
+      id: 'avail',
+      name: 'Avail Wallet',
+      links: {
+        native: 'avail://',
+        universal: 'https://avail.global',
+      },
+    },
   ],
   walletImages: {
     puzzle: 'https://i.imgur.com/p9tHaFC.png',
+    avail: 'https://i.imgur.com/GxNn8BO.png'
   },
 };
 
