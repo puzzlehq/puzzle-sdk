@@ -26,6 +26,7 @@ export declare const web3modal_puzzle_props: {
     }[];
     walletImages: {
         puzzle: string;
+        avail: string;
     };
 };
 export declare const signClient_puzzleProps: {
