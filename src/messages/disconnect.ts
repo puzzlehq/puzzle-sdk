@@ -9,16 +9,21 @@ export const disconnect = async (): Promise<{ error?: string }> => {
     await connection?.getSession();
 
   if (!session || !connection) {
+    if (!session) useWalletStore.getState().onDisconnect();
     return { error: 'no session or connection' };
   }
 
   try {
-    await connection.disconnect({
-      reason: getSdkError('USER_DISCONNECTED'),
-      topic: session.topic,
-    });
-    emitter.emit('session_change');
-    useWalletStore.setState({ account: undefined });
+    try {
+      await connection.disconnect({
+        reason: getSdkError('USER_DISCONNECTED'),
+        topic: session.topic,
+      });
+      emitter.emit('session_change');
+    } catch (e) {
+      console.warn(e);
+    }
+    useWalletStore.getState().onDisconnect();
     return {};
   } catch (e) {
     const error = (e as Error).message;

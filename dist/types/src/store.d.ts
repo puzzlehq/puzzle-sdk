@@ -1,6 +1,6 @@
 import { PuzzleAccount } from './index.js';
 type WalletState = {
-    account: PuzzleAccount | undefined;
+    account?: PuzzleAccount;
     chainId?: string;
     setAccount: (account: PuzzleAccount | undefined) => void;
     setChainId: (chainId: string) => void;

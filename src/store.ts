@@ -3,7 +3,7 @@ import { PuzzleAccount } from './index.js';
 import { persist } from 'zustand/middleware';
 
 type WalletState = {
-  account: PuzzleAccount | undefined;
+  account?: PuzzleAccount;
   chainId?: string;
 
   setAccount: (account: PuzzleAccount | undefined) => void;
@@ -26,6 +26,7 @@ const useWalletStore = create<WalletState>()(
         account: undefined,
         chainId: undefined,
       })
+      console.log('onDisconnect called!')
     }
   }), {
     name: 'puzzle-wallet-store'
