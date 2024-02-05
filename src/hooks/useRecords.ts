@@ -1,10 +1,11 @@
-import { GetRecordsRequest, GetRecordsResponse, RecordWithPlaintext, RecordsFilter } from '../messages/records.js';
+import { GetRecordsRequest, GetRecordsResponse, RecordsFilter } from '../messages/records.js';
 import { SessionTypes } from '@walletconnect/types';
 import useWalletStore from '../store.js';
 import { useSession } from './wc/useSession.js';
 import { useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { log_sdk } from '../utils/logger.js';
+import { type RecordWithPlaintext } from '@puzzlehq/types';
 
 type UseRecordsParams = {
   address?: string;

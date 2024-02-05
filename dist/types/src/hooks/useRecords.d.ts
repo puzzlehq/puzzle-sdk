@@ -1,4 +1,5 @@
-import { RecordWithPlaintext, RecordsFilter } from '../messages/records.js';
+import { RecordsFilter } from '../messages/records.js';
+import { type RecordWithPlaintext } from '@puzzlehq/types';
 type UseRecordsParams = {
     address?: string;
     multisig?: boolean;

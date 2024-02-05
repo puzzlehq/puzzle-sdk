@@ -10,8 +10,8 @@ overrides:
 
 dependencies:
   '@puzzlehq/types':
-    specifier: 1.0.9
-    version: 1.0.9
+    specifier: 1.0.11
+    version: 1.0.11
   '@tanstack/react-query':
     specifier: ^4.29.5
     version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
@@ -516,8 +516,8 @@ packages:
       '@parcel/watcher-win32-x64': 2.3.0
     dev: false
 
-  /@puzzlehq/types@1.0.9:
-    resolution: {integrity: sha512-SwIu0snTd3POyOxRRClzPQVgJ6Y6625tpcmh8SD3JKOU/KHW/w20kBZT0K+w7yEFMz5QfE9jz02SJryZVALclA==}
+  /@puzzlehq/types@1.0.11:
+    resolution: {integrity: sha512-Elk1gs+RxTR3zBGdENpH3TMdp6aQaO17bI+ubfkbAPW6gN4PyYicN4z++TQCCvXwtIarOr0I2K0kLe8yQAIovw==}
     dependencies:
       zod: 3.21.1
     dev: false

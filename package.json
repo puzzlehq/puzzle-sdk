@@ -22,7 +22,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@puzzlehq/types": "1.0.9",
+    "@puzzlehq/types": "1.0.11",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/react-query-devtools": "^5.13.5",
     "@trpc/client": "^10.9.0",

@@ -1,11 +1,4 @@
-import { Record } from '@puzzlehq/types';
-export type RecordWithPlaintext = Record & {
-    plaintext: string;
-    microcredits: number;
-    data: {
-        [key: string]: string;
-    };
-};
+import { type RecordWithPlaintext } from '@puzzlehq/types';
 export type RecordsFilter = {
     programIds?: string[];
     functionId?: string;

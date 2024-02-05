@@ -1,7 +1,7 @@
-import { type RecordWithPlaintext } from './records.js';
 import { EventType } from '../data/types.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
+import { type RecordWithPlaintext } from '@puzzlehq/types';
 
 /// dapps send this to the sdk
 export type CreateEventRequestData = {

@@ -1,12 +1,6 @@
-import { Record } from '@puzzlehq/types';
+import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-
-export type RecordWithPlaintext = Record & {
-  plaintext: string;
-  microcredits: number;
-  data: { [key: string]: string };
-};
 
 export type RecordsFilter = {
   programIds?: string[];
