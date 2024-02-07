@@ -58,7 +58,7 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
 
   const fetchPage = () => {
     if (readyToRequest && !loading) {
-      log_sdk('useRequestSignature refetching...', [address, multisig, filter, page]);
+      log_sdk('useRecords refetching...', [address, multisig, filter, page]);
       refetch();
     }
   }
