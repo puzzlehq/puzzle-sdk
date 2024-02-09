@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { PuzzleAccount } from './index.js';
+import { PuzzleAccount, queryClient } from './index.js';
 import { persist } from 'zustand/middleware';
 
 type WalletState = {
@@ -26,6 +26,7 @@ const useWalletStore = create<WalletState>()(
         account: undefined,
         chainId: undefined,
       })
+      queryClient.clear()
       console.log('onDisconnect called!')
     }
   }), {

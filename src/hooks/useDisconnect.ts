@@ -1,5 +1,4 @@
 import { getWalletConnectModalSignClient } from '../client.js'
-import { useState } from 'react'
 import { disconnect as _disconnect, emitter, useSession } from '../index.js';
 import useWalletStore from '../store.js';
 import { SessionTypes } from '@walletconnect/types';

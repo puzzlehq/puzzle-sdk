@@ -16,9 +16,11 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
+  const isEnabled = id !== undefined && id !== '' && !!session && !!account && (multisig ? !!address : true);
+
   const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventResponse | undefined>({
     queryKey: ['useEvent', account?.address, address, multisig, id, session?.topic],
-    enabled: id !== undefined && id !== '' && !!session && !!account && (multisig ? !!address : true),
+    enabled: isEnabled,
     wcParams: {
       topic: session?.topic,
       chainId: 'aleo:1',
@@ -26,7 +28,7 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
         jsonrpc: '2.0',
         method: 'getEvent',
         params: {
-          id,
+          id: id ?? '',
           address
         } as GetEventRequest
       }

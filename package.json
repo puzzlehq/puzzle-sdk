@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -70,8 +70,8 @@
   "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
   "pnpm": {
     "overrides": {
-      "@walletconnect/core": "^2.11.0",
-      "@walletconnect/sign-client": "^2.11.0"
+      "@walletconnect/core": "^2.11.1",
+      "@walletconnect/sign-client": "^2.11.1"
     }
   }
 }
