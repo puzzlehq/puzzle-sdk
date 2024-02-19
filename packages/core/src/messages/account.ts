@@ -21,7 +21,7 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
       topic: session.topic,
       chainId: 'aleo:1',
       request: {
-          jsonrpc: '2.0',
+        jsonrpc: '2.0',
         method: 'getSelectedAccount',
       },
     });

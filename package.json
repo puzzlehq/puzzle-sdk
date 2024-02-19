@@ -29,6 +29,9 @@
     "typescript": "^4.9.4",
     "vite": "^5.0.10"
   },
+  "peerDependencies": {
+    "ws": "^8.13.0"
+  },
   "repository": {
     "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
     "type": "git",
