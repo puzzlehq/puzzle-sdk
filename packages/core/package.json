@@ -1,0 +1,41 @@
+{
+  "name": "@puzzlehq/sdk-core",
+  "displayName": "Puzzle SDK",
+  "version": "0.2.5",
+  "description": "Your portal to privacy",
+  "main": "./dist/puzzle.cjs.js",
+  "module": "./dist/puzzle.es.js",
+  "browser": "./dist/puzzle.umd.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/puzzle.es.js",
+      "require": "./dist/puzzle.cjs.js",
+      "browser": "./dist/puzzle.umd.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix",
+    "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puzzlehq/puzzle-sdk.git"
+  },
+  "keywords": [
+    "puzzle",
+    "html",
+    "aleo",
+    "web3",
+    "crypto"
+  ],
+  "author": "Puzzle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/puzzlehq/puzzle-sdk/issues"
+  },
+  "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme"
+}

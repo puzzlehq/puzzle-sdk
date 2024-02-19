@@ -20,5 +20,5 @@
     "strictNullChecks": true,
     "outDir": "dist"
   },
-  "include": ["src"]
+  "include": ["packages"]
 }
