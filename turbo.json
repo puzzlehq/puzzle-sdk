@@ -1,6 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
+    "@puzzlehq/sdk-react#build": {
+      "dependsOn": ["@puzzlehq/sdk-core#build"]
+    },
     "build": {
       "outputs": ["dist/**"]
     },
