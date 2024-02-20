@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.2.15",
+  "version": "0.2.18",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
@@ -41,7 +41,7 @@
     "puzzle",
     "aleo",
     "web3",
-    "crypto\\"
+    "crypto"
   ],
   "author": "Puzzle",
   "license": "ISC",

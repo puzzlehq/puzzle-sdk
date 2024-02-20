@@ -9,7 +9,7 @@ const allDependencies = {
   ...packageJson_2.dependencies,
   ...packageJson_2.peerDependencies,
 };
-const packages = [...Object.keys(allDependencies)];
+const packages = [...Object.keys(allDependencies)].filter((pkg) =>  !['@puzzlehq/sdk-core', '@puzzlehq/types'].includes(pkg));
 console.log(packages)
 
 export default defineConfig({
@@ -19,9 +19,6 @@ export default defineConfig({
       name: '@puzzlehq/sdk-react',
       formats: ['cjs', 'es', 'umd'],
       fileName: (format) => `puzzle.${format}.js`
-    },
-    optimizeDeps: {
-      exclude: ['ws']
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -34,12 +31,9 @@ export default defineConfig({
           'events': 'EventEmitter',
           'zustand': 'zustand',
           '@tanstack/react-query': 'reactQuery',
-          '@puzzlehq/sdk-core': 'sdkCore',
           '@walletconnect/utils': 'utils',
-          '@puzzlehq/types': 'types',
           'debug': 'debug',
           'react/jsx-runtime': 'jsxRuntime',
-          '@tanstack/react-query-devtools': 'reactQueryDevtools',
           'zustand/middleware': 'middleware',
         },
         extend: true

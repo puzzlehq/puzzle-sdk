@@ -17,4 +17,4 @@ export * from './hooks/wc/useOnSessionUpdate.js';
 export * from './hooks/wc/useSession.js';
 export * from './provider/PuzzleWalletProvider.js'
 
-export * from '../../core/src/index.js'
+export * from '@puzzlehq/sdk-core'

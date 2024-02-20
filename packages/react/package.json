@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk-react",
   "displayName": "Puzzle React SDK",
-  "version": "0.2.15",
+  "version": "0.2.18",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -23,15 +23,15 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@puzzlehq/sdk-core": "workspace:*",
+    "@puzzlehq/sdk-core": "../core",
     "@tanstack/react-query": "^4.29.5",
-    "@tanstack/react-query-devtools": "^5.13.5",
     "immer": "^9.0.19",
     "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10"
+    "@types/react-dom": "^18.0.10",
+    "@tanstack/react-query-devtools": "^5.13.5"
   },
   "peerDependencies": {
     "react": "^18.2.0"

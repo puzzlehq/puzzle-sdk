@@ -396,7 +396,7 @@ let hh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-cNVqZlp_.js");
+      await import("./index-DhZLigjp.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Ht.setIsUiLoaded(!0);
     }
@@ -669,7 +669,7 @@ function fs(t, e = {}) {
   const r = t.trim();
   if (
     // eslint-disable-next-line unicorn/prefer-at
-    t[0] === '"' && t.at(-1) === '"' && !t.includes("\\")
+    t[0] === '"' && t.endsWith('"') && !t.includes("\\")
   )
     return r.slice(1, -1);
   if (r.length <= 9) {
