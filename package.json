@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.2.6",
+  "version": "0.2.15",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@puzzlehq/types": "1.0.11",
-    "@rollup/plugin-inject": "^5.0.5",
     "@walletconnect/core": "^2.11.1",
     "@walletconnect/modal-sign-html": "^2.6.2",
     "@walletconnect/sign-client": "^2.11.1",
@@ -31,7 +30,6 @@
     "vite": "^5.0.10"
   },
   "peerDependencies": {
-    "ws": "^8.13.0",
     "buffer": "^6.0.3"
   },
   "repository": {

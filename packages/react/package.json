@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk-react",
   "displayName": "Puzzle React SDK",
-  "version": "0.2.6",
+  "version": "0.2.15",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -18,7 +18,8 @@
   "type": "module",
   "scripts": {
     "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
-    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix && node generate-types-index.cjs",
+    "ws-fix": "find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\\"ws\\\")/(() => {try { return require(\\\"ws\\\") } catch (e) { } })()/g' {} +;",
+    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix && pnpm ws-fix && node generate-types-index.cjs",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
