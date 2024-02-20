@@ -1,4 +1,4 @@
-import { Event } from '../data/types.js';
+import { Event } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 

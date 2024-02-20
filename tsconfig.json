@@ -20,5 +20,6 @@
     "strictNullChecks": true,
     "outDir": "dist"
   },
-  "include": ["packages"]
+  "include": ["packages"],
+  "exclude": ["node_modules"]
 }

@@ -1,4 +1,4 @@
-import { EventType } from '../data/types.js';
+import { EventType } from '../index.js';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 export type CreateEventRequestData = {
     address?: string;

@@ -1,4 +1,4 @@
-import { EventType } from '../data/types.js';
+import { EventType } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { type RecordWithPlaintext } from '@puzzlehq/types';

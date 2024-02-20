@@ -1,4 +1,4 @@
-import { Event } from '../data/types.js';
+import { Event } from '../index.js';
 export type GetEventRequest = {
     id: string;
     address?: string;

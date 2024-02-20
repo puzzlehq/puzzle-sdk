@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@puzzlehq/types": "1.0.11",
+    "@rollup/plugin-inject": "^5.0.5",
     "@walletconnect/core": "^2.11.1",
     "@walletconnect/modal-sign-html": "^2.6.2",
     "@walletconnect/sign-client": "^2.11.1",
@@ -19,18 +20,19 @@
     "@walletconnect/utils": "^2.11.1",
     "debug": "^4.3.4",
     "eventemitter3": "^5.0.1",
-    "events": "^3.3.0",
-    "process": "^0.11.10"
+    "events": "^3.3.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.18",
+    "process": "^0.11.10",
     "typescript": "^4.9.4",
     "vite": "^5.0.10"
   },
   "peerDependencies": {
-    "ws": "^8.13.0"
+    "ws": "^8.13.0",
+    "buffer": "^6.0.3"
   },
   "repository": {
     "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",

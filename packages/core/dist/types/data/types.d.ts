@@ -4,5 +4,3 @@ export type PuzzleAccount = {
     address: string;
     shortenedAddress: string;
 };
-export * from '@puzzlehq/types';
-export * from '@walletconnect/types';

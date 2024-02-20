@@ -17,7 +17,9 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "typeRoots": ["../../node_modules/@types", "./dist/types"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "typeRoots": ["./dist/types"]
 }

@@ -1,4 +1,4 @@
-import { Event, EventType } from '../data/types.js';
+import { Event, EventType } from '../index.js';
 export type EventsFilter = {
     type?: EventType;
     programId?: string;
