@@ -4,7 +4,6 @@ import EventEmitter from 'events';
 import pkg from '../package.json'
 import { getSdkError } from '@walletconnect/utils';
 import { SessionTypes } from '@walletconnect/types';
-import useWalletStore from './store.js';
 
 export const emitter = new EventEmitter();
 
@@ -14,11 +13,12 @@ export type WalletConnectModalSignInstance = InstanceType<
   typeof WalletConnectModalSign
 >;
 
-export function configureConnection(options: {
+export async function configureConnection(options: {
   dAppName: string,
   dAppDescription: string,
   dAppUrl: string,
-  dAppIconURL: string
+  dAppIconURL: string,
+  onDisconnect?: () => any;
 }) {
   let disconnectSessions = false;
   // Check whether new version is installed
@@ -33,6 +33,7 @@ export function configureConnection(options: {
 
   connection = new WalletConnectModalSign({
     projectId,
+    
     metadata: {
       name: options.dAppName,
       description: options.dAppDescription,
@@ -44,7 +45,7 @@ export function configureConnection(options: {
 
   if (disconnectSessions) {
     try {
-      disconnectOnVersionChange(connection)
+      disconnectOnVersionChange(connection, options.onDisconnect)
     } catch (e) {
       console.error(e);
     }
@@ -54,11 +55,11 @@ export function configureConnection(options: {
   window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 }
 
-async function disconnectOnVersionChange(connection: WalletConnectModalSign) {
+async function disconnectOnVersionChange(connection: WalletConnectModalSign, onDisconnect?: () => any) {
   const session: SessionTypes.Struct | undefined = await connection?.getSession();
   if (session) {
     console.log('Disconnecting session', session);
-    useWalletStore.getState().onDisconnect()
+    onDisconnect && onDisconnect();
     connection.disconnect({
       topic: session.topic,
       reason: getSdkError('USER_DISCONNECTED')
