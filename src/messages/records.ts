@@ -6,6 +6,7 @@ export type RecordsFilter = {
   programIds?: string[];
   functionId?: string;
   type: 'all' | 'spent' | 'unspent';
+  name?: string;
 };
 
 export type GetRecordsRequest = {
