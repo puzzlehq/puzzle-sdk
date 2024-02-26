@@ -27,6 +27,17 @@
     "type": "git",
     "url": "git+https://github.com/puzzlehq/puzzle-sdk.git"
   },
+  "dependencies": {
+    "@puzzlehq/types": "1.0.11",
+    "@walletconnect/modal-sign-html": "^2.6.2",
+    "@walletconnect/types": "^2.11.2",
+    "@walletconnect/utils": "^2.11.2",
+    "debug": "^4.3.4",
+    "events": "^3.3.0"
+  },
+  "peerDependencies": {
+    "buffer": "^6.0.3"
+  },
   "keywords": [
     "puzzle",
     "html",

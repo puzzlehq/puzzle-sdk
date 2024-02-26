@@ -322,7 +322,7 @@ var ih = Object.defineProperty, qo = Object.getOwnPropertySymbols, sh = Object.p
       nh.call(e, r) && Bo(t, r, e[r]);
   return t;
 };
-const Ko = wt.isMobile(), tr = Tr({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), Bw = { state: tr, async getRecomendedWallets() {
+const Ko = wt.isMobile(), tr = Tr({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), Vw = { state: tr, async getRecomendedWallets() {
   const { explorerRecommendedWalletIds: t, explorerExcludedWalletIds: e } = di.state;
   if (t === "NONE" || e === "ALL" && !t)
     return tr.recomendedWallets;
@@ -383,7 +383,7 @@ const xi = Tr({ themeMode: hh() ? "dark" : "light" }), Wo = { state: xi, subscri
 }, setThemeConfig(t) {
   const { themeMode: e, themeVariables: r } = t;
   e && (xi.themeMode = e), r && (xi.themeVariables = lh({}, r));
-} }, Mr = Tr({ open: !1, message: "", variant: "success" }), Kw = { state: Mr, subscribe(t) {
+} }, Mr = Tr({ open: !1, message: "", variant: "success" }), Hw = { state: Mr, subscribe(t) {
   return Zr(Mr, () => t(Mr));
 }, openToast(t, e) {
   Mr.open = !0, Mr.message = t, Mr.variant = e;
@@ -396,7 +396,7 @@ let dh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-CfTdc73_.js");
+      await import("./index-BjK0qeal.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Ht.setIsUiLoaded(!0);
     }
@@ -6445,7 +6445,7 @@ function $0(t, e = "utf8") {
     throw new Error(`Unsupported encoding "${e}"`);
   return (e === "utf8" || e === "utf-8") && globalThis.Buffer != null && globalThis.Buffer.from != null ? Uu(globalThis.Buffer.from(t, "utf-8")) : r.decoder.decode(`${r.prefix}${t}`);
 }
-const ju = "wc", j0 = 2, Eo = "core", Dr = `${ju}@2:${Eo}:`, k0 = { name: Eo, logger: "error" }, z0 = { database: ":memory:" }, q0 = "crypto", sc = "client_ed25519_seed", B0 = te.ONE_DAY, K0 = "keychain", V0 = "0.3", H0 = "messages", W0 = "0.3", Z0 = te.SIX_HOURS, G0 = "publisher", ku = "irn", Y0 = "error", zu = "wss://relay.walletconnect.com", nc = "wss://relay.walletconnect.org", J0 = "relayer", _t = { message: "relayer_message", message_ack: "relayer_message_ack", connect: "relayer_connect", disconnect: "relayer_disconnect", error: "relayer_error", connection_stalled: "relayer_connection_stalled", transport_closed: "relayer_transport_closed", publish: "relayer_publish" }, X0 = "_subscription", dr = { payload: "payload", connect: "connect", disconnect: "disconnect", error: "error" }, Q0 = te.ONE_SECOND, ev = "2.11.1", tv = 1e4, rv = "0.3", iv = "WALLETCONNECT_CLIENT_ID", Kt = { created: "subscription_created", deleted: "subscription_deleted", expired: "subscription_expired", disabled: "subscription_disabled", sync: "subscription_sync", resubscribed: "subscription_resubscribed" }, sv = "subscription", nv = "0.3", ov = te.FIVE_SECONDS * 1e3, av = "pairing", cv = "0.3", Ti = { wc_pairingDelete: { req: { ttl: te.ONE_DAY, prompt: !1, tag: 1e3 }, res: { ttl: te.ONE_DAY, prompt: !1, tag: 1001 } }, wc_pairingPing: { req: { ttl: te.THIRTY_SECONDS, prompt: !1, tag: 1002 }, res: { ttl: te.THIRTY_SECONDS, prompt: !1, tag: 1003 } }, unregistered_method: { req: { ttl: te.ONE_DAY, prompt: !1, tag: 0 }, res: { ttl: te.ONE_DAY, prompt: !1, tag: 0 } } }, Ai = { create: "pairing_create", expire: "pairing_expire", delete: "pairing_delete", ping: "pairing_ping" }, ir = { created: "history_created", updated: "history_updated", deleted: "history_deleted", sync: "history_sync" }, uv = "history", lv = "0.3", hv = "expirer", kt = { created: "expirer_created", deleted: "expirer_deleted", expired: "expirer_expired", sync: "expirer_sync" }, dv = "0.3", vn = "verify-api", oi = "https://verify.walletconnect.com", Kn = "https://verify.walletconnect.org", fv = [oi, Kn], pv = "echo", gv = "https://echo.walletconnect.com";
+const ju = "wc", j0 = 2, Eo = "core", Dr = `${ju}@2:${Eo}:`, k0 = { name: Eo, logger: "error" }, z0 = { database: ":memory:" }, q0 = "crypto", sc = "client_ed25519_seed", B0 = te.ONE_DAY, K0 = "keychain", V0 = "0.3", H0 = "messages", W0 = "0.3", Z0 = te.SIX_HOURS, G0 = "publisher", ku = "irn", Y0 = "error", zu = "wss://relay.walletconnect.com", nc = "wss://relay.walletconnect.org", J0 = "relayer", _t = { message: "relayer_message", message_ack: "relayer_message_ack", connect: "relayer_connect", disconnect: "relayer_disconnect", error: "relayer_error", connection_stalled: "relayer_connection_stalled", transport_closed: "relayer_transport_closed", publish: "relayer_publish" }, X0 = "_subscription", dr = { payload: "payload", connect: "connect", disconnect: "disconnect", error: "error" }, Q0 = te.ONE_SECOND, ev = "2.11.2", tv = 1e4, rv = "0.3", iv = "WALLETCONNECT_CLIENT_ID", Kt = { created: "subscription_created", deleted: "subscription_deleted", expired: "subscription_expired", disabled: "subscription_disabled", sync: "subscription_sync", resubscribed: "subscription_resubscribed" }, sv = "subscription", nv = "0.3", ov = te.FIVE_SECONDS * 1e3, av = "pairing", cv = "0.3", Ti = { wc_pairingDelete: { req: { ttl: te.ONE_DAY, prompt: !1, tag: 1e3 }, res: { ttl: te.ONE_DAY, prompt: !1, tag: 1001 } }, wc_pairingPing: { req: { ttl: te.THIRTY_SECONDS, prompt: !1, tag: 1002 }, res: { ttl: te.THIRTY_SECONDS, prompt: !1, tag: 1003 } }, unregistered_method: { req: { ttl: te.ONE_DAY, prompt: !1, tag: 0 }, res: { ttl: te.ONE_DAY, prompt: !1, tag: 0 } } }, Ai = { create: "pairing_create", expire: "pairing_expire", delete: "pairing_delete", ping: "pairing_ping" }, ir = { created: "history_created", updated: "history_updated", deleted: "history_deleted", sync: "history_sync" }, uv = "history", lv = "0.3", hv = "expirer", kt = { created: "expirer_created", deleted: "expirer_deleted", expired: "expirer_expired", sync: "expirer_sync" }, dv = "0.3", vn = "verify-api", oi = "https://verify.walletconnect.com", Kn = "https://verify.walletconnect.org", fv = [oi, Kn], pv = "echo", gv = "https://echo.walletconnect.com";
 class yv {
   constructor(e, r) {
     this.core = e, this.logger = r, this.keychain = /* @__PURE__ */ new Map(), this.name = K0, this.version = V0, this.initialized = !1, this.storagePrefix = Dr, this.init = async () => {
@@ -6962,12 +6962,13 @@ class Av extends Ud {
   constructor(e) {
     super(e), this.protocol = "wc", this.version = 2, this.events = new Jt.EventEmitter(), this.name = J0, this.transportExplicitlyClosed = !1, this.initialized = !1, this.connectionAttemptInProgress = !1, this.connectionStatusPollingInterval = 20, this.staleConnectionErrors = ["socket hang up", "socket stalled"], this.hasExperiencedNetworkDisruption = !1, this.requestsInFlight = /* @__PURE__ */ new Map(), this.request = async (r) => {
       this.logger.debug("Publishing Request Payload");
-      const i = r.id, s = this.provider.request(r);
-      this.requestsInFlight.set(i, { promise: s, request: r });
+      const i = r.id;
       try {
-        return await this.toEstablishConnection(), await s;
-      } catch (n) {
-        throw this.logger.debug("Failed to Publish Request"), this.logger.error(n), n;
+        await this.toEstablishConnection();
+        const s = this.provider.request(r);
+        return this.requestsInFlight.set(i, { promise: s, request: r }), await s;
+      } catch (s) {
+        throw this.logger.debug("Failed to Publish Request"), this.logger.error(s), s;
       } finally {
         this.requestsInFlight.delete(i);
       }
@@ -8667,7 +8668,7 @@ const Hu = [
     puzzle: "https://i.imgur.com/p9tHaFC.png",
     avail: "https://i.imgur.com/GxNn8BO.png"
   }
-}, a_ = {
+}, u_ = {
   requiredNamespaces: {
     aleo: {
       methods: Hu,
@@ -8690,15 +8691,24 @@ const Hu = [
 }, Ib = {
   type: "git",
   url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
-}, Ob = [
+}, Ob = {
+  "@puzzlehq/types": "1.0.11",
+  "@walletconnect/modal-sign-html": "^2.6.2",
+  "@walletconnect/types": "^2.11.2",
+  "@walletconnect/utils": "^2.11.2",
+  debug: "^4.3.4",
+  events: "^3.3.0"
+}, Cb = {
+  buffer: "^6.0.3"
+}, Tb = [
   "puzzle",
   "html",
   "aleo",
   "web3",
   "crypto"
-], Cb = "Puzzle", Tb = "ISC", Nb = {
+], Nb = "Puzzle", Ab = "ISC", Rb = {
   url: "https://github.com/puzzlehq/puzzle-sdk/issues"
-}, Ab = "https://github.com/puzzlehq/puzzle-sdk#readme", Ec = {
+}, Pb = "https://github.com/puzzlehq/puzzle-sdk#readme", Ec = {
   name: gb,
   displayName: yb,
   version: mb,
@@ -8712,14 +8722,16 @@ const Hu = [
   type: xb,
   scripts: Db,
   repository: Ib,
-  keywords: Ob,
-  author: Cb,
-  license: Tb,
-  bugs: Nb,
-  homepage: Ab
+  dependencies: Ob,
+  peerDependencies: Cb,
+  keywords: Tb,
+  author: Nb,
+  license: Ab,
+  bugs: Rb,
+  homepage: Pb
 }, Zu = new io();
 let ai;
-async function c_(t) {
+async function l_(t) {
   let e = !1;
   const r = Ec.version, i = localStorage.getItem("puzzle_sdk_version");
   if (r !== i && (console.log(`${Ec.name}: Updated from ` + i + " to " + r + "!"), localStorage.setItem("puzzle_sdk_version", r), e = !0), ai = new db({
@@ -8733,13 +8745,13 @@ async function c_(t) {
     modalOptions: { ...pb }
   }), e)
     try {
-      Rb(ai, t.onDisconnect);
+      Lb(ai, t.onDisconnect);
     } catch (s) {
       console.error(s);
     }
   window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
 }
-async function Rb(t, e) {
+async function Lb(t, e) {
   const r = await (t == null ? void 0 : t.getSession());
   r && (console.log("Disconnecting session", r), e && e(), t.disconnect({
     topic: r.topic,
@@ -8758,7 +8770,7 @@ async function zt() {
     window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
   });
 }
-const u_ = async () => {
+const h_ = async () => {
   const t = await zt(), e = await t.getSession();
   if (!e || !t)
     return { error: "no session or connection" };
@@ -8775,7 +8787,7 @@ const u_ = async () => {
     const i = r.message;
     return console.error("getAccount error", i), { error: i };
   }
-}, l_ = async ({ address: t }) => {
+}, d_ = async ({ address: t }) => {
   const e = await zt(), r = await e.getSession();
   if (!r || !e)
     return { error: "no session or connection" };
@@ -8796,7 +8808,7 @@ const u_ = async () => {
     const s = i.message;
     return console.error("getBalance error", s), { error: s };
   }
-}, h_ = async () => {
+}, f_ = async () => {
   const t = await zt();
   if (!t)
     throw new Error("call setConnection() first!");
@@ -8817,7 +8829,7 @@ const u_ = async () => {
   } catch (r) {
     console.error("connect error", r.message);
   }
-}, d_ = async (t) => {
+}, p_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { error: "no session or connection" };
@@ -8839,7 +8851,7 @@ const u_ = async () => {
     const n = s.message;
     return console.error("createEvent error", n), { error: n };
   }
-}, f_ = async () => {
+}, g_ = async () => {
   const t = await zt(), e = await (t == null ? void 0 : t.getSession());
   if (!e || !t)
     return { error: "no session or connection" };
@@ -8857,7 +8869,7 @@ const u_ = async () => {
     const i = r.message;
     return console.error("createSharedState error", i), { error: i };
   }
-}, p_ = async (t) => {
+}, y_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { error: "no session or connection" };
@@ -8876,7 +8888,7 @@ const u_ = async () => {
   } catch (i) {
     return console.error("decrypt error", i.message), { error: i.message };
   }
-}, g_ = async () => {
+}, m_ = async () => {
   const t = await zt(), e = await (t == null ? void 0 : t.getSession());
   if (!e || !t)
     return { error: "no session or connection" };
@@ -8894,7 +8906,7 @@ const u_ = async () => {
     const i = r.message;
     return console.error("error disconnecting", i), { error: i };
   }
-}, y_ = async ({
+}, v_ = async ({
   id: t,
   address: e
 }) => {
@@ -8919,7 +8931,7 @@ const u_ = async () => {
     const a = n.message;
     return console.error("getEvents error", a), { error: a };
   }
-}, m_ = async (t) => {
+}, b_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { events: void 0, error: "no session or connection" };
@@ -8942,7 +8954,7 @@ const u_ = async () => {
     const n = s.message;
     return console.error("getEvents error", n), { error: n };
   }
-}, v_ = async (t) => {
+}, w_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
   if (!r || !e)
     return { error: "no session or connection" };
@@ -8962,7 +8974,7 @@ const u_ = async () => {
     const s = i.message;
     return console.error("importSharedState error", s), { error: s };
   }
-}, b_ = async ({
+}, __ = async ({
   address: t,
   filter: e,
   page: r = 0
@@ -9093,7 +9105,7 @@ const Y = Te.arrayToEnum([
   "invalid_intersection_types",
   "not_multiple_of",
   "not_finite"
-]), Pb = (t) => JSON.stringify(t, null, 2).replace(/"([^"]+)":/g, "$1:");
+]), Fb = (t) => JSON.stringify(t, null, 2).replace(/"([^"]+)":/g, "$1:");
 class Zt extends Error {
   constructor(e) {
     super(), this.issues = [], this.addIssue = (i) => {
@@ -9207,7 +9219,7 @@ const Ui = (t, e) => {
   return { message: r };
 };
 let Gu = Ui;
-function Lb(t) {
+function Mb(t) {
   Gu = t;
 }
 function As() {
@@ -9227,7 +9239,7 @@ const Rs = (t) => {
     path: n,
     message: s.message || o
   };
-}, Fb = [];
+}, Ub = [];
 function X(t, e) {
   const r = Rs({
     issueData: e,
@@ -9500,9 +9512,9 @@ class ge {
     return this.safeParse(null).success;
   }
 }
-const Mb = /^c[^\s-]{8,}$/i, Ub = /^[a-z][a-z0-9]*$/, $b = /[0-9A-HJKMNP-TV-Z]{26}/, jb = /^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/i, kb = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\])|(\[IPv6:(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))\])|([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])*(\.[A-Za-z]{2,})+))$/, zb = new RegExp("^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$", "u"), qb = /^(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))$/, Bb = /^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))$/, Kb = (t) => t.precision ? t.offset ? new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${t.precision}}(([+-]\\d{2}(:?\\d{2})?)|Z)$`) : new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${t.precision}}Z$`) : t.precision === 0 ? t.offset ? new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(([+-]\\d{2}(:?\\d{2})?)|Z)$") : new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$") : t.offset ? new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(([+-]\\d{2}(:?\\d{2})?)|Z)$") : new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$");
-function Vb(t, e) {
-  return !!((e === "v4" || !e) && qb.test(t) || (e === "v6" || !e) && Bb.test(t));
+const $b = /^c[^\s-]{8,}$/i, jb = /^[a-z][a-z0-9]*$/, kb = /[0-9A-HJKMNP-TV-Z]{26}/, zb = /^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/i, qb = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\])|(\[IPv6:(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))\])|([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])*(\.[A-Za-z]{2,})+))$/, Bb = new RegExp("^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$", "u"), Kb = /^(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))$/, Vb = /^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))$/, Hb = (t) => t.precision ? t.offset ? new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${t.precision}}(([+-]\\d{2}(:?\\d{2})?)|Z)$`) : new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${t.precision}}Z$`) : t.precision === 0 ? t.offset ? new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(([+-]\\d{2}(:?\\d{2})?)|Z)$") : new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$") : t.offset ? new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(([+-]\\d{2}(:?\\d{2})?)|Z)$") : new RegExp("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$");
+function Wb(t, e) {
+  return !!((e === "v4" || !e) && Kb.test(t) || (e === "v6" || !e) && Vb.test(t));
 }
 class Wt extends ge {
   constructor() {
@@ -9573,37 +9585,37 @@ class Wt extends ge {
           message: n.message
         }), i.dirty());
       } else if (n.kind === "email")
-        kb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        qb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "email",
           code: V.invalid_string,
           message: n.message
         }), i.dirty());
       else if (n.kind === "emoji")
-        zb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        Bb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "emoji",
           code: V.invalid_string,
           message: n.message
         }), i.dirty());
       else if (n.kind === "uuid")
-        jb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        zb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "uuid",
           code: V.invalid_string,
           message: n.message
         }), i.dirty());
       else if (n.kind === "cuid")
-        Mb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        $b.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "cuid",
           code: V.invalid_string,
           message: n.message
         }), i.dirty());
       else if (n.kind === "cuid2")
-        Ub.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        jb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "cuid2",
           code: V.invalid_string,
           message: n.message
         }), i.dirty());
       else if (n.kind === "ulid")
-        $b.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        kb.test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "ulid",
           code: V.invalid_string,
           message: n.message
@@ -9635,11 +9647,11 @@ class Wt extends ge {
           code: V.invalid_string,
           validation: { endsWith: n.value },
           message: n.message
-        }), i.dirty()) : n.kind === "datetime" ? Kb(n).test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
+        }), i.dirty()) : n.kind === "datetime" ? Hb(n).test(e.data) || (s = this._getOrReturnCtx(e, s), X(s, {
           code: V.invalid_string,
           validation: "datetime",
           message: n.message
-        }), i.dirty()) : n.kind === "ip" ? Vb(e.data, n.version) || (s = this._getOrReturnCtx(e, s), X(s, {
+        }), i.dirty()) : n.kind === "ip" ? Wb(e.data, n.version) || (s = this._getOrReturnCtx(e, s), X(s, {
           validation: "ip",
           code: V.invalid_string,
           message: n.message
@@ -9789,7 +9801,7 @@ Wt.create = (t) => {
     ...de(t)
   });
 };
-function Hb(t, e) {
+function Zb(t, e) {
   const r = (t.toString().split(".")[1] || "").length, i = (e.toString().split(".")[1] || "").length, s = r > i ? r : i, n = parseInt(t.toFixed(s).replace(".", "")), a = parseInt(e.toFixed(s).replace(".", ""));
   return n % a / Math.pow(10, s);
 }
@@ -9828,7 +9840,7 @@ class Ir extends ge {
         inclusive: n.inclusive,
         exact: !1,
         message: n.message
-      }), s.dirty()) : n.kind === "multipleOf" ? Hb(e.data, n.value) !== 0 && (i = this._getOrReturnCtx(e, i), X(i, {
+      }), s.dirty()) : n.kind === "multipleOf" ? Zb(e.data, n.value) !== 0 && (i = this._getOrReturnCtx(e, i), X(i, {
         code: V.not_multiple_of,
         multipleOf: n.value,
         message: n.message
@@ -11492,7 +11504,7 @@ js.create = (t) => new js({
   typeName: se.ZodNaN,
   ...de(t)
 });
-const Wb = Symbol("zod_brand");
+const Gb = Symbol("zod_brand");
 class Xu extends ge {
   _parse(e) {
     const { ctx: r } = this._processInputParams(e), i = r.data;
@@ -11552,16 +11564,16 @@ const Qu = (t, e = {}, r) => t ? fi.create().superRefine((i, s) => {
     const o = typeof e == "function" ? e(i) : e, h = (a = (n = o.fatal) !== null && n !== void 0 ? n : r) !== null && a !== void 0 ? a : !0, l = typeof o == "string" ? { message: o } : o;
     s.addIssue({ code: "custom", ...l, fatal: h });
   }
-}) : fi.create(), Zb = {
+}) : fi.create(), Yb = {
   object: ze.lazycreate
 };
 var se;
 (function(t) {
   t.ZodString = "ZodString", t.ZodNumber = "ZodNumber", t.ZodNaN = "ZodNaN", t.ZodBigInt = "ZodBigInt", t.ZodBoolean = "ZodBoolean", t.ZodDate = "ZodDate", t.ZodSymbol = "ZodSymbol", t.ZodUndefined = "ZodUndefined", t.ZodNull = "ZodNull", t.ZodAny = "ZodAny", t.ZodUnknown = "ZodUnknown", t.ZodNever = "ZodNever", t.ZodVoid = "ZodVoid", t.ZodArray = "ZodArray", t.ZodObject = "ZodObject", t.ZodUnion = "ZodUnion", t.ZodDiscriminatedUnion = "ZodDiscriminatedUnion", t.ZodIntersection = "ZodIntersection", t.ZodTuple = "ZodTuple", t.ZodRecord = "ZodRecord", t.ZodMap = "ZodMap", t.ZodSet = "ZodSet", t.ZodFunction = "ZodFunction", t.ZodLazy = "ZodLazy", t.ZodLiteral = "ZodLiteral", t.ZodEnum = "ZodEnum", t.ZodEffects = "ZodEffects", t.ZodNativeEnum = "ZodNativeEnum", t.ZodOptional = "ZodOptional", t.ZodNullable = "ZodNullable", t.ZodDefault = "ZodDefault", t.ZodCatch = "ZodCatch", t.ZodPromise = "ZodPromise", t.ZodBranded = "ZodBranded", t.ZodPipeline = "ZodPipeline";
 })(se || (se = {}));
-const Gb = (t, e = {
+const Jb = (t, e = {
   message: `Input not instance of ${t.name}`
-}) => Qu((r) => r instanceof t, e), el = Wt.create, tl = Ir.create, Yb = js.create, Jb = Or.create, rl = $i.create, Xb = Vr.create, Qb = Fs.create, ew = ji.create, tw = ki.create, rw = fi.create, iw = Kr.create, sw = mr.create, nw = Ms.create, ow = Gt.create, aw = ze.create, cw = ze.strictCreate, uw = zi.create, lw = Qs.create, hw = qi.create, dw = or.create, fw = Bi.create, pw = Us.create, gw = Hr.create, yw = hi.create, mw = Ki.create, vw = Vi.create, bw = Cr.create, ww = Hi.create, _w = pi.create, xc = Yt.create, Ew = yr.create, Sw = Wr.create, xw = Yt.createWithPreprocess, Dw = rs.create, Iw = () => el().optional(), Ow = () => tl().optional(), Cw = () => rl().optional(), Tw = {
+}) => Qu((r) => r instanceof t, e), el = Wt.create, tl = Ir.create, Xb = js.create, Qb = Or.create, rl = $i.create, ew = Vr.create, tw = Fs.create, rw = ji.create, iw = ki.create, sw = fi.create, nw = Kr.create, ow = mr.create, aw = Ms.create, cw = Gt.create, uw = ze.create, lw = ze.strictCreate, hw = zi.create, dw = Qs.create, fw = qi.create, pw = or.create, gw = Bi.create, yw = Us.create, mw = Hr.create, vw = hi.create, bw = Ki.create, ww = Vi.create, _w = Cr.create, Ew = Hi.create, Sw = pi.create, xc = Yt.create, xw = yr.create, Dw = Wr.create, Iw = Yt.createWithPreprocess, Ow = rs.create, Cw = () => el().optional(), Tw = () => tl().optional(), Nw = () => rl().optional(), Aw = {
   string: (t) => Wt.create({ ...t, coerce: !0 }),
   number: (t) => Ir.create({ ...t, coerce: !0 }),
   boolean: (t) => $i.create({
@@ -11570,14 +11582,14 @@ const Gb = (t, e = {
   }),
   bigint: (t) => Or.create({ ...t, coerce: !0 }),
   date: (t) => Vr.create({ ...t, coerce: !0 })
-}, Nw = ae;
+}, Rw = ae;
 var Xt = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   defaultErrorMap: Ui,
-  setErrorMap: Lb,
+  setErrorMap: Mb,
   getErrorMap: As,
   makeIssue: Rs,
-  EMPTY_PATH: Fb,
+  EMPTY_PATH: Ub,
   addIssueToContext: X,
   ParseStatus: Et,
   INVALID: ae,
@@ -11630,62 +11642,62 @@ var Xt = /* @__PURE__ */ Object.freeze({
   ZodDefault: Wi,
   ZodCatch: $s,
   ZodNaN: js,
-  BRAND: Wb,
+  BRAND: Gb,
   ZodBranded: Xu,
   ZodPipeline: rs,
   custom: Qu,
   Schema: ge,
   ZodSchema: ge,
-  late: Zb,
+  late: Yb,
   get ZodFirstPartyTypeKind() {
     return se;
   },
-  coerce: Tw,
-  any: rw,
-  array: ow,
-  bigint: Jb,
+  coerce: Aw,
+  any: sw,
+  array: cw,
+  bigint: Qb,
   boolean: rl,
-  date: Xb,
-  discriminatedUnion: lw,
+  date: ew,
+  discriminatedUnion: dw,
   effect: xc,
-  enum: bw,
-  function: yw,
-  instanceof: Gb,
-  intersection: hw,
-  lazy: mw,
-  literal: vw,
-  map: pw,
-  nan: Yb,
-  nativeEnum: ww,
-  never: sw,
-  null: tw,
-  nullable: Sw,
+  enum: _w,
+  function: vw,
+  instanceof: Jb,
+  intersection: fw,
+  lazy: bw,
+  literal: ww,
+  map: yw,
+  nan: Xb,
+  nativeEnum: Ew,
+  never: ow,
+  null: iw,
+  nullable: Dw,
   number: tl,
-  object: aw,
-  oboolean: Cw,
-  onumber: Ow,
-  optional: Ew,
-  ostring: Iw,
-  pipeline: Dw,
-  preprocess: xw,
-  promise: _w,
-  record: fw,
-  set: gw,
-  strictObject: cw,
+  object: uw,
+  oboolean: Nw,
+  onumber: Tw,
+  optional: xw,
+  ostring: Cw,
+  pipeline: Ow,
+  preprocess: Iw,
+  promise: Sw,
+  record: gw,
+  set: mw,
+  strictObject: lw,
   string: el,
-  symbol: Qb,
+  symbol: tw,
   transformer: xc,
-  tuple: dw,
-  undefined: ew,
-  union: uw,
-  unknown: iw,
-  void: nw,
-  NEVER: Nw,
+  tuple: pw,
+  undefined: rw,
+  union: hw,
+  unknown: nw,
+  void: aw,
+  NEVER: Rw,
   ZodIssueCode: V,
-  quotelessJson: Pb,
+  quotelessJson: Fb,
   ZodError: Zt
 });
-const il = /^aleo1[a-z0-9]{58}$/i, Aw = /^AViewKey1[a-z0-9]{44}$/i, Rw = /^APrivateKey1[a-z0-9]{47}$/i, Pw = /^at1[a-z0-9]{58}$/i, Lw = /^\d+field$/, Fw = /^\d+u32$/, Mw = /^\d+u64$/, w_ = Xt.string().regex(il), __ = Xt.string().regex(Aw), E_ = Xt.string().regex(Rw), S_ = Xt.string().regex(Pw), x_ = Xt.string().regex(Lw), D_ = Xt.string().regex(Fw), I_ = Xt.string().regex(Mw);
+const il = /^aleo1[a-z0-9]{58}$/i, Pw = /^AViewKey1[a-z0-9]{44}$/i, Lw = /^APrivateKey1[a-z0-9]{47}$/i, Fw = /^at1[a-z0-9]{58}$/i, Mw = /^\d+field$/, Uw = /^\d+u32$/, $w = /^\d+u64$/, E_ = Xt.string().regex(il), S_ = Xt.string().regex(Pw), x_ = Xt.string().regex(Lw), D_ = Xt.string().regex(Fw), I_ = Xt.string().regex(Mw), O_ = Xt.string().regex(Uw), C_ = Xt.string().regex($w);
 var Dc;
 (function(t) {
   t.Record = "record", t.OutputRecord = "outputRecord", t.Public = "public", t.Private = "private", t.Constant = "constant", t.Future = "future", t.ExternalRecord = "external_record";
@@ -11710,7 +11722,7 @@ var Ic;
 (function(t) {
   t[t.ALEO = 0] = "ALEO";
 })(Ic || (Ic = {}));
-const O_ = Xt.nativeEnum(Jn), C_ = Xt.nativeEnum(Xn), T_ = Xt.nativeEnum(eo), N_ = Xt.nativeEnum(Qn), A_ = async ({
+const T_ = Xt.nativeEnum(Jn), N_ = Xt.nativeEnum(Xn), A_ = Xt.nativeEnum(eo), R_ = Xt.nativeEnum(Qn), P_ = async ({
   message: t,
   address: e
 }) => {
@@ -11734,9 +11746,9 @@ const O_ = Xt.nativeEnum(Jn), C_ = Xt.nativeEnum(Xn), T_ = Xt.nativeEnum(eo), N_
     const n = s.message;
     return console.error("signature error", n), { error: n };
   }
-}, R_ = 20;
+}, L_ = 20;
 var to = { exports: {} }, En, Oc;
-function Uw() {
+function jw() {
   if (Oc)
     return En;
   Oc = 1;
@@ -11818,8 +11830,8 @@ function Uw() {
   }
   return En;
 }
-function $w(t) {
-  r.debug = r, r.default = r, r.coerce = h, r.disable = n, r.enable = s, r.enabled = a, r.humanize = Uw(), r.destroy = l, Object.keys(t).forEach((d) => {
+function kw(t) {
+  r.debug = r, r.default = r, r.coerce = h, r.disable = n, r.enable = s, r.enabled = a, r.humanize = jw(), r.destroy = l, Object.keys(t).forEach((d) => {
     r[d] = t[d];
   }), r.names = [], r.skips = [], r.formatters = {};
   function e(d) {
@@ -11899,7 +11911,7 @@ function $w(t) {
   }
   return r.enable(r.load()), r;
 }
-var jw = $w;
+var zw = kw;
 (function(t, e) {
   e.formatArgs = i, e.save = s, e.load = n, e.useColors = r, e.storage = a(), e.destroy = /* @__PURE__ */ (() => {
     let h = !1;
@@ -12023,7 +12035,7 @@ var jw = $w;
     } catch {
     }
   }
-  t.exports = jw(e);
+  t.exports = zw(e);
   const { formatters: o } = t.exports;
   o.j = function(h) {
     try {
@@ -12033,27 +12045,27 @@ var jw = $w;
     }
   };
 })(to, to.exports);
-var kw = to.exports;
-const zw = /* @__PURE__ */ ks(kw), qw = zw("wallet:sdk");
-qw.enabled = !0;
+var qw = to.exports;
+const Bw = /* @__PURE__ */ ks(qw), Kw = Bw("wallet:sdk");
+Kw.enabled = !0;
 export {
-  c_ as $,
+  l_ as $,
   Ic as A,
-  u_ as B,
-  l_ as C,
-  h_ as D,
+  h_ as B,
+  d_ as C,
+  f_ as D,
   Xn as E,
-  d_ as F,
-  f_ as G,
-  p_ as H,
-  g_ as I,
-  y_ as J,
-  m_ as K,
-  v_ as L,
-  b_ as M,
+  p_ as F,
+  g_ as G,
+  y_ as H,
+  m_ as I,
+  v_ as J,
+  b_ as K,
+  w_ as L,
+  __ as M,
   eo as N,
-  A_ as O,
-  R_ as P,
+  P_ as O,
+  L_ as P,
   Hu as Q,
   Xl as R,
   Oo as S,
@@ -12062,34 +12074,34 @@ export {
   Qn as V,
   fb as W,
   pb as X,
-  a_ as Y,
-  qw as Z,
+  u_ as Y,
+  Kw as Z,
   Zu as _,
   wt as a,
   zt as a0,
   Jn as b,
   il as c,
-  Lw as d,
-  Rw as e,
-  Pw as f,
-  Fw as g,
-  Mw as h,
-  Aw as i,
-  C_ as j,
-  O_ as k,
-  x_ as l,
-  T_ as m,
+  Mw as d,
+  Lw as e,
+  Fw as f,
+  Uw as g,
+  $w as h,
+  Pw as i,
+  N_ as j,
+  T_ as k,
+  I_ as l,
+  A_ as m,
   Wo as n,
-  Kw as o,
+  Hw as o,
   Ht as p,
-  E_ as q,
-  S_ as r,
+  x_ as q,
+  D_ as r,
   rn as s,
-  Bw as t,
-  D_ as u,
-  I_ as v,
-  __ as w,
-  N_ as x,
+  Vw as t,
+  O_ as u,
+  C_ as v,
+  S_ as w,
+  R_ as x,
   di as y,
-  w_ as z
+  E_ as z
 };

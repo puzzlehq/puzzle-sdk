@@ -3,7 +3,6 @@ import { configureConnection } from "@puzzlehq/sdk-core"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import EventEmitter from "events";
-import pkg from '../../package.json';
 import useWalletStore from "../store.js";
 
 type PuzzleWalletProviderProps = {

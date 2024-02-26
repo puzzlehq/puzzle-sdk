@@ -9,7 +9,7 @@ const allDependencies = {
   ...packageJson_2.dependencies,
   ...packageJson_2.peerDependencies,
 };
-const packages = [...Object.keys(allDependencies)].filter((pkg) =>  !['@puzzlehq/sdk-core', '@puzzlehq/types'].includes(pkg));
+const packages = [...Object.keys(allDependencies)].filter((pkg) =>  !['@puzzlehq/types'].includes(pkg));
 console.log(packages)
 
 export default defineConfig({
