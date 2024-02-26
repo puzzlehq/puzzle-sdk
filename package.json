@@ -45,5 +45,11 @@
   "bugs": {
     "url": "https://github.com/puzzlehq/puzzle-sdk/issues"
   },
-  "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme"
+  "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
+  "pnpm": {
+    "overrides": {
+      "@walletconnect/core": "^2.11.2",
+      "@walletconnect/sign-client": "^2.11.2"
+    }
+  }
 }

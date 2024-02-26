@@ -1,4 +1,4 @@
-import { K as _t, e as ce, D as L, P as ot, Y as Wo, _ as C, R as j, V as q, c as pt } from "./index-BVOCipsf.js";
+import { W as _t, r as ce, C as L, H as ot, X as Wo, w as C, V as j, a as q, d as pt } from "./index-CVnrRom3.js";
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -266,7 +266,7 @@ $t[lr] = !0, $t.elementProperties = /* @__PURE__ */ new Map(), $t.elementStyles 
  */
 var Ae;
 const ue = window, kt = ue.trustedTypes, Mr = kt ? kt.createPolicy("lit-html", { createHTML: (t) => t }) : void 0, sr = "$lit$", rt = `lit$${(Math.random() + "").slice(9)}$`, ao = "?" + rt, Zo = `<${ao}>`, gt = document, Vt = () => gt.createComment(""), Ft = (t) => t === null || typeof t != "object" && typeof t != "function", lo = Array.isArray, Vo = (t) => lo(t) || typeof (t == null ? void 0 : t[Symbol.iterator]) == "function", _e = `[ 	
-\f\r]`, St = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Pr = /-->/g, Tr = />/g, st = RegExp(`>|${_e}(?:([^\\s"'>=/]+)(${_e}*=${_e}*(?:[^ 	
+\f\r]`, St = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Tr = /-->/g, Pr = />/g, st = RegExp(`>|${_e}(?:([^\\s"'>=/]+)(${_e}*=${_e}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), Rr = /'/g, Sr = /"/g, so = /^(?:script|style|textarea|title)$/i, co = (t) => (e, ...r) => ({ _$litType$: t, strings: e, values: r }), u = co(1), N = co(2), ft = Symbol.for("lit-noChange"), D = Symbol.for("lit-nothing"), Nr = /* @__PURE__ */ new WeakMap(), ut = gt.createTreeWalker(gt, 129, null, !1);
 function ho(t, e) {
   if (!Array.isArray(t) || !t.hasOwnProperty("raw"))
@@ -280,7 +280,7 @@ const Fo = (t, e) => {
     const s = t[l];
     let c, m, b = -1, d = 0;
     for (; d < s.length && (a.lastIndex = d, m = a.exec(s), m !== null); )
-      d = a.lastIndex, a === St ? m[1] === "!--" ? a = Pr : m[1] !== void 0 ? a = Tr : m[2] !== void 0 ? (so.test(m[2]) && (o = RegExp("</" + m[2], "g")), a = st) : m[3] !== void 0 && (a = st) : a === st ? m[0] === ">" ? (a = o ?? St, b = -1) : m[1] === void 0 ? b = -2 : (b = a.lastIndex - m[2].length, c = m[1], a = m[3] === void 0 ? st : m[3] === '"' ? Sr : Rr) : a === Sr || a === Rr ? a = st : a === Pr || a === Tr ? a = St : (a = st, o = void 0);
+      d = a.lastIndex, a === St ? m[1] === "!--" ? a = Tr : m[1] !== void 0 ? a = Pr : m[2] !== void 0 ? (so.test(m[2]) && (o = RegExp("</" + m[2], "g")), a = st) : m[3] !== void 0 && (a = st) : a === st ? m[0] === ">" ? (a = o ?? St, b = -1) : m[1] === void 0 ? b = -2 : (b = a.lastIndex - m[2].length, c = m[1], a = m[3] === void 0 ? st : m[3] === '"' ? Sr : Rr) : a === Sr || a === Rr ? a = st : a === Tr || a === Pr ? a = St : (a = st, o = void 0);
     const v = a === st && t[l + 1].startsWith("/>") ? " " : "";
     i += a === St ? s + Zo : b >= 0 ? (n.push(c), s.slice(0, b) + sr + s.slice(b) + rt + v) : s + rt + (b === -2 ? (n.push(void 0), l) : v);
   }
@@ -363,7 +363,7 @@ class qo {
     for (; c !== void 0; ) {
       if (l === c.index) {
         let m;
-        c.type === 2 ? m = new Qt(a, a.nextSibling, this, e) : c.type === 1 ? m = new c.ctor(a, c.name, c.strings, this, e) : c.type === 6 && (m = new Go(a, this, e)), this._$AV.push(m), c = o[++s];
+        c.type === 2 ? m = new Qt(a, a.nextSibling, this, e) : c.type === 1 ? m = new c.ctor(a, c.name, c.strings, this, e) : c.type === 6 && (m = new Xo(a, this, e)), this._$AV.push(m), c = o[++s];
       }
       l !== (c == null ? void 0 : c.index) && (a = ut.nextNode(), l++);
     }
@@ -501,7 +501,7 @@ class Jo extends ve {
     typeof this._$AH == "function" ? this._$AH.call((n = (r = this.options) === null || r === void 0 ? void 0 : r.host) !== null && n !== void 0 ? n : this.element, e) : this._$AH.handleEvent(e);
   }
 }
-let Go = class {
+let Xo = class {
   constructor(t, e, r) {
     this.element = t, this.type = 6, this._$AN = void 0, this._$AM = e, this.options = r;
   }
@@ -514,7 +514,7 @@ let Go = class {
 };
 const Lr = ue.litHtmlPolyfillSupport;
 Lr == null || Lr(qt, Qt), ((Ae = ue.litHtmlVersions) !== null && Ae !== void 0 ? Ae : ue.litHtmlVersions = []).push("2.8.0");
-const Xo = (t, e, r) => {
+const Go = (t, e, r) => {
   var n, o;
   const i = (n = r == null ? void 0 : r.renderBefore) !== null && n !== void 0 ? n : e;
   let a = i._$litPart$;
@@ -541,7 +541,7 @@ class A extends $t {
   }
   update(e) {
     const r = this.render();
-    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Xo(r, this.renderRoot, this.renderOptions);
+    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Go(r, this.renderRoot, this.renderOptions);
   }
   connectedCallback() {
     var e;
@@ -873,29 +873,29 @@ function kn(t) {
     }
   }
 }
-const Pe = (t, e) => document.createElement("div").animate(t, e), Hr = {
+const Te = (t, e) => document.createElement("div").animate(t, e), Hr = {
   cssRegisterProperty: () => typeof CSS < "u" && Object.hasOwnProperty.call(CSS, "registerProperty"),
   waapi: () => Object.hasOwnProperty.call(Element.prototype, "animate"),
   partialKeyframes: () => {
     try {
-      Pe({ opacity: [1] });
+      Te({ opacity: [1] });
     } catch {
       return !1;
     }
     return !0;
   },
-  finished: () => !!Pe({ opacity: [0, 1] }, { duration: 1e-3 }).finished,
+  finished: () => !!Te({ opacity: [0, 1] }, { duration: 1e-3 }).finished,
   linearEasing: () => {
     try {
-      Pe({ opacity: 0 }, { easing: "linear(0, 1)" });
+      Te({ opacity: 0 }, { easing: "linear(0, 1)" });
     } catch {
       return !1;
     }
     return !0;
   }
-}, Te = {}, Ct = {};
+}, Pe = {}, Ct = {};
 for (const t in Hr)
-  Ct[t] = () => (Te[t] === void 0 && (Te[t] = Hr[t]()), Te[t]);
+  Ct[t] = () => (Pe[t] === void 0 && (Pe[t] = Hr[t]()), Pe[t]);
 const On = 0.015, In = (t, e) => {
   let r = "";
   const n = Math.round(e / On);
@@ -903,16 +903,16 @@ const On = 0.015, In = (t, e) => {
     r += t(br(0, n - 1, o)) + ", ";
   return r.substring(0, r.length - 2);
 }, zr = (t, e) => It(t) ? Ct.linearEasing() ? `linear(${In(t, e)})` : V.easing : fo(t) ? Mn(t) : t, Mn = ([t, e, r, n]) => `cubic-bezier(${t}, ${e}, ${r}, ${n})`;
-function Pn(t, e) {
+function Tn(t, e) {
   for (let r = 0; r < t.length; r++)
     t[r] === null && (t[r] = r ? t[r - 1] : e());
   return t;
 }
-const Tn = (t) => Array.isArray(t) ? t : [t];
+const Pn = (t) => Array.isArray(t) ? t : [t];
 function ur(t) {
   return pe[t] && (t = pe[t]), yo(t) ? yr(t) : t;
 }
-const Xt = {
+const Gt = {
   get: (t, e) => {
     e = ur(e);
     let r = hr(e) ? t.style.getPropertyValue(e) : getComputedStyle(t)[e];
@@ -955,18 +955,18 @@ function Nn(t, e, r, n = {}, o) {
   const E = ur(e), I = vn(w.values, E), S = Yt.get(E);
   return xo(I.animation, !(cr(d) && I.generator) && n.record !== !1), () => {
     const U = () => {
-      var T, K;
-      return (K = (T = Xt.get(t, E)) !== null && T !== void 0 ? T : S == null ? void 0 : S.initialValue) !== null && K !== void 0 ? K : 0;
+      var P, K;
+      return (K = (P = Gt.get(t, E)) !== null && P !== void 0 ? P : S == null ? void 0 : S.initialValue) !== null && K !== void 0 ? K : 0;
     };
-    let R = Pn(Tn(r), U);
+    let R = Tn(Pn(r), U);
     const z = Rn(R, S);
     if (cr(d)) {
-      const T = d.createAnimation(R, e !== "opacity", U, E, I);
-      d = T.easing, R = T.keyframes || R, s = T.duration || s;
+      const P = d.createAnimation(R, e !== "opacity", U, E, I);
+      d = P.easing, R = P.keyframes || R, s = P.duration || s;
     }
     if (hr(E) && (Ct.cssRegisterProperty() ? kn(E) : y = !1), f && !Ct.linearEasing() && (It(d) || Et(d) && d.some(It)) && (y = !1), y) {
       S && (R = R.map((B) => me(B) ? S.toDefaultUnit(B) : B)), R.length === 1 && (!Ct.partialKeyframes() || a) && R.unshift(U());
-      const T = {
+      const P = {
         delay: zt.ms(c),
         duration: zt.ms(s),
         endDelay: zt.ms(m),
@@ -979,23 +979,23 @@ function Nn(t, e, r, n = {}, o) {
         [E]: R,
         offset: g,
         easing: Et(d) ? d.map((B) => zr(B, s)) : void 0
-      }, T), l.finished || (l.finished = new Promise((B, Uo) => {
+      }, P), l.finished || (l.finished = new Promise((B, Uo) => {
         l.onfinish = B, l.oncancel = Uo;
       }));
       const K = R[R.length - 1];
       l.finished.then(() => {
-        v || (Xt.set(t, E, K), l.cancel());
+        v || (Gt.set(t, E, K), l.cancel());
       }).catch(po), k || (l.playbackRate = 1.000001);
     } else if (o && f)
-      R = R.map((T) => typeof T == "string" ? parseFloat(T) : T), R.length === 1 && R.unshift(parseFloat(U())), l = new o((T) => {
-        Xt.set(t, E, z ? z(T) : T);
+      R = R.map((P) => typeof P == "string" ? parseFloat(P) : P), R.length === 1 && R.unshift(parseFloat(U())), l = new o((P) => {
+        Gt.set(t, E, z ? z(P) : P);
       }, R, Object.assign(Object.assign({}, n), {
         duration: s,
         easing: d
       }));
     else {
-      const T = R[R.length - 1];
-      Xt.set(t, E, S && me(T) ? S.toDefaultUnit(T) : T);
+      const P = R[R.length - 1];
+      Gt.set(t, E, S && me(P) ? S.toDefaultUnit(P) : P);
     }
     return a && i(t, e, R, {
       duration: s,
@@ -1243,25 +1243,25 @@ Eo.prototype = {
   }
 };
 var Yn = Eo;
-function Gt(t) {
+function Xt(t) {
   if (!t || t < 1)
     throw new Error("BitMatrix size must be defined and greater than 0");
   this.size = t, this.data = new Uint8Array(t * t), this.reservedBit = new Uint8Array(t * t);
 }
-Gt.prototype.set = function(t, e, r, n) {
+Xt.prototype.set = function(t, e, r, n) {
   const o = t * this.size + e;
   this.data[o] = r, n && (this.reservedBit[o] = !0);
 };
-Gt.prototype.get = function(t, e) {
+Xt.prototype.get = function(t, e) {
   return this.data[t * this.size + e];
 };
-Gt.prototype.xor = function(t, e, r) {
+Xt.prototype.xor = function(t, e, r) {
   this.data[t * this.size + e] ^= r;
 };
-Gt.prototype.isReserved = function(t, e) {
+Xt.prototype.isReserved = function(t, e) {
   return this.reservedBit[t * this.size + e];
 };
-var Kn = Gt, Ao = {};
+var Kn = Xt, Ao = {};
 (function(t) {
   const e = Z.getSymbolSize;
   t.getRowColCoords = function(r) {
@@ -1816,17 +1816,17 @@ Cr.isValid = function(t) {
   return !isNaN(t) && t >= 1 && t <= 40;
 };
 var Y = {};
-const Po = "[0-9]+", Gn = "[A-Z $%*+\\-./:]+";
+const To = "[0-9]+", Xn = "[A-Z $%*+\\-./:]+";
 let Kt = "(?:[u3000-u303F]|[u3040-u309F]|[u30A0-u30FF]|[uFF00-uFFEF]|[u4E00-u9FAF]|[u2605-u2606]|[u2190-u2195]|u203B|[u2010u2015u2018u2019u2025u2026u201Cu201Du2225u2260]|[u0391-u0451]|[u00A7u00A8u00B1u00B4u00D7u00F7])+";
 Kt = Kt.replace(/u/g, "\\u");
-const Xn = "(?:(?![A-Z0-9 $%*+\\-./:]|" + Kt + `)(?:.|[\r
+const Gn = "(?:(?![A-Z0-9 $%*+\\-./:]|" + Kt + `)(?:.|[\r
 ]))+`;
 Y.KANJI = new RegExp(Kt, "g");
 Y.BYTE_KANJI = new RegExp("[^A-Z0-9 $%*+\\-./:]+", "g");
-Y.BYTE = new RegExp(Xn, "g");
-Y.NUMERIC = new RegExp(Po, "g");
-Y.ALPHANUMERIC = new RegExp(Gn, "g");
-const ti = new RegExp("^" + Kt + "$"), ei = new RegExp("^" + Po + "$"), ri = new RegExp("^[A-Z0-9 $%*+\\-./:]+$");
+Y.BYTE = new RegExp(Gn, "g");
+Y.NUMERIC = new RegExp(To, "g");
+Y.ALPHANUMERIC = new RegExp(Xn, "g");
+const ti = new RegExp("^" + Kt + "$"), ei = new RegExp("^" + To + "$"), ri = new RegExp("^[A-Z0-9 $%*+\\-./:]+$");
 Y.testKanji = function(t) {
   return ti.test(t);
 };
@@ -1961,9 +1961,9 @@ Y.testAlphanumeric = function(t) {
     return d << 12 | v;
   };
 })(Mo);
-var To = {};
+var Po = {};
 const mr = Z, Ro = 1335, oi = 21522, Vr = mr.getBCHDigit(Ro);
-To.getEncodedBits = function(t, e) {
+Po.getEncodedBits = function(t, e) {
   const r = t.bit << 3 | e;
   let n = r << 10;
   for (; mr.getBCHDigit(n) - Vr >= 0; )
@@ -2039,19 +2039,19 @@ const ai = lt, Re = [
   "/",
   ":"
 ];
-function Pt(t) {
+function Tt(t) {
   this.mode = ai.ALPHANUMERIC, this.data = t;
 }
-Pt.getBitsLength = function(t) {
+Tt.getBitsLength = function(t) {
   return 11 * Math.floor(t / 2) + 6 * (t % 2);
 };
-Pt.prototype.getLength = function() {
+Tt.prototype.getLength = function() {
   return this.data.length;
 };
-Pt.prototype.getBitsLength = function() {
-  return Pt.getBitsLength(this.data.length);
+Tt.prototype.getBitsLength = function() {
+  return Tt.getBitsLength(this.data.length);
 };
-Pt.prototype.write = function(t) {
+Tt.prototype.write = function(t) {
   let e;
   for (e = 0; e + 2 <= this.data.length; e += 2) {
     let r = Re.indexOf(this.data[e]) * 45;
@@ -2059,7 +2059,7 @@ Pt.prototype.write = function(t) {
   }
   this.data.length % 2 && t.put(Re.indexOf(this.data[e]), 6);
 };
-var li = Pt, si = function(t) {
+var li = Tt, si = function(t) {
   for (var e = [], r = t.length, n = 0; n < r; n++) {
     var o = t.charCodeAt(n);
     if (o >= 55296 && o <= 56319 && r > n + 1) {
@@ -2087,23 +2087,23 @@ var li = Pt, si = function(t) {
   return new Uint8Array(e).buffer;
 };
 const ci = si, di = lt;
-function Tt(t) {
+function Pt(t) {
   this.mode = di.BYTE, typeof t == "string" && (t = ci(t)), this.data = new Uint8Array(t);
 }
-Tt.getBitsLength = function(t) {
+Pt.getBitsLength = function(t) {
   return t * 8;
 };
-Tt.prototype.getLength = function() {
+Pt.prototype.getLength = function() {
   return this.data.length;
 };
-Tt.prototype.getBitsLength = function() {
-  return Tt.getBitsLength(this.data.length);
+Pt.prototype.getBitsLength = function() {
+  return Pt.getBitsLength(this.data.length);
 };
-Tt.prototype.write = function(t) {
+Pt.prototype.write = function(t) {
   for (let e = 0, r = this.data.length; e < r; e++)
     t.put(this.data[e], 8);
 };
-var hi = Tt;
+var hi = Pt;
 const ui = lt, mi = Z;
 function Rt(t) {
   this.mode = ui.KANJI, this.data = t;
@@ -2286,11 +2286,11 @@ var gi = No.exports;
     for (let I = 0; I < h.length; I++) {
       const S = h[I], U = [];
       for (let R = 0; R < S.length; R++) {
-        const z = S[R], T = "" + I + R;
-        U.push(T), f[T] = { node: z, lastCount: 0 }, y[T] = {};
+        const z = S[R], P = "" + I + R;
+        U.push(P), f[P] = { node: z, lastCount: 0 }, y[P] = {};
         for (let K = 0; K < E.length; K++) {
           const B = E[K];
-          f[B] && f[B].node.mode === z.mode ? (y[B][T] = d(f[B].lastCount + z.length, z.mode) - d(f[B].lastCount, z.mode), f[B].lastCount += z.length) : (f[B] && (f[B].lastCount = z.length), y[B][T] = d(z.length, z.mode) + 4 + e.getCharCountIndicator(z.mode, w));
+          f[B] && f[B].node.mode === z.mode ? (y[B][P] = d(f[B].lastCount + z.length, z.mode) - d(f[B].lastCount, z.mode), f[B].lastCount += z.length) : (f[B] && (f[B].lastCount = z.length), y[B][P] = d(z.length, z.mode) + 4 + e.getCharCountIndicator(z.mode, w));
         }
       }
       E = U;
@@ -2331,7 +2331,7 @@ var gi = No.exports;
     );
   };
 })(So);
-const $e = Z, Se = be, fi = Yn, wi = Kn, vi = Ao, bi = _o, pr = ko, gr = ye, yi = Jn, we = Mo, xi = To, $i = lt, Ne = So;
+const $e = Z, Se = be, fi = Yn, wi = Kn, vi = Ao, bi = _o, pr = ko, gr = ye, yi = Jn, we = Mo, xi = Po, $i = lt, Ne = So;
 function Ci(t, e) {
   const r = t.size, n = bi.getPositions(e);
   for (let o = 0; o < n.length; o++) {
@@ -2540,7 +2540,7 @@ var Lo = {}, Er = {};
   };
 })(Lo);
 var Do = {};
-const Pi = Er;
+const Ti = Er;
 function Fr(t, e) {
   const r = t.a / 255, n = e + '="' + t.hex + '"';
   return r < 1 ? n + " " + e + '-opacity="' + r.toFixed(2).slice(1) + '"' : n;
@@ -2549,7 +2549,7 @@ function De(t, e, r) {
   let n = t + e;
   return typeof r < "u" && (n += " " + r), n;
 }
-function Ti(t, e, r) {
+function Pi(t, e, r) {
   let n = "", o = 0, i = !1, a = 0;
   for (let l = 0; l < t.length; l++) {
     const s = Math.floor(l % e), c = Math.floor(l / e);
@@ -2558,7 +2558,7 @@ function Ti(t, e, r) {
   return n;
 }
 Do.render = function(t, e, r) {
-  const n = Pi.getOptions(e), o = t.modules.size, i = t.modules.data, a = o + n.margin * 2, l = n.color.light.a ? "<path " + Fr(n.color.light, "fill") + ' d="M0 0h' + a + "v" + a + 'H0z"/>' : "", s = "<path " + Fr(n.color.dark, "stroke") + ' d="' + Ti(i, o, n.margin) + '"/>', c = 'viewBox="0 0 ' + a + " " + a + '"', m = '<svg xmlns="http://www.w3.org/2000/svg" ' + (n.width ? 'width="' + n.width + '" height="' + n.width + '" ' : "") + c + ' shape-rendering="crispEdges">' + l + s + `</svg>
+  const n = Ti.getOptions(e), o = t.modules.size, i = t.modules.data, a = o + n.margin * 2, l = n.color.light.a ? "<path " + Fr(n.color.light, "fill") + ' d="M0 0h' + a + "v" + a + 'H0z"/>' : "", s = "<path " + Fr(n.color.dark, "stroke") + ' d="' + Pi(i, o, n.margin) + '"/>', c = 'viewBox="0 0 ' + a + " " + a + '"', m = '<svg xmlns="http://www.w3.org/2000/svg" ' + (n.width ? 'width="' + n.width + '" height="' + n.width + '" ' : "") + c + ' shape-rendering="crispEdges">' + l + s + `</svg>
 `;
   return typeof r == "function" && r(null, m), m;
 };
@@ -2626,7 +2626,7 @@ var Wi = Object.defineProperty, ji = Object.getOwnPropertyDescriptor, wt = (t, e
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && Wi(e, r, o), o;
 };
-let G = class extends A {
+let X = class extends A {
   constructor() {
     super(...arguments), this.disabled = !1, this.iconLeft = void 0, this.iconRight = void 0, this.onClick = () => null, this.variant = "default";
   }
@@ -2636,7 +2636,7 @@ let G = class extends A {
     return this.variant === "ghost" && (e = "secondary"), this.variant === "outline" && (e = "accent"), u`<button class="${J(t)}" ?disabled="${this.disabled}" @click="${this.onClick}">${this.iconLeft}<wcm-text variant="small-regular" color="${e}"><slot></slot></wcm-text>${this.iconRight}</button>`;
   }
 };
-G.styles = [_.globalCss, Ui], wt([$({ type: Boolean })], G.prototype, "disabled", 2), wt([$()], G.prototype, "iconLeft", 2), wt([$()], G.prototype, "iconRight", 2), wt([$()], G.prototype, "onClick", 2), wt([$()], G.prototype, "variant", 2), G = wt([O("wcm-button")], G);
+X.styles = [_.globalCss, Ui], wt([$({ type: Boolean })], X.prototype, "disabled", 2), wt([$()], X.prototype, "iconLeft", 2), wt([$()], X.prototype, "iconRight", 2), wt([$()], X.prototype, "onClick", 2), wt([$()], X.prototype, "variant", 2), X = wt([O("wcm-button")], X);
 const Hi = M`:host{display:inline-block}button{padding:0 15px 1px;height:40px;border-radius:var(--wcm-button-border-radius);color:var(--wcm-accent-fill-color);background-color:var(--wcm-accent-color)}button::after{content:'';top:0;bottom:0;left:0;right:0;position:absolute;background-color:transparent;border-radius:inherit;transition:background-color .2s ease;border:1px solid var(--wcm-color-overlay)}button:active::after{background-color:var(--wcm-color-overlay)}button:disabled{padding-bottom:0;background-color:var(--wcm-color-bg-3);color:var(--wcm-color-fg-3)}.wcm-secondary{color:var(--wcm-accent-color);background-color:transparent}.wcm-secondary::after{display:none}@media(hover:hover){button:hover::after{background-color:var(--wcm-color-overlay)}}`;
 var zi = Object.defineProperty, Zi = Object.getOwnPropertyDescriptor, Ue = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Zi(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -2665,19 +2665,19 @@ let We = class extends A {
   }
 };
 We.styles = [_.globalCss, Vi], We = Yi([O("wcm-info-footer")], We);
-const P = { CROSS_ICON: N`<svg width="12" height="12" viewBox="0 0 12 12"><path d="M9.94 11A.75.75 0 1 0 11 9.94L7.414 6.353a.5.5 0 0 1 0-.708L11 2.061A.75.75 0 1 0 9.94 1L6.353 4.586a.5.5 0 0 1-.708 0L2.061 1A.75.75 0 0 0 1 2.06l3.586 3.586a.5.5 0 0 1 0 .708L1 9.939A.75.75 0 1 0 2.06 11l3.586-3.586a.5.5 0 0 1 .708 0L9.939 11Z" fill="#fff"/></svg>`, WALLET_CONNECT_LOGO: N`<svg width="178" height="29" viewBox="0 0 178 29" id="wcm-wc-logo"><path d="M10.683 7.926c5.284-5.17 13.85-5.17 19.134 0l.636.623a.652.652 0 0 1 0 .936l-2.176 2.129a.343.343 0 0 1-.478 0l-.875-.857c-3.686-3.607-9.662-3.607-13.348 0l-.937.918a.343.343 0 0 1-.479 0l-2.175-2.13a.652.652 0 0 1 0-.936l.698-.683Zm23.633 4.403 1.935 1.895a.652.652 0 0 1 0 .936l-8.73 8.543a.687.687 0 0 1-.956 0L20.37 17.64a.172.172 0 0 0-.239 0l-6.195 6.063a.687.687 0 0 1-.957 0l-8.73-8.543a.652.652 0 0 1 0-.936l1.936-1.895a.687.687 0 0 1 .957 0l6.196 6.064a.172.172 0 0 0 .239 0l6.195-6.064a.687.687 0 0 1 .957 0l6.196 6.064a.172.172 0 0 0 .24 0l6.195-6.064a.687.687 0 0 1 .956 0ZM48.093 20.948l2.338-9.355c.139-.515.258-1.07.416-1.942.12.872.258 1.427.357 1.942l2.022 9.355h4.181l3.528-13.874h-3.21l-1.943 8.523a24.825 24.825 0 0 0-.456 2.457c-.158-.931-.317-1.625-.495-2.438l-1.883-8.542h-4.201l-2.042 8.542a41.204 41.204 0 0 0-.475 2.438 41.208 41.208 0 0 0-.476-2.438l-1.903-8.542h-3.349l3.508 13.874h4.083ZM63.33 21.304c1.585 0 2.596-.654 3.11-1.605-.059.297-.078.595-.078.892v.357h2.655V15.22c0-2.735-1.248-4.32-4.3-4.32-2.636 0-4.36 1.466-4.52 3.487h2.914c.1-.891.734-1.426 1.705-1.426.911 0 1.407.515 1.407 1.11 0 .435-.258.693-1.03.792l-1.388.159c-2.061.257-3.825 1.01-3.825 3.19 0 1.982 1.645 3.092 3.35 3.092Zm.891-2.041c-.773 0-1.348-.436-1.348-1.19 0-.733.655-1.09 1.645-1.268l.674-.119c.575-.118.892-.218 1.09-.396v.912c0 1.228-.892 2.06-2.06 2.06ZM70.398 7.074v13.874h2.874V7.074h-2.874ZM74.934 7.074v13.874h2.874V7.074h-2.874ZM84.08 21.304c2.735 0 4.5-1.546 4.697-3.567h-2.893c-.139.892-.892 1.387-1.804 1.387-1.228 0-2.12-.99-2.14-2.358h6.897v-.555c0-3.21-1.764-5.312-4.816-5.312-2.933 0-4.994 2.062-4.994 5.173 0 3.37 2.12 5.232 5.053 5.232Zm-2.16-6.421c.119-1.11.932-1.922 2.081-1.922 1.11 0 1.883.772 1.903 1.922H81.92ZM94.92 21.146c.633 0 1.248-.1 1.525-.179v-2.18c-.218.04-.475.06-.693.06-1.05 0-1.427-.595-1.427-1.566v-3.805h2.338v-2.24h-2.338V7.788H91.47v3.448H89.37v2.24h2.1v4.201c0 2.3 1.15 3.469 3.45 3.469ZM104.62 21.304c3.924 0 6.302-2.299 6.599-5.608h-3.111c-.238 1.803-1.506 3.032-3.369 3.032-2.2 0-3.746-1.784-3.746-4.796 0-2.953 1.605-4.638 3.805-4.638 1.883 0 2.953 1.15 3.171 2.834h3.191c-.317-3.448-2.854-5.41-6.342-5.41-3.984 0-7.036 2.695-7.036 7.214 0 4.677 2.676 7.372 6.838 7.372ZM117.449 21.304c2.993 0 5.114-1.882 5.114-5.172 0-3.23-2.121-5.233-5.114-5.233-2.972 0-5.093 2.002-5.093 5.233 0 3.29 2.101 5.172 5.093 5.172Zm0-2.22c-1.327 0-2.18-1.09-2.18-2.952 0-1.903.892-2.973 2.18-2.973 1.308 0 2.2 1.07 2.2 2.973 0 1.862-.872 2.953-2.2 2.953ZM126.569 20.948v-5.689c0-1.208.753-2.1 1.823-2.1 1.011 0 1.606.773 1.606 2.06v5.729h2.873v-6.144c0-2.339-1.229-3.905-3.428-3.905-1.526 0-2.458.734-2.953 1.606a5.31 5.31 0 0 0 .079-.892v-.377h-2.874v9.712h2.874ZM137.464 20.948v-5.689c0-1.208.753-2.1 1.823-2.1 1.011 0 1.606.773 1.606 2.06v5.729h2.873v-6.144c0-2.339-1.228-3.905-3.428-3.905-1.526 0-2.458.734-2.953 1.606a5.31 5.31 0 0 0 .079-.892v-.377h-2.874v9.712h2.874ZM149.949 21.304c2.735 0 4.499-1.546 4.697-3.567h-2.893c-.139.892-.892 1.387-1.804 1.387-1.228 0-2.12-.99-2.14-2.358h6.897v-.555c0-3.21-1.764-5.312-4.816-5.312-2.933 0-4.994 2.062-4.994 5.173 0 3.37 2.12 5.232 5.053 5.232Zm-2.16-6.421c.119-1.11.932-1.922 2.081-1.922 1.11 0 1.883.772 1.903 1.922h-3.984ZM160.876 21.304c3.013 0 4.658-1.645 4.975-4.201h-2.874c-.099 1.07-.713 1.982-2.001 1.982-1.309 0-2.2-1.21-2.2-2.993 0-1.942 1.03-2.933 2.259-2.933 1.209 0 1.803.872 1.883 1.882h2.873c-.218-2.358-1.823-4.142-4.776-4.142-2.874 0-5.153 1.903-5.153 5.193 0 3.25 1.923 5.212 5.014 5.212ZM172.067 21.146c.634 0 1.248-.1 1.526-.179v-2.18c-.218.04-.476.06-.694.06-1.05 0-1.427-.595-1.427-1.566v-3.805h2.339v-2.24h-2.339V7.788h-2.854v3.448h-2.1v2.24h2.1v4.201c0 2.3 1.15 3.469 3.449 3.469Z" fill="#fff"/></svg>`, WALLET_CONNECT_ICON: N`<svg width="28" height="20" viewBox="0 0 28 20"><g clip-path="url(#a)"><path d="M7.386 6.482c3.653-3.576 9.575-3.576 13.228 0l.44.43a.451.451 0 0 1 0 .648L19.55 9.033a.237.237 0 0 1-.33 0l-.606-.592c-2.548-2.496-6.68-2.496-9.228 0l-.648.634a.237.237 0 0 1-.33 0L6.902 7.602a.451.451 0 0 1 0-.647l.483-.473Zm16.338 3.046 1.339 1.31a.451.451 0 0 1 0 .648l-6.035 5.909a.475.475 0 0 1-.662 0L14.083 13.2a.119.119 0 0 0-.166 0l-4.283 4.194a.475.475 0 0 1-.662 0l-6.035-5.91a.451.451 0 0 1 0-.647l1.338-1.31a.475.475 0 0 1 .662 0l4.283 4.194c.046.044.12.044.166 0l4.283-4.194a.475.475 0 0 1 .662 0l4.283 4.194c.046.044.12.044.166 0l4.283-4.194a.475.475 0 0 1 .662 0Z" fill="#000000"/></g><defs><clipPath id="a"><path fill="#ffffff" d="M0 0h28v20H0z"/></clipPath></defs></svg>`, WALLET_CONNECT_ICON_COLORED: N`<svg width="96" height="96" fill="none"><path fill="#fff" d="M25.322 33.597c12.525-12.263 32.83-12.263 45.355 0l1.507 1.476a1.547 1.547 0 0 1 0 2.22l-5.156 5.048a.814.814 0 0 1-1.134 0l-2.074-2.03c-8.737-8.555-22.903-8.555-31.64 0l-2.222 2.175a.814.814 0 0 1-1.134 0l-5.156-5.049a1.547 1.547 0 0 1 0-2.22l1.654-1.62Zm56.019 10.44 4.589 4.494a1.547 1.547 0 0 1 0 2.22l-20.693 20.26a1.628 1.628 0 0 1-2.267 0L48.283 56.632a.407.407 0 0 0-.567 0L33.03 71.012a1.628 1.628 0 0 1-2.268 0L10.07 50.75a1.547 1.547 0 0 1 0-2.22l4.59-4.494a1.628 1.628 0 0 1 2.267 0l14.687 14.38c.156.153.41.153.567 0l14.685-14.38a1.628 1.628 0 0 1 2.268 0l14.687 14.38c.156.153.41.153.567 0l14.686-14.38a1.628 1.628 0 0 1 2.268 0Z"/><path stroke="#000" d="M25.672 33.954c12.33-12.072 32.325-12.072 44.655 0l1.508 1.476a1.047 1.047 0 0 1 0 1.506l-5.157 5.048a.314.314 0 0 1-.434 0l-2.074-2.03c-8.932-8.746-23.409-8.746-32.34 0l-2.222 2.174a.314.314 0 0 1-.434 0l-5.157-5.048a1.047 1.047 0 0 1 0-1.506l1.655-1.62Zm55.319 10.44 4.59 4.494a1.047 1.047 0 0 1 0 1.506l-20.694 20.26a1.128 1.128 0 0 1-1.568 0l-14.686-14.38a.907.907 0 0 0-1.267 0L32.68 70.655a1.128 1.128 0 0 1-1.568 0L10.42 50.394a1.047 1.047 0 0 1 0-1.506l4.59-4.493a1.128 1.128 0 0 1 1.567 0l14.687 14.379a.907.907 0 0 0 1.266 0l-.35-.357.35.357 14.686-14.38a1.128 1.128 0 0 1 1.568 0l14.687 14.38a.907.907 0 0 0 1.267 0l14.686-14.38a1.128 1.128 0 0 1 1.568 0Z"/></svg>`, BACK_ICON: N`<svg width="10" height="18" viewBox="0 0 10 18"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.735.179a.75.75 0 0 1 .087 1.057L2.92 8.192a1.25 1.25 0 0 0 0 1.617l5.902 6.956a.75.75 0 1 1-1.144.97L1.776 10.78a2.75 2.75 0 0 1 0-3.559L7.678.265A.75.75 0 0 1 8.735.18Z" fill="#fff"/></svg>`, COPY_ICON: N`<svg width="24" height="24" fill="none"><path fill="#fff" fill-rule="evenodd" d="M7.01 7.01c.03-1.545.138-2.5.535-3.28A5 5 0 0 1 9.73 1.545C10.8 1 12.2 1 15 1c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C23 4.8 23 6.2 23 9c0 2.8 0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185c-.78.397-1.735.505-3.28.534l-.001.01c-.03 1.54-.138 2.493-.534 3.27a5 5 0 0 1-2.185 2.186C13.2 23 11.8 23 9 23c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C1 19.2 1 17.8 1 15c0-2.8 0-4.2.545-5.27A5 5 0 0 1 3.73 7.545C4.508 7.149 5.46 7.04 7 7.01h.01ZM15 15.5c-1.425 0-2.403-.001-3.162-.063-.74-.06-1.139-.172-1.427-.319a3.5 3.5 0 0 1-1.53-1.529c-.146-.288-.257-.686-.318-1.427C8.501 11.403 8.5 10.425 8.5 9c0-1.425.001-2.403.063-3.162.06-.74.172-1.139.318-1.427a3.5 3.5 0 0 1 1.53-1.53c.288-.146.686-.257 1.427-.318.759-.062 1.737-.063 3.162-.063 1.425 0 2.403.001 3.162.063.74.06 1.139.172 1.427.318a3.5 3.5 0 0 1 1.53 1.53c.146.288.257.686.318 1.427.062.759.063 1.737.063 3.162 0 1.425-.001 2.403-.063 3.162-.06.74-.172 1.139-.319 1.427a3.5 3.5 0 0 1-1.529 1.53c-.288.146-.686.257-1.427.318-.759.062-1.737.063-3.162.063ZM7 8.511c-.444.009-.825.025-1.162.052-.74.06-1.139.172-1.427.318a3.5 3.5 0 0 0-1.53 1.53c-.146.288-.257.686-.318 1.427-.062.759-.063 1.737-.063 3.162 0 1.425.001 2.403.063 3.162.06.74.172 1.139.318 1.427a3.5 3.5 0 0 0 1.53 1.53c.288.146.686.257 1.427.318.759.062 1.737.063 3.162.063 1.425 0 2.403-.001 3.162-.063.74-.06 1.139-.172 1.427-.319a3.5 3.5 0 0 0 1.53-1.53c.146-.287.257-.685.318-1.426.027-.337.043-.718.052-1.162H15c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C7 13.2 7 11.8 7 9v-.489Z" clip-rule="evenodd"/></svg>`, RETRY_ICON: N`<svg width="15" height="16" viewBox="0 0 15 16"><path d="M6.464 2.03A.75.75 0 0 0 5.403.97L2.08 4.293a1 1 0 0 0 0 1.414L5.403 9.03a.75.75 0 0 0 1.06-1.06L4.672 6.177a.25.25 0 0 1 .177-.427h2.085a4 4 0 1 1-3.93 4.746c-.077-.407-.405-.746-.82-.746-.414 0-.755.338-.7.748a5.501 5.501 0 1 0 5.45-6.248H4.848a.25.25 0 0 1-.177-.427L6.464 2.03Z" fill="#fff"/></svg>`, DESKTOP_ICON: N`<svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.98c0-1.85 0-2.775.394-3.466a3 3 0 0 1 1.12-1.12C2.204 1 3.13 1 4.98 1h6.04c1.85 0 2.775 0 3.466.394a3 3 0 0 1 1.12 1.12C16 3.204 16 4.13 16 5.98v1.04c0 1.85 0 2.775-.394 3.466a3 3 0 0 1-1.12 1.12C13.796 12 12.87 12 11.02 12H4.98c-1.85 0-2.775 0-3.466-.394a3 3 0 0 1-1.12-1.12C0 9.796 0 8.87 0 7.02V5.98ZM4.98 2.5h6.04c.953 0 1.568.001 2.034.043.446.04.608.108.69.154a1.5 1.5 0 0 1 .559.56c.046.08.114.243.154.69.042.465.043 1.08.043 2.033v1.04c0 .952-.001 1.568-.043 2.034-.04.446-.108.608-.154.69a1.499 1.499 0 0 1-.56.559c-.08.046-.243.114-.69.154-.466.042-1.08.043-2.033.043H4.98c-.952 0-1.568-.001-2.034-.043-.446-.04-.608-.108-.69-.154a1.5 1.5 0 0 1-.559-.56c-.046-.08-.114-.243-.154-.69-.042-.465-.043-1.08-.043-2.033V5.98c0-.952.001-1.568.043-2.034.04-.446.108-.608.154-.69a1.5 1.5 0 0 1 .56-.559c.08-.046.243-.114.69-.154.465-.042 1.08-.043 2.033-.043Z" fill="#fff"/><path d="M4 14.25a.75.75 0 0 1 .75-.75h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1-.75-.75Z" fill="#fff"/></svg>`, MOBILE_ICON: N`<svg width="16" height="16" viewBox="0 0 16 16"><path d="M6.75 5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 4.98c0-1.85 0-2.775.394-3.466a3 3 0 0 1 1.12-1.12C5.204 0 6.136 0 8 0s2.795 0 3.486.394a3 3 0 0 1 1.12 1.12C13 2.204 13 3.13 13 4.98v6.04c0 1.85 0 2.775-.394 3.466a3 3 0 0 1-1.12 1.12C10.796 16 9.864 16 8 16s-2.795 0-3.486-.394a3 3 0 0 1-1.12-1.12C3 13.796 3 12.87 3 11.02V4.98Zm8.5 0v6.04c0 .953-.001 1.568-.043 2.034-.04.446-.108.608-.154.69a1.499 1.499 0 0 1-.56.559c-.08.045-.242.113-.693.154-.47.042-1.091.043-2.05.043-.959 0-1.58-.001-2.05-.043-.45-.04-.613-.109-.693-.154a1.5 1.5 0 0 1-.56-.56c-.046-.08-.114-.243-.154-.69-.042-.466-.043-1.08-.043-2.033V4.98c0-.952.001-1.568.043-2.034.04-.446.108-.608.154-.69a1.5 1.5 0 0 1 .56-.559c.08-.045.243-.113.693-.154C6.42 1.501 7.041 1.5 8 1.5c.959 0 1.58.001 2.05.043.45.04.613.109.693.154a1.5 1.5 0 0 1 .56.56c.046.08.114.243.154.69.042.465.043 1.08.043 2.033Z" fill="#fff"/></svg>`, ARROW_DOWN_ICON: N`<svg width="14" height="14" viewBox="0 0 14 14"><path d="M2.28 7.47a.75.75 0 0 0-1.06 1.06l5.25 5.25a.75.75 0 0 0 1.06 0l5.25-5.25a.75.75 0 0 0-1.06-1.06l-3.544 3.543a.25.25 0 0 1-.426-.177V.75a.75.75 0 0 0-1.5 0v10.086a.25.25 0 0 1-.427.176L2.28 7.47Z" fill="#fff"/></svg>`, ARROW_UP_RIGHT_ICON: N`<svg width="15" height="14" fill="none"><path d="M4.5 1.75A.75.75 0 0 1 5.25 1H12a1.5 1.5 0 0 1 1.5 1.5v6.75a.75.75 0 0 1-1.5 0V4.164a.25.25 0 0 0-.427-.176L4.061 11.5A.75.75 0 0 1 3 10.44l7.513-7.513a.25.25 0 0 0-.177-.427H5.25a.75.75 0 0 1-.75-.75Z" fill="#fff"/></svg>`, ARROW_RIGHT_ICON: N`<svg width="6" height="14" viewBox="0 0 6 14"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.181 1.099a.75.75 0 0 1 1.024.279l2.433 4.258a2.75 2.75 0 0 1 0 2.729l-2.433 4.257a.75.75 0 1 1-1.303-.744L4.335 7.62a1.25 1.25 0 0 0 0-1.24L1.902 2.122a.75.75 0 0 1 .28-1.023Z" fill="#fff"/></svg>`, QRCODE_ICON: N`<svg width="25" height="24" viewBox="0 0 25 24"><path d="M23.748 9a.748.748 0 0 0 .748-.752c-.018-2.596-.128-4.07-.784-5.22a6 6 0 0 0-2.24-2.24c-1.15-.656-2.624-.766-5.22-.784a.748.748 0 0 0-.752.748c0 .414.335.749.748.752 1.015.007 1.82.028 2.494.088.995.09 1.561.256 1.988.5.7.398 1.28.978 1.679 1.678.243.427.41.993.498 1.988.061.675.082 1.479.09 2.493a.753.753 0 0 0 .75.749ZM3.527.788C4.677.132 6.152.022 8.747.004A.748.748 0 0 1 9.5.752a.753.753 0 0 1-.749.752c-1.014.007-1.818.028-2.493.088-.995.09-1.561.256-1.988.5-.7.398-1.28.978-1.679 1.678-.243.427-.41.993-.499 1.988-.06.675-.081 1.479-.088 2.493A.753.753 0 0 1 1.252 9a.748.748 0 0 1-.748-.752c.018-2.596.128-4.07.784-5.22a6 6 0 0 1 2.24-2.24ZM1.252 15a.748.748 0 0 0-.748.752c.018 2.596.128 4.07.784 5.22a6 6 0 0 0 2.24 2.24c1.15.656 2.624.766 5.22.784a.748.748 0 0 0 .752-.748.753.753 0 0 0-.749-.752c-1.014-.007-1.818-.028-2.493-.089-.995-.089-1.561-.255-1.988-.498a4.5 4.5 0 0 1-1.679-1.68c-.243-.426-.41-.992-.499-1.987-.06-.675-.081-1.479-.088-2.493A.753.753 0 0 0 1.252 15ZM22.996 15.749a.753.753 0 0 1 .752-.749c.415 0 .751.338.748.752-.018 2.596-.128 4.07-.784 5.22a6 6 0 0 1-2.24 2.24c-1.15.656-2.624.766-5.22.784a.748.748 0 0 1-.752-.748c0-.414.335-.749.748-.752 1.015-.007 1.82-.028 2.494-.089.995-.089 1.561-.255 1.988-.498a4.5 4.5 0 0 0 1.679-1.68c.243-.426.41-.992.498-1.987.061-.675.082-1.479.09-2.493Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 4a2.5 2.5 0 0 0-2.5 2.5v2A2.5 2.5 0 0 0 7 11h2a2.5 2.5 0 0 0 2.5-2.5v-2A2.5 2.5 0 0 0 9 4H7Zm2 1.5H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1ZM13.5 6.5A2.5 2.5 0 0 1 16 4h2a2.5 2.5 0 0 1 2.5 2.5v2A2.5 2.5 0 0 1 18 11h-2a2.5 2.5 0 0 1-2.5-2.5v-2Zm2.5-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1ZM7 13a2.5 2.5 0 0 0-2.5 2.5v2A2.5 2.5 0 0 0 7 20h2a2.5 2.5 0 0 0 2.5-2.5v-2A2.5 2.5 0 0 0 9 13H7Zm2 1.5H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z" fill="#fff"/><path d="M13.5 15.5c0-.465 0-.697.038-.89a2 2 0 0 1 1.572-1.572C15.303 13 15.535 13 16 13v2.5h-2.5ZM18 13c.465 0 .697 0 .89.038a2 2 0 0 1 1.572 1.572c.038.193.038.425.038.89H18V13ZM18 17.5h2.5c0 .465 0 .697-.038.89a2 2 0 0 1-1.572 1.572C18.697 20 18.465 20 18 20v-2.5ZM13.5 17.5H16V20c-.465 0-.697 0-.89-.038a2 2 0 0 1-1.572-1.572c-.038-.193-.038-.425-.038-.89Z" fill="#fff"/></svg>`, SCAN_ICON: N`<svg width="16" height="16" fill="none"><path fill="#fff" d="M10 15.216c0 .422.347.763.768.74 1.202-.064 2.025-.222 2.71-.613a5.001 5.001 0 0 0 1.865-1.866c.39-.684.549-1.507.613-2.709a.735.735 0 0 0-.74-.768.768.768 0 0 0-.76.732c-.009.157-.02.306-.032.447-.073.812-.206 1.244-.384 1.555-.31.545-.761.996-1.306 1.306-.311.178-.743.311-1.555.384-.141.013-.29.023-.447.032a.768.768 0 0 0-.732.76ZM10 .784c0 .407.325.737.732.76.157.009.306.02.447.032.812.073 1.244.206 1.555.384a3.5 3.5 0 0 1 1.306 1.306c.178.311.311.743.384 1.555.013.142.023.29.032.447a.768.768 0 0 0 .76.732.734.734 0 0 0 .74-.768c-.064-1.202-.222-2.025-.613-2.71A5 5 0 0 0 13.477.658c-.684-.39-1.507-.549-2.709-.613a.735.735 0 0 0-.768.74ZM5.232.044A.735.735 0 0 1 6 .784a.768.768 0 0 1-.732.76c-.157.009-.305.02-.447.032-.812.073-1.244.206-1.555.384A3.5 3.5 0 0 0 1.96 3.266c-.178.311-.311.743-.384 1.555-.013.142-.023.29-.032.447A.768.768 0 0 1 .784 6a.735.735 0 0 1-.74-.768c.064-1.202.222-2.025.613-2.71A5 5 0 0 1 2.523.658C3.207.267 4.03.108 5.233.044ZM5.268 14.456a.768.768 0 0 1 .732.76.734.734 0 0 1-.768.74c-1.202-.064-2.025-.222-2.71-.613a5 5 0 0 1-1.865-1.866c-.39-.684-.549-1.507-.613-2.709A.735.735 0 0 1 .784 10c.407 0 .737.325.76.732.009.157.02.306.032.447.073.812.206 1.244.384 1.555a3.5 3.5 0 0 0 1.306 1.306c.311.178.743.311 1.555.384.142.013.29.023.447.032Z"/></svg>`, CHECKMARK_ICON: N`<svg width="13" height="12" viewBox="0 0 13 12"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.155.132a.75.75 0 0 1 .232 1.035L5.821 11.535a1 1 0 0 1-1.626.09L.665 7.21a.75.75 0 1 1 1.17-.937L4.71 9.867a.25.25 0 0 0 .406-.023L11.12.364a.75.75 0 0 1 1.035-.232Z" fill="#fff"/></svg>`, SEARCH_ICON: N`<svg width="20" height="21"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.432 13.992c-.354-.353-.91-.382-1.35-.146a5.5 5.5 0 1 1 2.265-2.265c-.237.441-.208.997.145 1.35l3.296 3.296a.75.75 0 1 1-1.06 1.061l-3.296-3.296Zm.06-5a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" fill="#949E9E"/></svg>`, WALLET_PLACEHOLDER: N`<svg width="60" height="60" fill="none" viewBox="0 0 60 60"><g clip-path="url(#q)"><path id="wallet-placeholder-fill" fill="#fff" d="M0 24.9c0-9.251 0-13.877 1.97-17.332a15 15 0 0 1 5.598-5.597C11.023 0 15.648 0 24.9 0h10.2c9.252 0 13.877 0 17.332 1.97a15 15 0 0 1 5.597 5.598C60 11.023 60 15.648 60 24.9v10.2c0 9.252 0 13.877-1.97 17.332a15.001 15.001 0 0 1-5.598 5.597C48.977 60 44.352 60 35.1 60H24.9c-9.251 0-13.877 0-17.332-1.97a15 15 0 0 1-5.597-5.598C0 48.977 0 44.352 0 35.1V24.9Z"/><path id="wallet-placeholder-dash" stroke="#000" stroke-dasharray="4 4" stroke-width="1.5" d="M.04 41.708a231.598 231.598 0 0 1-.039-4.403l.75-.001L.75 35.1v-2.55H0v-5.1h.75V24.9l.001-2.204h-.75c.003-1.617.011-3.077.039-4.404l.75.016c.034-1.65.099-3.08.218-4.343l-.746-.07c.158-1.678.412-3.083.82-4.316l.713.236c.224-.679.497-1.296.827-1.875a14.25 14.25 0 0 1 1.05-1.585L3.076 5.9A15 15 0 0 1 5.9 3.076l.455.596a14.25 14.25 0 0 1 1.585-1.05c.579-.33 1.196-.603 1.875-.827l-.236-.712C10.812.674 12.217.42 13.895.262l.07.746C15.23.89 16.66.824 18.308.79l-.016-.75C19.62.012 21.08.004 22.695.001l.001.75L24.9.75h2.55V0h5.1v.75h2.55l2.204.001v-.75c1.617.003 3.077.011 4.404.039l-.016.75c1.65.034 3.08.099 4.343.218l.07-.746c1.678.158 3.083.412 4.316.82l-.236.713c.679.224 1.296.497 1.875.827a14.24 14.24 0 0 1 1.585 1.05l.455-.596A14.999 14.999 0 0 1 56.924 5.9l-.596.455c.384.502.735 1.032 1.05 1.585.33.579.602 1.196.827 1.875l.712-.236c.409 1.233.663 2.638.822 4.316l-.747.07c.119 1.264.184 2.694.218 4.343l.75-.016c.028 1.327.036 2.787.039 4.403l-.75.001.001 2.204v2.55H60v5.1h-.75v2.55l-.001 2.204h.75a231.431 231.431 0 0 1-.039 4.404l-.75-.016c-.034 1.65-.099 3.08-.218 4.343l.747.07c-.159 1.678-.413 3.083-.822 4.316l-.712-.236a10.255 10.255 0 0 1-.827 1.875 14.242 14.242 0 0 1-1.05 1.585l.596.455a14.997 14.997 0 0 1-2.824 2.824l-.455-.596c-.502.384-1.032.735-1.585 1.05-.579.33-1.196.602-1.875.827l.236.712c-1.233.409-2.638.663-4.316.822l-.07-.747c-1.264.119-2.694.184-4.343.218l.016.75c-1.327.028-2.787.036-4.403.039l-.001-.75-2.204.001h-2.55V60h-5.1v-.75H24.9l-2.204-.001v.75a231.431 231.431 0 0 1-4.404-.039l.016-.75c-1.65-.034-3.08-.099-4.343-.218l-.07.747c-1.678-.159-3.083-.413-4.316-.822l.236-.712a10.258 10.258 0 0 1-1.875-.827 14.252 14.252 0 0 1-1.585-1.05l-.455.596A14.999 14.999 0 0 1 3.076 54.1l.596-.455a14.24 14.24 0 0 1-1.05-1.585 10.259 10.259 0 0 1-.827-1.875l-.712.236C.674 49.188.42 47.783.262 46.105l.746-.07C.89 44.77.824 43.34.79 41.692l-.75.016Z"/><path fill="#fff" fill-rule="evenodd" d="M35.643 32.145c-.297-.743-.445-1.114-.401-1.275a.42.42 0 0 1 .182-.27c.134-.1.463-.1 1.123-.1.742 0 1.499.046 2.236-.05a6 6 0 0 0 5.166-5.166c.051-.39.051-.855.051-1.784 0-.928 0-1.393-.051-1.783a6 6 0 0 0-5.166-5.165c-.39-.052-.854-.052-1.783-.052h-7.72c-4.934 0-7.401 0-9.244 1.051a8 8 0 0 0-2.985 2.986C16.057 22.28 16.003 24.58 16 29 15.998 31.075 16 33.15 16 35.224A7.778 7.778 0 0 0 23.778 43H28.5c1.394 0 2.09 0 2.67-.116a6 6 0 0 0 4.715-4.714c.115-.58.115-1.301.115-2.744 0-1.31 0-1.964-.114-2.49a4.998 4.998 0 0 0-.243-.792Z" clip-rule="evenodd"/><path fill="#9EA9A9" fill-rule="evenodd" d="M37 18h-7.72c-2.494 0-4.266.002-5.647.126-1.361.122-2.197.354-2.854.728a6.5 6.5 0 0 0-2.425 2.426c-.375.657-.607 1.492-.729 2.853-.11 1.233-.123 2.777-.125 4.867 0 .7 0 1.05.097 1.181.096.13.182.181.343.2.163.02.518-.18 1.229-.581a6.195 6.195 0 0 1 3.053-.8H37c.977 0 1.32-.003 1.587-.038a4.5 4.5 0 0 0 3.874-3.874c.036-.268.039-.611.039-1.588 0-.976-.003-1.319-.038-1.587a4.5 4.5 0 0 0-3.875-3.874C38.32 18.004 37.977 18 37 18Zm-7.364 12.5h-7.414a4.722 4.722 0 0 0-4.722 4.723 6.278 6.278 0 0 0 6.278 6.278H28.5c1.466 0 1.98-.008 2.378-.087a4.5 4.5 0 0 0 3.535-3.536c.08-.397.087-.933.087-2.451 0-1.391-.009-1.843-.08-2.17a3.5 3.5 0 0 0-2.676-2.676c-.328-.072-.762-.08-2.108-.08Z" clip-rule="evenodd"/></g><defs><clipPath id="q"><path fill="#fff" d="M0 0h60v60H0z"/></clipPath></defs></svg>`, GLOBE_ICON: N`<svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path fill="#fff" fill-rule="evenodd" d="M15.5 8a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Zm-2.113.75c.301 0 .535.264.47.558a6.01 6.01 0 0 1-2.867 3.896c-.203.116-.42-.103-.334-.32.409-1.018.691-2.274.797-3.657a.512.512 0 0 1 .507-.477h1.427Zm.47-2.058c.065.294-.169.558-.47.558H11.96a.512.512 0 0 1-.507-.477c-.106-1.383-.389-2.638-.797-3.656-.087-.217.13-.437.333-.32a6.01 6.01 0 0 1 2.868 3.895Zm-4.402.558c.286 0 .515-.24.49-.525-.121-1.361-.429-2.534-.83-3.393-.279-.6-.549-.93-.753-1.112a.535.535 0 0 0-.724 0c-.204.182-.474.513-.754 1.112-.4.859-.708 2.032-.828 3.393a.486.486 0 0 0 .49.525h2.909Zm-5.415 0c.267 0 .486-.21.507-.477.106-1.383.389-2.638.797-3.656.087-.217-.13-.437-.333-.32a6.01 6.01 0 0 0-2.868 3.895c-.065.294.169.558.47.558H4.04ZM2.143 9.308c-.065-.294.169-.558.47-.558H4.04c.267 0 .486.21.507.477.106 1.383.389 2.639.797 3.657.087.217-.13.436-.333.32a6.01 6.01 0 0 1-2.868-3.896Zm3.913-.033a.486.486 0 0 1 .49-.525h2.909c.286 0 .515.24.49.525-.121 1.361-.428 2.535-.83 3.394-.279.6-.549.93-.753 1.112a.535.535 0 0 1-.724 0c-.204-.182-.474-.513-.754-1.112-.4-.859-.708-2.033-.828-3.394Z" clip-rule="evenodd"/></svg>` }, Ki = M`.wcm-toolbar-placeholder{top:0;bottom:0;left:0;right:0;width:100%;position:absolute;display:block;pointer-events:none;height:100px;border-radius:calc(var(--wcm-background-border-radius) * .9);background-color:var(--wcm-background-color);background-position:center;background-size:cover}.wcm-toolbar{height:38px;display:flex;position:relative;margin:5px 15px 5px 5px;justify-content:space-between;align-items:center}.wcm-toolbar img,.wcm-toolbar svg{height:28px;object-position:left center;object-fit:contain}#wcm-wc-logo path{fill:var(--wcm-accent-fill-color)}button{width:28px;height:28px;border-radius:var(--wcm-icon-button-border-radius);border:0;display:flex;justify-content:center;align-items:center;cursor:pointer;background-color:var(--wcm-color-bg-1);box-shadow:0 0 0 1px var(--wcm-color-overlay)}button:active{background-color:var(--wcm-color-bg-2)}button svg{display:block;object-position:center}button path{fill:var(--wcm-color-fg-1)}.wcm-toolbar div{display:flex}@media(hover:hover){button:hover{background-color:var(--wcm-color-bg-2)}}`;
-var Qi = Object.defineProperty, Ji = Object.getOwnPropertyDescriptor, Gi = (t, e, r, n) => {
+const T = { CROSS_ICON: N`<svg width="12" height="12" viewBox="0 0 12 12"><path d="M9.94 11A.75.75 0 1 0 11 9.94L7.414 6.353a.5.5 0 0 1 0-.708L11 2.061A.75.75 0 1 0 9.94 1L6.353 4.586a.5.5 0 0 1-.708 0L2.061 1A.75.75 0 0 0 1 2.06l3.586 3.586a.5.5 0 0 1 0 .708L1 9.939A.75.75 0 1 0 2.06 11l3.586-3.586a.5.5 0 0 1 .708 0L9.939 11Z" fill="#fff"/></svg>`, WALLET_CONNECT_LOGO: N`<svg width="178" height="29" viewBox="0 0 178 29" id="wcm-wc-logo"><path d="M10.683 7.926c5.284-5.17 13.85-5.17 19.134 0l.636.623a.652.652 0 0 1 0 .936l-2.176 2.129a.343.343 0 0 1-.478 0l-.875-.857c-3.686-3.607-9.662-3.607-13.348 0l-.937.918a.343.343 0 0 1-.479 0l-2.175-2.13a.652.652 0 0 1 0-.936l.698-.683Zm23.633 4.403 1.935 1.895a.652.652 0 0 1 0 .936l-8.73 8.543a.687.687 0 0 1-.956 0L20.37 17.64a.172.172 0 0 0-.239 0l-6.195 6.063a.687.687 0 0 1-.957 0l-8.73-8.543a.652.652 0 0 1 0-.936l1.936-1.895a.687.687 0 0 1 .957 0l6.196 6.064a.172.172 0 0 0 .239 0l6.195-6.064a.687.687 0 0 1 .957 0l6.196 6.064a.172.172 0 0 0 .24 0l6.195-6.064a.687.687 0 0 1 .956 0ZM48.093 20.948l2.338-9.355c.139-.515.258-1.07.416-1.942.12.872.258 1.427.357 1.942l2.022 9.355h4.181l3.528-13.874h-3.21l-1.943 8.523a24.825 24.825 0 0 0-.456 2.457c-.158-.931-.317-1.625-.495-2.438l-1.883-8.542h-4.201l-2.042 8.542a41.204 41.204 0 0 0-.475 2.438 41.208 41.208 0 0 0-.476-2.438l-1.903-8.542h-3.349l3.508 13.874h4.083ZM63.33 21.304c1.585 0 2.596-.654 3.11-1.605-.059.297-.078.595-.078.892v.357h2.655V15.22c0-2.735-1.248-4.32-4.3-4.32-2.636 0-4.36 1.466-4.52 3.487h2.914c.1-.891.734-1.426 1.705-1.426.911 0 1.407.515 1.407 1.11 0 .435-.258.693-1.03.792l-1.388.159c-2.061.257-3.825 1.01-3.825 3.19 0 1.982 1.645 3.092 3.35 3.092Zm.891-2.041c-.773 0-1.348-.436-1.348-1.19 0-.733.655-1.09 1.645-1.268l.674-.119c.575-.118.892-.218 1.09-.396v.912c0 1.228-.892 2.06-2.06 2.06ZM70.398 7.074v13.874h2.874V7.074h-2.874ZM74.934 7.074v13.874h2.874V7.074h-2.874ZM84.08 21.304c2.735 0 4.5-1.546 4.697-3.567h-2.893c-.139.892-.892 1.387-1.804 1.387-1.228 0-2.12-.99-2.14-2.358h6.897v-.555c0-3.21-1.764-5.312-4.816-5.312-2.933 0-4.994 2.062-4.994 5.173 0 3.37 2.12 5.232 5.053 5.232Zm-2.16-6.421c.119-1.11.932-1.922 2.081-1.922 1.11 0 1.883.772 1.903 1.922H81.92ZM94.92 21.146c.633 0 1.248-.1 1.525-.179v-2.18c-.218.04-.475.06-.693.06-1.05 0-1.427-.595-1.427-1.566v-3.805h2.338v-2.24h-2.338V7.788H91.47v3.448H89.37v2.24h2.1v4.201c0 2.3 1.15 3.469 3.45 3.469ZM104.62 21.304c3.924 0 6.302-2.299 6.599-5.608h-3.111c-.238 1.803-1.506 3.032-3.369 3.032-2.2 0-3.746-1.784-3.746-4.796 0-2.953 1.605-4.638 3.805-4.638 1.883 0 2.953 1.15 3.171 2.834h3.191c-.317-3.448-2.854-5.41-6.342-5.41-3.984 0-7.036 2.695-7.036 7.214 0 4.677 2.676 7.372 6.838 7.372ZM117.449 21.304c2.993 0 5.114-1.882 5.114-5.172 0-3.23-2.121-5.233-5.114-5.233-2.972 0-5.093 2.002-5.093 5.233 0 3.29 2.101 5.172 5.093 5.172Zm0-2.22c-1.327 0-2.18-1.09-2.18-2.952 0-1.903.892-2.973 2.18-2.973 1.308 0 2.2 1.07 2.2 2.973 0 1.862-.872 2.953-2.2 2.953ZM126.569 20.948v-5.689c0-1.208.753-2.1 1.823-2.1 1.011 0 1.606.773 1.606 2.06v5.729h2.873v-6.144c0-2.339-1.229-3.905-3.428-3.905-1.526 0-2.458.734-2.953 1.606a5.31 5.31 0 0 0 .079-.892v-.377h-2.874v9.712h2.874ZM137.464 20.948v-5.689c0-1.208.753-2.1 1.823-2.1 1.011 0 1.606.773 1.606 2.06v5.729h2.873v-6.144c0-2.339-1.228-3.905-3.428-3.905-1.526 0-2.458.734-2.953 1.606a5.31 5.31 0 0 0 .079-.892v-.377h-2.874v9.712h2.874ZM149.949 21.304c2.735 0 4.499-1.546 4.697-3.567h-2.893c-.139.892-.892 1.387-1.804 1.387-1.228 0-2.12-.99-2.14-2.358h6.897v-.555c0-3.21-1.764-5.312-4.816-5.312-2.933 0-4.994 2.062-4.994 5.173 0 3.37 2.12 5.232 5.053 5.232Zm-2.16-6.421c.119-1.11.932-1.922 2.081-1.922 1.11 0 1.883.772 1.903 1.922h-3.984ZM160.876 21.304c3.013 0 4.658-1.645 4.975-4.201h-2.874c-.099 1.07-.713 1.982-2.001 1.982-1.309 0-2.2-1.21-2.2-2.993 0-1.942 1.03-2.933 2.259-2.933 1.209 0 1.803.872 1.883 1.882h2.873c-.218-2.358-1.823-4.142-4.776-4.142-2.874 0-5.153 1.903-5.153 5.193 0 3.25 1.923 5.212 5.014 5.212ZM172.067 21.146c.634 0 1.248-.1 1.526-.179v-2.18c-.218.04-.476.06-.694.06-1.05 0-1.427-.595-1.427-1.566v-3.805h2.339v-2.24h-2.339V7.788h-2.854v3.448h-2.1v2.24h2.1v4.201c0 2.3 1.15 3.469 3.449 3.469Z" fill="#fff"/></svg>`, WALLET_CONNECT_ICON: N`<svg width="28" height="20" viewBox="0 0 28 20"><g clip-path="url(#a)"><path d="M7.386 6.482c3.653-3.576 9.575-3.576 13.228 0l.44.43a.451.451 0 0 1 0 .648L19.55 9.033a.237.237 0 0 1-.33 0l-.606-.592c-2.548-2.496-6.68-2.496-9.228 0l-.648.634a.237.237 0 0 1-.33 0L6.902 7.602a.451.451 0 0 1 0-.647l.483-.473Zm16.338 3.046 1.339 1.31a.451.451 0 0 1 0 .648l-6.035 5.909a.475.475 0 0 1-.662 0L14.083 13.2a.119.119 0 0 0-.166 0l-4.283 4.194a.475.475 0 0 1-.662 0l-6.035-5.91a.451.451 0 0 1 0-.647l1.338-1.31a.475.475 0 0 1 .662 0l4.283 4.194c.046.044.12.044.166 0l4.283-4.194a.475.475 0 0 1 .662 0l4.283 4.194c.046.044.12.044.166 0l4.283-4.194a.475.475 0 0 1 .662 0Z" fill="#000000"/></g><defs><clipPath id="a"><path fill="#ffffff" d="M0 0h28v20H0z"/></clipPath></defs></svg>`, WALLET_CONNECT_ICON_COLORED: N`<svg width="96" height="96" fill="none"><path fill="#fff" d="M25.322 33.597c12.525-12.263 32.83-12.263 45.355 0l1.507 1.476a1.547 1.547 0 0 1 0 2.22l-5.156 5.048a.814.814 0 0 1-1.134 0l-2.074-2.03c-8.737-8.555-22.903-8.555-31.64 0l-2.222 2.175a.814.814 0 0 1-1.134 0l-5.156-5.049a1.547 1.547 0 0 1 0-2.22l1.654-1.62Zm56.019 10.44 4.589 4.494a1.547 1.547 0 0 1 0 2.22l-20.693 20.26a1.628 1.628 0 0 1-2.267 0L48.283 56.632a.407.407 0 0 0-.567 0L33.03 71.012a1.628 1.628 0 0 1-2.268 0L10.07 50.75a1.547 1.547 0 0 1 0-2.22l4.59-4.494a1.628 1.628 0 0 1 2.267 0l14.687 14.38c.156.153.41.153.567 0l14.685-14.38a1.628 1.628 0 0 1 2.268 0l14.687 14.38c.156.153.41.153.567 0l14.686-14.38a1.628 1.628 0 0 1 2.268 0Z"/><path stroke="#000" d="M25.672 33.954c12.33-12.072 32.325-12.072 44.655 0l1.508 1.476a1.047 1.047 0 0 1 0 1.506l-5.157 5.048a.314.314 0 0 1-.434 0l-2.074-2.03c-8.932-8.746-23.409-8.746-32.34 0l-2.222 2.174a.314.314 0 0 1-.434 0l-5.157-5.048a1.047 1.047 0 0 1 0-1.506l1.655-1.62Zm55.319 10.44 4.59 4.494a1.047 1.047 0 0 1 0 1.506l-20.694 20.26a1.128 1.128 0 0 1-1.568 0l-14.686-14.38a.907.907 0 0 0-1.267 0L32.68 70.655a1.128 1.128 0 0 1-1.568 0L10.42 50.394a1.047 1.047 0 0 1 0-1.506l4.59-4.493a1.128 1.128 0 0 1 1.567 0l14.687 14.379a.907.907 0 0 0 1.266 0l-.35-.357.35.357 14.686-14.38a1.128 1.128 0 0 1 1.568 0l14.687 14.38a.907.907 0 0 0 1.267 0l14.686-14.38a1.128 1.128 0 0 1 1.568 0Z"/></svg>`, BACK_ICON: N`<svg width="10" height="18" viewBox="0 0 10 18"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.735.179a.75.75 0 0 1 .087 1.057L2.92 8.192a1.25 1.25 0 0 0 0 1.617l5.902 6.956a.75.75 0 1 1-1.144.97L1.776 10.78a2.75 2.75 0 0 1 0-3.559L7.678.265A.75.75 0 0 1 8.735.18Z" fill="#fff"/></svg>`, COPY_ICON: N`<svg width="24" height="24" fill="none"><path fill="#fff" fill-rule="evenodd" d="M7.01 7.01c.03-1.545.138-2.5.535-3.28A5 5 0 0 1 9.73 1.545C10.8 1 12.2 1 15 1c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C23 4.8 23 6.2 23 9c0 2.8 0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185c-.78.397-1.735.505-3.28.534l-.001.01c-.03 1.54-.138 2.493-.534 3.27a5 5 0 0 1-2.185 2.186C13.2 23 11.8 23 9 23c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C1 19.2 1 17.8 1 15c0-2.8 0-4.2.545-5.27A5 5 0 0 1 3.73 7.545C4.508 7.149 5.46 7.04 7 7.01h.01ZM15 15.5c-1.425 0-2.403-.001-3.162-.063-.74-.06-1.139-.172-1.427-.319a3.5 3.5 0 0 1-1.53-1.529c-.146-.288-.257-.686-.318-1.427C8.501 11.403 8.5 10.425 8.5 9c0-1.425.001-2.403.063-3.162.06-.74.172-1.139.318-1.427a3.5 3.5 0 0 1 1.53-1.53c.288-.146.686-.257 1.427-.318.759-.062 1.737-.063 3.162-.063 1.425 0 2.403.001 3.162.063.74.06 1.139.172 1.427.318a3.5 3.5 0 0 1 1.53 1.53c.146.288.257.686.318 1.427.062.759.063 1.737.063 3.162 0 1.425-.001 2.403-.063 3.162-.06.74-.172 1.139-.319 1.427a3.5 3.5 0 0 1-1.529 1.53c-.288.146-.686.257-1.427.318-.759.062-1.737.063-3.162.063ZM7 8.511c-.444.009-.825.025-1.162.052-.74.06-1.139.172-1.427.318a3.5 3.5 0 0 0-1.53 1.53c-.146.288-.257.686-.318 1.427-.062.759-.063 1.737-.063 3.162 0 1.425.001 2.403.063 3.162.06.74.172 1.139.318 1.427a3.5 3.5 0 0 0 1.53 1.53c.288.146.686.257 1.427.318.759.062 1.737.063 3.162.063 1.425 0 2.403-.001 3.162-.063.74-.06 1.139-.172 1.427-.319a3.5 3.5 0 0 0 1.53-1.53c.146-.287.257-.685.318-1.426.027-.337.043-.718.052-1.162H15c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C7 13.2 7 11.8 7 9v-.489Z" clip-rule="evenodd"/></svg>`, RETRY_ICON: N`<svg width="15" height="16" viewBox="0 0 15 16"><path d="M6.464 2.03A.75.75 0 0 0 5.403.97L2.08 4.293a1 1 0 0 0 0 1.414L5.403 9.03a.75.75 0 0 0 1.06-1.06L4.672 6.177a.25.25 0 0 1 .177-.427h2.085a4 4 0 1 1-3.93 4.746c-.077-.407-.405-.746-.82-.746-.414 0-.755.338-.7.748a5.501 5.501 0 1 0 5.45-6.248H4.848a.25.25 0 0 1-.177-.427L6.464 2.03Z" fill="#fff"/></svg>`, DESKTOP_ICON: N`<svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.98c0-1.85 0-2.775.394-3.466a3 3 0 0 1 1.12-1.12C2.204 1 3.13 1 4.98 1h6.04c1.85 0 2.775 0 3.466.394a3 3 0 0 1 1.12 1.12C16 3.204 16 4.13 16 5.98v1.04c0 1.85 0 2.775-.394 3.466a3 3 0 0 1-1.12 1.12C13.796 12 12.87 12 11.02 12H4.98c-1.85 0-2.775 0-3.466-.394a3 3 0 0 1-1.12-1.12C0 9.796 0 8.87 0 7.02V5.98ZM4.98 2.5h6.04c.953 0 1.568.001 2.034.043.446.04.608.108.69.154a1.5 1.5 0 0 1 .559.56c.046.08.114.243.154.69.042.465.043 1.08.043 2.033v1.04c0 .952-.001 1.568-.043 2.034-.04.446-.108.608-.154.69a1.499 1.499 0 0 1-.56.559c-.08.046-.243.114-.69.154-.466.042-1.08.043-2.033.043H4.98c-.952 0-1.568-.001-2.034-.043-.446-.04-.608-.108-.69-.154a1.5 1.5 0 0 1-.559-.56c-.046-.08-.114-.243-.154-.69-.042-.465-.043-1.08-.043-2.033V5.98c0-.952.001-1.568.043-2.034.04-.446.108-.608.154-.69a1.5 1.5 0 0 1 .56-.559c.08-.046.243-.114.69-.154.465-.042 1.08-.043 2.033-.043Z" fill="#fff"/><path d="M4 14.25a.75.75 0 0 1 .75-.75h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1-.75-.75Z" fill="#fff"/></svg>`, MOBILE_ICON: N`<svg width="16" height="16" viewBox="0 0 16 16"><path d="M6.75 5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 4.98c0-1.85 0-2.775.394-3.466a3 3 0 0 1 1.12-1.12C5.204 0 6.136 0 8 0s2.795 0 3.486.394a3 3 0 0 1 1.12 1.12C13 2.204 13 3.13 13 4.98v6.04c0 1.85 0 2.775-.394 3.466a3 3 0 0 1-1.12 1.12C10.796 16 9.864 16 8 16s-2.795 0-3.486-.394a3 3 0 0 1-1.12-1.12C3 13.796 3 12.87 3 11.02V4.98Zm8.5 0v6.04c0 .953-.001 1.568-.043 2.034-.04.446-.108.608-.154.69a1.499 1.499 0 0 1-.56.559c-.08.045-.242.113-.693.154-.47.042-1.091.043-2.05.043-.959 0-1.58-.001-2.05-.043-.45-.04-.613-.109-.693-.154a1.5 1.5 0 0 1-.56-.56c-.046-.08-.114-.243-.154-.69-.042-.466-.043-1.08-.043-2.033V4.98c0-.952.001-1.568.043-2.034.04-.446.108-.608.154-.69a1.5 1.5 0 0 1 .56-.559c.08-.045.243-.113.693-.154C6.42 1.501 7.041 1.5 8 1.5c.959 0 1.58.001 2.05.043.45.04.613.109.693.154a1.5 1.5 0 0 1 .56.56c.046.08.114.243.154.69.042.465.043 1.08.043 2.033Z" fill="#fff"/></svg>`, ARROW_DOWN_ICON: N`<svg width="14" height="14" viewBox="0 0 14 14"><path d="M2.28 7.47a.75.75 0 0 0-1.06 1.06l5.25 5.25a.75.75 0 0 0 1.06 0l5.25-5.25a.75.75 0 0 0-1.06-1.06l-3.544 3.543a.25.25 0 0 1-.426-.177V.75a.75.75 0 0 0-1.5 0v10.086a.25.25 0 0 1-.427.176L2.28 7.47Z" fill="#fff"/></svg>`, ARROW_UP_RIGHT_ICON: N`<svg width="15" height="14" fill="none"><path d="M4.5 1.75A.75.75 0 0 1 5.25 1H12a1.5 1.5 0 0 1 1.5 1.5v6.75a.75.75 0 0 1-1.5 0V4.164a.25.25 0 0 0-.427-.176L4.061 11.5A.75.75 0 0 1 3 10.44l7.513-7.513a.25.25 0 0 0-.177-.427H5.25a.75.75 0 0 1-.75-.75Z" fill="#fff"/></svg>`, ARROW_RIGHT_ICON: N`<svg width="6" height="14" viewBox="0 0 6 14"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.181 1.099a.75.75 0 0 1 1.024.279l2.433 4.258a2.75 2.75 0 0 1 0 2.729l-2.433 4.257a.75.75 0 1 1-1.303-.744L4.335 7.62a1.25 1.25 0 0 0 0-1.24L1.902 2.122a.75.75 0 0 1 .28-1.023Z" fill="#fff"/></svg>`, QRCODE_ICON: N`<svg width="25" height="24" viewBox="0 0 25 24"><path d="M23.748 9a.748.748 0 0 0 .748-.752c-.018-2.596-.128-4.07-.784-5.22a6 6 0 0 0-2.24-2.24c-1.15-.656-2.624-.766-5.22-.784a.748.748 0 0 0-.752.748c0 .414.335.749.748.752 1.015.007 1.82.028 2.494.088.995.09 1.561.256 1.988.5.7.398 1.28.978 1.679 1.678.243.427.41.993.498 1.988.061.675.082 1.479.09 2.493a.753.753 0 0 0 .75.749ZM3.527.788C4.677.132 6.152.022 8.747.004A.748.748 0 0 1 9.5.752a.753.753 0 0 1-.749.752c-1.014.007-1.818.028-2.493.088-.995.09-1.561.256-1.988.5-.7.398-1.28.978-1.679 1.678-.243.427-.41.993-.499 1.988-.06.675-.081 1.479-.088 2.493A.753.753 0 0 1 1.252 9a.748.748 0 0 1-.748-.752c.018-2.596.128-4.07.784-5.22a6 6 0 0 1 2.24-2.24ZM1.252 15a.748.748 0 0 0-.748.752c.018 2.596.128 4.07.784 5.22a6 6 0 0 0 2.24 2.24c1.15.656 2.624.766 5.22.784a.748.748 0 0 0 .752-.748.753.753 0 0 0-.749-.752c-1.014-.007-1.818-.028-2.493-.089-.995-.089-1.561-.255-1.988-.498a4.5 4.5 0 0 1-1.679-1.68c-.243-.426-.41-.992-.499-1.987-.06-.675-.081-1.479-.088-2.493A.753.753 0 0 0 1.252 15ZM22.996 15.749a.753.753 0 0 1 .752-.749c.415 0 .751.338.748.752-.018 2.596-.128 4.07-.784 5.22a6 6 0 0 1-2.24 2.24c-1.15.656-2.624.766-5.22.784a.748.748 0 0 1-.752-.748c0-.414.335-.749.748-.752 1.015-.007 1.82-.028 2.494-.089.995-.089 1.561-.255 1.988-.498a4.5 4.5 0 0 0 1.679-1.68c.243-.426.41-.992.498-1.987.061-.675.082-1.479.09-2.493Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 4a2.5 2.5 0 0 0-2.5 2.5v2A2.5 2.5 0 0 0 7 11h2a2.5 2.5 0 0 0 2.5-2.5v-2A2.5 2.5 0 0 0 9 4H7Zm2 1.5H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1ZM13.5 6.5A2.5 2.5 0 0 1 16 4h2a2.5 2.5 0 0 1 2.5 2.5v2A2.5 2.5 0 0 1 18 11h-2a2.5 2.5 0 0 1-2.5-2.5v-2Zm2.5-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1ZM7 13a2.5 2.5 0 0 0-2.5 2.5v2A2.5 2.5 0 0 0 7 20h2a2.5 2.5 0 0 0 2.5-2.5v-2A2.5 2.5 0 0 0 9 13H7Zm2 1.5H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z" fill="#fff"/><path d="M13.5 15.5c0-.465 0-.697.038-.89a2 2 0 0 1 1.572-1.572C15.303 13 15.535 13 16 13v2.5h-2.5ZM18 13c.465 0 .697 0 .89.038a2 2 0 0 1 1.572 1.572c.038.193.038.425.038.89H18V13ZM18 17.5h2.5c0 .465 0 .697-.038.89a2 2 0 0 1-1.572 1.572C18.697 20 18.465 20 18 20v-2.5ZM13.5 17.5H16V20c-.465 0-.697 0-.89-.038a2 2 0 0 1-1.572-1.572c-.038-.193-.038-.425-.038-.89Z" fill="#fff"/></svg>`, SCAN_ICON: N`<svg width="16" height="16" fill="none"><path fill="#fff" d="M10 15.216c0 .422.347.763.768.74 1.202-.064 2.025-.222 2.71-.613a5.001 5.001 0 0 0 1.865-1.866c.39-.684.549-1.507.613-2.709a.735.735 0 0 0-.74-.768.768.768 0 0 0-.76.732c-.009.157-.02.306-.032.447-.073.812-.206 1.244-.384 1.555-.31.545-.761.996-1.306 1.306-.311.178-.743.311-1.555.384-.141.013-.29.023-.447.032a.768.768 0 0 0-.732.76ZM10 .784c0 .407.325.737.732.76.157.009.306.02.447.032.812.073 1.244.206 1.555.384a3.5 3.5 0 0 1 1.306 1.306c.178.311.311.743.384 1.555.013.142.023.29.032.447a.768.768 0 0 0 .76.732.734.734 0 0 0 .74-.768c-.064-1.202-.222-2.025-.613-2.71A5 5 0 0 0 13.477.658c-.684-.39-1.507-.549-2.709-.613a.735.735 0 0 0-.768.74ZM5.232.044A.735.735 0 0 1 6 .784a.768.768 0 0 1-.732.76c-.157.009-.305.02-.447.032-.812.073-1.244.206-1.555.384A3.5 3.5 0 0 0 1.96 3.266c-.178.311-.311.743-.384 1.555-.013.142-.023.29-.032.447A.768.768 0 0 1 .784 6a.735.735 0 0 1-.74-.768c.064-1.202.222-2.025.613-2.71A5 5 0 0 1 2.523.658C3.207.267 4.03.108 5.233.044ZM5.268 14.456a.768.768 0 0 1 .732.76.734.734 0 0 1-.768.74c-1.202-.064-2.025-.222-2.71-.613a5 5 0 0 1-1.865-1.866c-.39-.684-.549-1.507-.613-2.709A.735.735 0 0 1 .784 10c.407 0 .737.325.76.732.009.157.02.306.032.447.073.812.206 1.244.384 1.555a3.5 3.5 0 0 0 1.306 1.306c.311.178.743.311 1.555.384.142.013.29.023.447.032Z"/></svg>`, CHECKMARK_ICON: N`<svg width="13" height="12" viewBox="0 0 13 12"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.155.132a.75.75 0 0 1 .232 1.035L5.821 11.535a1 1 0 0 1-1.626.09L.665 7.21a.75.75 0 1 1 1.17-.937L4.71 9.867a.25.25 0 0 0 .406-.023L11.12.364a.75.75 0 0 1 1.035-.232Z" fill="#fff"/></svg>`, SEARCH_ICON: N`<svg width="20" height="21"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.432 13.992c-.354-.353-.91-.382-1.35-.146a5.5 5.5 0 1 1 2.265-2.265c-.237.441-.208.997.145 1.35l3.296 3.296a.75.75 0 1 1-1.06 1.061l-3.296-3.296Zm.06-5a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" fill="#949E9E"/></svg>`, WALLET_PLACEHOLDER: N`<svg width="60" height="60" fill="none" viewBox="0 0 60 60"><g clip-path="url(#q)"><path id="wallet-placeholder-fill" fill="#fff" d="M0 24.9c0-9.251 0-13.877 1.97-17.332a15 15 0 0 1 5.598-5.597C11.023 0 15.648 0 24.9 0h10.2c9.252 0 13.877 0 17.332 1.97a15 15 0 0 1 5.597 5.598C60 11.023 60 15.648 60 24.9v10.2c0 9.252 0 13.877-1.97 17.332a15.001 15.001 0 0 1-5.598 5.597C48.977 60 44.352 60 35.1 60H24.9c-9.251 0-13.877 0-17.332-1.97a15 15 0 0 1-5.597-5.598C0 48.977 0 44.352 0 35.1V24.9Z"/><path id="wallet-placeholder-dash" stroke="#000" stroke-dasharray="4 4" stroke-width="1.5" d="M.04 41.708a231.598 231.598 0 0 1-.039-4.403l.75-.001L.75 35.1v-2.55H0v-5.1h.75V24.9l.001-2.204h-.75c.003-1.617.011-3.077.039-4.404l.75.016c.034-1.65.099-3.08.218-4.343l-.746-.07c.158-1.678.412-3.083.82-4.316l.713.236c.224-.679.497-1.296.827-1.875a14.25 14.25 0 0 1 1.05-1.585L3.076 5.9A15 15 0 0 1 5.9 3.076l.455.596a14.25 14.25 0 0 1 1.585-1.05c.579-.33 1.196-.603 1.875-.827l-.236-.712C10.812.674 12.217.42 13.895.262l.07.746C15.23.89 16.66.824 18.308.79l-.016-.75C19.62.012 21.08.004 22.695.001l.001.75L24.9.75h2.55V0h5.1v.75h2.55l2.204.001v-.75c1.617.003 3.077.011 4.404.039l-.016.75c1.65.034 3.08.099 4.343.218l.07-.746c1.678.158 3.083.412 4.316.82l-.236.713c.679.224 1.296.497 1.875.827a14.24 14.24 0 0 1 1.585 1.05l.455-.596A14.999 14.999 0 0 1 56.924 5.9l-.596.455c.384.502.735 1.032 1.05 1.585.33.579.602 1.196.827 1.875l.712-.236c.409 1.233.663 2.638.822 4.316l-.747.07c.119 1.264.184 2.694.218 4.343l.75-.016c.028 1.327.036 2.787.039 4.403l-.75.001.001 2.204v2.55H60v5.1h-.75v2.55l-.001 2.204h.75a231.431 231.431 0 0 1-.039 4.404l-.75-.016c-.034 1.65-.099 3.08-.218 4.343l.747.07c-.159 1.678-.413 3.083-.822 4.316l-.712-.236a10.255 10.255 0 0 1-.827 1.875 14.242 14.242 0 0 1-1.05 1.585l.596.455a14.997 14.997 0 0 1-2.824 2.824l-.455-.596c-.502.384-1.032.735-1.585 1.05-.579.33-1.196.602-1.875.827l.236.712c-1.233.409-2.638.663-4.316.822l-.07-.747c-1.264.119-2.694.184-4.343.218l.016.75c-1.327.028-2.787.036-4.403.039l-.001-.75-2.204.001h-2.55V60h-5.1v-.75H24.9l-2.204-.001v.75a231.431 231.431 0 0 1-4.404-.039l.016-.75c-1.65-.034-3.08-.099-4.343-.218l-.07.747c-1.678-.159-3.083-.413-4.316-.822l.236-.712a10.258 10.258 0 0 1-1.875-.827 14.252 14.252 0 0 1-1.585-1.05l-.455.596A14.999 14.999 0 0 1 3.076 54.1l.596-.455a14.24 14.24 0 0 1-1.05-1.585 10.259 10.259 0 0 1-.827-1.875l-.712.236C.674 49.188.42 47.783.262 46.105l.746-.07C.89 44.77.824 43.34.79 41.692l-.75.016Z"/><path fill="#fff" fill-rule="evenodd" d="M35.643 32.145c-.297-.743-.445-1.114-.401-1.275a.42.42 0 0 1 .182-.27c.134-.1.463-.1 1.123-.1.742 0 1.499.046 2.236-.05a6 6 0 0 0 5.166-5.166c.051-.39.051-.855.051-1.784 0-.928 0-1.393-.051-1.783a6 6 0 0 0-5.166-5.165c-.39-.052-.854-.052-1.783-.052h-7.72c-4.934 0-7.401 0-9.244 1.051a8 8 0 0 0-2.985 2.986C16.057 22.28 16.003 24.58 16 29 15.998 31.075 16 33.15 16 35.224A7.778 7.778 0 0 0 23.778 43H28.5c1.394 0 2.09 0 2.67-.116a6 6 0 0 0 4.715-4.714c.115-.58.115-1.301.115-2.744 0-1.31 0-1.964-.114-2.49a4.998 4.998 0 0 0-.243-.792Z" clip-rule="evenodd"/><path fill="#9EA9A9" fill-rule="evenodd" d="M37 18h-7.72c-2.494 0-4.266.002-5.647.126-1.361.122-2.197.354-2.854.728a6.5 6.5 0 0 0-2.425 2.426c-.375.657-.607 1.492-.729 2.853-.11 1.233-.123 2.777-.125 4.867 0 .7 0 1.05.097 1.181.096.13.182.181.343.2.163.02.518-.18 1.229-.581a6.195 6.195 0 0 1 3.053-.8H37c.977 0 1.32-.003 1.587-.038a4.5 4.5 0 0 0 3.874-3.874c.036-.268.039-.611.039-1.588 0-.976-.003-1.319-.038-1.587a4.5 4.5 0 0 0-3.875-3.874C38.32 18.004 37.977 18 37 18Zm-7.364 12.5h-7.414a4.722 4.722 0 0 0-4.722 4.723 6.278 6.278 0 0 0 6.278 6.278H28.5c1.466 0 1.98-.008 2.378-.087a4.5 4.5 0 0 0 3.535-3.536c.08-.397.087-.933.087-2.451 0-1.391-.009-1.843-.08-2.17a3.5 3.5 0 0 0-2.676-2.676c-.328-.072-.762-.08-2.108-.08Z" clip-rule="evenodd"/></g><defs><clipPath id="q"><path fill="#fff" d="M0 0h60v60H0z"/></clipPath></defs></svg>`, GLOBE_ICON: N`<svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path fill="#fff" fill-rule="evenodd" d="M15.5 8a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Zm-2.113.75c.301 0 .535.264.47.558a6.01 6.01 0 0 1-2.867 3.896c-.203.116-.42-.103-.334-.32.409-1.018.691-2.274.797-3.657a.512.512 0 0 1 .507-.477h1.427Zm.47-2.058c.065.294-.169.558-.47.558H11.96a.512.512 0 0 1-.507-.477c-.106-1.383-.389-2.638-.797-3.656-.087-.217.13-.437.333-.32a6.01 6.01 0 0 1 2.868 3.895Zm-4.402.558c.286 0 .515-.24.49-.525-.121-1.361-.429-2.534-.83-3.393-.279-.6-.549-.93-.753-1.112a.535.535 0 0 0-.724 0c-.204.182-.474.513-.754 1.112-.4.859-.708 2.032-.828 3.393a.486.486 0 0 0 .49.525h2.909Zm-5.415 0c.267 0 .486-.21.507-.477.106-1.383.389-2.638.797-3.656.087-.217-.13-.437-.333-.32a6.01 6.01 0 0 0-2.868 3.895c-.065.294.169.558.47.558H4.04ZM2.143 9.308c-.065-.294.169-.558.47-.558H4.04c.267 0 .486.21.507.477.106 1.383.389 2.639.797 3.657.087.217-.13.436-.333.32a6.01 6.01 0 0 1-2.868-3.896Zm3.913-.033a.486.486 0 0 1 .49-.525h2.909c.286 0 .515.24.49.525-.121 1.361-.428 2.535-.83 3.394-.279.6-.549.93-.753 1.112a.535.535 0 0 1-.724 0c-.204-.182-.474-.513-.754-1.112-.4-.859-.708-2.033-.828-3.394Z" clip-rule="evenodd"/></svg>` }, Ki = M`.wcm-toolbar-placeholder{top:0;bottom:0;left:0;right:0;width:100%;position:absolute;display:block;pointer-events:none;height:100px;border-radius:calc(var(--wcm-background-border-radius) * .9);background-color:var(--wcm-background-color);background-position:center;background-size:cover}.wcm-toolbar{height:38px;display:flex;position:relative;margin:5px 15px 5px 5px;justify-content:space-between;align-items:center}.wcm-toolbar img,.wcm-toolbar svg{height:28px;object-position:left center;object-fit:contain}#wcm-wc-logo path{fill:var(--wcm-accent-fill-color)}button{width:28px;height:28px;border-radius:var(--wcm-icon-button-border-radius);border:0;display:flex;justify-content:center;align-items:center;cursor:pointer;background-color:var(--wcm-color-bg-1);box-shadow:0 0 0 1px var(--wcm-color-overlay)}button:active{background-color:var(--wcm-color-bg-2)}button svg{display:block;object-position:center}button path{fill:var(--wcm-color-fg-1)}.wcm-toolbar div{display:flex}@media(hover:hover){button:hover{background-color:var(--wcm-color-bg-2)}}`;
+var Qi = Object.defineProperty, Ji = Object.getOwnPropertyDescriptor, Xi = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Ji(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && Qi(e, r, o), o;
 };
 let je = class extends A {
   render() {
-    return u`<div class="wcm-toolbar-placeholder"></div><div class="wcm-toolbar">${P.WALLET_CONNECT_LOGO} <button @click="${ce.close}">${P.CROSS_ICON}</button></div>`;
+    return u`<div class="wcm-toolbar-placeholder"></div><div class="wcm-toolbar">${T.WALLET_CONNECT_LOGO} <button @click="${ce.close}">${T.CROSS_ICON}</button></div>`;
   }
 };
-je.styles = [_.globalCss, Ki], je = Gi([O("wcm-modal-backcard")], je);
-const Xi = M`main{padding:20px;padding-top:0;width:100%}`;
+je.styles = [_.globalCss, Ki], je = Xi([O("wcm-modal-backcard")], je);
+const Gi = M`main{padding:20px;padding-top:0;width:100%}`;
 var ta = Object.defineProperty, ea = Object.getOwnPropertyDescriptor, ra = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? ea(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
@@ -2688,7 +2688,7 @@ let He = class extends A {
     return u`<main><slot></slot></main>`;
   }
 };
-He.styles = [_.globalCss, Xi], He = ra([O("wcm-modal-content")], He);
+He.styles = [_.globalCss, Gi], He = ra([O("wcm-modal-content")], He);
 const oa = M`footer{padding:10px;display:flex;flex-direction:column;align-items:inherit;justify-content:inherit;border-top:1px solid var(--wcm-color-bg-2)}`;
 var na = Object.defineProperty, ia = Object.getOwnPropertyDescriptor, aa = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? ia(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -2712,7 +2712,7 @@ let ct = class extends A {
     super(...arguments), this.title = "", this.onAction = void 0, this.actionIcon = void 0, this.border = !1;
   }
   backBtnTemplate() {
-    return u`<button class="wcm-back-btn" @click="${L.goBack}">${P.BACK_ICON}</button>`;
+    return u`<button class="wcm-back-btn" @click="${L.goBack}">${T.BACK_ICON}</button>`;
   }
   actionBtnTemplate() {
     return u`<button class="wcm-action-btn" @click="${this.onAction}">${this.actionIcon}</button>`;
@@ -2875,7 +2875,7 @@ let re = class extends A {
   }
   render() {
     const { message: t, variant: e } = ot.state, r = { "wcm-success": e === "success", "wcm-error": e === "error" };
-    return this.open ? u`<div class="${J(r)}">${e === "success" ? P.CHECKMARK_ICON : null} ${e === "error" ? P.CROSS_ICON : null}<wcm-text variant="small-regular">${t}</wcm-text></div>` : null;
+    return this.open ? u`<div class="${J(r)}">${e === "success" ? T.CHECKMARK_ICON : null} ${e === "error" ? T.CROSS_ICON : null}<wcm-text variant="small-regular">${t}</wcm-text></div>` : null;
   }
 };
 re.styles = [_.globalCss, ma], Qr([H()], re.prototype, "open", 2), re = Qr([O("wcm-modal-toast")], re);
@@ -2937,7 +2937,7 @@ var ya = Object.defineProperty, xa = Object.getOwnPropertyDescriptor, vt = (t, e
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && ya(e, r, o), o;
 };
-let X = class extends A {
+let G = class extends A {
   constructor() {
     super(...arguments), this.uri = "", this.size = 0, this.imageId = void 0, this.walletId = void 0, this.imageUrl = void 0;
   }
@@ -2947,12 +2947,12 @@ let X = class extends A {
   }
   render() {
     const t = { "wcm-dark": _t.state.themeMode === "dark" };
-    return u`<div style="${`width: ${this.size}px`}" class="${J(t)}">${this.walletId || this.imageUrl ? u`<wcm-wallet-image walletId="${W(this.walletId)}" imageId="${W(this.imageId)}" imageUrl="${W(this.imageUrl)}"></wcm-wallet-image>` : P.WALLET_CONNECT_ICON_COLORED} ${this.svgTemplate()}</div>`;
+    return u`<div style="${`width: ${this.size}px`}" class="${J(t)}">${this.walletId || this.imageUrl ? u`<wcm-wallet-image walletId="${W(this.walletId)}" imageId="${W(this.imageId)}" imageUrl="${W(this.imageUrl)}"></wcm-wallet-image>` : T.WALLET_CONNECT_ICON_COLORED} ${this.svgTemplate()}</div>`;
   }
 };
-X.styles = [_.globalCss, ba], vt([$()], X.prototype, "uri", 2), vt([$({ type: Number })], X.prototype, "size", 2), vt([$()], X.prototype, "imageId", 2), vt([$()], X.prototype, "walletId", 2), vt([$()], X.prototype, "imageUrl", 2), X = vt([O("wcm-qrcode")], X);
+G.styles = [_.globalCss, ba], vt([$()], G.prototype, "uri", 2), vt([$({ type: Number })], G.prototype, "size", 2), vt([$()], G.prototype, "imageId", 2), vt([$()], G.prototype, "walletId", 2), vt([$()], G.prototype, "imageUrl", 2), G = vt([O("wcm-qrcode")], G);
 const $a = M`:host{position:relative;height:28px;width:80%}input{width:100%;height:100%;line-height:28px!important;border-radius:var(--wcm-input-border-radius);font-style:normal;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',sans-serif;font-feature-settings:'case' on;font-weight:500;font-size:16px;letter-spacing:-.03em;padding:0 10px 0 34px;transition:.2s all ease;color:var(--wcm-color-fg-1);background-color:var(--wcm-color-bg-3);box-shadow:inset 0 0 0 1px var(--wcm-color-overlay);caret-color:var(--wcm-accent-color)}input::placeholder{color:var(--wcm-color-fg-2)}svg{left:10px;top:4px;pointer-events:none;position:absolute;width:20px;height:20px}input:focus-within{box-shadow:inset 0 0 0 1px var(--wcm-accent-color)}path{fill:var(--wcm-color-fg-2)}`;
-var Ca = Object.defineProperty, Ea = Object.getOwnPropertyDescriptor, Gr = (t, e, r, n) => {
+var Ca = Object.defineProperty, Ea = Object.getOwnPropertyDescriptor, Xr = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Ea(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && Ca(e, r, o), o;
@@ -2962,10 +2962,10 @@ let oe = class extends A {
     super(...arguments), this.onChange = () => null;
   }
   render() {
-    return u`<input type="text" @input="${this.onChange}" placeholder="Search wallets"> ${P.SEARCH_ICON}`;
+    return u`<input type="text" @input="${this.onChange}" placeholder="Search wallets"> ${T.SEARCH_ICON}`;
   }
 };
-oe.styles = [_.globalCss, $a], Gr([$()], oe.prototype, "onChange", 2), oe = Gr([O("wcm-search-input")], oe);
+oe.styles = [_.globalCss, $a], Xr([$()], oe.prototype, "onChange", 2), oe = Xr([O("wcm-search-input")], oe);
 const Aa = M`@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,150;stroke-dashoffset:0}50%{stroke-dasharray:90,150;stroke-dashoffset:-35}100%{stroke-dasharray:90,150;stroke-dashoffset:-124}}svg{animation:rotate 2s linear infinite;display:flex;justify-content:center;align-items:center}svg circle{stroke-linecap:round;animation:dash 1.5s ease infinite;stroke:var(--wcm-accent-color)}`;
 var _a = Object.defineProperty, ka = Object.getOwnPropertyDescriptor, Oa = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? ka(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -2979,8 +2979,8 @@ let Fe = class extends A {
 };
 Fe.styles = [_.globalCss, Aa], Fe = Oa([O("wcm-spinner")], Fe);
 const Ia = M`span{font-style:normal;font-family:var(--wcm-font-family);font-feature-settings:var(--wcm-font-feature-settings)}.wcm-xsmall-bold{font-family:var(--wcm-text-xsmall-bold-font-family);font-weight:var(--wcm-text-xsmall-bold-weight);font-size:var(--wcm-text-xsmall-bold-size);line-height:var(--wcm-text-xsmall-bold-line-height);letter-spacing:var(--wcm-text-xsmall-bold-letter-spacing);text-transform:var(--wcm-text-xsmall-bold-text-transform)}.wcm-xsmall-regular{font-family:var(--wcm-text-xsmall-regular-font-family);font-weight:var(--wcm-text-xsmall-regular-weight);font-size:var(--wcm-text-xsmall-regular-size);line-height:var(--wcm-text-xsmall-regular-line-height);letter-spacing:var(--wcm-text-xsmall-regular-letter-spacing);text-transform:var(--wcm-text-xsmall-regular-text-transform)}.wcm-small-thin{font-family:var(--wcm-text-small-thin-font-family);font-weight:var(--wcm-text-small-thin-weight);font-size:var(--wcm-text-small-thin-size);line-height:var(--wcm-text-small-thin-line-height);letter-spacing:var(--wcm-text-small-thin-letter-spacing);text-transform:var(--wcm-text-small-thin-text-transform)}.wcm-small-regular{font-family:var(--wcm-text-small-regular-font-family);font-weight:var(--wcm-text-small-regular-weight);font-size:var(--wcm-text-small-regular-size);line-height:var(--wcm-text-small-regular-line-height);letter-spacing:var(--wcm-text-small-regular-letter-spacing);text-transform:var(--wcm-text-small-regular-text-transform)}.wcm-medium-regular{font-family:var(--wcm-text-medium-regular-font-family);font-weight:var(--wcm-text-medium-regular-weight);font-size:var(--wcm-text-medium-regular-size);line-height:var(--wcm-text-medium-regular-line-height);letter-spacing:var(--wcm-text-medium-regular-letter-spacing);text-transform:var(--wcm-text-medium-regular-text-transform)}.wcm-big-bold{font-family:var(--wcm-text-big-bold-font-family);font-weight:var(--wcm-text-big-bold-weight);font-size:var(--wcm-text-big-bold-size);line-height:var(--wcm-text-big-bold-line-height);letter-spacing:var(--wcm-text-big-bold-letter-spacing);text-transform:var(--wcm-text-big-bold-text-transform)}:host(*){color:var(--wcm-color-fg-1)}.wcm-color-primary{color:var(--wcm-color-fg-1)}.wcm-color-secondary{color:var(--wcm-color-fg-2)}.wcm-color-tertiary{color:var(--wcm-color-fg-3)}.wcm-color-inverse{color:var(--wcm-accent-fill-color)}.wcm-color-accnt{color:var(--wcm-accent-color)}.wcm-color-error{color:var(--wcm-error-color)}`;
-var Ma = Object.defineProperty, Pa = Object.getOwnPropertyDescriptor, qe = (t, e, r, n) => {
-  for (var o = n > 1 ? void 0 : n ? Pa(e, r) : e, i = t.length - 1, a; i >= 0; i--)
+var Ma = Object.defineProperty, Ta = Object.getOwnPropertyDescriptor, qe = (t, e, r, n) => {
+  for (var o = n > 1 ? void 0 : n ? Ta(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && Ma(e, r, o), o;
 };
@@ -2994,7 +2994,7 @@ let Bt = class extends A {
   }
 };
 Bt.styles = [_.globalCss, Ia], qe([$()], Bt.prototype, "variant", 2), qe([$()], Bt.prototype, "color", 2), Bt = qe([O("wcm-text")], Bt);
-const Ta = M`button{width:100%;height:100%;border-radius:var(--wcm-button-hover-highlight-border-radius);display:flex;align-items:flex-start}button:active{background-color:var(--wcm-color-overlay)}@media(hover:hover){button:hover{background-color:var(--wcm-color-overlay)}}button>div{width:80px;padding:5px 0;display:flex;flex-direction:column;align-items:center}wcm-text{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}wcm-wallet-image{height:60px;width:60px;transition:all .2s ease;border-radius:var(--wcm-wallet-icon-border-radius);margin-bottom:5px}.wcm-sublabel{margin-top:2px}`;
+const Pa = M`button{width:100%;height:100%;border-radius:var(--wcm-button-hover-highlight-border-radius);display:flex;align-items:flex-start}button:active{background-color:var(--wcm-color-overlay)}@media(hover:hover){button:hover{background-color:var(--wcm-color-overlay)}}button>div{width:80px;padding:5px 0;display:flex;flex-direction:column;align-items:center}wcm-text{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}wcm-wallet-image{height:60px;width:60px;transition:all .2s ease;border-radius:var(--wcm-wallet-icon-border-radius);margin-bottom:5px}.wcm-sublabel{margin-top:2px}`;
 var Ra = Object.defineProperty, Sa = Object.getOwnPropertyDescriptor, tt = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Sa(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
@@ -3015,7 +3015,7 @@ let F = class extends A {
     return u`<button @click="${this.handleClick.bind(this)}"><div><wcm-wallet-image walletId="${this.walletId}" imageId="${W(this.imageId)}"></wcm-wallet-image><wcm-text variant="xsmall-regular">${(t = this.label) != null ? t : x.getWalletName(this.name, !0)}</wcm-text>${this.sublabelTemplate()}</div></button>`;
   }
 };
-F.styles = [_.globalCss, Ta], tt([$()], F.prototype, "onClick", 2), tt([$()], F.prototype, "name", 2), tt([$()], F.prototype, "walletId", 2), tt([$()], F.prototype, "label", 2), tt([$()], F.prototype, "imageId", 2), tt([$({ type: Boolean })], F.prototype, "installed", 2), tt([$({ type: Boolean })], F.prototype, "recent", 2), F = tt([O("wcm-wallet-button")], F);
+F.styles = [_.globalCss, Pa], tt([$()], F.prototype, "onClick", 2), tt([$()], F.prototype, "name", 2), tt([$()], F.prototype, "walletId", 2), tt([$()], F.prototype, "label", 2), tt([$()], F.prototype, "imageId", 2), tt([$({ type: Boolean })], F.prototype, "installed", 2), tt([$({ type: Boolean })], F.prototype, "recent", 2), F = tt([O("wcm-wallet-button")], F);
 const Na = M`:host{display:block}div{overflow:hidden;position:relative;border-radius:inherit;width:100%;height:100%;background-color:var(--wcm-color-overlay)}svg{position:relative;width:100%;height:100%}div::after{content:'';position:absolute;top:0;bottom:0;left:0;right:0;border-radius:inherit;border:1px solid var(--wcm-color-overlay)}div img{width:100%;height:100%;object-fit:cover;object-position:center}#wallet-placeholder-fill{fill:var(--wcm-color-bg-3)}#wallet-placeholder-dash{stroke:var(--wcm-color-overlay)}`;
 var La = Object.defineProperty, Da = Object.getOwnPropertyDescriptor, ne = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Da(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -3029,11 +3029,11 @@ let bt = class extends A {
   render() {
     var t;
     const e = (t = this.imageUrl) != null && t.length ? this.imageUrl : x.getWalletIcon({ id: this.walletId, image_id: this.imageId });
-    return u`${e.length ? u`<div><img crossorigin="anonymous" src="${e}" alt="${this.id}"></div>` : P.WALLET_PLACEHOLDER}`;
+    return u`${e.length ? u`<div><img crossorigin="anonymous" src="${e}" alt="${this.id}"></div>` : T.WALLET_PLACEHOLDER}`;
   }
 };
 bt.styles = [_.globalCss, Na], ne([$()], bt.prototype, "walletId", 2), ne([$()], bt.prototype, "imageId", 2), ne([$()], bt.prototype, "imageUrl", 2), bt = ne([O("wcm-wallet-image")], bt);
-var Ba = Object.defineProperty, Ua = Object.getOwnPropertyDescriptor, Xr = (t, e, r, n) => {
+var Ba = Object.defineProperty, Ua = Object.getOwnPropertyDescriptor, Gr = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Ua(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && Ba(e, r, o), o;
@@ -3069,7 +3069,7 @@ let Ye = class extends A {
     }
   }
 };
-Xr([H()], Ye.prototype, "preload", 2), Ye = Xr([O("wcm-explorer-context")], Ye);
+Gr([H()], Ye.prototype, "preload", 2), Ye = Gr([O("wcm-explorer-context")], Ye);
 var Wa = Object.defineProperty, ja = Object.getOwnPropertyDescriptor, Ha = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? ja(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
@@ -3097,9 +3097,9 @@ let Ke = class extends A {
   }
   render() {
     const { recomendedWallets: t } = j.state, e = [...t, ...t], r = C.RECOMMENDED_WALLET_AMOUNT * 2;
-    return u`<wcm-modal-header title="Connect your wallet" .onAction="${this.onGoToQrcode}" .actionIcon="${P.QRCODE_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-title">${P.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">WalletConnect</wcm-text></div><div class="wcm-slider"><div class="wcm-track">${[...Array(r)].map((n, o) => {
+    return u`<wcm-modal-header title="Connect your wallet" .onAction="${this.onGoToQrcode}" .actionIcon="${T.QRCODE_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-title">${T.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">WalletConnect</wcm-text></div><div class="wcm-slider"><div class="wcm-track">${[...Array(r)].map((n, o) => {
       const i = e[o % e.length];
-      return i ? u`<wcm-wallet-image walletId="${i.id}" imageId="${i.image_id}"></wcm-wallet-image>` : P.WALLET_PLACEHOLDER;
+      return i ? u`<wcm-wallet-image walletId="${i.id}" imageId="${i.image_id}"></wcm-wallet-image>` : T.WALLET_PLACEHOLDER;
     })}</div><wcm-button-big @click="${x.handleAndroidLinking}"><wcm-text variant="medium-regular" color="inverse">Select Wallet</wcm-text></wcm-button-big></div></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">Choose WalletConnect to see supported apps on your device</wcm-text></wcm-info-footer>`;
   }
 };
@@ -3149,8 +3149,8 @@ const At = { manualWallets() {
   if (t)
     return u`<wcm-wallet-button name="${t.name}" walletId="${t.id}" imageId="${W(t.image_id)}" .recent="${!0}" .onClick="${() => this.onConnecting(t)}"></wcm-wallet-button>`;
 } }, Qa = M`.wcm-grid{display:grid;grid-template-columns:repeat(4,80px);justify-content:space-between}.wcm-desktop-title,.wcm-mobile-title{display:flex;align-items:center}.wcm-mobile-title{justify-content:space-between;margin-bottom:20px;margin-top:-10px}.wcm-desktop-title{margin-bottom:10px;padding:0 10px}.wcm-subtitle{display:flex;align-items:center}.wcm-subtitle:last-child path{fill:var(--wcm-color-fg-3)}.wcm-desktop-title svg,.wcm-mobile-title svg{margin-right:6px}.wcm-desktop-title path,.wcm-mobile-title path{fill:var(--wcm-accent-color)}`;
-var Ja = Object.defineProperty, Ga = Object.getOwnPropertyDescriptor, Xa = (t, e, r, n) => {
-  for (var o = n > 1 ? void 0 : n ? Ga(e, r) : e, i = t.length - 1, a; i >= 0; i--)
+var Ja = Object.defineProperty, Xa = Object.getOwnPropertyDescriptor, Ga = (t, e, r, n) => {
+  for (var o = n > 1 ? void 0 : n ? Xa(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && Ja(e, r, o), o;
 };
@@ -3163,10 +3163,10 @@ let Qe = class extends A {
     let l = [];
     a ? l = i.slice(0, 3) : l = i;
     const s = !!l.length;
-    return u`<wcm-modal-header .border="${!0}" title="Connect your wallet" .onAction="${x.handleUriCopy}" .actionIcon="${P.COPY_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-mobile-title"><div class="wcm-subtitle">${P.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">Mobile</wcm-text></div><div class="wcm-subtitle">${P.SCAN_ICON}<wcm-text variant="small-regular" color="secondary">Scan with your wallet</wcm-text></div></div><wcm-walletconnect-qr></wcm-walletconnect-qr></wcm-modal-content>${s ? u`<wcm-modal-footer><div class="wcm-desktop-title">${P.DESKTOP_ICON}<wcm-text variant="small-regular" color="accent">Desktop</wcm-text></div><div class="wcm-grid">${l} ${a ? u`<wcm-view-all-wallets-button></wcm-view-all-wallets-button>` : null}</div></wcm-modal-footer>` : null}`;
+    return u`<wcm-modal-header .border="${!0}" title="Connect your wallet" .onAction="${x.handleUriCopy}" .actionIcon="${T.COPY_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-mobile-title"><div class="wcm-subtitle">${T.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">Mobile</wcm-text></div><div class="wcm-subtitle">${T.SCAN_ICON}<wcm-text variant="small-regular" color="secondary">Scan with your wallet</wcm-text></div></div><wcm-walletconnect-qr></wcm-walletconnect-qr></wcm-modal-content>${s ? u`<wcm-modal-footer><div class="wcm-desktop-title">${T.DESKTOP_ICON}<wcm-text variant="small-regular" color="accent">Desktop</wcm-text></div><div class="wcm-grid">${l} ${a ? u`<wcm-view-all-wallets-button></wcm-view-all-wallets-button>` : null}</div></wcm-modal-footer>` : null}`;
   }
 };
-Qe.styles = [_.globalCss, Qa], Qe = Xa([O("wcm-desktop-wallet-selection")], Qe);
+Qe.styles = [_.globalCss, Qa], Qe = Ga([O("wcm-desktop-wallet-selection")], Qe);
 const tl = M`div{background-color:var(--wcm-color-bg-2);padding:10px 20px 15px 20px;border-top:1px solid var(--wcm-color-bg-3);text-align:center}a{color:var(--wcm-accent-color);text-decoration:none;transition:opacity .2s ease-in-out;display:inline}a:active{opacity:.8}@media(hover:hover){a:hover{opacity:.8}}`;
 var el = Object.defineProperty, rl = Object.getOwnPropertyDescriptor, ol = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? rl(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -3186,7 +3186,7 @@ var il = Object.defineProperty, al = Object.getOwnPropertyDescriptor, ll = (t, e
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && il(e, r, o), o;
 };
-let Ge = class extends A {
+let Xe = class extends A {
   onQrcode() {
     L.push("Qrcode");
   }
@@ -3198,12 +3198,12 @@ let Ge = class extends A {
     let l = [];
     a ? l = i.slice(0, 7) : l = i;
     const s = !!l.length;
-    return u`<wcm-modal-header title="Connect your wallet" .onAction="${this.onQrcode}" .actionIcon="${P.QRCODE_ICON}"></wcm-modal-header>${s ? u`<wcm-modal-content><div>${l} ${a ? u`<wcm-view-all-wallets-button></wcm-view-all-wallets-button>` : null}</div></wcm-modal-content>` : null}`;
+    return u`<wcm-modal-header title="Connect your wallet" .onAction="${this.onQrcode}" .actionIcon="${T.QRCODE_ICON}"></wcm-modal-header>${s ? u`<wcm-modal-content><div>${l} ${a ? u`<wcm-view-all-wallets-button></wcm-view-all-wallets-button>` : null}</div></wcm-modal-content>` : null}`;
   }
 };
-Ge.styles = [_.globalCss, nl], Ge = ll([O("wcm-mobile-wallet-selection")], Ge);
+Xe.styles = [_.globalCss, nl], Xe = ll([O("wcm-mobile-wallet-selection")], Xe);
 const sl = M`:host{all:initial}.wcm-overlay{top:0;bottom:0;left:0;right:0;position:fixed;z-index:var(--wcm-z-index);overflow:hidden;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;background-color:var(--wcm-overlay-background-color);backdrop-filter:var(--wcm-overlay-backdrop-filter)}@media(max-height:720px) and (orientation:landscape){.wcm-overlay{overflow:scroll;align-items:flex-start;padding:20px 0}}.wcm-active{pointer-events:auto}.wcm-container{position:relative;max-width:360px;width:100%;outline:0;border-radius:var(--wcm-background-border-radius) var(--wcm-background-border-radius) var(--wcm-container-border-radius) var(--wcm-container-border-radius);border:1px solid var(--wcm-color-overlay);overflow:hidden}.wcm-card{width:100%;position:relative;border-radius:var(--wcm-container-border-radius);overflow:hidden;box-shadow:0 6px 14px -6px rgba(10,16,31,.12),0 10px 32px -4px rgba(10,16,31,.1),0 0 0 1px var(--wcm-color-overlay);background-color:var(--wcm-color-bg-1);color:var(--wcm-color-fg-1)}@media(max-width:600px){.wcm-container{max-width:440px;border-radius:var(--wcm-background-border-radius) var(--wcm-background-border-radius) 0 0}.wcm-card{border-radius:var(--wcm-container-border-radius) var(--wcm-container-border-radius) 0 0}.wcm-overlay{align-items:flex-end}}@media(max-width:440px){.wcm-container{border:0}}`;
-var cl = Object.defineProperty, dl = Object.getOwnPropertyDescriptor, Xe = (t, e, r, n) => {
+var cl = Object.defineProperty, dl = Object.getOwnPropertyDescriptor, Ge = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? dl(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
   return n && o && cl(e, r, o), o;
@@ -3261,7 +3261,7 @@ let Ut = class extends A {
     return u`<wcm-explorer-context></wcm-explorer-context><wcm-theme-context></wcm-theme-context><div id="wcm-modal" class="${J(t)}" @click="${this.onCloseModal}" role="alertdialog" aria-modal="true"><div class="wcm-container" tabindex="0">${this.open ? u`<wcm-modal-backcard></wcm-modal-backcard><div class="wcm-card"><wcm-modal-router></wcm-modal-router><wcm-modal-toast></wcm-modal-toast></div>` : null}</div></div>`;
   }
 };
-Ut.styles = [_.globalCss, sl], Xe([H()], Ut.prototype, "open", 2), Xe([H()], Ut.prototype, "active", 2), Ut = Xe([O("wcm-modal")], Ut);
+Ut.styles = [_.globalCss, sl], Ge([H()], Ut.prototype, "open", 2), Ge([H()], Ut.prototype, "active", 2), Ut = Ge([O("wcm-modal")], Ut);
 const hl = M`div{display:flex;margin-top:15px}slot{display:inline-block;margin:0 5px}wcm-button{margin:0 5px}`;
 var ul = Object.defineProperty, ml = Object.getOwnPropertyDescriptor, Wt = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? ml(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -3282,7 +3282,7 @@ let dt = class extends A {
     L.replace("WebConnecting");
   }
   render() {
-    return u`<div>${this.isRetry ? u`<slot></slot>` : null} ${this.isMobile ? u`<wcm-button .onClick="${this.onMobile}" .iconLeft="${P.MOBILE_ICON}" variant="outline">Mobile</wcm-button>` : null} ${this.isDesktop ? u`<wcm-button .onClick="${this.onDesktop}" .iconLeft="${P.DESKTOP_ICON}" variant="outline">Desktop</wcm-button>` : null} ${this.isWeb ? u`<wcm-button .onClick="${this.onWeb}" .iconLeft="${P.GLOBE_ICON}" variant="outline">Web</wcm-button>` : null}</div>`;
+    return u`<div>${this.isRetry ? u`<slot></slot>` : null} ${this.isMobile ? u`<wcm-button .onClick="${this.onMobile}" .iconLeft="${T.MOBILE_ICON}" variant="outline">Mobile</wcm-button>` : null} ${this.isDesktop ? u`<wcm-button .onClick="${this.onDesktop}" .iconLeft="${T.DESKTOP_ICON}" variant="outline">Desktop</wcm-button>` : null} ${this.isWeb ? u`<wcm-button .onClick="${this.onWeb}" .iconLeft="${T.GLOBE_ICON}" variant="outline">Web</wcm-button>` : null}</div>`;
   }
 };
 dt.styles = [_.globalCss, hl], Wt([$({ type: Boolean })], dt.prototype, "isMobile", 2), Wt([$({ type: Boolean })], dt.prototype, "isDesktop", 2), Wt([$({ type: Boolean })], dt.prototype, "isWeb", 2), Wt([$({ type: Boolean })], dt.prototype, "isRetry", 2), dt = Wt([O("wcm-platform-selection")], dt);
@@ -3303,8 +3303,8 @@ let tr = class extends A {
       if (o)
         return u`<img crossorigin="anonymous" src="${o}">`;
       const i = x.getWalletIcon({ id: n.id });
-      return i ? u`<img crossorigin="anonymous" src="${i}">` : P.WALLET_PLACEHOLDER;
-    })} ${[...Array(4 - r.length)].map(() => P.WALLET_PLACEHOLDER)}</div><wcm-text variant="xsmall-regular">View All</wcm-text></button>`;
+      return i ? u`<img crossorigin="anonymous" src="${i}">` : T.WALLET_PLACEHOLDER;
+    })} ${[...Array(4 - r.length)].map(() => T.WALLET_PLACEHOLDER)}</div><wcm-text variant="xsmall-regular">View All</wcm-text></button>`;
   }
 };
 tr.styles = [_.globalCss, pl], tr = wl([O("wcm-view-all-wallets-button")], tr);
@@ -3366,7 +3366,7 @@ let ae = class extends A {
   }
   render() {
     const { name: t, id: e, image_id: r } = C.getWalletRouterData(), { isMobile: n, isWeb: o } = x.getCachedRouterWalletPlatforms();
-    return u`<wcm-modal-header title="${t}" .onAction="${x.handleUriCopy}" .actionIcon="${P.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="${`Continue in ${t}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Connection can continue loading if ${t} is not installed on your device`}</wcm-text><wcm-platform-selection .isMobile="${n}" .isWeb="${o}" .isRetry="${!0}"><wcm-button .onClick="${this.openDesktopApp.bind(this)}" .iconRight="${P.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
+    return u`<wcm-modal-header title="${t}" .onAction="${x.handleUriCopy}" .actionIcon="${T.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="${`Continue in ${t}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Connection can continue loading if ${t} is not installed on your device`}</wcm-text><wcm-platform-selection .isMobile="${n}" .isWeb="${o}" .isRetry="${!0}"><wcm-button .onClick="${this.openDesktopApp.bind(this)}" .iconRight="${T.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };
 ae.styles = [_.globalCss, El], eo([H()], ae.prototype, "isError", 2), ae = eo([O("wcm-desktop-connecting-view")], ae);
@@ -3382,15 +3382,15 @@ let rr = class extends A {
   }
   render() {
     const { name: t, id: e, image_id: r, homepage: n } = C.getWalletRouterData();
-    return u`<wcm-modal-header title="${t}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="Not Detected" .isStale="${!0}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Download ${t} to continue. If multiple browser extensions are installed, disable non ${t} ones and try again`}</wcm-text><wcm-button .onClick="${() => this.onInstall(n)}" .iconLeft="${P.ARROW_DOWN_ICON}">Download</wcm-button></wcm-info-footer>`;
+    return u`<wcm-modal-header title="${t}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="Not Detected" .isStale="${!0}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Download ${t} to continue. If multiple browser extensions are installed, disable non ${t} ones and try again`}</wcm-text><wcm-button .onClick="${() => this.onInstall(n)}" .iconLeft="${T.ARROW_DOWN_ICON}">Download</wcm-button></wcm-info-footer>`;
   }
 };
 rr.styles = [_.globalCss, kl], rr = Ml([O("wcm-install-wallet-view")], rr);
-const Pl = M`wcm-wallet-image{border-radius:var(--wcm-wallet-icon-large-border-radius);width:96px;height:96px;margin-bottom:20px}wcm-info-footer{display:flex;width:100%}.wcm-app-store{justify-content:space-between}.wcm-app-store wcm-wallet-image{margin-right:10px;margin-bottom:0;width:28px;height:28px;border-radius:var(--wcm-wallet-icon-small-border-radius)}.wcm-app-store div{display:flex;align-items:center}.wcm-app-store wcm-button{margin-right:-10px}.wcm-note{flex-direction:column;align-items:center;padding:5px 0}.wcm-note wcm-text{text-align:center}wcm-platform-selection{margin-top:-15px}.wcm-note wcm-text{margin-top:15px}.wcm-note wcm-text span{color:var(--wcm-accent-color)}`;
-var Tl = Object.defineProperty, Rl = Object.getOwnPropertyDescriptor, ro = (t, e, r, n) => {
+const Tl = M`wcm-wallet-image{border-radius:var(--wcm-wallet-icon-large-border-radius);width:96px;height:96px;margin-bottom:20px}wcm-info-footer{display:flex;width:100%}.wcm-app-store{justify-content:space-between}.wcm-app-store wcm-wallet-image{margin-right:10px;margin-bottom:0;width:28px;height:28px;border-radius:var(--wcm-wallet-icon-small-border-radius)}.wcm-app-store div{display:flex;align-items:center}.wcm-app-store wcm-button{margin-right:-10px}.wcm-note{flex-direction:column;align-items:center;padding:5px 0}.wcm-note wcm-text{text-align:center}wcm-platform-selection{margin-top:-15px}.wcm-note wcm-text{margin-top:15px}.wcm-note wcm-text span{color:var(--wcm-accent-color)}`;
+var Pl = Object.defineProperty, Rl = Object.getOwnPropertyDescriptor, ro = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Rl(e, r) : e, i = t.length - 1, a; i >= 0; i--)
     (a = t[i]) && (o = (n ? a(e, r, o) : a(o)) || o);
-  return n && o && Tl(e, r, o), o;
+  return n && o && Pl(e, r, o), o;
 };
 let le = class extends A {
   constructor() {
@@ -3415,10 +3415,10 @@ let le = class extends A {
   }
   render() {
     const { name: t, id: e, image_id: r, app: n, mobile: o } = C.getWalletRouterData(), { isWeb: i } = x.getCachedRouterWalletPlatforms(), a = n == null ? void 0 : n.ios, l = o == null ? void 0 : o.universal;
-    return u`<wcm-modal-header title="${t}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="Tap 'Open' to continue…" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer class="wcm-note"><wcm-platform-selection .isWeb="${i}" .isRetry="${!0}"><wcm-button .onClick="${() => this.openMobileApp(!1)}" .iconRight="${P.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection>${l ? u`<wcm-text color="secondary" variant="small-thin">Still doesn't work? <span tabindex="0" @click="${() => this.openMobileApp(!0)}">Try this alternate link</span></wcm-text>` : null}</wcm-info-footer><wcm-info-footer class="wcm-app-store"><div><wcm-wallet-image walletId="${e}" imageId="${W(r)}"></wcm-wallet-image><wcm-text>${`Get ${t}`}</wcm-text></div><wcm-button .iconRight="${P.ARROW_RIGHT_ICON}" .onClick="${() => this.onGoToAppStore(a)}" variant="ghost">App Store</wcm-button></wcm-info-footer>`;
+    return u`<wcm-modal-header title="${t}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="Tap 'Open' to continue…" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer class="wcm-note"><wcm-platform-selection .isWeb="${i}" .isRetry="${!0}"><wcm-button .onClick="${() => this.openMobileApp(!1)}" .iconRight="${T.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection>${l ? u`<wcm-text color="secondary" variant="small-thin">Still doesn't work? <span tabindex="0" @click="${() => this.openMobileApp(!0)}">Try this alternate link</span></wcm-text>` : null}</wcm-info-footer><wcm-info-footer class="wcm-app-store"><div><wcm-wallet-image walletId="${e}" imageId="${W(r)}"></wcm-wallet-image><wcm-text>${`Get ${t}`}</wcm-text></div><wcm-button .iconRight="${T.ARROW_RIGHT_ICON}" .onClick="${() => this.onGoToAppStore(a)}" variant="ghost">App Store</wcm-button></wcm-info-footer>`;
   }
 };
-le.styles = [_.globalCss, Pl], ro([H()], le.prototype, "isError", 2), le = ro([O("wcm-mobile-connecting-view")], le);
+le.styles = [_.globalCss, Tl], ro([H()], le.prototype, "isError", 2), le = ro([O("wcm-mobile-connecting-view")], le);
 const Sl = M`wcm-info-footer{flex-direction:column;align-items:center;display:flex;width:100%;padding:5px 0}wcm-text{text-align:center}`;
 var Nl = Object.defineProperty, Ll = Object.getOwnPropertyDescriptor, Dl = (t, e, r, n) => {
   for (var o = n > 1 ? void 0 : n ? Ll(e, r) : e, i = t.length - 1, a; i >= 0; i--)
@@ -3428,7 +3428,7 @@ var Nl = Object.defineProperty, Ll = Object.getOwnPropertyDescriptor, Dl = (t, e
 let or = class extends A {
   render() {
     const { name: t, id: e, image_id: r } = C.getWalletRouterData(), { isDesktop: n, isWeb: o } = x.getCachedRouterWalletPlatforms();
-    return u`<wcm-modal-header title="${t}" .onAction="${x.handleUriCopy}" .actionIcon="${P.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr walletId="${e}" imageId="${W(r)}"></wcm-walletconnect-qr></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Scan this QR Code with your phone's camera or inside ${t} app`}</wcm-text><wcm-platform-selection .isDesktop="${n}" .isWeb="${o}"></wcm-platform-selection></wcm-info-footer>`;
+    return u`<wcm-modal-header title="${t}" .onAction="${x.handleUriCopy}" .actionIcon="${T.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr walletId="${e}" imageId="${W(r)}"></wcm-walletconnect-qr></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Scan this QR Code with your phone's camera or inside ${t} app`}</wcm-text><wcm-platform-selection .isDesktop="${n}" .isWeb="${o}"></wcm-platform-selection></wcm-info-footer>`;
   }
 };
 or.styles = [_.globalCss, Sl], or = Dl([O("wcm-mobile-qr-connecting-view")], or);
@@ -3439,7 +3439,7 @@ var Bl = Object.defineProperty, Ul = Object.getOwnPropertyDescriptor, Wl = (t, e
 };
 let nr = class extends A {
   render() {
-    return u`<wcm-modal-header title="Scan the code" .onAction="${x.handleUriCopy}" .actionIcon="${P.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr></wcm-walletconnect-qr></wcm-modal-content>`;
+    return u`<wcm-modal-header title="Scan the code" .onAction="${x.handleUriCopy}" .actionIcon="${T.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr></wcm-walletconnect-qr></wcm-modal-content>`;
   }
 };
 nr.styles = [_.globalCss], nr = Wl([O("wcm-qrcode-view")], nr);
@@ -3528,11 +3528,11 @@ let se = class extends A {
   }
   render() {
     const { name: t, id: e, image_id: r } = C.getWalletRouterData(), { isMobile: n, isDesktop: o } = x.getCachedRouterWalletPlatforms(), i = C.isMobile();
-    return u`<wcm-modal-header title="${t}" .onAction="${x.handleUriCopy}" .actionIcon="${P.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="${`Continue in ${t}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`${t} web app has opened in a new tab. Go there, accept the connection, and come back`}</wcm-text><wcm-platform-selection .isMobile="${n}" .isDesktop="${i ? !1 : o}" .isRetry="${!0}"><wcm-button .onClick="${this.openWebWallet.bind(this)}" .iconRight="${P.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
+    return u`<wcm-modal-header title="${t}" .onAction="${x.handleUriCopy}" .actionIcon="${T.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${e}" imageId="${W(r)}" label="${`Continue in ${t}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`${t} web app has opened in a new tab. Go there, accept the connection, and come back`}</wcm-text><wcm-platform-selection .isMobile="${n}" .isDesktop="${i ? !1 : o}" .isRetry="${!0}"><wcm-button .onClick="${this.openWebWallet.bind(this)}" .iconRight="${T.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };
 se.styles = [_.globalCss, Zl], oo([H()], se.prototype, "isError", 2), se = oo([O("wcm-web-connecting-view")], se);
 export {
   Ut as WcmModal,
-  X as WcmQrCode
+  G as WcmQrCode
 };
