@@ -6,7 +6,7 @@ type WalletState = {
     setChainId: (chainId: string) => void;
     onDisconnect: () => void;
 };
-declare const useWalletStore: import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<WalletState>, "persist"> & {
+export declare const useWalletStore: import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<WalletState>, "persist"> & {
     persist: {
         setOptions: (options: Partial<import("zustand/middleware").PersistOptions<WalletState, WalletState>>) => void;
         clearStorage: () => void;
@@ -17,4 +17,4 @@ declare const useWalletStore: import("zustand").UseBoundStore<Omit<import("zusta
         getOptions: () => Partial<import("zustand/middleware").PersistOptions<WalletState, WalletState>>;
     };
 }>;
-export default useWalletStore;
+export {};

@@ -4,7 +4,7 @@ import { EventsFilter, GetEventsRequest, GetEventsResponse } from '@puzzlehq/sdk
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
 import { useRequestQuery } from './wc/useRequest.js';
-import useWalletStore from '../store.js';
+import { useWalletStore } from '../store.js';
 
 type UseEventsParams = {
   filter?: EventsFilter,
@@ -24,7 +24,7 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
     enabled: !!session && !!account,
     wcParams: {
       topic: session?.topic ?? '',
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'getEvents',

@@ -5,7 +5,7 @@ import { Event } from '@puzzlehq/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useRequestQuery } from './wc/useRequest.js';
-import useWalletStore from '../store.js';
+import { useWalletStore } from '../store.js';
 
 type UseEventParams = {
   id?: string;
@@ -24,7 +24,7 @@ export const useEvent = ( {id, address, multisig = false}: UseEventParams ) => {
     enabled: isEnabled,
     wcParams: {
       topic: session?.topic,
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'getEvent',

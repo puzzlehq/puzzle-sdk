@@ -12,10 +12,10 @@ type WalletState = {
   onDisconnect: () => void;
 };
 
-const useWalletStore = create<WalletState>()(
+export const useWalletStore = create<WalletState>()(
   persist((set, get) => ({
     account: undefined,
-    chainId: 'aleo:1', // todo - figure out how to populate this from useConnect
+    chainId: 'aleo:3', // todo - figure out how to populate this from useConnect
     setAccount: (account: PuzzleAccount | undefined) => {
       set({ account });
     },
@@ -34,5 +34,3 @@ const useWalletStore = create<WalletState>()(
     name: 'puzzle-wallet-store'
   })
 );
-
-export default useWalletStore;

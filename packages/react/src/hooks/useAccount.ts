@@ -5,7 +5,7 @@ import { useSession } from './wc/useSession.js';
 import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import useWalletStore from '../store.js';
+import { useWalletStore } from '../store.js';
 import { useRequestQuery } from './wc/useRequest.js';
 
 export const shortenAddress = (
@@ -36,7 +36,7 @@ export const useAccount = () => {
     enabled: !!session,
     wcParams: {
       topic: session?.topic,
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'getSelectedAccount'

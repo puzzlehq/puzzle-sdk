@@ -8,7 +8,7 @@ import { useSession } from './wc/useSession.js';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useRequestQuery } from './wc/useRequest.js';
-import useWalletStore from '../store.js';
+import { useWalletStore } from '../store.js';
 
 type UseBalanceParams = {
   address?: string;
@@ -25,7 +25,7 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
     enabled: !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'getBalance',

@@ -28,7 +28,7 @@ export const getEvent = async ({
   const fetchEvent = async () => {
     const response: GetEventResponse = await connection.request({
       topic: session.topic,
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'getEvent',

@@ -1,6 +1,6 @@
 import { GetRecordsRequest, GetRecordsResponse, RecordsFilter, log_sdk } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
-import useWalletStore from '../store.js';
+import { useWalletStore } from '../store.js';
 import { useSession } from './wc/useSession.js';
 import { useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
@@ -32,7 +32,7 @@ export const useRecords = ( { address, multisig = false, filter, page }: UseReco
     enabled: (multisig ? !!address : true) && !!session && !!account,
     wcParams: {
       topic: session?.topic,
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'getRecords',

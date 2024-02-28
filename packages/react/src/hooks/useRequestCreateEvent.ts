@@ -16,7 +16,7 @@ export const useRequestCreateEvent = (
 
   const { request, data: wc_data, error: wc_error, loading } = useRequest<CreateEventResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: 'aleo:1',
+    chainId: 'aleo:3',
     request: {
       jsonrpc: '2.0',
       method: 'requestCreateEvent',

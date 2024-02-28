@@ -30,4 +30,5 @@ subDirs.forEach(subDir => {
 
 // Write the index.d.ts file
 fs.writeFileSync(indexFilePath, indexFileContent);
-console.log('Generated index.d.ts with content:\n', indexFileContent);
+console.log('Generated index.d.ts with content:');
+console.log(indexFileContent);

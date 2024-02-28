@@ -1,7 +1,7 @@
 import { SessionTypes } from '@walletconnect/types'
 import { WalletConnectModalSignInstance, emitter, getWalletConnectModalSignClient, wc_aleo_chains, wc_aleo_methods, wc_events } from '@puzzlehq/sdk-core'
 import { useAsyncAction } from './wc/_useAsyncAction.js'
-import useWalletStore from '../store.js'
+import { useWalletStore } from '../store.js'
 import { shortenAddress } from './useAccount.js'
 import { useSession } from './wc/useSession.js'
 

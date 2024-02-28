@@ -30,7 +30,7 @@ export const requestSignature = async ({
   try {
     const response: SignatureResponse = await connection.request({
       topic: session.topic,
-      chainId: 'aleo:1',
+      chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
         method: 'requestSignature',

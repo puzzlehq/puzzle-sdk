@@ -396,7 +396,7 @@ let dh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-BjK0qeal.js");
+      await import("./index-Blqt_wNo.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Ht.setIsUiLoaded(!0);
     }
@@ -8630,7 +8630,7 @@ const Hu = [
   "createSharedState",
   "importSharedState",
   "requestSignature"
-], Oo = ["aleo:1"], Wu = ["chainChanged", "accountSelected", "selectedAccountSynced", "sharedAccountSynced"], fb = "f0aaeffe71b636da453fce042d79d723", pb = {
+], Oo = ["aleo:3"], Wu = ["chainChanged", "accountSelected", "selectedAccountSynced", "sharedAccountSynced"], fb = "f0aaeffe71b636da453fce042d79d723", pb = {
   standaloneChains: Oo,
   enableExplorer: !1,
   enableAccountView: !0,
@@ -8676,7 +8676,7 @@ const Hu = [
       events: Wu
     }
   }
-}, gb = "@puzzlehq/sdk-core", yb = "Puzzle SDK", mb = "0.2.18", vb = "Your portal to privacy", bb = "./dist/puzzle.cjs.js", wb = "./dist/puzzle.es.js", _b = "./dist/puzzle.umd.js", Eb = "./dist/types/index.d.ts", Sb = {
+}, gb = "@puzzlehq/sdk-core", yb = "Puzzle SDK", mb = "0.2.21", vb = "Your portal to privacy", bb = "./dist/puzzle.cjs.js", wb = "./dist/puzzle.es.js", _b = "./dist/puzzle.umd.js", Eb = "./dist/types/index.d.ts", Sb = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -8777,7 +8777,7 @@ const h_ = async () => {
   try {
     return await t.request({
       topic: e.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "getSelectedAccount"
@@ -8794,7 +8794,7 @@ const h_ = async () => {
   try {
     return await e.request({
       topic: r.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "getBalance",
@@ -8837,7 +8837,7 @@ const h_ = async () => {
   try {
     return await e.request({
       topic: r.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "requestCreateEvent",
@@ -8858,7 +8858,7 @@ const h_ = async () => {
   try {
     return await t.request({
       topic: e.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "createSharedState",
@@ -8876,7 +8876,7 @@ const h_ = async () => {
   try {
     return await e.request({
       topic: r.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "decrypt",
@@ -8915,7 +8915,7 @@ const h_ = async () => {
     return { event: void 0, error: "no session or connection" };
   const s = async () => await r.request({
     topic: i.topic,
-    chainId: "aleo:1",
+    chainId: "aleo:3",
     request: {
       jsonrpc: "2.0",
       method: "getEvent",
@@ -8938,7 +8938,7 @@ const h_ = async () => {
   (t == null ? void 0 : t.programId) === "" && (t.programId = void 0);
   const i = async (s = 0) => await e.request({
     topic: r.topic,
-    chainId: "aleo:1",
+    chainId: "aleo:3",
     request: {
       jsonrpc: "2.0",
       method: "getEvents",
@@ -8961,7 +8961,7 @@ const h_ = async () => {
   try {
     return await e.request({
       topic: r.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "importSharedState",
@@ -8984,7 +8984,7 @@ const h_ = async () => {
     return { error: "no session or connection" };
   const n = async (a = 0) => await i.request({
     topic: s.topic,
-    chainId: "aleo:1",
+    chainId: "aleo:3",
     request: {
       jsonrpc: "2.0",
       method: "getRecords",
@@ -11732,7 +11732,7 @@ const T_ = Xt.nativeEnum(Jn), N_ = Xt.nativeEnum(Xn), A_ = Xt.nativeEnum(eo), R_
   try {
     return await r.request({
       topic: i.topic,
-      chainId: "aleo:1",
+      chainId: "aleo:3",
       request: {
         jsonrpc: "2.0",
         method: "requestSignature",
