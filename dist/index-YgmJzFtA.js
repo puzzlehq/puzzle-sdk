@@ -407,7 +407,7 @@ let eg = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-2OnyPn3p.js");
+      await import("./index-5oquN8-M.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Sr.setIsUiLoaded(!0);
     }
@@ -8683,7 +8683,7 @@ const Wc = [
       events: Gc
     }
   }
-}, rE = "@puzzlehq/sdk", nE = "Puzzle SDK", sE = "0.2.6", iE = "Your portal to privacy", oE = "./dist/puzzle.cjs.js", aE = "./dist/puzzle.es.js", cE = "./dist/puzzle.umd.js", uE = "./dist/types/src/index.d.ts", lE = {
+}, rE = "@puzzlehq/sdk", nE = "Puzzle SDK", sE = "0.2.7", iE = "Your portal to privacy", oE = "./dist/puzzle.cjs.js", aE = "./dist/puzzle.es.js", cE = "./dist/puzzle.umd.js", uE = "./dist/types/src/index.d.ts", lE = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -17526,7 +17526,7 @@ var sI = (t, e = !1) => {
     const e = fD(() => {
       const [r] = wt(this, is), [n] = wt(this, os), [s] = wt(this, as), [i] = wt(this, cs), [a] = wt(this, ss);
       let o;
-      wt(this, us) ? o = wt(this, us) : (o = Xx(() => import("./N66J3ZXT-0STvqKod.js")), Jt(this, us, o)), aO(wt(this, fi));
+      wt(this, us) ? o = wt(this, us) : (o = Xx(() => import("./N66J3ZXT-OrHrr7bW.js")), Jt(this, us, o)), aO(wt(this, fi));
       const u = this;
       return Qx(o, Yx({
         get queryFlavor() {
