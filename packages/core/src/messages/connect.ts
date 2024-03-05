@@ -42,6 +42,6 @@ export const connect = async () => {
 
     return newSession;
   } catch (e) {
-    console.error('connect error', (e as Error).message);
+    console.error('connect error', e);
   }
 };

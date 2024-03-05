@@ -31,17 +31,15 @@ export const createSharedState =
     };
 
     if (hasDesktopConnection()) {
-      console.log('createSharedState: test 1');
       try {
         const response: CreateSharedStateResponse =
           await window.aleo.puzzleWalletClient.createSharedState.mutation(
             mutation,
           );
-        console.log('createSharedState: test 2', response);
         return response;
       } catch (e) {
+        console.error('createSharedState error', e);
         const error = (e as Error).message;
-        console.error('createSharedState error', error);
         return { error };
       }
     }
@@ -51,8 +49,8 @@ export const createSharedState =
         await connection.request(mutation);
       return response;
     } catch (e) {
+      console.error('createSharedState error', e);
       const error = (e as Error).message;
-      console.error('createSharedState error', error);
       return { error };
     }
   };

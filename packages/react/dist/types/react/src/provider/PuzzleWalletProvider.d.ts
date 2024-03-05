@@ -2,7 +2,7 @@ import { QueryClient } from '@tanstack/react-query';
 type PuzzleWalletProviderProps = {
     dAppName: string;
     dAppDescription: string;
-    dAppUrl: string;
+    dAppUrl?: string;
     dAppIconURL: string;
     children: React.ReactNode;
     debugQuery?: boolean;

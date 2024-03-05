@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { GetSelectedAccountResponse } from '@puzzlehq/sdk-core';
+import { GetSelectedAccountResponse, hasDesktopConnection } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useWalletStore } from '../store.js';
-import { useRequestQuery } from './wc/useRequest.js';
+import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 
 export const shortenAddress = (
   address?: string,
@@ -35,22 +35,33 @@ export const useAccount = () => {
     state.onDisconnect,
   ]);
 
+  const useQueryFunction = hasDesktopConnection()
+    ? useExtensionRequestQuery
+    : useRequestQuery;
+
+  const query = {
+    topic: session?.topic,
+    chainId: 'aleo:3',
+    request: {
+      jsonrpc: '2.0',
+      method: 'getSelectedAccount',
+    },
+  };
+
   const {
     refetch,
     data: wc_data,
     error: wc_error,
     isLoading: loading,
-  } = useRequestQuery<GetSelectedAccountResponse | undefined>({
+  } = useQueryFunction<GetSelectedAccountResponse | undefined>({
     queryKey: ['useAccount', session?.topic],
     enabled: !!session,
-    wcParams: {
-      topic: session?.topic,
-      chainId: 'aleo:3',
-      request: {
-        jsonrpc: '2.0',
-        method: 'getSelectedAccount',
-      },
+    fetchFunction: async () => {
+      const response: GetSelectedAccountResponse =
+        await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);
+      return response;
     },
+    wcParams: query,
   });
 
   useOnSessionEvent(({ params, topic }) => {

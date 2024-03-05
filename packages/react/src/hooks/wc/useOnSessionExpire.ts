@@ -1,6 +1,6 @@
 import type { WalletConnectModalEventCallback } from '@walletconnect/modal-sign-html';
 import { useEffect } from 'react';
-import { getWalletConnectModalSignClient } from '../../../../core/src/client.js';
+import { getWalletConnectModalSignClient } from '@puzzlehq/sdk-core';
 
 export function useOnSessionExpire(callback: WalletConnectModalEventCallback) {
   useEffect(() => {

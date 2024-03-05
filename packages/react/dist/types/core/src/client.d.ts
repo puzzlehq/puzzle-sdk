@@ -6,7 +6,7 @@ export type WalletConnectModalSignInstance = InstanceType<typeof WalletConnectMo
 export declare function configureConnection(options: {
     dAppName: string;
     dAppDescription: string;
-    dAppUrl: string;
+    dAppUrl?: string;
     dAppIconURL: string;
     projectId?: string;
     onDisconnect?: () => any;

@@ -50,15 +50,13 @@ export const getRecords = async ({
   };
 
   if (hasDesktopConnection()) {
-    console.log('getRecords: test 1');
     try {
       const response: GetRecordsResponse =
         await window.aleo.puzzleWalletClient.getRecords.query(query);
-      console.log('getRecords: test 2', response);
       return response;
     } catch (e) {
+      console.error('getRecords error', e);
       const error = (e as Error).message;
-      console.error('getRecords error', error);
       return { error };
     }
   }
@@ -72,8 +70,8 @@ export const getRecords = async ({
     const response = await fetchPage();
     return response;
   } catch (e) {
+    console.error('getRecords error', e);
     const error = (e as Error).message;
-    console.error('getRecords error', error);
     return { error };
   }
 };

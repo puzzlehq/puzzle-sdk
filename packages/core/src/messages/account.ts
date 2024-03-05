@@ -27,12 +27,9 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
   };
 
   if (hasDesktopConnection()) {
-    console.log('getSelectedAccount: test 1');
-    console.log(session);
     try {
       const response: GetSelectedAccountResponse =
         await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);
-      console.log('getSelectedAccount: test 2', response);
       return response;
     } catch (e) {
       console.error('getAccount error', e);
@@ -45,8 +42,8 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
       await connection.request(query);
     return response;
   } catch (e) {
+    console.error('getAccount error', e);
     const error = (e as Error).message;
-    console.error('getAccount error', error);
     return { error };
   }
 };

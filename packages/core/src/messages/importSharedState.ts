@@ -39,17 +39,15 @@ export const importSharedState = async (
   };
 
   if (hasDesktopConnection()) {
-    console.log('importSharedState: test 1');
     try {
       const response: ImportSharedStateResponse =
         await window.aleo.puzzleWalletClient.importSharedState.mutation(
           mutation,
         );
-      console.log('importSharedState: test 2', response);
       return response;
     } catch (e) {
+      console.error('importSharedState error', e);
       const error = (e as Error).message;
-      console.error('importSharedState error', error);
       return { error };
     }
   }
@@ -59,8 +57,8 @@ export const importSharedState = async (
       await connection.request(mutation);
     return response;
   } catch (e) {
+    console.error('importSharedState error', e);
     const error = (e as Error).message;
-    console.error('importSharedState error', error);
     return { error };
   }
 };

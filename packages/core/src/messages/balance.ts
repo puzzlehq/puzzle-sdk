@@ -44,15 +44,13 @@ export const getBalance = async ({
   };
 
   if (hasDesktopConnection()) {
-    console.log('getBalance: test 1');
     try {
       const response: GetBalancesResponse =
         await window.aleo.puzzleWalletClient.getBalance.query(query);
-      console.log('getBalance: test 2 response', response);
       return response;
     } catch (e) {
       const error = (e as Error).message;
-      console.error('getBalance error', error);
+      console.error('getBalance error', e);
       return { error };
     }
   }
@@ -62,7 +60,7 @@ export const getBalance = async ({
     return response;
   } catch (e) {
     const error = (e as Error).message;
-    console.error('getBalance error', error);
+    console.error('getBalance error', e);
     return { error };
   }
 };

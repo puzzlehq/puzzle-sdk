@@ -24,8 +24,8 @@ export const disconnect = async (): Promise<{ error?: string }> => {
     }
     return {};
   } catch (e) {
+    console.error('error disconnecting', e);
     const error = (e as Error).message;
-    console.error('error disconnecting', error);
     return { error };
   }
 };

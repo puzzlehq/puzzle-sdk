@@ -3,6 +3,7 @@ import {
   WalletConnectModalSignInstance,
   emitter,
   getWalletConnectModalSignClient,
+  checkForDesktopConnection,
   wc_aleo_chains,
   wc_aleo_methods,
   wc_events,
@@ -11,10 +12,6 @@ import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
 import { shortenAddress } from './useAccount.js';
 import { useSession } from './wc/useSession.js';
-import {
-  checkForDesktopConnection,
-  hasDesktopConnection,
-} from '../../../core/src/utils/clientInfo.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
 

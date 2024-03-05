@@ -35,7 +35,7 @@ export const decrypt = async (
     });
     return response;
   } catch (e) {
-    console.error('decrypt error', (e as Error).message);
+    console.error('decrypt error', e);
     return { error: (e as Error).message };
   }
 };

@@ -50,15 +50,13 @@ export const getEvents = async (
   };
 
   if (hasDesktopConnection()) {
-    console.log('getEvents: test 1');
     try {
       const response: GetEventsResponse =
         await window.aleo.puzzleWalletClient.getEvents.query(query);
-      console.log('getEvents: test 2', response);
       return response;
     } catch (e) {
+      console.error('getEvents error', e);
       const error = (e as Error).message;
-      console.error('getEvents error', error);
       return { error };
     }
   }
@@ -72,8 +70,8 @@ export const getEvents = async (
     const response = await fetchPage();
     return response;
   } catch (e) {
+    console.error('getEvents error', e);
     const error = (e as Error).message;
-    console.error('getEvents error', error);
     return { error };
   }
 };

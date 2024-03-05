@@ -19,7 +19,7 @@ export type WalletConnectModalSignInstance = InstanceType<
 export async function configureConnection(options: {
   dAppName: string;
   dAppDescription: string;
-  dAppUrl: string;
+  dAppUrl?: string;
   dAppIconURL: string;
   projectId?: string;
   onDisconnect?: () => any;
@@ -44,7 +44,7 @@ export async function configureConnection(options: {
     metadata: {
       name: options.dAppName,
       description: options.dAppDescription,
-      url: options.dAppUrl,
+      url: window ? window.location.hostname : options.dAppUrl ?? 'NO URL',
       icons: [options.dAppIconURL],
     },
     modalOptions: { ...web3modal_puzzle_props },

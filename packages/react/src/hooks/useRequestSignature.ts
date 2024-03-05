@@ -1,8 +1,7 @@
 import { SessionTypes } from '@walletconnect/types';
-import { SignatureRequest, SignatureResponse } from '@puzzlehq/sdk-core';
+import { SignatureRequest, SignatureResponse, log_sdk } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
 import { useRequest } from './wc/useRequest.js';
-import { log_sdk } from '../../../core/src/utils/logger.js';
 import { useSession } from './wc/useSession.js';
 
 export const useRequestSignature = (message: string, address?: string) => {

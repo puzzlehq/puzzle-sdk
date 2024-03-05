@@ -3,11 +3,12 @@ import {
   Balance,
   GetBalancesRequest,
   GetBalancesResponse,
+  hasDesktopConnection
 } from '@puzzlehq/sdk-core';
-import { useSession } from './wc/useSession.js';
 import { SessionTypes } from '@walletconnect/types';
+import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useRequestQuery } from './wc/useRequest.js';
+import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 
 type UseBalanceParams = {
@@ -19,12 +20,29 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
+  const useQueryFunction = hasDesktopConnection()
+    ? useExtensionRequestQuery
+    : useRequestQuery;
+
+  const query = {
+    topic: session?.topic,
+    chainId: 'aleo:3',
+    request: {
+      jsonrpc: '2.0',
+      method: 'getBalance',
+      params: {
+        assetId: undefined,
+        address,
+      } as GetBalancesRequest,
+    },
+  };
+
   const {
     refetch,
     data: wc_data,
     error: wc_error,
     isLoading: loading,
-  } = useRequestQuery<GetBalancesResponse | undefined>({
+  } = useQueryFunction<GetBalancesResponse | undefined>({
     queryKey: [
       'useBalance',
       address,
@@ -33,18 +51,12 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
       session?.topic,
     ],
     enabled: !!session && !!account && (multisig ? !!address : true),
-    wcParams: {
-      topic: session?.topic,
-      chainId: 'aleo:3',
-      request: {
-        jsonrpc: '2.0',
-        method: 'getBalance',
-        params: {
-          assetId: undefined,
-          address,
-        } as GetBalancesRequest,
-      },
+    fetchFunction: async () => {
+      const response: GetBalancesResponse =
+        await window.aleo.puzzleWalletClient.getBalance.query(query);
+      return response;
     },
+    wcParams: query,
   });
 
   useOnSessionEvent(({ params, topic }) => {

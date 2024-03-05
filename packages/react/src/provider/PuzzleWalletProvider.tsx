@@ -8,7 +8,7 @@ import { useWalletStore } from '../store.js';
 type PuzzleWalletProviderProps = {
   dAppName: string;
   dAppDescription: string;
-  dAppUrl: string;
+  dAppUrl?: string;
   dAppIconURL: string;
   children: React.ReactNode;
   debugQuery?: boolean;
@@ -36,7 +36,7 @@ export const PuzzleWalletProvider = ({
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>      
       {debugQuery && <ReactQueryDevtools initialIsOpen={false} />}
       {children}
     </QueryClientProvider>

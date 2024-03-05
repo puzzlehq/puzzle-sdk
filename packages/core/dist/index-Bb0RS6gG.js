@@ -396,7 +396,7 @@ let gh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-DpyyKo78.js");
+      await import("./index-hRTKT3hw.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Wt.setIsUiLoaded(!0);
     }
@@ -8686,7 +8686,7 @@ const mw = {
       events: Gu
     }
   }
-}, ww = "@puzzlehq/sdk-core", bw = "Puzzle SDK", _w = "0.2.32-beta.1", Ew = "Your portal to privacy", Sw = "./dist/puzzle.cjs.js", xw = "./dist/puzzle.es.js", Dw = "./dist/puzzle.umd.js", Iw = "./dist/types/index.d.ts", Ow = {
+}, ww = "@puzzlehq/sdk-core", bw = "Puzzle SDK", _w = "0.2.32-beta.1", Ew = "Your portal to privacy", Sw = "./dist/puzzle.cjs.js", xw = "./dist/puzzle.es.js", Dw = "./dist/puzzle.umd.js", Iw = "./dist/types/src/index.d.ts", Ow = {
   ".": {
     import: "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -8707,7 +8707,8 @@ const mw = {
   "@walletconnect/types": "^2.11.2",
   "@walletconnect/utils": "^2.11.2",
   debug: "^4.3.4",
-  events: "^3.3.0"
+  events: "^3.3.0",
+  ws: "^8.16.0"
 }, Rw = {
   buffer: "^6.0.3"
 }, Pw = [
@@ -8751,7 +8752,7 @@ async function g_(t) {
     metadata: {
       name: t.dAppName,
       description: t.dAppDescription,
-      url: t.dAppUrl,
+      url: window ? window.location.hostname : t.dAppUrl ?? "NO URL",
       icons: [t.dAppIconURL]
     },
     modalOptions: { ...Sc }
@@ -8789,18 +8790,22 @@ async function zt() {
   });
 }
 const jw = async (t) => {
-  if (!!!(window != null && window.aleo.puzzleWalletClient))
+  var r;
+  if (!!!((r = window == null ? void 0 : window.aleo) != null && r.puzzleWalletClient))
     return localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1;
   try {
     return await window.aleo.puzzleWalletClient.isConnected.query(
       { sessionTopic: t }
     ) ? (localStorage.setItem("puzzle-hasDesktopConnection", "true"), !0) : (localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1);
-  } catch (r) {
-    return console.warn(r), localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1;
+  } catch (s) {
+    return console.warn(s), localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1;
   }
-}, es = () => !(window != null && window.aleo.puzzleWalletClient) ? !1 : localStorage.getItem(
-  "puzzle-hasDesktopConnection"
-) === "true", y_ = async () => {
+}, es = () => {
+  var r;
+  return !((r = window == null ? void 0 : window.aleo) != null && r.puzzleWalletClient) ? !1 : localStorage.getItem(
+    "puzzle-hasDesktopConnection"
+  ) === "true";
+}, y_ = async () => {
   const t = await zt(), e = await t.getSession();
   if (!e || !t)
     return { error: "no session or connection" };
@@ -8812,20 +8817,16 @@ const jw = async (t) => {
       method: "getSelectedAccount"
     }
   };
-  if (es()) {
-    console.log("getSelectedAccount: test 1"), console.log(e);
+  if (es())
     try {
-      const s = await window.aleo.puzzleWalletClient.getSelectedAccount.query(r);
-      return console.log("getSelectedAccount: test 2", s), s;
+      return await window.aleo.puzzleWalletClient.getSelectedAccount.query(r);
     } catch (s) {
       return console.error("getAccount error", s), { error: s.message };
     }
-  }
   try {
     return await t.request(r);
   } catch (s) {
-    const i = s.message;
-    return console.error("getAccount error", i), { error: i };
+    return console.error("getAccount error", s), { error: s.message };
   }
 }, m_ = async ({
   address: t
@@ -8845,21 +8846,18 @@ const jw = async (t) => {
       }
     }
   };
-  if (es()) {
-    console.log("getBalance: test 1");
+  if (es())
     try {
-      const i = await window.aleo.puzzleWalletClient.getBalance.query(s);
-      return console.log("getBalance: test 2 response", i), i;
+      return await window.aleo.puzzleWalletClient.getBalance.query(s);
     } catch (i) {
       const n = i.message;
-      return console.error("getBalance error", n), { error: n };
+      return console.error("getBalance error", i), { error: n };
     }
-  }
   try {
     return await e.request(s);
   } catch (i) {
     const n = i.message;
-    return console.error("getBalance error", n), { error: n };
+    return console.error("getBalance error", i), { error: n };
   }
 }, v_ = async () => {
   const t = await zt();
@@ -8880,7 +8878,7 @@ const jw = async (t) => {
     });
     return Ju.emit("session_change"), r && await jw(r.topic), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE"), r;
   } catch (r) {
-    console.error("connect error", r.message);
+    console.error("connect error", r);
   }
 }, w_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
@@ -8901,8 +8899,7 @@ const jw = async (t) => {
       }
     });
   } catch (i) {
-    const n = i.message;
-    return console.error("createEvent error", n), { error: n };
+    return console.error("createEvent error", i), { error: i.message };
   }
 }, b_ = async () => {
   const t = await zt(), e = await (t == null ? void 0 : t.getSession());
@@ -8917,23 +8914,18 @@ const jw = async (t) => {
       params: {}
     }
   };
-  if (es()) {
-    console.log("createSharedState: test 1");
+  if (es())
     try {
-      const s = await window.aleo.puzzleWalletClient.createSharedState.mutation(
+      return await window.aleo.puzzleWalletClient.createSharedState.mutation(
         r
       );
-      return console.log("createSharedState: test 2", s), s;
     } catch (s) {
-      const i = s.message;
-      return console.error("createSharedState error", i), { error: i };
+      return console.error("createSharedState error", s), { error: s.message };
     }
-  }
   try {
     return await t.request(r);
   } catch (s) {
-    const i = s.message;
-    return console.error("createSharedState error", i), { error: i };
+    return console.error("createSharedState error", s), { error: s.message };
   }
 }, __ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
@@ -8952,7 +8944,7 @@ const jw = async (t) => {
       }
     });
   } catch (s) {
-    return console.error("decrypt error", s.message), { error: s.message };
+    return console.error("decrypt error", s), { error: s.message };
   }
 }, E_ = async () => {
   const t = await zt(), e = await (t == null ? void 0 : t.getSession());
@@ -8969,8 +8961,7 @@ const jw = async (t) => {
     }
     return {};
   } catch (r) {
-    const s = r.message;
-    return console.error("error disconnecting", s), { error: s };
+    return console.error("error disconnecting", r), { error: r.message };
   }
 }, S_ = async ({
   id: t,
@@ -8991,22 +8982,17 @@ const jw = async (t) => {
       }
     }
   };
-  if (es()) {
-    console.log("getEvent: test 1");
+  if (es())
     try {
-      const a = await window.aleo.puzzleWalletClient.getEvent.query(i);
-      return console.log("getEvent: test 2", a), a;
+      return await window.aleo.puzzleWalletClient.getEvent.query(i);
     } catch (a) {
-      const o = a.message;
-      return console.error("getEvents error", o), { error: o };
+      return console.error("getEvent error", a), { error: a.message };
     }
-  }
   const n = async () => await r.request(i);
   try {
     return await n();
   } catch (a) {
-    const o = a.message;
-    return console.error("getEvents error", o), { error: o };
+    return console.error("getEvents error", a), { error: a.message };
   }
 }, x_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
@@ -9025,22 +9011,17 @@ const jw = async (t) => {
       }
     }
   };
-  if (es()) {
-    console.log("getEvents: test 1");
+  if (es())
     try {
-      const n = await window.aleo.puzzleWalletClient.getEvents.query(s);
-      return console.log("getEvents: test 2", n), n;
+      return await window.aleo.puzzleWalletClient.getEvents.query(s);
     } catch (n) {
-      const a = n.message;
-      return console.error("getEvents error", a), { error: a };
+      return console.error("getEvents error", n), { error: n.message };
     }
-  }
   const i = async (n = 0) => await e.request(s);
   try {
     return await i();
   } catch (n) {
-    const a = n.message;
-    return console.error("getEvents error", a), { error: a };
+    return console.error("getEvents error", n), { error: n.message };
   }
 }, D_ = async (t) => {
   const e = await zt(), r = await (e == null ? void 0 : e.getSession());
@@ -9057,23 +9038,18 @@ const jw = async (t) => {
       }
     }
   };
-  if (es()) {
-    console.log("importSharedState: test 1");
+  if (es())
     try {
-      const i = await window.aleo.puzzleWalletClient.importSharedState.mutation(
+      return await window.aleo.puzzleWalletClient.importSharedState.mutation(
         s
       );
-      return console.log("importSharedState: test 2", i), i;
     } catch (i) {
-      const n = i.message;
-      return console.error("importSharedState error", n), { error: n };
+      return console.error("importSharedState error", i), { error: i.message };
     }
-  }
   try {
     return await e.request(s);
   } catch (i) {
-    const n = i.message;
-    return console.error("importSharedState error", n), { error: n };
+    return console.error("importSharedState error", i), { error: i.message };
   }
 }, I_ = async ({
   address: t,
@@ -9096,22 +9072,17 @@ const jw = async (t) => {
       }
     }
   };
-  if (es()) {
-    console.log("getRecords: test 1");
+  if (es())
     try {
-      const o = await window.aleo.puzzleWalletClient.getRecords.query(n);
-      return console.log("getRecords: test 2", o), o;
+      return await window.aleo.puzzleWalletClient.getRecords.query(n);
     } catch (o) {
-      const h = o.message;
-      return console.error("getRecords error", h), { error: h };
+      return console.error("getRecords error", o), { error: o.message };
     }
-  }
   const a = async (o = 0) => await s.request(n);
   try {
     return await a();
   } catch (o) {
-    const h = o.message;
-    return console.error("getRecords error", h), { error: h };
+    return console.error("getRecords error", o), { error: o.message };
   }
 };
 var Te;
@@ -11855,8 +11826,7 @@ const L_ = Xt.nativeEnum(Qn), F_ = Xt.nativeEnum(eo), M_ = Xt.nativeEnum(ro), U_
       }
     });
   } catch (i) {
-    const n = i.message;
-    return console.error("signature error", n), { error: n };
+    return console.error("signature error", i), { error: i.message };
   }
 }, j_ = 20;
 var so = { exports: {} }, xn, Tc;

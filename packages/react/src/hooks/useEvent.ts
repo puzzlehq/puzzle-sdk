@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
-import { GetEventRequest, GetEventResponse } from '@puzzlehq/sdk-core';
+import { GetEventRequest, GetEventResponse, hasDesktopConnection } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useRequestQuery } from './wc/useRequest.js';
+import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 
 type UseEventParams = {
@@ -16,6 +16,23 @@ type UseEventParams = {
 export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
+
+  const useQueryFunction = hasDesktopConnection()
+    ? useExtensionRequestQuery
+    : useRequestQuery;
+
+  const query = {
+    topic: session?.topic,
+    chainId: 'aleo:3',
+    request: {
+      jsonrpc: '2.0',
+      method: 'getEvent',
+      params: {
+        id: id ?? '',
+        address,
+      } as GetEventRequest,
+    },
+  };
 
   const isEnabled =
     id !== undefined &&
@@ -29,7 +46,7 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
     data: wc_data,
     error: wc_error,
     isLoading: loading,
-  } = useRequestQuery<GetEventResponse | undefined>({
+  } = useQueryFunction<GetEventResponse | undefined>({
     queryKey: [
       'useEvent',
       account?.address,
@@ -39,18 +56,12 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
       session?.topic,
     ],
     enabled: isEnabled,
-    wcParams: {
-      topic: session?.topic,
-      chainId: 'aleo:3',
-      request: {
-        jsonrpc: '2.0',
-        method: 'getEvent',
-        params: {
-          id: id ?? '',
-          address,
-        } as GetEventRequest,
-      },
+    fetchFunction: async () => {
+      const response: GetEventResponse =
+        await window.aleo.puzzleWalletClient.getEvent.query(query);
+      return response;
     },
+    wcParams: query,
   });
 
   // listen for wallet-originating account updates

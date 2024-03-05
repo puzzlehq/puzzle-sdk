@@ -41,8 +41,8 @@ export const requestSignature = async ({
     });
     return response;
   } catch (e) {
+    console.error('signature error', e);
     const error = (e as Error).message;
-    console.error('signature error', error);
     return { error };
   }
 };

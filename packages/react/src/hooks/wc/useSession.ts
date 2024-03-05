@@ -3,7 +3,7 @@ import {
   WalletConnectModalSignInstance,
   emitter,
   getWalletConnectModalSignClient,
-} from '../../../../core/src/client.js';
+} from '@puzzlehq/sdk-core';
 import { useOnSessionDelete } from './useOnSessionDelete.js';
 import { useOnSessionExpire } from './useOnSessionExpire.js';
 import { useOnSessionUpdate } from './useOnSessionUpdate.js';
@@ -41,11 +41,12 @@ export function useSession() {
     }
     getActiveSession();
 
+
     // WORKAROUND: This needs to be replaced with new session_connect event
     emitter.on('session_change', getActiveSession);
 
     return () => {
-      emitter.off('session_change', getActiveSession);
+      emitter.off ? emitter.off('session_change', getActiveSession) : undefined;
     };
   }, []);
 

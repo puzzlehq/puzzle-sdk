@@ -3,13 +3,14 @@ import {
   GetRecordsResponse,
   RecordsFilter,
   log_sdk,
+  hasDesktopConnection
 } from '@puzzlehq/sdk-core';
+import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
 import { useWalletStore } from '../store.js';
 import { useSession } from './wc/useSession.js';
-import { useRequestQuery } from './wc/useRequest.js';
+import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { type RecordWithPlaintext } from '@puzzlehq/types';
 
 type UseRecordsParams = {
   address?: string;
@@ -35,12 +36,30 @@ export const useRecords = ({
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
+  const useQueryFunction = hasDesktopConnection()
+    ? useExtensionRequestQuery
+    : useRequestQuery;
+
+  const query = {
+    topic: session?.topic,
+    chainId: 'aleo:3',
+    request: {
+      jsonrpc: '2.0',
+      method: 'getRecords',
+      params: {
+        address,
+        filter,
+        page,
+      } as GetRecordsRequest,
+    },
+  }
+
   const {
     refetch,
     data: wc_data,
     error: wc_error,
     isLoading: loading,
-  } = useRequestQuery<GetRecordsResponse | undefined>({
+  } = useQueryFunction<GetRecordsResponse | undefined>({
     queryKey: [
       'useRecords',
       account?.address,
@@ -51,19 +70,12 @@ export const useRecords = ({
       session?.topic,
     ],
     enabled: (multisig ? !!address : true) && !!session && !!account,
-    wcParams: {
-      topic: session?.topic,
-      chainId: 'aleo:3',
-      request: {
-        jsonrpc: '2.0',
-        method: 'getRecords',
-        params: {
-          address,
-          filter,
-          page,
-        } as GetRecordsRequest,
-      },
+    fetchFunction: async () => {
+      const response: GetRecordsResponse =
+        await window.aleo.puzzleWalletClient.getRecords.query(query);
+      return response;
     },
+    wcParams: query
   });
 
   const readyToRequest =

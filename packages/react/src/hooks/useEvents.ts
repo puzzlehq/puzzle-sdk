@@ -4,11 +4,14 @@ import {
   EventsFilter,
   GetEventsRequest,
   GetEventsResponse,
+  hasDesktopConnection,
+
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
-import { useOnSessionEvent, useSession } from '../index.js';
-import { useRequestQuery } from './wc/useRequest.js';
+import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
+import { useSession } from './wc/useSession.js';
+import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 
 type UseEventsParams = {
   filter?: EventsFilter;
@@ -23,26 +26,37 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
     filter.programId = undefined;
   }
 
+  const useQueryFunction = hasDesktopConnection()
+    ? useExtensionRequestQuery
+    : useRequestQuery;
+
+  const query = {
+    topic: session?.topic ?? '',
+    chainId: 'aleo:3',
+    request: {
+      jsonrpc: '2.0',
+      method: 'getEvents',
+      params: {
+        filter,
+        page,
+      } as GetEventsRequest,
+    },
+  };
+
   const {
     refetch,
     data: wc_data,
     error: wc_error,
     isLoading: loading,
-  } = useRequestQuery<GetEventsResponse | undefined>({
+  } = useQueryFunction<GetEventsResponse | undefined>({
     queryKey: ['useEvents', account?.address, filter, page, session?.topic],
     enabled: !!session && !!account,
-    wcParams: {
-      topic: session?.topic ?? '',
-      chainId: 'aleo:3',
-      request: {
-        jsonrpc: '2.0',
-        method: 'getEvents',
-        params: {
-          filter,
-          page,
-        } as GetEventsRequest,
-      },
+    fetchFunction: async () => {
+      const response: GetEventsResponse =
+        await window.aleo.puzzleWalletClient.getEvents.query(query);
+      return response;
     },
+    wcParams: query,
   });
 
   // listen for wallet-originating account updates

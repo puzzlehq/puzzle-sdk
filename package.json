@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "type-check": "turbo run type-check",
     "pretty": "pnpm exec prettier . --write"
   },
   "dependencies": {
@@ -17,7 +18,8 @@
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
     "debug": "^4.3.4",
-    "events": "^3.3.0"
+    "events": "^3.3.0",
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",
