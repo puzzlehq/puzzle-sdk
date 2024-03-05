@@ -6,7 +6,7 @@ type UseRequestParams<Result> = {
     queryOptions?: UseQueryOptions<Result>;
     enabled?: boolean;
 };
-export declare function useRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions }: UseRequestParams<Result>): import("@tanstack/react-query").UseQueryResult<Result, unknown>;
+export declare function useRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions, }: UseRequestParams<Result>): import("@tanstack/react-query").UseQueryResult<Result, unknown>;
 export declare function useRequest<Result>(params: WalletConnectModalSignRequestArguments): {
     data: Result | undefined;
     error: unknown;

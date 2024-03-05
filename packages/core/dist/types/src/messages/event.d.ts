@@ -7,4 +7,4 @@ export type GetEventResponse = {
     event?: Event;
     error?: string;
 };
-export declare const getEvent: ({ id, address }: GetEventRequest) => Promise<GetEventResponse>;
+export declare const getEvent: ({ id, address, }: GetEventRequest) => Promise<GetEventResponse>;

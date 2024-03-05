@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from '@tanstack/react-query';
 type PuzzleWalletProviderProps = {
     dAppName: string;
     dAppDescription: string;
@@ -8,5 +8,5 @@ type PuzzleWalletProviderProps = {
     debugQuery?: boolean;
 };
 export declare const queryClient: QueryClient;
-export declare const PuzzleWalletProvider: ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children, debugQuery }: PuzzleWalletProviderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const PuzzleWalletProvider: ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children, debugQuery, }: PuzzleWalletProviderProps) => import("react/jsx-runtime").JSX.Element;
 export {};
