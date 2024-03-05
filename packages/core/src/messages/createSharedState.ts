@@ -1,5 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
+import { hasDesktopConnection } from '../utils/clientInfo.js';
 
 export type CreateSharedStateResponse = {
   data?: {
@@ -19,16 +20,35 @@ export const createSharedState =
       return { error: 'no session or connection' };
     }
 
+    const mutation = {
+      topic: session.topic,
+      chainId: 'aleo:3',
+      request: {
+        jsonrpc: '2.0',
+        method: 'createSharedState',
+        params: {},
+      },
+    };
+
+    if (hasDesktopConnection()) {
+      console.log('createSharedState: test 1');
+      try {
+        const response: CreateSharedStateResponse =
+          await window.aleo.puzzleWalletClient.createSharedState.mutation(
+            mutation,
+          );
+        console.log('createSharedState: test 2', response);
+        return response;
+      } catch (e) {
+        const error = (e as Error).message;
+        console.error('createSharedState error', error);
+        return { error };
+      }
+    }
+
     try {
-      const response: CreateSharedStateResponse = await connection.request({
-        topic: session.topic,
-        chainId: 'aleo:3',
-        request: {
-          jsonrpc: '2.0',
-          method: 'createSharedState',
-          params: {},
-        },
-      });
+      const response: CreateSharedStateResponse =
+        await connection.request(mutation);
       return response;
     } catch (e) {
       const error = (e as Error).message;

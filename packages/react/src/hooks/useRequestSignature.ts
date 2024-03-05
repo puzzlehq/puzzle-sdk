@@ -8,7 +8,12 @@ import { useSession } from './wc/useSession.js';
 export const useRequestSignature = (message: string, address?: string) => {
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const { request, data: wc_data, error: wc_error, loading } = useRequest<SignatureResponse | undefined>({
+  const {
+    request,
+    data: wc_data,
+    error: wc_error,
+    loading,
+  } = useRequest<SignatureResponse | undefined>({
     topic: session?.topic ?? '',
     chainId: 'aleo:3',
     request: {
@@ -21,8 +26,10 @@ export const useRequestSignature = (message: string, address?: string) => {
     },
   });
 
-  const error: string | undefined  = wc_error ? (wc_error as Error).message : (wc_data && wc_data.error);
-  const response: SignatureResponse | undefined =  wc_data;
+  const error: string | undefined = wc_error
+    ? (wc_error as Error).message
+    : wc_data && wc_data.error;
+  const response: SignatureResponse | undefined = wc_data;
 
   const requestSignature = () => {
     if (session && !loading) {

@@ -1,17 +1,21 @@
 import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
-import { EventsFilter, GetEventsRequest, GetEventsResponse } from '@puzzlehq/sdk-core';
+import {
+  EventsFilter,
+  GetEventsRequest,
+  GetEventsResponse,
+} from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent, useSession } from '../index.js';
 import { useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 
 type UseEventsParams = {
-  filter?: EventsFilter,
-  page?: number
-}
+  filter?: EventsFilter;
+  page?: number;
+};
 
-export const useEvents = ( { filter, page }: UseEventsParams ) => {
+export const useEvents = ({ filter, page }: UseEventsParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
@@ -19,7 +23,12 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
     filter.programId = undefined;
   }
 
-  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetEventsResponse | undefined>({
+  const {
+    refetch,
+    data: wc_data,
+    error: wc_error,
+    isLoading: loading,
+  } = useRequestQuery<GetEventsResponse | undefined>({
     queryKey: ['useEvents', account?.address, filter, page, session?.topic],
     enabled: !!session && !!account,
     wcParams: {
@@ -31,9 +40,9 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
         params: {
           filter,
           page,
-        } as GetEventsRequest
-      }
-    }
+        } as GetEventsRequest,
+      },
+    },
   });
 
   // listen for wallet-originating account updates
@@ -56,12 +65,14 @@ export const useEvents = ( { filter, page }: UseEventsParams ) => {
     if (readyToRequest && !loading) {
       refetch();
     }
-  }
+  };
 
-  const error: string | undefined = wc_error ? (wc_error as Error).message : (wc_data && wc_data.error);
-  const response: GetEventsResponse | undefined =  wc_data;
+  const error: string | undefined = wc_error
+    ? (wc_error as Error).message
+    : wc_data && wc_data.error;
+  const response: GetEventsResponse | undefined = wc_data;
   const events: Event[] | undefined = response?.events;
   const pageCount = response?.pageCount ?? 0;
-  
+
   return { fetchPage, events, error, loading, page, pageCount };
 };

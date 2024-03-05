@@ -15,9 +15,8 @@ export type SignatureResponse = {
 
 export const requestSignature = async ({
   message,
-  address
-  }: SignatureRequest
-): Promise<SignatureResponse> => {
+  address,
+}: SignatureRequest): Promise<SignatureResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
   const session: SessionTypes.Struct | undefined =

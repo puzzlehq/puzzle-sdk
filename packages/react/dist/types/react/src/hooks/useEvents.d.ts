@@ -10,6 +10,6 @@ export declare const useEvents: ({ filter, page }: UseEventsParams) => {
     error: string | undefined;
     loading: boolean;
     page: number | undefined;
-    pageCount: any;
+    pageCount: number;
 };
 export {};

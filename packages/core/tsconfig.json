@@ -18,8 +18,11 @@
     "skipLibCheck": true,
     "strictNullChecks": true,
     "outDir": "dist",
-    "typeRoots": ["../../node_modules/@types", "./dist/types"]
+    "typeRoots": ["../../node_modules/@types", "./dist/types"],
+    "paths": {
+      "@puzzlehq/sdk-core": ["../core/src"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/global.d.ts"],
   "typeRoots": ["./dist/types"]
 }

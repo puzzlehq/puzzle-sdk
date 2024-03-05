@@ -1,49 +1,53 @@
 import { useEffect, useState } from 'react';
-import { WalletConnectModalSignInstance, emitter, getWalletConnectModalSignClient } from '../../../../core/src/client.js';
+import {
+  WalletConnectModalSignInstance,
+  emitter,
+  getWalletConnectModalSignClient,
+} from '../../../../core/src/client.js';
 import { useOnSessionDelete } from './useOnSessionDelete.js';
 import { useOnSessionExpire } from './useOnSessionExpire.js';
 import { useOnSessionUpdate } from './useOnSessionUpdate.js';
 
-type Data = Awaited<ReturnType<WalletConnectModalSignInstance['getSession']>>
+type Data = Awaited<ReturnType<WalletConnectModalSignInstance['getSession']>>;
 
 export function useSession() {
-  const [session, setSession] = useState<Data | undefined>(undefined)
+  const [session, setSession] = useState<Data | undefined>(undefined);
 
-  useOnSessionDelete(event => {
+  useOnSessionDelete((event) => {
     if (event.topic === session?.topic) {
-      setSession(undefined)
+      setSession(undefined);
     }
-  })
+  });
 
-  useOnSessionUpdate(event => {
+  useOnSessionUpdate((event) => {
     if (session && event.topic === session?.topic) {
-      const { namespaces } = event.params
-      const updatedSession = { ...session, namespaces }
-      setSession(updatedSession)
+      const { namespaces } = event.params;
+      const updatedSession = { ...session, namespaces };
+      setSession(updatedSession);
     }
-  })
+  });
 
-  useOnSessionExpire(event => {
+  useOnSessionExpire((event) => {
     if (session && event.topic === session?.topic) {
-      setSession(undefined)
+      setSession(undefined);
     }
-  })
+  });
 
   useEffect(() => {
     async function getActiveSession() {
-      const client = await getWalletConnectModalSignClient()
-      const response = await client.getSession()
-      setSession(response)
+      const client = await getWalletConnectModalSignClient();
+      const response = await client.getSession();
+      setSession(response);
     }
-    getActiveSession()
+    getActiveSession();
 
     // WORKAROUND: This needs to be replaced with new session_connect event
-    emitter.on('session_change', getActiveSession)
+    emitter.on('session_change', getActiveSession);
 
     return () => {
-      emitter.off('session_change', getActiveSession)
-    }
-  }, [])
+      emitter.off('session_change', getActiveSession);
+    };
+  }, []);
 
-  return session
+  return session;
 }

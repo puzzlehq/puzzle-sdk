@@ -1,6 +1,9 @@
 export declare const useCreateSharedState: () => {
     createSharedState: () => void;
-    data: any;
+    data: {
+        seed: string;
+        address: string;
+    } | undefined;
     loading: boolean;
     error: string | undefined;
 };

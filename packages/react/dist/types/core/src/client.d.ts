@@ -8,6 +8,7 @@ export declare function configureConnection(options: {
     dAppDescription: string;
     dAppUrl: string;
     dAppIconURL: string;
+    projectId?: string;
     onDisconnect?: () => any;
 }): Promise<void>;
 export declare function getWalletConnectModalSignClient(): Promise<WalletConnectModalSign>;

@@ -1,14 +1,15 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle SDK",
-  "version": "0.2.21",
+  "version": "0.2.24",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "pretty": "pnpm exec prettier . --write"
   },
   "dependencies": {
     "@puzzlehq/types": "1.0.11",
@@ -22,6 +23,7 @@
     "@types/chrome": "^0.0.228",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.18",
+    "prettier": "^3.2.5",
     "process": "^0.11.10",
     "typescript": "^4.9.4",
     "vite": "^5.0.10"

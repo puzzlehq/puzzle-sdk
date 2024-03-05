@@ -4,14 +4,14 @@ import { getWalletConnectModalSignClient } from '../../../../core/src/client.js'
 
 export function useOnSessionDelete(callback: WalletConnectModalEventCallback) {
   useEffect(() => {
-    getWalletConnectModalSignClient().then(client => {
-      client.onSessionDelete(callback)
-    })
+    getWalletConnectModalSignClient().then((client) => {
+      client.onSessionDelete(callback);
+    });
 
     return () => {
-      getWalletConnectModalSignClient().then(client => {
-        client.offSessionDelete(callback)
-      })
-    }
-  }, [callback])
+      getWalletConnectModalSignClient().then((client) => {
+        client.offSessionDelete(callback);
+      });
+    };
+  }, [callback]);
 }

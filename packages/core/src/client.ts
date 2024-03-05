@@ -1,7 +1,10 @@
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
-import { projectId, web3modal_puzzle_props } from './data/walletconnect.js';
+import {
+  projectId as puzzleProjectId,
+  web3modal_puzzle_props,
+} from './data/walletconnect.js';
 import EventEmitter from 'events';
-import pkg from '../package.json'
+import pkg from '../package.json';
 import { getSdkError } from '@walletconnect/utils';
 import { SessionTypes } from '@walletconnect/types';
 
@@ -14,10 +17,11 @@ export type WalletConnectModalSignInstance = InstanceType<
 >;
 
 export async function configureConnection(options: {
-  dAppName: string,
-  dAppDescription: string,
-  dAppUrl: string,
-  dAppIconURL: string,
+  dAppName: string;
+  dAppDescription: string;
+  dAppUrl: string;
+  dAppIconURL: string;
+  projectId?: string;
   onDisconnect?: () => any;
 }) {
   let disconnectSessions = false;
@@ -26,14 +30,17 @@ export async function configureConnection(options: {
   const prevVersion = localStorage.getItem('puzzle_sdk_version');
 
   if (thisVersion !== prevVersion) {
-    console.log(`${pkg.name}: Updated from ` + prevVersion + ' to ' + thisVersion + '!');
+    console.log(
+      `${pkg.name}: Updated from ` + prevVersion + ' to ' + thisVersion + '!',
+    );
     localStorage.setItem('puzzle_sdk_version', thisVersion);
     disconnectSessions = true;
   }
 
+  console.log('web3modal_puzzle_props', web3modal_puzzle_props);
+
   connection = new WalletConnectModalSign({
-    projectId,
-    
+    projectId: options.projectId ?? puzzleProjectId,
     metadata: {
       name: options.dAppName,
       description: options.dAppDescription,
@@ -44,25 +51,40 @@ export async function configureConnection(options: {
   });
 
   if (disconnectSessions) {
+    localStorage.removeItem('puzzle-hasDesktopConnection');
     try {
-      disconnectOnVersionChange(connection, options.onDisconnect)
+      disconnectOnVersionChange(connection, options.onDisconnect);
     } catch (e) {
       console.error(e);
     }
   }
-  
+
+  connection.onSessionDelete(() => {
+    localStorage.removeItem('puzzle-hasDesktopConnection');
+    options.onDisconnect && options.onDisconnect();
+  });
+
+  connection.onSessionExpire(() => {
+    localStorage.removeItem('puzzle-hasDesktopConnection');
+    options.onDisconnect && options.onDisconnect();
+  });
+
   // remove to prevent walletconnect from redirecting to the wallet page
   window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 }
 
-async function disconnectOnVersionChange(connection: WalletConnectModalSign, onDisconnect?: () => any) {
-  const session: SessionTypes.Struct | undefined = await connection?.getSession();
+async function disconnectOnVersionChange(
+  connection: WalletConnectModalSign,
+  onDisconnect?: () => any,
+) {
+  const session: SessionTypes.Struct | undefined =
+    await connection?.getSession();
   if (session) {
     console.log('Disconnecting session', session);
     onDisconnect && onDisconnect();
     connection.disconnect({
       topic: session.topic,
-      reason: getSdkError('USER_DISCONNECTED')
+      reason: getSdkError('USER_DISCONNECTED'),
     });
   }
 }

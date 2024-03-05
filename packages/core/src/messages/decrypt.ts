@@ -11,7 +11,7 @@ export type DecryptResponse = {
 };
 
 export const decrypt = async (
-  ciphertexts?: string[]
+  ciphertexts?: string[],
 ): Promise<DecryptResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -26,7 +26,7 @@ export const decrypt = async (
       topic: session.topic,
       chainId: 'aleo:3',
       request: {
-          jsonrpc: '2.0',
+        jsonrpc: '2.0',
         method: 'decrypt',
         params: {
           ciphertexts: ciphertexts,

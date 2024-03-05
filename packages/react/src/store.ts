@@ -13,24 +13,28 @@ type WalletState = {
 };
 
 export const useWalletStore = create<WalletState>()(
-  persist((set, get) => ({
-    account: undefined,
-    chainId: 'aleo:3', // todo - figure out how to populate this from useConnect
-    setAccount: (account: PuzzleAccount | undefined) => {
-      set({ account });
+  persist(
+    (set, get) => ({
+      account: undefined,
+      chainId: 'aleo:3', // todo - figure out how to populate this from useConnect
+      setAccount: (account: PuzzleAccount | undefined) => {
+        set({ account });
+      },
+      setChainId: (chainId: string) => {
+        set({ chainId });
+      },
+      onDisconnect: () => {
+        set({
+          account: undefined,
+          chainId: undefined,
+        });
+        queryClient.clear();
+        localStorage.removeItem('puzzle-hasDesktopConnection');
+        console.log('onDisconnect called!');
+      },
+    }),
+    {
+      name: 'puzzle-wallet-store',
     },
-    setChainId: (chainId: string) => {
-      set({ chainId });
-    },
-    onDisconnect: () => {
-      set({
-        account: undefined,
-        chainId: undefined,
-      })
-      queryClient.clear()
-      console.log('onDisconnect called!')
-    }
-  }), {
-    name: 'puzzle-wallet-store'
-  })
+  ),
 );

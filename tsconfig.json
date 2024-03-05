@@ -20,6 +20,6 @@
     "strictNullChecks": true,
     "outDir": "dist"
   },
-  "include": ["packages"],
+  "include": ["packages", "./packages/core/src/global.d.ts"],
   "exclude": ["node_modules"]
 }

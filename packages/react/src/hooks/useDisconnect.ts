@@ -1,4 +1,8 @@
-import { disconnect as _disconnect, emitter, getWalletConnectModalSignClient } from '@puzzlehq/sdk-core'
+import {
+  disconnect as _disconnect,
+  emitter,
+  getWalletConnectModalSignClient,
+} from '@puzzlehq/sdk-core';
 import { useSession } from './wc/useSession.js';
 import { useWalletStore } from '../store.js';
 import { SessionTypes } from '@walletconnect/types';
@@ -24,7 +28,7 @@ export function useDisconnect() {
         const client = await getWalletConnectModalSignClient();
         await client.disconnect({
           topic: session.topic,
-          reason: getSdkError('USER_DISCONNECTED')
+          reason: getSdkError('USER_DISCONNECTED'),
         });
         emitter.emit('session_change');
       } catch (e) {
@@ -39,5 +43,5 @@ export function useDisconnect() {
     }
   }
 
-  return { error, loading, disconnect }
+  return { error, loading, disconnect };
 }

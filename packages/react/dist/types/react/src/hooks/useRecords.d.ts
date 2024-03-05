@@ -7,12 +7,12 @@ type UseRecordsParams = {
     page?: number;
 };
 export declare const getFormattedRecordPlaintext: (data: any) => string;
-export declare const useRecords: ({ address, multisig, filter, page }: UseRecordsParams) => {
+export declare const useRecords: ({ address, multisig, filter, page, }: UseRecordsParams) => {
     fetchPage: () => void;
     records: RecordWithPlaintext[] | undefined;
     error: string | undefined;
     loading: boolean;
     page: number | undefined;
-    pageCount: any;
+    pageCount: number;
 };
 export {};

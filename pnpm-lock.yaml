@@ -43,6 +43,9 @@ importers:
       '@types/node':
         specifier: ^18.11.18
         version: 18.19.18
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
       process:
         specifier: ^0.11.10
         version: 0.11.10
@@ -1976,6 +1979,12 @@ packages:
       nanoid: 3.3.7
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: true
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /process-warning@1.0.0:

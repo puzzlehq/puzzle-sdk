@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk-core",
   "displayName": "Puzzle SDK",
-  "version": "0.2.21",
+  "version": "0.2.32-beta.1",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -13,7 +13,7 @@
       "import": "./dist/puzzle.es.js",
       "require": "./dist/puzzle.cjs.js",
       "browser": "./dist/puzzle.umd.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/types/src/index.d.ts"
     }
   },
   "type": "module",

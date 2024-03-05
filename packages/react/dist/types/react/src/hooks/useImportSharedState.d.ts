@@ -1,6 +1,9 @@
 export declare const useImportSharedState: (seed: string) => {
     importSharedState: () => void;
-    data: any;
+    data: {
+        address: string;
+        seed: string;
+    } | undefined;
     loading: boolean;
     error: string | undefined;
 };

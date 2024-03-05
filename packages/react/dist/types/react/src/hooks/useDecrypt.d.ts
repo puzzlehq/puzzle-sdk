@@ -1,6 +1,6 @@
 export declare const useDecrypt: (ciphertexts?: string[]) => {
     decrypt: () => void;
-    plaintexts: any;
+    plaintexts: string[] | undefined;
     loading: boolean;
     error: string | undefined;
 };

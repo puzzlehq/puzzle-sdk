@@ -15,16 +15,31 @@ export const wc_aleo_methods = [
 export const wc_aleo_chains = ['aleo:3'];
 
 // events originating from wallet
-export const wc_events = ['chainChanged', 'accountSelected', 'selectedAccountSynced', 'sharedAccountSynced'];
+export const wc_events = [
+  'chainChanged',
+  'accountSelected',
+  'selectedAccountSynced',
+  'sharedAccountSynced',
+];
 
 export const projectId = 'f0aaeffe71b636da453fce042d79d723';
 
-export const web3modal_puzzle_props = {
-  standaloneChains: wc_aleo_chains,
+function isAndroid() {
+  if (!navigator) {
+    return false;
+  }
+  return /Android/i.test(navigator.userAgent);
+}
+
+export const web3modal_puzzle_props_android = {
+  chains: wc_aleo_chains,
+  enableExplorer: true,
+  explorerRecommendedWalletIds: [projectId],
+};
+
+export const web3modal_puzzle_props_default = {
+  chains: wc_aleo_chains,
   enableExplorer: false,
-  enableAccountView: true,
-  enableNetworkView: true,
-  enableStandaloneMode: true,
   mobileWallets: [
     {
       id: 'puzzle',
@@ -55,9 +70,13 @@ export const web3modal_puzzle_props = {
   ],
   walletImages: {
     puzzle: 'https://i.imgur.com/p9tHaFC.png',
-    avail: 'https://i.imgur.com/GxNn8BO.png'
+    avail: 'https://i.imgur.com/GxNn8BO.png',
   },
 };
+
+export const web3modal_puzzle_props = isAndroid()
+  ? web3modal_puzzle_props_android
+  : web3modal_puzzle_props_default;
 
 export const signClient_puzzleProps = {
   requiredNamespaces: {

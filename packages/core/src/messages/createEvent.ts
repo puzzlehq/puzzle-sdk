@@ -31,7 +31,7 @@ export type CreateEventResponse = {
 };
 
 export const requestCreateEvent = async (
-  requestData?: CreateEventRequestData
+  requestData?: CreateEventRequestData,
 ): Promise<CreateEventResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -53,7 +53,7 @@ export const requestCreateEvent = async (
       topic: session.topic,
       chainId: 'aleo:3',
       request: {
-          jsonrpc: '2.0',
+        jsonrpc: '2.0',
         method: 'requestCreateEvent',
         params: {
           ...requestData,

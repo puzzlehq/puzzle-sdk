@@ -1,6 +1,7 @@
 import { Event, EventType } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
+import { hasDesktopConnection } from '../utils/clientInfo.js';
 
 export type EventsFilter = {
   type?: EventType;
@@ -20,7 +21,7 @@ export type GetEventsResponse = {
 };
 
 export const getEvents = async (
-  filter: EventsFilter
+  filter: EventsFilter,
 ): Promise<GetEventsResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -35,19 +36,35 @@ export const getEvents = async (
     filter.programId = undefined;
   }
 
+  const query = {
+    topic: session.topic,
+    chainId: 'aleo:3',
+    request: {
+      jsonrpc: '2.0',
+      method: 'getEvents',
+      params: {
+        filter,
+        page: 0,
+      } as GetEventsRequest,
+    },
+  };
+
+  if (hasDesktopConnection()) {
+    console.log('getEvents: test 1');
+    try {
+      const response: GetEventsResponse =
+        await window.aleo.puzzleWalletClient.getEvents.query(query);
+      console.log('getEvents: test 2', response);
+      return response;
+    } catch (e) {
+      const error = (e as Error).message;
+      console.error('getEvents error', error);
+      return { error };
+    }
+  }
+
   const fetchPage = async (page = 0) => {
-    const response: GetEventsResponse = await connection.request({
-      topic: session.topic,
-      chainId: 'aleo:3',
-      request: {
-          jsonrpc: '2.0',
-        method: 'getEvents',
-        params: {
-          filter,
-          page,
-        } as GetEventsRequest,
-      },
-    });
+    const response: GetEventsResponse = await connection.request(query);
     return response;
   };
 

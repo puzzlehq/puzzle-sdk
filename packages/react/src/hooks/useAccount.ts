@@ -12,7 +12,7 @@ export const shortenAddress = (
   address?: string,
   aleo: boolean = true,
   length: number = 4,
-  short: boolean = true
+  short: boolean = true,
 ) => {
   if (!address) return '';
   if (address.length < length) return address;
@@ -22,16 +22,25 @@ export const shortenAddress = (
   if (address.length < length * 2) return address;
   return `${address.slice(
     0,
-    length + (aleo ? 'aleo1'.length : 0)
+    length + (aleo ? 'aleo1'.length : 0),
   )}...${address.slice(address.length - length, address.length)}`;
 };
 
 export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const [account, setAccount, onDisconnect] = useWalletStore((state) => [state.account, state.setAccount, state.onDisconnect]);
+  const [account, setAccount, onDisconnect] = useWalletStore((state) => [
+    state.account,
+    state.setAccount,
+    state.onDisconnect,
+  ]);
 
-  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetSelectedAccountResponse | undefined>({
+  const {
+    refetch,
+    data: wc_data,
+    error: wc_error,
+    isLoading: loading,
+  } = useRequestQuery<GetSelectedAccountResponse | undefined>({
     queryKey: ['useAccount', session?.topic],
     enabled: !!session,
     wcParams: {
@@ -39,9 +48,9 @@ export const useAccount = () => {
       chainId: 'aleo:3',
       request: {
         jsonrpc: '2.0',
-        method: 'getSelectedAccount'
+        method: 'getSelectedAccount',
       },
-    }
+    },
   });
 
   useOnSessionEvent(({ params, topic }) => {
@@ -76,7 +85,7 @@ export const useAccount = () => {
   useOnSessionDelete(({ params, topic }) => {
     onDisconnect();
   });
-  
+
   // send initial account request...
   useEffect(() => {
     if (session && !loading) {
@@ -85,7 +94,7 @@ export const useAccount = () => {
   }, [session?.topic]);
 
   // ...and listen for a response
-  useEffect(() => { 
+  useEffect(() => {
     if (wc_data) {
       const puzzleData: GetSelectedAccountResponse | undefined = wc_data;
       const account = puzzleData?.account;
@@ -95,7 +104,9 @@ export const useAccount = () => {
     }
   }, [wc_data]);
 
-  const error: string | undefined = wc_error ? (wc_error as Error).message : (wc_data && wc_data.error);
+  const error: string | undefined = wc_error
+    ? (wc_error as Error).message
+    : wc_data && wc_data.error;
 
   return {
     account,

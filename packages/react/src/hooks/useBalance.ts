@@ -13,15 +13,25 @@ import { useWalletStore } from '../store.js';
 type UseBalanceParams = {
   address?: string;
   multisig?: boolean;
-}
+};
 
-export const useBalance = ({address, multisig}: UseBalanceParams) => {
+export const useBalance = ({ address, multisig }: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-
-  const { refetch, data: wc_data, error: wc_error, isLoading: loading } = useRequestQuery<GetBalancesResponse | undefined>({
-    queryKey: ['useBalance', address, account?.address ?? '', multisig, session?.topic],
+  const {
+    refetch,
+    data: wc_data,
+    error: wc_error,
+    isLoading: loading,
+  } = useRequestQuery<GetBalancesResponse | undefined>({
+    queryKey: [
+      'useBalance',
+      address,
+      account?.address ?? '',
+      multisig,
+      session?.topic,
+    ],
     enabled: !!session && !!account && (multisig ? !!address : true),
     wcParams: {
       topic: session?.topic,
@@ -31,16 +41,19 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
         method: 'getBalance',
         params: {
           assetId: undefined,
-          address
-        } as GetBalancesRequest
+          address,
+        } as GetBalancesRequest,
       },
-    }
+    },
   });
 
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
-    if ((eventName === 'selectedAccountSynced' && !multisig) || (eventName === 'sharedAccountSynced' && multisig && _address === address)) {
+    if (
+      (eventName === 'selectedAccountSynced' && !multisig) ||
+      (eventName === 'sharedAccountSynced' && multisig && _address === address)
+    ) {
       refetch();
     }
   });
@@ -52,8 +65,10 @@ export const useBalance = ({address, multisig}: UseBalanceParams) => {
     }
   }, [session?.topic]);
 
-  const error: string | undefined = wc_error ? (wc_error as Error).message : (wc_data && wc_data.error);
-  const response: GetBalancesResponse | undefined =  wc_data;
+  const error: string | undefined = wc_error
+    ? (wc_error as Error).message
+    : wc_data && wc_data.error;
+  const response: GetBalancesResponse | undefined = wc_data;
   const balances: Balance[] | undefined = response?.balances;
 
   return { balances, error, loading };
