@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import EventEmitter from 'events';
 import { useWalletStore } from '../store.js';
+import { useSession } from '../hooks/wc/useSession.js';
 
 type PuzzleWalletProviderProps = {
   dAppName: string;
@@ -35,8 +36,10 @@ export const PuzzleWalletProvider = ({
     EventEmitter.defaultMaxListeners = 100;
   }, []);
 
+  const session = useSession();
+
   return (
-    <QueryClientProvider client={queryClient}>      
+    <QueryClientProvider client={queryClient}>
       {debugQuery && <ReactQueryDevtools initialIsOpen={false} />}
       {children}
     </QueryClientProvider>

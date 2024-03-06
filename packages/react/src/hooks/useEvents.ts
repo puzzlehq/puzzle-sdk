@@ -5,7 +5,6 @@ import {
   GetEventsRequest,
   GetEventsResponse,
   hasDesktopConnection,
-
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';

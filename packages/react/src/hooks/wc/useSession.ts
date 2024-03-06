@@ -41,7 +41,6 @@ export function useSession() {
     }
     getActiveSession();
 
-
     // WORKAROUND: This needs to be replaced with new session_connect event
     emitter.on('session_change', getActiveSession);
 

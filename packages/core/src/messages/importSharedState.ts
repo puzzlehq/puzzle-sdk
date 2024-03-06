@@ -26,7 +26,7 @@ export const importSharedState = async (
     return { error: 'no session or connection' };
   }
 
-  const mutation = {
+  const query = {
     topic: session.topic,
     chainId: 'aleo:3',
     request: {
@@ -41,9 +41,7 @@ export const importSharedState = async (
   if (hasDesktopConnection()) {
     try {
       const response: ImportSharedStateResponse =
-        await window.aleo.puzzleWalletClient.importSharedState.mutation(
-          mutation,
-        );
+        await window.aleo.puzzleWalletClient.importSharedState.mutation(query);
       return response;
     } catch (e) {
       console.error('importSharedState error', e);
@@ -53,8 +51,7 @@ export const importSharedState = async (
   }
 
   try {
-    const response: ImportSharedStateResponse =
-      await connection.request(mutation);
+    const response: ImportSharedStateResponse = await connection.request(query);
     return response;
   } catch (e) {
     console.error('importSharedState error', e);

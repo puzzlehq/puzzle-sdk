@@ -20,7 +20,7 @@ export const createSharedState =
       return { error: 'no session or connection' };
     }
 
-    const mutation = {
+    const query = {
       topic: session.topic,
       chainId: 'aleo:3',
       request: {
@@ -34,7 +34,7 @@ export const createSharedState =
       try {
         const response: CreateSharedStateResponse =
           await window.aleo.puzzleWalletClient.createSharedState.mutation(
-            mutation,
+            query,
           );
         return response;
       } catch (e) {
@@ -46,7 +46,7 @@ export const createSharedState =
 
     try {
       const response: CreateSharedStateResponse =
-        await connection.request(mutation);
+        await connection.request(query);
       return response;
     } catch (e) {
       console.error('createSharedState error', e);

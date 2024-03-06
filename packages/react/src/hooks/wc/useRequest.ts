@@ -24,6 +24,25 @@ type UseRequestParams<Result> = {
   fetchFunction?: (request: any) => Promise<Result>;
 };
 
+export function useRequestQuery<Result>({
+  queryKey,
+  wcParams,
+  enabled,
+  queryOptions,
+}: UseRequestParams<Result>) {
+  return useQuery(
+    queryKey,
+    async () => fetchRequest<Result>(wcParams, queryKey),
+    queryOptions ?? {
+      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
+      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
+      refetchIntervalInBackground: true,
+      enabled,
+      retry: true,
+    },
+  );
+}
+
 export function useExtensionRequestQuery<Result>({
   queryKey,
   wcParams,
@@ -44,27 +63,9 @@ export function useExtensionRequestQuery<Result>({
   );
 }
 
-export function useRequestQuery<Result>({
-  queryKey,
-  wcParams,
-  enabled,
-  queryOptions,
-}: UseRequestParams<Result>) {
-  return useQuery(
-    queryKey,
-    async () => fetchRequest<Result>(wcParams, queryKey),
-    queryOptions ?? {
-      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
-      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
-      refetchIntervalInBackground: true,
-      enabled,
-      retry: true,
-    },
-  );
-}
-
 export function useRequest<Result>(
   params: WalletConnectModalSignRequestArguments,
+  fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any,
 ) {
   const { data, error, loading, setData, setError, setLoading } =
     useAsyncAction<Result>();
@@ -74,12 +75,41 @@ export function useRequest<Result>(
     try {
       setLoading(true);
       setError(undefined);
-      const response = await fetchRequest<Result>(params ?? paramsOverride);
+      const response = await fetchRequest<Result>(paramsOverride ?? params);
       setData(response);
       return response;
-    } catch (err) {
-      setError(err);
-      throw err;
+    } catch (e) {
+      setError(e);
+      console.error(e);
+      setLoading(false);
+      throw e;
+    } finally {
+      setLoading(false);
+    }
+  }
+  return { data, error, loading, request };
+}
+
+export function useExtensionRequest<Result>(
+  params: WalletConnectModalSignRequestArguments,
+  fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any,
+) {
+  const { data, error, loading, setData, setError, setLoading } =
+    useAsyncAction<Result>();
+  async function request(
+    paramsOverride?: WalletConnectModalSignRequestArguments,
+  ) {
+    try {
+      setLoading(true);
+      setError(undefined);
+      const response: Result = await fetchFunction!(paramsOverride ?? params);
+      setData(response);
+      return response;
+    } catch (e) {
+      setError(e);
+      console.error(e);
+      setLoading(false);
+      throw e;
     } finally {
       setLoading(false);
     }

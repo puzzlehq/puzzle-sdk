@@ -7,12 +7,18 @@ type UseRequestParams<Result> = {
     enabled?: boolean;
     fetchFunction?: (request: any) => Promise<Result>;
 };
-export declare function useExtensionRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions, fetchFunction, }: UseRequestParams<Result>): import("@tanstack/react-query").UseQueryResult<Result, unknown>;
 export declare function useRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions, }: UseRequestParams<Result>): import("@tanstack/react-query").UseQueryResult<Result, unknown>;
-export declare function useRequest<Result>(params: WalletConnectModalSignRequestArguments): {
+export declare function useExtensionRequestQuery<Result>({ queryKey, wcParams, enabled, queryOptions, fetchFunction, }: UseRequestParams<Result>): import("@tanstack/react-query").UseQueryResult<Result, unknown>;
+export declare function useRequest<Result>(params: WalletConnectModalSignRequestArguments, fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any): {
     data: Result | undefined;
     error: unknown;
     loading: boolean;
     request: (paramsOverride?: any) => Promise<Result | undefined>;
+};
+export declare function useExtensionRequest<Result>(params: WalletConnectModalSignRequestArguments, fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any): {
+    data: Result | undefined;
+    error: unknown;
+    loading: boolean;
+    request: (paramsOverride?: any) => Promise<Result>;
 };
 export {};

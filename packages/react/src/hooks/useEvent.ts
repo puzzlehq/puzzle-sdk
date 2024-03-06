@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
-import { GetEventRequest, GetEventResponse, hasDesktopConnection } from '@puzzlehq/sdk-core';
+import {
+  GetEventRequest,
+  GetEventResponse,
+  hasDesktopConnection,
+} from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';

@@ -3,7 +3,7 @@ import {
   Balance,
   GetBalancesRequest,
   GetBalancesResponse,
-  hasDesktopConnection
+  hasDesktopConnection,
 } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';

@@ -1,5 +1,6 @@
-export declare const useImportSharedState: (seed: string) => {
-    importSharedState: () => void;
+import { ImportSharedStateResponse } from '@puzzlehq/sdk-core';
+export declare const useImportSharedState: (seed?: string) => {
+    importSharedState: () => Promise<ImportSharedStateResponse | undefined>;
     data: {
         address: string;
         seed: string;

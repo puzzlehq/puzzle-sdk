@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
-import { GetSelectedAccountResponse, hasDesktopConnection } from '@puzzlehq/sdk-core';
+import {
+  GetSelectedAccountResponse,
+  hasDesktopConnection,
+} from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionDelete } from './wc/useOnSessionDelete.js';

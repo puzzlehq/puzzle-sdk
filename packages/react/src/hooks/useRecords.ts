@@ -3,7 +3,7 @@ import {
   GetRecordsResponse,
   RecordsFilter,
   log_sdk,
-  hasDesktopConnection
+  hasDesktopConnection,
 } from '@puzzlehq/sdk-core';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
@@ -52,7 +52,7 @@ export const useRecords = ({
         page,
       } as GetRecordsRequest,
     },
-  }
+  };
 
   const {
     refetch,
@@ -75,7 +75,7 @@ export const useRecords = ({
         await window.aleo.puzzleWalletClient.getRecords.query(query);
       return response;
     },
-    wcParams: query
+    wcParams: query,
   });
 
   const readyToRequest =

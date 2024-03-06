@@ -1,5 +1,6 @@
+import { CreateSharedStateResponse } from '@puzzlehq/sdk-core';
 export declare const useCreateSharedState: () => {
-    createSharedState: () => void;
+    createSharedState: () => Promise<CreateSharedStateResponse | undefined>;
     data: {
         seed: string;
         address: string;

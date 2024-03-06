@@ -1,28 +1,35 @@
 import { SessionTypes } from '@walletconnect/types';
 import { DecryptRequest, DecryptResponse, log_sdk } from '@puzzlehq/sdk-core';
 import { useSession } from './wc/useSession.js';
-import { useRequest } from './wc/useRequest.js';
+import { useExtensionRequest, useRequest } from './wc/useRequest.js';
+import { hasDesktopConnection } from '@puzzlehq/sdk-core';
 
 export const useDecrypt = (ciphertexts?: string[]) => {
-  log_sdk('useDecrypt', ciphertexts);
   const session: SessionTypes.Struct | undefined = useSession();
+
+  const useRequestFunction = hasDesktopConnection()
+    ? useExtensionRequest
+    : useRequest;
 
   const {
     request,
     data: wc_data,
     error: wc_error,
     loading,
-  } = useRequest<DecryptResponse | undefined>({
-    topic: session?.topic ?? '',
-    chainId: 'aleo:3',
-    request: {
-      jsonrpc: '2.0',
-      method: 'decrypt',
-      params: {
-        ciphertexts: ciphertexts!,
-      } as DecryptRequest,
+  } = useRequestFunction<DecryptResponse | undefined>(
+    {
+      topic: session?.topic ?? '',
+      chainId: 'aleo:3',
+      request: {
+        jsonrpc: '2.0',
+        method: 'decrypt',
+        params: {
+          ciphertexts: ciphertexts!,
+        } as DecryptRequest,
+      },
     },
-  });
+    (params) => window.aleo.puzzleWalletClient.decrypt.query(params),
+  );
 
   const error: string | undefined = wc_error
     ? (wc_error as Error).message
@@ -30,6 +37,7 @@ export const useDecrypt = (ciphertexts?: string[]) => {
   const response: DecryptResponse | undefined = wc_data;
 
   const decrypt = () => {
+    log_sdk('useDecrypt', ciphertexts);
     if (ciphertexts && session && !loading) {
       request();
     }
