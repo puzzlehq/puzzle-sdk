@@ -67,7 +67,7 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
       {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => {
-          return !multisig
+          return !multisig;
         },
         onData: () => refetch(),
       },
@@ -75,7 +75,7 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
         subscriptionName: 'onSharedAccountSynced',
         condition: (data) => {
           console.log('onSharedAccountSynced data', data);
-          return !!multisig && data?.address === address
+          return !!multisig && data?.address === address;
         },
         onData: () => refetch(),
       },
@@ -87,8 +87,11 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
     if (
-      (eventName === 'selectedAccountSynced' && !multisig) ||
-      (eventName === 'sharedAccountSynced' && multisig && _address === address)
+      !hasInjectedConnection() &&
+      ((eventName === 'selectedAccountSynced' && !multisig) ||
+        (eventName === 'sharedAccountSynced' &&
+          multisig &&
+          _address === address))
     ) {
       refetch();
     }

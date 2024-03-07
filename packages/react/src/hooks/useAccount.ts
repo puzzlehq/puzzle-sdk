@@ -80,7 +80,7 @@ export const useAccount = () => {
       {
         subscriptionName: 'onAccountSelected',
         condition: (data) => {
-          return !!data?.address
+          return !!data?.address;
         },
         onData: (data) => {
           const network = data.chain?.split(':')[0] ?? 'aleo';
@@ -99,7 +99,12 @@ export const useAccount = () => {
   // listen for mobile wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
-    if (eventName === 'accountSelected' && session && session.topic === topic) {
+    if (
+      !hasInjectedConnection() &&
+      eventName === 'accountSelected' &&
+      session &&
+      session.topic === topic
+    ) {
       const address = params.event.address ?? params.event.data.address;
 
       const network = params.chainId.split(':')[0];

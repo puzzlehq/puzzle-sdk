@@ -83,7 +83,7 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
   // listen for mobile wallet-originating account updates
   useOnSessionEvent(({ params }) => {
     const eventName = params.event.name;
-    if (eventName === 'selectedAccountSynced') {
+    if (!hasInjectedConnection() && eventName === 'selectedAccountSynced') {
       refetch();
     }
   });

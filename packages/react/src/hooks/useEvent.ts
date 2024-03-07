@@ -82,7 +82,7 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
         subscriptionName: 'onSharedAccountSynced',
         condition: (data) => {
           console.log('onSharedAccountSynced data', data);
-          return !!id && !!multisig && data?.address === address
+          return !!id && !!multisig && data?.address === address;
         },
         onData: () => refetch(),
       },
@@ -94,11 +94,12 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
     if (
-      (!!id && eventName === 'selectedAccountSynced' && !multisig) ||
-      (!!id &&
-        eventName === 'sharedAccountSynced' &&
-        multisig &&
-        _address === address)
+      !hasInjectedConnection() &&
+      ((!!id && eventName === 'selectedAccountSynced' && !multisig) ||
+        (!!id &&
+          eventName === 'sharedAccountSynced' &&
+          multisig &&
+          _address === address))
     ) {
       refetch();
     }

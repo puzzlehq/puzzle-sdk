@@ -97,7 +97,7 @@ export const useRecords = ({
         subscriptionName: 'onSharedAccountSynced',
         condition: (data) => {
           console.log('onSharedAccountSynced data', data);
-          return !!multisig && data?.address === address
+          return !!multisig && data?.address === address;
         },
         onData: () => refetch(),
       },
@@ -108,8 +108,11 @@ export const useRecords = ({
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
     if (
-      (eventName === 'selectedAccountSynced' && !multisig) ||
-      (eventName === 'sharedAccountSynced' && multisig && _address === address)
+      !hasInjectedConnection() &&
+      ((eventName === 'selectedAccountSynced' && !multisig) ||
+        (eventName === 'sharedAccountSynced' &&
+          multisig &&
+          _address === address))
     ) {
       refetch();
     }
