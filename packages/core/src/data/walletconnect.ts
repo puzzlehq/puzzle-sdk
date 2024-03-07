@@ -12,7 +12,7 @@ export const wc_aleo_methods = [
   'importSharedState',
   'requestSignature',
 ];
-export const wc_aleo_chains = ['aleo:3'];
+export const wc_aleo_chains = ['aleo:1'];
 
 // events originating from wallet
 export const wc_events = [

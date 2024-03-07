@@ -1,6 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
-import { hasDesktopConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
 
 export type ImportSharedStateRequest = {
   seed: string;
@@ -28,7 +28,7 @@ export const importSharedState = async (
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'importSharedState',
@@ -38,7 +38,7 @@ export const importSharedState = async (
     },
   };
 
-  if (hasDesktopConnection()) {
+  if (hasInjectedConnection()) {
     try {
       const response: ImportSharedStateResponse =
         await window.aleo.puzzleWalletClient.importSharedState.mutation(query);

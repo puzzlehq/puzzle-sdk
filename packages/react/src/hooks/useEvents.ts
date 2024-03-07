@@ -4,13 +4,15 @@ import {
   EventsFilter,
   GetEventsRequest,
   GetEventsResponse,
-  hasDesktopConnection,
+  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
+import { useDebounce } from 'use-debounce';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 type UseEventsParams = {
   filter?: EventsFilter;
@@ -25,13 +27,13 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
     filter.programId = undefined;
   }
 
-  const useQueryFunction = hasDesktopConnection()
+  const useQueryFunction = hasInjectedConnection()
     ? useExtensionRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic ?? '',
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getEvents',
@@ -42,13 +44,21 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
     },
   };
 
+  const [debouncedFilter] = useDebounce(filter, 500);
+
   const {
     refetch,
     data: wc_data,
     error: wc_error,
     isLoading: loading,
   } = useQueryFunction<GetEventsResponse | undefined>({
-    queryKey: ['useEvents', account?.address, filter, page, session?.topic],
+    queryKey: [
+      'useEvents',
+      account?.address,
+      debouncedFilter,
+      page,
+      session?.topic,
+    ],
     enabled: !!session && !!account,
     fetchFunction: async () => {
       const response: GetEventsResponse =
@@ -58,8 +68,20 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
     wcParams: query,
   });
 
-  // listen for wallet-originating account updates
-  useOnSessionEvent(({ id, params, topic }) => {
+  // listen for injected wallet-originating account updates
+  useInjectedSubscriptions({
+    session,
+    configs: [
+      {
+        subscriptionName: 'onSelectedAccountSynced',
+        condition: () => true,
+        onData: () => refetch(),
+      },
+    ],
+  });
+
+  // listen for mobile wallet-originating account updates
+  useOnSessionEvent(({ params }) => {
     const eventName = params.event.name;
     if (eventName === 'selectedAccountSynced') {
       refetch();

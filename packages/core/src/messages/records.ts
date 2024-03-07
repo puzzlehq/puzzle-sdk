@@ -1,7 +1,7 @@
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-import { hasDesktopConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
 
 export type RecordsFilter = {
   programIds?: string[];
@@ -37,7 +37,7 @@ export const getRecords = async ({
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',
@@ -49,7 +49,7 @@ export const getRecords = async ({
     },
   };
 
-  if (hasDesktopConnection()) {
+  if (hasInjectedConnection()) {
     try {
       const response: GetRecordsResponse =
         await window.aleo.puzzleWalletClient.getRecords.query(query);

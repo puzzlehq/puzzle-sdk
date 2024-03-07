@@ -2,12 +2,12 @@ import { SessionTypes } from '@walletconnect/types';
 import { DecryptRequest, DecryptResponse, log_sdk } from '@puzzlehq/sdk-core';
 import { useSession } from './wc/useSession.js';
 import { useExtensionRequest, useRequest } from './wc/useRequest.js';
-import { hasDesktopConnection } from '@puzzlehq/sdk-core';
+import { hasInjectedConnection } from '@puzzlehq/sdk-core';
 
 export const useDecrypt = (ciphertexts?: string[]) => {
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const useRequestFunction = hasDesktopConnection()
+  const useRequestFunction = hasInjectedConnection()
     ? useExtensionRequest
     : useRequest;
 
@@ -19,7 +19,7 @@ export const useDecrypt = (ciphertexts?: string[]) => {
   } = useRequestFunction<DecryptResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: 'aleo:3',
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'decrypt',

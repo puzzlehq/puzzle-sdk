@@ -17,7 +17,7 @@ export const disconnect = async (): Promise<{ error?: string }> => {
         reason: getSdkError('USER_DISCONNECTED'),
         topic: session.topic,
       });
-      localStorage.removeItem('puzzle-hasDesktopConnection');
+      localStorage.removeItem('puzzle-hasInjectedConnection');
       emitter.emit('session_change');
     } catch (e) {
       console.warn(e);

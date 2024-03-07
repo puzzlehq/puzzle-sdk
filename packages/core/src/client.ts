@@ -51,7 +51,7 @@ export async function configureConnection(options: {
   });
 
   if (disconnectSessions) {
-    localStorage.removeItem('puzzle-hasDesktopConnection');
+    localStorage.removeItem('puzzle-hasInjectedConnection');
     try {
       disconnectOnVersionChange(connection, options.onDisconnect);
     } catch (e) {
@@ -60,12 +60,12 @@ export async function configureConnection(options: {
   }
 
   connection.onSessionDelete(() => {
-    localStorage.removeItem('puzzle-hasDesktopConnection');
+    localStorage.removeItem('puzzle-hasInjectedConnection');
     options.onDisconnect && options.onDisconnect();
   });
 
   connection.onSessionExpire(() => {
-    localStorage.removeItem('puzzle-hasDesktopConnection');
+    localStorage.removeItem('puzzle-hasInjectedConnection');
     options.onDisconnect && options.onDisconnect();
   });
 

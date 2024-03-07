@@ -18,7 +18,7 @@ export const useRequestSignature = (message: string, address?: string) => {
     loading,
   } = useRequest<SignatureResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'requestSignature',

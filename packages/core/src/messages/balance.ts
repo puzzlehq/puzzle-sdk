@@ -1,6 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
-import { hasDesktopConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
 
 export type GetBalancesRequest = {
   assetId?: string;
@@ -32,7 +32,7 @@ export const getBalance = async ({
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getBalance',
@@ -43,7 +43,7 @@ export const getBalance = async ({
     },
   };
 
-  if (hasDesktopConnection()) {
+  if (hasInjectedConnection()) {
     try {
       const response: GetBalancesResponse =
         await window.aleo.puzzleWalletClient.getBalance.query(query);

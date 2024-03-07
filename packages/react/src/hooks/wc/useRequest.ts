@@ -80,7 +80,6 @@ export function useRequest<Result>(
       return response;
     } catch (e) {
       setError(e);
-      console.error(e);
       setLoading(false);
       throw e;
     } finally {
@@ -107,7 +106,6 @@ export function useExtensionRequest<Result>(
       return response;
     } catch (e) {
       setError(e);
-      console.error(e);
       setLoading(false);
       throw e;
     } finally {

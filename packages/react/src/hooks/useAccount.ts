@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   GetSelectedAccountResponse,
-  hasDesktopConnection,
+  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';
@@ -10,6 +10,8 @@ import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useWalletStore } from '../store.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { Unsubscribable } from '@trpc/server/observable';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 export const shortenAddress = (
   address?: string,
@@ -32,19 +34,23 @@ export const shortenAddress = (
 export const useAccount = () => {
   const session: SessionTypes.Struct | undefined = useSession();
 
+  const [subscription, setSubscription] = useState<
+    Unsubscribable | undefined
+  >();
+
   const [account, setAccount, onDisconnect] = useWalletStore((state) => [
     state.account,
     state.setAccount,
     state.onDisconnect,
   ]);
 
-  const useQueryFunction = hasDesktopConnection()
+  const useQueryFunction = hasInjectedConnection()
     ? useExtensionRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getSelectedAccount',
@@ -67,6 +73,30 @@ export const useAccount = () => {
     wcParams: query,
   });
 
+  // listen for injected wallet-originating account updates
+  useInjectedSubscriptions({
+    session,
+    configs: [
+      {
+        subscriptionName: 'onAccountSelected',
+        condition: (data) => {
+          return !!data?.address
+        },
+        onData: (data) => {
+          const network = data.chain?.split(':')[0] ?? 'aleo';
+          const chainId = data.chain?.split(':')[1] ?? '1';
+          setAccount({
+            network,
+            chainId,
+            address: data.address,
+            shortenedAddress: shortenAddress(data.address),
+          });
+        },
+      },
+    ],
+  });
+
+  // listen for mobile wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     if (eventName === 'accountSelected' && session && session.topic === topic) {

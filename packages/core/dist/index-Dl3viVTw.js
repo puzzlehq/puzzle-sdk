@@ -396,7 +396,7 @@ let gh = class {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-CjrEYn-2.js");
+      await import("./index-B4R013gi.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), Wt.setIsUiLoaded(!0);
     }
@@ -8630,7 +8630,7 @@ const Zu = [
   "createSharedState",
   "importSharedState",
   "requestSignature"
-], en = ["aleo:3"], Gu = [
+], en = ["aleo:1"], Gu = [
   "chainChanged",
   "accountSelected",
   "selectedAccountSynced",
@@ -8757,7 +8757,7 @@ async function g_(t) {
     },
     modalOptions: { ...Sc }
   }), e) {
-    localStorage.removeItem("puzzle-hasDesktopConnection");
+    localStorage.removeItem("puzzle-hasInjectedConnection");
     try {
       $w(Dr, t.onDisconnect);
     } catch (i) {
@@ -8765,9 +8765,9 @@ async function g_(t) {
     }
   }
   Dr.onSessionDelete(() => {
-    localStorage.removeItem("puzzle-hasDesktopConnection"), t.onDisconnect && t.onDisconnect();
+    localStorage.removeItem("puzzle-hasInjectedConnection"), t.onDisconnect && t.onDisconnect();
   }), Dr.onSessionExpire(() => {
-    localStorage.removeItem("puzzle-hasDesktopConnection"), t.onDisconnect && t.onDisconnect();
+    localStorage.removeItem("puzzle-hasInjectedConnection"), t.onDisconnect && t.onDisconnect();
   }), window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
 }
 async function $w(t, e) {
@@ -8792,18 +8792,18 @@ async function zt() {
 const jw = async (t) => {
   var r;
   if (!!!((r = window == null ? void 0 : window.aleo) != null && r.puzzleWalletClient))
-    return localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1;
+    return localStorage.setItem("puzzle-hasInjectedConnection", "false"), !1;
   try {
     return await window.aleo.puzzleWalletClient.isConnected.query(
       { sessionTopic: t }
-    ) ? (localStorage.setItem("puzzle-hasDesktopConnection", "true"), !0) : (localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1);
+    ) ? (localStorage.setItem("puzzle-hasInjectedConnection", "true"), !0) : (localStorage.setItem("puzzle-hasInjectedConnection", "false"), !1);
   } catch (s) {
-    return console.warn(s), localStorage.setItem("puzzle-hasDesktopConnection", "false"), !1;
+    return console.warn(s), localStorage.setItem("puzzle-hasInjectedConnection", "false"), !1;
   }
 }, Rr = () => {
   var r;
   return !((r = window == null ? void 0 : window.aleo) != null && r.puzzleWalletClient) ? !1 : localStorage.getItem(
-    "puzzle-hasDesktopConnection"
+    "puzzle-hasInjectedConnection"
   ) === "true";
 }, y_ = async () => {
   const t = await zt(), e = await t.getSession();
@@ -8811,7 +8811,7 @@ const jw = async (t) => {
     return { error: "no session or connection" };
   const r = {
     topic: e.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "getSelectedAccount"
@@ -8836,7 +8836,7 @@ const jw = async (t) => {
     return { error: "no session or connection" };
   const s = {
     topic: r.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "getBalance",
@@ -8888,7 +8888,7 @@ const jw = async (t) => {
   try {
     return await e.request({
       topic: r.topic,
-      chainId: "aleo:3",
+      chainId: "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "requestCreateEvent",
@@ -8907,7 +8907,7 @@ const jw = async (t) => {
     return { error: "no session or connection" };
   const r = {
     topic: e.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "createSharedState",
@@ -8933,7 +8933,7 @@ const jw = async (t) => {
     return { error: "no session or connection" };
   const s = {
     topic: r.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "decrypt",
@@ -8963,7 +8963,7 @@ const jw = async (t) => {
       await t.disconnect({
         reason: ke("USER_DISCONNECTED"),
         topic: e.topic
-      }), localStorage.removeItem("puzzle-hasDesktopConnection"), Ju.emit("session_change");
+      }), localStorage.removeItem("puzzle-hasInjectedConnection"), Ju.emit("session_change");
     } catch (r) {
       console.warn(r);
     }
@@ -8980,7 +8980,7 @@ const jw = async (t) => {
     return { event: void 0, error: "no session or connection" };
   const i = {
     topic: s.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "getEvent",
@@ -9009,7 +9009,7 @@ const jw = async (t) => {
   (t == null ? void 0 : t.programId) === "" && (t.programId = void 0);
   const s = {
     topic: r.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "getEvents",
@@ -9037,7 +9037,7 @@ const jw = async (t) => {
     return { error: "no session or connection" };
   const s = {
     topic: r.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "importSharedState",
@@ -9048,9 +9048,7 @@ const jw = async (t) => {
   };
   if (Rr())
     try {
-      return await window.aleo.puzzleWalletClient.importSharedState.mutation(
-        s
-      );
+      return await window.aleo.puzzleWalletClient.importSharedState.mutation(s);
     } catch (i) {
       return console.error("importSharedState error", i), { error: i.message };
     }
@@ -9069,7 +9067,7 @@ const jw = async (t) => {
     return { error: "no session or connection" };
   const n = {
     topic: i.topic,
-    chainId: "aleo:3",
+    chainId: "aleo:1",
     request: {
       jsonrpc: "2.0",
       method: "getRecords",
@@ -11823,7 +11821,7 @@ const L_ = Xt.nativeEnum(Qn), F_ = Xt.nativeEnum(eo), M_ = Xt.nativeEnum(ro), U_
   try {
     return await r.request({
       topic: s.topic,
-      chainId: "aleo:3",
+      chainId: "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "requestSignature",

@@ -16,7 +16,7 @@ export const useWalletStore = create<WalletState>()(
   persist(
     (set, get) => ({
       account: undefined,
-      chainId: 'aleo:3', // todo - figure out how to populate this from useConnect
+      chainId: 'aleo:1', // todo - figure out how to populate this from useConnect
       setAccount: (account: PuzzleAccount | undefined) => {
         set({ account });
       },
@@ -29,7 +29,7 @@ export const useWalletStore = create<WalletState>()(
           chainId: undefined,
         });
         queryClient.clear();
-        localStorage.removeItem('puzzle-hasDesktopConnection');
+        localStorage.removeItem('puzzle-hasInjectedConnection');
         console.log('onDisconnect called!');
       },
     }),

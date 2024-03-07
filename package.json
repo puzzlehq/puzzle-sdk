@@ -1,5 +1,5 @@
 {
-  "name": "@puzzlehq/sdk",
+  "name": "sdk-monorepo",
   "displayName": "Puzzle SDK",
   "version": "0.2.24",
   "description": "Your portal to privacy",

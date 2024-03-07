@@ -1,7 +1,7 @@
 import { SessionTypes } from '@walletconnect/types';
 import {
   CreateSharedStateResponse,
-  hasDesktopConnection,
+  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { useExtensionRequest, useRequest } from './wc/useRequest.js';
 import { useSession } from './wc/useSession.js';
@@ -9,7 +9,7 @@ import { useSession } from './wc/useSession.js';
 export const useCreateSharedState = () => {
   const session: SessionTypes.Struct | undefined = useSession();
 
-  const useRequestFunction = hasDesktopConnection()
+  const useRequestFunction = hasInjectedConnection()
     ? useExtensionRequest
     : useRequest;
 
@@ -21,7 +21,7 @@ export const useCreateSharedState = () => {
   } = useRequestFunction<CreateSharedStateResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: 'aleo:3',
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'createSharedState',

@@ -1,7 +1,7 @@
 import { PuzzleAccount } from '../data/types.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-import { hasDesktopConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
 
 export type GetSelectedAccountResponse = {
   account?: PuzzleAccount;
@@ -19,14 +19,14 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getSelectedAccount',
     },
   };
 
-  if (hasDesktopConnection()) {
+  if (hasInjectedConnection()) {
     try {
       const response: GetSelectedAccountResponse =
         await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);

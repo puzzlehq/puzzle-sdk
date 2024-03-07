@@ -51,7 +51,7 @@ export const requestCreateEvent = async (
   try {
     const response: CreateEventResponse = await connection.request({
       topic: session.topic,
-      chainId: 'aleo:3',
+      chainId: 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'requestCreateEvent',

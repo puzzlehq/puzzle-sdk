@@ -97,6 +97,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.29.5
         version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
+      '@trpc/server':
+        specifier: ^10.31.0
+        version: 10.45.1
       '@walletconnect/modal-sign-html':
         specifier: ^2.6.2
         version: 2.6.2(@types/react@18.2.58)(react@18.2.0)
@@ -118,6 +121,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      use-debounce:
+        specifier: ^10.0.0
+        version: 10.0.0(react@18.2.0)
       ws:
         specifier: ^8.16.0
         version: 8.16.0
@@ -828,6 +834,10 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
+
+  /@trpc/server@10.45.1:
+    resolution: {integrity: sha512-KOzBEVaHW9IxEedUP9E50y0tYxAuvlzyjn80Bpemw4rcNbT4WtJnhkFPUY+qDJl7Crt3B/oY2qMgSxVWi9toLg==}
+    dev: false
 
   /@types/chrome@0.0.228:
     resolution: {integrity: sha512-rDmyVEF+l9H+6FQYqsEGqQOjBw/uaSx6KJ6o47FwbQmPPcskmt8XlPbKjy5KeQXU3ZLiV2x45Fk4kdtRMSghfQ==}
@@ -2386,6 +2396,15 @@ packages:
 
   /uqr@0.1.2:
     resolution: {integrity: sha512-MJu7ypHq6QasgF5YRTjqscSzQp/W11zoUk6kvmlH+fmWEs63Y0Eib13hYFwAzagRJcVY8WVnlV+eBDUGMJ5IbA==}
+    dev: false
+
+  /use-debounce@10.0.0(react@18.2.0):
+    resolution: {integrity: sha512-XRjvlvCB46bah9IBXVnq/ACP2lxqXyZj0D9hj4K5OzNroMDpTEBg8Anuh1/UfRTRs7pLhQ+RiNxxwZu9+MVl1A==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /use-sync-external-store@1.2.0(react@18.2.0):

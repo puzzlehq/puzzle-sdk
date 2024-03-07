@@ -3,13 +3,14 @@ import { SessionTypes } from '@walletconnect/types';
 import {
   GetEventRequest,
   GetEventResponse,
-  hasDesktopConnection,
+  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 type UseEventParams = {
   id?: string;
@@ -21,13 +22,13 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const useQueryFunction = hasDesktopConnection()
+  const useQueryFunction = hasInjectedConnection()
     ? useExtensionRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getEvent',
@@ -68,13 +69,36 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
     wcParams: query,
   });
 
-  // listen for wallet-originating account updates
+  // listen for injected wallet-originating account updates
+  useInjectedSubscriptions({
+    session,
+    configs: [
+      {
+        subscriptionName: 'onSelectedAccountSynced',
+        condition: () => !!id && !multisig,
+        onData: () => refetch(),
+      },
+      {
+        subscriptionName: 'onSharedAccountSynced',
+        condition: (data) => {
+          console.log('onSharedAccountSynced data', data);
+          return !!id && !!multisig && data?.address === address
+        },
+        onData: () => refetch(),
+      },
+    ],
+  });
+
+  // listen for mobile wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;
     if (
       (!!id && eventName === 'selectedAccountSynced' && !multisig) ||
-      (eventName === 'sharedAccountSynced' && multisig && _address === address)
+      (!!id &&
+        eventName === 'sharedAccountSynced' &&
+        multisig &&
+        _address === address)
     ) {
       refetch();
     }

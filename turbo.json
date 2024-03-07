@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
-    "@puzzlehq/sdk-react#build": {
+    "@puzzlehq/sdk#build": {
       "dependsOn": ["@puzzlehq/sdk-core#build"]
     },
     "build": {

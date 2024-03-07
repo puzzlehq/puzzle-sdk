@@ -1,6 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
-import { hasDesktopConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
 
 export type DecryptRequest = {
   ciphertexts: string[];
@@ -24,7 +24,7 @@ export const decrypt = async (
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'decrypt',
@@ -34,7 +34,7 @@ export const decrypt = async (
     },
   };
 
-  if (hasDesktopConnection()) {
+  if (hasInjectedConnection()) {
     try {
       const response: DecryptResponse =
         await window.aleo.puzzleWalletClient.decrypt.query(query);

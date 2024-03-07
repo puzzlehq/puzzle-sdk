@@ -1,7 +1,7 @@
 import { Event } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-import { hasDesktopConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
 
 export type GetEventRequest = {
   id: string;
@@ -28,7 +28,7 @@ export const getEvent = async ({
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getEvent',
@@ -39,7 +39,7 @@ export const getEvent = async ({
     },
   };
 
-  if (hasDesktopConnection()) {
+  if (hasInjectedConnection()) {
     try {
       const response: GetEventResponse =
         await window.aleo.puzzleWalletClient.getEvent.query(query);

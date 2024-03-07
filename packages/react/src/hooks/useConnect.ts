@@ -53,7 +53,7 @@ export function useConnect() {
       return response;
     } catch (err) {
       setError(err);
-      localStorage.removeItem('puzzle-hasDesktopConnection');
+      localStorage.removeItem('puzzle-hasInjectedConnection');
       throw err;
     } finally {
       setLoading(false);

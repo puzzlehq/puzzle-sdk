@@ -3,13 +3,14 @@ import {
   Balance,
   GetBalancesRequest,
   GetBalancesResponse,
-  hasDesktopConnection,
+  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
 import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 type UseBalanceParams = {
   address?: string;
@@ -20,13 +21,13 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const useQueryFunction = hasDesktopConnection()
+  const useQueryFunction = hasInjectedConnection()
     ? useExtensionRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getBalance',
@@ -59,6 +60,29 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
     wcParams: query,
   });
 
+  // listen for injected wallet-originating account updates
+  useInjectedSubscriptions({
+    session,
+    configs: [
+      {
+        subscriptionName: 'onSelectedAccountSynced',
+        condition: () => {
+          return !multisig
+        },
+        onData: () => refetch(),
+      },
+      {
+        subscriptionName: 'onSharedAccountSynced',
+        condition: (data) => {
+          console.log('onSharedAccountSynced data', data);
+          return !!multisig && data?.address === address
+        },
+        onData: () => refetch(),
+      },
+    ],
+  });
+
+  // listen for mobile wallet-originating account updates
   useOnSessionEvent(({ params, topic }) => {
     const eventName = params.event.name;
     const _address = params.event.address ?? params.event.data.address;

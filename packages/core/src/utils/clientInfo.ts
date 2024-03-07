@@ -1,7 +1,7 @@
 export const checkForDesktopConnection = async (sessionTopic: string) => {
   const extensionDownloaded = !!window?.aleo?.puzzleWalletClient;
   if (!extensionDownloaded) {
-    localStorage.setItem('puzzle-hasDesktopConnection', 'false');
+    localStorage.setItem('puzzle-hasInjectedConnection', 'false');
     return false;
   }
 
@@ -10,25 +10,27 @@ export const checkForDesktopConnection = async (sessionTopic: string) => {
       { sessionTopic },
     );
     if (res) {
-      localStorage.setItem('puzzle-hasDesktopConnection', 'true');
+      localStorage.setItem('puzzle-hasInjectedConnection', 'true');
       return true;
     } else {
-      localStorage.setItem('puzzle-hasDesktopConnection', 'false');
+      localStorage.setItem('puzzle-hasInjectedConnection', 'false');
       return false;
     }
   } catch (e) {
     console.warn(e);
-    localStorage.setItem('puzzle-hasDesktopConnection', 'false');
+    localStorage.setItem('puzzle-hasInjectedConnection', 'false');
     return false;
   }
 };
 
-export const hasDesktopConnection = () => {
+export const hasInjectedConnection = () => {
   const extensionDownloaded = !!window?.aleo?.puzzleWalletClient;
-  if (!extensionDownloaded) return false;
+  if (!extensionDownloaded) {
+    return false;
+  }
 
   const puzzleHasDesktopConnection = localStorage.getItem(
-    'puzzle-hasDesktopConnection',
+    'puzzle-hasInjectedConnection',
   );
   return puzzleHasDesktopConnection === 'true';
 };

@@ -3,7 +3,7 @@ import {
   GetRecordsResponse,
   RecordsFilter,
   log_sdk,
-  hasDesktopConnection,
+  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
@@ -11,6 +11,8 @@ import { useWalletStore } from '../store.js';
 import { useSession } from './wc/useSession.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
+import { useDebounce } from 'use-debounce';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 type UseRecordsParams = {
   address?: string;
@@ -36,13 +38,13 @@ export const useRecords = ({
   const session: SessionTypes.Struct | undefined = useSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const useQueryFunction = hasDesktopConnection()
+  const useQueryFunction = hasInjectedConnection()
     ? useExtensionRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:3',
+    chainId: 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',
@@ -53,6 +55,8 @@ export const useRecords = ({
       } as GetRecordsRequest,
     },
   };
+
+  const [debouncedFilter] = useDebounce(filter, 500);
 
   const {
     refetch,
@@ -65,7 +69,7 @@ export const useRecords = ({
       account?.address,
       address,
       multisig,
-      filter,
+      debouncedFilter,
       page,
       session?.topic,
     ],
@@ -80,6 +84,25 @@ export const useRecords = ({
 
   const readyToRequest =
     !!session && !!account && (multisig ? !!address : true);
+
+  useInjectedSubscriptions({
+    session,
+    configs: [
+      {
+        subscriptionName: 'onSelectedAccountSynced',
+        condition: () => !multisig,
+        onData: () => refetch(),
+      },
+      {
+        subscriptionName: 'onSharedAccountSynced',
+        condition: (data) => {
+          console.log('onSharedAccountSynced data', data);
+          return !!multisig && data?.address === address
+        },
+        onData: () => refetch(),
+      },
+    ],
+  });
 
   useOnSessionEvent(({ params }) => {
     const eventName = params.event.name;
