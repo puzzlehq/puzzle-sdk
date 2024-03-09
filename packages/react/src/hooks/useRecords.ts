@@ -96,7 +96,6 @@ export const useRecords = ({
       {
         subscriptionName: 'onSharedAccountSynced',
         condition: (data) => {
-          console.log('onSharedAccountSynced data', data);
           return !!multisig && data?.address === address;
         },
         onData: () => refetch(),

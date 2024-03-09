@@ -81,7 +81,6 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
       {
         subscriptionName: 'onSharedAccountSynced',
         condition: (data) => {
-          console.log('onSharedAccountSynced data', data);
           return !!id && !!multisig && data?.address === address;
         },
         onData: () => refetch(),

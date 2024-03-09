@@ -12,7 +12,6 @@ const allDependencies = {
 const packages = [...Object.keys(allDependencies)].filter(
   (pkg) => !['@puzzlehq/types'].includes(pkg),
 );
-console.log(packages);
 
 export default defineConfig({
   build: {

@@ -17759,7 +17759,6 @@
         {
           subscriptionName: "onSharedAccountSynced",
           condition: (data2) => {
-            console.log("onSharedAccountSynced data", data2);
             return !!multisig && (data2 == null ? void 0 : data2.address) === address;
           },
           onData: () => refetch()
@@ -17968,7 +17967,6 @@
         {
           subscriptionName: "onSharedAccountSynced",
           condition: (data2) => {
-            console.log("onSharedAccountSynced data", data2);
             return !!id && !!multisig && (data2 == null ? void 0 : data2.address) === address;
           },
           onData: () => refetch()
@@ -18169,7 +18167,6 @@
         {
           subscriptionName: "onSharedAccountSynced",
           condition: (data2) => {
-            console.log("onSharedAccountSynced data", data2);
             return !!multisig && (data2 == null ? void 0 : data2.address) === address;
           },
           onData: () => refetch()

@@ -663,7 +663,7 @@ let d$1 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-B-JrpOAL-D-CNOq2C.cjs"));
+      await Promise.resolve().then(() => require("./index-B-JrpOAL-CVtY_N_3.cjs"));
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
@@ -17764,7 +17764,6 @@ const useBalance = ({ address, multisig }) => {
       {
         subscriptionName: "onSharedAccountSynced",
         condition: (data) => {
-          console.log("onSharedAccountSynced data", data);
           return !!multisig && (data == null ? void 0 : data.address) === address;
         },
         onData: () => refetch()
@@ -17973,7 +17972,6 @@ const useEvent = ({ id, address, multisig = false }) => {
       {
         subscriptionName: "onSharedAccountSynced",
         condition: (data) => {
-          console.log("onSharedAccountSynced data", data);
           return !!id && !!multisig && (data == null ? void 0 : data.address) === address;
         },
         onData: () => refetch()
@@ -18174,7 +18172,6 @@ const useRecords = ({
       {
         subscriptionName: "onSharedAccountSynced",
         condition: (data) => {
-          console.log("onSharedAccountSynced data", data);
           return !!multisig && (data == null ? void 0 : data.address) === address;
         },
         onData: () => refetch()
