@@ -74,7 +74,6 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
       {
         subscriptionName: 'onSharedAccountSynced',
         condition: (data) => {
-          console.log('onSharedAccountSynced data', data);
           return !!multisig && data?.address === address;
         },
         onData: () => refetch(),

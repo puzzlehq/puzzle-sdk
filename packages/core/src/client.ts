@@ -37,8 +37,6 @@ export async function configureConnection(options: {
     disconnectSessions = true;
   }
 
-  console.log('web3modal_puzzle_props', web3modal_puzzle_props);
-
   connection = new WalletConnectModalSign({
     projectId: options.projectId ?? puzzleProjectId,
     metadata: {
