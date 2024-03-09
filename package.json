@@ -13,13 +13,7 @@
     "pretty": "pnpm exec prettier . --write"
   },
   "dependencies": {
-    "@puzzlehq/types": "1.0.11",
-    "@walletconnect/modal-sign-html": "^2.6.2",
-    "@walletconnect/types": "^2.11.2",
-    "@walletconnect/utils": "^2.11.2",
-    "debug": "^4.3.4",
-    "events": "^3.3.0",
-    "ws": "^8.16.0"
+    "@puzzlehq/types": "1.0.11"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",
@@ -54,6 +48,10 @@
     "overrides": {
       "@walletconnect/core": "^2.11.2",
       "@walletconnect/sign-client": "^2.11.2"
+    },
+    "patchedDependencies": {
+      "@walletconnect/modal-ui@2.6.2": "patches/@walletconnect__modal-ui@2.6.2.patch",
+      "@walletconnect/modal-core@2.6.2": "patches/@walletconnect__modal-core@2.6.2.patch"
     }
   }
 }

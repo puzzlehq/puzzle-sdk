@@ -47,8 +47,11 @@ export function useConnect() {
       });
       emitter.emit('session_change');
 
-      // remove to prevent walletconnect from redirecting to the wallet page
-      window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+      const choice = window.localStorage.getItem('WALLETCONNECT_DEEPLINK_CHOICE');
+      if (choice && JSON.parse(choice).name !== 'Android') {
+        // remove to prevent walletconnect from redirecting to the wallet page
+        window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+      }
 
       return response;
     } catch (err) {

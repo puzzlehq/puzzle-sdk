@@ -69,8 +69,11 @@ export async function configureConnection(options: {
     options.onDisconnect && options.onDisconnect();
   });
 
-  // remove to prevent walletconnect from redirecting to the wallet page
-  window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+  const choice = window.localStorage.getItem('WALLETCONNECT_DEEPLINK_CHOICE');
+  if (choice && JSON.parse(choice).name !== 'Android') {
+    // remove to prevent walletconnect from redirecting to the wallet page
+    window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+  }
 }
 
 async function disconnectOnVersionChange(
@@ -101,7 +104,10 @@ export async function getWalletConnectModalSignClient(): Promise<WalletConnectMo
         }
       }, 200);
     }
-    // remove to prevent walletconnect from redirecting to the wallet page
-    window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+    const choice = window.localStorage.getItem('WALLETCONNECT_DEEPLINK_CHOICE');
+    if (choice && JSON.parse(choice).name !== 'Android') {
+      // remove to prevent walletconnect from redirecting to the wallet page
+      window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+    }
   });
 }
