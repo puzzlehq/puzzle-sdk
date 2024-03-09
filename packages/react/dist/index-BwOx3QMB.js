@@ -267,127 +267,236 @@ function snapshot(proxyObject, handlePromise) {
   const [target, ensureVersion, createSnapshot] = proxyState;
   return createSnapshot(target, ensureVersion(), handlePromise);
 }
-const o$1 = proxy({ history: ["ConnectWallet"], view: "ConnectWallet", data: void 0 }), T$1 = { state: o$1, subscribe(e) {
-  return subscribe(o$1, () => e(o$1));
-}, push(e, t2) {
-  e !== o$1.view && (o$1.view = e, t2 && (o$1.data = t2), o$1.history.push(e));
-}, reset(e) {
-  o$1.view = e, o$1.history = [e];
-}, replace(e) {
-  o$1.history.length > 1 && (o$1.history[o$1.history.length - 1] = e, o$1.view = e);
-}, goBack() {
-  if (o$1.history.length > 1) {
-    o$1.history.pop();
-    const [e] = o$1.history.slice(-1);
-    o$1.view = e;
+const o$1 = proxy({
+  history: ["ConnectWallet"],
+  view: "ConnectWallet",
+  data: void 0
+}), T$1 = {
+  state: o$1,
+  subscribe(e) {
+    return subscribe(o$1, () => e(o$1));
+  },
+  push(e, t2) {
+    e !== o$1.view && (o$1.view = e, t2 && (o$1.data = t2), o$1.history.push(e));
+  },
+  reset(e) {
+    o$1.view = e, o$1.history = [e];
+  },
+  replace(e) {
+    o$1.history.length > 1 && (o$1.history[o$1.history.length - 1] = e, o$1.view = e);
+  },
+  goBack() {
+    if (o$1.history.length > 1) {
+      o$1.history.pop();
+      const [e] = o$1.history.slice(-1);
+      o$1.view = e;
+    }
+  },
+  setData(e) {
+    o$1.data = e;
   }
-}, setData(e) {
-  o$1.data = e;
-} }, a$3 = { WALLETCONNECT_DEEPLINK_CHOICE: "WALLETCONNECT_DEEPLINK_CHOICE", WCM_VERSION: "WCM_VERSION", RECOMMENDED_WALLET_AMOUNT: 9, isMobile() {
-  return typeof window < "u" ? Boolean(window.matchMedia("(pointer:coarse)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/u.test(navigator.userAgent)) : false;
-}, isAndroid() {
-  return a$3.isMobile() && navigator.userAgent.toLowerCase().includes("android");
-}, isIos() {
-  const e = navigator.userAgent.toLowerCase();
-  return a$3.isMobile() && (e.includes("iphone") || e.includes("ipad"));
-}, isHttpUrl(e) {
-  return e.startsWith("http://") || e.startsWith("https://");
-}, isArray(e) {
-  return Array.isArray(e) && e.length > 0;
-}, formatNativeUrl(e, t2, s2) {
-  if (a$3.isHttpUrl(e))
-    return this.formatUniversalUrl(e, t2, s2);
-  let n3 = e;
-  n3.includes("://") || (n3 = e.replaceAll("/", "").replaceAll(":", ""), n3 = `${n3}://`), n3.endsWith("/") || (n3 = `${n3}/`), this.setWalletConnectDeepLink(n3, s2);
-  const i2 = encodeURIComponent(t2);
-  return `${n3}wc?uri=${i2}`;
-}, formatUniversalUrl(e, t2, s2) {
-  if (!a$3.isHttpUrl(e))
-    return this.formatNativeUrl(e, t2, s2);
-  let n3 = e;
-  n3.endsWith("/") || (n3 = `${n3}/`), this.setWalletConnectDeepLink(n3, s2);
-  const i2 = encodeURIComponent(t2);
-  return `${n3}wc?uri=${i2}`;
-}, async wait(e) {
-  return new Promise((t2) => {
-    setTimeout(t2, e);
-  });
-}, openHref(e, t2) {
-  window.open(e, t2, "noreferrer noopener");
-}, setWalletConnectDeepLink(e, t2) {
-  try {
-    localStorage.setItem(a$3.WALLETCONNECT_DEEPLINK_CHOICE, JSON.stringify({ href: e, name: t2 }));
-  } catch {
-    console.info("Unable to set WalletConnect deep link");
+}, a$3 = {
+  WALLETCONNECT_DEEPLINK_CHOICE: "WALLETCONNECT_DEEPLINK_CHOICE",
+  WCM_VERSION: "WCM_VERSION",
+  RECOMMENDED_WALLET_AMOUNT: 9,
+  isMobile() {
+    return typeof window < "u" ? Boolean(
+      window.matchMedia("(pointer:coarse)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/u.test(
+        navigator.userAgent
+      )
+    ) : false;
+  },
+  isAndroid() {
+    return a$3.isMobile() && navigator.userAgent.toLowerCase().includes("android");
+  },
+  isIos() {
+    const e = navigator.userAgent.toLowerCase();
+    return a$3.isMobile() && (e.includes("iphone") || e.includes("ipad"));
+  },
+  isHttpUrl(e) {
+    return e.startsWith("http://") || e.startsWith("https://");
+  },
+  isArray(e) {
+    return Array.isArray(e) && e.length > 0;
+  },
+  formatNativeUrl(e, t2, s2) {
+    if (a$3.isHttpUrl(e))
+      return this.formatUniversalUrl(e, t2, s2);
+    let n3 = e;
+    n3.includes("://") || (n3 = e.replaceAll("/", "").replaceAll(":", ""), n3 = `${n3}://`), n3.endsWith("/") || (n3 = `${n3}/`), this.setWalletConnectDeepLink(n3, s2);
+    const i2 = encodeURIComponent(t2);
+    return `${n3}wc?uri=${i2}`;
+  },
+  formatUniversalUrl(e, t2, s2) {
+    if (!a$3.isHttpUrl(e))
+      return this.formatNativeUrl(e, t2, s2);
+    let n3 = e;
+    n3.endsWith("/") || (n3 = `${n3}/`), this.setWalletConnectDeepLink(n3, s2);
+    const i2 = encodeURIComponent(t2);
+    return `${n3}wc?uri=${i2}`;
+  },
+  async wait(e) {
+    return new Promise((t2) => {
+      setTimeout(t2, e);
+    });
+  },
+  openHref(e, t2) {
+    window.open(e, t2, "noreferrer noopener");
+  },
+  setWalletConnectDeepLink(e, t2) {
+    try {
+      localStorage.setItem(
+        a$3.WALLETCONNECT_DEEPLINK_CHOICE,
+        JSON.stringify({ href: e, name: t2 })
+      );
+    } catch {
+      console.info("Unable to set WalletConnect deep link");
+    }
+  },
+  setWalletConnectAndroidDeepLink(e) {
+    try {
+      const [t2] = e.split("?");
+      localStorage.setItem(
+        a$3.WALLETCONNECT_DEEPLINK_CHOICE,
+        JSON.stringify({ href: t2, name: "Android" })
+      );
+    } catch {
+      console.info("Unable to set WalletConnect android deep link");
+    }
+  },
+  removeWalletConnectDeepLink() {
+    try {
+      localStorage.removeItem(a$3.WALLETCONNECT_DEEPLINK_CHOICE);
+    } catch {
+      console.info("Unable to remove WalletConnect deep link");
+    }
+  },
+  setModalVersionInStorage() {
+    try {
+      typeof localStorage < "u" && localStorage.setItem(a$3.WCM_VERSION, "2.6.2");
+    } catch {
+      console.info("Unable to set Web3Modal version in storage");
+    }
+  },
+  getWalletRouterData() {
+    var e;
+    const t2 = (e = T$1.state.data) == null ? void 0 : e.Wallet;
+    if (!t2)
+      throw new Error('Missing "Wallet" view data');
+    return t2;
   }
-}, setWalletConnectAndroidDeepLink(e) {
-  try {
-    const [t2] = e.split("?");
-    localStorage.setItem(a$3.WALLETCONNECT_DEEPLINK_CHOICE, JSON.stringify({ href: t2, name: "Android" }));
-  } catch {
-    console.info("Unable to set WalletConnect android deep link");
+}, _$3 = typeof location < "u" && (location.hostname.includes("localhost") || location.protocol.includes("https")), r$1 = proxy({
+  enabled: _$3,
+  userSessionId: "",
+  events: [],
+  connectedWalletId: void 0
+}), R$4 = {
+  state: r$1,
+  subscribe(e) {
+    return subscribe(r$1.events, () => e(snapshot(r$1.events[r$1.events.length - 1])));
+  },
+  initialize() {
+    r$1.enabled && typeof (crypto == null ? void 0 : crypto.randomUUID) < "u" && (r$1.userSessionId = crypto.randomUUID());
+  },
+  setConnectedWalletId(e) {
+    r$1.connectedWalletId = e;
+  },
+  click(e) {
+    if (r$1.enabled) {
+      const t2 = {
+        type: "CLICK",
+        name: e.name,
+        userSessionId: r$1.userSessionId,
+        timestamp: Date.now(),
+        data: e
+      };
+      r$1.events.push(t2);
+    }
+  },
+  track(e) {
+    if (r$1.enabled) {
+      const t2 = {
+        type: "TRACK",
+        name: e.name,
+        userSessionId: r$1.userSessionId,
+        timestamp: Date.now(),
+        data: e
+      };
+      r$1.events.push(t2);
+    }
+  },
+  view(e) {
+    if (r$1.enabled) {
+      const t2 = {
+        type: "VIEW",
+        name: e.name,
+        userSessionId: r$1.userSessionId,
+        timestamp: Date.now(),
+        data: e
+      };
+      r$1.events.push(t2);
+    }
   }
-}, removeWalletConnectDeepLink() {
-  try {
-    localStorage.removeItem(a$3.WALLETCONNECT_DEEPLINK_CHOICE);
-  } catch {
-    console.info("Unable to remove WalletConnect deep link");
+}, c$1 = proxy({
+  chains: void 0,
+  walletConnectUri: void 0,
+  isAuth: false,
+  isCustomDesktop: false,
+  isCustomMobile: false,
+  isDataLoaded: false,
+  isUiLoaded: false
+}), p$3 = {
+  state: c$1,
+  subscribe(e) {
+    return subscribe(c$1, () => e(c$1));
+  },
+  setChains(e) {
+    c$1.chains = e;
+  },
+  setWalletConnectUri(e) {
+    c$1.walletConnectUri = e;
+  },
+  setIsCustomDesktop(e) {
+    c$1.isCustomDesktop = e;
+  },
+  setIsCustomMobile(e) {
+    c$1.isCustomMobile = e;
+  },
+  setIsDataLoaded(e) {
+    c$1.isDataLoaded = e;
+  },
+  setIsUiLoaded(e) {
+    c$1.isUiLoaded = e;
+  },
+  setIsAuth(e) {
+    c$1.isAuth = e;
   }
-}, setModalVersionInStorage() {
-  try {
-    typeof localStorage < "u" && localStorage.setItem(a$3.WCM_VERSION, "2.6.2");
-  } catch {
-    console.info("Unable to set Web3Modal version in storage");
+}, W$2 = proxy({
+  projectId: "",
+  mobileWallets: void 0,
+  desktopWallets: void 0,
+  walletImages: void 0,
+  chains: void 0,
+  enableAuthMode: false,
+  enableExplorer: true,
+  explorerExcludedWalletIds: void 0,
+  explorerRecommendedWalletIds: void 0,
+  termsOfServiceUrl: void 0,
+  privacyPolicyUrl: void 0
+}), y$3 = {
+  state: W$2,
+  subscribe(e) {
+    return subscribe(W$2, () => e(W$2));
+  },
+  setConfig(e) {
+    var t2, s2;
+    R$4.initialize(), p$3.setChains(e.chains), p$3.setIsAuth(Boolean(e.enableAuthMode)), p$3.setIsCustomMobile(
+      Boolean((t2 = e.mobileWallets) == null ? void 0 : t2.length)
+    ), p$3.setIsCustomDesktop(
+      Boolean((s2 = e.desktopWallets) == null ? void 0 : s2.length)
+    ), a$3.setModalVersionInStorage(), Object.assign(W$2, e);
   }
-}, getWalletRouterData() {
-  var e;
-  const t2 = (e = T$1.state.data) == null ? void 0 : e.Wallet;
-  if (!t2)
-    throw new Error('Missing "Wallet" view data');
-  return t2;
-} }, _$3 = typeof location < "u" && (location.hostname.includes("localhost") || location.protocol.includes("https")), r$1 = proxy({ enabled: _$3, userSessionId: "", events: [], connectedWalletId: void 0 }), R$4 = { state: r$1, subscribe(e) {
-  return subscribe(r$1.events, () => e(snapshot(r$1.events[r$1.events.length - 1])));
-}, initialize() {
-  r$1.enabled && typeof (crypto == null ? void 0 : crypto.randomUUID) < "u" && (r$1.userSessionId = crypto.randomUUID());
-}, setConnectedWalletId(e) {
-  r$1.connectedWalletId = e;
-}, click(e) {
-  if (r$1.enabled) {
-    const t2 = { type: "CLICK", name: e.name, userSessionId: r$1.userSessionId, timestamp: Date.now(), data: e };
-    r$1.events.push(t2);
-  }
-}, track(e) {
-  if (r$1.enabled) {
-    const t2 = { type: "TRACK", name: e.name, userSessionId: r$1.userSessionId, timestamp: Date.now(), data: e };
-    r$1.events.push(t2);
-  }
-}, view(e) {
-  if (r$1.enabled) {
-    const t2 = { type: "VIEW", name: e.name, userSessionId: r$1.userSessionId, timestamp: Date.now(), data: e };
-    r$1.events.push(t2);
-  }
-} }, c$1 = proxy({ chains: void 0, walletConnectUri: void 0, isAuth: false, isCustomDesktop: false, isCustomMobile: false, isDataLoaded: false, isUiLoaded: false }), p$3 = { state: c$1, subscribe(e) {
-  return subscribe(c$1, () => e(c$1));
-}, setChains(e) {
-  c$1.chains = e;
-}, setWalletConnectUri(e) {
-  c$1.walletConnectUri = e;
-}, setIsCustomDesktop(e) {
-  c$1.isCustomDesktop = e;
-}, setIsCustomMobile(e) {
-  c$1.isCustomMobile = e;
-}, setIsDataLoaded(e) {
-  c$1.isDataLoaded = e;
-}, setIsUiLoaded(e) {
-  c$1.isUiLoaded = e;
-}, setIsAuth(e) {
-  c$1.isAuth = e;
-} }, W$2 = proxy({ projectId: "", mobileWallets: void 0, desktopWallets: void 0, walletImages: void 0, chains: void 0, enableAuthMode: false, enableExplorer: true, explorerExcludedWalletIds: void 0, explorerRecommendedWalletIds: void 0, termsOfServiceUrl: void 0, privacyPolicyUrl: void 0 }), y$3 = { state: W$2, subscribe(e) {
-  return subscribe(W$2, () => e(W$2));
-}, setConfig(e) {
-  var t2, s2;
-  R$4.initialize(), p$3.setChains(e.chains), p$3.setIsAuth(Boolean(e.enableAuthMode)), p$3.setIsCustomMobile(Boolean((t2 = e.mobileWallets) == null ? void 0 : t2.length)), p$3.setIsCustomDesktop(Boolean((s2 = e.desktopWallets) == null ? void 0 : s2.length)), a$3.setModalVersionInStorage(), Object.assign(W$2, e);
-} };
+};
 var V$2 = Object.defineProperty, D$4 = Object.getOwnPropertySymbols, H$2 = Object.prototype.hasOwnProperty, B$2 = Object.prototype.propertyIsEnumerable, M$1 = (e, t2, s2) => t2 in e ? V$2(e, t2, { enumerable: true, configurable: true, writable: true, value: s2 }) : e[t2] = s2, K$1 = (e, t2) => {
   for (var s2 in t2 || (t2 = {}))
     H$2.call(t2, s2) && M$1(e, s2, t2[s2]);
@@ -403,19 +512,26 @@ async function w$5(e, t2) {
     l2 && n3.searchParams.append(i2, String(l2));
   }), (await fetch(n3)).json();
 }
-const m$2 = { async getDesktopListings(e) {
-  return w$5("/w3m/v1/getDesktopListings", e);
-}, async getMobileListings(e) {
-  return w$5("/w3m/v1/getMobileListings", e);
-}, async getInjectedListings(e) {
-  return w$5("/w3m/v1/getInjectedListings", e);
-}, async getAllListings(e) {
-  return w$5("/w3m/v1/getAllListings", e);
-}, getWalletImageUrl(e) {
-  return `${L$2}/w3m/v1/getWalletImage/${e}?projectId=${y$3.state.projectId}&sdkType=${E$2}&sdkVersion=${O$3}`;
-}, getAssetImageUrl(e) {
-  return `${L$2}/w3m/v1/getAssetImage/${e}?projectId=${y$3.state.projectId}&sdkType=${E$2}&sdkVersion=${O$3}`;
-} };
+const m$2 = {
+  async getDesktopListings(e) {
+    return w$5("/w3m/v1/getDesktopListings", e);
+  },
+  async getMobileListings(e) {
+    return w$5("/w3m/v1/getMobileListings", e);
+  },
+  async getInjectedListings(e) {
+    return w$5("/w3m/v1/getInjectedListings", e);
+  },
+  async getAllListings(e) {
+    return w$5("/w3m/v1/getAllListings", e);
+  },
+  getWalletImageUrl(e) {
+    return `${L$2}/w3m/v1/getWalletImage/${e}?projectId=${y$3.state.projectId}&sdkType=${E$2}&sdkVersion=${O$3}`;
+  },
+  getAssetImageUrl(e) {
+    return `${L$2}/w3m/v1/getAssetImage/${e}?projectId=${y$3.state.projectId}&sdkType=${E$2}&sdkVersion=${O$3}`;
+  }
+};
 var z$3 = Object.defineProperty, j$3 = Object.getOwnPropertySymbols, J$2 = Object.prototype.hasOwnProperty, q$2 = Object.prototype.propertyIsEnumerable, k$2 = (e, t2, s2) => t2 in e ? z$3(e, t2, { enumerable: true, configurable: true, writable: true, value: s2 }) : e[t2] = s2, F$3 = (e, t2) => {
   for (var s2 in t2 || (t2 = {}))
     J$2.call(t2, s2) && k$2(e, s2, t2[s2]);
@@ -424,51 +540,74 @@ var z$3 = Object.defineProperty, j$3 = Object.getOwnPropertySymbols, J$2 = Objec
       q$2.call(t2, s2) && k$2(e, s2, t2[s2]);
   return e;
 };
-const N$3 = a$3.isMobile(), d$2 = proxy({ wallets: { listings: [], total: 0, page: 1 }, search: { listings: [], total: 0, page: 1 }, recomendedWallets: [] }), te$2 = { state: d$2, async getRecomendedWallets() {
-  const { explorerRecommendedWalletIds: e, explorerExcludedWalletIds: t2 } = y$3.state;
-  if (e === "NONE" || t2 === "ALL" && !e)
-    return d$2.recomendedWallets;
-  if (a$3.isArray(e)) {
-    const s2 = { recommendedIds: e.join(",") }, { listings: n3 } = await m$2.getAllListings(s2), i2 = Object.values(n3);
-    i2.sort((l2, v3) => {
-      const b3 = e.indexOf(l2.id), f2 = e.indexOf(v3.id);
-      return b3 - f2;
-    }), d$2.recomendedWallets = i2;
-  } else {
-    const { chains: s2, isAuth: n3 } = p$3.state, i2 = s2 == null ? void 0 : s2.join(","), l2 = a$3.isArray(t2), v3 = { page: 1, sdks: n3 ? "auth_v1" : void 0, entries: a$3.RECOMMENDED_WALLET_AMOUNT, chains: i2, version: 2, excludedIds: l2 ? t2.join(",") : void 0 }, { listings: b3 } = N$3 ? await m$2.getMobileListings(v3) : await m$2.getDesktopListings(v3);
-    d$2.recomendedWallets = Object.values(b3);
-  }
-  return d$2.recomendedWallets;
-}, async getWallets(e) {
-  const t2 = F$3({}, e), { explorerRecommendedWalletIds: s2, explorerExcludedWalletIds: n3 } = y$3.state, { recomendedWallets: i2 } = d$2;
-  if (n3 === "ALL")
-    return d$2.wallets;
-  i2.length ? t2.excludedIds = i2.map((x2) => x2.id).join(",") : a$3.isArray(s2) && (t2.excludedIds = s2.join(",")), a$3.isArray(n3) && (t2.excludedIds = [t2.excludedIds, n3].filter(Boolean).join(",")), p$3.state.isAuth && (t2.sdks = "auth_v1");
-  const { page: l2, search: v3 } = e, { listings: b3, total: f2 } = N$3 ? await m$2.getMobileListings(t2) : await m$2.getDesktopListings(t2), A2 = Object.values(b3), U2 = v3 ? "search" : "wallets";
-  return d$2[U2] = { listings: [...d$2[U2].listings, ...A2], total: f2, page: l2 ?? 1 }, { listings: A2, total: f2 };
-}, getWalletImageUrl(e) {
-  return m$2.getWalletImageUrl(e);
-}, getAssetImageUrl(e) {
-  return m$2.getAssetImageUrl(e);
-}, resetSearch() {
-  d$2.search = { listings: [], total: 0, page: 1 };
-} }, I$1 = proxy({ open: false }), se = { state: I$1, subscribe(e) {
-  return subscribe(I$1, () => e(I$1));
-}, async open(e) {
-  return new Promise((t2) => {
-    const { isUiLoaded: s2, isDataLoaded: n3 } = p$3.state;
-    if (a$3.removeWalletConnectDeepLink(), p$3.setWalletConnectUri(e == null ? void 0 : e.uri), p$3.setChains(e == null ? void 0 : e.chains), T$1.reset("ConnectWallet"), s2 && n3)
-      I$1.open = true, t2();
-    else {
-      const i2 = setInterval(() => {
-        const l2 = p$3.state;
-        l2.isUiLoaded && l2.isDataLoaded && (clearInterval(i2), I$1.open = true, t2());
-      }, 200);
+const N$3 = a$3.isMobile(), d$2 = proxy({
+  wallets: { listings: [], total: 0, page: 1 },
+  search: { listings: [], total: 0, page: 1 },
+  recomendedWallets: []
+}), te$2 = {
+  state: d$2,
+  async getRecomendedWallets() {
+    const { explorerRecommendedWalletIds: e, explorerExcludedWalletIds: t2 } = y$3.state;
+    if (e === "NONE" || t2 === "ALL" && !e)
+      return d$2.recomendedWallets;
+    if (a$3.isArray(e)) {
+      const s2 = { recommendedIds: e.join(",") }, { listings: n3 } = await m$2.getAllListings(s2), i2 = Object.values(n3);
+      i2.sort && i2.sort((l2, v3) => {
+        const b3 = e.indexOf(l2.id), f2 = e.indexOf(v3.id);
+        return b3 - f2;
+      }), d$2.recomendedWallets = i2;
+    } else {
+      const { chains: s2, isAuth: n3 } = p$3.state, i2 = s2 == null ? void 0 : s2.join(","), l2 = a$3.isArray(t2), v3 = {
+        page: 1,
+        sdks: n3 ? "auth_v1" : void 0,
+        entries: a$3.RECOMMENDED_WALLET_AMOUNT,
+        chains: i2,
+        version: 2,
+        excludedIds: l2 ? t2.join(",") : void 0
+      }, { listings: b3 } = N$3 ? await m$2.getMobileListings(v3) : await m$2.getDesktopListings(v3);
+      d$2.recomendedWallets = Object.values(b3);
     }
-  });
-}, close() {
-  I$1.open = false;
-} };
+    return d$2.recomendedWallets;
+  },
+  async getWallets(e) {
+    const t2 = F$3({}, e), { explorerRecommendedWalletIds: s2, explorerExcludedWalletIds: n3 } = y$3.state, { recomendedWallets: i2 } = d$2;
+    if (n3 === "ALL")
+      return d$2.wallets;
+    i2.length ? t2.excludedIds = i2.map((x2) => x2.id).join(",") : a$3.isArray(s2) && (t2.excludedIds = s2.join(",")), a$3.isArray(n3) && (t2.excludedIds = [t2.excludedIds, n3].filter(Boolean).join(",")), p$3.state.isAuth && (t2.sdks = "auth_v1");
+    const { page: l2, search: v3 } = e, { listings: b3, total: f2 } = N$3 ? await m$2.getMobileListings(t2) : await m$2.getDesktopListings(t2), A2 = Object.values(b3), U2 = v3 ? "search" : "wallets";
+    return d$2[U2] = { listings: [...d$2[U2].listings, ...A2], total: f2, page: l2 ?? 1 }, { listings: A2, total: f2 };
+  },
+  getWalletImageUrl(e) {
+    return m$2.getWalletImageUrl(e);
+  },
+  getAssetImageUrl(e) {
+    return m$2.getAssetImageUrl(e);
+  },
+  resetSearch() {
+    d$2.search = { listings: [], total: 0, page: 1 };
+  }
+}, I$1 = proxy({ open: false }), se = {
+  state: I$1,
+  subscribe(e) {
+    return subscribe(I$1, () => e(I$1));
+  },
+  async open(e) {
+    return new Promise((t2) => {
+      const { isUiLoaded: s2, isDataLoaded: n3 } = p$3.state;
+      if (a$3.removeWalletConnectDeepLink(), p$3.setWalletConnectUri(e == null ? void 0 : e.uri), p$3.setChains(e == null ? void 0 : e.chains), T$1.reset("ConnectWallet"), s2 && n3)
+        I$1.open = true, t2();
+      else {
+        const i2 = setInterval(() => {
+          const l2 = p$3.state;
+          l2.isUiLoaded && l2.isDataLoaded && (clearInterval(i2), I$1.open = true, t2());
+        }, 200);
+      }
+    });
+  },
+  close() {
+    I$1.open = false;
+  }
+};
 var G$2 = Object.defineProperty, $$2 = Object.getOwnPropertySymbols, Q$3 = Object.prototype.hasOwnProperty, X$2 = Object.prototype.propertyIsEnumerable, S$2 = (e, t2, s2) => t2 in e ? G$2(e, t2, { enumerable: true, configurable: true, writable: true, value: s2 }) : e[t2] = s2, Y = (e, t2) => {
   for (var s2 in t2 || (t2 = {}))
     Q$3.call(t2, s2) && S$2(e, s2, t2[s2]);
@@ -480,25 +619,34 @@ var G$2 = Object.defineProperty, $$2 = Object.getOwnPropertySymbols, Q$3 = Objec
 function Z$2() {
   return typeof matchMedia < "u" && matchMedia("(prefers-color-scheme: dark)").matches;
 }
-const C = proxy({ themeMode: Z$2() ? "dark" : "light" }), ne = { state: C, subscribe(e) {
-  return subscribe(C, () => e(C));
-}, setThemeConfig(e) {
-  const { themeMode: t2, themeVariables: s2 } = e;
-  t2 && (C.themeMode = t2), s2 && (C.themeVariables = Y({}, s2));
-} }, g$5 = proxy({ open: false, message: "", variant: "success" }), oe$1 = { state: g$5, subscribe(e) {
-  return subscribe(g$5, () => e(g$5));
-}, openToast(e, t2) {
-  g$5.open = true, g$5.message = e, g$5.variant = t2;
-}, closeToast() {
-  g$5.open = false;
-} };
+const C = proxy({ themeMode: Z$2() ? "dark" : "light" }), ne = {
+  state: C,
+  subscribe(e) {
+    return subscribe(C, () => e(C));
+  },
+  setThemeConfig(e) {
+    const { themeMode: t2, themeVariables: s2 } = e;
+    t2 && (C.themeMode = t2), s2 && (C.themeVariables = Y({}, s2));
+  }
+}, g$5 = proxy({ open: false, message: "", variant: "success" }), oe$1 = {
+  state: g$5,
+  subscribe(e) {
+    return subscribe(g$5, () => e(g$5));
+  },
+  openToast(e, t2) {
+    g$5.open = true, g$5.message = e, g$5.variant = t2;
+  },
+  closeToast() {
+    g$5.open = false;
+  }
+};
 let d$1 = class d {
   constructor(e) {
     this.openModal = se.open, this.closeModal = se.close, this.subscribeModal = se.subscribe, this.setTheme = ne.setThemeConfig, ne.setThemeConfig(e), y$3.setConfig(e), this.initUi();
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-CZs7wJrt-9z0mBw12.js");
+      await import("./index-DJS1s2zg-mhnE3MZY.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
