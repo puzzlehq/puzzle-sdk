@@ -28,7 +28,6 @@
     "buffer": "^6.0.3"
   },
   "repository": {
-    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
     "type": "git",
     "url": "git+https://github.com/puzzlehq/puzzle-sdk.git"
   },
