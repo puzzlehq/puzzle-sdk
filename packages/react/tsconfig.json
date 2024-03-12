@@ -18,8 +18,8 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "typeRoots": ["../../node_modules/@types", "./dist/types"]
   },
-  "include": ["packages", "./packages/core/src/global.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src", "dist/types/index.d.ts", "./src/global.d.ts"]
 }

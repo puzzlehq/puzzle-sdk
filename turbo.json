@@ -1,0 +1,15 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "@puzzlehq/sdk#build": {
+      "dependsOn": ["@puzzlehq/sdk-core#build"]
+    },
+    "build": {
+      "outputs": ["dist/**"],
+      "cache": false
+    },
+    "type-check": {
+      "cache": false
+    }
+  }
+}

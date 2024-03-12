@@ -7,7 +7,6 @@
     "lib": ["dom", "esnext", "es2017.object", "webworker"],
     "types": ["node"],
     "strict": false,
-    "jsx": "react-jsx",
     "noImplicitAny": false,
     "noImplicitThis": false,
     "allowSyntheticDefaultImports": true,
@@ -18,8 +17,12 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "typeRoots": ["../../node_modules/@types", "./dist/types"],
+    "paths": {
+      "@puzzlehq/sdk-core": ["../core/src"]
+    }
   },
-  "include": ["packages", "./packages/core/src/global.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src", "src/global.d.ts"],
+  "typeRoots": ["./dist/types"]
 }

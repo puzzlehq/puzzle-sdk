@@ -1,55 +1,37 @@
 {
-  "name": "@puzzlehq/sdk",
+  "name": "sdk-monorepo",
   "displayName": "Puzzle SDK",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Your portal to privacy",
-  "main": "./dist/puzzle.cjs.js",
-  "module": "./dist/puzzle.es.js",
-  "browser": "./dist/puzzle.umd.js",
-  "types": "./dist/types/src/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/puzzle.es.js",
-      "require": "./dist/puzzle.cjs.js",
-      "browser": "./dist/puzzle.umd.js",
-      "types": "./dist/types/src/index.d.ts"
-    }
-  },
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
-    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix",
-    "type-check": "tsc --noEmit"
+    "build": "turbo run build",
+    "type-check": "turbo run type-check",
+    "pretty": "pnpm exec prettier . --write"
   },
   "dependencies": {
     "@puzzlehq/types": "1.0.11",
-    "@tanstack/react-query": "^4.29.5",
-    "@tanstack/react-query-devtools": "^5.13.5",
-    "@trpc/client": "^10.9.0",
-    "@trpc/react-query": "^10.9.0",
-    "@trpc/server": "^10.8.1",
-    "@types/debug": "^4.1.7",
-    "@walletconnect/core": "^2.11.0",
     "@walletconnect/modal-sign-html": "^2.6.2",
-    "@walletconnect/sign-client": "^2.11.0",
-    "@walletconnect/types": "^2.11.0",
-    "@walletconnect/utils": "^2.11.0",
+    "@walletconnect/types": "^2.11.2",
+    "@walletconnect/utils": "^2.11.2",
     "debug": "^4.3.4",
-    "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
-    "immer": "^9.0.19",
-    "process": "^0.11.10",
-    "react": "^18.2.0",
-    "ws": "^8.13.0",
-    "zustand": "^4.3.9"
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",
+    "@types/debug": "^4.1.7",
     "@types/node": "^18.11.18",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
+    "prettier": "^3.2.5",
+    "process": "^0.11.10",
     "typescript": "^4.9.4",
     "vite": "^5.0.10"
+  },
+  "peerDependencies": {
+    "buffer": "^6.0.3"
   },
   "repository": {
     "type": "git",
@@ -58,9 +40,8 @@
   "keywords": [
     "puzzle",
     "aleo",
-    "aztec",
     "web3",
-    "crypto\\"
+    "crypto"
   ],
   "author": "Puzzle",
   "license": "ISC",
@@ -70,8 +51,8 @@
   "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme",
   "pnpm": {
     "overrides": {
-      "@walletconnect/core": "^2.11.1",
-      "@walletconnect/sign-client": "^2.11.1"
+      "@walletconnect/core": "^2.11.2",
+      "@walletconnect/sign-client": "^2.11.2"
     }
   }
 }
