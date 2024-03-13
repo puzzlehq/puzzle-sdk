@@ -3,13 +3,27 @@ export declare const wc_aleo_chains: string[];
 export declare const wc_events: string[];
 export declare const projectId = "f0aaeffe71b636da453fce042d79d723";
 export declare const web3modal_puzzle_props_android: {
+    projectId: string;
     chains: string[];
     enableExplorer: boolean;
     explorerRecommendedWalletIds: string[];
+    mobileWallets: {
+        id: string;
+        name: string;
+        links: {
+            native: string;
+            universal: string;
+        };
+    }[];
+    walletImages: {
+        puzzle: string;
+    };
 };
 export declare const web3modal_puzzle_props_default: {
+    projectId: string;
     chains: string[];
     enableExplorer: boolean;
+    explorerRecommendedWalletIds: string[];
     mobileWallets: {
         id: string;
         name: string;
@@ -32,21 +46,11 @@ export declare const web3modal_puzzle_props_default: {
     };
 };
 export declare const web3modal_puzzle_props: {
+    projectId: string;
     chains: string[];
     enableExplorer: boolean;
     explorerRecommendedWalletIds: string[];
-} | {
-    chains: string[];
-    enableExplorer: boolean;
     mobileWallets: {
-        id: string;
-        name: string;
-        links: {
-            native: string;
-            universal: string;
-        };
-    }[];
-    desktopWallets: {
         id: string;
         name: string;
         links: {
@@ -56,7 +60,6 @@ export declare const web3modal_puzzle_props: {
     }[];
     walletImages: {
         puzzle: string;
-        avail: string;
     };
 };
 export declare const signClient_puzzleProps: {
