@@ -1,4 +1,3 @@
-"use strict";
 const t = Symbol();
 const s = Object.getPrototypeOf, c$2 = /* @__PURE__ */ new WeakMap(), l$2 = (e) => e && (c$2.has(e) ? c$2.get(e) : s(e) === Object.prototype || s(e) === Array.prototype), y$4 = (e) => l$2(e) && e[t] || null, h$4 = (e, t2 = true) => {
   c$2.set(e, t2);
@@ -638,7 +637,7 @@ let d$1 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-BudbBR01.cjs"));
+      await import("./index-3bsEapsI.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
@@ -12651,13 +12650,13 @@ const signClient_puzzleProps = {
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.2.31-beta.2";
+const version = "0.3.0-alpha.0";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
-const module$1 = "./dist/puzzle.es.js";
+const module = "./dist/puzzle.es.js";
 const browser$1 = "./dist/puzzle.umd.js";
 const types = "./dist/types/src/index.d.ts";
-const exports$1 = {
+const exports = {
   ".": {
     "import": "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -12690,10 +12689,12 @@ const peerDependencies = {
 };
 const keywords = [
   "puzzle",
-  "html",
+  "cryptocurrency wallet",
+  "privacy",
   "aleo",
   "web3",
-  "crypto"
+  "crypto",
+  "typescript"
 ];
 const author = "Puzzle";
 const license = "ISC";
@@ -12707,11 +12708,11 @@ const pkg = {
   version,
   description,
   main,
-  module: module$1,
+  module,
   browser: browser$1,
   types,
   "private": false,
-  exports: exports$1,
+  exports,
   type,
   scripts,
   repository,
@@ -16934,42 +16935,42 @@ var InputOutputType;
   InputOutputType2["Future"] = "future";
   InputOutputType2["ExternalRecord"] = "external_record";
 })(InputOutputType || (InputOutputType = {}));
-exports.EventType = void 0;
-(function(EventType) {
-  EventType["Deploy"] = "Deploy";
-  EventType["Execute"] = "Execute";
-  EventType["Send"] = "Send";
-  EventType["Receive"] = "Receive";
-  EventType["Join"] = "Join";
-  EventType["Split"] = "Split";
-  EventType["Shield"] = "Shield";
-  EventType["Unshield"] = "Unshield";
-})(exports.EventType || (exports.EventType = {}));
-exports.EventStatus = void 0;
-(function(EventStatus) {
-  EventStatus["Creating"] = "Creating";
-  EventStatus["Pending"] = "Pending";
-  EventStatus["Settled"] = "Settled";
-  EventStatus["Failed"] = "Failed";
-})(exports.EventStatus || (exports.EventStatus = {}));
-exports.Visibility = void 0;
-(function(Visibility) {
-  Visibility["Private"] = "Private";
-  Visibility["Public"] = "Public";
-})(exports.Visibility || (exports.Visibility = {}));
-exports.Network = void 0;
-(function(Network) {
-  Network["AleoTestnet"] = "AleoTestnet";
-  Network["AleoMainnet"] = "AleoMainnet";
-})(exports.Network || (exports.Network = {}));
-exports.AssetType = void 0;
-(function(AssetType) {
-  AssetType[AssetType["ALEO"] = 0] = "ALEO";
-})(exports.AssetType || (exports.AssetType = {}));
-const zodEventType = z2.nativeEnum(exports.EventType);
-const zodEventStatus = z2.nativeEnum(exports.EventStatus);
-const zodNetwork = z2.nativeEnum(exports.Network);
-const zodVisibility = z2.nativeEnum(exports.Visibility);
+var EventType;
+(function(EventType2) {
+  EventType2["Deploy"] = "Deploy";
+  EventType2["Execute"] = "Execute";
+  EventType2["Send"] = "Send";
+  EventType2["Receive"] = "Receive";
+  EventType2["Join"] = "Join";
+  EventType2["Split"] = "Split";
+  EventType2["Shield"] = "Shield";
+  EventType2["Unshield"] = "Unshield";
+})(EventType || (EventType = {}));
+var EventStatus;
+(function(EventStatus2) {
+  EventStatus2["Creating"] = "Creating";
+  EventStatus2["Pending"] = "Pending";
+  EventStatus2["Settled"] = "Settled";
+  EventStatus2["Failed"] = "Failed";
+})(EventStatus || (EventStatus = {}));
+var Visibility;
+(function(Visibility2) {
+  Visibility2["Private"] = "Private";
+  Visibility2["Public"] = "Public";
+})(Visibility || (Visibility = {}));
+var Network;
+(function(Network2) {
+  Network2["AleoTestnet"] = "AleoTestnet";
+  Network2["AleoMainnet"] = "AleoMainnet";
+})(Network || (Network = {}));
+var AssetType;
+(function(AssetType2) {
+  AssetType2[AssetType2["ALEO"] = 0] = "ALEO";
+})(AssetType || (AssetType = {}));
+const zodEventType = z2.nativeEnum(EventType);
+const zodEventStatus = z2.nativeEnum(EventStatus);
+const zodNetwork = z2.nativeEnum(Network);
+const zodVisibility = z2.nativeEnum(Visibility);
 const requestSignature = async ({
   message,
   address
@@ -17445,57 +17446,64 @@ var browserExports = browser.exports;
 const debug = /* @__PURE__ */ getDefaultExportFromCjs(browserExports);
 const log_sdk = debug("wallet:sdk");
 log_sdk.enabled = true;
-exports.PAGE_SIZE = PAGE_SIZE;
-exports.R = R$4;
-exports.T = T$1;
-exports.a = a$3;
-exports.aleoAddressRegex = aleoAddressRegex;
-exports.aleoFieldRegex = aleoFieldRegex;
-exports.aleoPrivateKeyRegex = aleoPrivateKeyRegex;
-exports.aleoTransactionIdRegex = aleoTransactionIdRegex;
-exports.aleoU32 = aleoU32;
-exports.aleoU64 = aleoU64;
-exports.aleoViewKeyRegex = aleoViewKeyRegex;
-exports.checkForDesktopConnection = checkForDesktopConnection;
-exports.configureConnection = configureConnection;
-exports.connect = connect;
-exports.createSharedState = createSharedState;
-exports.decrypt = decrypt;
-exports.disconnect = disconnect;
-exports.emitter = emitter;
-exports.getAccount = getAccount;
-exports.getBalance = getBalance;
-exports.getEvent = getEvent;
-exports.getEvents = getEvents;
-exports.getRecords = getRecords;
-exports.getWalletConnectModalSignClient = getWalletConnectModalSignClient;
-exports.hasInjectedConnection = hasInjectedConnection;
-exports.importSharedState = importSharedState;
-exports.log_sdk = log_sdk;
-exports.ne = ne;
-exports.oe = oe$1;
-exports.p = p$3;
-exports.projectId = projectId;
-exports.requestCreateEvent = requestCreateEvent;
-exports.requestSignature = requestSignature;
-exports.se = se;
-exports.signClient_puzzleProps = signClient_puzzleProps;
-exports.te = te$2;
-exports.wc_aleo_chains = wc_aleo_chains;
-exports.wc_aleo_methods = wc_aleo_methods;
-exports.wc_events = wc_events;
-exports.web3modal_puzzle_props = web3modal_puzzle_props;
-exports.web3modal_puzzle_props_android = web3modal_puzzle_props_android;
-exports.web3modal_puzzle_props_default = web3modal_puzzle_props_default;
-exports.y = y$3;
-exports.zodAddress = zodAddress;
-exports.zodEventStatus = zodEventStatus;
-exports.zodEventType = zodEventType;
-exports.zodField = zodField;
-exports.zodNetwork = zodNetwork;
-exports.zodPrivateKey = zodPrivateKey;
-exports.zodTransactionId = zodTransactionId;
-exports.zodU32 = zodU32;
-exports.zodU64 = zodU64;
-exports.zodViewKey = zodViewKey;
-exports.zodVisibility = zodVisibility;
+export {
+  log_sdk as $,
+  AssetType as A,
+  getAccount as B,
+  getBalance as C,
+  connect as D,
+  EventStatus as E,
+  requestCreateEvent as F,
+  createSharedState as G,
+  decrypt as H,
+  disconnect as I,
+  getEvent as J,
+  getEvents as K,
+  importSharedState as L,
+  getRecords as M,
+  Network as N,
+  requestSignature as O,
+  PAGE_SIZE as P,
+  wc_aleo_methods as Q,
+  R$4 as R,
+  wc_aleo_chains as S,
+  T$1 as T,
+  wc_events as U,
+  Visibility as V,
+  projectId as W,
+  web3modal_puzzle_props_android as X,
+  web3modal_puzzle_props_default as Y,
+  web3modal_puzzle_props as Z,
+  signClient_puzzleProps as _,
+  a$3 as a,
+  checkForDesktopConnection as a0,
+  hasInjectedConnection as a1,
+  emitter as a2,
+  configureConnection as a3,
+  getWalletConnectModalSignClient as a4,
+  EventType as b,
+  aleoAddressRegex as c,
+  aleoFieldRegex as d,
+  aleoPrivateKeyRegex as e,
+  aleoTransactionIdRegex as f,
+  aleoU32 as g,
+  aleoU64 as h,
+  aleoViewKeyRegex as i,
+  zodEventStatus as j,
+  zodEventType as k,
+  zodField as l,
+  zodNetwork as m,
+  ne as n,
+  oe$1 as o,
+  p$3 as p,
+  zodPrivateKey as q,
+  zodTransactionId as r,
+  se as s,
+  te$2 as t,
+  zodU32 as u,
+  zodU64 as v,
+  zodViewKey as w,
+  zodVisibility as x,
+  y$3 as y,
+  zodAddress as z
+};

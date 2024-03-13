@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle React SDK",
-  "version": "0.3.0",
+  "version": "0.3.0-alpha.0",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -51,9 +51,12 @@
   },
   "keywords": [
     "puzzle",
+    "cryptocurrency wallet",
+    "privacy",
     "aleo",
     "web3",
-    "crypto"
+    "crypto",
+    "react"
   ],
   "author": "Puzzle",
   "license": "ISC",

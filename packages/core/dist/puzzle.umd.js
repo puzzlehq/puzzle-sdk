@@ -12654,7 +12654,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.2.31-beta.2";
+  const version$1 = "0.3.0-alpha.0";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -12693,10 +12693,12 @@
   };
   const keywords = [
     "puzzle",
-    "html",
+    "cryptocurrency wallet",
+    "privacy",
     "aleo",
     "web3",
-    "crypto"
+    "crypto",
+    "typescript"
   ];
   const author = "Puzzle";
   const license = "ISC";
