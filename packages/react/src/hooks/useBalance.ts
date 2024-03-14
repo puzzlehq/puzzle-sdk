@@ -6,11 +6,11 @@ import {
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
-import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type UseBalanceParams = {
   address?: string;
@@ -18,7 +18,7 @@ type UseBalanceParams = {
 };
 
 export const useBalance = ({ address, multisig }: UseBalanceParams) => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
   const useQueryFunction = hasInjectedConnection()

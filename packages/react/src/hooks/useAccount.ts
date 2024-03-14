@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   GetSelectedAccountResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { SessionTypes } from '@walletconnect/types';
-import { useSession } from './wc/useSession.js';
 import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useWalletStore } from '../store.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
-import { Unsubscribable } from '@trpc/server/observable';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 export const shortenAddress = (
   address?: string,
@@ -32,11 +31,7 @@ export const shortenAddress = (
 };
 
 export const useAccount = () => {
-  const session: SessionTypes.Struct | undefined = useSession();
-
-  const [subscription, setSubscription] = useState<
-    Unsubscribable | undefined
-  >();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
 
   const [account, setAccount, onDisconnect] = useWalletStore((state) => [
     state.account,

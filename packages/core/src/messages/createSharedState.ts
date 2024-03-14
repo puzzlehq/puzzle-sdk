@@ -33,7 +33,7 @@ export const createSharedState =
     if (hasInjectedConnection()) {
       try {
         const response: CreateSharedStateResponse =
-          await window.aleo.puzzleWalletClient.createSharedState.mutation(
+          await window.aleo.puzzleWalletClient.createSharedState.mutate(
             query,
           );
         return response;

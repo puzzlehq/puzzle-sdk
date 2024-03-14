@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const index = require("./index-C7Iy_a-H.cjs");
+const index = require("./index-DdCOmqPw.cjs");
 Object.defineProperty(exports, "AssetType", {
   enumerable: true,
   get: () => index.AssetType
@@ -32,6 +32,10 @@ exports.aleoViewKeyRegex = index.aleoViewKeyRegex;
 exports.checkForDesktopConnection = index.checkForDesktopConnection;
 exports.configureConnection = index.configureConnection;
 exports.connect = index.connect;
+Object.defineProperty(exports, "connection", {
+  enumerable: true,
+  get: () => index.connection
+});
 exports.createSharedState = index.createSharedState;
 exports.decrypt = index.decrypt;
 exports.disconnect = index.disconnect;

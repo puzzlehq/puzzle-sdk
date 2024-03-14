@@ -2,6 +2,7 @@
 import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
 import EventEmitter from 'events';
 export declare const emitter: EventEmitter;
+export declare let connection: WalletConnectModalSign | undefined;
 export type WalletConnectModalSignInstance = InstanceType<typeof WalletConnectModalSign>;
 export declare function configureConnection(options: {
     dAppName: string;
@@ -10,5 +11,5 @@ export declare function configureConnection(options: {
     dAppIconURL: string;
     projectId?: string;
     onDisconnect?: () => any;
-}): Promise<void>;
+}): Promise<any>;
 export declare function getWalletConnectModalSignClient(): Promise<WalletConnectModalSign>;

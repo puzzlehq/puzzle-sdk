@@ -41,7 +41,7 @@ export const importSharedState = async (
   if (hasInjectedConnection()) {
     try {
       const response: ImportSharedStateResponse =
-        await window.aleo.puzzleWalletClient.importSharedState.mutation(query);
+        await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
       return response;
     } catch (e) {
       console.error('importSharedState error', e);

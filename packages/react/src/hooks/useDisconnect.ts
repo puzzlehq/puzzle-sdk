@@ -3,14 +3,14 @@ import {
   emitter,
   getWalletConnectModalSignClient,
 } from '@puzzlehq/sdk-core';
-import { useSession } from './wc/useSession.js';
 import { useWalletStore } from '../store.js';
 import { SessionTypes } from '@walletconnect/types';
 import { getSdkError } from '@walletconnect/utils';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 export function useDisconnect() {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const [onDisconnect] = useWalletStore((state) => [state.onDisconnect]);
 
   const { error, loading, setError, setLoading } = useAsyncAction();

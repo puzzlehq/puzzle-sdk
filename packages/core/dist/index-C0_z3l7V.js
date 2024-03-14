@@ -637,7 +637,7 @@ let d$1 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-B6ERmfwQ.js");
+      await import("./index-Bzz4GlSo.js");
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
@@ -12767,6 +12767,10 @@ async function configureConnection(options) {
   if (choice && JSON.parse(choice).name !== "Android") {
     window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
   }
+  if (typeof window !== "undefined") {
+    window.puzzleSdkConnection = connection;
+  }
+  return connection;
 }
 async function disconnectOnVersionChange(connection2, onDisconnect) {
   const session = await (connection2 == null ? void 0 : connection2.getSession());
@@ -12783,6 +12787,8 @@ async function getWalletConnectModalSignClient() {
   return new Promise((resolve) => {
     if (connection) {
       resolve(connection);
+    } else if (typeof window !== "undefined" && (window == null ? void 0 : window.puzzleSdkConnection)) {
+      resolve(window.puzzleSdkConnection);
     } else {
       const interval = setInterval(() => {
         if (connection) {
@@ -12985,7 +12991,7 @@ const createSharedState = async () => {
   };
   if (hasInjectedConnection()) {
     try {
-      const response = await window.aleo.puzzleWalletClient.createSharedState.mutation(
+      const response = await window.aleo.puzzleWalletClient.createSharedState.mutate(
         query
       );
       return response;
@@ -13170,7 +13176,7 @@ const importSharedState = async (seed) => {
   };
   if (hasInjectedConnection()) {
     try {
-      const response = await window.aleo.puzzleWalletClient.importSharedState.mutation(query);
+      const response = await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
       return response;
     } catch (e) {
       console.error("importSharedState error", e);
@@ -17479,8 +17485,9 @@ export {
   checkForDesktopConnection as a0,
   hasInjectedConnection as a1,
   emitter as a2,
-  configureConnection as a3,
-  getWalletConnectModalSignClient as a4,
+  connection as a3,
+  configureConnection as a4,
+  getWalletConnectModalSignClient as a5,
   EventType as b,
   aleoAddressRegex as c,
   aleoFieldRegex as d,

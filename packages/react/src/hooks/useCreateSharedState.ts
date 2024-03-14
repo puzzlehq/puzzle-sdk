@@ -4,10 +4,10 @@ import {
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { useExtensionRequest, useRequest } from './wc/useRequest.js';
-import { useSession } from './wc/useSession.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 export const useCreateSharedState = () => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
 
   const useRequestFunction = hasInjectedConnection()
     ? useExtensionRequest

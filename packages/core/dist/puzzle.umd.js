@@ -9179,7 +9179,7 @@
     }
   }
   class IJsonRpcProvider extends IBaseJsonRpcProvider {
-    constructor(connection2) {
+    constructor(connection) {
       super();
     }
   }
@@ -9218,17 +9218,17 @@
     return "error" in payload;
   }
   class JsonRpcProvider extends IJsonRpcProvider {
-    constructor(connection2) {
-      super(connection2);
+    constructor(connection) {
+      super(connection);
       this.events = new eventsExports.EventEmitter();
       this.hasRegisteredEventListeners = false;
-      this.connection = this.setConnection(connection2);
+      this.connection = this.setConnection(connection);
       if (this.connection.connected) {
         this.registerEventListeners();
       }
     }
-    async connect(connection2 = this.connection) {
-      await this.open(connection2);
+    async connect(connection = this.connection) {
+      await this.open(connection);
     }
     async disconnect() {
       await this.close();
@@ -9271,8 +9271,8 @@
         }
       });
     }
-    setConnection(connection2 = this.connection) {
-      return connection2;
+    setConnection(connection = this.connection) {
+      return connection;
     }
     onPayload(payload) {
       this.events.emit("payload", payload);
@@ -9291,16 +9291,16 @@
       }
       this.events.emit("disconnect");
     }
-    async open(connection2 = this.connection) {
-      if (this.connection === connection2 && this.connection.connected)
+    async open(connection = this.connection) {
+      if (this.connection === connection && this.connection.connected)
         return;
       if (this.connection.connected)
         this.close();
-      if (typeof connection2 === "string") {
-        await this.connection.open(connection2);
-        connection2 = this.connection;
+      if (typeof connection === "string") {
+        await this.connection.open(connection);
+        connection = this.connection;
       }
-      this.connection = this.setConnection(connection2);
+      this.connection = this.setConnection(connection);
       await this.connection.open();
       this.registerEventListeners();
       this.events.emit("connect");
@@ -12729,7 +12729,7 @@
     homepage
   };
   const emitter = new EventEmitter$1();
-  let connection = void 0;
+  exports2.connection = void 0;
   async function configureConnection(options) {
     let disconnectSessions = false;
     const thisVersion = pkg.version;
@@ -12741,7 +12741,7 @@
       localStorage.setItem("puzzle_sdk_version", thisVersion);
       disconnectSessions = true;
     }
-    connection = new z$2({
+    exports2.connection = new z$2({
       projectId: options.projectId ?? projectId,
       metadata: {
         name: options.dAppName,
@@ -12754,16 +12754,16 @@
     if (disconnectSessions) {
       localStorage.removeItem("puzzle-hasInjectedConnection");
       try {
-        disconnectOnVersionChange(connection, options.onDisconnect);
+        disconnectOnVersionChange(exports2.connection, options.onDisconnect);
       } catch (e2) {
         console.error(e2);
       }
     }
-    connection.onSessionDelete(() => {
+    exports2.connection.onSessionDelete(() => {
       localStorage.removeItem("puzzle-hasInjectedConnection");
       options.onDisconnect && options.onDisconnect();
     });
-    connection.onSessionExpire(() => {
+    exports2.connection.onSessionExpire(() => {
       localStorage.removeItem("puzzle-hasInjectedConnection");
       options.onDisconnect && options.onDisconnect();
     });
@@ -12771,6 +12771,10 @@
     if (choice && JSON.parse(choice).name !== "Android") {
       window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
     }
+    if (typeof window !== "undefined") {
+      window.puzzleSdkConnection = exports2.connection;
+    }
+    return exports2.connection;
   }
   async function disconnectOnVersionChange(connection2, onDisconnect) {
     const session = await (connection2 == null ? void 0 : connection2.getSession());
@@ -12785,13 +12789,15 @@
   }
   async function getWalletConnectModalSignClient() {
     return new Promise((resolve) => {
-      if (connection) {
-        resolve(connection);
+      if (exports2.connection) {
+        resolve(exports2.connection);
+      } else if (typeof window !== "undefined" && (window == null ? void 0 : window.puzzleSdkConnection)) {
+        resolve(window.puzzleSdkConnection);
       } else {
         const interval = setInterval(() => {
-          if (connection) {
+          if (exports2.connection) {
             clearInterval(interval);
-            resolve(connection);
+            resolve(exports2.connection);
           }
         }, 200);
       }
@@ -12837,9 +12843,9 @@
     return puzzleHasDesktopConnection === "true";
   };
   const getAccount = async () => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await connection2.getSession();
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await connection.getSession();
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const query = {
@@ -12860,7 +12866,7 @@
       }
     }
     try {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     } catch (e2) {
       console.error("getAccount error", e2);
@@ -12871,9 +12877,9 @@
   const getBalance = async ({
     address
   }) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await connection2.getSession();
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await connection.getSession();
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const query = {
@@ -12899,7 +12905,7 @@
       }
     }
     try {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     } catch (e2) {
       const error = e2.message;
@@ -12908,17 +12914,17 @@
     }
   };
   const connect = async () => {
-    const connection2 = await getWalletConnectModalSignClient();
-    if (!connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    if (!connection) {
       throw new Error("call setConnection() first!");
     }
-    const existingSession = await connection2.getSession();
+    const existingSession = await connection.getSession();
     if (existingSession) {
       console.log("Already connected!", existingSession);
       return existingSession;
     }
     try {
-      const newSession = await connection2.connect({
+      const newSession = await connection.connect({
         requiredNamespaces: {
           aleo: {
             methods: wc_aleo_methods,
@@ -12941,9 +12947,9 @@
     }
   };
   const requestCreateEvent = async (requestData) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const inputs = requestData == null ? void 0 : requestData.inputs.map((input) => {
@@ -12953,7 +12959,7 @@
       return input.plaintext;
     });
     try {
-      const response = await connection2.request({
+      const response = await connection.request({
         topic: session.topic,
         chainId: "aleo:1",
         request: {
@@ -12973,9 +12979,9 @@
     }
   };
   const createSharedState = async () => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const query = {
@@ -12989,7 +12995,7 @@
     };
     if (hasInjectedConnection()) {
       try {
-        const response = await window.aleo.puzzleWalletClient.createSharedState.mutation(
+        const response = await window.aleo.puzzleWalletClient.createSharedState.mutate(
           query
         );
         return response;
@@ -13000,7 +13006,7 @@
       }
     }
     try {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     } catch (e2) {
       console.error("createSharedState error", e2);
@@ -13009,9 +13015,9 @@
     }
   };
   const decrypt = async (ciphertexts) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const query = {
@@ -13036,7 +13042,7 @@
       }
     }
     try {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     } catch (e2) {
       console.error("decrypt error", e2);
@@ -13044,14 +13050,14 @@
     }
   };
   const disconnect = async () => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     try {
       try {
-        await connection2.disconnect({
+        await connection.disconnect({
           reason: U$3("USER_DISCONNECTED"),
           topic: session.topic
         });
@@ -13071,9 +13077,9 @@
     id,
     address
   }) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { event: void 0, error: "no session or connection" };
     }
     const query = {
@@ -13099,7 +13105,7 @@
       }
     }
     const fetchEvent = async () => {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     };
     try {
@@ -13112,9 +13118,9 @@
     }
   };
   const getEvents = async (filter) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { events: void 0, error: "no session or connection" };
     }
     if ((filter == null ? void 0 : filter.programId) === "") {
@@ -13143,7 +13149,7 @@
       }
     }
     const fetchPage = async (page = 0) => {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     };
     try {
@@ -13156,9 +13162,9 @@
     }
   };
   const importSharedState = async (seed) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const query = {
@@ -13174,7 +13180,7 @@
     };
     if (hasInjectedConnection()) {
       try {
-        const response = await window.aleo.puzzleWalletClient.importSharedState.mutation(query);
+        const response = await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
         return response;
       } catch (e2) {
         console.error("importSharedState error", e2);
@@ -13183,7 +13189,7 @@
       }
     }
     try {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     } catch (e2) {
       console.error("importSharedState error", e2);
@@ -13196,9 +13202,9 @@
     filter,
     page = 0
   }) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     const query = {
@@ -13225,7 +13231,7 @@
       }
     }
     const fetchPage = async (page2 = 0) => {
-      const response = await connection2.request(query);
+      const response = await connection.request(query);
       return response;
     };
     try {
@@ -16979,13 +16985,13 @@
     message,
     address
   }) => {
-    const connection2 = await getWalletConnectModalSignClient();
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (!session || !connection2) {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
       return { error: "no session or connection" };
     }
     try {
-      const response = await connection2.request({
+      const response = await connection.request({
         topic: session.topic,
         chainId: "aleo:1",
         request: {

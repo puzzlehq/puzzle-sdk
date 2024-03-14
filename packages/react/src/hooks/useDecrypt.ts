@@ -1,11 +1,10 @@
 import { SessionTypes } from '@walletconnect/types';
-import { DecryptRequest, DecryptResponse, log_sdk } from '@puzzlehq/sdk-core';
-import { useSession } from './wc/useSession.js';
+import { DecryptRequest, DecryptResponse, hasInjectedConnection, log_sdk } from '@puzzlehq/sdk-core';
 import { useExtensionRequest, useRequest } from './wc/useRequest.js';
-import { hasInjectedConnection } from '@puzzlehq/sdk-core';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 export const useDecrypt = (ciphertexts?: string[]) => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
 
   const useRequestFunction = hasInjectedConnection()
     ? useExtensionRequest

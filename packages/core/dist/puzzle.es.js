@@ -1,4 +1,4 @@
-import { A, E, b, N, P, V, c, d, e, f, g, h, i, a0, a3, D, G, H, I, a2, B, C, J, K, M, a4, a1, L, $, W, F, O, _, S, Q, U, Z, X, Y, z, j, k, l, m, q, r, u, v, w, x } from "./index-C-k4XCe6.js";
+import { A, E, b, N, P, V, c, d, e, f, g, h, i, a0, a4, D, a3, G, H, I, a2, B, C, J, K, M, a5, a1, L, $, W, F, O, _, S, Q, U, Z, X, Y, z, j, k, l, m, q, r, u, v, w, x } from "./index-C0_z3l7V.js";
 export {
   A as AssetType,
   E as EventStatus,
@@ -14,8 +14,9 @@ export {
   h as aleoU64,
   i as aleoViewKeyRegex,
   a0 as checkForDesktopConnection,
-  a3 as configureConnection,
+  a4 as configureConnection,
   D as connect,
+  a3 as connection,
   G as createSharedState,
   H as decrypt,
   I as disconnect,
@@ -25,7 +26,7 @@ export {
   J as getEvent,
   K as getEvents,
   M as getRecords,
-  a4 as getWalletConnectModalSignClient,
+  a5 as getWalletConnectModalSignClient,
   a1 as hasInjectedConnection,
   L as importSharedState,
   $ as log_sdk,

@@ -6,11 +6,11 @@ import {
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
-import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type UseEventParams = {
   id?: string;
@@ -19,7 +19,7 @@ type UseEventParams = {
 };
 
 export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
   const useQueryFunction = hasInjectedConnection()

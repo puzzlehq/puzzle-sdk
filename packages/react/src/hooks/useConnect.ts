@@ -11,12 +11,12 @@ import {
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
 import { shortenAddress } from './useAccount.js';
-import { useSession } from './wc/useSession.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
 
 export function useConnect() {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const isConnected = !!session;
   const { data, error, loading, setData, setError, setLoading } =
     useAsyncAction<Data>();

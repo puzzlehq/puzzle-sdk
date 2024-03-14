@@ -9,10 +9,10 @@ import {
 import { Event } from '@puzzlehq/types';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
-import { useSession } from './wc/useSession.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type UseEventsParams = {
   filter?: EventsFilter;
@@ -20,7 +20,7 @@ type UseEventsParams = {
 };
 
 export const useEvents = ({ filter, page }: UseEventsParams) => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
   if (filter?.programId === '') {

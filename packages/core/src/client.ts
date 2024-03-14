@@ -9,8 +9,7 @@ import { getSdkError } from '@walletconnect/utils';
 import { SessionTypes } from '@walletconnect/types';
 
 export const emitter = new EventEmitter();
-
-let connection: WalletConnectModalSign | undefined = undefined;
+export let connection: WalletConnectModalSign | undefined = undefined;
 
 export type WalletConnectModalSignInstance = InstanceType<
   typeof WalletConnectModalSign
@@ -72,6 +71,14 @@ export async function configureConnection(options: {
     // remove to prevent walletconnect from redirecting to the wallet page
     window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
   }
+
+  // Check if running in a Node.js environment
+  if (typeof window !== 'undefined') {
+    // Browser context
+    (window as any).puzzleSdkConnection = connection;
+  }
+
+  return connection;
 }
 
 async function disconnectOnVersionChange(
@@ -94,6 +101,10 @@ export async function getWalletConnectModalSignClient(): Promise<WalletConnectMo
   return new Promise((resolve) => {
     if (connection) {
       resolve(connection);
+    // @ts-ignore-next-line
+    } else if (typeof window !== 'undefined' && window?.puzzleSdkConnection) {
+      // @ts-ignore-next-line
+      resolve(window.puzzleSdkConnection)
     } else {
       const interval = setInterval(() => {
         if (connection) {

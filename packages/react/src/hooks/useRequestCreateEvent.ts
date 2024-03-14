@@ -1,15 +1,15 @@
 import { SessionTypes } from '@walletconnect/types';
 import { useRequest } from './wc/useRequest.js';
-import { useSession } from './wc/useSession.js';
 import {
   CreateEventRequest,
   CreateEventRequestData,
   CreateEventResponse,
   log_sdk,
 } from '@puzzlehq/sdk-core';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const inputs = requestData?.inputs.map((input) => {
     if (typeof input === 'string') {
       return input;

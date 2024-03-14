@@ -1,4 +1,5 @@
 import { QueryClient } from '@tanstack/react-query';
+import { SessionTypes } from '@walletconnect/types';
 type PuzzleWalletProviderProps = {
     dAppName: string;
     dAppDescription: string;
@@ -9,4 +10,5 @@ type PuzzleWalletProviderProps = {
 };
 export declare const queryClient: QueryClient;
 export declare const PuzzleWalletProvider: ({ dAppName, dAppDescription, dAppUrl, dAppIconURL, children, debugQuery, }: PuzzleWalletProviderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const useWalletSession: () => SessionTypes.Struct | undefined;
 export {};

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
 import {
   AccountSelectedResponse,
+  AccountSyncedResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
-import { AccountSyncedResponse } from '@puzzlehq/sdk-core';
 
 type SubscriptionConfig = {
   subscriptionName: string;

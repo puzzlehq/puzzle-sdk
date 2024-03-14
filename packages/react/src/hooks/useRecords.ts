@@ -8,11 +8,11 @@ import {
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
 import { useWalletStore } from '../store.js';
-import { useSession } from './wc/useSession.js';
 import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
+import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type UseRecordsParams = {
   address?: string;
@@ -35,7 +35,7 @@ export const useRecords = ({
   filter,
   page,
 }: UseRecordsParams) => {
-  const session: SessionTypes.Struct | undefined = useSession();
+  const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
   const useQueryFunction = hasInjectedConnection()
