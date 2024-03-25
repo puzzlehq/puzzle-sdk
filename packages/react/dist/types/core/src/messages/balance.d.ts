@@ -10,6 +10,7 @@ export type GetBalancesResponse = {
     balances?: Balance[];
     error?: string;
 };
-export declare const getBalance: ({ address, }: {
+export declare const getBalance: ({ address, network }: {
     address?: string | undefined;
+    network?: string | undefined;
 }) => Promise<GetBalancesResponse>;

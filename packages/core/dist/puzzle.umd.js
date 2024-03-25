@@ -12571,7 +12571,19 @@
     "importSharedState",
     "requestSignature"
   ];
-  const wc_aleo_chains = ["aleo:1"];
+  const wc_required_aleo_chains = ["aleo:1"];
+  const wc_optional_aleo_chains = [
+    "aleo:0",
+    // mainnet
+    "aleo:3",
+    // new, correct testnet3
+    "aleo:4"
+    // forthcoming canarynet
+  ];
+  const wc_aleo_chains = [
+    ...wc_required_aleo_chains,
+    ...wc_optional_aleo_chains
+  ];
   const wc_events = [
     "chainChanged",
     "accountSelected",
@@ -12842,15 +12854,18 @@
     );
     return puzzleHasDesktopConnection === "true";
   };
-  const getAccount = async () => {
+  const getAccount = async (network) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await connection.getSession();
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "getSelectedAccount"
@@ -12875,16 +12890,20 @@
     }
   };
   const getBalance = async ({
-    address
+    address,
+    network
   }) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await connection.getSession();
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "getBalance",
@@ -12928,7 +12947,14 @@
         requiredNamespaces: {
           aleo: {
             methods: wc_aleo_methods,
-            chains: wc_aleo_chains,
+            chains: wc_required_aleo_chains,
+            events: wc_events
+          }
+        },
+        optionalNamespaces: {
+          aleo: {
+            methods: wc_aleo_methods,
+            chains: wc_optional_aleo_chains,
             events: wc_events
           }
         }
@@ -12946,7 +12972,7 @@
       console.error("connect error", e2);
     }
   };
-  const requestCreateEvent = async (requestData) => {
+  const requestCreateEvent = async (requestData, network) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
@@ -12958,10 +12984,13 @@
       }
       return input.plaintext;
     });
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     try {
       const response = await connection.request({
         topic: session.topic,
-        chainId: "aleo:1",
+        chainId: network ?? "aleo:1",
         request: {
           jsonrpc: "2.0",
           method: "requestCreateEvent",
@@ -12978,15 +13007,18 @@
       return { error };
     }
   };
-  const createSharedState = async () => {
+  const createSharedState = async (network) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "createSharedState",
@@ -13014,15 +13046,18 @@
       return { error };
     }
   };
-  const decrypt = async (ciphertexts) => {
+  const decrypt = async (ciphertexts, network) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "decrypt",
@@ -13075,16 +13110,20 @@
   };
   const getEvent = async ({
     id,
-    address
+    address,
+    network
   }) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
       return { event: void 0, error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "getEvent",
@@ -13117,7 +13156,7 @@
       return { error };
     }
   };
-  const getEvents = async (filter) => {
+  const getEvents = async (filter, network) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
@@ -13126,9 +13165,15 @@
     if ((filter == null ? void 0 : filter.programId) === "") {
       filter.programId = void 0;
     }
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "getEvents",
@@ -13161,15 +13206,18 @@
       return { error };
     }
   };
-  const importSharedState = async (seed) => {
+  const importSharedState = async (seed, network) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "importSharedState",
@@ -13200,16 +13248,20 @@
   const getRecords = async ({
     address,
     filter,
-    page = 0
+    page = 0,
+    network
   }) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     const query = {
       topic: session.topic,
-      chainId: "aleo:1",
+      chainId: network ?? "aleo:1",
       request: {
         jsonrpc: "2.0",
         method: "getRecords",
@@ -16983,17 +17035,21 @@
   const zodVisibility = z$1.nativeEnum(exports2.Visibility);
   const requestSignature = async ({
     message,
-    address
+    address,
+    network
   }) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
     if (!session || !connection) {
       return { error: "no session or connection" };
     }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
     try {
       const response = await connection.request({
         topic: session.topic,
-        chainId: "aleo:1",
+        chainId: network ?? "aleo:1",
         request: {
           jsonrpc: "2.0",
           method: "requestSignature",
@@ -22053,6 +22109,8 @@
   exports2.wc_aleo_chains = wc_aleo_chains;
   exports2.wc_aleo_methods = wc_aleo_methods;
   exports2.wc_events = wc_events;
+  exports2.wc_optional_aleo_chains = wc_optional_aleo_chains;
+  exports2.wc_required_aleo_chains = wc_required_aleo_chains;
   exports2.web3modal_puzzle_props = web3modal_puzzle_props;
   exports2.web3modal_puzzle_props_android = web3modal_puzzle_props_android;
   exports2.web3modal_puzzle_props_default = web3modal_puzzle_props_default;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const index = require("./index-rLSm9-3e.cjs");
+const index = require("./index-Cc3ixod5.cjs");
 Object.defineProperty(exports, "AssetType", {
   enumerable: true,
   get: () => index.AssetType
@@ -56,6 +56,8 @@ exports.signClient_puzzleProps = index.signClient_puzzleProps;
 exports.wc_aleo_chains = index.wc_aleo_chains;
 exports.wc_aleo_methods = index.wc_aleo_methods;
 exports.wc_events = index.wc_events;
+exports.wc_optional_aleo_chains = index.wc_optional_aleo_chains;
+exports.wc_required_aleo_chains = index.wc_required_aleo_chains;
 exports.web3modal_puzzle_props = index.web3modal_puzzle_props;
 exports.web3modal_puzzle_props_android = index.web3modal_puzzle_props_android;
 exports.web3modal_puzzle_props_default = index.web3modal_puzzle_props_default;

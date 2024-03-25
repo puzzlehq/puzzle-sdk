@@ -5,4 +5,4 @@ export type DecryptResponse = {
     plaintexts?: string[];
     error?: string;
 };
-export declare const decrypt: (ciphertexts?: string[]) => Promise<DecryptResponse>;
+export declare const decrypt: (ciphertexts?: string[], network?: string) => Promise<DecryptResponse>;

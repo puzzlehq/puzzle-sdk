@@ -7,9 +7,12 @@ import {
   log_sdk,
 } from '@puzzlehq/sdk-core';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useWalletStore } from '../store.js';
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
+  const [account] = useWalletStore((state) => [state.account]);
+
   const inputs = requestData?.inputs.map((input) => {
     if (typeof input === 'string') {
       return input;
@@ -24,7 +27,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     loading,
   } = useRequest<CreateEventResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: 'aleo:1',
+    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'requestCreateEvent',

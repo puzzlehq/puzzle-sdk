@@ -12,7 +12,18 @@ export const wc_aleo_methods = [
   'importSharedState',
   'requestSignature',
 ];
-export const wc_aleo_chains = ['aleo:1'];
+
+export const wc_required_aleo_chains = ['aleo:1'] // old, incorrect testnet3 - to be phased out
+export const wc_optional_aleo_chains = [
+  'aleo:0', // mainnet
+  'aleo:3', // new, correct testnet3
+  'aleo:4' // forthcoming canarynet
+]
+
+export const wc_aleo_chains = [
+  ...wc_required_aleo_chains,
+  ...wc_optional_aleo_chains
+];
 
 // events originating from wallet
 export const wc_events = [

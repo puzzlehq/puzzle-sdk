@@ -7,9 +7,11 @@ import {
 import { aleoAddressRegex } from '@puzzlehq/types';
 import { useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useWalletStore } from '../store.js';
 
 export const useRequestSignature = (message: string, address?: string) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
+  const [account] = useWalletStore((state) => [state.account]);
 
   const {
     request,
@@ -18,7 +20,7 @@ export const useRequestSignature = (message: string, address?: string) => {
     loading,
   } = useRequest<SignatureResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: 'aleo:1',
+    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'requestSignature',

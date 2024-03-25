@@ -1,6 +1,7 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { wc_aleo_chains } from '../data/walletconnect.js';
 
 export type DecryptRequest = {
   ciphertexts: string[];
@@ -13,6 +14,7 @@ export type DecryptResponse = {
 
 export const decrypt = async (
   ciphertexts?: string[],
+  network?: string
 ): Promise<DecryptResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -21,10 +23,13 @@ export const decrypt = async (
   if (!session || !connection) {
     return { error: 'no session or connection' };
   }
+  if (network && !wc_aleo_chains.includes(network)) {
+    return {error: 'network not in wc_aleo_chains'}
+  }
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:1',
+    chainId: network ?? 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'decrypt',

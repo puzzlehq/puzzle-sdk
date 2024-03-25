@@ -1,6 +1,7 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { wc_aleo_chains } from '../data/walletconnect.js';
 
 export type GetBalancesRequest = {
   assetId?: string;
@@ -19,8 +20,10 @@ export type GetBalancesResponse = {
 
 export const getBalance = async ({
   address,
+  network
 }: {
-  address?: string;
+    address?: string;
+    network?: string;
 }): Promise<GetBalancesResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -30,9 +33,13 @@ export const getBalance = async ({
     return { error: 'no session or connection' };
   }
 
+  if (network && !wc_aleo_chains.includes(network)) {
+    return {error: 'network not in wc_aleo_chains'}
+  }
+
   const query = {
     topic: session.topic,
-    chainId: 'aleo:1',
+    chainId: network ?? 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getBalance',

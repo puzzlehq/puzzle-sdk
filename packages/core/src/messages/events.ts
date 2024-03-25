@@ -1,4 +1,4 @@
-import { Event, EventType } from '../index.js';
+import { Event, EventType, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
@@ -22,6 +22,7 @@ export type GetEventsResponse = {
 
 export const getEvents = async (
   filter: EventsFilter,
+  network?: string
 ): Promise<GetEventsResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -35,10 +36,16 @@ export const getEvents = async (
   if (filter?.programId === '') {
     filter.programId = undefined;
   }
+  if (!session || !connection) {
+    return { error: 'no session or connection' };
+  }
+  if (network && !wc_aleo_chains.includes(network)) {
+    return {error: 'network not in wc_aleo_chains'}
+  }
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:1',
+    chainId: network ?? 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getEvents',

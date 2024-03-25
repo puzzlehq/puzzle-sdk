@@ -4,9 +4,10 @@ import {
   emitter,
   getWalletConnectModalSignClient,
   checkForDesktopConnection,
-  wc_aleo_chains,
   wc_aleo_methods,
   wc_events,
+  wc_required_aleo_chains,
+  wc_optional_aleo_chains
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
@@ -31,7 +32,14 @@ export function useConnect() {
         requiredNamespaces: {
           aleo: {
             methods: wc_aleo_methods,
-            chains: wc_aleo_chains,
+            chains: wc_required_aleo_chains,
+            events: wc_events,
+          },
+        },
+        optionalNamespaces: {
+          aleo: {
+            methods: wc_aleo_methods,
+            chains: wc_optional_aleo_chains,
             events: wc_events,
           },
         },

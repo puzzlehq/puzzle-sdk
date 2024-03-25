@@ -2,6 +2,8 @@ import {
   wc_aleo_chains,
   wc_aleo_methods,
   wc_events,
+  wc_optional_aleo_chains,
+  wc_required_aleo_chains,
 } from '../data/walletconnect.js';
 import { getWalletConnectModalSignClient, emitter } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
@@ -26,7 +28,14 @@ export const connect = async () => {
         requiredNamespaces: {
           aleo: {
             methods: wc_aleo_methods,
-            chains: wc_aleo_chains,
+            chains: wc_required_aleo_chains,
+            events: wc_events,
+          },
+        },
+        optionalNamespaces: {
+          aleo: {
+            methods: wc_aleo_methods,
+            chains: wc_optional_aleo_chains,
             events: wc_events,
           },
         },

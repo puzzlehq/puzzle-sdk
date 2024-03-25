@@ -1,4 +1,6 @@
 export declare const wc_aleo_methods: string[];
+export declare const wc_required_aleo_chains: string[];
+export declare const wc_optional_aleo_chains: string[];
 export declare const wc_aleo_chains: string[];
 export declare const wc_events: string[];
 export declare const projectId = "f0aaeffe71b636da453fce042d79d723";
