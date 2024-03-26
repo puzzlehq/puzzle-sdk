@@ -20,10 +20,10 @@ export type GetBalancesResponse = {
 
 export const getBalance = async ({
   address,
-  network
+  network,
 }: {
-    address?: string;
-    network?: string;
+  address?: string;
+  network?: string;
 }): Promise<GetBalancesResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -34,7 +34,7 @@ export const getBalance = async ({
   }
 
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {

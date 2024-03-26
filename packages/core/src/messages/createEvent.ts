@@ -32,7 +32,7 @@ export type CreateEventResponse = {
 
 export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
-  network?: string
+  network?: string,
 ): Promise<CreateEventResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -50,7 +50,7 @@ export const requestCreateEvent = async (
   });
 
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   try {

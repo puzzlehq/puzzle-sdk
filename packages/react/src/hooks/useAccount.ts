@@ -126,7 +126,7 @@ export const useAccount = () => {
     });
   });
 
-  useOnSessionDelete(({ params, topic }) => {
+  useOnSessionDelete(() => {
     onDisconnect();
   });
 

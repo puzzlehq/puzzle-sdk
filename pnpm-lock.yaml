@@ -52,8 +52,8 @@ importers:
   packages/core:
     dependencies:
       '@puzzlehq/types':
-        specifier: 1.0.11
-        version: 1.0.11
+        specifier: 1.0.12
+        version: 1.0.12
       '@walletconnect/modal-sign-html':
         specifier: ^2.6.2
         version: 2.6.2(@types/react@18.2.58)(react@18.2.0)
@@ -82,8 +82,8 @@ importers:
         specifier: ../core
         version: link:../core
       '@puzzlehq/types':
-        specifier: 1.0.11
-        version: 1.0.11
+        specifier: 1.0.12
+        version: 1.0.12
       '@tanstack/react-query':
         specifier: ^4.29.5
         version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
@@ -559,6 +559,12 @@ packages:
 
   /@puzzlehq/types@1.0.11:
     resolution: {integrity: sha512-Elk1gs+RxTR3zBGdENpH3TMdp6aQaO17bI+ubfkbAPW6gN4PyYicN4z++TQCCvXwtIarOr0I2K0kLe8yQAIovw==}
+    dependencies:
+      zod: 3.21.1
+    dev: false
+
+  /@puzzlehq/types@1.0.12:
+    resolution: {integrity: sha512-2xHJyBKwq8N5xnQ6PnkV96FJhDzpBLhEuqXPPjEuBFDn0StrnN/s2bQ7WIn8Shy1ebZZYyP3iJba/rBnwQQXFA==}
     dependencies:
       zod: 3.21.1
     dev: false

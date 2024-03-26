@@ -1,3 +1,4 @@
+import { Network } from '@puzzlehq/types';
 export declare const wc_aleo_methods: string[];
 export declare const wc_required_aleo_chains: string[];
 export declare const wc_optional_aleo_chains: string[];
@@ -73,3 +74,5 @@ export declare const signClient_puzzleProps: {
         };
     };
 };
+export declare const networkToChainId: (network: Network, includePrefix?: boolean) => string;
+export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1' | 'aleo:3' | 'aleo:4') => Network;

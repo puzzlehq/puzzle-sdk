@@ -12558,743 +12558,6 @@
       console.info("Unable to set client id");
     }
   };
-  const wc_aleo_methods = [
-    "decrypt",
-    "disconnect",
-    "getSelectedAccount",
-    "getBalance",
-    "getRecords",
-    "requestCreateEvent",
-    "getEvent",
-    "getEvents",
-    "createSharedState",
-    "importSharedState",
-    "requestSignature"
-  ];
-  const wc_required_aleo_chains = ["aleo:1"];
-  const wc_optional_aleo_chains = [
-    "aleo:0",
-    // mainnet
-    "aleo:3",
-    // new, correct testnet3
-    "aleo:4"
-    // forthcoming canarynet
-  ];
-  const wc_aleo_chains = [
-    ...wc_required_aleo_chains,
-    ...wc_optional_aleo_chains
-  ];
-  const wc_events = [
-    "chainChanged",
-    "accountSelected",
-    "selectedAccountSynced",
-    "sharedAccountSynced"
-  ];
-  const projectId = "f0aaeffe71b636da453fce042d79d723";
-  function isAndroid() {
-    if (!navigator) {
-      return false;
-    }
-    return /Android/i.test(navigator.userAgent);
-  }
-  const web3modal_puzzle_props_android = {
-    projectId,
-    chains: ["aleo:3"],
-    enableExplorer: true,
-    explorerRecommendedWalletIds: ["7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a"],
-    mobileWallets: [
-      {
-        id: "puzzle",
-        name: "Puzzle Wallet",
-        links: {
-          native: "puzzleapp://",
-          universal: ""
-        }
-      }
-    ],
-    walletImages: {
-      puzzle: "https://i.imgur.com/p9tHaFC.png"
-    }
-  };
-  const web3modal_puzzle_props_default = {
-    projectId,
-    chains: wc_aleo_chains,
-    enableExplorer: false,
-    explorerRecommendedWalletIds: ["7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a"],
-    mobileWallets: [
-      {
-        id: "puzzle",
-        name: "Puzzle Wallet",
-        links: {
-          native: "puzzleapp://",
-          universal: ""
-        }
-      }
-    ],
-    desktopWallets: [
-      {
-        id: "puzzle",
-        name: "Puzzle Wallet",
-        links: {
-          native: "",
-          universal: "https://walletconnect.puzzle.online/"
-        }
-      },
-      {
-        id: "avail",
-        name: "Avail Wallet",
-        links: {
-          native: "avail://",
-          universal: "https://avail.global"
-        }
-      }
-    ],
-    walletImages: {
-      puzzle: "https://i.imgur.com/p9tHaFC.png",
-      avail: "https://i.imgur.com/GxNn8BO.png"
-    }
-  };
-  const web3modal_puzzle_props = isAndroid() ? web3modal_puzzle_props_android : web3modal_puzzle_props_default;
-  const signClient_puzzleProps = {
-    requiredNamespaces: {
-      aleo: {
-        methods: wc_aleo_methods,
-        chains: web3modal_puzzle_props.chains,
-        events: wc_events
-      }
-    }
-  };
-  const name = "@puzzlehq/sdk-core";
-  const displayName = "Puzzle SDK";
-  const version$1 = "0.3.1";
-  const description = "Your portal to privacy";
-  const main = "./dist/puzzle.cjs.js";
-  const module2 = "./dist/puzzle.es.js";
-  const browser$2 = "./dist/puzzle.umd.js";
-  const types = "./dist/types/src/index.d.ts";
-  const exports$1 = {
-    ".": {
-      "import": "./dist/puzzle.es.js",
-      require: "./dist/puzzle.cjs.js",
-      browser: "./dist/puzzle.umd.js",
-      types: "./dist/types/src/index.d.ts"
-    }
-  };
-  const type = "module";
-  const scripts = {
-    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
-    "ws-fix": `find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\"ws\\")/(() => {try { return require(\\"ws\\") } catch (e) { } })()/g' {} +;`,
-    build: "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix && pnpm ws-fix",
-    "type-check": "tsc --noEmit"
-  };
-  const repository = {
-    type: "git",
-    url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
-  };
-  const dependencies = {
-    "@puzzlehq/types": "1.0.11",
-    "@walletconnect/modal-sign-html": "^2.6.2",
-    "@walletconnect/types": "^2.11.2",
-    "@walletconnect/utils": "^2.11.2",
-    debug: "^4.3.4",
-    events: "^3.3.0",
-    ws: "^8.16.0"
-  };
-  const peerDependencies = {
-    buffer: "^6.0.3"
-  };
-  const keywords = [
-    "puzzle",
-    "cryptocurrency wallet",
-    "privacy",
-    "aleo",
-    "web3",
-    "crypto",
-    "typescript"
-  ];
-  const author = "Puzzle";
-  const license = "ISC";
-  const bugs = {
-    url: "https://github.com/puzzlehq/puzzle-sdk/issues"
-  };
-  const homepage = "https://github.com/puzzlehq/puzzle-sdk#readme";
-  const pkg = {
-    name,
-    displayName,
-    version: version$1,
-    description,
-    main,
-    module: module2,
-    browser: browser$2,
-    types,
-    "private": false,
-    exports: exports$1,
-    type,
-    scripts,
-    repository,
-    dependencies,
-    peerDependencies,
-    keywords,
-    author,
-    license,
-    bugs,
-    homepage
-  };
-  const emitter = new EventEmitter$1();
-  exports2.connection = void 0;
-  async function configureConnection(options) {
-    let disconnectSessions = false;
-    const thisVersion = pkg.version;
-    const prevVersion = localStorage.getItem("puzzle_sdk_version");
-    if (thisVersion !== prevVersion) {
-      console.log(
-        `${pkg.name}: Updated from ` + prevVersion + " to " + thisVersion + "!"
-      );
-      localStorage.setItem("puzzle_sdk_version", thisVersion);
-      disconnectSessions = true;
-    }
-    exports2.connection = new z$2({
-      projectId: options.projectId ?? projectId,
-      metadata: {
-        name: options.dAppName,
-        description: options.dAppDescription,
-        url: window ? window.location.hostname : options.dAppUrl ?? "NO URL",
-        icons: [options.dAppIconURL]
-      },
-      modalOptions: { ...web3modal_puzzle_props }
-    });
-    if (disconnectSessions) {
-      localStorage.removeItem("puzzle-hasInjectedConnection");
-      try {
-        disconnectOnVersionChange(exports2.connection, options.onDisconnect);
-      } catch (e2) {
-        console.error(e2);
-      }
-    }
-    exports2.connection.onSessionDelete(() => {
-      localStorage.removeItem("puzzle-hasInjectedConnection");
-      options.onDisconnect && options.onDisconnect();
-    });
-    exports2.connection.onSessionExpire(() => {
-      localStorage.removeItem("puzzle-hasInjectedConnection");
-      options.onDisconnect && options.onDisconnect();
-    });
-    const choice = window.localStorage.getItem("WALLETCONNECT_DEEPLINK_CHOICE");
-    if (choice && JSON.parse(choice).name !== "Android") {
-      window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
-    }
-    if (typeof window !== "undefined") {
-      window.puzzleSdkConnection = exports2.connection;
-    }
-    return exports2.connection;
-  }
-  async function disconnectOnVersionChange(connection2, onDisconnect) {
-    const session = await (connection2 == null ? void 0 : connection2.getSession());
-    if (session) {
-      console.log("Disconnecting session", session);
-      onDisconnect && onDisconnect();
-      connection2.disconnect({
-        topic: session.topic,
-        reason: U$3("USER_DISCONNECTED")
-      });
-    }
-  }
-  async function getWalletConnectModalSignClient() {
-    return new Promise((resolve) => {
-      if (exports2.connection) {
-        resolve(exports2.connection);
-      } else if (typeof window !== "undefined" && (window == null ? void 0 : window.puzzleSdkConnection)) {
-        resolve(window.puzzleSdkConnection);
-      } else {
-        const interval = setInterval(() => {
-          if (exports2.connection) {
-            clearInterval(interval);
-            resolve(exports2.connection);
-          }
-        }, 200);
-      }
-      const choice = window.localStorage.getItem("WALLETCONNECT_DEEPLINK_CHOICE");
-      if (choice && JSON.parse(choice).name !== "Android") {
-        window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
-      }
-    });
-  }
-  const checkForDesktopConnection = async (sessionTopic) => {
-    var _a;
-    const extensionDownloaded = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
-    if (!extensionDownloaded) {
-      localStorage.setItem("puzzle-hasInjectedConnection", "false");
-      return false;
-    }
-    try {
-      const res = await window.aleo.puzzleWalletClient.isConnected.query(
-        { sessionTopic }
-      );
-      if (res) {
-        localStorage.setItem("puzzle-hasInjectedConnection", "true");
-        return true;
-      } else {
-        localStorage.setItem("puzzle-hasInjectedConnection", "false");
-        return false;
-      }
-    } catch (e2) {
-      console.warn(e2);
-      localStorage.setItem("puzzle-hasInjectedConnection", "false");
-      return false;
-    }
-  };
-  const hasInjectedConnection = () => {
-    var _a;
-    const extensionDownloaded = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
-    if (!extensionDownloaded) {
-      return false;
-    }
-    const puzzleHasDesktopConnection = localStorage.getItem(
-      "puzzle-hasInjectedConnection"
-    );
-    return puzzleHasDesktopConnection === "true";
-  };
-  const getAccount = async (network) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await connection.getSession();
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "getSelectedAccount"
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);
-        return response;
-      } catch (e2) {
-        console.error("getAccount error", e2);
-        return { error: e2.message };
-      }
-    }
-    try {
-      const response = await connection.request(query);
-      return response;
-    } catch (e2) {
-      console.error("getAccount error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const getBalance = async ({
-    address,
-    network
-  }) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await connection.getSession();
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "getBalance",
-        params: {
-          assetId: void 0,
-          address
-        }
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.getBalance.query(query);
-        return response;
-      } catch (e2) {
-        const error = e2.message;
-        console.error("getBalance error", e2);
-        return { error };
-      }
-    }
-    try {
-      const response = await connection.request(query);
-      return response;
-    } catch (e2) {
-      const error = e2.message;
-      console.error("getBalance error", e2);
-      return { error };
-    }
-  };
-  const connect = async () => {
-    const connection = await getWalletConnectModalSignClient();
-    if (!connection) {
-      throw new Error("call setConnection() first!");
-    }
-    const existingSession = await connection.getSession();
-    if (existingSession) {
-      console.log("Already connected!", existingSession);
-      return existingSession;
-    }
-    try {
-      const newSession = await connection.connect({
-        requiredNamespaces: {
-          aleo: {
-            methods: wc_aleo_methods,
-            chains: wc_required_aleo_chains,
-            events: wc_events
-          }
-        },
-        optionalNamespaces: {
-          aleo: {
-            methods: wc_aleo_methods,
-            chains: wc_optional_aleo_chains,
-            events: wc_events
-          }
-        }
-      });
-      emitter.emit("session_change");
-      if (newSession) {
-        await checkForDesktopConnection(newSession.topic);
-      }
-      const choice = window.localStorage.getItem("WALLETCONNECT_DEEPLINK_CHOICE");
-      if (choice && JSON.parse(choice).name !== "Android") {
-        window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
-      }
-      return newSession;
-    } catch (e2) {
-      console.error("connect error", e2);
-    }
-  };
-  const requestCreateEvent = async (requestData, network) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    const inputs = requestData == null ? void 0 : requestData.inputs.map((input) => {
-      if (typeof input === "string") {
-        return input;
-      }
-      return input.plaintext;
-    });
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    try {
-      const response = await connection.request({
-        topic: session.topic,
-        chainId: network ?? "aleo:1",
-        request: {
-          jsonrpc: "2.0",
-          method: "requestCreateEvent",
-          params: {
-            ...requestData,
-            inputs
-          }
-        }
-      });
-      return response;
-    } catch (e2) {
-      console.error("createEvent error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const createSharedState = async (network) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "createSharedState",
-        params: {}
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.createSharedState.mutate(
-          query
-        );
-        return response;
-      } catch (e2) {
-        console.error("createSharedState error", e2);
-        const error = e2.message;
-        return { error };
-      }
-    }
-    try {
-      const response = await connection.request(query);
-      return response;
-    } catch (e2) {
-      console.error("createSharedState error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const decrypt = async (ciphertexts, network) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "decrypt",
-        params: {
-          ciphertexts
-        }
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.decrypt.query(query);
-        return response;
-      } catch (e2) {
-        const error = e2.message;
-        console.error("decrypt error", e2);
-        return { error };
-      }
-    }
-    try {
-      const response = await connection.request(query);
-      return response;
-    } catch (e2) {
-      console.error("decrypt error", e2);
-      return { error: e2.message };
-    }
-  };
-  const disconnect = async () => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    try {
-      try {
-        await connection.disconnect({
-          reason: U$3("USER_DISCONNECTED"),
-          topic: session.topic
-        });
-        localStorage.removeItem("puzzle-hasInjectedConnection");
-        emitter.emit("session_change");
-      } catch (e2) {
-        console.warn(e2);
-      }
-      return {};
-    } catch (e2) {
-      console.error("error disconnecting", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const getEvent = async ({
-    id,
-    address,
-    network
-  }) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { event: void 0, error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "getEvent",
-        params: {
-          id,
-          address
-        }
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.getEvent.query(query);
-        return response;
-      } catch (e2) {
-        console.error("getEvent error", e2);
-        const error = e2.message;
-        return { error };
-      }
-    }
-    const fetchEvent = async () => {
-      const response = await connection.request(query);
-      return response;
-    };
-    try {
-      const response = await fetchEvent();
-      return response;
-    } catch (e2) {
-      console.error("getEvents error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const getEvents = async (filter, network) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { events: void 0, error: "no session or connection" };
-    }
-    if ((filter == null ? void 0 : filter.programId) === "") {
-      filter.programId = void 0;
-    }
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "getEvents",
-        params: {
-          filter,
-          page: 0
-        }
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.getEvents.query(query);
-        return response;
-      } catch (e2) {
-        console.error("getEvents error", e2);
-        const error = e2.message;
-        return { error };
-      }
-    }
-    const fetchPage = async (page = 0) => {
-      const response = await connection.request(query);
-      return response;
-    };
-    try {
-      const response = await fetchPage();
-      return response;
-    } catch (e2) {
-      console.error("getEvents error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const importSharedState = async (seed, network) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "importSharedState",
-        params: {
-          seed
-        }
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
-        return response;
-      } catch (e2) {
-        console.error("importSharedState error", e2);
-        const error = e2.message;
-        return { error };
-      }
-    }
-    try {
-      const response = await connection.request(query);
-      return response;
-    } catch (e2) {
-      console.error("importSharedState error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
-  const getRecords = async ({
-    address,
-    filter,
-    page = 0,
-    network
-  }) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await (connection == null ? void 0 : connection.getSession());
-    if (!session || !connection) {
-      return { error: "no session or connection" };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-      return { error: "network not in wc_aleo_chains" };
-    }
-    const query = {
-      topic: session.topic,
-      chainId: network ?? "aleo:1",
-      request: {
-        jsonrpc: "2.0",
-        method: "getRecords",
-        params: {
-          address,
-          filter,
-          page
-        }
-      }
-    };
-    if (hasInjectedConnection()) {
-      try {
-        const response = await window.aleo.puzzleWalletClient.getRecords.query(query);
-        return response;
-      } catch (e2) {
-        console.error("getRecords error", e2);
-        const error = e2.message;
-        return { error };
-      }
-    }
-    const fetchPage = async (page2 = 0) => {
-      const response = await connection.request(query);
-      return response;
-    };
-    try {
-      const response = await fetchPage();
-      return response;
-    } catch (e2) {
-      console.error("getRecords error", e2);
-      const error = e2.message;
-      return { error };
-    }
-  };
   var util;
   (function(util2) {
     util2.assertEqual = (val) => val;
@@ -16976,6 +16239,7 @@
   const aleoAddressRegex = /^aleo1[a-z0-9]{58}$/i;
   const aleoViewKeyRegex = /^AViewKey1[a-z0-9]{44}$/i;
   const aleoPrivateKeyRegex = /^APrivateKey1[a-z0-9]{47}$/i;
+  const aleoTransitionIdRegex = /^au1[a-z0-9]{58}$/i;
   const aleoTransactionIdRegex = /^at1[a-z0-9]{58}$/i;
   const aleoFieldRegex = /^\d+field$/;
   const aleoU32 = /^\d+u32$/;
@@ -16983,6 +16247,7 @@
   const zodAddress = z$1.string().regex(aleoAddressRegex);
   const zodViewKey = z$1.string().regex(aleoViewKeyRegex);
   const zodPrivateKey = z$1.string().regex(aleoPrivateKeyRegex);
+  z$1.string().regex(aleoTransitionIdRegex);
   const zodTransactionId = z$1.string().regex(aleoTransactionIdRegex);
   const zodField = z$1.string().regex(aleoFieldRegex);
   const zodU32 = z$1.string().regex(aleoU32);
@@ -17007,6 +16272,7 @@
     EventType["Split"] = "Split";
     EventType["Shield"] = "Shield";
     EventType["Unshield"] = "Unshield";
+    EventType["Referral"] = "Referral";
   })(exports2.EventType || (exports2.EventType = {}));
   exports2.EventStatus = void 0;
   (function(EventStatus) {
@@ -17023,6 +16289,7 @@
   exports2.Network = void 0;
   (function(Network) {
     Network["AleoTestnet"] = "AleoTestnet";
+    Network["AleoCanarynet"] = "AleoCanarynet";
     Network["AleoMainnet"] = "AleoMainnet";
   })(exports2.Network || (exports2.Network = {}));
   exports2.AssetType = void 0;
@@ -17033,6 +16300,772 @@
   const zodEventStatus = z$1.nativeEnum(exports2.EventStatus);
   const zodNetwork = z$1.nativeEnum(exports2.Network);
   const zodVisibility = z$1.nativeEnum(exports2.Visibility);
+  const wc_aleo_methods = [
+    "decrypt",
+    "disconnect",
+    "getSelectedAccount",
+    "getBalance",
+    "getRecords",
+    "requestCreateEvent",
+    "getEvent",
+    "getEvents",
+    "createSharedState",
+    "importSharedState",
+    "requestSignature"
+  ];
+  const wc_required_aleo_chains = ["aleo:1"];
+  const wc_optional_aleo_chains = [
+    "aleo:0",
+    // mainnet
+    "aleo:3",
+    // new, correct testnet3
+    "aleo:4"
+    // forthcoming canarynet
+  ];
+  const wc_aleo_chains = [
+    ...wc_required_aleo_chains,
+    ...wc_optional_aleo_chains
+  ];
+  const wc_events = [
+    "chainChanged",
+    "accountSelected",
+    "selectedAccountSynced",
+    "sharedAccountSynced"
+  ];
+  const projectId = "f0aaeffe71b636da453fce042d79d723";
+  function isAndroid() {
+    if (!navigator) {
+      return false;
+    }
+    return /Android/i.test(navigator.userAgent);
+  }
+  const web3modal_puzzle_props_android = {
+    projectId,
+    chains: ["aleo:3"],
+    enableExplorer: true,
+    explorerRecommendedWalletIds: [
+      "7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a"
+    ],
+    mobileWallets: [
+      {
+        id: "puzzle",
+        name: "Puzzle Wallet",
+        links: {
+          native: "puzzleapp://",
+          universal: ""
+        }
+      }
+    ],
+    walletImages: {
+      puzzle: "https://i.imgur.com/p9tHaFC.png"
+    }
+  };
+  const web3modal_puzzle_props_default = {
+    projectId,
+    chains: wc_aleo_chains,
+    enableExplorer: false,
+    explorerRecommendedWalletIds: [
+      "7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a"
+    ],
+    mobileWallets: [
+      {
+        id: "puzzle",
+        name: "Puzzle Wallet",
+        links: {
+          native: "puzzleapp://",
+          universal: ""
+        }
+      }
+    ],
+    desktopWallets: [
+      {
+        id: "puzzle",
+        name: "Puzzle Wallet",
+        links: {
+          native: "",
+          universal: "https://walletconnect.puzzle.online/"
+        }
+      },
+      {
+        id: "avail",
+        name: "Avail Wallet",
+        links: {
+          native: "avail://",
+          universal: "https://avail.global"
+        }
+      }
+    ],
+    walletImages: {
+      puzzle: "https://i.imgur.com/p9tHaFC.png",
+      avail: "https://i.imgur.com/GxNn8BO.png"
+    }
+  };
+  const web3modal_puzzle_props = isAndroid() ? web3modal_puzzle_props_android : web3modal_puzzle_props_default;
+  const signClient_puzzleProps = {
+    requiredNamespaces: {
+      aleo: {
+        methods: wc_aleo_methods,
+        chains: web3modal_puzzle_props.chains,
+        events: wc_events
+      }
+    }
+  };
+  const networkToChainId = (network, includePrefix = true) => {
+    let chain;
+    switch (network) {
+      case exports2.Network.AleoMainnet:
+        chain = "aleo:0";
+        break;
+      case exports2.Network.AleoTestnet:
+        chain = "aleo:1";
+        break;
+      case exports2.Network.AleoCanarynet:
+        chain = "aleo:4";
+        break;
+    }
+    return includePrefix ? chain : chain.replace("aleo:", "");
+  };
+  const chainIdToNetwork = (chainId) => {
+    switch (chainId) {
+      case "aleo:0":
+        return exports2.Network.AleoMainnet;
+      case "aleo:1":
+        return exports2.Network.AleoTestnet;
+      case "aleo:3":
+        return exports2.Network.AleoTestnet;
+      case "aleo:4":
+        return exports2.Network.AleoCanarynet;
+    }
+  };
+  const name = "@puzzlehq/sdk-core";
+  const displayName = "Puzzle SDK";
+  const version$1 = "0.3.1";
+  const description = "Your portal to privacy";
+  const main = "./dist/puzzle.cjs.js";
+  const module2 = "./dist/puzzle.es.js";
+  const browser$2 = "./dist/puzzle.umd.js";
+  const types = "./dist/types/src/index.d.ts";
+  const exports$1 = {
+    ".": {
+      "import": "./dist/puzzle.es.js",
+      require: "./dist/puzzle.cjs.js",
+      browser: "./dist/puzzle.umd.js",
+      types: "./dist/types/src/index.d.ts"
+    }
+  };
+  const type = "module";
+  const scripts = {
+    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
+    "ws-fix": `find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\"ws\\")/(() => {try { return require(\\"ws\\") } catch (e) { } })()/g' {} +;`,
+    build: "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix && pnpm ws-fix",
+    "type-check": "tsc --noEmit"
+  };
+  const repository = {
+    type: "git",
+    url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
+  };
+  const dependencies = {
+    "@puzzlehq/types": "1.0.12",
+    "@walletconnect/modal-sign-html": "^2.6.2",
+    "@walletconnect/types": "^2.11.2",
+    "@walletconnect/utils": "^2.11.2",
+    debug: "^4.3.4",
+    events: "^3.3.0",
+    ws: "^8.16.0"
+  };
+  const peerDependencies = {
+    buffer: "^6.0.3"
+  };
+  const keywords = [
+    "puzzle",
+    "cryptocurrency wallet",
+    "privacy",
+    "aleo",
+    "web3",
+    "crypto",
+    "typescript"
+  ];
+  const author = "Puzzle";
+  const license = "ISC";
+  const bugs = {
+    url: "https://github.com/puzzlehq/puzzle-sdk/issues"
+  };
+  const homepage = "https://github.com/puzzlehq/puzzle-sdk#readme";
+  const pkg = {
+    name,
+    displayName,
+    version: version$1,
+    description,
+    main,
+    module: module2,
+    browser: browser$2,
+    types,
+    "private": false,
+    exports: exports$1,
+    type,
+    scripts,
+    repository,
+    dependencies,
+    peerDependencies,
+    keywords,
+    author,
+    license,
+    bugs,
+    homepage
+  };
+  const emitter = new EventEmitter$1();
+  exports2.connection = void 0;
+  async function configureConnection(options) {
+    let disconnectSessions = false;
+    const thisVersion = pkg.version;
+    const prevVersion = localStorage.getItem("puzzle_sdk_version");
+    if (thisVersion !== prevVersion) {
+      console.log(
+        `${pkg.name}: Updated from ` + prevVersion + " to " + thisVersion + "!"
+      );
+      localStorage.setItem("puzzle_sdk_version", thisVersion);
+      disconnectSessions = true;
+    }
+    exports2.connection = new z$2({
+      projectId: options.projectId ?? projectId,
+      metadata: {
+        name: options.dAppName,
+        description: options.dAppDescription,
+        url: window ? window.location.hostname : options.dAppUrl ?? "NO URL",
+        icons: [options.dAppIconURL]
+      },
+      modalOptions: { ...web3modal_puzzle_props }
+    });
+    if (disconnectSessions) {
+      localStorage.removeItem("puzzle-hasInjectedConnection");
+      try {
+        disconnectOnVersionChange(exports2.connection, options.onDisconnect);
+      } catch (e2) {
+        console.error(e2);
+      }
+    }
+    exports2.connection.onSessionDelete(() => {
+      localStorage.removeItem("puzzle-hasInjectedConnection");
+      options.onDisconnect && options.onDisconnect();
+    });
+    exports2.connection.onSessionExpire(() => {
+      localStorage.removeItem("puzzle-hasInjectedConnection");
+      options.onDisconnect && options.onDisconnect();
+    });
+    const choice = window.localStorage.getItem("WALLETCONNECT_DEEPLINK_CHOICE");
+    if (choice && JSON.parse(choice).name !== "Android") {
+      window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
+    }
+    if (typeof window !== "undefined") {
+      window.puzzleSdkConnection = exports2.connection;
+    }
+    return exports2.connection;
+  }
+  async function disconnectOnVersionChange(connection2, onDisconnect) {
+    const session = await (connection2 == null ? void 0 : connection2.getSession());
+    if (session) {
+      console.log("Disconnecting session", session);
+      onDisconnect && onDisconnect();
+      connection2.disconnect({
+        topic: session.topic,
+        reason: U$3("USER_DISCONNECTED")
+      });
+    }
+  }
+  async function getWalletConnectModalSignClient() {
+    return new Promise((resolve) => {
+      if (exports2.connection) {
+        resolve(exports2.connection);
+      } else if (typeof window !== "undefined" && (window == null ? void 0 : window.puzzleSdkConnection)) {
+        resolve(window.puzzleSdkConnection);
+      } else {
+        const interval = setInterval(() => {
+          if (exports2.connection) {
+            clearInterval(interval);
+            resolve(exports2.connection);
+          }
+        }, 200);
+      }
+      const choice = window.localStorage.getItem("WALLETCONNECT_DEEPLINK_CHOICE");
+      if (choice && JSON.parse(choice).name !== "Android") {
+        window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
+      }
+    });
+  }
+  const checkForDesktopConnection = async (sessionTopic) => {
+    var _a;
+    const extensionDownloaded = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
+    if (!extensionDownloaded) {
+      localStorage.setItem("puzzle-hasInjectedConnection", "false");
+      return false;
+    }
+    try {
+      const res = await window.aleo.puzzleWalletClient.isConnected.query(
+        { sessionTopic }
+      );
+      if (res) {
+        localStorage.setItem("puzzle-hasInjectedConnection", "true");
+        return true;
+      } else {
+        localStorage.setItem("puzzle-hasInjectedConnection", "false");
+        return false;
+      }
+    } catch (e2) {
+      console.warn(e2);
+      localStorage.setItem("puzzle-hasInjectedConnection", "false");
+      return false;
+    }
+  };
+  const hasInjectedConnection = () => {
+    var _a;
+    const extensionDownloaded = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
+    if (!extensionDownloaded) {
+      return false;
+    }
+    const puzzleHasDesktopConnection = localStorage.getItem(
+      "puzzle-hasInjectedConnection"
+    );
+    return puzzleHasDesktopConnection === "true";
+  };
+  const getAccount = async (network) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await connection.getSession();
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "getSelectedAccount"
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);
+        return response;
+      } catch (e2) {
+        console.error("getAccount error", e2);
+        return { error: e2.message };
+      }
+    }
+    try {
+      const response = await connection.request(query);
+      return response;
+    } catch (e2) {
+      console.error("getAccount error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const getBalance = async ({
+    address,
+    network
+  }) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await connection.getSession();
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "getBalance",
+        params: {
+          assetId: void 0,
+          address
+        }
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.getBalance.query(query);
+        return response;
+      } catch (e2) {
+        const error = e2.message;
+        console.error("getBalance error", e2);
+        return { error };
+      }
+    }
+    try {
+      const response = await connection.request(query);
+      return response;
+    } catch (e2) {
+      const error = e2.message;
+      console.error("getBalance error", e2);
+      return { error };
+    }
+  };
+  const connect = async () => {
+    const connection = await getWalletConnectModalSignClient();
+    if (!connection) {
+      throw new Error("call setConnection() first!");
+    }
+    const existingSession = await connection.getSession();
+    if (existingSession) {
+      console.log("Already connected!", existingSession);
+      return existingSession;
+    }
+    try {
+      const newSession = await connection.connect({
+        requiredNamespaces: {
+          aleo: {
+            methods: wc_aleo_methods,
+            chains: wc_required_aleo_chains,
+            events: wc_events
+          }
+        },
+        optionalNamespaces: {
+          aleo: {
+            methods: wc_aleo_methods,
+            chains: wc_optional_aleo_chains,
+            events: wc_events
+          }
+        }
+      });
+      emitter.emit("session_change");
+      if (newSession) {
+        await checkForDesktopConnection(newSession.topic);
+      }
+      const choice = window.localStorage.getItem("WALLETCONNECT_DEEPLINK_CHOICE");
+      if (choice && JSON.parse(choice).name !== "Android") {
+        window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
+      }
+      return newSession;
+    } catch (e2) {
+      console.error("connect error", e2);
+    }
+  };
+  const requestCreateEvent = async (requestData, network) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    const inputs = requestData == null ? void 0 : requestData.inputs.map((input) => {
+      if (typeof input === "string") {
+        return input;
+      }
+      return input.plaintext;
+    });
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    try {
+      const response = await connection.request({
+        topic: session.topic,
+        chainId: network ?? "aleo:1",
+        request: {
+          jsonrpc: "2.0",
+          method: "requestCreateEvent",
+          params: {
+            ...requestData,
+            inputs
+          }
+        }
+      });
+      return response;
+    } catch (e2) {
+      console.error("createEvent error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const createSharedState = async (network) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "createSharedState",
+        params: {}
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.createSharedState.mutate(query);
+        return response;
+      } catch (e2) {
+        console.error("createSharedState error", e2);
+        const error = e2.message;
+        return { error };
+      }
+    }
+    try {
+      const response = await connection.request(query);
+      return response;
+    } catch (e2) {
+      console.error("createSharedState error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const decrypt = async (ciphertexts, network) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "decrypt",
+        params: {
+          ciphertexts
+        }
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.decrypt.query(query);
+        return response;
+      } catch (e2) {
+        const error = e2.message;
+        console.error("decrypt error", e2);
+        return { error };
+      }
+    }
+    try {
+      const response = await connection.request(query);
+      return response;
+    } catch (e2) {
+      console.error("decrypt error", e2);
+      return { error: e2.message };
+    }
+  };
+  const disconnect = async () => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    try {
+      try {
+        await connection.disconnect({
+          reason: U$3("USER_DISCONNECTED"),
+          topic: session.topic
+        });
+        localStorage.removeItem("puzzle-hasInjectedConnection");
+        emitter.emit("session_change");
+      } catch (e2) {
+        console.warn(e2);
+      }
+      return {};
+    } catch (e2) {
+      console.error("error disconnecting", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const getEvent = async ({
+    id,
+    address,
+    network
+  }) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { event: void 0, error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "getEvent",
+        params: {
+          id,
+          address
+        }
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.getEvent.query(query);
+        return response;
+      } catch (e2) {
+        console.error("getEvent error", e2);
+        const error = e2.message;
+        return { error };
+      }
+    }
+    const fetchEvent = async () => {
+      const response = await connection.request(query);
+      return response;
+    };
+    try {
+      const response = await fetchEvent();
+      return response;
+    } catch (e2) {
+      console.error("getEvents error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const getEvents = async (filter, network) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { events: void 0, error: "no session or connection" };
+    }
+    if ((filter == null ? void 0 : filter.programId) === "") {
+      filter.programId = void 0;
+    }
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "getEvents",
+        params: {
+          filter,
+          page: 0
+        }
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.getEvents.query(query);
+        return response;
+      } catch (e2) {
+        console.error("getEvents error", e2);
+        const error = e2.message;
+        return { error };
+      }
+    }
+    const fetchPage = async (page = 0) => {
+      const response = await connection.request(query);
+      return response;
+    };
+    try {
+      const response = await fetchPage();
+      return response;
+    } catch (e2) {
+      console.error("getEvents error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const importSharedState = async (seed, network) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "importSharedState",
+        params: {
+          seed
+        }
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
+        return response;
+      } catch (e2) {
+        console.error("importSharedState error", e2);
+        const error = e2.message;
+        return { error };
+      }
+    }
+    try {
+      const response = await connection.request(query);
+      return response;
+    } catch (e2) {
+      console.error("importSharedState error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
+  const getRecords = async ({
+    address,
+    filter,
+    page = 0,
+    network
+  }) => {
+    const connection = await getWalletConnectModalSignClient();
+    const session = await (connection == null ? void 0 : connection.getSession());
+    if (!session || !connection) {
+      return { error: "no session or connection" };
+    }
+    if (network && !wc_aleo_chains.includes(network)) {
+      return { error: "network not in wc_aleo_chains" };
+    }
+    const query = {
+      topic: session.topic,
+      chainId: network ?? "aleo:1",
+      request: {
+        jsonrpc: "2.0",
+        method: "getRecords",
+        params: {
+          address,
+          filter,
+          page
+        }
+      }
+    };
+    if (hasInjectedConnection()) {
+      try {
+        const response = await window.aleo.puzzleWalletClient.getRecords.query(query);
+        return response;
+      } catch (e2) {
+        console.error("getRecords error", e2);
+        const error = e2.message;
+        return { error };
+      }
+    }
+    const fetchPage = async (page2 = 0) => {
+      const response = await connection.request(query);
+      return response;
+    };
+    try {
+      const response = await fetchPage();
+      return response;
+    } catch (e2) {
+      console.error("getRecords error", e2);
+      const error = e2.message;
+      return { error };
+    }
+  };
   const requestSignature = async ({
     message,
     address,
@@ -22086,6 +22119,7 @@
   exports2.aleoU32 = aleoU32;
   exports2.aleoU64 = aleoU64;
   exports2.aleoViewKeyRegex = aleoViewKeyRegex;
+  exports2.chainIdToNetwork = chainIdToNetwork;
   exports2.checkForDesktopConnection = checkForDesktopConnection;
   exports2.configureConnection = configureConnection;
   exports2.connect = connect;
@@ -22102,6 +22136,7 @@
   exports2.hasInjectedConnection = hasInjectedConnection;
   exports2.importSharedState = importSharedState;
   exports2.log_sdk = log_sdk;
+  exports2.networkToChainId = networkToChainId;
   exports2.projectId = projectId;
   exports2.requestCreateEvent = requestCreateEvent;
   exports2.requestSignature = requestSignature;

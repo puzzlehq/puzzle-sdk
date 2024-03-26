@@ -28,7 +28,7 @@ export const getRecords = async ({
   address,
   filter,
   page = 0,
-  network
+  network,
 }: GetRecordsRequest): Promise<GetRecordsResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -39,7 +39,7 @@ export const getRecords = async ({
     return { error: 'no session or connection' };
   }
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {

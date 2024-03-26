@@ -16,4 +16,4 @@ export type GetRecordsResponse = {
     pageCount?: number;
     error?: string;
 };
-export declare const getRecords: ({ address, filter, page, network }: GetRecordsRequest) => Promise<GetRecordsResponse>;
+export declare const getRecords: ({ address, filter, page, network, }: GetRecordsRequest) => Promise<GetRecordsResponse>;

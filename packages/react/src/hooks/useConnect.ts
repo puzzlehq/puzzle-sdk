@@ -7,7 +7,7 @@ import {
   wc_aleo_methods,
   wc_events,
   wc_required_aleo_chains,
-  wc_optional_aleo_chains
+  wc_optional_aleo_chains,
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
@@ -55,7 +55,9 @@ export function useConnect() {
       });
       emitter.emit('session_change');
 
-      const choice = window.localStorage.getItem('WALLETCONNECT_DEEPLINK_CHOICE');
+      const choice = window.localStorage.getItem(
+        'WALLETCONNECT_DEEPLINK_CHOICE',
+      );
       if (choice && JSON.parse(choice).name !== 'Android') {
         // remove to prevent walletconnect from redirecting to the wallet page
         window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');

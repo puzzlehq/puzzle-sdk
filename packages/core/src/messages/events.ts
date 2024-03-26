@@ -22,7 +22,7 @@ export type GetEventsResponse = {
 
 export const getEvents = async (
   filter: EventsFilter,
-  network?: string
+  network?: string,
 ): Promise<GetEventsResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -40,7 +40,7 @@ export const getEvents = async (
     return { error: 'no session or connection' };
   }
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {

@@ -9,7 +9,9 @@ export type GetSelectedAccountResponse = {
   error?: string;
 };
 
-export const getAccount = async (network?: string): Promise<GetSelectedAccountResponse> => {
+export const getAccount = async (
+  network?: string,
+): Promise<GetSelectedAccountResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection.getSession();
@@ -19,7 +21,7 @@ export const getAccount = async (network?: string): Promise<GetSelectedAccountRe
   }
 
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {

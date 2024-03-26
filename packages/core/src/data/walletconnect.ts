@@ -1,3 +1,5 @@
+import { Network } from '@puzzlehq/types';
+
 // methods called from dApp
 export const wc_aleo_methods = [
   'decrypt',
@@ -13,16 +15,16 @@ export const wc_aleo_methods = [
   'requestSignature',
 ];
 
-export const wc_required_aleo_chains = ['aleo:1'] // old, incorrect testnet3 - to be phased out
+export const wc_required_aleo_chains = ['aleo:1']; // old, incorrect testnet3 - to be phased out
 export const wc_optional_aleo_chains = [
   'aleo:0', // mainnet
   'aleo:3', // new, correct testnet3
-  'aleo:4' // forthcoming canarynet
-]
+  'aleo:4', // forthcoming canarynet
+];
 
 export const wc_aleo_chains = [
   ...wc_required_aleo_chains,
-  ...wc_optional_aleo_chains
+  ...wc_optional_aleo_chains,
 ];
 
 // events originating from wallet
@@ -46,14 +48,16 @@ export const web3modal_puzzle_props_android = {
   projectId,
   chains: ['aleo:3'],
   enableExplorer: true,
-  explorerRecommendedWalletIds: ['7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a'],
+  explorerRecommendedWalletIds: [
+    '7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a',
+  ],
   mobileWallets: [
     {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
         native: 'puzzleapp://',
-        universal: ''
+        universal: '',
       },
     },
   ],
@@ -66,14 +70,16 @@ export const web3modal_puzzle_props_default = {
   projectId,
   chains: wc_aleo_chains,
   enableExplorer: false,
-  explorerRecommendedWalletIds: ['7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a'],
+  explorerRecommendedWalletIds: [
+    '7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a',
+  ],
   mobileWallets: [
     {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
         native: 'puzzleapp://',
-        universal: ''
+        universal: '',
       },
     },
   ],
@@ -101,7 +107,9 @@ export const web3modal_puzzle_props_default = {
   },
 };
 
-export const web3modal_puzzle_props = isAndroid() ? web3modal_puzzle_props_android : web3modal_puzzle_props_default
+export const web3modal_puzzle_props = isAndroid()
+  ? web3modal_puzzle_props_android
+  : web3modal_puzzle_props_default;
 
 export const signClient_puzzleProps = {
   requiredNamespaces: {
@@ -111,4 +119,35 @@ export const signClient_puzzleProps = {
       events: wc_events,
     },
   },
+};
+
+export const networkToChainId = (network: Network, includePrefix: boolean = true) => {
+  let chain: string;
+  switch (network) {
+    case Network.AleoMainnet:
+      chain = 'aleo:0';
+      break;
+    case Network.AleoTestnet:
+      chain = 'aleo:1'; // todo switch later to aleo:3
+      break;
+    case Network.AleoCanarynet:
+      chain = 'aleo:4';
+      break;
+  }
+  return includePrefix ? chain : chain.replace('aleo:', '');
+};
+
+export const chainIdToNetwork = (
+  chainId: 'aleo:0' | 'aleo:1' | 'aleo:3' | 'aleo:4',
+) => {
+  switch (chainId) {
+    case 'aleo:0':
+      return Network.AleoMainnet;
+    case 'aleo:1':
+      return Network.AleoTestnet;
+    case 'aleo:3':
+      return Network.AleoTestnet;
+    case 'aleo:4':
+      return Network.AleoCanarynet;
+  }
 };

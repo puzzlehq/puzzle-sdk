@@ -14,7 +14,7 @@ export type DecryptResponse = {
 
 export const decrypt = async (
   ciphertexts?: string[],
-  network?: string
+  network?: string,
 ): Promise<DecryptResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -24,7 +24,7 @@ export const decrypt = async (
     return { error: 'no session or connection' };
   }
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {

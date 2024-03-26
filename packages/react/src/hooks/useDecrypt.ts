@@ -1,5 +1,10 @@
 import { SessionTypes } from '@walletconnect/types';
-import { DecryptRequest, DecryptResponse, hasInjectedConnection, log_sdk } from '@puzzlehq/sdk-core';
+import {
+  DecryptRequest,
+  DecryptResponse,
+  hasInjectedConnection,
+  log_sdk,
+} from '@puzzlehq/sdk-core';
 import { useExtensionRequest, useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';

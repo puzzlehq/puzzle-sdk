@@ -18,7 +18,7 @@ export type SignatureResponse = {
 export const requestSignature = async ({
   message,
   address,
-  network
+  network,
 }: SignatureRequest): Promise<SignatureResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -30,7 +30,7 @@ export const requestSignature = async ({
   }
 
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   try {

@@ -28,7 +28,7 @@ export const importSharedState = async (
     return { error: 'no session or connection' };
   }
   if (network && !wc_aleo_chains.includes(network)) {
-    return {error: 'network not in wc_aleo_chains'}
+    return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {
