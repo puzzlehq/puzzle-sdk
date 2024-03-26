@@ -16317,10 +16317,8 @@
   const wc_optional_aleo_chains = [
     "aleo:0",
     // mainnet
-    "aleo:3",
+    "aleo:3"
     // new, correct testnet3
-    "aleo:4"
-    // forthcoming canarynet
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -16420,7 +16418,7 @@
         chain = "aleo:1";
         break;
       case exports2.Network.AleoCanarynet:
-        chain = "aleo:4";
+        chain = "aleo:0";
         break;
     }
     return includePrefix ? chain : chain.replace("aleo:", "");
@@ -16428,13 +16426,11 @@
   const chainIdToNetwork = (chainId) => {
     switch (chainId) {
       case "aleo:0":
-        return exports2.Network.AleoMainnet;
+        return exports2.Network.AleoCanarynet;
       case "aleo:1":
         return exports2.Network.AleoTestnet;
       case "aleo:3":
         return exports2.Network.AleoTestnet;
-      case "aleo:4":
-        return exports2.Network.AleoCanarynet;
     }
   };
   const name = "@puzzlehq/sdk-core";

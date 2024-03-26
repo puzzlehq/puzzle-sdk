@@ -658,7 +658,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexB0beD9l1);
+        await Promise.resolve().then(() => indexD1mK2Hr1);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$3.setIsUiLoaded(true);
       }
@@ -16339,10 +16339,8 @@
   const wc_optional_aleo_chains$1 = [
     "aleo:0",
     // mainnet
-    "aleo:3",
+    "aleo:3"
     // new, correct testnet3
-    "aleo:4"
-    // forthcoming canarynet
   ];
   const wc_aleo_chains$1 = [
     ...wc_required_aleo_chains$1,
@@ -21964,7 +21962,7 @@
         shortenedAddress: shortenAddress(address)
       });
     });
-    useOnSessionDelete(({ params, topic }) => {
+    useOnSessionDelete(() => {
       onDisconnect();
     });
     React.useEffect(() => {
@@ -26307,10 +26305,8 @@
   const wc_optional_aleo_chains = [
     "aleo:0",
     // mainnet
-    "aleo:3",
+    "aleo:3"
     // new, correct testnet3
-    "aleo:4"
-    // forthcoming canarynet
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -26410,7 +26406,7 @@
         chain = "aleo:1";
         break;
       case exports2.Network.AleoCanarynet:
-        chain = "aleo:4";
+        chain = "aleo:0";
         break;
     }
     return includePrefix ? chain : chain.replace("aleo:", "");
@@ -26418,13 +26414,11 @@
   const chainIdToNetwork = (chainId) => {
     switch (chainId) {
       case "aleo:0":
-        return exports2.Network.AleoMainnet;
+        return exports2.Network.AleoCanarynet;
       case "aleo:1":
         return exports2.Network.AleoTestnet;
       case "aleo:3":
         return exports2.Network.AleoTestnet;
-      case "aleo:4":
-        return exports2.Network.AleoCanarynet;
     }
   };
   const name = "@puzzlehq/sdk-core";
@@ -31649,7 +31643,7 @@
     }
   };
   we.styles = [h.globalCss, dr], Ge([t$1()], we.prototype, "isError", 2), we = Ge([e$2("wcm-web-connecting-view")], we);
-  const indexB0beD9l1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexD1mK2Hr1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ae;

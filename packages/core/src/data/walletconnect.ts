@@ -19,7 +19,6 @@ export const wc_required_aleo_chains = ['aleo:1']; // old, incorrect testnet3 - 
 export const wc_optional_aleo_chains = [
   'aleo:0', // mainnet
   'aleo:3', // new, correct testnet3
-  'aleo:4', // forthcoming canarynet
 ];
 
 export const wc_aleo_chains = [
@@ -131,23 +130,21 @@ export const networkToChainId = (network: Network, includePrefix: boolean = true
       chain = 'aleo:1'; // todo switch later to aleo:3
       break;
     case Network.AleoCanarynet:
-      chain = 'aleo:4';
+      chain = 'aleo:0';
       break;
   }
   return includePrefix ? chain : chain.replace('aleo:', '');
 };
 
 export const chainIdToNetwork = (
-  chainId: 'aleo:0' | 'aleo:1' | 'aleo:3' | 'aleo:4',
+  chainId: 'aleo:0' | 'aleo:1' | 'aleo:3',
 ) => {
   switch (chainId) {
     case 'aleo:0':
-      return Network.AleoMainnet;
+      return Network.AleoCanarynet; 
     case 'aleo:1':
       return Network.AleoTestnet;
     case 'aleo:3':
       return Network.AleoTestnet;
-    case 'aleo:4':
-      return Network.AleoCanarynet;
   }
 };
