@@ -2,6 +2,7 @@ import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { wc_aleo_chains } from '../data/walletconnect.js';
 
 export type RecordsFilter = {
   programIds?: string[];
@@ -14,6 +15,7 @@ export type GetRecordsRequest = {
   address?: string;
   filter?: RecordsFilter;
   page?: number;
+  network?: string;
 };
 
 export type GetRecordsResponse = {
@@ -26,6 +28,7 @@ export const getRecords = async ({
   address,
   filter,
   page = 0,
+  network,
 }: GetRecordsRequest): Promise<GetRecordsResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -35,10 +38,13 @@ export const getRecords = async ({
   if (!session || !connection) {
     return { error: 'no session or connection' };
   }
+  if (network && !wc_aleo_chains.includes(network)) {
+    return { error: 'network not in wc_aleo_chains' };
+  }
 
   const query = {
     topic: session.topic,
-    chainId: 'aleo:1',
+    chainId: network ?? 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',

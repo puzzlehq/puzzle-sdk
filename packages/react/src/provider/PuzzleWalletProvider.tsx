@@ -17,7 +17,9 @@ type PuzzleWalletProviderProps = {
 };
 
 export const queryClient = new QueryClient();
-const SessionContext = createContext<SessionTypes.Struct | undefined>(undefined);
+const SessionContext = createContext<SessionTypes.Struct | undefined>(
+  undefined,
+);
 
 export const PuzzleWalletProvider = ({
   dAppName,
@@ -27,13 +29,15 @@ export const PuzzleWalletProvider = ({
   children,
   debugQuery = false,
 }: PuzzleWalletProviderProps) => {
-  const [session, setSession] = useState<SessionTypes.Struct | undefined>(undefined);
+  const [session, setSession] = useState<SessionTypes.Struct | undefined>(
+    undefined,
+  );
 
   const _session = useSession();
 
   useEffect(() => {
     setSession(_session);
-  },[_session])
+  }, [_session]);
 
   useEffect(() => {
     configureConnection({

@@ -4,9 +4,10 @@ import {
   emitter,
   getWalletConnectModalSignClient,
   checkForDesktopConnection,
-  wc_aleo_chains,
   wc_aleo_methods,
   wc_events,
+  wc_required_aleo_chains,
+  wc_optional_aleo_chains,
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
@@ -31,7 +32,14 @@ export function useConnect() {
         requiredNamespaces: {
           aleo: {
             methods: wc_aleo_methods,
-            chains: wc_aleo_chains,
+            chains: wc_required_aleo_chains,
+            events: wc_events,
+          },
+        },
+        optionalNamespaces: {
+          aleo: {
+            methods: wc_aleo_methods,
+            chains: wc_optional_aleo_chains,
             events: wc_events,
           },
         },
@@ -47,7 +55,9 @@ export function useConnect() {
       });
       emitter.emit('session_change');
 
-      const choice = window.localStorage.getItem('WALLETCONNECT_DEEPLINK_CHOICE');
+      const choice = window.localStorage.getItem(
+        'WALLETCONNECT_DEEPLINK_CHOICE',
+      );
       if (choice && JSON.parse(choice).name !== 'Android') {
         // remove to prevent walletconnect from redirecting to the wallet page
         window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');

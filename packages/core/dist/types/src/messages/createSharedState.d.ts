@@ -5,4 +5,4 @@ export type CreateSharedStateResponse = {
     };
     error?: string;
 };
-export declare const createSharedState: () => Promise<CreateSharedStateResponse>;
+export declare const createSharedState: (network?: string) => Promise<CreateSharedStateResponse>;

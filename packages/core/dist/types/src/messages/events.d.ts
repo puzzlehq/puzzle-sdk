@@ -13,4 +13,4 @@ export type GetEventsResponse = {
     pageCount?: number;
     error?: string;
 };
-export declare const getEvents: (filter: EventsFilter) => Promise<GetEventsResponse>;
+export declare const getEvents: (filter: EventsFilter, network?: string) => Promise<GetEventsResponse>;

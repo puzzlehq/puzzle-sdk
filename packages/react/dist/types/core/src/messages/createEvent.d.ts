@@ -20,4 +20,4 @@ export type CreateEventResponse = {
     eventId?: string;
     error?: string;
 };
-export declare const requestCreateEvent: (requestData?: CreateEventRequestData) => Promise<CreateEventResponse>;
+export declare const requestCreateEvent: (requestData: CreateEventRequestData, network?: string) => Promise<CreateEventResponse>;

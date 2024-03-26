@@ -44,7 +44,7 @@ export const useRecords = ({
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:1',
+    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',

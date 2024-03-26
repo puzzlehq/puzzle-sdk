@@ -1,4 +1,4 @@
-import { EventType } from '../index.js';
+import { EventType, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
@@ -31,7 +31,8 @@ export type CreateEventResponse = {
 };
 
 export const requestCreateEvent = async (
-  requestData?: CreateEventRequestData,
+  requestData: CreateEventRequestData,
+  network?: string,
 ): Promise<CreateEventResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -48,10 +49,14 @@ export const requestCreateEvent = async (
     return input.plaintext;
   });
 
+  if (network && !wc_aleo_chains.includes(network)) {
+    return { error: 'network not in wc_aleo_chains' };
+  }
+
   try {
     const response: CreateEventResponse = await connection.request({
       topic: session.topic,
-      chainId: 'aleo:1',
+      chainId: network ?? 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'requestCreateEvent',
