@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const index = require("./index-DHSqJj0w.cjs");
+const index = require("./index-CqXPGWly.cjs");
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -4339,11 +4339,35 @@ let me = class extends s {
   constructor() {
     super(), this.isError = false, this.openDesktopApp();
   }
+  // onFormatAndRedirect(e) {
+  //   const { desktop: o, name: r } = m.getWalletRouterData(),
+  //     a = o?.native;
+  //   if (a) {
+  //     const t = m.formatNativeUrl(a, e, r);
+  //     m.openHref(t, "_self");
+  //   }
+  // }
   onFormatAndRedirect(e2) {
+    var _a;
     const { desktop: o3, name: r2 } = index.a$3.getWalletRouterData(), a2 = o3 == null ? void 0 : o3.native;
     if (a2) {
       const t2 = index.a$3.formatNativeUrl(a2, e2, r2);
-      index.a$3.openHref(t2, "_self");
+      if (r2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
+        const url = new URL(t2);
+        const params = url.searchParams;
+        const wcUri = params.get("uri");
+        const requestId = params.get("requestId");
+        const sessionTopic = params.get("sessionTopic");
+        void window.aleo.connectPuzzle({
+          wc: {
+            uri: wcUri,
+            requestId: requestId ?? void 0,
+            sessionTopic: sessionTopic ?? void 0
+          }
+        });
+      } else {
+        index.a$3.openHref(t2, "_self");
+      }
     }
   }
   openDesktopApp() {
@@ -4387,14 +4411,57 @@ let he = class extends s {
   constructor() {
     super(), this.isError = false, this.openMobileApp();
   }
+  // onFormatAndRedirect(e, o = !1) {
+  //   const { mobile: r, name: a } = m.getWalletRouterData(),
+  //     t = r?.native,
+  //     l = r?.universal;
+  //   if (t && !o) {
+  //     const i = m.formatNativeUrl(t, e, a);
+  //     m.openHref(i, "_self");
+  //   } else if (l) {
+  //     const i = m.formatUniversalUrl(l, e, a);
+  //     m.openHref(i, "_self");
+  //   }
+  // }
   onFormatAndRedirect(e2, o3 = false) {
+    var _a, _b;
     const { mobile: r2, name: a2 } = index.a$3.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
     if (t2 && !o3) {
       const i2 = index.a$3.formatNativeUrl(t2, e2, a2);
-      index.a$3.openHref(i2, "_self");
+      if (a2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
+        const url = new URL(i2);
+        const params = url.searchParams;
+        const wcUri = params.get("uri");
+        const requestId = params.get("requestId");
+        const sessionTopic = params.get("sessionTopic");
+        void window.aleo.connectPuzzle({
+          wc: {
+            uri: wcUri,
+            requestId: requestId ?? void 0,
+            sessionTopic: sessionTopic ?? void 0
+          }
+        });
+      } else {
+        index.a$3.openHref(i2, "_self");
+      }
     } else if (l2) {
       const i2 = index.a$3.formatUniversalUrl(l2, e2, a2);
-      index.a$3.openHref(i2, "_self");
+      if (a2 === "Puzzle Wallet" && window && ((_b = window.aleo) == null ? void 0 : _b.puzzleWalletClient)) {
+        const url = new URL(i2);
+        const params = url.searchParams;
+        const wcUri = params.get("uri");
+        const requestId = params.get("requestId");
+        const sessionTopic = params.get("sessionTopic");
+        void window.aleo.connectPuzzle({
+          wc: {
+            uri: wcUri,
+            requestId: requestId ?? void 0,
+            sessionTopic: sessionTopic ?? void 0
+          }
+        });
+      } else {
+        index.a$3.openHref(i2, "_self");
+      }
     }
   }
   openMobileApp(e2 = false) {
@@ -4525,6 +4592,14 @@ let we = class extends s {
   constructor() {
     super(), this.isError = false, this.openWebWallet();
   }
+  // onFormatAndRedirect(e) {
+  //   const { desktop: o, name: r } = m.getWalletRouterData(),
+  //     a = o?.universal;
+  //   if (a) {
+  //     const t = m.formatUniversalUrl(a, e, r);
+  //     m.openHref(t, "_blank");
+  //   }
+  // }
   onFormatAndRedirect(e2) {
     var _a;
     const { desktop: o3, name: r2 } = index.a$3.getWalletRouterData(), a2 = o3 == null ? void 0 : o3.universal;

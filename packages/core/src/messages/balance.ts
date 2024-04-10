@@ -2,19 +2,15 @@ import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { wc_aleo_chains } from '../data/walletconnect.js';
+import { Balance } from '@puzzlehq/types';
 
 export type GetBalancesRequest = {
   assetId?: string;
   address?: string;
 };
 
-export type Balance = {
-  private: number;
-  public: number;
-};
-
 export type GetBalancesResponse = {
-  balances?: Balance[]; // [ALEO, PIECES];
+  balances?: Balance[];
   error?: string;
 };
 

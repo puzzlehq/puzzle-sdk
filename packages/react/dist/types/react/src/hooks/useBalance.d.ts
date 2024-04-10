@@ -1,4 +1,4 @@
-import { Balance } from '@puzzlehq/sdk-core';
+import { Balance } from '@puzzlehq/types';
 type UseBalanceParams = {
     address?: string;
     multisig?: boolean;

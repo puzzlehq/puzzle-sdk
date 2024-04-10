@@ -13,7 +13,7 @@ patchedDependencies:
     hash: p5neo4brmh5osp6hvq2kavfkgq
     path: patches/@walletconnect__modal-core@2.6.2.patch
   '@walletconnect/modal-ui@2.6.2':
-    hash: niac4rovmnthpoxeu5wh4alxci
+    hash: 36bw7amdwzhtemqromhslimpmi
     path: patches/@walletconnect__modal-ui@2.6.2.patch
 
 importers:
@@ -21,8 +21,8 @@ importers:
   .:
     dependencies:
       '@puzzlehq/types':
-        specifier: 1.0.11
-        version: 1.0.11
+        specifier: 1.0.13
+        version: 1.0.13
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -52,8 +52,8 @@ importers:
   packages/core:
     dependencies:
       '@puzzlehq/types':
-        specifier: 1.0.12
-        version: 1.0.12
+        specifier: 1.0.13
+        version: 1.0.13
       '@walletconnect/modal-sign-html':
         specifier: ^2.6.2
         version: 2.6.2(@types/react@18.2.58)(react@18.2.0)
@@ -82,8 +82,8 @@ importers:
         specifier: ../core
         version: link:../core
       '@puzzlehq/types':
-        specifier: 1.0.12
-        version: 1.0.12
+        specifier: 1.0.13
+        version: 1.0.13
       '@tanstack/react-query':
         specifier: ^4.29.5
         version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
@@ -557,14 +557,8 @@ packages:
       '@parcel/watcher-win32-x64': 2.4.1
     dev: false
 
-  /@puzzlehq/types@1.0.11:
-    resolution: {integrity: sha512-Elk1gs+RxTR3zBGdENpH3TMdp6aQaO17bI+ubfkbAPW6gN4PyYicN4z++TQCCvXwtIarOr0I2K0kLe8yQAIovw==}
-    dependencies:
-      zod: 3.21.1
-    dev: false
-
-  /@puzzlehq/types@1.0.12:
-    resolution: {integrity: sha512-2xHJyBKwq8N5xnQ6PnkV96FJhDzpBLhEuqXPPjEuBFDn0StrnN/s2bQ7WIn8Shy1ebZZYyP3iJba/rBnwQQXFA==}
+  /@puzzlehq/types@1.0.13:
+    resolution: {integrity: sha512-rRF6e/BE7F7ZrOlj/yLFaPEW1mgf/dY1uWWIm0ArE5LKfvslCBzZtEXnth/vraB8vxFtwFf7mZGwgMI6BUZZSQ==}
     dependencies:
       zod: 3.21.1
     dev: false
@@ -1066,7 +1060,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@walletconnect/modal-ui@2.6.2(patch_hash=niac4rovmnthpoxeu5wh4alxci)(@types/react@18.2.58)(react@18.2.0):
+  /@walletconnect/modal-ui@2.6.2(patch_hash=36bw7amdwzhtemqromhslimpmi)(@types/react@18.2.58)(react@18.2.0):
     resolution: {integrity: sha512-rbdstM1HPGvr7jprQkyPggX7rP4XiCG85ZA+zWBEX0dVQg8PpAgRUqpeub4xQKDgY7pY/xLRXSiCVdWGqvG2HA==}
     dependencies:
       '@walletconnect/modal-core': 2.6.2(patch_hash=p5neo4brmh5osp6hvq2kavfkgq)(@types/react@18.2.58)(react@18.2.0)
@@ -1083,7 +1077,7 @@ packages:
     resolution: {integrity: sha512-eFopgKi8AjKf/0U4SemvcYw9zlLpx9njVN8sf6DAkowC2Md0gPU/UNEbH1Wwj407pEKnEds98pKWib1NN1ACoA==}
     dependencies:
       '@walletconnect/modal-core': 2.6.2(patch_hash=p5neo4brmh5osp6hvq2kavfkgq)(@types/react@18.2.58)(react@18.2.0)
-      '@walletconnect/modal-ui': 2.6.2(patch_hash=niac4rovmnthpoxeu5wh4alxci)(@types/react@18.2.58)(react@18.2.0)
+      '@walletconnect/modal-ui': 2.6.2(patch_hash=36bw7amdwzhtemqromhslimpmi)(@types/react@18.2.58)(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react

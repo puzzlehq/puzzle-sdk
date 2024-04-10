@@ -8,7 +8,7 @@ import {
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
 import { useWalletStore } from '../store.js';
-import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
@@ -39,7 +39,7 @@ export const useRecords = ({
   const [account] = useWalletStore((state) => [state.account]);
 
   const useQueryFunction = hasInjectedConnection()
-    ? useExtensionRequestQuery
+    ? useInjectedRequestQuery
     : useRequestQuery;
 
   const query = {
@@ -92,6 +92,7 @@ export const useRecords = ({
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => !multisig,
         onData: () => refetch(),
+        dependencies: [multisig]
       },
       {
         subscriptionName: 'onSharedAccountSynced',
@@ -99,6 +100,7 @@ export const useRecords = ({
           return !!multisig && data?.address === address;
         },
         onData: () => refetch(),
+        dependencies: [multisig, address]
       },
     ],
   });

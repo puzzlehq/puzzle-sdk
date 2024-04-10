@@ -43,7 +43,7 @@ export function useRequestQuery<Result>({
   );
 }
 
-export function useExtensionRequestQuery<Result>({
+export function useInjectedRequestQuery<Result>({
   queryKey,
   wcParams,
   enabled,
@@ -89,7 +89,7 @@ export function useRequest<Result>(
   return { data, error, loading, request };
 }
 
-export function useExtensionRequest<Result>(
+export function useInjectedRequest<Result>(
   params: WalletConnectModalSignRequestArguments,
   fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any,
 ) {

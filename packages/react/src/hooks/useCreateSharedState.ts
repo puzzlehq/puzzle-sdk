@@ -3,7 +3,7 @@ import {
   CreateSharedStateResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
-import { useExtensionRequest, useRequest } from './wc/useRequest.js';
+import { useInjectedRequest, useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 
@@ -12,7 +12,7 @@ export const useCreateSharedState = () => {
   const [account] = useWalletStore((state) => [state.account]);
 
   const useRequestFunction = hasInjectedConnection()
-    ? useExtensionRequest
+    ? useInjectedRequest
     : useRequest;
 
   const {

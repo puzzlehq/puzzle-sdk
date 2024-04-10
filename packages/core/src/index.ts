@@ -8,9 +8,6 @@ export * from './client.js';
 
 import {
   type Account,
-  type Asset,
-  AssetType,
-  type AssetValue,
   type Event,
   type EventCreate,
   EventStatus,
@@ -40,9 +37,6 @@ import {
 } from '@puzzlehq/types';
 export {
   type Account,
-  type Asset,
-  AssetType,
-  type AssetValue,
   type Event,
   type EventCreate,
   EventStatus,

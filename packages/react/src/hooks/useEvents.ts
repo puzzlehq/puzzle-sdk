@@ -7,7 +7,7 @@ import {
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
-import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useDebounce } from 'use-debounce';
@@ -28,7 +28,7 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
   }
 
   const useQueryFunction = hasInjectedConnection()
-    ? useExtensionRequestQuery
+    ? useInjectedRequestQuery
     : useRequestQuery;
 
   const query = {
@@ -76,6 +76,7 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => true,
         onData: () => refetch(),
+        dependencies: []
       },
     ],
   });

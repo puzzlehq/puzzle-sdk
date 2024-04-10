@@ -16292,10 +16292,6 @@
     Network["AleoCanarynet"] = "AleoCanarynet";
     Network["AleoMainnet"] = "AleoMainnet";
   })(exports2.Network || (exports2.Network = {}));
-  exports2.AssetType = void 0;
-  (function(AssetType) {
-    AssetType[AssetType["ALEO"] = 0] = "ALEO";
-  })(exports2.AssetType || (exports2.AssetType = {}));
   const zodEventType = z$1.nativeEnum(exports2.EventType);
   const zodEventStatus = z$1.nativeEnum(exports2.EventStatus);
   const zodNetwork = z$1.nativeEnum(exports2.Network);
@@ -16435,7 +16431,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.1";
+  const version$1 = "0.3.2-beta.4";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -16461,7 +16457,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.12",
+    "@puzzlehq/types": "1.0.13",
     "@walletconnect/modal-sign-html": "^2.6.2",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -16590,8 +16586,9 @@
   }
   const checkForDesktopConnection = async (sessionTopic) => {
     var _a;
-    const extensionDownloaded = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
-    if (!extensionDownloaded) {
+    const injectedConnection = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
+    if (!injectedConnection) {
+      console.log("!!window?.aleo?.puzzleWalletClient", injectedConnection);
       localStorage.setItem("puzzle-hasInjectedConnection", "false");
       return false;
     }
@@ -16614,8 +16611,8 @@
   };
   const hasInjectedConnection = () => {
     var _a;
-    const extensionDownloaded = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
-    if (!extensionDownloaded) {
+    const injectedConnection = !!((_a = window == null ? void 0 : window.aleo) == null ? void 0 : _a.puzzleWalletClient);
+    if (!injectedConnection) {
       return false;
     }
     const puzzleHasDesktopConnection = localStorage.getItem(
@@ -21879,11 +21876,35 @@
     constructor() {
       super(), this.isError = false, this.openDesktopApp();
     }
+    // onFormatAndRedirect(e) {
+    //   const { desktop: o, name: r } = m.getWalletRouterData(),
+    //     a = o?.native;
+    //   if (a) {
+    //     const t = m.formatNativeUrl(a, e, r);
+    //     m.openHref(t, "_self");
+    //   }
+    // }
     onFormatAndRedirect(e2) {
+      var _a;
       const { desktop: o2, name: r2 } = a$5.getWalletRouterData(), a2 = o2 == null ? void 0 : o2.native;
       if (a2) {
         const t2 = a$5.formatNativeUrl(a2, e2, r2);
-        a$5.openHref(t2, "_self");
+        if (r2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
+          const url = new URL(t2);
+          const params = url.searchParams;
+          const wcUri = params.get("uri");
+          const requestId = params.get("requestId");
+          const sessionTopic = params.get("sessionTopic");
+          void window.aleo.connectPuzzle({
+            wc: {
+              uri: wcUri,
+              requestId: requestId ?? void 0,
+              sessionTopic: sessionTopic ?? void 0
+            }
+          });
+        } else {
+          a$5.openHref(t2, "_self");
+        }
       }
     }
     openDesktopApp() {
@@ -21927,14 +21948,57 @@
     constructor() {
       super(), this.isError = false, this.openMobileApp();
     }
+    // onFormatAndRedirect(e, o = !1) {
+    //   const { mobile: r, name: a } = m.getWalletRouterData(),
+    //     t = r?.native,
+    //     l = r?.universal;
+    //   if (t && !o) {
+    //     const i = m.formatNativeUrl(t, e, a);
+    //     m.openHref(i, "_self");
+    //   } else if (l) {
+    //     const i = m.formatUniversalUrl(l, e, a);
+    //     m.openHref(i, "_self");
+    //   }
+    // }
     onFormatAndRedirect(e2, o2 = false) {
+      var _a, _b;
       const { mobile: r2, name: a2 } = a$5.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
       if (t2 && !o2) {
         const i2 = a$5.formatNativeUrl(t2, e2, a2);
-        a$5.openHref(i2, "_self");
+        if (a2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
+          const url = new URL(i2);
+          const params = url.searchParams;
+          const wcUri = params.get("uri");
+          const requestId = params.get("requestId");
+          const sessionTopic = params.get("sessionTopic");
+          void window.aleo.connectPuzzle({
+            wc: {
+              uri: wcUri,
+              requestId: requestId ?? void 0,
+              sessionTopic: sessionTopic ?? void 0
+            }
+          });
+        } else {
+          a$5.openHref(i2, "_self");
+        }
       } else if (l2) {
         const i2 = a$5.formatUniversalUrl(l2, e2, a2);
-        a$5.openHref(i2, "_self");
+        if (a2 === "Puzzle Wallet" && window && ((_b = window.aleo) == null ? void 0 : _b.puzzleWalletClient)) {
+          const url = new URL(i2);
+          const params = url.searchParams;
+          const wcUri = params.get("uri");
+          const requestId = params.get("requestId");
+          const sessionTopic = params.get("sessionTopic");
+          void window.aleo.connectPuzzle({
+            wc: {
+              uri: wcUri,
+              requestId: requestId ?? void 0,
+              sessionTopic: sessionTopic ?? void 0
+            }
+          });
+        } else {
+          a$5.openHref(i2, "_self");
+        }
       }
     }
     openMobileApp(e2 = false) {
@@ -22065,6 +22129,14 @@
     constructor() {
       super(), this.isError = false, this.openWebWallet();
     }
+    // onFormatAndRedirect(e) {
+    //   const { desktop: o, name: r } = m.getWalletRouterData(),
+    //     a = o?.universal;
+    //   if (a) {
+    //     const t = m.formatUniversalUrl(a, e, r);
+    //     m.openHref(t, "_blank");
+    //   }
+    // }
     onFormatAndRedirect(e2) {
       var _a;
       const { desktop: o2, name: r2 } = a$5.getWalletRouterData(), a2 = o2 == null ? void 0 : o2.universal;

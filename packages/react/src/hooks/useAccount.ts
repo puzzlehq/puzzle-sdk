@@ -8,7 +8,7 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useWalletStore } from '../store.js';
-import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
@@ -40,7 +40,7 @@ export const useAccount = () => {
   ]);
 
   const useQueryFunction = hasInjectedConnection()
-    ? useExtensionRequestQuery
+    ? useInjectedRequestQuery
     : useRequestQuery;
 
   const query = {
@@ -87,6 +87,7 @@ export const useAccount = () => {
             shortenedAddress: shortenAddress(data.address),
           });
         },
+        dependencies: []
       },
     ],
   });

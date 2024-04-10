@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { SessionTypes } from '@walletconnect/types';
 import {
   AccountSelectedResponse,
@@ -10,6 +10,7 @@ type SubscriptionConfig = {
   subscriptionName: string;
   condition: (data: AccountSelectedResponse) => boolean;
   onData: (data: AccountSelectedResponse) => void;
+  dependencies: any[]
 };
 
 type UseInjectedSubscriptionsParams = {
@@ -51,9 +52,11 @@ const useInjectedSubscriptions = ({
 
     // Cleanup on unmount or when dependencies change
     return () => {
-      subscriptions.forEach((subscription) => subscription.unsubscribe());
+      subscriptions.forEach((subscription) => {
+        subscription.unsubscribe()
+      });
     };
-  }, [session?.topic, configs]);
+  }, [session?.topic, ...configs.flatMap((config) => config.dependencies)]);
 };
 
 export default useInjectedSubscriptions;
