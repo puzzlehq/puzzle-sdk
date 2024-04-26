@@ -16,7 +16,7 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
 
-export function useConnect() {
+export function useConnect(showModal = false) {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const isConnected = !!session;
   const { data, error, loading, setData, setError, setLoading } =
@@ -43,7 +43,7 @@ export function useConnect() {
             events: wc_events,
           },
         },
-      });
+      }, showModal);
       setData(response);
       await checkForDesktopConnection(response.topic);
       const account = response.namespaces['aleo']['accounts'][0].split(':');

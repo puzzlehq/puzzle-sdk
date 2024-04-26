@@ -12,6 +12,9 @@ patchedDependencies:
   '@walletconnect/modal-core@2.6.2':
     hash: p5neo4brmh5osp6hvq2kavfkgq
     path: patches/@walletconnect__modal-core@2.6.2.patch
+  '@walletconnect/modal-sign-html@2.6.2':
+    hash: 3cswptd7bsdlpkyytce4devkg4
+    path: patches/@walletconnect__modal-sign-html@2.6.2.patch
   '@walletconnect/modal-ui@2.6.2':
     hash: 36bw7amdwzhtemqromhslimpmi
     path: patches/@walletconnect__modal-ui@2.6.2.patch
@@ -56,7 +59,7 @@ importers:
         version: 1.0.13
       '@walletconnect/modal-sign-html':
         specifier: ^2.6.2
-        version: 2.6.2(@types/react@18.2.58)(react@18.2.0)
+        version: 2.6.2(patch_hash=3cswptd7bsdlpkyytce4devkg4)(@types/react@18.2.58)(react@18.2.0)
       '@walletconnect/types':
         specifier: ^2.11.2
         version: 2.11.2
@@ -92,7 +95,7 @@ importers:
         version: 10.45.1
       '@walletconnect/modal-sign-html':
         specifier: ^2.6.2
-        version: 2.6.2(@types/react@18.2.58)(react@18.2.0)
+        version: 2.6.2(patch_hash=3cswptd7bsdlpkyytce4devkg4)(@types/react@18.2.58)(react@18.2.0)
       '@walletconnect/types':
         specifier: ^2.11.2
         version: 2.11.2
@@ -1033,7 +1036,7 @@ packages:
     dev: false
     patched: true
 
-  /@walletconnect/modal-sign-html@2.6.2(@types/react@18.2.58)(react@18.2.0):
+  /@walletconnect/modal-sign-html@2.6.2(patch_hash=3cswptd7bsdlpkyytce4devkg4)(@types/react@18.2.58)(react@18.2.0):
     resolution: {integrity: sha512-p9VhWTikRfUIdUUrOsHj0vRFx0FmI6qraE6kVqxOeLwO9OoLQ6xpIRYpYwPrmASMaXRKFbLul1R3F1MKpBPvcA==}
     dependencies:
       '@walletconnect/modal': 2.6.2(@types/react@18.2.58)(react@18.2.0)
@@ -1059,6 +1062,7 @@ packages:
       - uWebSockets.js
       - utf-8-validate
     dev: false
+    patched: true
 
   /@walletconnect/modal-ui@2.6.2(patch_hash=36bw7amdwzhtemqromhslimpmi)(@types/react@18.2.58)(react@18.2.0):
     resolution: {integrity: sha512-rbdstM1HPGvr7jprQkyPggX7rP4XiCG85ZA+zWBEX0dVQg8PpAgRUqpeub4xQKDgY7pY/xLRXSiCVdWGqvG2HA==}

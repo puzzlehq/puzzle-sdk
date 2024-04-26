@@ -658,7 +658,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => index_HkATU7f);
+        await Promise.resolve().then(() => indexCR_1BJBU);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$3.setIsUiLoaded(true);
       }
@@ -12504,28 +12504,52 @@
     constructor(t2) {
       l$4(this, u2$1), l$4(this, n2), l$4(this, m$3), l$4(this, h3, void 0), l$4(this, p2, void 0), l$4(this, w2, void 0), l$4(this, i$4, void 0), y2(this, h3, t2), y2(this, p2, o(this, u2$1, _2).call(this)), o(this, n2, r$3).call(this);
     }
-    async connect(t2) {
+    async connect(t2, showModal = true) {
       const { requiredNamespaces: s2, optionalNamespaces: d3 } = t2;
       return new Promise(async (C2, b3) => {
         await o(this, n2, r$3).call(this);
-        const E2 = a2(this, p2).subscribeModal((c2) => {
-          c2.open || (E2(), b3(new Error("Modal closed")));
-        }), { uri: O2, approval: I2 } = await a2(this, i$4).connect(t2);
-        if (O2) {
-          const c2 = /* @__PURE__ */ new Set();
-          s2 && Object.values(s2).forEach(({ chains: f2 }) => {
-            f2 && f2.forEach((v3) => c2.add(v3));
-          }), d3 && Object.values(d3).forEach(({ chains: f2 }) => {
-            f2 && f2.forEach((v3) => c2.add(v3));
-          }), await a2(this, p2).openModal({ uri: O2, chains: Array.from(c2) });
-        }
-        try {
-          const c2 = await I2();
-          C2(c2);
-        } catch (c2) {
-          b3(c2);
-        } finally {
-          E2(), a2(this, p2).closeModal();
+        if (showModal) {
+          const E2 = a2(this, p2).subscribeModal((c2) => {
+            c2.open || (E2(), b3(new Error("Modal closed")));
+          }), { uri: O2, approval: I2 } = await a2(this, i$4).connect(t2);
+          if (O2) {
+            const c2 = /* @__PURE__ */ new Set();
+            s2 && Object.values(s2).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v3) => c2.add(v3));
+            }), d3 && Object.values(d3).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v3) => c2.add(v3));
+            }), await a2(this, p2).openModal({ uri: O2, chains: Array.from(c2) });
+          }
+          try {
+            const c2 = await I2();
+            C2(c2);
+          } catch (c2) {
+            b3(c2);
+          } finally {
+            E2(), a2(this, p2).closeModal();
+          }
+        } else {
+          const { uri: O2, approval: I2 } = await a2(this, i$4).connect(t2);
+          if (O2) {
+            const c2 = /* @__PURE__ */ new Set();
+            s2 && Object.values(s2).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v3) => c2.add(v3));
+            }), d3 && Object.values(d3).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v3) => c2.add(v3));
+            });
+            try {
+              window && window.aleo && window.aleo.connectPuzzle({
+                wc: {
+                  uri: O2
+                }
+              });
+              const session = await I2();
+              C2(session);
+            } catch (err) {
+              console.error(err);
+              b3(err);
+            }
+          }
         }
       });
     }
@@ -12572,7 +12596,15 @@
   }, n2 = /* @__PURE__ */ new WeakSet(), r$3 = async function() {
     return a2(this, i$4) ? true : (!a2(this, w2) && typeof window < "u" && y2(this, w2, o(this, m$3, g2).call(this)), a2(this, w2));
   }, m$3 = /* @__PURE__ */ new WeakSet(), g2 = async function() {
-    y2(this, i$4, await Q$4.init({ metadata: a2(this, h3).metadata, projectId: a2(this, h3).projectId, relayUrl: a2(this, h3).relayUrl }));
+    y2(
+      this,
+      i$4,
+      await Q$4.init({
+        metadata: a2(this, h3).metadata,
+        projectId: a2(this, h3).projectId,
+        relayUrl: a2(this, h3).relayUrl
+      })
+    );
     const e2 = await a2(this, i$4).core.crypto.getClientId();
     try {
       localStorage.setItem("WCM_WALLETCONNECT_CLIENT_ID", e2);
@@ -16419,7 +16451,7 @@
   const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
   const name$1 = "@puzzlehq/sdk-core";
   const displayName$1 = "Puzzle SDK";
-  const version$2 = "0.3.2-beta.4";
+  const version$2 = "0.3.2-beta.6";
   const description$1 = "Your portal to privacy";
   const main$1 = "./dist/puzzle.cjs.js";
   const module$1 = "./dist/puzzle.es.js";
@@ -22060,7 +22092,7 @@
     const balances = response == null ? void 0 : response.balances;
     return { balances, error, loading };
   };
-  function useConnect() {
+  function useConnect(showModal = false) {
     const session = useWalletSession();
     const isConnected = !!session;
     const { data: data2, error, loading, setData, setError, setLoading } = useAsyncAction();
@@ -22085,7 +22117,7 @@
               events: wc_events$1
             }
           }
-        });
+        }, showModal);
         setData(response);
         await checkForDesktopConnection$1(response.topic);
         const account = response.namespaces["aleo"]["accounts"][0].split(":");
@@ -26426,7 +26458,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.4";
+  const version$1 = "0.3.2-beta.6";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -26693,10 +26725,10 @@
       return { error };
     }
   };
-  const connect = async () => {
+  const connect = async (showModal = true) => {
     const connection2 = await getWalletConnectModalSignClient();
     if (!connection2) {
-      throw new Error("call setConnection() first!");
+      throw new Error("call configureConnection() first!");
     }
     const existingSession = await connection2.getSession();
     if (existingSession) {
@@ -26719,7 +26751,7 @@
             events: wc_events
           }
         }
-      });
+      }, showModal);
       emitter.emit("session_change");
       if (newSession) {
         await checkForDesktopConnection(newSession.topic);
@@ -31722,7 +31754,7 @@
     }
   };
   we.styles = [h.globalCss, dr], Ge([t$1()], we.prototype, "isError", 2), we = Ge([e$2("wcm-web-connecting-view")], we);
-  const index_HkATU7f = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexCR_1BJBU = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ae;

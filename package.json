@@ -1,7 +1,7 @@
 {
   "name": "sdk-monorepo",
   "displayName": "Puzzle SDK",
-  "version": "0.3.2-beta.4",
+  "version": "0.3.2-beta.6",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
@@ -50,7 +50,8 @@
     },
     "patchedDependencies": {
       "@walletconnect/modal-ui@2.6.2": "patches/@walletconnect__modal-ui@2.6.2.patch",
-      "@walletconnect/modal-core@2.6.2": "patches/@walletconnect__modal-core@2.6.2.patch"
+      "@walletconnect/modal-core@2.6.2": "patches/@walletconnect__modal-core@2.6.2.patch",
+      "@walletconnect/modal-sign-html@2.6.2": "patches/@walletconnect__modal-sign-html@2.6.2.patch"
     }
   }
 }

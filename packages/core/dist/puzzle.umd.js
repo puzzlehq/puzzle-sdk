@@ -12482,28 +12482,52 @@
     constructor(t2) {
       l$4(this, u$2), l$4(this, n$6), l$4(this, m$1), l$4(this, h$3, void 0), l$4(this, p$1, void 0), l$4(this, w$1, void 0), l$4(this, i$4, void 0), y$1(this, h$3, t2), y$1(this, p$1, o$5(this, u$2, _$2).call(this)), o$5(this, n$6, r$3).call(this);
     }
-    async connect(t2) {
+    async connect(t2, showModal = true) {
       const { requiredNamespaces: s2, optionalNamespaces: d2 } = t2;
       return new Promise(async (C2, b2) => {
         await o$5(this, n$6, r$3).call(this);
-        const E2 = a$2(this, p$1).subscribeModal((c2) => {
-          c2.open || (E2(), b2(new Error("Modal closed")));
-        }), { uri: O2, approval: I2 } = await a$2(this, i$4).connect(t2);
-        if (O2) {
-          const c2 = /* @__PURE__ */ new Set();
-          s2 && Object.values(s2).forEach(({ chains: f2 }) => {
-            f2 && f2.forEach((v2) => c2.add(v2));
-          }), d2 && Object.values(d2).forEach(({ chains: f2 }) => {
-            f2 && f2.forEach((v2) => c2.add(v2));
-          }), await a$2(this, p$1).openModal({ uri: O2, chains: Array.from(c2) });
-        }
-        try {
-          const c2 = await I2();
-          C2(c2);
-        } catch (c2) {
-          b2(c2);
-        } finally {
-          E2(), a$2(this, p$1).closeModal();
+        if (showModal) {
+          const E2 = a$2(this, p$1).subscribeModal((c2) => {
+            c2.open || (E2(), b2(new Error("Modal closed")));
+          }), { uri: O2, approval: I2 } = await a$2(this, i$4).connect(t2);
+          if (O2) {
+            const c2 = /* @__PURE__ */ new Set();
+            s2 && Object.values(s2).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v2) => c2.add(v2));
+            }), d2 && Object.values(d2).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v2) => c2.add(v2));
+            }), await a$2(this, p$1).openModal({ uri: O2, chains: Array.from(c2) });
+          }
+          try {
+            const c2 = await I2();
+            C2(c2);
+          } catch (c2) {
+            b2(c2);
+          } finally {
+            E2(), a$2(this, p$1).closeModal();
+          }
+        } else {
+          const { uri: O2, approval: I2 } = await a$2(this, i$4).connect(t2);
+          if (O2) {
+            const c2 = /* @__PURE__ */ new Set();
+            s2 && Object.values(s2).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v2) => c2.add(v2));
+            }), d2 && Object.values(d2).forEach(({ chains: f2 }) => {
+              f2 && f2.forEach((v2) => c2.add(v2));
+            });
+            try {
+              window && window.aleo && window.aleo.connectPuzzle({
+                wc: {
+                  uri: O2
+                }
+              });
+              const session = await I2();
+              C2(session);
+            } catch (err) {
+              console.error(err);
+              b2(err);
+            }
+          }
         }
       });
     }
@@ -12550,7 +12574,15 @@
   }, n$6 = /* @__PURE__ */ new WeakSet(), r$3 = async function() {
     return a$2(this, i$4) ? true : (!a$2(this, w$1) && typeof window < "u" && y$1(this, w$1, o$5(this, m$1, g$1).call(this)), a$2(this, w$1));
   }, m$1 = /* @__PURE__ */ new WeakSet(), g$1 = async function() {
-    y$1(this, i$4, await Q$1.init({ metadata: a$2(this, h$3).metadata, projectId: a$2(this, h$3).projectId, relayUrl: a$2(this, h$3).relayUrl }));
+    y$1(
+      this,
+      i$4,
+      await Q$1.init({
+        metadata: a$2(this, h$3).metadata,
+        projectId: a$2(this, h$3).projectId,
+        relayUrl: a$2(this, h$3).relayUrl
+      })
+    );
     const e2 = await a$2(this, i$4).core.crypto.getClientId();
     try {
       localStorage.setItem("WCM_WALLETCONNECT_CLIENT_ID", e2);
@@ -16431,7 +16463,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.4";
+  const version$1 = "0.3.2-beta.6";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -16698,10 +16730,10 @@
       return { error };
     }
   };
-  const connect = async () => {
+  const connect = async (showModal = true) => {
     const connection = await getWalletConnectModalSignClient();
     if (!connection) {
-      throw new Error("call setConnection() first!");
+      throw new Error("call configureConnection() first!");
     }
     const existingSession = await connection.getSession();
     if (existingSession) {
@@ -16724,7 +16756,7 @@
             events: wc_events
           }
         }
-      });
+      }, showModal);
       emitter.emit("session_change");
       if (newSession) {
         await checkForDesktopConnection(newSession.topic);

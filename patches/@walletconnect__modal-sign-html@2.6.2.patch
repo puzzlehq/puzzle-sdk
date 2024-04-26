@@ -1,0 +1,195 @@
+diff --git a/dist/index.js b/dist/index.js
+index 5c6d6da90db893ca318b7e4b93235fd32f71c7a3..280ca5f279262fe6af11706dc94ed42988b66035 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1,2 +1,189 @@
+-import{WalletConnectModal as M}from"@walletconnect/modal";import k from"@walletconnect/sign-client";var P=Object.defineProperty,x=Object.defineProperties,N=Object.getOwnPropertyDescriptors,j=Object.getOwnPropertySymbols,U=Object.prototype.hasOwnProperty,T=Object.prototype.propertyIsEnumerable,W=(e,t,s)=>t in e?P(e,t,{enumerable:!0,configurable:!0,writable:!0,value:s}):e[t]=s,q=(e,t)=>{for(var s in t||(t={}))U.call(t,s)&&W(e,s,t[s]);if(j)for(var s of j(t))T.call(t,s)&&W(e,s,t[s]);return e},A=(e,t)=>x(e,N(t)),S=(e,t,s)=>{if(!t.has(e))throw TypeError("Cannot "+s)},a=(e,t,s)=>(S(e,t,"read from private field"),s?s.call(e):t.get(e)),l=(e,t,s)=>{if(t.has(e))throw TypeError("Cannot add the same private member more than once");t instanceof WeakSet?t.add(e):t.set(e,s)},y=(e,t,s,d)=>(S(e,t,"write to private field"),d?d.call(e,s):t.set(e,s),s),o=(e,t,s)=>(S(e,t,"access private method"),s),h,p,w,i,u,_,n,r,m,g;class z{constructor(t){l(this,u),l(this,n),l(this,m),l(this,h,void 0),l(this,p,void 0),l(this,w,void 0),l(this,i,void 0),y(this,h,t),y(this,p,o(this,u,_).call(this)),o(this,n,r).call(this)}async connect(t){const{requiredNamespaces:s,optionalNamespaces:d}=t;return new Promise(async(C,b)=>{await o(this,n,r).call(this);const E=a(this,p).subscribeModal(c=>{c.open||(E(),b(new Error("Modal closed")))}),{uri:O,approval:I}=await a(this,i).connect(t);if(O){const c=new Set;s&&Object.values(s).forEach(({chains:f})=>{f&&f.forEach(v=>c.add(v))}),d&&Object.values(d).forEach(({chains:f})=>{f&&f.forEach(v=>c.add(v))}),await a(this,p).openModal({uri:O,chains:Array.from(c)})}try{const c=await I();C(c)}catch(c){b(c)}finally{E(),a(this,p).closeModal()}})}async disconnect(t){await o(this,n,r).call(this),await a(this,i).disconnect(t)}async request(t){return await o(this,n,r).call(this),await a(this,i).request(t)}async getSessions(){return await o(this,n,r).call(this),a(this,i).session.getAll()}async getSession(){return await o(this,n,r).call(this),a(this,i).session.getAll().at(-1)}async onSessionEvent(t){await o(this,n,r).call(this),a(this,i).on("session_event",t)}async offSessionEvent(t){await o(this,n,r).call(this),a(this,i).off("session_event",t)}async onSessionUpdate(t){await o(this,n,r).call(this),a(this,i).on("session_update",t)}async offSessionUpdate(t){await o(this,n,r).call(this),a(this,i).off("session_update",t)}async onSessionDelete(t){await o(this,n,r).call(this),a(this,i).on("session_delete",t)}async offSessionDelete(t){await o(this,n,r).call(this),a(this,i).off("session_delete",t)}async onSessionExpire(t){await o(this,n,r).call(this),a(this,i).on("session_expire",t)}async offSessionExpire(t){await o(this,n,r).call(this),a(this,i).off("session_expire",t)}}h=new WeakMap,p=new WeakMap,w=new WeakMap,i=new WeakMap,u=new WeakSet,_=function(){const{modalOptions:e,projectId:t}=a(this,h);return new M(A(q({},e),{projectId:t}))},n=new WeakSet,r=async function(){return a(this,i)?!0:(!a(this,w)&&typeof window<"u"&&y(this,w,o(this,m,g).call(this)),a(this,w))},m=new WeakSet,g=async function(){y(this,i,await k.init({metadata:a(this,h).metadata,projectId:a(this,h).projectId,relayUrl:a(this,h).relayUrl}));const e=await a(this,i).core.crypto.getClientId();try{localStorage.setItem("WCM_WALLETCONNECT_CLIENT_ID",e)}catch{console.info("Unable to set client id")}};export{z as WalletConnectModalSign};
++import { WalletConnectModal as M } from "@walletconnect/modal";
++import k from "@walletconnect/sign-client";
++var P = Object.defineProperty,
++  x = Object.defineProperties,
++  N = Object.getOwnPropertyDescriptors,
++  j = Object.getOwnPropertySymbols,
++  U = Object.prototype.hasOwnProperty,
++  T = Object.prototype.propertyIsEnumerable,
++  W = (e, t, s) =>
++    t in e
++      ? P(e, t, { enumerable: !0, configurable: !0, writable: !0, value: s })
++      : (e[t] = s),
++  q = (e, t) => {
++    for (var s in t || (t = {})) U.call(t, s) && W(e, s, t[s]);
++    if (j) for (var s of j(t)) T.call(t, s) && W(e, s, t[s]);
++    return e;
++  },
++  A = (e, t) => x(e, N(t)),
++  S = (e, t, s) => {
++    if (!t.has(e)) throw TypeError("Cannot " + s);
++  },
++  a = (e, t, s) => (
++    S(e, t, "read from private field"), s ? s.call(e) : t.get(e)
++  ),
++  l = (e, t, s) => {
++    if (t.has(e))
++      throw TypeError("Cannot add the same private member more than once");
++    t instanceof WeakSet ? t.add(e) : t.set(e, s);
++  },
++  y = (e, t, s, d) => (
++    S(e, t, "write to private field"), d ? d.call(e, s) : t.set(e, s), s
++  ),
++  o = (e, t, s) => (S(e, t, "access private method"), s),
++  h,
++  p,
++  w,
++  i,
++  u,
++  _,
++  n,
++  r,
++  m,
++  g;
++class z {
++  constructor(t) {
++    l(this, u),
++      l(this, n),
++      l(this, m),
++      l(this, h, void 0),
++      l(this, p, void 0),
++      l(this, w, void 0),
++      l(this, i, void 0),
++      y(this, h, t),
++      y(this, p, o(this, u, _).call(this)),
++      o(this, n, r).call(this);
++  }
++  async connect(t, showModal = true) {
++    const { requiredNamespaces: s, optionalNamespaces: d } = t;
++    return new Promise(async (C, b) => {
++      await o(this, n, r).call(this);
++      if (showModal) {
++        const E = a(this, p).subscribeModal((c) => {
++          c.open || (E(), b(new Error("Modal closed")));
++        }),
++        { uri: O, approval: I } = await a(this, i).connect(t);
++        if (O) {
++          const c = new Set();
++          s &&
++            Object.values(s).forEach(({ chains: f }) => {
++              f && f.forEach((v) => c.add(v));
++            }),
++            d &&
++              Object.values(d).forEach(({ chains: f }) => {
++                f && f.forEach((v) => c.add(v));
++              }),
++            await a(this, p).openModal({ uri: O, chains: Array.from(c) });
++        }
++        try {
++          const c = await I();
++          C(c);
++        } catch (c) {
++          b(c);
++        } finally {
++          E(), a(this, p).closeModal();
++        }
++      } else {
++        const { uri: O, approval: I } = await a(this, i).connect(t);
++        if (O) {
++          const c = new Set();
++          s &&
++            Object.values(s).forEach(({ chains: f }) => {
++              f && f.forEach((v) => c.add(v));
++            }),
++            d &&
++            Object.values(d).forEach(({ chains: f }) => {
++              f && f.forEach((v) => c.add(v));
++            });
++          
++          try {
++            window && window.aleo && window.aleo.connectPuzzle({
++              wc: {
++                uri: O
++              },
++            });
++            const session = await I();
++            C(session);
++          } catch (err) {
++            console.error(err)
++            b(err)
++          }
++        }
++      }
++    });
++  }
++  async disconnect(t) {
++    await o(this, n, r).call(this), await a(this, i).disconnect(t);
++  }
++  async request(t) {
++    return await o(this, n, r).call(this), await a(this, i).request(t);
++  }
++  async getSessions() {
++    return await o(this, n, r).call(this), a(this, i).session.getAll();
++  }
++  async getSession() {
++    return await o(this, n, r).call(this), a(this, i).session.getAll().at(-1);
++  }
++  async onSessionEvent(t) {
++    await o(this, n, r).call(this), a(this, i).on("session_event", t);
++  }
++  async offSessionEvent(t) {
++    await o(this, n, r).call(this), a(this, i).off("session_event", t);
++  }
++  async onSessionUpdate(t) {
++    await o(this, n, r).call(this), a(this, i).on("session_update", t);
++  }
++  async offSessionUpdate(t) {
++    await o(this, n, r).call(this), a(this, i).off("session_update", t);
++  }
++  async onSessionDelete(t) {
++    await o(this, n, r).call(this), a(this, i).on("session_delete", t);
++  }
++  async offSessionDelete(t) {
++    await o(this, n, r).call(this), a(this, i).off("session_delete", t);
++  }
++  async onSessionExpire(t) {
++    await o(this, n, r).call(this), a(this, i).on("session_expire", t);
++  }
++  async offSessionExpire(t) {
++    await o(this, n, r).call(this), a(this, i).off("session_expire", t);
++  }
++}
++(h = new WeakMap()),
++  (p = new WeakMap()),
++  (w = new WeakMap()),
++  (i = new WeakMap()),
++  (u = new WeakSet()),
++  (_ = function () {
++    const { modalOptions: e, projectId: t } = a(this, h);
++    return new M(A(q({}, e), { projectId: t }));
++  }),
++  (n = new WeakSet()),
++  (r = async function () {
++    return a(this, i)
++      ? !0
++      : (!a(this, w) &&
++          typeof window < "u" &&
++          y(this, w, o(this, m, g).call(this)),
++        a(this, w));
++  }),
++  (m = new WeakSet()),
++  (g = async function () {
++    y(
++      this,
++      i,
++      await k.init({
++        metadata: a(this, h).metadata,
++        projectId: a(this, h).projectId,
++        relayUrl: a(this, h).relayUrl,
++      }),
++    );
++    const e = await a(this, i).core.crypto.getClientId();
++    try {
++      localStorage.setItem("WCM_WALLETCONNECT_CLIENT_ID", e);
++    } catch {
++      console.info("Unable to set client id");
++    }
++  });
++export { z as WalletConnectModalSign };
+ //# sourceMappingURL=index.js.map

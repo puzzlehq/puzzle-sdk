@@ -1,5 +1,5 @@
 import { SessionTypes } from '@walletconnect/types';
-export declare function useConnect(): {
+export declare function useConnect(showModal?: boolean): {
     data: any;
     error: unknown;
     loading: boolean;

@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk-core",
   "displayName": "Puzzle SDK",
-  "version": "0.3.2-beta.4",
+  "version": "0.3.2-beta.6",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
