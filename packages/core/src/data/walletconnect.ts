@@ -37,7 +37,7 @@ export const wc_events = [
 export const projectId = 'f0aaeffe71b636da453fce042d79d723';
 
 function isAndroid() {
-  if (!navigator) {
+  if (typeof navigator === 'undefined') {
     return false;
   }
   return /Android/i.test(navigator.userAgent);

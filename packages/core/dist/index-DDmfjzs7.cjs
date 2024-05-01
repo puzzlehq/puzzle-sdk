@@ -638,7 +638,7 @@ let d$1 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-D9K2tqmc.cjs"));
+      await Promise.resolve().then(() => require("./index-DPZr4eH-.cjs"));
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
@@ -16357,7 +16357,7 @@ const wc_events = [
 ];
 const projectId = "f0aaeffe71b636da453fce042d79d723";
 function isAndroid() {
-  if (!navigator) {
+  if (typeof navigator === "undefined") {
     return false;
   }
   return /Android/i.test(navigator.userAgent);
@@ -16460,7 +16460,7 @@ const chainIdToNetwork = (chainId) => {
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.3.2-beta.6";
+const version = "0.3.2-beta.7";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
 const module$1 = "./dist/puzzle.es.js";

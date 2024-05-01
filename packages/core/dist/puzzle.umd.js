@@ -16360,7 +16360,7 @@
   ];
   const projectId = "f0aaeffe71b636da453fce042d79d723";
   function isAndroid() {
-    if (!navigator) {
+    if (typeof navigator === "undefined") {
       return false;
     }
     return /Android/i.test(navigator.userAgent);
@@ -16463,7 +16463,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.6";
+  const version$1 = "0.3.2-beta.7";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";

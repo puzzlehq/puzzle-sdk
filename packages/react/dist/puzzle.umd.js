@@ -658,7 +658,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexCR_1BJBU);
+        await Promise.resolve().then(() => indexBe7fxyV);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$3.setIsUiLoaded(true);
       }
@@ -16382,7 +16382,7 @@
   ];
   const projectId$1 = "f0aaeffe71b636da453fce042d79d723";
   function isAndroid$1() {
-    if (!navigator) {
+    if (typeof navigator === "undefined") {
       return false;
     }
     return /Android/i.test(navigator.userAgent);
@@ -16451,7 +16451,7 @@
   const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
   const name$1 = "@puzzlehq/sdk-core";
   const displayName$1 = "Puzzle SDK";
-  const version$2 = "0.3.2-beta.6";
+  const version$2 = "0.3.2-beta.7";
   const description$1 = "Your portal to privacy";
   const main$1 = "./dist/puzzle.cjs.js";
   const module$1 = "./dist/puzzle.es.js";
@@ -26355,7 +26355,7 @@
   ];
   const projectId = "f0aaeffe71b636da453fce042d79d723";
   function isAndroid() {
-    if (!navigator) {
+    if (typeof navigator === "undefined") {
       return false;
     }
     return /Android/i.test(navigator.userAgent);
@@ -26458,7 +26458,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.6";
+  const version$1 = "0.3.2-beta.7";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -31754,7 +31754,7 @@
     }
   };
   we.styles = [h.globalCss, dr], Ge([t$1()], we.prototype, "isError", 2), we = Ge([e$2("wcm-web-connecting-view")], we);
-  const indexCR_1BJBU = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexBe7fxyV = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ae;
