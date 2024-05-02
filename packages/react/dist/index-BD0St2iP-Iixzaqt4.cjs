@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const index = require("./index-BBXWrQ6L.cjs");
+const index = require("./index-BB3IJDD1.cjs");
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -4036,7 +4036,7 @@ var so = Object.defineProperty, mo = Object.getOwnPropertyDescriptor, ho = (e2, 
 };
 let Ie = class extends s {
   onConnect(e2) {
-    index.a$3.isAndroid() ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
+    index.a$3.isAndroid() && window.aleo === void 0 && window.aleo.puzzleWalletClient === void 0 ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
   }
   onGoToQrcode() {
     index.T$1.push("Qrcode");

@@ -663,7 +663,7 @@ let d$1 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-Be-7fxyV-BIk4Rois.cjs"));
+      await Promise.resolve().then(() => require("./index-BD0St2iP-Iixzaqt4.cjs"));
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
@@ -16456,7 +16456,7 @@ const web3modal_puzzle_props_default$1 = {
 const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
 const name$1 = "@puzzlehq/sdk-core";
 const displayName$1 = "Puzzle SDK";
-const version$1 = "0.3.2-beta.7";
+const version$1 = "0.3.2-beta.8";
 const description$1 = "Your portal to privacy";
 const main$1 = "./dist/puzzle.cjs.js";
 const module$2 = "./dist/puzzle.es.js";
@@ -26463,7 +26463,7 @@ const chainIdToNetwork = (chainId) => {
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.3.2-beta.7";
+const version = "0.3.2-beta.8";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
 const module$1 = "./dist/puzzle.es.js";

@@ -16463,7 +16463,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.7";
+  const version$1 = "0.3.2-beta.8";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -21605,7 +21605,7 @@
   };
   let Ie = class extends s {
     onConnect(e2) {
-      a$5.isAndroid() ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
+      a$5.isAndroid() && window.aleo === void 0 && window.aleo.puzzleWalletClient === void 0 ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
     }
     onGoToQrcode() {
       T$3.push("Qrcode");

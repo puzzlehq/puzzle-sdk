@@ -1,4 +1,4 @@
-import { n as ne$1, s as se$1, T as T$2, o as oe$1, R as R$1, a as a$2, t as te$1, p as p$1, y as y$1 } from "./index-Gj5xDqGz.js";
+import { n as ne$1, s as se$1, T as T$1$1, o as oe$1, R as R$4, a as a$3, t as te$2, p as p$3, y as y$3 } from "./index-BjVxylVw.js";
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -3589,13 +3589,13 @@ let S = class extends s {
     super(...arguments), this.title = "", this.onAction = void 0, this.actionIcon = void 0, this.border = false;
   }
   backBtnTemplate() {
-    return x`<button class="wcm-back-btn" @click="${T$2.goBack}">${v.BACK_ICON}</button>`;
+    return x`<button class="wcm-back-btn" @click="${T$1$1.goBack}">${v.BACK_ICON}</button>`;
   }
   actionBtnTemplate() {
     return x`<button class="wcm-action-btn" @click="${this.onAction}">${this.actionIcon}</button>`;
   }
   render() {
-    const e2 = { "wcm-border": this.border }, o$12 = T$2.state.history.length > 1, r2 = this.title ? x`<wcm-text variant="big-bold">${this.title}</wcm-text>` : x`<slot></slot>`;
+    const e2 = { "wcm-border": this.border }, o$12 = T$1$1.state.history.length > 1, r2 = this.title ? x`<wcm-text variant="big-bold">${this.title}</wcm-text>` : x`<slot></slot>`;
     return x`<header class="${o2(e2)}">${o$12 ? this.backBtnTemplate() : null} ${r2} ${this.onAction ? this.actionBtnTemplate() : null}</header>`;
   }
 };
@@ -3611,8 +3611,8 @@ const c = {
     return r2;
   },
   getWalletIcon({ id: e2, image_id: o3 }) {
-    const { walletImages: r2 } = y$1.state;
-    return r2 != null && r2[e2] ? r2[e2] : o3 ? te$1.getWalletImageUrl(o3) : "";
+    const { walletImages: r2 } = y$3.state;
+    return r2 != null && r2[e2] ? r2[e2] : o3 ? te$2.getWalletImageUrl(o3) : "";
   },
   getWalletName(e2, o3 = false) {
     return o3 && e2.length > 8 ? `${e2.substring(0, 8)}..` : e2;
@@ -3625,7 +3625,7 @@ const c = {
       const t2 = new Image();
       t2.onload = r2, t2.onerror = a2, t2.crossOrigin = "anonymous", t2.src = e2;
     });
-    return Promise.race([o3, a$2.wait(3e3)]);
+    return Promise.race([o3, a$3.wait(3e3)]);
   },
   getErrorMessage(e2) {
     return e2 instanceof Error ? e2.message : "Unknown Error";
@@ -3640,16 +3640,16 @@ const c = {
     };
   },
   handleMobileLinking(e2) {
-    const { walletConnectUri: o3 } = p$1.state, { mobile: r2, name: a2 } = e2, t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
+    const { walletConnectUri: o3 } = p$3.state, { mobile: r2, name: a2 } = e2, t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
     c.setRecentWallet(e2);
     function i2(s2) {
       let $2 = "";
-      t2 ? $2 = a$2.formatUniversalUrl(t2, s2, a2) : l2 && ($2 = a$2.formatNativeUrl(l2, s2, a2)), a$2.openHref($2, "_self");
+      t2 ? $2 = a$3.formatUniversalUrl(t2, s2, a2) : l2 && ($2 = a$3.formatNativeUrl(l2, s2, a2)), a$3.openHref($2, "_self");
     }
     o3 && i2(o3);
   },
   async handleUriCopy() {
-    const { walletConnectUri: e2 } = p$1.state;
+    const { walletConnectUri: e2 } = p$3.state;
     if (e2)
       try {
         await navigator.clipboard.writeText(e2), oe$1.openToast("Link copied", "success");
@@ -3658,7 +3658,7 @@ const c = {
       }
   },
   getCustomImageUrls() {
-    const { walletImages: e2 } = y$1.state, o3 = Object.values(e2 ?? {});
+    const { walletImages: e2 } = y$3.state, o3 = Object.values(e2 ?? {});
     return Object.values(o3);
   },
   truncate(e2, o3 = 8) {
@@ -3683,20 +3683,20 @@ const c = {
     return e2.toUpperCase().includes(o3.toUpperCase());
   },
   openWalletExplorerUrl() {
-    a$2.openHref(c.EXPLORER_WALLET_URL, "_blank");
+    a$3.openHref(c.EXPLORER_WALLET_URL, "_blank");
   },
   getCachedRouterWalletPlatforms() {
-    const { desktop: e2, mobile: o3 } = a$2.getWalletRouterData(), r2 = Boolean(e2 == null ? void 0 : e2.native), a2 = Boolean(e2 == null ? void 0 : e2.universal), t2 = Boolean(o3 == null ? void 0 : o3.native) || Boolean(o3 == null ? void 0 : o3.universal);
+    const { desktop: e2, mobile: o3 } = a$3.getWalletRouterData(), r2 = Boolean(e2 == null ? void 0 : e2.native), a2 = Boolean(e2 == null ? void 0 : e2.universal), t2 = Boolean(o3 == null ? void 0 : o3.native) || Boolean(o3 == null ? void 0 : o3.universal);
     return { isDesktop: r2, isMobile: t2, isWeb: a2 };
   },
   goToConnectingView(e2) {
-    T$2.setData({ Wallet: e2 });
-    const o3 = a$2.isMobile(), {
+    T$1$1.setData({ Wallet: e2 });
+    const o3 = a$3.isMobile(), {
       isDesktop: r2,
       isWeb: a2,
       isMobile: t2
     } = c.getCachedRouterWalletPlatforms();
-    o3 ? t2 ? T$2.push("MobileConnecting") : a2 ? T$2.push("WebConnecting") : T$2.push("InstallWallet") : r2 ? T$2.push("DesktopConnecting") : a2 ? T$2.push("WebConnecting") : t2 ? T$2.push("MobileQrcodeConnecting") : T$2.push("InstallWallet");
+    o3 ? t2 ? T$1$1.push("MobileConnecting") : a2 ? T$1$1.push("WebConnecting") : T$1$1.push("InstallWallet") : r2 ? T$1$1.push("DesktopConnecting") : a2 ? T$1$1.push("WebConnecting") : t2 ? T$1$1.push("MobileQrcodeConnecting") : T$1$1.push("InstallWallet");
   }
 }, Mt = i$3`.wcm-router{overflow:hidden;will-change:transform}.wcm-content{display:flex;flex-direction:column}`;
 var Lt = Object.defineProperty, Rt = Object.getOwnPropertyDescriptor, $e = (e2, o3, r2, a2) => {
@@ -3706,7 +3706,7 @@ var Lt = Object.defineProperty, Rt = Object.getOwnPropertyDescriptor, $e = (e2, 
 };
 let oe = class extends s {
   constructor() {
-    super(), this.view = T$2.state.view, this.prevView = T$2.state.view, this.unsubscribe = void 0, this.oldHeight = "0px", this.resizeObserver = void 0, this.unsubscribe = T$2.subscribe((e2) => {
+    super(), this.view = T$1$1.state.view, this.prevView = T$1$1.state.view, this.unsubscribe = void 0, this.oldHeight = "0px", this.resizeObserver = void 0, this.unsubscribe = T$1$1.subscribe((e2) => {
       this.view !== e2.view && this.onChangeRoute();
     });
   }
@@ -3753,7 +3753,7 @@ let oe = class extends s {
       this.routerEl,
       { opacity: [1, 0], scale: [1, 1.02] },
       { duration: 0.15, delay: 0.1 }
-    ).finished, this.view = T$2.state.view, animate(
+    ).finished, this.view = T$1$1.state.view, animate(
       this.routerEl,
       { opacity: [0, 1], scale: [0.99, 1] },
       { duration: 0.37, delay: 0.05 }
@@ -3946,7 +3946,7 @@ let L2 = class extends s {
     return this.recent ? x`<wcm-text class="wcm-sublabel" variant="xsmall-bold" color="tertiary">RECENT</wcm-text>` : this.installed ? x`<wcm-text class="wcm-sublabel" variant="xsmall-bold" color="tertiary">INSTALLED</wcm-text>` : null;
   }
   handleClick() {
-    R$1.click({ name: "WALLET_BUTTON", walletId: this.walletId }), this.onClick();
+    R$4.click({ name: "WALLET_BUTTON", walletId: this.walletId }), this.onClick();
   }
   render() {
     var e2;
@@ -3988,12 +3988,12 @@ let We = class extends s {
     }
   }
   async preloadListings() {
-    if (y$1.state.enableExplorer) {
-      await te$1.getRecomendedWallets(), p$1.setIsDataLoaded(true);
-      const { recomendedWallets: e2 } = te$1.state, o3 = e2.map((r2) => c.getWalletIcon(r2));
+    if (y$3.state.enableExplorer) {
+      await te$2.getRecomendedWallets(), p$3.setIsDataLoaded(true);
+      const { recomendedWallets: e2 } = te$2.state, o3 = e2.map((r2) => c.getWalletIcon(r2));
       await this.loadImages(o3);
     } else
-      p$1.setIsDataLoaded(true);
+      p$3.setIsDataLoaded(true);
   }
   async preloadCustomImages() {
     const e2 = c.getCustomImageUrls();
@@ -4034,13 +4034,13 @@ var so = Object.defineProperty, mo = Object.getOwnPropertyDescriptor, ho = (e2, 
 };
 let Ie = class extends s {
   onConnect(e2) {
-    a$2.isAndroid() ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
+    a$3.isAndroid() && window.aleo === void 0 && window.aleo.puzzleWalletClient === void 0 ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
   }
   onGoToQrcode() {
-    T$2.push("Qrcode");
+    T$1$1.push("Qrcode");
   }
   render() {
-    const { recomendedWallets: e2 } = te$1.state, o3 = [...e2, ...e2], r2 = a$2.RECOMMENDED_WALLET_AMOUNT * 2;
+    const { recomendedWallets: e2 } = te$2.state, o3 = [...e2, ...e2], r2 = a$3.RECOMMENDED_WALLET_AMOUNT * 2;
     return x`<wcm-modal-header title="Connect your wallet" .onAction="${this.onGoToQrcode}" .actionIcon="${v.QRCODE_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-title">${v.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">WalletConnect</wcm-text></div><div class="wcm-slider"><div class="wcm-track">${[
       ...Array(r2)
     ].map((a2, t2) => {
@@ -4077,8 +4077,8 @@ D.styles = [h.globalCss, wo], K([n$1()], D.prototype, "walletId", 2), K([n$1()],
 const G = {
   manualWallets() {
     var e2, o3;
-    const { mobileWallets: r2, desktopWallets: a2 } = y$1.state, t2 = (e2 = G.recentWallet()) == null ? void 0 : e2.id, l2 = a$2.isMobile() ? r2 : a2, i2 = l2 == null ? void 0 : l2.filter((s2) => t2 !== s2.id);
-    return (o3 = a$2.isMobile() ? i2 == null ? void 0 : i2.map(({ id: s2, name: $2, links: f2 }) => ({
+    const { mobileWallets: r2, desktopWallets: a2 } = y$3.state, t2 = (e2 = G.recentWallet()) == null ? void 0 : e2.id, l2 = a$3.isMobile() ? r2 : a2, i2 = l2 == null ? void 0 : l2.filter((s2) => t2 !== s2.id);
+    return (o3 = a$3.isMobile() ? i2 == null ? void 0 : i2.map(({ id: s2, name: $2, links: f2 }) => ({
       id: s2,
       name: $2,
       mobile: f2,
@@ -4095,7 +4095,7 @@ const G = {
   },
   recomendedWallets(e2 = false) {
     var o3;
-    const r2 = e2 || (o3 = G.recentWallet()) == null ? void 0 : o3.id, { recomendedWallets: a2 } = te$1.state;
+    const r2 = e2 || (o3 = G.recentWallet()) == null ? void 0 : o3.id, { recomendedWallets: a2 } = te$2.state;
     return a2.filter((t2) => r2 !== t2.id);
   }
 }, Z2 = {
@@ -4125,7 +4125,7 @@ var uo = Object.defineProperty, bo = Object.getOwnPropertyDescriptor, fo = (e2, 
 };
 let Ee = class extends s {
   render() {
-    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$1.state, r2 = e2 !== "ALL" && o3, a2 = Z2.manualWalletsTemplate(), t2 = Z2.recomendedWalletsTemplate();
+    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$3.state, r2 = e2 !== "ALL" && o3, a2 = Z2.manualWalletsTemplate(), t2 = Z2.recomendedWalletsTemplate();
     let l2 = [Z2.recentWalletTemplate(), ...a2, ...t2];
     l2 = l2.filter(Boolean);
     const i2 = l2.length > 4 || r2;
@@ -4144,7 +4144,7 @@ var yo = Object.defineProperty, $o = Object.getOwnPropertyDescriptor, Co = (e2, 
 };
 let Me = class extends s {
   render() {
-    const { termsOfServiceUrl: e2, privacyPolicyUrl: o3 } = y$1.state;
+    const { termsOfServiceUrl: e2, privacyPolicyUrl: o3 } = y$3.state;
     return e2 ?? o3 ? x`<div><wcm-text variant="small-regular" color="secondary">By connecting your wallet to this app, you agree to the app's ${e2 ? x`<a href="${e2}" target="_blank" rel="noopener noreferrer">Terms of Service</a>` : null} ${e2 && o3 ? "and" : null} ${o3 ? x`<a href="${o3}" target="_blank" rel="noopener noreferrer">Privacy Policy</a>` : null}</wcm-text></div>` : null;
   }
 };
@@ -4157,10 +4157,10 @@ var Oo = Object.defineProperty, Wo = Object.getOwnPropertyDescriptor, Io = (e2, 
 };
 let Le = class extends s {
   onQrcode() {
-    T$2.push("Qrcode");
+    T$1$1.push("Qrcode");
   }
   render() {
-    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$1.state, r2 = e2 !== "ALL" && o3, a2 = Z2.manualWalletsTemplate(), t2 = Z2.recomendedWalletsTemplate();
+    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$3.state, r2 = e2 !== "ALL" && o3, a2 = Z2.manualWalletsTemplate(), t2 = Z2.recomendedWalletsTemplate();
     let l2 = [Z2.recentWalletTemplate(), ...a2, ...t2];
     l2 = l2.filter(Boolean);
     const i2 = l2.length > 8 || r2;
@@ -4255,13 +4255,13 @@ let B = class extends s {
     super(...arguments), this.isMobile = false, this.isDesktop = false, this.isWeb = false, this.isRetry = false;
   }
   onMobile() {
-    a$2.isMobile() ? T$2.replace("MobileConnecting") : T$2.replace("MobileQrcodeConnecting");
+    a$3.isMobile() ? T$1$1.replace("MobileConnecting") : T$1$1.replace("MobileQrcodeConnecting");
   }
   onDesktop() {
-    T$2.replace("DesktopConnecting");
+    T$1$1.replace("DesktopConnecting");
   }
   onWeb() {
-    T$2.replace("WebConnecting");
+    T$1$1.replace("WebConnecting");
   }
   render() {
     return x`<div>${this.isRetry ? x`<slot></slot>` : null} ${this.isMobile ? x`<wcm-button .onClick="${this.onMobile}" .iconLeft="${v.MOBILE_ICON}" variant="outline">Mobile</wcm-button>` : null} ${this.isDesktop ? x`<wcm-button .onClick="${this.onDesktop}" .iconLeft="${v.DESKTOP_ICON}" variant="outline">Desktop</wcm-button>` : null} ${this.isWeb ? x`<wcm-button .onClick="${this.onWeb}" .iconLeft="${v.GLOBE_ICON}" variant="outline">Web</wcm-button>` : null}</div>`;
@@ -4276,10 +4276,10 @@ var jo = Object.defineProperty, _o = Object.getOwnPropertyDescriptor, Do = (e2, 
 };
 let Ae = class extends s {
   onClick() {
-    T$2.push("WalletExplorer");
+    T$1$1.push("WalletExplorer");
   }
   render() {
-    const { recomendedWallets: e2 } = te$1.state, o3 = G.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
+    const { recomendedWallets: e2 } = te$2.state, o3 = G.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
     return x`<button @click="${this.onClick}"><div class="wcm-icons">${r2.map(
       (a2) => {
         const t2 = c.getWalletIcon(a2);
@@ -4301,7 +4301,7 @@ var Zo = Object.defineProperty, So = Object.getOwnPropertyDescriptor, de = (e2, 
 let Y = class extends s {
   constructor() {
     super(), this.walletId = "", this.imageId = "", this.uri = "", setTimeout(() => {
-      const { walletConnectUri: e2 } = p$1.state;
+      const { walletConnectUri: e2 } = p$3.state;
       this.uri = e2;
     }, 0);
   }
@@ -4320,7 +4320,7 @@ var Bo = Object.defineProperty, Uo = Object.getOwnPropertyDescriptor, Ho = (e2, 
 };
 let Pe = class extends s {
   viewTemplate() {
-    return a$2.isAndroid() ? x`<wcm-android-wallet-selection></wcm-android-wallet-selection>` : a$2.isMobile() ? x`<wcm-mobile-wallet-selection></wcm-mobile-wallet-selection>` : x`<wcm-desktop-wallet-selection></wcm-desktop-wallet-selection>`;
+    return a$3.isAndroid() ? x`<wcm-android-wallet-selection></wcm-android-wallet-selection>` : a$3.isMobile() ? x`<wcm-mobile-wallet-selection></wcm-mobile-wallet-selection>` : x`<wcm-desktop-wallet-selection></wcm-desktop-wallet-selection>`;
   }
   render() {
     return x`${this.viewTemplate()}<wcm-legal-notice></wcm-legal-notice>`;
@@ -4347,9 +4347,9 @@ let me = class extends s {
   // }
   onFormatAndRedirect(e2) {
     var _a;
-    const { desktop: o3, name: r2 } = a$2.getWalletRouterData(), a2 = o3 == null ? void 0 : o3.native;
+    const { desktop: o3, name: r2 } = a$3.getWalletRouterData(), a2 = o3 == null ? void 0 : o3.native;
     if (a2) {
-      const t2 = a$2.formatNativeUrl(a2, e2, r2);
+      const t2 = a$3.formatNativeUrl(a2, e2, r2);
       if (r2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
         const url = new URL(t2);
         const params = url.searchParams;
@@ -4364,16 +4364,16 @@ let me = class extends s {
           }
         });
       } else {
-        a$2.openHref(t2, "_self");
+        a$3.openHref(t2, "_self");
       }
     }
   }
   openDesktopApp() {
-    const { walletConnectUri: e2 } = p$1.state, o3 = a$2.getWalletRouterData();
+    const { walletConnectUri: e2 } = p$3.state, o3 = a$3.getWalletRouterData();
     c.setRecentWallet(o3), e2 && this.onFormatAndRedirect(e2);
   }
   render() {
-    const { name: e2, id: o3, image_id: r2 } = a$2.getWalletRouterData(), { isMobile: a2, isWeb: t2 } = c.getCachedRouterWalletPlatforms();
+    const { name: e2, id: o3, image_id: r2 } = a$3.getWalletRouterData(), { isMobile: a2, isWeb: t2 } = c.getCachedRouterWalletPlatforms();
     return x`<wcm-modal-header title="${e2}" .onAction="${c.handleUriCopy}" .actionIcon="${v.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="${`Continue in ${e2}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Connection can continue loading if ${e2} is not installed on your device`}</wcm-text><wcm-platform-selection .isMobile="${a2}" .isWeb="${t2}" .isRetry="${true}"><wcm-button .onClick="${this.openDesktopApp.bind(this)}" .iconRight="${v.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };
@@ -4386,7 +4386,7 @@ var Qo = Object.defineProperty, Ko = Object.getOwnPropertyDescriptor, Yo = (e2, 
 };
 let Te = class extends s {
   onInstall(e2) {
-    e2 && a$2.openHref(e2, "_blank");
+    e2 && a$3.openHref(e2, "_blank");
   }
   render() {
     const {
@@ -4394,7 +4394,7 @@ let Te = class extends s {
       id: o3,
       image_id: r2,
       homepage: a2
-    } = a$2.getWalletRouterData();
+    } = a$3.getWalletRouterData();
     return x`<wcm-modal-header title="${e2}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="Not Detected" .isStale="${true}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Download ${e2} to continue. If multiple browser extensions are installed, disable non ${e2} ones and try again`}</wcm-text><wcm-button .onClick="${() => this.onInstall(a2)}" .iconLeft="${v.ARROW_DOWN_ICON}">Download</wcm-button></wcm-info-footer>`;
   }
 };
@@ -4423,9 +4423,9 @@ let he = class extends s {
   // }
   onFormatAndRedirect(e2, o3 = false) {
     var _a, _b;
-    const { mobile: r2, name: a2 } = a$2.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
+    const { mobile: r2, name: a2 } = a$3.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
     if (t2 && !o3) {
-      const i2 = a$2.formatNativeUrl(t2, e2, a2);
+      const i2 = a$3.formatNativeUrl(t2, e2, a2);
       if (a2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
         const url = new URL(i2);
         const params = url.searchParams;
@@ -4440,10 +4440,10 @@ let he = class extends s {
           }
         });
       } else {
-        a$2.openHref(i2, "_self");
+        a$3.openHref(i2, "_self");
       }
     } else if (l2) {
-      const i2 = a$2.formatUniversalUrl(l2, e2, a2);
+      const i2 = a$3.formatUniversalUrl(l2, e2, a2);
       if (a2 === "Puzzle Wallet" && window && ((_b = window.aleo) == null ? void 0 : _b.puzzleWalletClient)) {
         const url = new URL(i2);
         const params = url.searchParams;
@@ -4458,16 +4458,16 @@ let he = class extends s {
           }
         });
       } else {
-        a$2.openHref(i2, "_self");
+        a$3.openHref(i2, "_self");
       }
     }
   }
   openMobileApp(e2 = false) {
-    const { walletConnectUri: o3 } = p$1.state, r2 = a$2.getWalletRouterData();
+    const { walletConnectUri: o3 } = p$3.state, r2 = a$3.getWalletRouterData();
     c.setRecentWallet(r2), o3 && this.onFormatAndRedirect(o3, e2);
   }
   onGoToAppStore(e2) {
-    e2 && a$2.openHref(e2, "_blank");
+    e2 && a$3.openHref(e2, "_blank");
   }
   render() {
     const {
@@ -4476,7 +4476,7 @@ let he = class extends s {
       image_id: r2,
       app: a2,
       mobile: t2
-    } = a$2.getWalletRouterData(), { isWeb: l$12 } = c.getCachedRouterWalletPlatforms(), i2 = a2 == null ? void 0 : a2.ios, s2 = t2 == null ? void 0 : t2.universal;
+    } = a$3.getWalletRouterData(), { isWeb: l$12 } = c.getCachedRouterWalletPlatforms(), i2 = a2 == null ? void 0 : a2.ios, s2 = t2 == null ? void 0 : t2.universal;
     return x`<wcm-modal-header title="${e2}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="Tap 'Open' to continue…" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer class="wcm-note"><wcm-platform-selection .isWeb="${l$12}" .isRetry="${true}"><wcm-button .onClick="${() => this.openMobileApp(false)}" .iconRight="${v.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection>${s2 ? x`<wcm-text color="secondary" variant="small-thin">Still doesn't work? <span tabindex="0" @click="${() => this.openMobileApp(true)}">Try this alternate link</span></wcm-text>` : null}</wcm-info-footer><wcm-info-footer class="wcm-app-store"><div><wcm-wallet-image walletId="${o3}" imageId="${l(r2)}"></wcm-wallet-image><wcm-text>${`Get ${e2}`}</wcm-text></div><wcm-button .iconRight="${v.ARROW_RIGHT_ICON}" .onClick="${() => this.onGoToAppStore(i2)}" variant="ghost">App Store</wcm-button></wcm-info-footer>`;
   }
 };
@@ -4489,7 +4489,7 @@ var tr = Object.defineProperty, or = Object.getOwnPropertyDescriptor, rr = (e2, 
 };
 let je = class extends s {
   render() {
-    const { name: e2, id: o3, image_id: r2 } = a$2.getWalletRouterData(), { isDesktop: a2, isWeb: t2 } = c.getCachedRouterWalletPlatforms();
+    const { name: e2, id: o3, image_id: r2 } = a$3.getWalletRouterData(), { isDesktop: a2, isWeb: t2 } = c.getCachedRouterWalletPlatforms();
     return x`<wcm-modal-header title="${e2}" .onAction="${c.handleUriCopy}" .actionIcon="${v.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr walletId="${o3}" imageId="${l(r2)}"></wcm-walletconnect-qr></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Scan this QR Code with your phone's camera or inside ${e2} app`}</wcm-text><wcm-platform-selection .isDesktop="${a2}" .isWeb="${t2}"></wcm-platform-selection></wcm-info-footer>`;
   }
 };
@@ -4514,8 +4514,8 @@ var cr = Object.defineProperty, sr = Object.getOwnPropertyDescriptor, ie = (e2, 
 const De = 40;
 let U = class extends s {
   constructor() {
-    super(...arguments), this.loading = !te$1.state.wallets.listings.length, this.firstFetch = !te$1.state.wallets.listings.length, this.search = "", this.endReached = false, this.intersectionObserver = void 0, this.searchDebounce = c.debounce((e2) => {
-      e2.length >= 1 ? (this.firstFetch = true, this.endReached = false, this.search = e2, te$1.resetSearch(), this.fetchWallets()) : this.search && (this.search = "", this.endReached = this.isLastPage(), te$1.resetSearch());
+    super(...arguments), this.loading = !te$2.state.wallets.listings.length, this.firstFetch = !te$2.state.wallets.listings.length, this.search = "", this.endReached = false, this.intersectionObserver = void 0, this.searchDebounce = c.debounce((e2) => {
+      e2.length >= 1 ? (this.firstFetch = true, this.endReached = false, this.search = e2, te$2.resetSearch(), this.fetchWallets()) : this.search && (this.search = "", this.endReached = this.isLastPage(), te$2.resetSearch());
     });
   }
   firstUpdated() {
@@ -4534,16 +4534,16 @@ let U = class extends s {
     }), this.intersectionObserver.observe(this.placeholderEl);
   }
   isLastPage() {
-    const { wallets: e2, search: o3 } = te$1.state, { listings: r2, total: a2 } = this.search ? o3 : e2;
+    const { wallets: e2, search: o3 } = te$2.state, { listings: r2, total: a2 } = this.search ? o3 : e2;
     return a2 <= De || r2.length >= a2;
   }
   async fetchWallets() {
     var e2;
-    const { wallets: o3, search: r2 } = te$1.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
+    const { wallets: o3, search: r2 } = te$2.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
     if (!this.endReached && (this.firstFetch || t2 > De && a2.length < t2))
       try {
         this.loading = true;
-        const i2 = (e2 = p$1.state.chains) == null ? void 0 : e2.join(","), { listings: s2 } = await te$1.getWallets({
+        const i2 = (e2 = p$3.state.chains) == null ? void 0 : e2.join(","), { listings: s2 } = await te$2.getWallets({
           page: this.firstFetch ? 1 : l2 + 1,
           entries: De,
           search: this.search,
@@ -4552,7 +4552,7 @@ let U = class extends s {
         }), $2 = s2.map((f2) => c.getWalletIcon(f2));
         await Promise.all([
           ...$2.map(async (f2) => c.preloadImage(f2)),
-          a$2.wait(300)
+          a$3.wait(300)
         ]), this.endReached = this.isLastPage();
       } catch (i2) {
         console.error(i2), oe$1.openToast(c.getErrorMessage(i2), "error");
@@ -4561,14 +4561,14 @@ let U = class extends s {
       }
   }
   onConnect(e2) {
-    a$2.isAndroid() ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
+    a$3.isAndroid() ? c.handleMobileLinking(e2) : c.goToConnectingView(e2);
   }
   onSearchChange(e2) {
     const { value: o3 } = e2.target;
     this.searchDebounce(o3);
   }
   render() {
-    const { wallets: e2, search: o$12 } = te$1.state, { listings: r2 } = this.search ? o$12 : e2, a2 = this.loading && !r2.length, t2 = this.search.length >= 3;
+    const { wallets: e2, search: o$12 } = te$2.state, { listings: r2 } = this.search ? o$12 : e2, a2 = this.loading && !r2.length, t2 = this.search.length >= 3;
     let l2 = Z2.manualWalletsTemplate(), i2 = Z2.recomendedWalletsTemplate(true);
     t2 && (l2 = l2.filter(({ values: f2 }) => c.caseSafeIncludes(f2[0], this.search)), i2 = i2.filter(({ values: f2 }) => c.caseSafeIncludes(f2[0], this.search)));
     const s2 = !this.loading && !r2.length && !i2.length, $2 = {
@@ -4600,9 +4600,9 @@ let we = class extends s {
   // }
   onFormatAndRedirect(e2) {
     var _a;
-    const { desktop: o3, name: r2 } = a$2.getWalletRouterData(), a2 = o3 == null ? void 0 : o3.universal;
+    const { desktop: o3, name: r2 } = a$3.getWalletRouterData(), a2 = o3 == null ? void 0 : o3.universal;
     if (a2) {
-      const t2 = a$2.formatUniversalUrl(a2, e2, r2);
+      const t2 = a$3.formatUniversalUrl(a2, e2, r2);
       if (r2 === "Puzzle Wallet" && window && ((_a = window.aleo) == null ? void 0 : _a.puzzleWalletClient)) {
         const url = new URL(t2);
         const params = url.searchParams;
@@ -4617,16 +4617,16 @@ let we = class extends s {
           }
         });
       } else {
-        a$2.openHref(t2, "_blank");
+        a$3.openHref(t2, "_blank");
       }
     }
   }
   openWebWallet() {
-    const { walletConnectUri: e2 } = p$1.state, o3 = a$2.getWalletRouterData();
+    const { walletConnectUri: e2 } = p$3.state, o3 = a$3.getWalletRouterData();
     c.setRecentWallet(o3), e2 && this.onFormatAndRedirect(e2);
   }
   render() {
-    const { name: e2, id: o3, image_id: r2 } = a$2.getWalletRouterData(), { isMobile: a2, isDesktop: t2 } = c.getCachedRouterWalletPlatforms(), l$12 = a$2.isMobile();
+    const { name: e2, id: o3, image_id: r2 } = a$3.getWalletRouterData(), { isMobile: a2, isDesktop: t2 } = c.getCachedRouterWalletPlatforms(), l$12 = a$3.isMobile();
     return x`<wcm-modal-header title="${e2}" .onAction="${c.handleUriCopy}" .actionIcon="${v.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="${`Continue in ${e2}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`${e2} web app has opened in a new tab. Go there, accept the connection, and come back`}</wcm-text><wcm-platform-selection .isMobile="${a2}" .isDesktop="${l$12 ? false : t2}" .isRetry="${true}"><wcm-button .onClick="${this.openWebWallet.bind(this)}" .iconRight="${v.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };

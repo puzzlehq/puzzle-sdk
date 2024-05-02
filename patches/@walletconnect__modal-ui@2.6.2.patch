@@ -1,5 +1,5 @@
 diff --git a/dist/index.js b/dist/index.js
-index f6ac95cd9b61c4ff6bbb87fd18061e2f604d5577..adbdb8b04314d52343105f61c356a7b8a9726c0c 100644
+index f6ac95cd9b61c4ff6bbb87fd18061e2f604d5577..c80d3de8ffeefa4a6313f968197f3b8c8323864b 100644
 --- a/dist/index.js
 +++ b/dist/index.js
 @@ -1,2 +1,1848 @@
@@ -999,7 +999,7 @@ index f6ac95cd9b61c4ff6bbb87fd18061e2f604d5577..adbdb8b04314d52343105f61c356a7b8
 +  };
 +let Ie = class extends w {
 +  onConnect(e) {
-+    m.isAndroid() ? c.handleMobileLinking(e) : c.goToConnectingView(e);
++    (m.isAndroid() && window.aleo === undefined && window.aleo.puzzleWalletClient === undefined) ? c.handleMobileLinking(e) : c.goToConnectingView(e);
 +  }
 +  onGoToQrcode() {
 +    x.push("Qrcode");
