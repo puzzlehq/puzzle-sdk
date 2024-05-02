@@ -6,7 +6,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 export type RecordsFilter = {
   programIds?: string[];
   functionId?: string;
-  type: 'all' | 'spent' | 'unspent';
+  type: 'all' | 'spent' | 'unspent' | 'pending';
   names?: string[];
 };
 
