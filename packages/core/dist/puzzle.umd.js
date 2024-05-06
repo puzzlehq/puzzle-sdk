@@ -16344,11 +16344,11 @@
   const wc_required_aleo_chains = ["aleo:1"];
   const wc_optional_aleo_chains = [
     "aleo:0",
-    // eventual mainnet
+    // for eventual mainnet
     "aleo:3",
-    // new, correct testnet3
+    // for testnet3
     "aleo:4"
-    // new, canarynet ?
+    // for testnet4 aka canarynet
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -16465,7 +16465,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.8";
+  const version$1 = "0.3.2-beta.9";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";

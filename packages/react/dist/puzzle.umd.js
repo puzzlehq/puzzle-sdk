@@ -658,7 +658,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexDcWB1SWC);
+        await Promise.resolve().then(() => indexC91pUjOh);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$3.setIsUiLoaded(true);
       }
@@ -16366,11 +16366,11 @@
   const wc_required_aleo_chains$1 = ["aleo:1"];
   const wc_optional_aleo_chains$1 = [
     "aleo:0",
-    // eventual mainnet
+    // for eventual mainnet
     "aleo:3",
-    // new, correct testnet3
+    // for testnet3
     "aleo:4"
-    // new, canarynet ?
+    // for testnet4 aka canarynet
   ];
   const wc_aleo_chains$1 = [
     ...wc_required_aleo_chains$1,
@@ -16453,7 +16453,7 @@
   const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
   const name$1 = "@puzzlehq/sdk-core";
   const displayName$1 = "Puzzle SDK";
-  const version$2 = "0.3.2-beta.8";
+  const version$2 = "0.3.2-beta.9";
   const description$1 = "Your portal to privacy";
   const main$1 = "./dist/puzzle.cjs.js";
   const module$1 = "./dist/puzzle.es.js";
@@ -26342,11 +26342,11 @@
   const wc_required_aleo_chains = ["aleo:1"];
   const wc_optional_aleo_chains = [
     "aleo:0",
-    // eventual mainnet
+    // for eventual mainnet
     "aleo:3",
-    // new, correct testnet3
+    // for testnet3
     "aleo:4"
-    // new, canarynet ?
+    // for testnet4 aka canarynet
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -26463,7 +26463,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.8";
+  const version$1 = "0.3.2-beta.9";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -31761,7 +31761,7 @@
     }
   };
   we.styles = [h.globalCss, dr], Ge([t$1()], we.prototype, "isError", 2), we = Ge([e$2("wcm-web-connecting-view")], we);
-  const indexDcWB1SWC = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexC91pUjOh = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ae;

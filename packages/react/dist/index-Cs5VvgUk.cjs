@@ -1,12 +1,29 @@
-import * as React from "react";
-import React__default, { useEffect, useState, useMemo, createContext, useContext } from "react";
-import { create } from "zustand";
-import { useQuery, useQueryClient, onlineManager, notifyManager, QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import EventEmitter$2 from "events";
-import { getSdkError } from "@walletconnect/utils";
-import { useDebounce } from "use-debounce";
-import { WalletConnectModalSign } from "@walletconnect/modal-sign-html";
-import debug$1 from "debug";
+"use strict";
+const React = require("react");
+const zustand = require("zustand");
+const reactQuery = require("@tanstack/react-query");
+const EventEmitter$2 = require("events");
+const utils$2 = require("@walletconnect/utils");
+const useDebounce = require("use-debounce");
+const modalSignHtml = require("@walletconnect/modal-sign-html");
+const debug$1 = require("debug");
+function _interopNamespaceDefault(e) {
+  const n3 = Object.create(null, { [Symbol.toStringTag]: { value: "Module" } });
+  if (e) {
+    for (const k2 in e) {
+      if (k2 !== "default") {
+        const d3 = Object.getOwnPropertyDescriptor(e, k2);
+        Object.defineProperty(n3, k2, d3.get ? d3 : {
+          enumerable: true,
+          get: () => e[k2]
+        });
+      }
+    }
+  }
+  n3.default = e;
+  return Object.freeze(n3);
+}
+const React__namespace = /* @__PURE__ */ _interopNamespaceDefault(React);
 const t = Symbol();
 const s = Object.getPrototypeOf, c$2 = /* @__PURE__ */ new WeakMap(), l$2 = (e) => e && (c$2.has(e) ? c$2.get(e) : s(e) === Object.prototype || s(e) === Array.prototype), y$4 = (e) => l$2(e) && e[t] || null, h$4 = (e, t2 = true) => {
   c$2.set(e, t2);
@@ -646,7 +663,7 @@ let d$1 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-DcWB1SWC-UqzqkC7H.js");
+      await Promise.resolve().then(() => require("./index-C91pUjOh-3wTKonDE.cjs"));
       const e = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e), p$3.setIsUiLoaded(true);
     }
@@ -16304,7 +16321,7 @@ var InputOutputType$1;
   InputOutputType2["Future"] = "future";
   InputOutputType2["ExternalRecord"] = "external_record";
 })(InputOutputType$1 || (InputOutputType$1 = {}));
-var EventType$1;
+var EventType;
 (function(EventType2) {
   EventType2["Deploy"] = "Deploy";
   EventType2["Execute"] = "Execute";
@@ -16315,29 +16332,29 @@ var EventType$1;
   EventType2["Shield"] = "Shield";
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
-})(EventType$1 || (EventType$1 = {}));
-var EventStatus$1;
+})(EventType || (EventType = {}));
+var EventStatus;
 (function(EventStatus2) {
   EventStatus2["Creating"] = "Creating";
   EventStatus2["Pending"] = "Pending";
   EventStatus2["Settled"] = "Settled";
   EventStatus2["Failed"] = "Failed";
-})(EventStatus$1 || (EventStatus$1 = {}));
-var Visibility$1;
+})(EventStatus || (EventStatus = {}));
+var Visibility;
 (function(Visibility2) {
   Visibility2["Private"] = "Private";
   Visibility2["Public"] = "Public";
-})(Visibility$1 || (Visibility$1 = {}));
-var Network$1;
+})(Visibility || (Visibility = {}));
+var Network;
 (function(Network2) {
   Network2["AleoTestnet"] = "AleoTestnet";
   Network2["AleoCanarynet"] = "AleoCanarynet";
   Network2["AleoMainnet"] = "AleoMainnet";
-})(Network$1 || (Network$1 = {}));
-z2.nativeEnum(EventType$1);
-z2.nativeEnum(EventStatus$1);
-z2.nativeEnum(Network$1);
-z2.nativeEnum(Visibility$1);
+})(Network || (Network = {}));
+z2.nativeEnum(EventType);
+z2.nativeEnum(EventStatus);
+z2.nativeEnum(Network);
+z2.nativeEnum(Visibility);
 const wc_aleo_methods$1 = [
   "decrypt",
   "disconnect",
@@ -16354,11 +16371,11 @@ const wc_aleo_methods$1 = [
 const wc_required_aleo_chains$1 = ["aleo:1"];
 const wc_optional_aleo_chains$1 = [
   "aleo:0",
-  // eventual mainnet
+  // for eventual mainnet
   "aleo:3",
-  // new, correct testnet3
+  // for testnet3
   "aleo:4"
-  // new, canarynet ?
+  // for testnet4 aka canarynet
 ];
 const wc_aleo_chains$1 = [
   ...wc_required_aleo_chains$1,
@@ -16441,13 +16458,13 @@ const web3modal_puzzle_props_default$1 = {
 const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
 const name$1 = "@puzzlehq/sdk-core";
 const displayName$1 = "Puzzle SDK";
-const version$1 = "0.3.2-beta.8";
+const version$1 = "0.3.2-beta.9";
 const description$1 = "Your portal to privacy";
 const main$1 = "./dist/puzzle.cjs.js";
-const module$1 = "./dist/puzzle.es.js";
+const module$2 = "./dist/puzzle.es.js";
 const browser$1 = "./dist/puzzle.umd.js";
 const types$3 = "./dist/types/src/index.d.ts";
-const exports$1 = {
+const exports$2 = {
   ".": {
     "import": "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -16499,11 +16516,11 @@ const pkg$1 = {
   version: version$1,
   description: description$1,
   main: main$1,
-  module: module$1,
+  module: module$2,
   browser: browser$1,
   types: types$3,
   "private": false,
-  exports: exports$1,
+  exports: exports$2,
   type: type$1,
   scripts: scripts$1,
   repository: repository$1,
@@ -16516,7 +16533,7 @@ const pkg$1 = {
   homepage: homepage$1
 };
 const emitter$1 = new EventEmitter$1();
-let connection$1 = void 0;
+let connection = void 0;
 async function configureConnection$1(options) {
   let disconnectSessions = false;
   const thisVersion = pkg$1.version;
@@ -16528,7 +16545,7 @@ async function configureConnection$1(options) {
     localStorage.setItem("puzzle_sdk_version", thisVersion);
     disconnectSessions = true;
   }
-  connection$1 = new z$1({
+  connection = new z$1({
     projectId: options.projectId ?? projectId$1,
     metadata: {
       name: options.dAppName,
@@ -16541,16 +16558,16 @@ async function configureConnection$1(options) {
   if (disconnectSessions) {
     localStorage.removeItem("puzzle-hasInjectedConnection");
     try {
-      disconnectOnVersionChange$1(connection$1, options.onDisconnect);
+      disconnectOnVersionChange$1(connection, options.onDisconnect);
     } catch (e) {
       console.error(e);
     }
   }
-  connection$1.onSessionDelete(() => {
+  connection.onSessionDelete(() => {
     localStorage.removeItem("puzzle-hasInjectedConnection");
     options.onDisconnect && options.onDisconnect();
   });
-  connection$1.onSessionExpire(() => {
+  connection.onSessionExpire(() => {
     localStorage.removeItem("puzzle-hasInjectedConnection");
     options.onDisconnect && options.onDisconnect();
   });
@@ -16559,9 +16576,9 @@ async function configureConnection$1(options) {
     window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
   }
   if (typeof window !== "undefined") {
-    window.puzzleSdkConnection = connection$1;
+    window.puzzleSdkConnection = connection;
   }
-  return connection$1;
+  return connection;
 }
 async function disconnectOnVersionChange$1(connection2, onDisconnect) {
   const session = await (connection2 == null ? void 0 : connection2.getSession());
@@ -16576,15 +16593,15 @@ async function disconnectOnVersionChange$1(connection2, onDisconnect) {
 }
 async function getWalletConnectModalSignClient$1() {
   return new Promise((resolve) => {
-    if (connection$1) {
-      resolve(connection$1);
+    if (connection) {
+      resolve(connection);
     } else if (typeof window !== "undefined" && (window == null ? void 0 : window.puzzleSdkConnection)) {
       resolve(window.puzzleSdkConnection);
     } else {
       const interval = setInterval(() => {
-        if (connection$1) {
+        if (connection) {
           clearInterval(interval);
-          resolve(connection$1);
+          resolve(connection);
         }
       }, 200);
     }
@@ -17076,7 +17093,7 @@ const debug = /* @__PURE__ */ getDefaultExportFromCjs(browserExports);
 const log_sdk$1 = debug("wallet:sdk");
 log_sdk$1.enabled = true;
 function useOnSessionDelete(callback) {
-  useEffect(() => {
+  React.useEffect(() => {
     getWalletConnectModalSignClient$1().then((client) => {
       client.onSessionDelete(callback);
     });
@@ -17088,7 +17105,7 @@ function useOnSessionDelete(callback) {
   }, [callback]);
 }
 function useOnSessionUpdate(callback) {
-  useEffect(() => {
+  React.useEffect(() => {
     getWalletConnectModalSignClient$1().then((client) => {
       client.onSessionUpdate(callback);
     });
@@ -17100,7 +17117,7 @@ function useOnSessionUpdate(callback) {
   }, [callback]);
 }
 function useOnSessionEvent(callback) {
-  useEffect(() => {
+  React.useEffect(() => {
     getWalletConnectModalSignClient$1().then((client) => {
       client.onSessionEvent(callback);
     });
@@ -17441,7 +17458,7 @@ const persistImpl = (config, baseOptions) => {
   return newImpl(config, baseOptions);
 };
 const persist = persistImpl;
-const useWalletStore = create()(
+const useWalletStore = zustand.create()(
   persist(
     (set2, get2) => ({
       account: void 0,
@@ -17469,9 +17486,9 @@ const useWalletStore = create()(
   )
 );
 function useAsyncAction() {
-  const [data, setData] = useState(void 0);
-  const [error, setError] = useState(void 0);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = React.useState(void 0);
+  const [error, setError] = React.useState(void 0);
+  const [loading, setLoading] = React.useState(false);
   return { data, error, loading, setData, setError, setLoading };
 }
 async function fetchRequest(params, queryKey) {
@@ -17489,7 +17506,7 @@ function useRequestQuery({
   enabled,
   queryOptions
 }) {
-  return useQuery(
+  return reactQuery.useQuery(
     queryKey,
     async () => fetchRequest(wcParams, queryKey),
     queryOptions ?? {
@@ -17508,7 +17525,7 @@ function useInjectedRequestQuery({
   queryOptions,
   fetchFunction
 }) {
-  return useQuery(
+  return reactQuery.useQuery(
     queryKey,
     async () => fetchFunction(wcParams),
     queryOptions ?? {
@@ -17562,7 +17579,7 @@ const useInjectedSubscriptions = ({
   session,
   configs
 }) => {
-  useEffect(() => {
+  React.useEffect(() => {
     if (!hasInjectedConnection$1() || !session) {
       return;
     }
@@ -17610,7 +17627,7 @@ function requireReactJsxRuntime_production_min() {
   if (hasRequiredReactJsxRuntime_production_min)
     return reactJsxRuntime_production_min;
   hasRequiredReactJsxRuntime_production_min = 1;
-  var f2 = React__default, k2 = Symbol.for("react.element"), l2 = Symbol.for("react.fragment"), m2 = Object.prototype.hasOwnProperty, n3 = f2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p3 = { key: true, ref: true, __self: true, __source: true };
+  var f2 = React, k2 = Symbol.for("react.element"), l2 = Symbol.for("react.fragment"), m2 = Object.prototype.hasOwnProperty, n3 = f2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p3 = { key: true, ref: true, __self: true, __source: true };
   function q2(c2, a3, g3) {
     var b3, d3 = {}, e = null, h4 = null;
     void 0 !== g3 && (e = "" + g3);
@@ -17645,7 +17662,7 @@ function requireReactJsxRuntime_development() {
   hasRequiredReactJsxRuntime_development = 1;
   if (process.env.NODE_ENV !== "production") {
     (function() {
-      var React2 = React__default;
+      var React$1 = React;
       var REACT_ELEMENT_TYPE = Symbol.for("react.element");
       var REACT_PORTAL_TYPE = Symbol.for("react.portal");
       var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -17671,7 +17688,7 @@ function requireReactJsxRuntime_development() {
         }
         return null;
       }
-      var ReactSharedInternals = React2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var ReactSharedInternals = React$1.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function error(format) {
         {
           {
@@ -19156,8 +19173,8 @@ const getItem = (key) => {
   }
 };
 function useLocalStorage(key, defaultValue) {
-  const [value, setValue] = React.useState();
-  React.useEffect(() => {
+  const [value, setValue] = React__namespace.useState();
+  React__namespace.useEffect(() => {
     const initialValue = getItem(key);
     if (typeof initialValue === "undefined" || initialValue === null) {
       setValue(typeof defaultValue === "function" ? defaultValue() : defaultValue);
@@ -19165,7 +19182,7 @@ function useLocalStorage(key, defaultValue) {
       setValue(initialValue);
     }
   }, [defaultValue, key]);
-  const setter = React.useCallback((updater) => {
+  const setter = React__namespace.useCallback((updater) => {
     setValue((old) => {
       let newVal = updater;
       if (typeof updater == "function") {
@@ -20205,26 +20222,26 @@ const defaultTheme = {
   paused: "#8c49eb",
   warning: "#ffb200"
 };
-const ThemeContext = /* @__PURE__ */ React.createContext(defaultTheme);
+const ThemeContext = /* @__PURE__ */ React__namespace.createContext(defaultTheme);
 function ThemeProvider({
   theme,
   ...rest
 }) {
-  return /* @__PURE__ */ React.createElement(ThemeContext.Provider, _extends({
+  return /* @__PURE__ */ React__namespace.createElement(ThemeContext.Provider, _extends({
     value: theme
   }, rest));
 }
 function useTheme() {
-  return React.useContext(ThemeContext);
+  return React__namespace.useContext(ThemeContext);
 }
 function useMediaQuery(query) {
-  const [isMatch, setIsMatch] = React.useState(() => {
+  const [isMatch, setIsMatch] = React__namespace.useState(() => {
     if (typeof window !== "undefined") {
       return window.matchMedia(query).matches;
     }
     return;
   });
-  React.useEffect(() => {
+  React__namespace.useEffect(() => {
     if (typeof window !== "undefined") {
       const matcher = window.matchMedia(query);
       const onChange = ({
@@ -20251,7 +20268,7 @@ function getQueryStatusLabel(query) {
   return query.state.fetchStatus === "fetching" ? "fetching" : !query.getObserversCount() ? "inactive" : query.state.fetchStatus === "paused" ? "paused" : query.isStale() ? "stale" : "fresh";
 }
 function styled(type2, newStyles, queries = {}) {
-  return /* @__PURE__ */ React.forwardRef(({
+  return /* @__PURE__ */ React__namespace.forwardRef(({
     style,
     ...rest
   }, ref) => {
@@ -20262,7 +20279,7 @@ function styled(type2, newStyles, queries = {}) {
         ...typeof value === "function" ? value(rest, theme) : value
       } : current;
     }, {});
-    return /* @__PURE__ */ React.createElement(type2, {
+    return /* @__PURE__ */ React__namespace.createElement(type2, {
       ...rest,
       style: {
         ...typeof newStyles === "function" ? newStyles(rest, theme) : newStyles,
@@ -20274,9 +20291,9 @@ function styled(type2, newStyles, queries = {}) {
   });
 }
 function useIsMounted() {
-  const mountedRef = React.useRef(false);
-  const isMounted = React.useCallback(() => mountedRef.current, []);
-  React.useEffect(() => {
+  const mountedRef = React__namespace.useRef(false);
+  const isMounted = React__namespace.useCallback(() => mountedRef.current, []);
+  React__namespace.useEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
@@ -20483,7 +20500,7 @@ const Select = styled("select", (_props, theme) => ({
 function ScreenReader({
   text
 }) {
-  return /* @__PURE__ */ React.createElement("span", {
+  return /* @__PURE__ */ React__namespace.createElement("span", {
     style: {
       position: "absolute",
       width: "0.1px",
@@ -20518,8 +20535,8 @@ const ExpandButton = styled("button", {
 const CopyButton = ({
   value
 }) => {
-  const [copyState, setCopyState] = React.useState("NoCopy");
-  return /* @__PURE__ */ React.createElement("button", {
+  const [copyState, setCopyState] = React__namespace.useState("NoCopy");
+  return /* @__PURE__ */ React__namespace.createElement("button", {
     onClick: copyState === "NoCopy" ? () => {
       navigator.clipboard.writeText(SuperJSON.stringify(value)).then(() => {
         setCopyState("SuccessCopy");
@@ -20543,7 +20560,7 @@ const CopyButton = ({
       border: "none",
       padding: 0
     }
-  }, copyState === "NoCopy" ? /* @__PURE__ */ React.createElement(Copier, null) : copyState === "SuccessCopy" ? /* @__PURE__ */ React.createElement(CopiedCopier, null) : /* @__PURE__ */ React.createElement(ErrorCopier, null));
+  }, copyState === "NoCopy" ? /* @__PURE__ */ React__namespace.createElement(Copier, null) : copyState === "SuccessCopy" ? /* @__PURE__ */ React__namespace.createElement(CopiedCopier, null) : /* @__PURE__ */ React__namespace.createElement(ErrorCopier, null));
 };
 const Value = styled("span", (_props, theme) => ({
   color: theme.danger
@@ -20560,7 +20577,7 @@ const Info = styled("span", {
 const Expander = ({
   expanded,
   style = {}
-}) => /* @__PURE__ */ React.createElement("span", {
+}) => /* @__PURE__ */ React__namespace.createElement("span", {
   style: {
     display: "inline-block",
     transition: "all .1s ease",
@@ -20568,24 +20585,24 @@ const Expander = ({
     ...style
   }
 }, "▶");
-const Copier = () => /* @__PURE__ */ React.createElement("span", {
+const Copier = () => /* @__PURE__ */ React__namespace.createElement("span", {
   "aria-label": "Copy object to clipboard",
   title: "Copy object to clipboard",
   style: {
     paddingLeft: "1em"
   }
-}, /* @__PURE__ */ React.createElement("svg", {
+}, /* @__PURE__ */ React__namespace.createElement("svg", {
   height: "12",
   viewBox: "0 0 16 12",
   width: "10"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__namespace.createElement("path", {
   fill: "currentColor",
   d: "M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"
-}), /* @__PURE__ */ React.createElement("path", {
+}), /* @__PURE__ */ React__namespace.createElement("path", {
   fill: "currentColor",
   d: "M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"
 })));
-const ErrorCopier = () => /* @__PURE__ */ React.createElement("span", {
+const ErrorCopier = () => /* @__PURE__ */ React__namespace.createElement("span", {
   "aria-label": "Failed copying to clipboard",
   title: "Failed copying to clipboard",
   style: {
@@ -20593,15 +20610,15 @@ const ErrorCopier = () => /* @__PURE__ */ React.createElement("span", {
     display: "flex",
     alignItems: "center"
   }
-}, /* @__PURE__ */ React.createElement("svg", {
+}, /* @__PURE__ */ React__namespace.createElement("svg", {
   height: "12",
   viewBox: "0 0 16 12",
   width: "10",
   display: "block"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__namespace.createElement("path", {
   fill: "red",
   d: "M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"
-})), /* @__PURE__ */ React.createElement("span", {
+})), /* @__PURE__ */ React__namespace.createElement("span", {
   style: {
     color: "red",
     fontSize: "12px",
@@ -20610,7 +20627,7 @@ const ErrorCopier = () => /* @__PURE__ */ React.createElement("span", {
     top: "2px"
   }
 }, "See console"));
-const CopiedCopier = () => /* @__PURE__ */ React.createElement("span", {
+const CopiedCopier = () => /* @__PURE__ */ React__namespace.createElement("span", {
   "aria-label": "Object copied to clipboard",
   title: "Object copied to clipboard",
   style: {
@@ -20618,12 +20635,12 @@ const CopiedCopier = () => /* @__PURE__ */ React.createElement("span", {
     display: "inline-block",
     verticalAlign: "middle"
   }
-}, /* @__PURE__ */ React.createElement("svg", {
+}, /* @__PURE__ */ React__namespace.createElement("svg", {
   height: "16",
   viewBox: "0 0 16 16",
   width: "16",
   display: "block"
-}, /* @__PURE__ */ React.createElement("path", {
+}, /* @__PURE__ */ React__namespace.createElement("path", {
   fill: "green",
   d: "M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"
 })));
@@ -20650,22 +20667,22 @@ const DefaultRenderer = ({
   toggleExpanded,
   pageSize
 }) => {
-  const [expandedPages, setExpandedPages] = React.useState([]);
-  return /* @__PURE__ */ React.createElement(Entry, {
+  const [expandedPages, setExpandedPages] = React__namespace.useState([]);
+  return /* @__PURE__ */ React__namespace.createElement(Entry, {
     key: label
-  }, subEntryPages.length ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(ExpandButton, {
+  }, subEntryPages.length ? /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(ExpandButton, {
     onClick: () => toggleExpanded()
-  }, /* @__PURE__ */ React.createElement(Expander, {
+  }, /* @__PURE__ */ React__namespace.createElement(Expander, {
     expanded
-  }), " ", label, " ", /* @__PURE__ */ React.createElement(Info, null, String(type2).toLowerCase() === "iterable" ? "(Iterable) " : "", subEntries.length, " ", subEntries.length > 1 ? "items" : "item")), copyable ? /* @__PURE__ */ React.createElement(CopyButton, {
+  }), " ", label, " ", /* @__PURE__ */ React__namespace.createElement(Info, null, String(type2).toLowerCase() === "iterable" ? "(Iterable) " : "", subEntries.length, " ", subEntries.length > 1 ? "items" : "item")), copyable ? /* @__PURE__ */ React__namespace.createElement(CopyButton, {
     value
-  }) : null, expanded ? subEntryPages.length === 1 ? /* @__PURE__ */ React.createElement(SubEntries, null, subEntries.map(handleEntry)) : /* @__PURE__ */ React.createElement(SubEntries, null, subEntryPages.map((entries, index) => /* @__PURE__ */ React.createElement("div", {
+  }) : null, expanded ? subEntryPages.length === 1 ? /* @__PURE__ */ React__namespace.createElement(SubEntries, null, subEntries.map(handleEntry)) : /* @__PURE__ */ React__namespace.createElement(SubEntries, null, subEntryPages.map((entries, index) => /* @__PURE__ */ React__namespace.createElement("div", {
     key: index
-  }, /* @__PURE__ */ React.createElement(Entry, null, /* @__PURE__ */ React.createElement(LabelButton, {
+  }, /* @__PURE__ */ React__namespace.createElement(Entry, null, /* @__PURE__ */ React__namespace.createElement(LabelButton, {
     onClick: () => setExpandedPages((old) => old.includes(index) ? old.filter((d3) => d3 !== index) : [...old, index])
-  }, /* @__PURE__ */ React.createElement(Expander, {
+  }, /* @__PURE__ */ React__namespace.createElement(Expander, {
     expanded
-  }), " [", index * pageSize, " ...", " ", index * pageSize + pageSize - 1, "]"), expandedPages.includes(index) ? /* @__PURE__ */ React.createElement(SubEntries, null, entries.map(handleEntry)) : null)))) : null) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Label, null, label, ":"), " ", /* @__PURE__ */ React.createElement(Value, null, displayValue(value))));
+  }), " [", index * pageSize, " ...", " ", index * pageSize + pageSize - 1, "]"), expandedPages.includes(index) ? /* @__PURE__ */ React__namespace.createElement(SubEntries, null, entries.map(handleEntry)) : null)))) : null) : /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement(Label, null, label, ":"), " ", /* @__PURE__ */ React__namespace.createElement(Value, null, displayValue(value))));
 };
 function isIterable(x2) {
   return Symbol.iterator in x2;
@@ -20678,8 +20695,8 @@ function Explorer({
   copyable = false,
   ...rest
 }) {
-  const [expanded, setExpanded] = React.useState(Boolean(defaultExpanded));
-  const toggleExpanded = React.useCallback(() => setExpanded((old) => !old), []);
+  const [expanded, setExpanded] = React__namespace.useState(Boolean(defaultExpanded));
+  const toggleExpanded = React__namespace.useCallback(() => setExpanded((old) => !old), []);
   let type2 = typeof value;
   let subEntries = [];
   const makeProperty = (sub) => {
@@ -20712,7 +20729,7 @@ function Explorer({
   }
   const subEntryPages = chunkArray(subEntries, pageSize);
   return renderer({
-    handleEntry: (entry) => /* @__PURE__ */ React.createElement(Explorer, _extends({
+    handleEntry: (entry) => /* @__PURE__ */ React__namespace.createElement(Explorer, _extends({
       key: entry.label,
       value,
       renderer,
@@ -20730,27 +20747,27 @@ function Explorer({
   });
 }
 function Logo(props) {
-  return /* @__PURE__ */ React.createElement("svg", _extends({
+  return /* @__PURE__ */ React__namespace.createElement("svg", _extends({
     width: "40px",
     height: "40px",
     viewBox: "0 0 190 190",
     version: "1.1"
-  }, props), /* @__PURE__ */ React.createElement("g", {
+  }, props), /* @__PURE__ */ React__namespace.createElement("g", {
     stroke: "none",
     strokeWidth: "1",
     fill: "none",
     fillRule: "evenodd"
-  }, /* @__PURE__ */ React.createElement("g", {
+  }, /* @__PURE__ */ React__namespace.createElement("g", {
     transform: "translate(-33.000000, 0.000000)"
-  }, /* @__PURE__ */ React.createElement("path", {
+  }, /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M72.7239712,61.3436237 C69.631224,46.362877 68.9675112,34.8727722 70.9666331,26.5293551 C72.1555965,21.5671678 74.3293088,17.5190846 77.6346064,14.5984631 C81.1241394,11.5150478 85.5360327,10.0020122 90.493257,10.0020122 C98.6712013,10.0020122 107.26826,13.7273214 116.455725,20.8044264 C120.20312,23.6910458 124.092437,27.170411 128.131651,31.2444746 C128.45314,30.8310265 128.816542,30.4410453 129.22143,30.0806152 C140.64098,19.9149716 150.255245,13.5989272 158.478408,11.1636507 C163.367899,9.715636 167.958526,9.57768202 172.138936,10.983031 C176.551631,12.4664684 180.06766,15.5329489 182.548314,19.8281091 C186.642288,26.9166735 187.721918,36.2310983 186.195595,47.7320243 C185.573451,52.4199112 184.50985,57.5263831 183.007094,63.0593153 C183.574045,63.1277086 184.142416,63.2532808 184.705041,63.4395297 C199.193932,68.2358678 209.453582,73.3937462 215.665021,79.2882839 C219.360669,82.7953831 221.773972,86.6998434 222.646365,91.0218204 C223.567176,95.5836746 222.669313,100.159332 220.191548,104.451297 C216.105211,111.529614 208.591643,117.11221 197.887587,121.534031 C193.589552,123.309539 188.726579,124.917559 183.293259,126.363748 C183.541176,126.92292 183.733521,127.516759 183.862138,128.139758 C186.954886,143.120505 187.618598,154.61061 185.619477,162.954027 C184.430513,167.916214 182.256801,171.964297 178.951503,174.884919 C175.46197,177.968334 171.050077,179.48137 166.092853,179.48137 C157.914908,179.48137 149.31785,175.756061 140.130385,168.678956 C136.343104,165.761613 132.410866,162.238839 128.325434,158.108619 C127.905075,158.765474 127.388968,159.376011 126.77857,159.919385 C115.35902,170.085028 105.744755,176.401073 97.5215915,178.836349 C92.6321009,180.284364 88.0414736,180.422318 83.8610636,179.016969 C79.4483686,177.533532 75.9323404,174.467051 73.4516862,170.171891 C69.3577116,163.083327 68.2780823,153.768902 69.8044053,142.267976 C70.449038,137.410634 71.56762,132.103898 73.1575891,126.339009 C72.5361041,126.276104 71.9120754,126.144816 71.2949591,125.940529 C56.8060684,121.144191 46.5464184,115.986312 40.3349789,110.091775 C36.6393312,106.584675 34.2260275,102.680215 33.3536352,98.3582381 C32.4328237,93.7963839 33.3306866,89.2207269 35.8084524,84.9287618 C39.8947886,77.8504443 47.4083565,72.2678481 58.1124133,67.8460273 C62.5385143,66.0176154 67.5637208,64.366822 73.1939394,62.8874674 C72.9933393,62.3969171 72.8349374,61.8811235 72.7239712,61.3436237 Z",
     fill: "#002C4B",
     fillRule: "nonzero",
     transform: "translate(128.000000, 95.000000) scale(-1, 1) translate(-128.000000, -95.000000) "
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M113.396882,64 L142.608177,64 C144.399254,64 146.053521,64.958025 146.944933,66.5115174 L161.577138,92.0115174 C162.461464,93.5526583 162.461464,95.4473417 161.577138,96.9884826 L146.944933,122.488483 C146.053521,124.041975 144.399254,125 142.608177,125 L113.396882,125 C111.605806,125 109.951539,124.041975 109.060126,122.488483 L94.4279211,96.9884826 C93.543596,95.4473417 93.543596,93.5526583 94.4279211,92.0115174 L109.060126,66.5115174 C109.951539,64.958025 111.605806,64 113.396882,64 Z M138.987827,70.2765273 C140.779849,70.2765273 142.434839,71.2355558 143.325899,72.7903404 L154.343038,92.0138131 C155.225607,93.5537825 155.225607,95.4462175 154.343038,96.9861869 L143.325899,116.20966 C142.434839,117.764444 140.779849,118.723473 138.987827,118.723473 L117.017233,118.723473 C115.225211,118.723473 113.570221,117.764444 112.67916,116.20966 L101.662022,96.9861869 C100.779452,95.4462175 100.779452,93.5537825 101.662022,92.0138131 L112.67916,72.7903404 C113.570221,71.2355558 115.225211,70.2765273 117.017233,70.2765273 L138.987827,70.2765273 Z M135.080648,77.1414791 L120.924411,77.1414791 C119.134228,77.1414791 117.480644,78.0985567 116.5889,79.6508285 L116.5889,79.6508285 L109.489217,92.0093494 C108.603232,93.5515958 108.603232,95.4484042 109.489217,96.9906506 L109.489217,96.9906506 L116.5889,109.349172 C117.480644,110.901443 119.134228,111.858521 120.924411,111.858521 L120.924411,111.858521 L135.080648,111.858521 C136.870831,111.858521 138.524416,110.901443 139.41616,109.349172 L139.41616,109.349172 L146.515843,96.9906506 C147.401828,95.4484042 147.401828,93.5515958 146.515843,92.0093494 L146.515843,92.0093494 L139.41616,79.6508285 C138.524416,78.0985567 136.870831,77.1414791 135.080648,77.1414791 L135.080648,77.1414791 Z M131.319186,83.7122186 C133.108028,83.7122186 134.760587,84.6678753 135.652827,86.2183156 L138.983552,92.0060969 C139.87203,93.5500005 139.87203,95.4499995 138.983552,96.9939031 L135.652827,102.781684 C134.760587,104.332125 133.108028,105.287781 131.319186,105.287781 L124.685874,105.287781 C122.897032,105.287781 121.244473,104.332125 120.352233,102.781684 L117.021508,96.9939031 C116.13303,95.4499995 116.13303,93.5500005 117.021508,92.0060969 L120.352233,86.2183156 C121.244473,84.6678753 122.897032,83.7122186 124.685874,83.7122186 L131.319186,83.7122186 Z M128.003794,90.1848875 C126.459294,90.1848875 125.034382,91.0072828 124.263005,92.3424437 C123.491732,93.6774232 123.491732,95.3225768 124.263005,96.6575563 C125.034382,97.9927172 126.459294,98.8151125 128.001266,98.8151125 L128.001266,98.8151125 C129.545766,98.8151125 130.970678,97.9927172 131.742055,96.6575563 C132.513327,95.3225768 132.513327,93.6774232 131.742055,92.3424437 C130.970678,91.0072828 129.545766,90.1848875 128.003794,90.1848875 L128.003794,90.1848875 Z M93,94.5009646 L100.767764,94.5009646",
     fill: "#FFD94C"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M87.8601729,108.357758 C89.1715224,107.608286 90.8360246,108.074601 91.5779424,109.399303 L91.5779424,109.399303 L92.0525843,110.24352 C95.8563392,116.982993 99.8190116,123.380176 103.940602,129.435068 C108.807881,136.585427 114.28184,143.82411 120.362479,151.151115 C121.316878,152.30114 121.184944,154.011176 120.065686,154.997937 L120.065686,154.997937 L119.454208,155.534625 C99.3465389,173.103314 86.2778188,176.612552 80.2480482,166.062341 C74.3500652,155.742717 76.4844915,136.982888 86.6513274,109.782853 C86.876818,109.179582 87.3045861,108.675291 87.8601729,108.357758 Z M173.534177,129.041504 C174.986131,128.785177 176.375496,129.742138 176.65963,131.194242 L176.65963,131.194242 L176.812815,131.986376 C181.782365,157.995459 178.283348,171 166.315764,171 C154.609745,171 139.708724,159.909007 121.612702,137.727022 C121.211349,137.235047 120.994572,136.617371 121,135.981509 C121.013158,134.480686 122.235785,133.274651 123.730918,133.287756 L123.730918,133.287756 L124.684654,133.294531 C132.305698,133.335994 139.714387,133.071591 146.910723,132.501323 C155.409039,131.82788 164.283523,130.674607 173.534177,129.041504 Z M180.408726,73.8119663 C180.932139,72.4026903 182.508386,71.6634537 183.954581,72.149012 L183.954581,72.149012 L184.742552,72.4154854 C210.583763,81.217922 220.402356,90.8916805 214.198332,101.436761 C208.129904,111.751366 190.484347,119.260339 161.26166,123.963678 C160.613529,124.067994 159.948643,123.945969 159.382735,123.618843 C158.047025,122.846729 157.602046,121.158214 158.388848,119.847438 L158.388848,119.847438 L158.889328,119.0105 C162.877183,112.31633 166.481358,105.654262 169.701854,99.0242957 C173.50501,91.1948179 177.073967,82.7907081 180.408726,73.8119663 Z M94.7383398,66.0363218 C95.3864708,65.9320063 96.0513565,66.0540315 96.6172646,66.3811573 C97.9529754,67.153271 98.3979538,68.8417862 97.6111517,70.1525615 L97.6111517,70.1525615 L97.1106718,70.9895001 C93.1228168,77.6836699 89.5186416,84.3457379 86.2981462,90.9757043 C82.49499,98.8051821 78.9260328,107.209292 75.5912744,116.188034 C75.0678608,117.59731 73.4916142,118.336546 72.045419,117.850988 L72.045419,117.850988 L71.2574475,117.584515 C45.4162372,108.782078 35.597644,99.1083195 41.8016679,88.5632391 C47.8700957,78.2486335 65.515653,70.7396611 94.7383398,66.0363218 Z M136.545792,34.4653746 C156.653461,16.8966864 169.722181,13.3874478 175.751952,23.9376587 C181.649935,34.2572826 179.515508,53.0171122 169.348673,80.2171474 C169.123182,80.8204179 168.695414,81.324709 168.139827,81.6422422 C166.828478,82.3917144 165.163975,81.9253986 164.422058,80.6006966 L164.422058,80.6006966 L163.947416,79.7564798 C160.143661,73.0170065 156.180988,66.6198239 152.059398,60.564932 C147.192119,53.4145727 141.71816,46.1758903 135.637521,38.8488847 C134.683122,37.6988602 134.815056,35.9888243 135.934314,35.0020629 L135.934314,35.0020629 Z M90.6842361,18 C102.390255,18 117.291276,29.0909926 135.387298,51.2729777 C135.788651,51.7649527 136.005428,52.3826288 136,53.0184911 C135.986842,54.5193144 134.764215,55.7253489 133.269082,55.7122445 L133.269082,55.7122445 L132.315346,55.7054689 C124.694302,55.6640063 117.285613,55.9284091 110.089277,56.4986773 C101.590961,57.17212 92.7164767,58.325393 83.4658235,59.9584962 C82.0138691,60.2148231 80.6245044,59.2578618 80.3403697,57.805758 L80.3403697,57.805758 L80.1871846,57.0136235 C75.2176347,31.0045412 78.7166519,18 90.6842361,18 Z",
     fill: "#FF4154"
   }))));
@@ -20771,7 +20788,7 @@ function requireUseSyncExternalStoreShim_production_min() {
   if (hasRequiredUseSyncExternalStoreShim_production_min)
     return useSyncExternalStoreShim_production_min;
   hasRequiredUseSyncExternalStoreShim_production_min = 1;
-  var e = React__default;
+  var e = React;
   function h4(a3, b3) {
     return a3 === b3 && (0 !== a3 || 1 / a3 === 1 / b3) || a3 !== a3 && b3 !== b3;
   }
@@ -20829,8 +20846,8 @@ function requireUseSyncExternalStoreShim_development() {
       if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
         __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
       }
-      var React2 = React__default;
-      var ReactSharedInternals = React2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var React$1 = React;
+      var ReactSharedInternals = React$1.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function error(format) {
         {
           {
@@ -20860,13 +20877,13 @@ function requireUseSyncExternalStoreShim_development() {
         return x2 === y3 && (x2 !== 0 || 1 / x2 === 1 / y3) || x2 !== x2 && y3 !== y3;
       }
       var objectIs = typeof Object.is === "function" ? Object.is : is2;
-      var useState2 = React2.useState, useEffect2 = React2.useEffect, useLayoutEffect = React2.useLayoutEffect, useDebugValue = React2.useDebugValue;
+      var useState = React$1.useState, useEffect = React$1.useEffect, useLayoutEffect = React$1.useLayoutEffect, useDebugValue = React$1.useDebugValue;
       var didWarnOld18Alpha = false;
       var didWarnUncachedGetSnapshot = false;
       function useSyncExternalStore(subscribe2, getSnapshot, getServerSnapshot) {
         {
           if (!didWarnOld18Alpha) {
-            if (React2.startTransition !== void 0) {
+            if (React$1.startTransition !== void 0) {
               didWarnOld18Alpha = true;
               error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
             }
@@ -20882,7 +20899,7 @@ function requireUseSyncExternalStoreShim_development() {
             }
           }
         }
-        var _useState = useState2({
+        var _useState = useState({
           inst: {
             value,
             getSnapshot
@@ -20897,7 +20914,7 @@ function requireUseSyncExternalStoreShim_development() {
             });
           }
         }, [subscribe2, value, getSnapshot]);
-        useEffect2(function() {
+        useEffect(function() {
           if (checkIfSnapshotChanged(inst)) {
             forceUpdate({
               inst
@@ -20931,7 +20948,7 @@ function requireUseSyncExternalStoreShim_development() {
       var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
       var isServerEnvironment = !canUseDOM;
       var shim2 = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore;
-      var useSyncExternalStore$2 = React2.useSyncExternalStore !== void 0 ? React2.useSyncExternalStore : shim2;
+      var useSyncExternalStore$2 = React$1.useSyncExternalStore !== void 0 ? React$1.useSyncExternalStore : shim2;
       useSyncExternalStoreShim_development.useSyncExternalStore = useSyncExternalStore$2;
       if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") {
         __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
@@ -20958,14 +20975,14 @@ function ReactQueryDevtools$1({
   panelPosition: initialPanelPosition = "bottom",
   errorTypes = []
 }) {
-  const rootRef = React.useRef(null);
-  const panelRef = React.useRef(null);
+  const rootRef = React__namespace.useRef(null);
+  const panelRef = React__namespace.useRef(null);
   const [isOpen, setIsOpen] = useLocalStorage("reactQueryDevtoolsOpen", initialIsOpen);
   const [devtoolsHeight, setDevtoolsHeight] = useLocalStorage("reactQueryDevtoolsHeight", defaultPanelSize);
   const [devtoolsWidth, setDevtoolsWidth] = useLocalStorage("reactQueryDevtoolsWidth", defaultPanelSize);
   const [panelPosition = "bottom", setPanelPosition] = useLocalStorage("reactQueryDevtoolsPanelPosition", initialPanelPosition);
-  const [isResolvedOpen, setIsResolvedOpen] = React.useState(false);
-  const [isResizing, setIsResizing] = React.useState(false);
+  const [isResolvedOpen, setIsResolvedOpen] = React__namespace.useState(false);
+  const [isResizing, setIsResizing] = React__namespace.useState(false);
   const isMounted = useIsMounted();
   const handleDragStart = (panelElement, startEvent) => {
     if (!panelElement)
@@ -21006,10 +21023,10 @@ function ReactQueryDevtools$1({
     document.addEventListener("mousemove", run, false);
     document.addEventListener("mouseup", unsub, false);
   };
-  React.useEffect(() => {
+  React__namespace.useEffect(() => {
     setIsResolvedOpen(isOpen != null ? isOpen : false);
   }, [isOpen, isResolvedOpen, setIsResolvedOpen]);
-  React.useEffect(() => {
+  React__namespace.useEffect(() => {
     const ref = panelRef.current;
     if (ref) {
       const handlePanelTransitionStart = () => {
@@ -21031,7 +21048,7 @@ function ReactQueryDevtools$1({
     }
     return;
   }, [isResolvedOpen]);
-  React.useEffect(() => {
+  React__namespace.useEffect(() => {
     var _rootRef$current;
     if (isResolvedOpen && (_rootRef$current = rootRef.current) != null && _rootRef$current.parentElement) {
       const {
@@ -21093,13 +21110,13 @@ function ReactQueryDevtools$1({
   });
   if (!isMounted())
     return null;
-  return /* @__PURE__ */ React.createElement(Container, {
+  return /* @__PURE__ */ React__namespace.createElement(Container, {
     ref: rootRef,
     className: "ReactQueryDevtools",
     "aria-label": "React Query Devtools"
-  }, /* @__PURE__ */ React.createElement(ThemeProvider, {
+  }, /* @__PURE__ */ React__namespace.createElement(ThemeProvider, {
     theme: defaultTheme
-  }, /* @__PURE__ */ React.createElement(ReactQueryDevtoolsPanel, _extends({
+  }, /* @__PURE__ */ React__namespace.createElement(ReactQueryDevtoolsPanel, _extends({
     ref: panelRef,
     context,
     styleNonce,
@@ -21113,7 +21130,7 @@ function ReactQueryDevtools$1({
     setIsOpen,
     onDragStart: (e) => handleDragStart(panelRef.current, e),
     errorTypes
-  }))), !isResolvedOpen ? /* @__PURE__ */ React.createElement("button", _extends({
+  }))), !isResolvedOpen ? /* @__PURE__ */ React__namespace.createElement("button", _extends({
     type: "button"
   }, otherToggleButtonProps, {
     "aria-label": "Open React Query Devtools",
@@ -21150,22 +21167,22 @@ function ReactQueryDevtools$1({
       },
       ...toggleButtonStyle
     }
-  }), /* @__PURE__ */ React.createElement(Logo, {
+  }), /* @__PURE__ */ React__namespace.createElement(Logo, {
     "aria-hidden": true
-  }), /* @__PURE__ */ React.createElement(ScreenReader, {
+  }), /* @__PURE__ */ React__namespace.createElement(ScreenReader, {
     text: "Open React Query Devtools"
   })) : null);
 }
 const useSubscribeToQueryCache = (queryCache, getSnapshot, skip = false) => {
-  return shimExports.useSyncExternalStore(React.useCallback((onStoreChange) => {
+  return shimExports.useSyncExternalStore(React__namespace.useCallback((onStoreChange) => {
     if (!skip)
-      return queryCache.subscribe(notifyManager.batchCalls(onStoreChange));
+      return queryCache.subscribe(reactQuery.notifyManager.batchCalls(onStoreChange));
     return () => {
       return;
     };
   }, [queryCache, skip]), getSnapshot, getSnapshot);
 };
-const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQueryDevtoolsPanel2(props, ref) {
+const ReactQueryDevtoolsPanel = /* @__PURE__ */ React__namespace.forwardRef(function ReactQueryDevtoolsPanel2(props, ref) {
   const {
     isOpen = true,
     styleNonce,
@@ -21183,17 +21200,17 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
     onClick: onCloseClick,
     ...otherCloseButtonProps
   } = closeButtonProps;
-  const queryClient2 = useQueryClient({
+  const queryClient2 = reactQuery.useQueryClient({
     context
   });
   const queryCache = queryClient2.getQueryCache();
   const [sort, setSort] = useLocalStorage("reactQueryDevtoolsSortFn", Object.keys(sortFns)[0]);
   const [filter, setFilter] = useLocalStorage("reactQueryDevtoolsFilter", "");
   const [baseSort, setBaseSort] = useLocalStorage("reactQueryDevtoolsBaseSort", 1);
-  const sortFn = React.useMemo(() => sortFns[sort], [sort]);
+  const sortFn = React__namespace.useMemo(() => sortFns[sort], [sort]);
   const queriesCount = useSubscribeToQueryCache(queryCache, () => queryCache.getAll().length, !isOpen);
   const [activeQueryHash, setActiveQueryHash] = useLocalStorage("reactQueryDevtoolsActiveQueryHash", "");
-  const queries = React.useMemo(() => {
+  const queries = React__namespace.useMemo(() => {
     const unsortedQueries = queryCache.getAll();
     if (queriesCount === 0) {
       return [];
@@ -21202,10 +21219,10 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
     const sorted = sortFn ? filtered.sort((a3, b3) => sortFn(a3, b3) * baseSort) : filtered;
     return sorted;
   }, [baseSort, sortFn, filter, queriesCount, queryCache]);
-  const [isMockOffline, setMockOffline] = React.useState(false);
-  return /* @__PURE__ */ React.createElement(ThemeProvider, {
+  const [isMockOffline, setMockOffline] = React__namespace.useState(false);
+  return /* @__PURE__ */ React__namespace.createElement(ThemeProvider, {
     theme: defaultTheme
-  }, /* @__PURE__ */ React.createElement(Panel, _extends({
+  }, /* @__PURE__ */ React__namespace.createElement(Panel, _extends({
     ref,
     className: "ReactQueryDevtoolsPanel",
     "aria-label": "React Query Devtools Panel",
@@ -21216,15 +21233,15 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       position: "relative",
       ...panelProps.style
     }
-  }), /* @__PURE__ */ React.createElement("style", {
+  }), /* @__PURE__ */ React__namespace.createElement("style", {
     nonce: styleNonce,
     dangerouslySetInnerHTML: {
       __html: "\n            .ReactQueryDevtoolsPanel * {\n              scrollbar-color: " + defaultTheme.backgroundAlt + " " + defaultTheme.gray + ";\n            }\n\n            .ReactQueryDevtoolsPanel *::-webkit-scrollbar, .ReactQueryDevtoolsPanel scrollbar {\n              width: 1em;\n              height: 1em;\n            }\n\n            .ReactQueryDevtoolsPanel *::-webkit-scrollbar-track, .ReactQueryDevtoolsPanel scrollbar-track {\n              background: " + defaultTheme.backgroundAlt + ";\n            }\n\n            .ReactQueryDevtoolsPanel *::-webkit-scrollbar-thumb, .ReactQueryDevtoolsPanel scrollbar-thumb {\n              background: " + defaultTheme.gray + ";\n              border-radius: .5em;\n              border: 3px solid " + defaultTheme.backgroundAlt + ";\n            }\n          "
     }
-  }), /* @__PURE__ */ React.createElement("div", {
+  }), /* @__PURE__ */ React__namespace.createElement("div", {
     style: getResizeHandleStyle(position),
     onMouseDown: onDragStart
-  }), isOpen && /* @__PURE__ */ React.createElement("div", {
+  }), isOpen && /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       flex: "1 1 500px",
       minHeight: "40%",
@@ -21234,7 +21251,7 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       display: "flex",
       flexDirection: "column"
     }
-  }, /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       padding: ".5em",
       background: defaultTheme.backgroundAlt,
@@ -21242,7 +21259,7 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       justifyContent: "space-between",
       alignItems: "center"
     }
-  }, /* @__PURE__ */ React.createElement("button", {
+  }, /* @__PURE__ */ React__namespace.createElement("button", {
     type: "button",
     "aria-label": "Close React Query Devtools",
     "aria-controls": "ReactQueryDevtoolsPanel",
@@ -21257,47 +21274,47 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       marginRight: ".5em",
       cursor: "pointer"
     }
-  }, /* @__PURE__ */ React.createElement(Logo, {
+  }, /* @__PURE__ */ React__namespace.createElement(Logo, {
     "aria-hidden": true
-  }), /* @__PURE__ */ React.createElement(ScreenReader, {
+  }), /* @__PURE__ */ React__namespace.createElement(ScreenReader, {
     text: "Close React Query Devtools"
-  })), /* @__PURE__ */ React.createElement("div", {
+  })), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column"
     }
-  }, /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
       marginBottom: ".5em"
     }
-  }, /* @__PURE__ */ React.createElement(QueryStatusCount, {
+  }, /* @__PURE__ */ React__namespace.createElement(QueryStatusCount, {
     queryCache
-  }), position && onPositionChange ? /* @__PURE__ */ React.createElement(Select, {
+  }), position && onPositionChange ? /* @__PURE__ */ React__namespace.createElement(Select, {
     "aria-label": "Panel position",
     value: position,
     style: {
       marginInlineStart: ".5em"
     },
     onChange: (e) => onPositionChange(e.target.value)
-  }, /* @__PURE__ */ React.createElement("option", {
+  }, /* @__PURE__ */ React__namespace.createElement("option", {
     value: "left"
-  }, "Left"), /* @__PURE__ */ React.createElement("option", {
+  }, "Left"), /* @__PURE__ */ React__namespace.createElement("option", {
     value: "right"
-  }, "Right"), /* @__PURE__ */ React.createElement("option", {
+  }, "Right"), /* @__PURE__ */ React__namespace.createElement("option", {
     value: "top"
-  }, "Top"), /* @__PURE__ */ React.createElement("option", {
+  }, "Top"), /* @__PURE__ */ React__namespace.createElement("option", {
     value: "bottom"
-  }, "Bottom")) : null), /* @__PURE__ */ React.createElement("div", {
+  }, "Bottom")) : null), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       flexWrap: "wrap",
       gap: "0.5em"
     }
-  }, /* @__PURE__ */ React.createElement(Input, {
+  }, /* @__PURE__ */ React__namespace.createElement(Input, {
     placeholder: "Filter",
     "aria-label": "Filter by queryhash",
     value: filter != null ? filter : "",
@@ -21310,7 +21327,7 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       flex: "1",
       width: "100%"
     }
-  }), /* @__PURE__ */ React.createElement(Select, {
+  }), /* @__PURE__ */ React__namespace.createElement(Select, {
     "aria-label": "Sort queries",
     value: sort,
     onChange: (e) => setSort(e.target.value),
@@ -21319,17 +21336,17 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       minWidth: 75,
       marginRight: ".5em"
     }
-  }, Object.keys(sortFns).map((key) => /* @__PURE__ */ React.createElement("option", {
+  }, Object.keys(sortFns).map((key) => /* @__PURE__ */ React__namespace.createElement("option", {
     key,
     value: key
-  }, "Sort by ", key))), /* @__PURE__ */ React.createElement(Button, {
+  }, "Sort by ", key))), /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => setBaseSort((old) => old * -1),
     style: {
       padding: ".3em .4em",
       marginRight: ".5em"
     }
-  }, baseSort === 1 ? "⬆ Asc" : "⬇ Desc"), /* @__PURE__ */ React.createElement(Button, {
+  }, baseSort === 1 ? "⬆ Asc" : "⬇ Desc"), /* @__PURE__ */ React__namespace.createElement(Button, {
     title: "Clear cache",
     "aria-label": "Clear cache",
     type: "button",
@@ -21338,15 +21355,15 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       padding: ".3em .4em",
       marginRight: ".5em"
     }
-  }, "Clear"), /* @__PURE__ */ React.createElement(Button, {
+  }, "Clear"), /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => {
       if (isMockOffline) {
-        onlineManager.setOnline(void 0);
+        reactQuery.onlineManager.setOnline(void 0);
         setMockOffline(false);
         window.dispatchEvent(new Event("online"));
       } else {
-        onlineManager.setOnline(false);
+        reactQuery.onlineManager.setOnline(false);
         setMockOffline(true);
       }
     },
@@ -21356,69 +21373,69 @@ const ReactQueryDevtoolsPanel = /* @__PURE__ */ React.forwardRef(function ReactQ
       padding: "0",
       height: "2em"
     }
-  }, /* @__PURE__ */ React.createElement("svg", {
+  }, /* @__PURE__ */ React__namespace.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     width: "2em",
     height: "2em",
     viewBox: "0 0 24 24",
     stroke: isMockOffline ? defaultTheme.danger : "currentColor",
     fill: "none"
-  }, isMockOffline ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("path", {
+  }, isMockOffline ? /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("path", {
     stroke: "none",
     d: "M0 0h24v24H0z",
     fill: "none"
-  }), /* @__PURE__ */ React.createElement("line", {
+  }), /* @__PURE__ */ React__namespace.createElement("line", {
     x1: "12",
     y1: "18",
     x2: "12.01",
     y2: "18"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M9.172 15.172a4 4 0 0 1 5.656 0"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M6.343 12.343a7.963 7.963 0 0 1 3.864 -2.14m4.163 .155a7.965 7.965 0 0 1 3.287 2"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M3.515 9.515a12 12 0 0 1 3.544 -2.455m3.101 -.92a12 12 0 0 1 10.325 3.374"
-  }), /* @__PURE__ */ React.createElement("line", {
+  }), /* @__PURE__ */ React__namespace.createElement("line", {
     x1: "3",
     y1: "3",
     x2: "21",
     y2: "21"
-  })) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("path", {
+  })) : /* @__PURE__ */ React__namespace.createElement(React__namespace.Fragment, null, /* @__PURE__ */ React__namespace.createElement("path", {
     stroke: "none",
     d: "M0 0h24v24H0z",
     fill: "none"
-  }), /* @__PURE__ */ React.createElement("line", {
+  }), /* @__PURE__ */ React__namespace.createElement("line", {
     x1: "12",
     y1: "18",
     x2: "12.01",
     y2: "18"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M9.172 15.172a4 4 0 0 1 5.656 0"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M6.343 12.343a8 8 0 0 1 11.314 0"
-  }), /* @__PURE__ */ React.createElement("path", {
+  }), /* @__PURE__ */ React__namespace.createElement("path", {
     d: "M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"
-  }))), /* @__PURE__ */ React.createElement(ScreenReader, {
+  }))), /* @__PURE__ */ React__namespace.createElement(ScreenReader, {
     text: isMockOffline ? "Restore offline mock" : "Mock offline behavior"
-  }))))), /* @__PURE__ */ React.createElement("div", {
+  }))))), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       overflowY: "auto",
       flex: "1"
     }
   }, queries.map((query) => {
-    return /* @__PURE__ */ React.createElement(QueryRow, {
+    return /* @__PURE__ */ React__namespace.createElement(QueryRow, {
       queryKey: query.queryKey,
       activeQueryHash,
       setActiveQueryHash,
       key: query.queryHash,
       queryCache
     });
-  }))), activeQueryHash && isOpen ? /* @__PURE__ */ React.createElement(ActiveQuery, {
+  }))), activeQueryHash && isOpen ? /* @__PURE__ */ React__namespace.createElement(ActiveQuery, {
     activeQueryHash,
     queryCache,
     queryClient: queryClient2,
     errorTypes
-  }) : null, showCloseButton ? /* @__PURE__ */ React.createElement(Button, _extends({
+  }) : null, showCloseButton ? /* @__PURE__ */ React__namespace.createElement(Button, _extends({
     type: "button",
     "aria-controls": "ReactQueryDevtoolsPanel",
     "aria-haspopup": "true",
@@ -21462,7 +21479,7 @@ const ActiveQuery = ({
     const promise = activeQuery == null ? void 0 : activeQuery.fetch();
     promise == null ? void 0 : promise.catch(noop);
   };
-  const currentErrorTypeName = useMemo(() => {
+  const currentErrorTypeName = React.useMemo(() => {
     if (activeQuery && activeQueryState != null && activeQueryState.error) {
       const errorType = errorTypes.find((type2) => {
         var _activeQueryState$err;
@@ -21494,7 +21511,7 @@ const ActiveQuery = ({
       cancelRefetch: true
     });
   };
-  return /* @__PURE__ */ React.createElement(ActiveQueryPanel, null, /* @__PURE__ */ React.createElement("div", {
+  return /* @__PURE__ */ React__namespace.createElement(ActiveQueryPanel, null, /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       padding: ".5em",
       background: defaultTheme.backgroundAlt,
@@ -21502,28 +21519,28 @@ const ActiveQuery = ({
       top: 0,
       zIndex: 1
     }
-  }, "Query Details"), /* @__PURE__ */ React.createElement("div", {
+  }, "Query Details"), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       padding: ".5em"
     }
-  }, /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       marginBottom: ".5em",
       display: "flex",
       alignItems: "flex-start",
       justifyContent: "space-between"
     }
-  }, /* @__PURE__ */ React.createElement(Code, {
+  }, /* @__PURE__ */ React__namespace.createElement(Code, {
     style: {
       lineHeight: "1.8em"
     }
-  }, /* @__PURE__ */ React.createElement("pre", {
+  }, /* @__PURE__ */ React__namespace.createElement("pre", {
     style: {
       margin: 0,
       padding: 0,
       overflow: "auto"
     }
-  }, displayValue(activeQuery.queryKey, true))), /* @__PURE__ */ React.createElement("span", {
+  }, displayValue(activeQuery.queryKey, true))), /* @__PURE__ */ React__namespace.createElement("span", {
     style: {
       padding: "0.3em .6em",
       borderRadius: "0.4em",
@@ -21537,20 +21554,20 @@ const ActiveQuery = ({
       }),
       flexShrink: 0
     }
-  }, getQueryStatusLabel(activeQuery))), /* @__PURE__ */ React.createElement("div", {
+  }, getQueryStatusLabel(activeQuery))), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       marginBottom: ".5em",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between"
     }
-  }, "Observers: ", /* @__PURE__ */ React.createElement(Code, null, observerCount)), /* @__PURE__ */ React.createElement("div", {
+  }, "Observers: ", /* @__PURE__ */ React__namespace.createElement(Code, null, observerCount)), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between"
     }
-  }, "Last Updated:", " ", /* @__PURE__ */ React.createElement(Code, null, new Date(activeQueryState.dataUpdatedAt).toLocaleTimeString()))), /* @__PURE__ */ React.createElement("div", {
+  }, "Last Updated:", " ", /* @__PURE__ */ React__namespace.createElement(Code, null, new Date(activeQueryState.dataUpdatedAt).toLocaleTimeString()))), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       background: defaultTheme.backgroundAlt,
       padding: ".5em",
@@ -21558,7 +21575,7 @@ const ActiveQuery = ({
       top: 0,
       zIndex: 1
     }
-  }, "Actions"), /* @__PURE__ */ React.createElement("div", {
+  }, "Actions"), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       padding: "0.5em",
       display: "flex",
@@ -21566,33 +21583,33 @@ const ActiveQuery = ({
       gap: "0.5em",
       alignItems: "flex-end"
     }
-  }, /* @__PURE__ */ React.createElement(Button, {
+  }, /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: handleRefetch,
     disabled: activeQueryState.fetchStatus === "fetching",
     style: {
       background: defaultTheme.active
     }
-  }, "Refetch"), " ", /* @__PURE__ */ React.createElement(Button, {
+  }, "Refetch"), " ", /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => queryClient2.invalidateQueries(activeQuery),
     style: {
       background: defaultTheme.warning,
       color: defaultTheme.inputTextColor
     }
-  }, "Invalidate"), " ", /* @__PURE__ */ React.createElement(Button, {
+  }, "Invalidate"), " ", /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => queryClient2.resetQueries(activeQuery),
     style: {
       background: defaultTheme.gray
     }
-  }, "Reset"), " ", /* @__PURE__ */ React.createElement(Button, {
+  }, "Reset"), " ", /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => queryClient2.removeQueries(activeQuery),
     style: {
       background: defaultTheme.danger
     }
-  }, "Remove"), " ", /* @__PURE__ */ React.createElement(Button, {
+  }, "Remove"), " ", /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => {
       var _activeQuery$state$fe;
@@ -21624,7 +21641,7 @@ const ActiveQuery = ({
     style: {
       background: defaultTheme.paused
     }
-  }, activeQuery.state.status === "loading" ? "Restore" : "Trigger", " ", "loading"), " ", errorTypes.length === 0 || activeQuery.state.status === "error" ? /* @__PURE__ */ React.createElement(Button, {
+  }, activeQuery.state.status === "loading" ? "Restore" : "Trigger", " ", "loading"), " ", errorTypes.length === 0 || activeQuery.state.status === "error" ? /* @__PURE__ */ React__namespace.createElement(Button, {
     type: "button",
     onClick: () => {
       if (!activeQuery.state.error) {
@@ -21636,7 +21653,7 @@ const ActiveQuery = ({
     style: {
       background: defaultTheme.danger
     }
-  }, activeQuery.state.status === "error" ? "Restore" : "Trigger", " error") : /* @__PURE__ */ React.createElement("label", null, "Trigger error:", /* @__PURE__ */ React.createElement(Select, {
+  }, activeQuery.state.status === "error" ? "Restore" : "Trigger", " error") : /* @__PURE__ */ React__namespace.createElement("label", null, "Trigger error:", /* @__PURE__ */ React__namespace.createElement(Select, {
     value: currentErrorTypeName != null ? currentErrorTypeName : "",
     style: {
       marginInlineStart: ".5em"
@@ -21645,13 +21662,13 @@ const ActiveQuery = ({
       const errorType = errorTypes.find((t2) => t2.name === e.target.value);
       triggerError(errorType);
     }
-  }, /* @__PURE__ */ React.createElement("option", {
+  }, /* @__PURE__ */ React__namespace.createElement("option", {
     key: "",
     value: ""
-  }), errorTypes.map((errorType) => /* @__PURE__ */ React.createElement("option", {
+  }), errorTypes.map((errorType) => /* @__PURE__ */ React__namespace.createElement("option", {
     key: errorType.name,
     value: errorType.name
-  }, errorType.name))))), /* @__PURE__ */ React.createElement("div", {
+  }, errorType.name))))), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       background: defaultTheme.backgroundAlt,
       padding: ".5em",
@@ -21659,16 +21676,16 @@ const ActiveQuery = ({
       top: 0,
       zIndex: 1
     }
-  }, "Data Explorer"), /* @__PURE__ */ React.createElement("div", {
+  }, "Data Explorer"), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       padding: ".5em"
     }
-  }, /* @__PURE__ */ React.createElement(Explorer, {
+  }, /* @__PURE__ */ React__namespace.createElement(Explorer, {
     label: "Data",
     value: activeQueryState.data,
     defaultExpanded: {},
     copyable: true
-  })), /* @__PURE__ */ React.createElement("div", {
+  })), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       background: defaultTheme.backgroundAlt,
       padding: ".5em",
@@ -21676,11 +21693,11 @@ const ActiveQuery = ({
       top: 0,
       zIndex: 1
     }
-  }, "Query Explorer"), /* @__PURE__ */ React.createElement("div", {
+  }, "Query Explorer"), /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       padding: ".5em"
     }
-  }, /* @__PURE__ */ React.createElement(Explorer, {
+  }, /* @__PURE__ */ React__namespace.createElement(Explorer, {
     label: "Query",
     value: activeQuery,
     defaultExpanded: {
@@ -21696,36 +21713,36 @@ const QueryStatusCount = ({
   const hasPaused = useSubscribeToQueryCache(queryCache, () => queryCache.getAll().filter((q2) => getQueryStatusLabel(q2) === "paused").length);
   const hasStale = useSubscribeToQueryCache(queryCache, () => queryCache.getAll().filter((q2) => getQueryStatusLabel(q2) === "stale").length);
   const hasInactive = useSubscribeToQueryCache(queryCache, () => queryCache.getAll().filter((q2) => getQueryStatusLabel(q2) === "inactive").length);
-  return /* @__PURE__ */ React.createElement(QueryKeys, null, /* @__PURE__ */ React.createElement(QueryKey, {
+  return /* @__PURE__ */ React__namespace.createElement(QueryKeys, null, /* @__PURE__ */ React__namespace.createElement(QueryKey, {
     style: {
       background: defaultTheme.success,
       opacity: hasFresh ? 1 : 0.3
     }
-  }, "fresh ", /* @__PURE__ */ React.createElement(Code, null, "(", hasFresh, ")")), " ", /* @__PURE__ */ React.createElement(QueryKey, {
+  }, "fresh ", /* @__PURE__ */ React__namespace.createElement(Code, null, "(", hasFresh, ")")), " ", /* @__PURE__ */ React__namespace.createElement(QueryKey, {
     style: {
       background: defaultTheme.active,
       opacity: hasFetching ? 1 : 0.3
     }
-  }, "fetching ", /* @__PURE__ */ React.createElement(Code, null, "(", hasFetching, ")")), " ", /* @__PURE__ */ React.createElement(QueryKey, {
+  }, "fetching ", /* @__PURE__ */ React__namespace.createElement(Code, null, "(", hasFetching, ")")), " ", /* @__PURE__ */ React__namespace.createElement(QueryKey, {
     style: {
       background: defaultTheme.paused,
       opacity: hasPaused ? 1 : 0.3
     }
-  }, "paused ", /* @__PURE__ */ React.createElement(Code, null, "(", hasPaused, ")")), " ", /* @__PURE__ */ React.createElement(QueryKey, {
+  }, "paused ", /* @__PURE__ */ React__namespace.createElement(Code, null, "(", hasPaused, ")")), " ", /* @__PURE__ */ React__namespace.createElement(QueryKey, {
     style: {
       background: defaultTheme.warning,
       color: "black",
       textShadow: "0",
       opacity: hasStale ? 1 : 0.3
     }
-  }, "stale ", /* @__PURE__ */ React.createElement(Code, null, "(", hasStale, ")")), " ", /* @__PURE__ */ React.createElement(QueryKey, {
+  }, "stale ", /* @__PURE__ */ React__namespace.createElement(Code, null, "(", hasStale, ")")), " ", /* @__PURE__ */ React__namespace.createElement(QueryKey, {
     style: {
       background: defaultTheme.gray,
       opacity: hasInactive ? 1 : 0.3
     }
-  }, "inactive ", /* @__PURE__ */ React.createElement(Code, null, "(", hasInactive, ")")));
+  }, "inactive ", /* @__PURE__ */ React__namespace.createElement(Code, null, "(", hasInactive, ")")));
 };
-const QueryRow = /* @__PURE__ */ React.memo(({
+const QueryRow = /* @__PURE__ */ React__namespace.memo(({
   queryKey,
   setActiveQueryHash,
   activeQueryHash,
@@ -21755,7 +21772,7 @@ const QueryRow = /* @__PURE__ */ React.memo(({
   if (!queryState) {
     return null;
   }
-  return /* @__PURE__ */ React.createElement("div", {
+  return /* @__PURE__ */ React__namespace.createElement("div", {
     role: "button",
     "aria-label": "Open query details for " + queryHash,
     onClick: () => setActiveQueryHash(activeQueryHash === queryHash ? "" : queryHash),
@@ -21765,7 +21782,7 @@ const QueryRow = /* @__PURE__ */ React.memo(({
       cursor: "pointer",
       background: queryHash === activeQueryHash ? "rgba(255,255,255,.1)" : void 0
     }
-  }, /* @__PURE__ */ React.createElement("div", {
+  }, /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       flex: "0 0 auto",
       width: "2em",
@@ -21783,7 +21800,7 @@ const QueryRow = /* @__PURE__ */ React.memo(({
       textShadow: isStale ? "0" : "0 0 10px black",
       color: isStale ? "black" : "white"
     }
-  }, observerCount), isDisabled ? /* @__PURE__ */ React.createElement("div", {
+  }, observerCount), isDisabled ? /* @__PURE__ */ React__namespace.createElement("div", {
     style: {
       flex: "0 0 auto",
       height: "2em",
@@ -21793,7 +21810,7 @@ const QueryRow = /* @__PURE__ */ React.memo(({
       fontWeight: "bold",
       padding: "0 0.5em"
     }
-  }, "disabled") : null, /* @__PURE__ */ React.createElement(Code, {
+  }, "disabled") : null, /* @__PURE__ */ React__namespace.createElement(Code, {
     style: {
       padding: ".5em"
     }
@@ -21809,7 +21826,7 @@ process.env.NODE_ENV !== "development" ? function() {
   return null;
 } : ReactQueryDevtoolsPanel;
 function useOnSessionExpire(callback) {
-  useEffect(() => {
+  React.useEffect(() => {
     getWalletConnectModalSignClient$1().then((client) => {
       client.onSessionExpire(callback);
     });
@@ -21821,7 +21838,7 @@ function useOnSessionExpire(callback) {
   }, [callback]);
 }
 function useSession() {
-  const [session, setSession] = useState(void 0);
+  const [session, setSession] = React.useState(void 0);
   useOnSessionDelete((event) => {
     if (event.topic === (session == null ? void 0 : session.topic)) {
       setSession(void 0);
@@ -21839,7 +21856,7 @@ function useSession() {
       setSession(void 0);
     }
   });
-  useEffect(() => {
+  React.useEffect(() => {
     async function getActiveSession() {
       const client = await getWalletConnectModalSignClient$1();
       const response = await client.getSession();
@@ -21853,8 +21870,8 @@ function useSession() {
   }, []);
   return session;
 }
-const queryClient = new QueryClient();
-const SessionContext = createContext(
+const queryClient = new reactQuery.QueryClient();
+const SessionContext = React.createContext(
   void 0
 );
 const PuzzleWalletProvider = ({
@@ -21865,14 +21882,14 @@ const PuzzleWalletProvider = ({
   children,
   debugQuery = false
 }) => {
-  const [session, setSession] = useState(
+  const [session, setSession] = React.useState(
     void 0
   );
   const _session = useSession();
-  useEffect(() => {
+  React.useEffect(() => {
     setSession(_session);
   }, [_session]);
-  useEffect(() => {
+  React.useEffect(() => {
     configureConnection$1({
       dAppName,
       dAppDescription,
@@ -21882,13 +21899,13 @@ const PuzzleWalletProvider = ({
     });
     EventEmitter$2.defaultMaxListeners = 100;
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(SessionContext.Provider, { value: session, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(QueryClientProvider, { client: queryClient, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(SessionContext.Provider, { value: session, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(reactQuery.QueryClientProvider, { client: queryClient, children: [
     debugQuery && /* @__PURE__ */ jsxRuntimeExports.jsx(ReactQueryDevtools, { initialIsOpen: false }),
     children
   ] }) });
 };
 const useWalletSession = () => {
-  const session = useContext(SessionContext);
+  const session = React.useContext(SessionContext);
   return session;
 };
 const shortenAddress = (address, aleo = true, length = 4, short = true) => {
@@ -21987,12 +22004,12 @@ const useAccount = () => {
   useOnSessionDelete(() => {
     onDisconnect();
   });
-  useEffect(() => {
+  React.useEffect(() => {
     if (session && !loading) {
       refetch();
     }
   }, [session == null ? void 0 : session.topic]);
-  useEffect(() => {
+  React.useEffect(() => {
     if (wc_data) {
       const puzzleData = wc_data;
       const account2 = puzzleData == null ? void 0 : puzzleData.account;
@@ -22072,7 +22089,7 @@ const useBalance = ({ address, multisig }) => {
       refetch();
     }
   });
-  useEffect(() => {
+  React.useEffect(() => {
     if (session && !loading) {
       refetch();
     }
@@ -22213,7 +22230,7 @@ function useDisconnect() {
         const client = await getWalletConnectModalSignClient$1();
         await client.disconnect({
           topic: session.topic,
-          reason: getSdkError("USER_DISCONNECTED")
+          reason: utils$2.getSdkError("USER_DISCONNECTED")
         });
         emitter$1.emit("session_change");
       } catch (e) {
@@ -22294,7 +22311,7 @@ const useEvent = ({ id, address, multisig = false }) => {
     }
   });
   const readyToRequest = !!session && !!account && !!id && (multisig ? !!address : true);
-  useEffect(() => {
+  React.useEffect(() => {
     if (readyToRequest && !loading) {
       refetch();
     }
@@ -22328,7 +22345,7 @@ const useEvents = ({ filter, page }) => {
       }
     }
   };
-  const [debouncedFilter] = useDebounce(filter, 500);
+  const [debouncedFilter] = useDebounce.useDebounce(filter, 500);
   const {
     refetch,
     data: wc_data,
@@ -22367,7 +22384,7 @@ const useEvents = ({ filter, page }) => {
     }
   });
   const readyToRequest = !!session && !!account;
-  useEffect(() => {
+  React.useEffect(() => {
     if (readyToRequest && !loading) {
       refetch();
     }
@@ -22447,7 +22464,7 @@ const useRecords = ({
       }
     }
   };
-  const [debouncedFilter] = useDebounce(filter, 500);
+  const [debouncedFilter] = useDebounce.useDebounce(filter, 500);
   const {
     refetch,
     data: wc_data,
@@ -26249,7 +26266,7 @@ var InputOutputType;
   InputOutputType2["Future"] = "future";
   InputOutputType2["ExternalRecord"] = "external_record";
 })(InputOutputType || (InputOutputType = {}));
-var EventType;
+exports.EventType = void 0;
 (function(EventType2) {
   EventType2["Deploy"] = "Deploy";
   EventType2["Execute"] = "Execute";
@@ -26260,29 +26277,29 @@ var EventType;
   EventType2["Shield"] = "Shield";
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
-})(EventType || (EventType = {}));
-var EventStatus;
+})(exports.EventType || (exports.EventType = {}));
+exports.EventStatus = void 0;
 (function(EventStatus2) {
   EventStatus2["Creating"] = "Creating";
   EventStatus2["Pending"] = "Pending";
   EventStatus2["Settled"] = "Settled";
   EventStatus2["Failed"] = "Failed";
-})(EventStatus || (EventStatus = {}));
-var Visibility;
+})(exports.EventStatus || (exports.EventStatus = {}));
+exports.Visibility = void 0;
 (function(Visibility2) {
   Visibility2["Private"] = "Private";
   Visibility2["Public"] = "Public";
-})(Visibility || (Visibility = {}));
-var Network;
+})(exports.Visibility || (exports.Visibility = {}));
+exports.Network = void 0;
 (function(Network2) {
   Network2["AleoTestnet"] = "AleoTestnet";
   Network2["AleoCanarynet"] = "AleoCanarynet";
   Network2["AleoMainnet"] = "AleoMainnet";
-})(Network || (Network = {}));
-const zodEventType = z3.nativeEnum(EventType);
-const zodEventStatus = z3.nativeEnum(EventStatus);
-const zodNetwork = z3.nativeEnum(Network);
-const zodVisibility = z3.nativeEnum(Visibility);
+})(exports.Network || (exports.Network = {}));
+const zodEventType = z3.nativeEnum(exports.EventType);
+const zodEventStatus = z3.nativeEnum(exports.EventStatus);
+const zodNetwork = z3.nativeEnum(exports.Network);
+const zodVisibility = z3.nativeEnum(exports.Visibility);
 const useRequestSignature = ({ message, address, method, network }) => {
   const session = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
@@ -26330,11 +26347,11 @@ const wc_aleo_methods = [
 const wc_required_aleo_chains = ["aleo:1"];
 const wc_optional_aleo_chains = [
   "aleo:0",
-  // eventual mainnet
+  // for eventual mainnet
   "aleo:3",
-  // new, correct testnet3
+  // for testnet3
   "aleo:4"
-  // new, canarynet ?
+  // for testnet4 aka canarynet
 ];
 const wc_aleo_chains = [
   ...wc_required_aleo_chains,
@@ -26427,13 +26444,13 @@ const signClient_puzzleProps = {
 const networkToChainId = (network, includePrefix = true) => {
   let chain;
   switch (network) {
-    case Network.AleoMainnet:
+    case exports.Network.AleoMainnet:
       chain = "aleo:0";
       break;
-    case Network.AleoTestnet:
+    case exports.Network.AleoTestnet:
       chain = "aleo:1";
       break;
-    case Network.AleoCanarynet:
+    case exports.Network.AleoCanarynet:
       chain = "aleo:0";
       break;
   }
@@ -26442,22 +26459,22 @@ const networkToChainId = (network, includePrefix = true) => {
 const chainIdToNetwork = (chainId) => {
   switch (chainId) {
     case "aleo:0":
-      return Network.AleoCanarynet;
+      return exports.Network.AleoCanarynet;
     case "aleo:1":
-      return Network.AleoTestnet;
+      return exports.Network.AleoTestnet;
     case "aleo:3":
-      return Network.AleoTestnet;
+      return exports.Network.AleoTestnet;
   }
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.3.2-beta.8";
+const version = "0.3.2-beta.9";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
-const module = "./dist/puzzle.es.js";
+const module$1 = "./dist/puzzle.es.js";
 const browser = "./dist/puzzle.umd.js";
 const types = "./dist/types/src/index.d.ts";
-const exports = {
+const exports$1 = {
   ".": {
     "import": "./dist/puzzle.es.js",
     require: "./dist/puzzle.cjs.js",
@@ -26509,11 +26526,11 @@ const pkg = {
   version,
   description,
   main,
-  module,
+  module: module$1,
   browser,
   types,
   "private": false,
-  exports,
+  exports: exports$1,
   type,
   scripts,
   repository,
@@ -26526,7 +26543,7 @@ const pkg = {
   homepage
 };
 const emitter = new EventEmitter$2();
-let connection = void 0;
+exports.connection = void 0;
 async function configureConnection(options) {
   let disconnectSessions = false;
   const thisVersion = pkg.version;
@@ -26538,7 +26555,7 @@ async function configureConnection(options) {
     localStorage.setItem("puzzle_sdk_version", thisVersion);
     disconnectSessions = true;
   }
-  connection = new WalletConnectModalSign({
+  exports.connection = new modalSignHtml.WalletConnectModalSign({
     projectId: options.projectId ?? projectId,
     metadata: {
       name: options.dAppName,
@@ -26551,16 +26568,16 @@ async function configureConnection(options) {
   if (disconnectSessions) {
     localStorage.removeItem("puzzle-hasInjectedConnection");
     try {
-      disconnectOnVersionChange(connection, options.onDisconnect);
+      disconnectOnVersionChange(exports.connection, options.onDisconnect);
     } catch (e) {
       console.error(e);
     }
   }
-  connection.onSessionDelete(() => {
+  exports.connection.onSessionDelete(() => {
     localStorage.removeItem("puzzle-hasInjectedConnection");
     options.onDisconnect && options.onDisconnect();
   });
-  connection.onSessionExpire(() => {
+  exports.connection.onSessionExpire(() => {
     localStorage.removeItem("puzzle-hasInjectedConnection");
     options.onDisconnect && options.onDisconnect();
   });
@@ -26569,9 +26586,9 @@ async function configureConnection(options) {
     window.localStorage.removeItem("WALLETCONNECT_DEEPLINK_CHOICE");
   }
   if (typeof window !== "undefined") {
-    window.puzzleSdkConnection = connection;
+    window.puzzleSdkConnection = exports.connection;
   }
-  return connection;
+  return exports.connection;
 }
 async function disconnectOnVersionChange(connection2, onDisconnect) {
   const session = await (connection2 == null ? void 0 : connection2.getSession());
@@ -26580,21 +26597,21 @@ async function disconnectOnVersionChange(connection2, onDisconnect) {
     onDisconnect && onDisconnect();
     connection2.disconnect({
       topic: session.topic,
-      reason: getSdkError("USER_DISCONNECTED")
+      reason: utils$2.getSdkError("USER_DISCONNECTED")
     });
   }
 }
 async function getWalletConnectModalSignClient() {
   return new Promise((resolve) => {
-    if (connection) {
-      resolve(connection);
+    if (exports.connection) {
+      resolve(exports.connection);
     } else if (typeof window !== "undefined" && (window == null ? void 0 : window.puzzleSdkConnection)) {
       resolve(window.puzzleSdkConnection);
     } else {
       const interval = setInterval(() => {
-        if (connection) {
+        if (exports.connection) {
           clearInterval(interval);
-          resolve(connection);
+          resolve(exports.connection);
         }
       }, 200);
     }
@@ -26877,7 +26894,7 @@ const disconnect = async () => {
   try {
     try {
       await connection2.disconnect({
-        reason: getSdkError("USER_DISCONNECTED"),
+        reason: utils$2.getSdkError("USER_DISCONNECTED"),
         topic: session.topic
       });
       localStorage.removeItem("puzzle-hasInjectedConnection");
@@ -27117,90 +27134,83 @@ const requestSignature = async ({
 const PAGE_SIZE = 20;
 const log_sdk = debug$1("wallet:sdk");
 log_sdk.enabled = true;
-export {
-  PAGE_SIZE as $,
-  queryClient as A,
-  useWalletSession as B,
-  EventType as C,
-  aleoAddressRegex as D,
-  EventStatus as E,
-  aleoFieldRegex as F,
-  aleoPrivateKeyRegex as G,
-  aleoTransactionIdRegex as H,
-  aleoU32 as I,
-  aleoU64 as J,
-  aleoViewKeyRegex as K,
-  zodAddress as L,
-  zodEventStatus as M,
-  Network as N,
-  zodEventType as O,
-  PuzzleWalletProvider as P,
-  zodField as Q,
-  R$4 as R,
-  zodNetwork as S,
-  T$1 as T,
-  zodPrivateKey as U,
-  Visibility as V,
-  zodTransactionId as W,
-  zodU32 as X,
-  zodU64 as Y,
-  zodViewKey as Z,
-  zodVisibility as _,
-  a$3 as a,
-  getAccount as a0,
-  getBalance as a1,
-  connect as a2,
-  requestCreateEvent as a3,
-  createSharedState as a4,
-  decrypt as a5,
-  disconnect as a6,
-  getEvent as a7,
-  getEvents as a8,
-  importSharedState as a9,
-  getRecords as aa,
-  requestSignature as ab,
-  wc_aleo_methods as ac,
-  wc_required_aleo_chains as ad,
-  wc_optional_aleo_chains as ae,
-  wc_aleo_chains as af,
-  wc_events as ag,
-  projectId as ah,
-  web3modal_puzzle_props_android as ai,
-  web3modal_puzzle_props_default as aj,
-  web3modal_puzzle_props as ak,
-  signClient_puzzleProps as al,
-  networkToChainId as am,
-  chainIdToNetwork as an,
-  log_sdk as ao,
-  checkForDesktopConnection as ap,
-  hasInjectedConnection as aq,
-  emitter as ar,
-  connection as as,
-  configureConnection as at,
-  getWalletConnectModalSignClient as au,
-  shortenAddress as b,
-  useBalance as c,
-  useConnect as d,
-  useCreateSharedState as e,
-  useDecrypt as f,
-  useDisconnect as g,
-  useEvent as h,
-  useEvents as i,
-  useImportSharedState as j,
-  getFormattedRecordPlaintext as k,
-  useRecords as l,
-  useRequestCreateEvent as m,
-  ne as n,
-  oe$1 as o,
-  p$3 as p,
-  useRequestSignature as q,
-  useOnSessionDelete as r,
-  se as s,
-  te$2 as t,
-  useAccount as u,
-  useOnSessionEvent as v,
-  useOnSessionExpire as w,
-  useOnSessionUpdate as x,
-  y$3 as y,
-  useSession as z
-};
+exports.PAGE_SIZE = PAGE_SIZE;
+exports.PuzzleWalletProvider = PuzzleWalletProvider;
+exports.R$4 = R$4;
+exports.T$1 = T$1;
+exports.a$3 = a$3;
+exports.aleoAddressRegex = aleoAddressRegex;
+exports.aleoFieldRegex = aleoFieldRegex;
+exports.aleoPrivateKeyRegex = aleoPrivateKeyRegex;
+exports.aleoTransactionIdRegex = aleoTransactionIdRegex;
+exports.aleoU32 = aleoU32;
+exports.aleoU64 = aleoU64;
+exports.aleoViewKeyRegex = aleoViewKeyRegex;
+exports.chainIdToNetwork = chainIdToNetwork;
+exports.checkForDesktopConnection = checkForDesktopConnection;
+exports.configureConnection = configureConnection;
+exports.connect = connect;
+exports.createSharedState = createSharedState;
+exports.decrypt = decrypt;
+exports.disconnect = disconnect;
+exports.emitter = emitter;
+exports.getAccount = getAccount;
+exports.getBalance = getBalance;
+exports.getEvent = getEvent;
+exports.getEvents = getEvents;
+exports.getFormattedRecordPlaintext = getFormattedRecordPlaintext;
+exports.getRecords = getRecords;
+exports.getWalletConnectModalSignClient = getWalletConnectModalSignClient;
+exports.hasInjectedConnection = hasInjectedConnection;
+exports.importSharedState = importSharedState;
+exports.log_sdk = log_sdk;
+exports.ne = ne;
+exports.networkToChainId = networkToChainId;
+exports.oe$1 = oe$1;
+exports.p$3 = p$3;
+exports.projectId = projectId;
+exports.queryClient = queryClient;
+exports.requestCreateEvent = requestCreateEvent;
+exports.requestSignature = requestSignature;
+exports.se = se;
+exports.shortenAddress = shortenAddress;
+exports.signClient_puzzleProps = signClient_puzzleProps;
+exports.te$2 = te$2;
+exports.useAccount = useAccount;
+exports.useBalance = useBalance;
+exports.useConnect = useConnect;
+exports.useCreateSharedState = useCreateSharedState;
+exports.useDecrypt = useDecrypt;
+exports.useDisconnect = useDisconnect;
+exports.useEvent = useEvent;
+exports.useEvents = useEvents;
+exports.useImportSharedState = useImportSharedState;
+exports.useOnSessionDelete = useOnSessionDelete;
+exports.useOnSessionEvent = useOnSessionEvent;
+exports.useOnSessionExpire = useOnSessionExpire;
+exports.useOnSessionUpdate = useOnSessionUpdate;
+exports.useRecords = useRecords;
+exports.useRequestCreateEvent = useRequestCreateEvent;
+exports.useRequestSignature = useRequestSignature;
+exports.useSession = useSession;
+exports.useWalletSession = useWalletSession;
+exports.wc_aleo_chains = wc_aleo_chains;
+exports.wc_aleo_methods = wc_aleo_methods;
+exports.wc_events = wc_events;
+exports.wc_optional_aleo_chains = wc_optional_aleo_chains;
+exports.wc_required_aleo_chains = wc_required_aleo_chains;
+exports.web3modal_puzzle_props = web3modal_puzzle_props;
+exports.web3modal_puzzle_props_android = web3modal_puzzle_props_android;
+exports.web3modal_puzzle_props_default = web3modal_puzzle_props_default;
+exports.y$3 = y$3;
+exports.zodAddress = zodAddress;
+exports.zodEventStatus = zodEventStatus;
+exports.zodEventType = zodEventType;
+exports.zodField = zodField;
+exports.zodNetwork = zodNetwork;
+exports.zodPrivateKey = zodPrivateKey;
+exports.zodTransactionId = zodTransactionId;
+exports.zodU32 = zodU32;
+exports.zodU64 = zodU64;
+exports.zodViewKey = zodViewKey;
+exports.zodVisibility = zodVisibility;
