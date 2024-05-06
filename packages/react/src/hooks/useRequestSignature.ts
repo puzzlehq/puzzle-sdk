@@ -9,7 +9,7 @@ import { useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 
-export const useRequestSignature = (message: string, address?: string) => {
+export const useRequestSignature = ({message, address, method, network}: SignatureRequest) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
@@ -27,6 +27,7 @@ export const useRequestSignature = (message: string, address?: string) => {
       params: {
         message,
         address: aleoAddressRegex.test(address ?? '') ? address : undefined,
+        method
       } as SignatureRequest,
     },
   });

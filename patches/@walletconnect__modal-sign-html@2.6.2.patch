@@ -64,6 +64,7 @@ index 5c6d6da90db893ca318b7e4b93235fd32f71c7a3..280ca5f279262fe6af11706dc94ed429
 +    const { requiredNamespaces: s, optionalNamespaces: d } = t;
 +    return new Promise(async (C, b) => {
 +      await o(this, n, r).call(this);
++      console.log("connect showModal", showModal);
 +      if (showModal) {
 +        const E = a(this, p).subscribeModal((c) => {
 +          c.open || (E(), b(new Error("Modal closed")));

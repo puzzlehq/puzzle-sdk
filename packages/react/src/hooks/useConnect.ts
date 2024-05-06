@@ -16,7 +16,7 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
 
-export function useConnect(showModal = false) {
+export function useConnect(showModal = true) {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const isConnected = !!session;
   const { data, error, loading, setData, setError, setLoading } =
@@ -38,10 +38,10 @@ export function useConnect(showModal = false) {
         },
         optionalNamespaces: {
           aleo: {
-            methods: wc_aleo_methods,
             chains: wc_optional_aleo_chains,
-            events: wc_events,
-          },
+            methods: wc_aleo_methods,
+            events: wc_events, 
+          }
         },
       }, showModal);
       setData(response);

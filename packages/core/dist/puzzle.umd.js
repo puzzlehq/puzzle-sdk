@@ -16344,9 +16344,11 @@
   const wc_required_aleo_chains = ["aleo:1"];
   const wc_optional_aleo_chains = [
     "aleo:0",
-    // mainnet
-    "aleo:3"
+    // eventual mainnet
+    "aleo:3",
     // new, correct testnet3
+    "aleo:4"
+    // new, canarynet ?
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -16751,8 +16753,8 @@
         },
         optionalNamespaces: {
           aleo: {
-            methods: wc_aleo_methods,
             chains: wc_optional_aleo_chains,
+            methods: wc_aleo_methods,
             events: wc_events
           }
         }
@@ -17094,7 +17096,8 @@
   const requestSignature = async ({
     message,
     address,
-    network
+    network,
+    method
   }) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await (connection == null ? void 0 : connection.getSession());
@@ -17113,7 +17116,8 @@
           method: "requestSignature",
           params: {
             message,
-            address: aleoAddressRegex.test(address ?? "") ? address : void 0
+            address: aleoAddressRegex.test(address ?? "") ? address : void 0,
+            method
           }
         }
       });

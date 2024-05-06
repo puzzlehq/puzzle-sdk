@@ -658,7 +658,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexBD0St2iP);
+        await Promise.resolve().then(() => indexDcWB1SWC);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$3.setIsUiLoaded(true);
       }
@@ -16366,9 +16366,11 @@
   const wc_required_aleo_chains$1 = ["aleo:1"];
   const wc_optional_aleo_chains$1 = [
     "aleo:0",
-    // mainnet
-    "aleo:3"
+    // eventual mainnet
+    "aleo:3",
     // new, correct testnet3
+    "aleo:4"
+    // new, canarynet ?
   ];
   const wc_aleo_chains$1 = [
     ...wc_required_aleo_chains$1,
@@ -22092,7 +22094,7 @@
     const balances = response == null ? void 0 : response.balances;
     return { balances, error, loading };
   };
-  function useConnect(showModal = false) {
+  function useConnect(showModal = true) {
     const session = useWalletSession();
     const isConnected = !!session;
     const { data: data2, error, loading, setData, setError, setLoading } = useAsyncAction();
@@ -22112,8 +22114,8 @@
           },
           optionalNamespaces: {
             aleo: {
-              methods: wc_aleo_methods$1,
               chains: wc_optional_aleo_chains$1,
+              methods: wc_aleo_methods$1,
               events: wc_events$1
             }
           }
@@ -26293,7 +26295,7 @@
   const zodEventStatus = z$1.nativeEnum(exports2.EventStatus);
   const zodNetwork = z$1.nativeEnum(exports2.Network);
   const zodVisibility = z$1.nativeEnum(exports2.Visibility);
-  const useRequestSignature = (message, address) => {
+  const useRequestSignature = ({ message, address, method, network }) => {
     const session = useWalletSession();
     const [account] = useWalletStore((state) => [state.account]);
     const {
@@ -26309,7 +26311,8 @@
         method: "requestSignature",
         params: {
           message,
-          address: aleoAddressRegex.test(address ?? "") ? address : void 0
+          address: aleoAddressRegex.test(address ?? "") ? address : void 0,
+          method
         }
       }
     });
@@ -26339,9 +26342,11 @@
   const wc_required_aleo_chains = ["aleo:1"];
   const wc_optional_aleo_chains = [
     "aleo:0",
-    // mainnet
-    "aleo:3"
+    // eventual mainnet
+    "aleo:3",
     // new, correct testnet3
+    "aleo:4"
+    // new, canarynet ?
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -26746,8 +26751,8 @@
         },
         optionalNamespaces: {
           aleo: {
-            methods: wc_aleo_methods,
             chains: wc_optional_aleo_chains,
+            methods: wc_aleo_methods,
             events: wc_events
           }
         }
@@ -27089,7 +27094,8 @@
   const requestSignature = async ({
     message,
     address,
-    network
+    network,
+    method
   }) => {
     const connection2 = await getWalletConnectModalSignClient();
     const session = await (connection2 == null ? void 0 : connection2.getSession());
@@ -27108,7 +27114,8 @@
           method: "requestSignature",
           params: {
             message,
-            address: aleoAddressRegex.test(address ?? "") ? address : void 0
+            address: aleoAddressRegex.test(address ?? "") ? address : void 0,
+            method
           }
         }
       });
@@ -31754,7 +31761,7 @@
     }
   };
   we.styles = [h.globalCss, dr], Ge([t$1()], we.prototype, "isError", 2), we = Ge([e$2("wcm-web-connecting-view")], we);
-  const indexBD0St2iP = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexDcWB1SWC = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ae;

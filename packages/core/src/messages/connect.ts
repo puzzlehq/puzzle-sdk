@@ -1,5 +1,4 @@
 import {
-  wc_aleo_chains,
   wc_aleo_methods,
   wc_events,
   wc_optional_aleo_chains,
@@ -34,10 +33,10 @@ export const connect = async (showModal = true) => {
         },
         optionalNamespaces: {
           aleo: {
-            methods: wc_aleo_methods,
             chains: wc_optional_aleo_chains,
-            events: wc_events,
-          },
+            methods: wc_aleo_methods,
+            events: wc_events, 
+          }
         },
       }, showModal);
     emitter.emit('session_change');

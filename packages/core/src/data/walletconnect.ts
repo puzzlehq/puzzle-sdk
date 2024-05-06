@@ -15,10 +15,11 @@ export const wc_aleo_methods = [
   'requestSignature',
 ];
 
-export const wc_required_aleo_chains = ['aleo:1']; // old, incorrect testnet3 - to be phased out
+export const wc_required_aleo_chains = ['aleo:1']; // legacy testnet3, to be phased out
 export const wc_optional_aleo_chains = [
-  'aleo:0', // mainnet
-  'aleo:3', // new, correct testnet3
+  'aleo:0', // for eventual mainnet
+  'aleo:3', // for testnet3
+  'aleo:4' // for testnet4 aka canarynet
 ];
 
 export const wc_aleo_chains = [

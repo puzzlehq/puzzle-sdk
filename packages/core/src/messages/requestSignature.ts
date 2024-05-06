@@ -7,6 +7,7 @@ export type SignatureRequest = {
   message: string;
   address?: string;
   network?: string;
+  method?: 'aleo' | 'puzzle'
 };
 
 export type SignatureResponse = {
@@ -19,6 +20,7 @@ export const requestSignature = async ({
   message,
   address,
   network,
+  method
 }: SignatureRequest): Promise<SignatureResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -43,6 +45,7 @@ export const requestSignature = async ({
         params: {
           message,
           address: aleoAddressRegex.test(address ?? '') ? address : undefined,
+          method
         } as SignatureRequest,
       },
     });
