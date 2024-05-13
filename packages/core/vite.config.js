@@ -26,7 +26,7 @@ export default defineConfig({
   rollupOptions: {
     external: packages,
     globals: {
-      '@walletconnect/modal-sign-html': 'modalSignHtml',
+      '@puzzlehq/walletconnect-modal-sign-html': 'modalSignHtml',
       events: 'EventEmitter',
       '@walletconnect/utils': 'utils',
       debug: 'debug',

@@ -1,4 +1,4 @@
-import type { WalletConnectModalSignRequestArguments } from '@walletconnect/modal-sign-html';
+import type { WalletConnectModalSignRequestArguments } from '@puzzlehq/walletconnect-modal-sign-html';
 import { QueryKey, UseQueryOptions } from '@tanstack/react-query';
 type UseRequestParams<Result> = {
     queryKey: QueryKey;

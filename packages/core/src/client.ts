@@ -1,4 +1,4 @@
-import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
+import { WalletConnectModalSign } from '@puzzlehq/walletconnect-modal-sign-html';
 import {
   projectId as puzzleProjectId,
   web3modal_puzzle_props,

@@ -1,7 +1,7 @@
 /// <reference types="node" resolution-mode="require"/>
-import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
+import { WalletConnectModalSign } from '@puzzlehq/walletconnect-modal-sign-html';
 import EventEmitter from 'events';
-export declare const emitter: EventEmitter;
+export declare const emitter: EventEmitter<[never]>;
 export declare let connection: WalletConnectModalSign | undefined;
 export type WalletConnectModalSignInstance = InstanceType<typeof WalletConnectModalSign>;
 export declare function configureConnection(options: {

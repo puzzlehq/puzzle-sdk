@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk-core",
   "displayName": "Puzzle SDK",
-  "version": "0.3.2-beta.9",
+  "version": "0.3.2-beta.12",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@puzzlehq/types": "1.0.13",
-    "@walletconnect/modal-sign-html": "^2.6.2",
+    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
     "debug": "^4.3.4",
