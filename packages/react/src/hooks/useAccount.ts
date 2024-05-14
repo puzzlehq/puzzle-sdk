@@ -116,7 +116,6 @@ export const useAccount = () => {
 
   useOnSessionUpdate(({ params, topic }) => {
     const address = params.event.address ?? params.event.data.address;
-
     const network = params.chainId.split(':')[0];
     const chainId = params.chainId.split(':')[1];
     setAccount({
