@@ -17,7 +17,7 @@ type UseBalanceParams = {
   multisig?: boolean;
 };
 
-export const useBalance = ({ address, multisig }: UseBalanceParams) => {
+export const useBalance = ({ address, multisig }: UseBalanceParams = {}) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 

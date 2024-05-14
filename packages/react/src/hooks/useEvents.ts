@@ -55,7 +55,7 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
     queryKey: [
       'useEvents',
       account?.address,
-      debouncedFilter,
+      JSON.stringify(debouncedFilter),
       page,
       session?.topic,
     ],

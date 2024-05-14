@@ -511,7 +511,7 @@ let d$3 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-xG3EAE7n-DFCZtcs_.cjs"));
+      await Promise.resolve().then(() => require("./index-xG3EAE7n-B31M2Zxw.cjs"));
       const e2 = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
     }
@@ -24568,8 +24568,8 @@ function useRequestQuery({
     queryKey,
     async () => fetchRequest(wcParams, queryKey),
     queryOptions ?? {
-      staleTime: queryKey[0] === "getEvent" ? 7500 : 45e3,
-      refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 3e4,
+      staleTime: queryKey[0] === "getEvent" ? 7500 : 3e4,
+      refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 15e3,
       refetchIntervalInBackground: true,
       enabled,
       retry: true
@@ -24587,8 +24587,8 @@ function useInjectedRequestQuery({
     queryKey,
     async () => fetchFunction(wcParams),
     queryOptions ?? {
-      staleTime: queryKey[0] === "getEvent" ? 7500 : 45e3,
-      refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 3e4,
+      staleTime: queryKey[0] === "getEvent" ? 7500 : 3e4,
+      refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 15e3,
       refetchIntervalInBackground: true,
       enabled,
       retry: true
@@ -29093,7 +29093,7 @@ const useAccount = () => {
     loading
   };
 };
-const useBalance = ({ address, multisig }) => {
+const useBalance = ({ address, multisig } = {}) => {
   const session = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
   const useQueryFunction = hasInjectedConnection$1() ? useInjectedRequestQuery : useRequestQuery;
@@ -29423,7 +29423,7 @@ const useEvents = ({ filter, page }) => {
     queryKey: [
       "useEvents",
       account == null ? void 0 : account.address,
-      debouncedFilter,
+      JSON.stringify(debouncedFilter),
       page,
       session == null ? void 0 : session.topic
     ],
@@ -29544,7 +29544,7 @@ const useRecords = ({
       account == null ? void 0 : account.address,
       address,
       multisig,
-      debouncedFilter,
+      JSON.stringify(debouncedFilter),
       page,
       session == null ? void 0 : session.topic
     ],

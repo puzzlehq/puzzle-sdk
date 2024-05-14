@@ -34,8 +34,8 @@ export function useRequestQuery<Result>({
     queryKey,
     async () => fetchRequest<Result>(wcParams, queryKey),
     queryOptions ?? {
-      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
-      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
+      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 30_000,
+      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 15_000,
       refetchIntervalInBackground: true,
       enabled,
       retry: true,
@@ -54,8 +54,8 @@ export function useInjectedRequestQuery<Result>({
     queryKey,
     async () => fetchFunction!(wcParams),
     queryOptions ?? {
-      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
-      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
+      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 30_000,
+      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 15_000,
       refetchIntervalInBackground: true,
       enabled,
       retry: true,

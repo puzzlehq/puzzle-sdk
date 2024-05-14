@@ -24563,8 +24563,8 @@
       queryKey,
       async () => fetchRequest(wcParams, queryKey),
       queryOptions ?? {
-        staleTime: queryKey[0] === "getEvent" ? 7500 : 45e3,
-        refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 3e4,
+        staleTime: queryKey[0] === "getEvent" ? 7500 : 3e4,
+        refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 15e3,
         refetchIntervalInBackground: true,
         enabled,
         retry: true
@@ -24582,8 +24582,8 @@
       queryKey,
       async () => fetchFunction(wcParams),
       queryOptions ?? {
-        staleTime: queryKey[0] === "getEvent" ? 7500 : 45e3,
-        refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 3e4,
+        staleTime: queryKey[0] === "getEvent" ? 7500 : 3e4,
+        refetchInterval: queryKey[0] === "getEvent" ? 5e3 : 15e3,
         refetchIntervalInBackground: true,
         enabled,
         retry: true
@@ -29088,7 +29088,7 @@
       loading
     };
   };
-  const useBalance = ({ address, multisig }) => {
+  const useBalance = ({ address, multisig } = {}) => {
     const session = useWalletSession();
     const [account] = useWalletStore((state) => [state.account]);
     const useQueryFunction = hasInjectedConnection$1() ? useInjectedRequestQuery : useRequestQuery;
@@ -29418,7 +29418,7 @@
       queryKey: [
         "useEvents",
         account == null ? void 0 : account.address,
-        debouncedFilter,
+        JSON.stringify(debouncedFilter),
         page,
         session == null ? void 0 : session.topic
       ],
@@ -29539,7 +29539,7 @@
         account == null ? void 0 : account.address,
         address,
         multisig,
-        debouncedFilter,
+        JSON.stringify(debouncedFilter),
         page,
         session == null ? void 0 : session.topic
       ],

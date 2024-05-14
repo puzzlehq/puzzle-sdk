@@ -69,7 +69,7 @@ export const useRecords = ({
       account?.address,
       address,
       multisig,
-      debouncedFilter,
+      JSON.stringify(debouncedFilter),
       page,
       session?.topic,
     ],
