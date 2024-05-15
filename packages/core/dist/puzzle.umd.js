@@ -20132,6 +20132,8 @@
     EventType["Shield"] = "Shield";
     EventType["Unshield"] = "Unshield";
     EventType["Referral"] = "Referral";
+    EventType["Points"] = "Points";
+    EventType["Raffle"] = "Raffle";
   })(exports2.EventType || (exports2.EventType = {}));
   exports2.EventStatus = void 0;
   (function(EventStatus) {
@@ -20148,6 +20150,7 @@
   exports2.Network = void 0;
   (function(Network) {
     Network["AleoTestnet"] = "AleoTestnet";
+    Network["AleoTestnet4"] = "AleoTestnet4";
     Network["AleoCanarynet"] = "AleoCanarynet";
     Network["AleoMainnet"] = "AleoMainnet";
   })(exports2.Network || (exports2.Network = {}));
@@ -20274,6 +20277,9 @@
       case exports2.Network.AleoTestnet:
         chain = "aleo:1";
         break;
+      case exports2.Network.AleoTestnet4:
+        chain = "aleo:4";
+        break;
       case exports2.Network.AleoCanarynet:
         chain = "aleo:0";
         break;
@@ -20288,11 +20294,13 @@
         return exports2.Network.AleoTestnet;
       case "aleo:3":
         return exports2.Network.AleoTestnet;
+      case "aleo:4":
+        return exports2.Network.AleoTestnet4;
     }
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.12";
+  const version$1 = "0.3.2-beta.13";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -20318,7 +20326,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.13",
+    "@puzzlehq/types": "1.0.15",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",

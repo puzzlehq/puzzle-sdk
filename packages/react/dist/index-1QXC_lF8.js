@@ -494,7 +494,7 @@ let d$3 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-xG3EAE7n-Dq73KNAI.js");
+      await import("./index-seakgOT3-BLEvnN6N.js");
       const e2 = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
     }
@@ -20141,6 +20141,8 @@ var EventType$1;
   EventType2["Shield"] = "Shield";
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
+  EventType2["Points"] = "Points";
+  EventType2["Raffle"] = "Raffle";
 })(EventType$1 || (EventType$1 = {}));
 var EventStatus$1;
 (function(EventStatus2) {
@@ -20157,6 +20159,7 @@ var Visibility$1;
 var Network$1;
 (function(Network2) {
   Network2["AleoTestnet"] = "AleoTestnet";
+  Network2["AleoTestnet4"] = "AleoTestnet4";
   Network2["AleoCanarynet"] = "AleoCanarynet";
   Network2["AleoMainnet"] = "AleoMainnet";
 })(Network$1 || (Network$1 = {}));
@@ -20267,7 +20270,7 @@ const web3modal_puzzle_props_default$1 = {
 const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
 const name$1 = "@puzzlehq/sdk-core";
 const displayName$1 = "Puzzle SDK";
-const version$1 = "0.3.2-beta.12";
+const version$1 = "0.3.2-beta.13";
 const description$1 = "Your portal to privacy";
 const main$1 = "./dist/puzzle.cjs.js";
 const module$1 = "./dist/puzzle.es.js";
@@ -20293,7 +20296,7 @@ const repository$1 = {
   url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
 };
 const dependencies$1 = {
-  "@puzzlehq/types": "1.0.13",
+  "@puzzlehq/types": "1.0.15",
   "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
   "@walletconnect/types": "^2.11.2",
   "@walletconnect/utils": "^2.11.2",
@@ -33328,6 +33331,8 @@ var EventType;
   EventType2["Shield"] = "Shield";
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
+  EventType2["Points"] = "Points";
+  EventType2["Raffle"] = "Raffle";
 })(EventType || (EventType = {}));
 var EventStatus;
 (function(EventStatus2) {
@@ -33344,6 +33349,7 @@ var Visibility;
 var Network;
 (function(Network2) {
   Network2["AleoTestnet"] = "AleoTestnet";
+  Network2["AleoTestnet4"] = "AleoTestnet4";
   Network2["AleoCanarynet"] = "AleoCanarynet";
   Network2["AleoMainnet"] = "AleoMainnet";
 })(Network || (Network = {}));
@@ -33501,6 +33507,9 @@ const networkToChainId = (network, includePrefix = true) => {
     case Network.AleoTestnet:
       chain = "aleo:1";
       break;
+    case Network.AleoTestnet4:
+      chain = "aleo:4";
+      break;
     case Network.AleoCanarynet:
       chain = "aleo:0";
       break;
@@ -33515,11 +33524,13 @@ const chainIdToNetwork = (chainId) => {
       return Network.AleoTestnet;
     case "aleo:3":
       return Network.AleoTestnet;
+    case "aleo:4":
+      return Network.AleoTestnet4;
   }
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.3.2-beta.12";
+const version = "0.3.2-beta.13";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
 const module = "./dist/puzzle.es.js";
@@ -33545,7 +33556,7 @@ const repository = {
   url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
 };
 const dependencies = {
-  "@puzzlehq/types": "1.0.13",
+  "@puzzlehq/types": "1.0.15",
   "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
   "@walletconnect/types": "^2.11.2",
   "@walletconnect/utils": "^2.11.2",
