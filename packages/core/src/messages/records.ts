@@ -1,13 +1,15 @@
-import { type RecordWithPlaintext } from '@puzzlehq/types';
+import { type RecordWithPlaintext, RecordStatus } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { wc_aleo_chains } from '../data/walletconnect.js';
 
+export type RecordStatusFilter = RecordStatus | 'All';
+
 export type RecordsFilter = {
   programIds?: string[];
   functionId?: string;
-  type: 'all' | 'spent' | 'unspent';
+  status: RecordStatusFilter;
   names?: string[];
 };
 

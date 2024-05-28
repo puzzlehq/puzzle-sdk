@@ -506,7 +506,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexSeakgOT3);
+        await Promise.resolve().then(() => indexCScoMHF8);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
       }
@@ -20142,6 +20142,12 @@
     InputOutputType2["Future"] = "future";
     InputOutputType2["ExternalRecord"] = "external_record";
   })(InputOutputType$1 || (InputOutputType$1 = {}));
+  var RecordStatus$1;
+  (function(RecordStatus2) {
+    RecordStatus2["Unspent"] = "Unspent";
+    RecordStatus2["Pending"] = "Pending";
+    RecordStatus2["Spent"] = "Spent";
+  })(RecordStatus$1 || (RecordStatus$1 = {}));
   var EventType;
   (function(EventType2) {
     EventType2["Deploy"] = "Deploy";
@@ -20179,6 +20185,7 @@
   z$5.nativeEnum(EventStatus);
   z$5.nativeEnum(Network);
   z$5.nativeEnum(Visibility);
+  z$5.nativeEnum(RecordStatus$1);
   const wc_aleo_methods$1 = [
     "decrypt",
     "disconnect",
@@ -20308,8 +20315,6 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies$1 = {
-    "@puzzlehq/types": "1.0.15",
-    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
     debug: "^4.3.4",
@@ -33332,6 +33337,12 @@
     InputOutputType2["Future"] = "future";
     InputOutputType2["ExternalRecord"] = "external_record";
   })(InputOutputType || (InputOutputType = {}));
+  var RecordStatus;
+  (function(RecordStatus2) {
+    RecordStatus2["Unspent"] = "Unspent";
+    RecordStatus2["Pending"] = "Pending";
+    RecordStatus2["Spent"] = "Spent";
+  })(RecordStatus || (RecordStatus = {}));
   exports2.EventType = void 0;
   (function(EventType2) {
     EventType2["Deploy"] = "Deploy";
@@ -33369,6 +33380,7 @@
   const zodEventStatus = z$1.nativeEnum(exports2.EventStatus);
   const zodNetwork = z$1.nativeEnum(exports2.Network);
   const zodVisibility = z$1.nativeEnum(exports2.Visibility);
+  z$1.nativeEnum(RecordStatus);
   const useRequestSignature = ({ message, address, method, network }) => {
     const session = useWalletSession();
     const [account] = useWalletStore((state) => [state.account]);
@@ -33568,8 +33580,6 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.15",
-    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
     debug: "^4.3.4",
@@ -38518,7 +38528,7 @@
     }
   };
   ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
-  const indexSeakgOT3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexCScoMHF8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ne;

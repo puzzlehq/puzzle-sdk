@@ -20121,6 +20121,12 @@
     InputOutputType2["Future"] = "future";
     InputOutputType2["ExternalRecord"] = "external_record";
   })(InputOutputType || (InputOutputType = {}));
+  var RecordStatus;
+  (function(RecordStatus2) {
+    RecordStatus2["Unspent"] = "Unspent";
+    RecordStatus2["Pending"] = "Pending";
+    RecordStatus2["Spent"] = "Spent";
+  })(RecordStatus || (RecordStatus = {}));
   exports2.EventType = void 0;
   (function(EventType) {
     EventType["Deploy"] = "Deploy";
@@ -20158,6 +20164,7 @@
   const zodEventStatus = z$1.nativeEnum(exports2.EventStatus);
   const zodNetwork = z$1.nativeEnum(exports2.Network);
   const zodVisibility = z$1.nativeEnum(exports2.Visibility);
+  z$1.nativeEnum(RecordStatus);
   const wc_aleo_methods = [
     "decrypt",
     "disconnect",
@@ -20326,8 +20333,6 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.15",
-    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
     debug: "^4.3.4",

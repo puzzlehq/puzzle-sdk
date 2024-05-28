@@ -24,10 +24,8 @@
   },
   "dependencies": {
     "@puzzlehq/sdk-core": "../core",
-    "@puzzlehq/types": "1.0.15",
     "@tanstack/react-query": "^4.29.5",
     "@trpc/server": "^10.31.0",
-    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
     "debug": "^4.3.4",

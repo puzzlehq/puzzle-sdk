@@ -13,7 +13,7 @@
     "pretty": "pnpm exec prettier . --write"
   },
   "dependencies": {
-    "@puzzlehq/types": "1.0.15",
+    "@puzzlehq/types": "1.0.19",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6"
   },
   "devDependencies": {

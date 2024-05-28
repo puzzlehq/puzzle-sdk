@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@puzzlehq/types':
-        specifier: 1.0.15
-        version: 1.0.15
+        specifier: 1.0.19
+        version: 1.0.19
       '@puzzlehq/walletconnect-modal-sign-html':
         specifier: ^0.0.6
-        version: 0.0.6(@types/react@18.3.1)(react@18.3.1)
+        version: 0.0.6(react@18.3.1)
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -42,12 +42,6 @@ importers:
 
   packages/core:
     dependencies:
-      '@puzzlehq/types':
-        specifier: 1.0.15
-        version: 1.0.15
-      '@puzzlehq/walletconnect-modal-sign-html':
-        specifier: ^0.0.6
-        version: 0.0.6(@types/react@18.3.1)(react@18.3.1)
       '@walletconnect/types':
         specifier: ^2.11.2
         version: 2.13.0
@@ -72,12 +66,6 @@ importers:
       '@puzzlehq/sdk-core':
         specifier: ../core
         version: link:../core
-      '@puzzlehq/types':
-        specifier: 1.0.15
-        version: 1.0.15
-      '@puzzlehq/walletconnect-modal-sign-html':
-        specifier: ^0.0.6
-        version: 0.0.6(@types/react@18.3.1)(react@18.3.1)
       '@tanstack/react-query':
         specifier: ^4.29.5
         version: 4.36.1(react-dom@18.3.1)(react@18.3.1)
@@ -490,6 +478,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: false
     bundledDependencies:
       - napi-wasm
@@ -544,25 +533,25 @@ packages:
       '@parcel/watcher-win32-x64': 2.4.1
     dev: false
 
-  /@puzzlehq/types@1.0.15:
-    resolution: {integrity: sha512-cwywRTWIfoHDELGCeKyM9+X4TjkUoY7zaVQrkiz16BCsDsD3pggRar72tTEl/k9AcVpJ77NzGz53VqSxE0/Jwg==}
+  /@puzzlehq/types@1.0.19:
+    resolution: {integrity: sha512-kddGCg4kGFza6+zKJP2Sap7QwrfltQvyT6Gn9mQUkpeHvta1yL2AqmEhkd7U8GulNnsmeVyWLlB9oieCkVMnYw==}
     dependencies:
       zod: 3.21.1
     dev: false
 
-  /@puzzlehq/walletconnect-modal-core@0.0.6(@types/react@18.3.1)(react@18.3.1):
+  /@puzzlehq/walletconnect-modal-core@0.0.6(react@18.3.1):
     resolution: {integrity: sha512-ZNQqAPRGTDdETNZbvwFWUU6kEKnVHX6eXlGJQ+aqHQuYcYjMjwNACqo2jWqqaKfNJYmtf14cq6OAGoYzsJZHHg==}
     dependencies:
-      valtio: 1.11.2(@types/react@18.3.1)(react@18.3.1)
+      valtio: 1.11.2(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
     dev: false
 
-  /@puzzlehq/walletconnect-modal-sign-html@0.0.6(@types/react@18.3.1)(react@18.3.1):
+  /@puzzlehq/walletconnect-modal-sign-html@0.0.6(react@18.3.1):
     resolution: {integrity: sha512-GlUXn1nMb4byll0d44gwyTb6IirHx8NaVeJhQlq2WKnALocfPUNED109NJgrmwmqPkStLSIJgNdIatxKjaNNNw==}
     dependencies:
-      '@puzzlehq/walletconnect-modal': 0.0.6(@types/react@18.3.1)(react@18.3.1)
+      '@puzzlehq/walletconnect-modal': 0.0.6(react@18.3.1)
       '@walletconnect/sign-client': 2.12.2
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -586,10 +575,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@puzzlehq/walletconnect-modal-ui@0.0.6(@types/react@18.3.1)(react@18.3.1):
+  /@puzzlehq/walletconnect-modal-ui@0.0.6(react@18.3.1):
     resolution: {integrity: sha512-4mfJgAibplgEsUDUIwOugro+SQWdDKGd9qlLO5WBAU7ItbMjT1BlHDKfTHPFi0Z5fcgCiH+cTWq8EP7fPbDZkA==}
     dependencies:
-      '@puzzlehq/walletconnect-modal-core': 0.0.6(@types/react@18.3.1)(react@18.3.1)
+      '@puzzlehq/walletconnect-modal-core': 0.0.6(react@18.3.1)
       lit: 2.8.0
       motion: 10.16.2
       qrcode: 1.5.3
@@ -598,11 +587,11 @@ packages:
       - react
     dev: false
 
-  /@puzzlehq/walletconnect-modal@0.0.6(@types/react@18.3.1)(react@18.3.1):
+  /@puzzlehq/walletconnect-modal@0.0.6(react@18.3.1):
     resolution: {integrity: sha512-neqezlqFS6eIeJCrlPr0YUMrZZqydLKQsuLQgGiqEfV1wD7OrUDheyjES0HiSL6r8fc8sHmHewh5NYphoVlH2Q==}
     dependencies:
-      '@puzzlehq/walletconnect-modal-core': 0.0.6(@types/react@18.3.1)(react@18.3.1)
-      '@puzzlehq/walletconnect-modal-ui': 0.0.6(@types/react@18.3.1)(react@18.3.1)
+      '@puzzlehq/walletconnect-modal-core': 0.0.6(react@18.3.1)
+      '@puzzlehq/walletconnect-modal-ui': 0.0.6(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react
@@ -1892,6 +1881,10 @@ packages:
     hasBin: true
     dev: true
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    dev: false
+
   /node-addon-api@7.1.0:
     resolution: {integrity: sha512-mNcltoe1R8o7STTegSOHdnJNN7s5EUvhoS7ShnTHDyOSd+8H+UdWODq6qSv67PjC8Zc5JRT8+oLAMCr0SIXw7g==}
     engines: {node: ^16 || ^18 || >= 20}
@@ -2456,7 +2449,7 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
 
-  /valtio@1.11.2(@types/react@18.3.1)(react@18.3.1):
+  /valtio@1.11.2(react@18.3.1):
     resolution: {integrity: sha512-1XfIxnUXzyswPAPXo1P3Pdx2mq/pIqZICkWN60Hby0d9Iqb+MEIpqgYVlbflvHdrp2YR/q3jyKWRPJJ100yxaw==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
@@ -2468,7 +2461,6 @@ packages:
       react:
         optional: true
     dependencies:
-      '@types/react': 18.3.1
       proxy-compare: 2.5.1
       react: 18.3.1
       use-sync-external-store: 1.2.0(react@18.3.1)
