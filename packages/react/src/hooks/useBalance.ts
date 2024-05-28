@@ -32,7 +32,6 @@ export const useBalance = ({ address, multisig }: UseBalanceParams = {}) => {
       jsonrpc: '2.0',
       method: 'getBalance',
       params: {
-        assetId: undefined,
         address,
       } as GetBalancesRequest,
     },

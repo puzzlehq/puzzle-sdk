@@ -1,6 +1,5 @@
 import { Balance } from '@puzzlehq/types';
 export type GetBalancesRequest = {
-    assetId?: string;
     address?: string;
 };
 export type GetBalancesResponse = {

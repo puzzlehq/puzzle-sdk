@@ -2,7 +2,7 @@ import { type RecordWithPlaintext } from '@puzzlehq/types';
 export type RecordsFilter = {
     programIds?: string[];
     functionId?: string;
-    type: 'all' | 'spent' | 'unspent';
+    type: 'all' | 'spent' | 'unspent' | 'pending';
     names?: string[];
 };
 export type GetRecordsRequest = {

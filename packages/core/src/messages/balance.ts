@@ -5,7 +5,6 @@ import { wc_aleo_chains } from '../data/walletconnect.js';
 import { Balance } from '@puzzlehq/types';
 
 export type GetBalancesRequest = {
-  assetId?: string;
   address?: string;
 };
 
@@ -40,7 +39,6 @@ export const getBalance = async ({
       jsonrpc: '2.0',
       method: 'getBalance',
       params: {
-        assetId: undefined,
         address,
       } as GetBalancesRequest,
     },

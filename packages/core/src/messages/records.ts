@@ -7,7 +7,7 @@ import { wc_aleo_chains } from '../data/walletconnect.js';
 export type RecordsFilter = {
   programIds?: string[];
   functionId?: string;
-  type: 'all' | 'spent' | 'unspent';
+  type: 'all' | 'spent' | 'unspent' | 'pending';
   names?: string[];
 };
 

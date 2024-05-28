@@ -20150,7 +20150,6 @@
   exports2.Network = void 0;
   (function(Network) {
     Network["AleoTestnet"] = "AleoTestnet";
-    Network["AleoTestnet4"] = "AleoTestnet4";
     Network["AleoCanarynet"] = "AleoCanarynet";
     Network["AleoMainnet"] = "AleoMainnet";
   })(exports2.Network || (exports2.Network = {}));
@@ -20275,9 +20274,6 @@
         chain = "aleo:0";
         break;
       case exports2.Network.AleoTestnet:
-        chain = "aleo:1";
-        break;
-      case exports2.Network.AleoTestnet4:
         chain = "aleo:4";
         break;
       case exports2.Network.AleoCanarynet:
@@ -20295,12 +20291,12 @@
       case "aleo:3":
         return exports2.Network.AleoTestnet;
       case "aleo:4":
-        return exports2.Network.AleoTestnet4;
+        return exports2.Network.AleoTestnet;
     }
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.13";
+  const version$1 = "0.3.2-beta.15";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -20326,7 +20322,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.15",
+    "@puzzlehq/types": "1.0.20",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -23775,7 +23771,6 @@
         jsonrpc: "2.0",
         method: "getBalance",
         params: {
-          assetId: void 0,
           address
         }
       }

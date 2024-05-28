@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const index = require("./index-CHMF7IYS.cjs");
+import { n as ne$3, s as se$3, T as T$2, o as oe$2, R as R$1, i as i$1$1, t as te$1, p as p$2, y as y$4 } from "./index-Dc5ij4_a.js";
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -1413,11 +1411,11 @@ utils$1.toSJIS = function toSJIS(kanji2) {
   return toSJISFunction(kanji2);
 };
 var errorCorrectionLevel = {};
-(function(exports2) {
-  exports2.L = { bit: 1 };
-  exports2.M = { bit: 0 };
-  exports2.Q = { bit: 3 };
-  exports2.H = { bit: 2 };
+(function(exports) {
+  exports.L = { bit: 1 };
+  exports.M = { bit: 0 };
+  exports.Q = { bit: 3 };
+  exports.H = { bit: 2 };
   function fromString(string) {
     if (typeof string !== "string") {
       throw new Error("Param is not a string");
@@ -1426,25 +1424,25 @@ var errorCorrectionLevel = {};
     switch (lcStr) {
       case "l":
       case "low":
-        return exports2.L;
+        return exports.L;
       case "m":
       case "medium":
-        return exports2.M;
+        return exports.M;
       case "q":
       case "quartile":
-        return exports2.Q;
+        return exports.Q;
       case "h":
       case "high":
-        return exports2.H;
+        return exports.H;
       default:
         throw new Error("Unknown EC Level: " + string);
     }
   }
-  exports2.isValid = function isValid2(level) {
+  exports.isValid = function isValid2(level) {
     return level && typeof level.bit !== "undefined" && level.bit >= 0 && level.bit < 4;
   };
-  exports2.from = function from(value, defaultValue) {
-    if (exports2.isValid(value)) {
+  exports.from = function from(value, defaultValue) {
+    if (exports.isValid(value)) {
       return value;
     }
     try {
@@ -1459,9 +1457,9 @@ function BitBuffer$1() {
   this.length = 0;
 }
 BitBuffer$1.prototype = {
-  get: function(index2) {
-    const bufIndex = Math.floor(index2 / 8);
-    return (this.buffer[bufIndex] >>> 7 - index2 % 8 & 1) === 1;
+  get: function(index) {
+    const bufIndex = Math.floor(index / 8);
+    return (this.buffer[bufIndex] >>> 7 - index % 8 & 1) === 1;
   },
   put: function(num, length) {
     for (let i2 = 0; i2 < length; i2++) {
@@ -1492,10 +1490,10 @@ function BitMatrix$1(size) {
   this.reservedBit = new Uint8Array(size * size);
 }
 BitMatrix$1.prototype.set = function(row, col, value, reserved) {
-  const index2 = row * this.size + col;
-  this.data[index2] = value;
+  const index = row * this.size + col;
+  this.data[index] = value;
   if (reserved)
-    this.reservedBit[index2] = true;
+    this.reservedBit[index] = true;
 };
 BitMatrix$1.prototype.get = function(row, col) {
   return this.data[row * this.size + col];
@@ -1508,9 +1506,9 @@ BitMatrix$1.prototype.isReserved = function(row, col) {
 };
 var bitMatrix = BitMatrix$1;
 var alignmentPattern = {};
-(function(exports2) {
+(function(exports) {
   const getSymbolSize3 = utils$1.getSymbolSize;
-  exports2.getRowColCoords = function getRowColCoords(version2) {
+  exports.getRowColCoords = function getRowColCoords(version2) {
     if (version2 === 1)
       return [];
     const posCount = Math.floor(version2 / 7) + 2;
@@ -1523,9 +1521,9 @@ var alignmentPattern = {};
     positions.push(6);
     return positions.reverse();
   };
-  exports2.getPositions = function getPositions2(version2) {
+  exports.getPositions = function getPositions2(version2) {
     const coords = [];
-    const pos = exports2.getRowColCoords(version2);
+    const pos = exports.getRowColCoords(version2);
     const posLength = pos.length;
     for (let i2 = 0; i2 < posLength; i2++) {
       for (let j = 0; j < posLength; j++) {
@@ -1555,8 +1553,8 @@ finderPattern.getPositions = function getPositions(version2) {
   ];
 };
 var maskPattern = {};
-(function(exports2) {
-  exports2.Patterns = {
+(function(exports) {
+  exports.Patterns = {
     PATTERN000: 0,
     PATTERN001: 1,
     PATTERN010: 2,
@@ -1572,13 +1570,13 @@ var maskPattern = {};
     N3: 40,
     N4: 10
   };
-  exports2.isValid = function isValid2(mask) {
+  exports.isValid = function isValid2(mask) {
     return mask != null && mask !== "" && !isNaN(mask) && mask >= 0 && mask <= 7;
   };
-  exports2.from = function from(value) {
-    return exports2.isValid(value) ? parseInt(value, 10) : void 0;
+  exports.from = function from(value) {
+    return exports.isValid(value) ? parseInt(value, 10) : void 0;
   };
-  exports2.getPenaltyN1 = function getPenaltyN1(data2) {
+  exports.getPenaltyN1 = function getPenaltyN1(data2) {
     const size = data2.size;
     let points = 0;
     let sameCountCol = 0;
@@ -1589,22 +1587,22 @@ var maskPattern = {};
       sameCountCol = sameCountRow = 0;
       lastCol = lastRow = null;
       for (let col = 0; col < size; col++) {
-        let module2 = data2.get(row, col);
-        if (module2 === lastCol) {
+        let module = data2.get(row, col);
+        if (module === lastCol) {
           sameCountCol++;
         } else {
           if (sameCountCol >= 5)
             points += PenaltyScores.N1 + (sameCountCol - 5);
-          lastCol = module2;
+          lastCol = module;
           sameCountCol = 1;
         }
-        module2 = data2.get(col, row);
-        if (module2 === lastRow) {
+        module = data2.get(col, row);
+        if (module === lastRow) {
           sameCountRow++;
         } else {
           if (sameCountRow >= 5)
             points += PenaltyScores.N1 + (sameCountRow - 5);
-          lastRow = module2;
+          lastRow = module;
           sameCountRow = 1;
         }
       }
@@ -1615,7 +1613,7 @@ var maskPattern = {};
     }
     return points;
   };
-  exports2.getPenaltyN2 = function getPenaltyN2(data2) {
+  exports.getPenaltyN2 = function getPenaltyN2(data2) {
     const size = data2.size;
     let points = 0;
     for (let row = 0; row < size - 1; row++) {
@@ -1627,7 +1625,7 @@ var maskPattern = {};
     }
     return points * PenaltyScores.N2;
   };
-  exports2.getPenaltyN3 = function getPenaltyN3(data2) {
+  exports.getPenaltyN3 = function getPenaltyN3(data2) {
     const size = data2.size;
     let points = 0;
     let bitsCol = 0;
@@ -1645,7 +1643,7 @@ var maskPattern = {};
     }
     return points * PenaltyScores.N3;
   };
-  exports2.getPenaltyN4 = function getPenaltyN4(data2) {
+  exports.getPenaltyN4 = function getPenaltyN4(data2) {
     let darkCount = 0;
     const modulesCount = data2.data.length;
     for (let i2 = 0; i2 < modulesCount; i2++)
@@ -1655,27 +1653,27 @@ var maskPattern = {};
   };
   function getMaskAt(maskPattern2, i2, j) {
     switch (maskPattern2) {
-      case exports2.Patterns.PATTERN000:
+      case exports.Patterns.PATTERN000:
         return (i2 + j) % 2 === 0;
-      case exports2.Patterns.PATTERN001:
+      case exports.Patterns.PATTERN001:
         return i2 % 2 === 0;
-      case exports2.Patterns.PATTERN010:
+      case exports.Patterns.PATTERN010:
         return j % 3 === 0;
-      case exports2.Patterns.PATTERN011:
+      case exports.Patterns.PATTERN011:
         return (i2 + j) % 3 === 0;
-      case exports2.Patterns.PATTERN100:
+      case exports.Patterns.PATTERN100:
         return (Math.floor(i2 / 2) + Math.floor(j / 3)) % 2 === 0;
-      case exports2.Patterns.PATTERN101:
+      case exports.Patterns.PATTERN101:
         return i2 * j % 2 + i2 * j % 3 === 0;
-      case exports2.Patterns.PATTERN110:
+      case exports.Patterns.PATTERN110:
         return (i2 * j % 2 + i2 * j % 3) % 2 === 0;
-      case exports2.Patterns.PATTERN111:
+      case exports.Patterns.PATTERN111:
         return (i2 * j % 3 + (i2 + j) % 2) % 2 === 0;
       default:
         throw new Error("bad maskPattern:" + maskPattern2);
     }
   }
-  exports2.applyMask = function applyMask(pattern, data2) {
+  exports.applyMask = function applyMask(pattern, data2) {
     const size = data2.size;
     for (let col = 0; col < size; col++) {
       for (let row = 0; row < size; row++) {
@@ -1685,15 +1683,15 @@ var maskPattern = {};
       }
     }
   };
-  exports2.getBestMask = function getBestMask(data2, setupFormatFunc) {
-    const numPatterns = Object.keys(exports2.Patterns).length;
+  exports.getBestMask = function getBestMask(data2, setupFormatFunc) {
+    const numPatterns = Object.keys(exports.Patterns).length;
     let bestPattern = 0;
     let lowerPenalty = Infinity;
     for (let p2 = 0; p2 < numPatterns; p2++) {
       setupFormatFunc(p2);
-      exports2.applyMask(p2, data2);
-      const penalty = exports2.getPenaltyN1(data2) + exports2.getPenaltyN2(data2) + exports2.getPenaltyN3(data2) + exports2.getPenaltyN4(data2);
-      exports2.applyMask(p2, data2);
+      exports.applyMask(p2, data2);
+      const penalty = exports.getPenaltyN1(data2) + exports.getPenaltyN2(data2) + exports.getPenaltyN3(data2) + exports.getPenaltyN4(data2);
+      exports.applyMask(p2, data2);
       if (penalty < lowerPenalty) {
         lowerPenalty = penalty;
         bestPattern = p2;
@@ -2089,9 +2087,9 @@ galoisField.mul = function mul(x2, y2) {
     return 0;
   return EXP_TABLE[LOG_TABLE[x2] + LOG_TABLE[y2]];
 };
-(function(exports2) {
+(function(exports) {
   const GF = galoisField;
-  exports2.mul = function mul2(p1, p2) {
+  exports.mul = function mul2(p1, p2) {
     const coeff = new Uint8Array(p1.length + p2.length - 1);
     for (let i2 = 0; i2 < p1.length; i2++) {
       for (let j = 0; j < p2.length; j++) {
@@ -2100,7 +2098,7 @@ galoisField.mul = function mul(x2, y2) {
     }
     return coeff;
   };
-  exports2.mod = function mod(divident, divisor) {
+  exports.mod = function mod(divident, divisor) {
     let result = new Uint8Array(divident);
     while (result.length - divisor.length >= 0) {
       const coeff = result[0];
@@ -2114,10 +2112,10 @@ galoisField.mul = function mul(x2, y2) {
     }
     return result;
   };
-  exports2.generateECPolynomial = function generateECPolynomial(degree) {
+  exports.generateECPolynomial = function generateECPolynomial(degree) {
     let poly = new Uint8Array([1]);
     for (let i2 = 0; i2 < degree; i2++) {
-      poly = exports2.mul(poly, new Uint8Array([1, GF.exp(i2)]));
+      poly = exports.mul(poly, new Uint8Array([1, GF.exp(i2)]));
     }
     return poly;
   };
@@ -2178,33 +2176,33 @@ regex.testNumeric = function testNumeric(str) {
 regex.testAlphanumeric = function testAlphanumeric(str) {
   return TEST_ALPHANUMERIC.test(str);
 };
-(function(exports2) {
+(function(exports) {
   const VersionCheck = versionCheck;
   const Regex = regex;
-  exports2.NUMERIC = {
+  exports.NUMERIC = {
     id: "Numeric",
     bit: 1 << 0,
     ccBits: [10, 12, 14]
   };
-  exports2.ALPHANUMERIC = {
+  exports.ALPHANUMERIC = {
     id: "Alphanumeric",
     bit: 1 << 1,
     ccBits: [9, 11, 13]
   };
-  exports2.BYTE = {
+  exports.BYTE = {
     id: "Byte",
     bit: 1 << 2,
     ccBits: [8, 16, 16]
   };
-  exports2.KANJI = {
+  exports.KANJI = {
     id: "Kanji",
     bit: 1 << 3,
     ccBits: [8, 10, 12]
   };
-  exports2.MIXED = {
+  exports.MIXED = {
     bit: -1
   };
-  exports2.getCharCountIndicator = function getCharCountIndicator(mode2, version2) {
+  exports.getCharCountIndicator = function getCharCountIndicator(mode2, version2) {
     if (!mode2.ccBits)
       throw new Error("Invalid mode: " + mode2);
     if (!VersionCheck.isValid(version2)) {
@@ -2216,22 +2214,22 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
       return mode2.ccBits[1];
     return mode2.ccBits[2];
   };
-  exports2.getBestModeForData = function getBestModeForData(dataStr) {
+  exports.getBestModeForData = function getBestModeForData(dataStr) {
     if (Regex.testNumeric(dataStr))
-      return exports2.NUMERIC;
+      return exports.NUMERIC;
     else if (Regex.testAlphanumeric(dataStr))
-      return exports2.ALPHANUMERIC;
+      return exports.ALPHANUMERIC;
     else if (Regex.testKanji(dataStr))
-      return exports2.KANJI;
+      return exports.KANJI;
     else
-      return exports2.BYTE;
+      return exports.BYTE;
   };
-  exports2.toString = function toString(mode2) {
+  exports.toString = function toString(mode2) {
     if (mode2 && mode2.id)
       return mode2.id;
     throw new Error("Invalid mode");
   };
-  exports2.isValid = function isValid2(mode2) {
+  exports.isValid = function isValid2(mode2) {
     return mode2 && mode2.bit && mode2.ccBits;
   };
   function fromString(string) {
@@ -2241,19 +2239,19 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
     const lcStr = string.toLowerCase();
     switch (lcStr) {
       case "numeric":
-        return exports2.NUMERIC;
+        return exports.NUMERIC;
       case "alphanumeric":
-        return exports2.ALPHANUMERIC;
+        return exports.ALPHANUMERIC;
       case "kanji":
-        return exports2.KANJI;
+        return exports.KANJI;
       case "byte":
-        return exports2.BYTE;
+        return exports.BYTE;
       default:
         throw new Error("Unknown mode: " + string);
     }
   }
-  exports2.from = function from(value, defaultValue) {
-    if (exports2.isValid(value)) {
+  exports.from = function from(value, defaultValue) {
+    if (exports.isValid(value)) {
       return value;
     }
     try {
@@ -2263,7 +2261,7 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
     }
   };
 })(mode);
-(function(exports2) {
+(function(exports) {
   const Utils2 = utils$1;
   const ECCode2 = errorCorrectionCode;
   const ECLevel2 = errorCorrectionLevel;
@@ -2273,7 +2271,7 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
   const G18_BCH = Utils2.getBCHDigit(G18);
   function getBestVersionForDataLength(mode2, length, errorCorrectionLevel2) {
     for (let currentVersion = 1; currentVersion <= 40; currentVersion++) {
-      if (length <= exports2.getCapacity(currentVersion, errorCorrectionLevel2, mode2)) {
+      if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel2, mode2)) {
         return currentVersion;
       }
     }
@@ -2293,19 +2291,19 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
   function getBestVersionForMixedData(segments2, errorCorrectionLevel2) {
     for (let currentVersion = 1; currentVersion <= 40; currentVersion++) {
       const length = getTotalBitsFromDataArray(segments2, currentVersion);
-      if (length <= exports2.getCapacity(currentVersion, errorCorrectionLevel2, Mode2.MIXED)) {
+      if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel2, Mode2.MIXED)) {
         return currentVersion;
       }
     }
     return void 0;
   }
-  exports2.from = function from(value, defaultValue) {
+  exports.from = function from(value, defaultValue) {
     if (VersionCheck.isValid(value)) {
       return parseInt(value, 10);
     }
     return defaultValue;
   };
-  exports2.getCapacity = function getCapacity(version2, errorCorrectionLevel2, mode2) {
+  exports.getCapacity = function getCapacity(version2, errorCorrectionLevel2, mode2) {
     if (!VersionCheck.isValid(version2)) {
       throw new Error("Invalid QR Code version");
     }
@@ -2329,7 +2327,7 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
         return Math.floor(usableBits / 8);
     }
   };
-  exports2.getBestVersionForData = function getBestVersionForData(data2, errorCorrectionLevel2) {
+  exports.getBestVersionForData = function getBestVersionForData(data2, errorCorrectionLevel2) {
     let seg;
     const ecl = ECLevel2.from(errorCorrectionLevel2, ECLevel2.M);
     if (Array.isArray(data2)) {
@@ -2345,7 +2343,7 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
     }
     return getBestVersionForDataLength(seg.mode, seg.getLength(), ecl);
   };
-  exports2.getEncodedBits = function getEncodedBits2(version2) {
+  exports.getEncodedBits = function getEncodedBits2(version2) {
     if (!VersionCheck.isValid(version2) || version2 < 7) {
       throw new Error("Invalid QR Code version");
     }
@@ -2475,13 +2473,13 @@ var alphanumericData = AlphanumericData;
 var encodeUtf8$1 = function encodeUtf8(input) {
   var result = [];
   var size = input.length;
-  for (var index2 = 0; index2 < size; index2++) {
-    var point = input.charCodeAt(index2);
-    if (point >= 55296 && point <= 56319 && size > index2 + 1) {
-      var second = input.charCodeAt(index2 + 1);
+  for (var index = 0; index < size; index++) {
+    var point = input.charCodeAt(index);
+    if (point >= 55296 && point <= 56319 && size > index + 1) {
+      var second = input.charCodeAt(index + 1);
       if (second >= 56320 && second <= 57343) {
         point = (point - 55296) * 1024 + second - 56320 + 65536;
-        index2 += 1;
+        index += 1;
       }
     }
     if (point < 128) {
@@ -2568,7 +2566,7 @@ KanjiData.prototype.write = function(bitBuffer2) {
 };
 var kanjiData = KanjiData;
 var dijkstra = { exports: {} };
-(function(module2) {
+(function(module) {
   var dijkstra2 = {
     single_source_shortest_paths: function(graph, s3, d2) {
       var predecessors = {};
@@ -2660,11 +2658,11 @@ var dijkstra = { exports: {} };
     }
   };
   {
-    module2.exports = dijkstra2;
+    module.exports = dijkstra2;
   }
 })(dijkstra);
 var dijkstraExports = dijkstra.exports;
-(function(exports2) {
+(function(exports) {
   const Mode2 = mode;
   const NumericData2 = numericData;
   const AlphanumericData2 = alphanumericData;
@@ -2820,7 +2818,7 @@ var dijkstraExports = dijkstra.exports;
         return new ByteData2(data2);
     }
   }
-  exports2.fromArray = function fromArray(array) {
+  exports.fromArray = function fromArray(array) {
     return array.reduce(function(acc, seg) {
       if (typeof seg === "string") {
         acc.push(buildSingleSegment(seg, null));
@@ -2830,7 +2828,7 @@ var dijkstraExports = dijkstra.exports;
       return acc;
     }, []);
   };
-  exports2.fromString = function fromString(data2, version2) {
+  exports.fromString = function fromString(data2, version2) {
     const segs = getSegmentsFromString(data2, Utils2.isKanjiModeEnabled());
     const nodes = buildNodes(segs);
     const graph = buildGraph(nodes, version2);
@@ -2839,10 +2837,10 @@ var dijkstraExports = dijkstra.exports;
     for (let i2 = 1; i2 < path.length - 1; i2++) {
       optimizedSegs.push(graph.table[path[i2]].node);
     }
-    return exports2.fromArray(mergeSegments(optimizedSegs));
+    return exports.fromArray(mergeSegments(optimizedSegs));
   };
-  exports2.rawSplit = function rawSplit(data2) {
-    return exports2.fromArray(
+  exports.rawSplit = function rawSplit(data2) {
+    return exports.fromArray(
       getSegmentsFromString(data2, Utils2.isKanjiModeEnabled())
     );
   };
@@ -3020,18 +3018,18 @@ function createCodewords(bitBuffer2, version2, errorCorrectionLevel2) {
     maxDataSize = Math.max(maxDataSize, dataSize);
   }
   const data2 = new Uint8Array(totalCodewords);
-  let index2 = 0;
+  let index = 0;
   let i2, r2;
   for (i2 = 0; i2 < maxDataSize; i2++) {
     for (r2 = 0; r2 < ecTotalBlocks; r2++) {
       if (i2 < dcData[r2].length) {
-        data2[index2++] = dcData[r2][i2];
+        data2[index++] = dcData[r2][i2];
       }
     }
   }
   for (i2 = 0; i2 < ecCount; i2++) {
     for (r2 = 0; r2 < ecTotalBlocks; r2++) {
-      data2[index2++] = ecData[r2][i2];
+      data2[index++] = ecData[r2][i2];
     }
   }
   return data2;
@@ -3107,7 +3105,7 @@ qrcode.create = function create(data2, options) {
 };
 var canvas = {};
 var utils = {};
-(function(exports2) {
+(function(exports) {
   function hex2rgba(hex) {
     if (typeof hex === "number") {
       hex = hex.toString();
@@ -3135,7 +3133,7 @@ var utils = {};
       hex: "#" + hexCode.slice(0, 6).join("")
     };
   }
-  exports2.getOptions = function getOptions2(options) {
+  exports.getOptions = function getOptions2(options) {
     if (!options)
       options = {};
     if (!options.color)
@@ -3155,17 +3153,17 @@ var utils = {};
       rendererOpts: options.rendererOpts || {}
     };
   };
-  exports2.getScale = function getScale(qrSize, opts) {
+  exports.getScale = function getScale(qrSize, opts) {
     return opts.width && opts.width >= qrSize + opts.margin * 2 ? opts.width / (qrSize + opts.margin * 2) : opts.scale;
   };
-  exports2.getImageWidth = function getImageWidth(qrSize, opts) {
-    const scale = exports2.getScale(qrSize, opts);
+  exports.getImageWidth = function getImageWidth(qrSize, opts) {
+    const scale = exports.getScale(qrSize, opts);
     return Math.floor((qrSize + opts.margin * 2) * scale);
   };
-  exports2.qrToImageData = function qrToImageData(imgData, qr, opts) {
+  exports.qrToImageData = function qrToImageData(imgData, qr, opts) {
     const size = qr.modules.size;
     const data2 = qr.modules.data;
-    const scale = exports2.getScale(size, opts);
+    const scale = exports.getScale(size, opts);
     const symbolSize = Math.floor((size + opts.margin * 2) * scale);
     const scaledMargin = opts.margin * scale;
     const palette = [opts.color.light, opts.color.dark];
@@ -3186,7 +3184,7 @@ var utils = {};
     }
   };
 })(utils);
-(function(exports2) {
+(function(exports) {
   const Utils2 = utils;
   function clearCanvas(ctx, canvas2, size) {
     ctx.clearRect(0, 0, canvas2.width, canvas2.height);
@@ -3204,7 +3202,7 @@ var utils = {};
       throw new Error("You need to specify a canvas element");
     }
   }
-  exports2.render = function render2(qrData, canvas2, options) {
+  exports.render = function render2(qrData, canvas2, options) {
     let opts = options;
     let canvasEl = canvas2;
     if (typeof opts === "undefined" && (!canvas2 || !canvas2.getContext)) {
@@ -3223,7 +3221,7 @@ var utils = {};
     ctx.putImageData(image, 0, 0);
     return canvasEl;
   };
-  exports2.renderToDataURL = function renderToDataURL(qrData, canvas2, options) {
+  exports.renderToDataURL = function renderToDataURL(qrData, canvas2, options) {
     let opts = options;
     if (typeof opts === "undefined" && (!canvas2 || !canvas2.getContext)) {
       opts = canvas2;
@@ -3231,7 +3229,7 @@ var utils = {};
     }
     if (!opts)
       opts = {};
-    const canvasEl = exports2.render(qrData, canvas2, opts);
+    const canvasEl = exports.render(qrData, canvas2, opts);
     const type = opts.type || "image/png";
     const rendererOpts = opts.rendererOpts || {};
     return canvasEl.toDataURL(type, rendererOpts.quality);
@@ -3366,7 +3364,7 @@ var et = Object.defineProperty, Se = Object.getOwnPropertySymbols, tt = Object.p
 };
 function rt() {
   var e2;
-  const o3 = (e2 = index.ne$3.state.themeMode) != null ? e2 : "dark", r2 = { light: { foreground: { 1: "rgb(20,20,20)", 2: "rgb(121,134,134)", 3: "rgb(158,169,169)" }, background: { 1: "rgb(255,255,255)", 2: "rgb(241,243,243)", 3: "rgb(228,231,231)" }, overlay: "rgba(0,0,0,0.1)" }, dark: { foreground: { 1: "rgb(228,231,231)", 2: "rgb(148,158,158)", 3: "rgb(110,119,119)" }, background: { 1: "rgb(20,20,20)", 2: "rgb(39,42,42)", 3: "rgb(59,64,64)" }, overlay: "rgba(255,255,255,0.1)" } }[o3];
+  const o3 = (e2 = ne$3.state.themeMode) != null ? e2 : "dark", r2 = { light: { foreground: { 1: "rgb(20,20,20)", 2: "rgb(121,134,134)", 3: "rgb(158,169,169)" }, background: { 1: "rgb(255,255,255)", 2: "rgb(241,243,243)", 3: "rgb(228,231,231)" }, overlay: "rgba(0,0,0,0.1)" }, dark: { foreground: { 1: "rgb(228,231,231)", 2: "rgb(148,158,158)", 3: "rgb(110,119,119)" }, background: { 1: "rgb(20,20,20)", 2: "rgb(39,42,42)", 3: "rgb(59,64,64)" }, overlay: "rgba(255,255,255,0.1)" } }[o3];
   return { "--wcm-color-fg-1": r2.foreground[1], "--wcm-color-fg-2": r2.foreground[2], "--wcm-color-fg-3": r2.foreground[3], "--wcm-color-bg-1": r2.background[1], "--wcm-color-bg-2": r2.background[2], "--wcm-color-bg-3": r2.background[3], "--wcm-color-overlay": r2.overlay };
 }
 function Ue() {
@@ -3375,7 +3373,7 @@ function Ue() {
 const h = { getPreset(e2) {
   return Ue()[e2];
 }, setTheme() {
-  const e2 = document.querySelector(":root"), { themeVariables: o3 } = index.ne$3.state;
+  const e2 = document.querySelector(":root"), { themeVariables: o3 } = ne$3.state;
   if (e2) {
     const r2 = fe(fe(fe({}, rt()), Ue()), o3);
     Object.entries(r2).forEach(([a2, t2]) => e2.style.setProperty(a2, t2));
@@ -3433,7 +3431,7 @@ var ut = (e2, o3, r2, a2) => {
 };
 let $e = class extends s$1 {
   render() {
-    return x`<div class="wcm-toolbar-placeholder"></div><div class="wcm-toolbar">${b.WALLET_CONNECT_LOGO} <button @click="${index.se$3.close}">${b.CROSS_ICON}</button></div>`;
+    return x`<div class="wcm-toolbar-placeholder"></div><div class="wcm-toolbar">${b.WALLET_CONNECT_LOGO} <button @click="${se$3.close}">${b.CROSS_ICON}</button></div>`;
   }
 };
 $e.styles = [h.globalCss, pt], $e = ut([e$2("wcm-modal-backcard")], $e);
@@ -3472,13 +3470,13 @@ let B = class extends s$1 {
     super(...arguments), this.title = "", this.onAction = void 0, this.actionIcon = void 0, this.border = false;
   }
   backBtnTemplate() {
-    return x`<button class="wcm-back-btn" @click="${index.T$2.goBack}">${b.BACK_ICON}</button>`;
+    return x`<button class="wcm-back-btn" @click="${T$2.goBack}">${b.BACK_ICON}</button>`;
   }
   actionBtnTemplate() {
     return x`<button class="wcm-action-btn" @click="${this.onAction}">${this.actionIcon}</button>`;
   }
   render() {
-    const e2 = { "wcm-border": this.border }, o$12 = index.T$2.state.history.length > 1, r2 = this.title ? x`<wcm-text variant="big-bold">${this.title}</wcm-text>` : x`<slot></slot>`;
+    const e2 = { "wcm-border": this.border }, o$12 = T$2.state.history.length > 1, r2 = this.title ? x`<wcm-text variant="big-bold">${this.title}</wcm-text>` : x`<slot></slot>`;
     return x`<header class="${o2(e2)}">${o$12 ? this.backBtnTemplate() : null} ${r2} ${this.onAction ? this.actionBtnTemplate() : null}</header>`;
   }
 };
@@ -3489,8 +3487,8 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
     throw new Error(`${o3} not found`);
   return r2;
 }, getWalletIcon({ id: e2, image_id: o3 }) {
-  const { walletImages: r2 } = index.y$4.state;
-  return r2 != null && r2[e2] ? r2[e2] : o3 ? index.te$1.getWalletImageUrl(o3) : "";
+  const { walletImages: r2 } = y$4.state;
+  return r2 != null && r2[e2] ? r2[e2] : o3 ? te$1.getWalletImageUrl(o3) : "";
 }, getWalletName(e2, o3 = false) {
   return o3 && e2.length > 8 ? `${e2.substring(0, 8)}..` : e2;
 }, isMobileAnimation() {
@@ -3500,7 +3498,7 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
     const t2 = new Image();
     t2.onload = r2, t2.onerror = a2, t2.crossOrigin = "anonymous", t2.src = e2;
   });
-  return Promise.race([o3, index.i$1.wait(3e3)]);
+  return Promise.race([o3, i$1$1.wait(3e3)]);
 }, getErrorMessage(e2) {
   return e2 instanceof Error ? e2.message : "Unknown Error";
 }, debounce(e2, o3 = 500) {
@@ -3512,23 +3510,23 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
     r2 && clearTimeout(r2), r2 = setTimeout(t2, o3);
   };
 }, handleMobileLinking(e2) {
-  const { walletConnectUri: o3 } = index.p$2.state, { mobile: r2, name: a2 } = e2, t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
+  const { walletConnectUri: o3 } = p$2.state, { mobile: r2, name: a2 } = e2, t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
   s2.setRecentWallet(e2);
   function i2(c2) {
     let u3 = "";
-    t2 ? u3 = index.i$1.formatUniversalUrl(t2, c2, a2) : l2 && (u3 = index.i$1.formatNativeUrl(l2, c2, a2)), index.i$1.openHref(u3, "_self");
+    t2 ? u3 = i$1$1.formatUniversalUrl(t2, c2, a2) : l2 && (u3 = i$1$1.formatNativeUrl(l2, c2, a2)), i$1$1.openHref(u3, "_self");
   }
   o3 && i2(o3);
 }, async handleUriCopy() {
-  const { walletConnectUri: e2 } = index.p$2.state;
+  const { walletConnectUri: e2 } = p$2.state;
   if (e2)
     try {
-      await navigator.clipboard.writeText(e2), index.oe$2.openToast("Link copied", "success");
+      await navigator.clipboard.writeText(e2), oe$2.openToast("Link copied", "success");
     } catch {
-      index.oe$2.openToast("Failed to copy", "error");
+      oe$2.openToast("Failed to copy", "error");
     }
 }, getCustomImageUrls() {
-  const { walletImages: e2 } = index.y$4.state, o3 = Object.values(e2 ?? {});
+  const { walletImages: e2 } = y$4.state, o3 = Object.values(e2 ?? {});
   return Object.values(o3);
 }, truncate(e2, o3 = 8) {
   return e2.length <= o3 ? e2 : `${e2.substring(0, 4)}...${e2.substring(e2.length - 4)}`;
@@ -3548,14 +3546,14 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
 }, caseSafeIncludes(e2, o3) {
   return e2.toUpperCase().includes(o3.toUpperCase());
 }, openWalletExplorerUrl() {
-  index.i$1.openHref(s2.EXPLORER_WALLET_URL, "_blank");
+  i$1$1.openHref(s2.EXPLORER_WALLET_URL, "_blank");
 }, getCachedRouterWalletPlatforms() {
-  const { desktop: e2, mobile: o3 } = index.i$1.getWalletRouterData(), r2 = Boolean(e2 == null ? void 0 : e2.native), a2 = Boolean(e2 == null ? void 0 : e2.universal), t2 = Boolean(o3 == null ? void 0 : o3.native) || Boolean(o3 == null ? void 0 : o3.universal);
+  const { desktop: e2, mobile: o3 } = i$1$1.getWalletRouterData(), r2 = Boolean(e2 == null ? void 0 : e2.native), a2 = Boolean(e2 == null ? void 0 : e2.universal), t2 = Boolean(o3 == null ? void 0 : o3.native) || Boolean(o3 == null ? void 0 : o3.universal);
   return { isDesktop: r2, isMobile: t2, isWeb: a2 };
 }, goToConnectingView(e2) {
-  index.T$2.setData({ Wallet: e2 });
-  const o3 = index.i$1.isMobile(), { isDesktop: r2, isWeb: a2, isMobile: t2 } = s2.getCachedRouterWalletPlatforms();
-  o3 ? t2 ? index.T$2.push("MobileConnecting") : a2 ? index.T$2.push("WebConnecting") : index.T$2.push("InstallWallet") : r2 ? index.T$2.push("DesktopConnecting") : a2 ? index.T$2.push("WebConnecting") : t2 ? index.T$2.push("MobileQrcodeConnecting") : index.T$2.push("InstallWallet");
+  T$2.setData({ Wallet: e2 });
+  const o3 = i$1$1.isMobile(), { isDesktop: r2, isWeb: a2, isMobile: t2 } = s2.getCachedRouterWalletPlatforms();
+  o3 ? t2 ? T$2.push("MobileConnecting") : a2 ? T$2.push("WebConnecting") : T$2.push("InstallWallet") : r2 ? T$2.push("DesktopConnecting") : a2 ? T$2.push("WebConnecting") : t2 ? T$2.push("MobileQrcodeConnecting") : T$2.push("InstallWallet");
 } }, Mt = i$3`.wcm-router{overflow:hidden;will-change:transform}.wcm-content{display:flex;flex-direction:column}`;
 var Pt = Object.defineProperty, Lt = Object.getOwnPropertyDescriptor, Oe = (e2, o3, r2, a2) => {
   for (var t2 = a2 > 1 ? void 0 : a2 ? Lt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
@@ -3564,7 +3562,7 @@ var Pt = Object.defineProperty, Lt = Object.getOwnPropertyDescriptor, Oe = (e2, 
 };
 let le = class extends s$1 {
   constructor() {
-    super(), this.view = index.T$2.state.view, this.prevView = index.T$2.state.view, this.unsubscribe = void 0, this.oldHeight = "0px", this.resizeObserver = void 0, this.unsubscribe = index.T$2.subscribe((e2) => {
+    super(), this.view = T$2.state.view, this.prevView = T$2.state.view, this.unsubscribe = void 0, this.oldHeight = "0px", this.resizeObserver = void 0, this.unsubscribe = T$2.subscribe((e2) => {
       this.view !== e2.view && this.onChangeRoute();
     });
   }
@@ -3607,7 +3605,7 @@ let le = class extends s$1 {
     }
   }
   async onChangeRoute() {
-    await animate(this.routerEl, { opacity: [1, 0], scale: [1, 1.02] }, { duration: 0.15, delay: 0.1 }).finished, this.view = index.T$2.state.view, animate(this.routerEl, { opacity: [0, 1], scale: [0.99, 1] }, { duration: 0.37, delay: 0.05 });
+    await animate(this.routerEl, { opacity: [1, 0], scale: [1, 1.02] }, { duration: 0.15, delay: 0.1 }).finished, this.view = T$2.state.view, animate(this.routerEl, { opacity: [0, 1], scale: [0.99, 1] }, { duration: 0.37, delay: 0.05 });
   }
   render() {
     return x`<div class="wcm-router"><div class="wcm-content">${this.viewTemplate()}</div></div>`;
@@ -3622,16 +3620,16 @@ var At = Object.defineProperty, Tt = Object.getOwnPropertyDescriptor, He = (e2, 
 };
 let de = class extends s$1 {
   constructor() {
-    super(), this.open = false, this.unsubscribe = void 0, this.timeout = void 0, this.unsubscribe = index.oe$2.subscribe((e2) => {
-      e2.open ? (this.open = true, this.timeout = setTimeout(() => index.oe$2.closeToast(), 2200)) : (this.open = false, clearTimeout(this.timeout));
+    super(), this.open = false, this.unsubscribe = void 0, this.timeout = void 0, this.unsubscribe = oe$2.subscribe((e2) => {
+      e2.open ? (this.open = true, this.timeout = setTimeout(() => oe$2.closeToast(), 2200)) : (this.open = false, clearTimeout(this.timeout));
     });
   }
   disconnectedCallback() {
     var e2;
-    (e2 = this.unsubscribe) == null || e2.call(this), clearTimeout(this.timeout), index.oe$2.closeToast();
+    (e2 = this.unsubscribe) == null || e2.call(this), clearTimeout(this.timeout), oe$2.closeToast();
   }
   render() {
-    const { message: e2, variant: o$12 } = index.oe$2.state, r2 = { "wcm-success": o$12 === "success", "wcm-error": o$12 === "error" };
+    const { message: e2, variant: o$12 } = oe$2.state, r2 = { "wcm-success": o$12 === "success", "wcm-error": o$12 === "error" };
     return this.open ? x`<div class="${o2(r2)}">${o$12 === "success" ? b.CHECKMARK_ICON : null} ${o$12 === "error" ? b.CROSS_ICON : null}<wcm-text variant="small-regular">${e2}</wcm-text></div>` : null;
   }
 };
@@ -3694,20 +3692,20 @@ var Zt = Object.defineProperty, zt = Object.getOwnPropertyDescriptor, Y = (e2, o
     (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Zt(o3, r2, t2), t2;
 };
-exports.WcmQrCode = class D extends s$1 {
+let D = class extends s$1 {
   constructor() {
     super(...arguments), this.uri = "", this.size = 0, this.imageId = void 0, this.walletId = void 0, this.imageUrl = void 0;
   }
   svgTemplate() {
-    const e2 = index.ne$3.state.themeMode === "light" ? this.size : this.size - 36;
+    const e2 = ne$3.state.themeMode === "light" ? this.size : this.size - 36;
     return b$1`<svg height="${e2}" width="${e2}">${Dt.generate(this.uri, e2, e2 / 4)}</svg>`;
   }
   render() {
-    const e2 = { "wcm-dark": index.ne$3.state.themeMode === "dark" };
+    const e2 = { "wcm-dark": ne$3.state.themeMode === "dark" };
     return x`<div style="${`width: ${this.size}px`}" class="${o2(e2)}">${this.walletId || this.imageUrl ? x`<wcm-wallet-image walletId="${l(this.walletId)}" imageId="${l(this.imageId)}" imageUrl="${l(this.imageUrl)}"></wcm-wallet-image>` : b.WALLET_CONNECT_ICON_COLORED} ${this.svgTemplate()}</div>`;
   }
 };
-exports.WcmQrCode.styles = [h.globalCss, Nt], Y([n$1()], exports.WcmQrCode.prototype, "uri", 2), Y([n$1({ type: Number })], exports.WcmQrCode.prototype, "size", 2), Y([n$1()], exports.WcmQrCode.prototype, "imageId", 2), Y([n$1()], exports.WcmQrCode.prototype, "walletId", 2), Y([n$1()], exports.WcmQrCode.prototype, "imageUrl", 2), exports.WcmQrCode = Y([e$2("wcm-qrcode")], exports.WcmQrCode);
+D.styles = [h.globalCss, Nt], Y([n$1()], D.prototype, "uri", 2), Y([n$1({ type: Number })], D.prototype, "size", 2), Y([n$1()], D.prototype, "imageId", 2), Y([n$1()], D.prototype, "walletId", 2), Y([n$1()], D.prototype, "imageUrl", 2), D = Y([e$2("wcm-qrcode")], D);
 const St = i$3`:host{position:relative;height:28px;width:80%}input{width:100%;height:100%;line-height:28px!important;border-radius:var(--wcm-input-border-radius);font-style:normal;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',sans-serif;font-feature-settings:'case' on;font-weight:500;font-size:16px;letter-spacing:-.03em;padding:0 10px 0 34px;transition:.2s all ease;color:var(--wcm-color-fg-1);background-color:var(--wcm-color-bg-3);box-shadow:inset 0 0 0 1px var(--wcm-color-overlay);caret-color:var(--wcm-accent-color)}input::placeholder{color:var(--wcm-color-fg-2)}svg{left:10px;top:4px;pointer-events:none;position:absolute;width:20px;height:20px}input:focus-within{box-shadow:inset 0 0 0 1px var(--wcm-accent-color)}path{fill:var(--wcm-color-fg-2)}`;
 var Bt = Object.defineProperty, Ut = Object.getOwnPropertyDescriptor, qe = (e2, o3, r2, a2) => {
   for (var t2 = a2 > 1 ? void 0 : a2 ? Ut(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
@@ -3765,7 +3763,7 @@ let P = class extends s$1 {
     return this.recent ? x`<wcm-text class="wcm-sublabel" variant="xsmall-bold" color="tertiary">RECENT</wcm-text>` : this.installed ? x`<wcm-text class="wcm-sublabel" variant="xsmall-bold" color="tertiary">INSTALLED</wcm-text>` : null;
   }
   handleClick() {
-    index.R$1.click({ name: "WALLET_BUTTON", walletId: this.walletId }), this.onClick();
+    R$1.click({ name: "WALLET_BUTTON", walletId: this.walletId }), this.onClick();
   }
   render() {
     var e2;
@@ -3807,12 +3805,12 @@ let Me = class extends s$1 {
     }
   }
   async preloadListings() {
-    if (index.y$4.state.enableExplorer) {
-      await index.te$1.getRecomendedWallets(), index.p$2.setIsDataLoaded(true);
-      const { recomendedWallets: e2 } = index.te$1.state, o3 = e2.map((r2) => s2.getWalletIcon(r2));
+    if (y$4.state.enableExplorer) {
+      await te$1.getRecomendedWallets(), p$2.setIsDataLoaded(true);
+      const { recomendedWallets: e2 } = te$1.state, o3 = e2.map((r2) => s2.getWalletIcon(r2));
       await this.loadImages(o3);
     } else
-      index.p$2.setIsDataLoaded(true);
+      p$2.setIsDataLoaded(true);
   }
   async preloadCustomImages() {
     const e2 = s2.getCustomImageUrls();
@@ -3822,7 +3820,7 @@ let Me = class extends s$1 {
     try {
       this.preload && (this.preload = false, await Promise.all([this.preloadListings(), this.preloadCustomImages()]));
     } catch (e2) {
-      console.error(e2), index.oe$2.openToast("Failed preloading", "error");
+      console.error(e2), oe$2.openToast("Failed preloading", "error");
     }
   }
 };
@@ -3834,7 +3832,7 @@ var no = (e2, o3, r2, a2) => {
 };
 let Qe = class extends s$1 {
   constructor() {
-    super(), this.unsubscribeTheme = void 0, h.setTheme(), this.unsubscribeTheme = index.ne$3.subscribe(h.setTheme);
+    super(), this.unsubscribeTheme = void 0, h.setTheme(), this.unsubscribeTheme = ne$3.subscribe(h.setTheme);
   }
   disconnectedCallback() {
     var e2;
@@ -3850,13 +3848,13 @@ var wo = (e2, o3, r2, a2) => {
 };
 let Pe = class extends s$1 {
   onConnect(e2) {
-    index.i$1.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
+    i$1$1.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
   }
   onGoToQrcode() {
-    index.T$2.push("Qrcode");
+    T$2.push("Qrcode");
   }
   render() {
-    const { recomendedWallets: e2 } = index.te$1.state, o3 = [...e2, ...e2], r2 = index.i$1.RECOMMENDED_WALLET_AMOUNT * 2;
+    const { recomendedWallets: e2 } = te$1.state, o3 = [...e2, ...e2], r2 = i$1$1.RECOMMENDED_WALLET_AMOUNT * 2;
     return x`<wcm-modal-header title="Connect your wallet" .onAction="${this.onGoToQrcode}" .actionIcon="${b.QRCODE_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-title">${b.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">WalletConnect</wcm-text></div><div class="wcm-slider"><div class="wcm-track">${[...Array(r2)].map((a2, t2) => {
       const l2 = o3[t2 % o3.length];
       return l2 ? x`<wcm-wallet-image walletId="${l2.id}" imageId="${l2.image_id}"></wcm-wallet-image>` : b.WALLET_PLACEHOLDER;
@@ -3876,7 +3874,7 @@ let Z2 = class extends s$1 {
   }
   svgLoaderTemplate() {
     var e2, o3;
-    const r2 = (o3 = (e2 = index.ne$3.state.themeVariables) == null ? void 0 : e2["--wcm-wallet-icon-large-border-radius"]) != null ? o3 : h.getPreset("--wcm-wallet-icon-large-border-radius");
+    const r2 = (o3 = (e2 = ne$3.state.themeVariables) == null ? void 0 : e2["--wcm-wallet-icon-large-border-radius"]) != null ? o3 : h.getPreset("--wcm-wallet-icon-large-border-radius");
     let a2 = 0;
     r2.includes("%") ? a2 = 88 / 100 * parseInt(r2, 10) : a2 = parseInt(r2, 10), a2 *= 1.17;
     const t2 = 317 - a2 * 1.57, l2 = 425 - a2 * 1.8;
@@ -3890,13 +3888,13 @@ let Z2 = class extends s$1 {
 Z2.styles = [h.globalCss, ho], X([n$1()], Z2.prototype, "walletId", 2), X([n$1()], Z2.prototype, "imageId", 2), X([n$1({ type: Boolean })], Z2.prototype, "isError", 2), X([n$1({ type: Boolean })], Z2.prototype, "isStale", 2), X([n$1()], Z2.prototype, "label", 2), Z2 = X([e$2("wcm-connector-waiting")], Z2);
 const ee = { manualWallets() {
   var e2, o3;
-  const { mobileWallets: r2, desktopWallets: a2 } = index.y$4.state, t2 = (e2 = ee.recentWallet()) == null ? void 0 : e2.id, l2 = index.i$1.isMobile() ? r2 : a2, i2 = l2 == null ? void 0 : l2.filter((c2) => t2 !== c2.id);
-  return (o3 = index.i$1.isMobile() ? i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, mobile: w2, links: w2 })) : i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, desktop: w2, links: w2 }))) != null ? o3 : [];
+  const { mobileWallets: r2, desktopWallets: a2 } = y$4.state, t2 = (e2 = ee.recentWallet()) == null ? void 0 : e2.id, l2 = i$1$1.isMobile() ? r2 : a2, i2 = l2 == null ? void 0 : l2.filter((c2) => t2 !== c2.id);
+  return (o3 = i$1$1.isMobile() ? i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, mobile: w2, links: w2 })) : i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, desktop: w2, links: w2 }))) != null ? o3 : [];
 }, recentWallet() {
   return s2.getRecentWallet();
 }, recomendedWallets(e2 = false) {
   var o3;
-  const r2 = e2 || (o3 = ee.recentWallet()) == null ? void 0 : o3.id, { recomendedWallets: a2 } = index.te$1.state;
+  const r2 = e2 || (o3 = ee.recentWallet()) == null ? void 0 : o3.id, { recomendedWallets: a2 } = te$1.state;
   return a2.filter((t2) => r2 !== t2.id);
 } }, S = { onConnecting(e2) {
   s2.goToConnectingView(e2);
@@ -3916,7 +3914,7 @@ var fo = (e2, o3, r2, a2) => {
 };
 let Le = class extends s$1 {
   render() {
-    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = index.y$4.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
+    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$4.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
     let l2 = [S.recentWalletTemplate(), ...a2, ...t2];
     l2 = l2.filter(Boolean);
     const i2 = l2.length > 4 || r2;
@@ -3935,7 +3933,7 @@ var Co = (e2, o3, r2, a2) => {
 };
 let Re = class extends s$1 {
   render() {
-    const { termsOfServiceUrl: e2, privacyPolicyUrl: o3 } = index.y$4.state;
+    const { termsOfServiceUrl: e2, privacyPolicyUrl: o3 } = y$4.state;
     return e2 ?? o3 ? x`<div><wcm-text variant="small-regular" color="secondary">By connecting your wallet to this app, you agree to the app's ${e2 ? x`<a href="${e2}" target="_blank" rel="noopener noreferrer">Terms of Service</a>` : null} ${e2 && o3 ? "and" : null} ${o3 ? x`<a href="${o3}" target="_blank" rel="noopener noreferrer">Privacy Policy</a>` : null}</wcm-text></div>` : null;
   }
 };
@@ -3948,10 +3946,10 @@ var Wo = (e2, o3, r2, a2) => {
 };
 let Ae = class extends s$1 {
   onQrcode() {
-    index.T$2.push("Qrcode");
+    T$2.push("Qrcode");
   }
   render() {
-    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = index.y$4.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
+    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$4.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
     let l2 = [S.recentWalletTemplate(), ...a2, ...t2];
     l2 = l2.filter(Boolean);
     const i2 = l2.length > 8 || r2;
@@ -3968,9 +3966,9 @@ var Mo = Object.defineProperty, Po = Object.getOwnPropertyDescriptor, Te = (e2, 
     (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Mo(o3, r2, t2), t2;
 };
-exports.WcmModal = class ne extends s$1 {
+let ne = class extends s$1 {
   constructor() {
-    super(), this.open = false, this.active = false, this.unsubscribeModal = void 0, this.abortController = void 0, this.unsubscribeModal = index.se$3.subscribe((e2) => {
+    super(), this.open = false, this.active = false, this.unsubscribeModal = void 0, this.abortController = void 0, this.unsubscribeModal = se$3.subscribe((e2) => {
       e2.open ? this.onOpenModalEvent() : this.onCloseModalEvent();
     });
   }
@@ -3993,7 +3991,7 @@ exports.WcmModal = class ne extends s$1 {
         document.head.insertAdjacentHTML("beforeend", '<style id="wcm-styles">html,body{touch-action:none;overflow:hidden;overscroll-behavior:contain;}</style>');
   }
   onCloseModal(e2) {
-    e2.target === e2.currentTarget && index.se$3.close();
+    e2.target === e2.currentTarget && se$3.close();
   }
   onOpenModalEvent() {
     this.toggleBodyScroll(false), this.addKeyboardEvents(), this.open = true, setTimeout(async () => {
@@ -4009,7 +4007,7 @@ exports.WcmModal = class ne extends s$1 {
   addKeyboardEvents() {
     this.abortController = new AbortController(), window.addEventListener("keydown", (e2) => {
       var o3;
-      e2.key === "Escape" ? index.se$3.close() : e2.key === "Tab" && ((o3 = e2.target) != null && o3.tagName.includes("wcm-") || this.containerEl.focus());
+      e2.key === "Escape" ? se$3.close() : e2.key === "Tab" && ((o3 = e2.target) != null && o3.tagName.includes("wcm-") || this.containerEl.focus());
     }, this.abortController), this.containerEl.focus();
   }
   removeKeyboardEvents() {
@@ -4021,7 +4019,7 @@ exports.WcmModal = class ne extends s$1 {
     return x`<wcm-explorer-context></wcm-explorer-context><wcm-theme-context></wcm-theme-context><div id="wcm-modal" class="${o2(e2)}" @click="${this.onCloseModal}" role="alertdialog" aria-modal="true"><div class="wcm-container" tabindex="0">${this.open ? x`<wcm-modal-backcard></wcm-modal-backcard><div class="wcm-card"><wcm-modal-router></wcm-modal-router><wcm-modal-toast></wcm-modal-toast></div>` : null}</div></div>`;
   }
 };
-exports.WcmModal.styles = [h.globalCss, Eo], Te([t$1()], exports.WcmModal.prototype, "open", 2), Te([t$1()], exports.WcmModal.prototype, "active", 2), exports.WcmModal = Te([e$2("wcm-modal")], exports.WcmModal);
+ne.styles = [h.globalCss, Eo], Te([t$1()], ne.prototype, "open", 2), Te([t$1()], ne.prototype, "active", 2), ne = Te([e$2("wcm-modal")], ne);
 const Lo = i$3`div{display:flex;margin-top:15px}slot{display:inline-block;margin:0 5px}wcm-button{margin:0 5px}`;
 var Ro = Object.defineProperty, Ao = Object.getOwnPropertyDescriptor, ce = (e2, o3, r2, a2) => {
   for (var t2 = a2 > 1 ? void 0 : a2 ? Ao(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
@@ -4033,13 +4031,13 @@ let U = class extends s$1 {
     super(...arguments), this.isMobile = false, this.isDesktop = false, this.isWeb = false, this.isRetry = false;
   }
   onMobile() {
-    index.i$1.isMobile() ? index.T$2.replace("MobileConnecting") : index.T$2.replace("MobileQrcodeConnecting");
+    i$1$1.isMobile() ? T$2.replace("MobileConnecting") : T$2.replace("MobileQrcodeConnecting");
   }
   onDesktop() {
-    index.T$2.replace("DesktopConnecting");
+    T$2.replace("DesktopConnecting");
   }
   onWeb() {
-    index.T$2.replace("WebConnecting");
+    T$2.replace("WebConnecting");
   }
   render() {
     return x`<div>${this.isRetry ? x`<slot></slot>` : null} ${this.isMobile ? x`<wcm-button .onClick="${this.onMobile}" .iconLeft="${b.MOBILE_ICON}" variant="outline">Mobile</wcm-button>` : null} ${this.isDesktop ? x`<wcm-button .onClick="${this.onDesktop}" .iconLeft="${b.DESKTOP_ICON}" variant="outline">Desktop</wcm-button>` : null} ${this.isWeb ? x`<wcm-button .onClick="${this.onWeb}" .iconLeft="${b.GLOBE_ICON}" variant="outline">Web</wcm-button>` : null}</div>`;
@@ -4054,10 +4052,10 @@ var Do = (e2, o3, r2, a2) => {
 };
 let je = class extends s$1 {
   onClick() {
-    index.T$2.push("WalletExplorer");
+    T$2.push("WalletExplorer");
   }
   render() {
-    const { recomendedWallets: e2 } = index.te$1.state, o3 = ee.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
+    const { recomendedWallets: e2 } = te$1.state, o3 = ee.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
     return x`<button @click="${this.onClick}"><div class="wcm-icons">${r2.map((a2) => {
       const t2 = s2.getWalletIcon(a2);
       if (t2)
@@ -4077,7 +4075,7 @@ var Zo = Object.defineProperty, zo = Object.getOwnPropertyDescriptor, he = (e2, 
 let J = class extends s$1 {
   constructor() {
     super(), this.walletId = "", this.imageId = "", this.uri = "", setTimeout(() => {
-      const { walletConnectUri: e2 } = index.p$2.state;
+      const { walletConnectUri: e2 } = p$2.state;
       this.uri = e2;
     }, 0);
   }
@@ -4096,7 +4094,7 @@ var Uo = (e2, o3, r2, a2) => {
 };
 let _e = class extends s$1 {
   viewTemplate() {
-    return index.i$1.isAndroid() ? x`<wcm-android-wallet-selection></wcm-android-wallet-selection>` : index.i$1.isMobile() ? x`<wcm-mobile-wallet-selection></wcm-mobile-wallet-selection>` : x`<wcm-desktop-wallet-selection></wcm-desktop-wallet-selection>`;
+    return i$1$1.isAndroid() ? x`<wcm-android-wallet-selection></wcm-android-wallet-selection>` : i$1$1.isMobile() ? x`<wcm-mobile-wallet-selection></wcm-mobile-wallet-selection>` : x`<wcm-desktop-wallet-selection></wcm-desktop-wallet-selection>`;
   }
   render() {
     return x`${this.viewTemplate()}<wcm-legal-notice></wcm-legal-notice>`;
@@ -4115,22 +4113,22 @@ let pe = class extends s$1 {
   }
   onFormatAndRedirect(e2) {
     var o3;
-    const { desktop: r2, name: a2 } = index.i$1.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native;
+    const { desktop: r2, name: a2 } = i$1$1.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native;
     if (t2) {
-      const l2 = index.i$1.formatNativeUrl(t2, e2, a2);
+      const l2 = i$1$1.formatNativeUrl(t2, e2, a2);
       if (a2 === "Puzzle Wallet" && (o3 = window == null ? void 0 : window.aleo) != null && o3.connectPuzzle) {
         const i2 = new URL(l2).searchParams, c2 = i2.get("uri"), u3 = i2.get("requestId"), w2 = i2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: c2, requestId: u3 ?? void 0, sessionTopic: w2 ?? void 0 } });
       } else
-        index.i$1.openHref(l2, "_self");
+        i$1$1.openHref(l2, "_self");
     }
   }
   openDesktopApp() {
-    const { walletConnectUri: e2 } = index.p$2.state, o3 = index.i$1.getWalletRouterData();
+    const { walletConnectUri: e2 } = p$2.state, o3 = i$1$1.getWalletRouterData();
     s2.setRecentWallet(o3), e2 && this.onFormatAndRedirect(e2);
   }
   render() {
-    const { name: e2, id: o3, image_id: r2 } = index.i$1.getWalletRouterData(), { isMobile: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
+    const { name: e2, id: o3, image_id: r2 } = i$1$1.getWalletRouterData(), { isMobile: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
     return x`<wcm-modal-header title="${e2}" .onAction="${s2.handleUriCopy}" .actionIcon="${b.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="${`Continue in ${e2}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Connection can continue loading if ${e2} is not installed on your device`}</wcm-text><wcm-platform-selection .isMobile="${a2}" .isWeb="${t2}" .isRetry="${true}"><wcm-button .onClick="${this.openDesktopApp.bind(this)}" .iconRight="${b.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };
@@ -4143,10 +4141,10 @@ var Yo = (e2, o3, r2, a2) => {
 };
 let De = class extends s$1 {
   onInstall(e2) {
-    e2 && index.i$1.openHref(e2, "_blank");
+    e2 && i$1$1.openHref(e2, "_blank");
   }
   render() {
-    const { name: e2, id: o3, image_id: r2, homepage: a2 } = index.i$1.getWalletRouterData();
+    const { name: e2, id: o3, image_id: r2, homepage: a2 } = i$1$1.getWalletRouterData();
     return x`<wcm-modal-header title="${e2}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="Not Detected" .isStale="${true}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Download ${e2} to continue. If multiple browser extensions are installed, disable non ${e2} ones and try again`}</wcm-text><wcm-button .onClick="${() => this.onInstall(a2)}" .iconLeft="${b.ARROW_DOWN_ICON}">Download</wcm-button></wcm-info-footer>`;
   }
 };
@@ -4163,32 +4161,32 @@ let ge = class extends s$1 {
   }
   onFormatAndRedirect(e2, o3 = false) {
     var r2, a2;
-    const { mobile: t2, name: l2 } = index.i$1.getWalletRouterData(), i2 = t2 == null ? void 0 : t2.native, c2 = t2 == null ? void 0 : t2.universal;
+    const { mobile: t2, name: l2 } = i$1$1.getWalletRouterData(), i2 = t2 == null ? void 0 : t2.native, c2 = t2 == null ? void 0 : t2.universal;
     if (i2 && !o3) {
-      const u3 = index.i$1.formatNativeUrl(i2, e2, l2);
+      const u3 = i$1$1.formatNativeUrl(i2, e2, l2);
       if (l2 === "Puzzle Wallet" && (r2 = window == null ? void 0 : window.aleo) != null && r2.connectPuzzle) {
         const w2 = new URL(u3).searchParams, F = w2.get("uri"), T2 = w2.get("requestId"), j = w2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: F, requestId: T2 ?? void 0, sessionTopic: j ?? void 0 } });
       } else
-        index.i$1.openHref(u3, "_self");
+        i$1$1.openHref(u3, "_self");
     } else if (c2) {
-      const u3 = index.i$1.formatUniversalUrl(c2, e2, l2);
+      const u3 = i$1$1.formatUniversalUrl(c2, e2, l2);
       if (l2 === "Puzzle Wallet" && (a2 = window == null ? void 0 : window.aleo) != null && a2.connectPuzzle) {
         const w2 = new URL(u3).searchParams, F = w2.get("uri"), T2 = w2.get("requestId"), j = w2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: F, requestId: T2 ?? void 0, sessionTopic: j ?? void 0 } });
       } else
-        index.i$1.openHref(u3, "_self");
+        i$1$1.openHref(u3, "_self");
     }
   }
   openMobileApp(e2 = false) {
-    const { walletConnectUri: o3 } = index.p$2.state, r2 = index.i$1.getWalletRouterData();
+    const { walletConnectUri: o3 } = p$2.state, r2 = i$1$1.getWalletRouterData();
     s2.setRecentWallet(r2), o3 && this.onFormatAndRedirect(o3, e2);
   }
   onGoToAppStore(e2) {
-    e2 && index.i$1.openHref(e2, "_blank");
+    e2 && i$1$1.openHref(e2, "_blank");
   }
   render() {
-    const { name: e2, id: o3, image_id: r2, app: a2, mobile: t2 } = index.i$1.getWalletRouterData(), { isWeb: l$12 } = s2.getCachedRouterWalletPlatforms(), i2 = a2 == null ? void 0 : a2.ios, c2 = t2 == null ? void 0 : t2.universal;
+    const { name: e2, id: o3, image_id: r2, app: a2, mobile: t2 } = i$1$1.getWalletRouterData(), { isWeb: l$12 } = s2.getCachedRouterWalletPlatforms(), i2 = a2 == null ? void 0 : a2.ios, c2 = t2 == null ? void 0 : t2.universal;
     return x`<wcm-modal-header title="${e2}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="Tap 'Open' to continue…" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer class="wcm-note"><wcm-platform-selection .isWeb="${l$12}" .isRetry="${true}"><wcm-button .onClick="${() => this.openMobileApp(false)}" .iconRight="${b.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection>${c2 ? x`<wcm-text color="secondary" variant="small-thin">Still doesn't work? <span tabindex="0" @click="${() => this.openMobileApp(true)}">Try this alternate link</span></wcm-text>` : null}</wcm-info-footer><wcm-info-footer class="wcm-app-store"><div><wcm-wallet-image walletId="${o3}" imageId="${l(r2)}"></wcm-wallet-image><wcm-text>${`Get ${e2}`}</wcm-text></div><wcm-button .iconRight="${b.ARROW_RIGHT_ICON}" .onClick="${() => this.onGoToAppStore(i2)}" variant="ghost">App Store</wcm-button></wcm-info-footer>`;
   }
 };
@@ -4201,7 +4199,7 @@ var rr = (e2, o3, r2, a2) => {
 };
 let Ne = class extends s$1 {
   render() {
-    const { name: e2, id: o3, image_id: r2 } = index.i$1.getWalletRouterData(), { isDesktop: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
+    const { name: e2, id: o3, image_id: r2 } = i$1$1.getWalletRouterData(), { isDesktop: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
     return x`<wcm-modal-header title="${e2}" .onAction="${s2.handleUriCopy}" .actionIcon="${b.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr walletId="${o3}" imageId="${l(r2)}"></wcm-walletconnect-qr></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Scan this QR Code with your phone's camera or inside ${e2} app`}</wcm-text><wcm-platform-selection .isDesktop="${a2}" .isWeb="${t2}"></wcm-platform-selection></wcm-info-footer>`;
   }
 };
@@ -4226,8 +4224,8 @@ var cr = Object.defineProperty, sr = Object.getOwnPropertyDescriptor, se = (e2, 
 const ze = 40;
 let H2 = class extends s$1 {
   constructor() {
-    super(...arguments), this.loading = !index.te$1.state.wallets.listings.length, this.firstFetch = !index.te$1.state.wallets.listings.length, this.search = "", this.endReached = false, this.intersectionObserver = void 0, this.searchDebounce = s2.debounce((e2) => {
-      e2.length >= 1 ? (this.firstFetch = true, this.endReached = false, this.search = e2, index.te$1.resetSearch(), this.fetchWallets()) : this.search && (this.search = "", this.endReached = this.isLastPage(), index.te$1.resetSearch());
+    super(...arguments), this.loading = !te$1.state.wallets.listings.length, this.firstFetch = !te$1.state.wallets.listings.length, this.search = "", this.endReached = false, this.intersectionObserver = void 0, this.searchDebounce = s2.debounce((e2) => {
+      e2.length >= 1 ? (this.firstFetch = true, this.endReached = false, this.search = e2, te$1.resetSearch(), this.fetchWallets()) : this.search && (this.search = "", this.endReached = this.isLastPage(), te$1.resetSearch());
     });
   }
   firstUpdated() {
@@ -4246,32 +4244,32 @@ let H2 = class extends s$1 {
     }), this.intersectionObserver.observe(this.placeholderEl);
   }
   isLastPage() {
-    const { wallets: e2, search: o3 } = index.te$1.state, { listings: r2, total: a2 } = this.search ? o3 : e2;
+    const { wallets: e2, search: o3 } = te$1.state, { listings: r2, total: a2 } = this.search ? o3 : e2;
     return a2 <= ze || r2.length >= a2;
   }
   async fetchWallets() {
     var e2;
-    const { wallets: o3, search: r2 } = index.te$1.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
+    const { wallets: o3, search: r2 } = te$1.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
     if (!this.endReached && (this.firstFetch || t2 > ze && a2.length < t2))
       try {
         this.loading = true;
-        const i2 = (e2 = index.p$2.state.chains) == null ? void 0 : e2.join(","), { listings: c2 } = await index.te$1.getWallets({ page: this.firstFetch ? 1 : l2 + 1, entries: ze, search: this.search, version: 2, chains: i2 }), u3 = c2.map((w2) => s2.getWalletIcon(w2));
-        await Promise.all([...u3.map(async (w2) => s2.preloadImage(w2)), index.i$1.wait(300)]), this.endReached = this.isLastPage();
+        const i2 = (e2 = p$2.state.chains) == null ? void 0 : e2.join(","), { listings: c2 } = await te$1.getWallets({ page: this.firstFetch ? 1 : l2 + 1, entries: ze, search: this.search, version: 2, chains: i2 }), u3 = c2.map((w2) => s2.getWalletIcon(w2));
+        await Promise.all([...u3.map(async (w2) => s2.preloadImage(w2)), i$1$1.wait(300)]), this.endReached = this.isLastPage();
       } catch (i2) {
-        console.error(i2), index.oe$2.openToast(s2.getErrorMessage(i2), "error");
+        console.error(i2), oe$2.openToast(s2.getErrorMessage(i2), "error");
       } finally {
         this.loading = false, this.firstFetch = false;
       }
   }
   onConnect(e2) {
-    index.i$1.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
+    i$1$1.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
   }
   onSearchChange(e2) {
     const { value: o3 } = e2.target;
     this.searchDebounce(o3);
   }
   render() {
-    const { wallets: e2, search: o$12 } = index.te$1.state, { listings: r2 } = this.search ? o$12 : e2, a2 = this.loading && !r2.length, t2 = this.search.length >= 3;
+    const { wallets: e2, search: o$12 } = te$1.state, { listings: r2 } = this.search ? o$12 : e2, a2 = this.loading && !r2.length, t2 = this.search.length >= 3;
     let l2 = S.manualWalletsTemplate(), i2 = S.recomendedWalletsTemplate(true);
     t2 && (l2 = l2.filter(({ values: w2 }) => s2.caseSafeIncludes(w2[0], this.search)), i2 = i2.filter(({ values: w2 }) => s2.caseSafeIncludes(w2[0], this.search)));
     const c2 = !this.loading && !r2.length && !i2.length, u3 = { "wcm-loading": a2, "wcm-end-reached": this.endReached || !this.loading, "wcm-empty": c2 };
@@ -4291,23 +4289,27 @@ let ve = class extends s$1 {
   }
   onFormatAndRedirect(e2) {
     var o3;
-    const { desktop: r2, name: a2 } = index.i$1.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.universal;
+    const { desktop: r2, name: a2 } = i$1$1.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.universal;
     if (t2) {
-      const l2 = index.i$1.formatUniversalUrl(t2, e2, a2);
+      const l2 = i$1$1.formatUniversalUrl(t2, e2, a2);
       if (a2 === "Puzzle Wallet" && (o3 = window == null ? void 0 : window.aleo) != null && o3.connectPuzzle) {
         const i2 = new URL(l2).searchParams, c2 = i2.get("uri"), u3 = i2.get("requestId"), w2 = i2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: c2, requestId: u3 ?? void 0, sessionTopic: w2 ?? void 0 } });
       } else
-        index.i$1.openHref(l2, "_blank");
+        i$1$1.openHref(l2, "_blank");
     }
   }
   openWebWallet() {
-    const { walletConnectUri: e2 } = index.p$2.state, o3 = index.i$1.getWalletRouterData();
+    const { walletConnectUri: e2 } = p$2.state, o3 = i$1$1.getWalletRouterData();
     s2.setRecentWallet(o3), e2 && this.onFormatAndRedirect(e2);
   }
   render() {
-    const { name: e2, id: o3, image_id: r2 } = index.i$1.getWalletRouterData(), { isMobile: a2, isDesktop: t2 } = s2.getCachedRouterWalletPlatforms(), l$12 = index.i$1.isMobile();
+    const { name: e2, id: o3, image_id: r2 } = i$1$1.getWalletRouterData(), { isMobile: a2, isDesktop: t2 } = s2.getCachedRouterWalletPlatforms(), l$12 = i$1$1.isMobile();
     return x`<wcm-modal-header title="${e2}" .onAction="${s2.handleUriCopy}" .actionIcon="${b.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="${`Continue in ${e2}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`${e2} web app has opened in a new tab. Go there, accept the connection, and come back`}</wcm-text><wcm-platform-selection .isMobile="${a2}" .isDesktop="${l$12 ? false : t2}" .isRetry="${true}"><wcm-button .onClick="${this.openWebWallet.bind(this)}" .iconRight="${b.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };
 ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
+export {
+  ne as WcmModal,
+  D as WcmQrCode
+};

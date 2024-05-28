@@ -506,7 +506,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexSeakgOT3);
+        await Promise.resolve().then(() => indexCCOgoiL5);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
       }
@@ -20171,7 +20171,6 @@
   var Network;
   (function(Network2) {
     Network2["AleoTestnet"] = "AleoTestnet";
-    Network2["AleoTestnet4"] = "AleoTestnet4";
     Network2["AleoCanarynet"] = "AleoCanarynet";
     Network2["AleoMainnet"] = "AleoMainnet";
   })(Network || (Network = {}));
@@ -20282,7 +20281,7 @@
   const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
   const name$1 = "@puzzlehq/sdk-core";
   const displayName$1 = "Puzzle SDK";
-  const version$2 = "0.3.2-beta.13";
+  const version$2 = "0.3.2-beta.15";
   const description$1 = "Your portal to privacy";
   const main$1 = "./dist/puzzle.cjs.js";
   const module$1 = "./dist/puzzle.es.js";
@@ -20308,7 +20307,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies$1 = {
-    "@puzzlehq/types": "1.0.15",
+    "@puzzlehq/types": "1.0.20",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -29102,7 +29101,6 @@
         jsonrpc: "2.0",
         method: "getBalance",
         params: {
-          assetId: void 0,
           address
         }
       }
@@ -33361,7 +33359,6 @@
   exports2.Network = void 0;
   (function(Network2) {
     Network2["AleoTestnet"] = "AleoTestnet";
-    Network2["AleoTestnet4"] = "AleoTestnet4";
     Network2["AleoCanarynet"] = "AleoCanarynet";
     Network2["AleoMainnet"] = "AleoMainnet";
   })(exports2.Network || (exports2.Network = {}));
@@ -33517,9 +33514,6 @@
         chain = "aleo:0";
         break;
       case exports2.Network.AleoTestnet:
-        chain = "aleo:1";
-        break;
-      case exports2.Network.AleoTestnet4:
         chain = "aleo:4";
         break;
       case exports2.Network.AleoCanarynet:
@@ -33537,12 +33531,12 @@
       case "aleo:3":
         return exports2.Network.AleoTestnet;
       case "aleo:4":
-        return exports2.Network.AleoTestnet4;
+        return exports2.Network.AleoTestnet;
     }
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.13";
+  const version$1 = "0.3.2-beta.15";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -33568,7 +33562,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.15",
+    "@puzzlehq/types": "1.0.20",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -33785,7 +33779,6 @@
         jsonrpc: "2.0",
         method: "getBalance",
         params: {
-          assetId: void 0,
           address
         }
       }
@@ -38518,7 +38511,7 @@
     }
   };
   ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
-  const indexSeakgOT3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexCCOgoiL5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ne;

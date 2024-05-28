@@ -128,10 +128,7 @@ export const networkToChainId = (network: Network, includePrefix: boolean = true
       chain = 'aleo:0';
       break;
     case Network.AleoTestnet:
-      chain = 'aleo:1'; // todo switch later to aleo:3
-      break;
-    case Network.AleoTestnet4:
-      chain = 'aleo:4';
+      chain = 'aleo:4'; // todo switch later to aleo:3
       break;
     case Network.AleoCanarynet:
       chain = 'aleo:0';
@@ -151,6 +148,6 @@ export const chainIdToNetwork = (
     case 'aleo:3':
       return Network.AleoTestnet;
     case 'aleo:4':
-      return Network.AleoTestnet4;
+      return Network.AleoTestnet;
   }
 };
