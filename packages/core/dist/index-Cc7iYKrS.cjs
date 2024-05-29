@@ -486,7 +486,7 @@ let d$3 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-CI2B_fl6.cjs"));
+      await Promise.resolve().then(() => require("./index-CBnMNmep.cjs"));
       const e2 = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
     }
@@ -20191,7 +20191,7 @@ function isAndroid() {
 }
 const web3modal_puzzle_props_android = {
   projectId,
-  chains: ["aleo:3"],
+  chains: wc_aleo_chains,
   enableExplorer: true,
   explorerRecommendedWalletIds: [
     "7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a"
@@ -20285,7 +20285,7 @@ const chainIdToNetwork = (chainId) => {
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.3.2-beta.15";
+const version = "0.4.0";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
 const module$1 = "./dist/puzzle.es.js";

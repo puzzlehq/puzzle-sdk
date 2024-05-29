@@ -20194,7 +20194,7 @@
   }
   const web3modal_puzzle_props_android = {
     projectId,
-    chains: ["aleo:3"],
+    chains: wc_aleo_chains,
     enableExplorer: true,
     explorerRecommendedWalletIds: [
       "7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a"
@@ -20288,7 +20288,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.3.2-beta.15";
+  const version$1 = "0.4.0";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";

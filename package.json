@@ -1,7 +1,7 @@
 {
   "name": "sdk-monorepo",
   "displayName": "Puzzle SDK",
-  "version": "0.3.2-beta.15",
+  "version": "0.4.0",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
