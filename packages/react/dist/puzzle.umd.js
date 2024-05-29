@@ -506,7 +506,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexCCOgoiL5);
+        await Promise.resolve().then(() => indexDkObllVU);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
       }
@@ -20193,12 +20193,8 @@
   ];
   const wc_required_aleo_chains$1 = ["aleo:1"];
   const wc_optional_aleo_chains$1 = [
-    "aleo:0",
+    "aleo:0"
     // for eventual mainnet
-    "aleo:3",
-    // for testnet3
-    "aleo:4"
-    // for testnet4 aka canarynet
   ];
   const wc_aleo_chains$1 = [
     ...wc_required_aleo_chains$1,
@@ -20307,7 +20303,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies$1 = {
-    "@puzzlehq/types": "1.0.20",
+    "@puzzlehq/types": "1.0.21",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -33412,12 +33408,8 @@
   ];
   const wc_required_aleo_chains = ["aleo:1"];
   const wc_optional_aleo_chains = [
-    "aleo:0",
+    "aleo:0"
     // for eventual mainnet
-    "aleo:3",
-    // for testnet3
-    "aleo:4"
-    // for testnet4 aka canarynet
   ];
   const wc_aleo_chains = [
     ...wc_required_aleo_chains,
@@ -33513,11 +33505,11 @@
       case exports2.Network.AleoMainnet:
         chain = "aleo:0";
         break;
-      case exports2.Network.AleoTestnet:
-        chain = "aleo:4";
-        break;
       case exports2.Network.AleoCanarynet:
         chain = "aleo:0";
+        break;
+      case exports2.Network.AleoTestnet:
+        chain = "aleo:1";
         break;
     }
     return includePrefix ? chain : chain.replace("aleo:", "");
@@ -33527,10 +33519,6 @@
       case "aleo:0":
         return exports2.Network.AleoCanarynet;
       case "aleo:1":
-        return exports2.Network.AleoTestnet;
-      case "aleo:3":
-        return exports2.Network.AleoTestnet;
-      case "aleo:4":
         return exports2.Network.AleoTestnet;
     }
   };
@@ -33562,7 +33550,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.20",
+    "@puzzlehq/types": "1.0.21",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -38511,7 +38499,7 @@
     }
   };
   ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
-  const indexCCOgoiL5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexDkObllVU = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ne;
