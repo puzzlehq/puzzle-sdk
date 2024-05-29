@@ -7,7 +7,7 @@ import {
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
@@ -23,12 +23,12 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
   const [account] = useWalletStore((state) => [state.account]);
 
   const useQueryFunction = hasInjectedConnection()
-    ? useExtensionRequestQuery
+    ? useInjectedRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:1',
+    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getEvent',
@@ -77,6 +77,7 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => !!id && !multisig,
         onData: () => refetch(),
+        dependencies: [id, multisig]
       },
       {
         subscriptionName: 'onSharedAccountSynced',
@@ -84,6 +85,7 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
           return !!id && !!multisig && data?.address === address;
         },
         onData: () => refetch(),
+        dependencies: [id, multisig, address]
       },
     ],
   });

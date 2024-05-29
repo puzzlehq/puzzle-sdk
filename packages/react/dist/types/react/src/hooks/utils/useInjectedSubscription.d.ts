@@ -4,6 +4,7 @@ type SubscriptionConfig = {
     subscriptionName: string;
     condition: (data: AccountSelectedResponse) => boolean;
     onData: (data: AccountSelectedResponse) => void;
+    dependencies: any[];
 };
 type UseInjectedSubscriptionsParams = {
     session: SessionTypes.Struct | undefined;

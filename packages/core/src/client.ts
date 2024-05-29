@@ -1,4 +1,4 @@
-import { WalletConnectModalSign } from '@walletconnect/modal-sign-html';
+import { WalletConnectModalSign } from '@puzzlehq/walletconnect-modal-sign-html';
 import {
   projectId as puzzleProjectId,
   web3modal_puzzle_props,
@@ -101,10 +101,10 @@ export async function getWalletConnectModalSignClient(): Promise<WalletConnectMo
   return new Promise((resolve) => {
     if (connection) {
       resolve(connection);
-    // @ts-ignore-next-line
+      // @ts-ignore-next-line
     } else if (typeof window !== 'undefined' && window?.puzzleSdkConnection) {
       // @ts-ignore-next-line
-      resolve(window.puzzleSdkConnection)
+      resolve(window.puzzleSdkConnection);
     } else {
       const interval = setInterval(() => {
         if (connection) {

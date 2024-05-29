@@ -1,6 +1,7 @@
 export const checkForDesktopConnection = async (sessionTopic: string) => {
-  const extensionDownloaded = !!window?.aleo?.puzzleWalletClient;
-  if (!extensionDownloaded) {
+  const injectedConnection = !!window?.aleo?.puzzleWalletClient;
+  if (!injectedConnection) {
+    console.log('!!window?.aleo?.puzzleWalletClient', injectedConnection);
     localStorage.setItem('puzzle-hasInjectedConnection', 'false');
     return false;
   }
@@ -24,8 +25,8 @@ export const checkForDesktopConnection = async (sessionTopic: string) => {
 };
 
 export const hasInjectedConnection = () => {
-  const extensionDownloaded = !!window?.aleo?.puzzleWalletClient;
-  if (!extensionDownloaded) {
+  const injectedConnection = !!window?.aleo?.puzzleWalletClient;
+  if (!injectedConnection) {
     return false;
   }
 

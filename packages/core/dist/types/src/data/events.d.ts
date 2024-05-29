@@ -1,4 +1,4 @@
-import { Balance } from '../messages/balance.js';
+import { Balance } from '@puzzlehq/types';
 export type AccountSelectedResponse = {
     address: string;
     balances: Balance[];

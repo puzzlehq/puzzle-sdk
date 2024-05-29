@@ -1,13 +1,20 @@
 import { SessionTypes } from '@walletconnect/types';
-import { DecryptRequest, DecryptResponse, hasInjectedConnection, log_sdk } from '@puzzlehq/sdk-core';
-import { useExtensionRequest, useRequest } from './wc/useRequest.js';
+import {
+  DecryptRequest,
+  DecryptResponse,
+  hasInjectedConnection,
+  log_sdk,
+} from '@puzzlehq/sdk-core';
+import { useInjectedRequest, useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useWalletStore } from '../store.js';
 
 export const useDecrypt = (ciphertexts?: string[]) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
+  const [account] = useWalletStore((state) => [state.account]);
 
   const useRequestFunction = hasInjectedConnection()
-    ? useExtensionRequest
+    ? useInjectedRequest
     : useRequest;
 
   const {
@@ -18,7 +25,7 @@ export const useDecrypt = (ciphertexts?: string[]) => {
   } = useRequestFunction<DecryptResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: 'aleo:1',
+      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'decrypt',

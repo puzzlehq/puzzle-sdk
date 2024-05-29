@@ -1,16 +1,17 @@
 import {
-  wc_aleo_chains,
   wc_aleo_methods,
   wc_events,
+  wc_optional_aleo_chains,
+  wc_required_aleo_chains,
 } from '../data/walletconnect.js';
 import { getWalletConnectModalSignClient, emitter } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { checkForDesktopConnection } from '../utils/clientInfo.js';
 
-export const connect = async () => {
+export const connect = async (showModal = true) => {
   const connection = await getWalletConnectModalSignClient();
   if (!connection) {
-    throw new Error('call setConnection() first!');
+    throw new Error('call configureConnection() first!');
   }
 
   const existingSession: SessionTypes.Struct | undefined =
@@ -26,11 +27,18 @@ export const connect = async () => {
         requiredNamespaces: {
           aleo: {
             methods: wc_aleo_methods,
-            chains: wc_aleo_chains,
+            chains: wc_required_aleo_chains,
             events: wc_events,
           },
         },
-      });
+        optionalNamespaces: {
+          aleo: {
+            chains: wc_optional_aleo_chains,
+            methods: wc_aleo_methods,
+            events: wc_events, 
+          }
+        },
+      }, showModal);
     emitter.emit('session_change');
 
     if (newSession) {

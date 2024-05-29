@@ -7,10 +7,11 @@ export * from './utils/clientInfo.js';
 export * from './client.js';
 
 import {
+  type SessionTypes
+} from '@walletconnect/types'
+
+import {
   type Account,
-  type Asset,
-  AssetType,
-  type AssetValue,
   type Event,
   type EventCreate,
   EventStatus,
@@ -38,11 +39,13 @@ import {
   zodViewKey,
   zodVisibility,
 } from '@puzzlehq/types';
+
+export {
+  SessionTypes
+}
+
 export {
   type Account,
-  type Asset,
-  AssetType,
-  type AssetValue,
   type Event,
   type EventCreate,
   EventStatus,

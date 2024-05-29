@@ -29,7 +29,7 @@ export default defineConfig({
         // Provide global variables to use in the UMD build for externalized deps
         globals: {
           react: 'React',
-          '@walletconnect/modal-sign-html': 'modalSignHtml',
+          '@puzzlehq/walletconnect-modal-sign-html': 'modalSignHtml',
           events: 'EventEmitter',
           zustand: 'zustand',
           '@tanstack/react-query': 'reactQuery',

@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const index = require("./index-DbX1yfTB.cjs");
-Object.defineProperty(exports, "AssetType", {
-  enumerable: true,
-  get: () => index.AssetType
-});
+const index = require("./index-BHOVivr9.cjs");
 Object.defineProperty(exports, "EventStatus", {
   enumerable: true,
   get: () => index.EventStatus
@@ -30,6 +26,7 @@ exports.aleoTransactionIdRegex = index.aleoTransactionIdRegex;
 exports.aleoU32 = index.aleoU32;
 exports.aleoU64 = index.aleoU64;
 exports.aleoViewKeyRegex = index.aleoViewKeyRegex;
+exports.chainIdToNetwork = index.chainIdToNetwork;
 exports.checkForDesktopConnection = index.checkForDesktopConnection;
 exports.configureConnection = index.configureConnection;
 exports.connect = index.connect;
@@ -51,6 +48,7 @@ exports.getWalletConnectModalSignClient = index.getWalletConnectModalSignClient;
 exports.hasInjectedConnection = index.hasInjectedConnection;
 exports.importSharedState = index.importSharedState;
 exports.log_sdk = index.log_sdk;
+exports.networkToChainId = index.networkToChainId;
 exports.projectId = index.projectId;
 exports.queryClient = index.queryClient;
 exports.requestCreateEvent = index.requestCreateEvent;
@@ -75,10 +73,11 @@ exports.useRequestCreateEvent = index.useRequestCreateEvent;
 exports.useRequestSignature = index.useRequestSignature;
 exports.useSession = index.useSession;
 exports.useWalletSession = index.useWalletSession;
-exports.useWalletStore = index.useWalletStore;
 exports.wc_aleo_chains = index.wc_aleo_chains;
 exports.wc_aleo_methods = index.wc_aleo_methods;
 exports.wc_events = index.wc_events;
+exports.wc_optional_aleo_chains = index.wc_optional_aleo_chains;
+exports.wc_required_aleo_chains = index.wc_required_aleo_chains;
 exports.web3modal_puzzle_props = index.web3modal_puzzle_props;
 exports.web3modal_puzzle_props_android = index.web3modal_puzzle_props_android;
 exports.web3modal_puzzle_props_default = index.web3modal_puzzle_props_default;

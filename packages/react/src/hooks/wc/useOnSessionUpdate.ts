@@ -1,4 +1,4 @@
-import type { WalletConnectModalEventCallback } from '@walletconnect/modal-sign-html';
+import type { WalletConnectModalEventCallback } from '@puzzlehq/walletconnect-modal-sign-html';
 import { useEffect } from 'react';
 import { getWalletConnectModalSignClient } from '@puzzlehq/sdk-core';
 

@@ -1,4 +1,4 @@
-import type { WalletConnectModalSignRequestArguments } from '@walletconnect/modal-sign-html';
+import type { WalletConnectModalSignRequestArguments } from '@puzzlehq/walletconnect-modal-sign-html';
 import { getWalletConnectModalSignClient } from '@puzzlehq/sdk-core';
 import { QueryKey, UseQueryOptions, useQuery } from '@tanstack/react-query';
 import { useAsyncAction } from './_useAsyncAction.js';
@@ -34,8 +34,8 @@ export function useRequestQuery<Result>({
     queryKey,
     async () => fetchRequest<Result>(wcParams, queryKey),
     queryOptions ?? {
-      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
-      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
+      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 30_000,
+      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 15_000,
       refetchIntervalInBackground: true,
       enabled,
       retry: true,
@@ -43,7 +43,7 @@ export function useRequestQuery<Result>({
   );
 }
 
-export function useExtensionRequestQuery<Result>({
+export function useInjectedRequestQuery<Result>({
   queryKey,
   wcParams,
   enabled,
@@ -54,8 +54,8 @@ export function useExtensionRequestQuery<Result>({
     queryKey,
     async () => fetchFunction!(wcParams),
     queryOptions ?? {
-      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 45_000,
-      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 30_000,
+      staleTime: queryKey[0] === 'getEvent' ? 7_500 : 30_000,
+      refetchInterval: queryKey[0] === 'getEvent' ? 5_000 : 15_000,
       refetchIntervalInBackground: true,
       enabled,
       retry: true,
@@ -89,7 +89,7 @@ export function useRequest<Result>(
   return { data, error, loading, request };
 }
 
-export function useExtensionRequest<Result>(
+export function useInjectedRequest<Result>(
   params: WalletConnectModalSignRequestArguments,
   fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any,
 ) {

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import {
-  Balance,
   GetBalancesRequest,
   GetBalancesResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
+import { Balance } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
@@ -17,22 +17,21 @@ type UseBalanceParams = {
   multisig?: boolean;
 };
 
-export const useBalance = ({ address, multisig }: UseBalanceParams) => {
+export const useBalance = ({ address, multisig }: UseBalanceParams = {}) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
   const useQueryFunction = hasInjectedConnection()
-    ? useExtensionRequestQuery
+    ? useInjectedRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:1',
+    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getBalance',
       params: {
-        assetId: undefined,
         address,
       } as GetBalancesRequest,
     },
@@ -70,6 +69,7 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
           return !multisig;
         },
         onData: () => refetch(),
+        dependencies: [multisig]
       },
       {
         subscriptionName: 'onSharedAccountSynced',
@@ -77,6 +77,7 @@ export const useBalance = ({ address, multisig }: UseBalanceParams) => {
           return !!multisig && data?.address === address;
         },
         onData: () => refetch(),
+        dependencies: [multisig, address]
       },
     ],
   });

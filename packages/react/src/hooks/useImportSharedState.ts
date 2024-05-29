@@ -4,14 +4,16 @@ import {
   ImportSharedStateResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
-import { useExtensionRequest, useRequest } from './wc/useRequest.js';
+import { useInjectedRequest, useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useWalletStore } from '../store.js';
 
 export const useImportSharedState = (seed?: string) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
+  const [account] = useWalletStore((state) => [state.account]);
 
   const useRequestFunction = hasInjectedConnection()
-    ? useExtensionRequest
+    ? useInjectedRequest
     : useRequest;
 
   const {
@@ -22,7 +24,7 @@ export const useImportSharedState = (seed?: string) => {
   } = useRequestFunction<ImportSharedStateResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: 'aleo:1',
+      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
       request: {
         jsonrpc: '2.0',
         method: 'importSharedState',

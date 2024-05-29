@@ -8,7 +8,7 @@ import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useWalletStore } from '../store.js';
-import { useExtensionRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
@@ -40,12 +40,12 @@ export const useAccount = () => {
   ]);
 
   const useQueryFunction = hasInjectedConnection()
-    ? useExtensionRequestQuery
+    ? useInjectedRequestQuery
     : useRequestQuery;
 
   const query = {
     topic: session?.topic,
-    chainId: 'aleo:1',
+    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
       jsonrpc: '2.0',
       method: 'getSelectedAccount',
@@ -87,6 +87,7 @@ export const useAccount = () => {
             shortenedAddress: shortenAddress(data.address),
           });
         },
+        dependencies: []
       },
     ],
   });
@@ -115,7 +116,6 @@ export const useAccount = () => {
 
   useOnSessionUpdate(({ params, topic }) => {
     const address = params.event.address ?? params.event.data.address;
-
     const network = params.chainId.split(':')[0];
     const chainId = params.chainId.split(':')[1];
     setAccount({
@@ -126,7 +126,7 @@ export const useAccount = () => {
     });
   });
 
-  useOnSessionDelete(({ params, topic }) => {
+  useOnSessionDelete(() => {
     onDisconnect();
   });
 
