@@ -15,11 +15,9 @@ export const wc_aleo_methods = [
   'requestSignature',
 ];
 
-export const wc_required_aleo_chains = ['aleo:1']; // legacy testnet3, to be phased out
+export const wc_required_aleo_chains = ['aleo:1'];
 export const wc_optional_aleo_chains = [
   'aleo:0', // for eventual mainnet
-  'aleo:3', // for testnet3
-  'aleo:4' // for testnet4 aka canarynet
 ];
 
 export const wc_aleo_chains = [
@@ -46,7 +44,7 @@ function isAndroid() {
 
 export const web3modal_puzzle_props_android = {
   projectId,
-  chains: ['aleo:3'],
+  chains: wc_aleo_chains,
   enableExplorer: true,
   explorerRecommendedWalletIds: [
     '7ee7b95f4ae8b3e08aab5158be7fe8e71f79bcd3717594254b34fa1f3cd4611a',
@@ -127,30 +125,23 @@ export const networkToChainId = (network: Network, includePrefix: boolean = true
     case Network.AleoMainnet:
       chain = 'aleo:0';
       break;
-    case Network.AleoTestnet:
-      chain = 'aleo:1'; // todo switch later to aleo:3
-      break;
-    case Network.AleoTestnet4:
-      chain = 'aleo:4';
-      break;
     case Network.AleoCanarynet:
       chain = 'aleo:0';
+      break;
+    case Network.AleoTestnet:
+      chain = 'aleo:1'
       break;
   }
   return includePrefix ? chain : chain.replace('aleo:', '');
 };
 
 export const chainIdToNetwork = (
-  chainId: 'aleo:0' | 'aleo:1' | 'aleo:3' | 'aleo:4',
+  chainId: 'aleo:0' | 'aleo:1'
 ) => {
   switch (chainId) {
     case 'aleo:0':
       return Network.AleoCanarynet; 
     case 'aleo:1':
       return Network.AleoTestnet;
-    case 'aleo:3':
-      return Network.AleoTestnet;
-    case 'aleo:4':
-      return Network.AleoTestnet4;
   }
 };

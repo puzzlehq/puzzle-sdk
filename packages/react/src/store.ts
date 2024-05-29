@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { queryClient } from './index.js';
 import { persist } from 'zustand/middleware';
-import { Network, PuzzleAccount } from '@puzzlehq/sdk-core';
+import { PuzzleAccount } from '@puzzlehq/sdk-core';
 
 type WalletState = {
   account?: PuzzleAccount;

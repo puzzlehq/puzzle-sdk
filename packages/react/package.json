@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle React SDK",
-  "version": "0.3.2-beta.13",
+  "version": "0.4.0",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@puzzlehq/sdk-core": "../core",
+    "@puzzlehq/types": "1.0.21",
     "@tanstack/react-query": "^4.29.5",
     "@trpc/server": "^10.31.0",
     "@walletconnect/types": "^2.11.2",
