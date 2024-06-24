@@ -73,11 +73,11 @@ importers:
   packages/react:
     dependencies:
       '@puzzlehq/sdk-core':
-        specifier: ../core
+        specifier: 0.4.0
         version: link:../core
       '@puzzlehq/types':
-        specifier: 1.0.22
-        version: 1.0.22
+        specifier: 1.0.21
+        version: 1.0.21
       '@tanstack/react-query':
         specifier: ^4.29.5
         version: 4.36.1(react-dom@18.3.1)(react@18.3.1)
@@ -797,6 +797,12 @@ packages:
       '@parcel/watcher-win32-arm64': 2.4.1
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
+    dev: false
+
+  /@puzzlehq/types@1.0.21:
+    resolution: {integrity: sha512-wO2HtC4wbQ9yijHFu06xArco8P5o2uJw/05mDSKfn/T/dLMzWjOaDyAfh5DxzysRpwNRzGQopawpJure3EToyA==}
+    dependencies:
+      zod: 3.21.1
     dev: false
 
   /@puzzlehq/types@1.0.22:
