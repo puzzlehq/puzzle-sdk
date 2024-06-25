@@ -1,8 +1,9 @@
-import { type RecordWithPlaintext } from '@puzzlehq/types';
+import { type RecordWithPlaintext, RecordStatus } from '@puzzlehq/types';
+export type RecordStatusFilter = RecordStatus | 'All';
 export type RecordsFilter = {
     programIds?: string[];
     functionId?: string;
-    type: 'all' | 'spent' | 'unspent' | 'pending';
+    status: RecordStatusFilter;
     names?: string[];
 };
 export type GetRecordsRequest = {
