@@ -486,7 +486,7 @@ let d$3 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-CTXo40_N.cjs"));
+      await Promise.resolve().then(() => require("./index-BWE7tLyv.cjs"));
       const e2 = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
     }
@@ -20292,7 +20292,7 @@ const chainIdToNetwork = (chainId) => {
 };
 const name = "@puzzlehq/sdk-core";
 const displayName = "Puzzle SDK";
-const version = "0.4.0";
+const version = "0.4.2";
 const description = "Your portal to privacy";
 const main = "./dist/puzzle.cjs.js";
 const module$1 = "./dist/puzzle.es.js";

@@ -506,7 +506,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexT2UGccUq);
+        await Promise.resolve().then(() => indexDUmhkW7q);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
       }
@@ -20284,7 +20284,7 @@
   const web3modal_puzzle_props$1 = isAndroid$1() ? web3modal_puzzle_props_android$1 : web3modal_puzzle_props_default$1;
   const name$1 = "@puzzlehq/sdk-core";
   const displayName$1 = "Puzzle SDK";
-  const version$2 = "0.4.0";
+  const version$2 = "0.4.2";
   const description$1 = "Your portal to privacy";
   const main$1 = "./dist/puzzle.cjs.js";
   const module$1 = "./dist/puzzle.es.js";
@@ -33538,7 +33538,7 @@
   };
   const name = "@puzzlehq/sdk-core";
   const displayName = "Puzzle SDK";
-  const version$1 = "0.4.0";
+  const version$1 = "0.4.2";
   const description = "Your portal to privacy";
   const main = "./dist/puzzle.cjs.js";
   const module2 = "./dist/puzzle.es.js";
@@ -38513,7 +38513,7 @@
     }
   };
   ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
-  const indexT2UGccUq = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexDUmhkW7q = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ne;
