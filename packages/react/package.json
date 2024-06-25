@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle React SDK",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Your portal to privacy",
   "main": "./dist/puzzle.cjs.js",
   "module": "./dist/puzzle.es.js",
