@@ -23707,6 +23707,9 @@
   };
   const hasInjectedConnection = () => {
     var _a2;
+    if (typeof window === "undefined") {
+      return false;
+    }
     const injectedConnection = !!((_a2 = window == null ? void 0 : window.aleo) == null ? void 0 : _a2.puzzleWalletClient);
     if (!injectedConnection) {
       return false;

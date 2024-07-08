@@ -25,6 +25,10 @@ export const checkForDesktopConnection = async (sessionTopic: string) => {
 };
 
 export const hasInjectedConnection = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
   const injectedConnection = !!window?.aleo?.puzzleWalletClient;
   if (!injectedConnection) {
     return false;

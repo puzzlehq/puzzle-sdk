@@ -506,7 +506,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexDUmhkW7q);
+        await Promise.resolve().then(() => indexCWKrLEBp);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
       }
@@ -23696,6 +23696,9 @@
   };
   const hasInjectedConnection$1 = () => {
     var _a2;
+    if (typeof window === "undefined") {
+      return false;
+    }
     const injectedConnection = !!((_a2 = window == null ? void 0 : window.aleo) == null ? void 0 : _a2.puzzleWalletClient);
     if (!injectedConnection) {
       return false;
@@ -33718,6 +33721,9 @@
   };
   const hasInjectedConnection = () => {
     var _a2;
+    if (typeof window === "undefined") {
+      return false;
+    }
     const injectedConnection = !!((_a2 = window == null ? void 0 : window.aleo) == null ? void 0 : _a2.puzzleWalletClient);
     if (!injectedConnection) {
       return false;
@@ -38513,7 +38519,7 @@
     }
   };
   ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
-  const indexDUmhkW7q = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexCWKrLEBp = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ne;
