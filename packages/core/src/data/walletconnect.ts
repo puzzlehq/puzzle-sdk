@@ -54,13 +54,22 @@ export const web3modal_puzzle_props_android = {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
-        native: 'puzzleapp://',
-        universal: '',
+        native: '',
+        universal: 'https://walletconnect.puzzle.online/',
+      },
+    },
+    {
+      id: 'avail',
+      name: 'Avail Wallet',
+      links: {
+        native: 'avail://',
+        universal: 'https://avail.global',
       },
     },
   ],
   walletImages: {
     puzzle: 'https://i.imgur.com/p9tHaFC.png',
+    avail: 'https://i.imgur.com/GxNn8BO.png',
   },
 };
 
@@ -76,8 +85,16 @@ export const web3modal_puzzle_props_default = {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
-        native: 'puzzleapp://',
-        universal: '',
+        native: '',
+        universal: 'https://walletconnect.puzzle.online/',
+      },
+    },
+    {
+      id: 'avail',
+      name: 'Avail Wallet',
+      links: {
+        native: 'avail://',
+        universal: 'https://avail.global',
       },
     },
   ],
@@ -140,7 +157,7 @@ export const chainIdToNetwork = (
 ) => {
   switch (chainId) {
     case 'aleo:0':
-      return Network.AleoCanarynet; 
+      return Network.AleoCanarynet;
     case 'aleo:1':
       return Network.AleoTestnet;
   }
