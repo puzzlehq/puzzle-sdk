@@ -54,18 +54,18 @@ export const web3modal_puzzle_props_android = {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
-        native: '',
-        universal: 'https://walletconnect.puzzle.online/',
+        native: 'puzzleapp://',
+        universal: '',
       },
     },
     {
-      id: 'avail',
-      name: 'Avail Wallet',
+      id: "avail",
+      name: "Avail Wallet",
       links: {
-        native: 'avail://',
-        universal: 'https://avail.global',
-      },
-    },
+        native: "avail://",
+        universal: "https://avail.global"
+      }
+    }
   ],
   walletImages: {
     puzzle: 'https://i.imgur.com/p9tHaFC.png',
@@ -85,8 +85,8 @@ export const web3modal_puzzle_props_default = {
       id: 'puzzle',
       name: 'Puzzle Wallet',
       links: {
-        native: '',
-        universal: 'https://walletconnect.puzzle.online/',
+        native: 'puzzleapp://',
+        universal: '',
       },
     },
     {
