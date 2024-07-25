@@ -20,6 +20,7 @@ export declare const web3modal_puzzle_props_android: {
     }[];
     walletImages: {
         puzzle: string;
+        avail: string;
     };
 };
 export declare const web3modal_puzzle_props_default: {
@@ -63,6 +64,7 @@ export declare const web3modal_puzzle_props: {
     }[];
     walletImages: {
         puzzle: string;
+        avail: string;
     };
 };
 export declare const signClient_puzzleProps: {

@@ -1,4 +1,4 @@
-import { n as ne$1, s as se$1, T as T$1, o as oe, R as R$1, i as i$4, t as te, p as p$1, y as y$1 } from "./index-DXk4dsRM.js";
+import { n as ne$1, s as se$1, T as T$1, o as oe, R as R$1, i as i$4, t as te, p as p$1, y as y$1 } from "./index-BU9x7kCM.js";
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -7,8 +7,7 @@ import { n as ne$1, s as se$1, T as T$1, o as oe, R as R$1, i as i$4, t as te, p
 const t$3 = window, e$5 = t$3.ShadowRoot && (void 0 === t$3.ShadyCSS || t$3.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, s$4 = Symbol(), n$5 = /* @__PURE__ */ new WeakMap();
 let o$4 = class o {
   constructor(t2, e2, n2) {
-    if (this._$cssResult$ = true, n2 !== s$4)
-      throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
+    if (this._$cssResult$ = true, n2 !== s$4) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = t2, this.t = e2;
   }
   get styleSheet() {
@@ -26,10 +25,8 @@ let o$4 = class o {
 };
 const r$2 = (t2) => new o$4("string" == typeof t2 ? t2 : t2 + "", void 0, s$4), i$3 = (t2, ...e2) => {
   const n2 = 1 === t2.length ? t2[0] : e2.reduce((e3, s3, n3) => e3 + ((t3) => {
-    if (true === t3._$cssResult$)
-      return t3.cssText;
-    if ("number" == typeof t3)
-      return t3;
+    if (true === t3._$cssResult$) return t3.cssText;
+    if ("number" == typeof t3) return t3;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + t3 + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(s3) + t2[n3 + 1], t2[0]);
   return new o$4(n2, t2, s$4);
@@ -40,8 +37,7 @@ const r$2 = (t2) => new o$4("string" == typeof t2 ? t2 : t2 + "", void 0, s$4), 
   });
 }, c$1 = e$5 ? (t2) => t2 : (t2) => t2 instanceof CSSStyleSheet ? ((t3) => {
   let e2 = "";
-  for (const s3 of t3.cssRules)
-    e2 += s3.cssText;
+  for (const s3 of t3.cssRules) e2 += s3.cssText;
   return r$2(e2);
 })(t2) : t2;
 /**
@@ -113,14 +109,12 @@ let u$1 = class u extends HTMLElement {
     return this.elementProperties.get(t2) || l$3;
   }
   static finalize() {
-    if (this.hasOwnProperty(d$1))
-      return false;
+    if (this.hasOwnProperty(d$1)) return false;
     this[d$1] = true;
     const t2 = Object.getPrototypeOf(this);
     if (t2.finalize(), void 0 !== t2.h && (this.h = [...t2.h]), this.elementProperties = new Map(t2.elementProperties), this._$Ev = /* @__PURE__ */ new Map(), this.hasOwnProperty("properties")) {
       const t3 = this.properties, i2 = [...Object.getOwnPropertyNames(t3), ...Object.getOwnPropertySymbols(t3)];
-      for (const s3 of i2)
-        this.createProperty(s3, t3[s3]);
+      for (const s3 of i2) this.createProperty(s3, t3[s3]);
     }
     return this.elementStyles = this.finalizeStyles(this.styles), true;
   }
@@ -128,10 +122,8 @@ let u$1 = class u extends HTMLElement {
     const s3 = [];
     if (Array.isArray(i2)) {
       const e2 = new Set(i2.flat(1 / 0).reverse());
-      for (const i3 of e2)
-        s3.unshift(c$1(i3));
-    } else
-      void 0 !== i2 && s3.push(c$1(i2));
+      for (const i3 of e2) s3.unshift(c$1(i3));
+    } else void 0 !== i2 && s3.push(c$1(i2));
     return s3;
   }
   static _$Ep(t2, i2) {
@@ -214,8 +206,7 @@ let u$1 = class u extends HTMLElement {
   }
   performUpdate() {
     var t2;
-    if (!this.isUpdatePending)
-      return;
+    if (!this.isUpdatePending) return;
     this.hasUpdated, this._$Ei && (this._$Ei.forEach((t3, i3) => this[i3] = t3), this._$Ei = void 0);
     let i2 = false;
     const s3 = this._$AL;
@@ -268,8 +259,7 @@ var t$2;
 const i$2 = window, s$2 = i$2.trustedTypes, e$3 = s$2 ? s$2.createPolicy("lit-html", { createHTML: (t2) => t2 }) : void 0, o$2 = "$lit$", n$3 = `lit$${(Math.random() + "").slice(9)}$`, l$2 = "?" + n$3, h$1 = `<${l$2}>`, r = document, u2 = () => r.createComment(""), d = (t2) => null === t2 || "object" != typeof t2 && "function" != typeof t2, c = Array.isArray, v = (t2) => c(t2) || "function" == typeof (null == t2 ? void 0 : t2[Symbol.iterator]), a = "[ 	\n\f\r]", f = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, _$1 = /-->/g, m = />/g, p = RegExp(`>|${a}(?:([^\\s"'>=/]+)(${a}*=${a}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), g = /'/g, $ = /"/g, y = /^(?:script|style|textarea|title)$/i, w = (t2) => (i2, ...s3) => ({ _$litType$: t2, strings: i2, values: s3 }), x = w(1), b$1 = w(2), T = Symbol.for("lit-noChange"), A = Symbol.for("lit-nothing"), E = /* @__PURE__ */ new WeakMap(), C = r.createTreeWalker(r, 129, null, false);
 function P$1(t2, i2) {
-  if (!Array.isArray(t2) || !t2.hasOwnProperty("raw"))
-    throw Error("invalid template strings array");
+  if (!Array.isArray(t2) || !t2.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return void 0 !== e$3 ? e$3.createHTML(i2) : i2;
 }
 const V = (t2, i2) => {
@@ -278,8 +268,7 @@ const V = (t2, i2) => {
   for (let i3 = 0; i3 < s3; i3++) {
     const s4 = t2[i3];
     let d2, c2, v2 = -1, a2 = 0;
-    for (; a2 < s4.length && (u3.lastIndex = a2, c2 = u3.exec(s4), null !== c2); )
-      a2 = u3.lastIndex, u3 === f ? "!--" === c2[1] ? u3 = _$1 : void 0 !== c2[1] ? u3 = m : void 0 !== c2[2] ? (y.test(c2[2]) && (l2 = RegExp("</" + c2[2], "g")), u3 = p) : void 0 !== c2[3] && (u3 = p) : u3 === p ? ">" === c2[0] ? (u3 = null != l2 ? l2 : f, v2 = -1) : void 0 === c2[1] ? v2 = -2 : (v2 = u3.lastIndex - c2[2].length, d2 = c2[1], u3 = void 0 === c2[3] ? p : '"' === c2[3] ? $ : g) : u3 === $ || u3 === g ? u3 = p : u3 === _$1 || u3 === m ? u3 = f : (u3 = p, l2 = void 0);
+    for (; a2 < s4.length && (u3.lastIndex = a2, c2 = u3.exec(s4), null !== c2); ) a2 = u3.lastIndex, u3 === f ? "!--" === c2[1] ? u3 = _$1 : void 0 !== c2[1] ? u3 = m : void 0 !== c2[2] ? (y.test(c2[2]) && (l2 = RegExp("</" + c2[2], "g")), u3 = p) : void 0 !== c2[3] && (u3 = p) : u3 === p ? ">" === c2[0] ? (u3 = null != l2 ? l2 : f, v2 = -1) : void 0 === c2[1] ? v2 = -2 : (v2 = u3.lastIndex - c2[2].length, d2 = c2[1], u3 = void 0 === c2[3] ? p : '"' === c2[3] ? $ : g) : u3 === $ || u3 === g ? u3 = p : u3 === _$1 || u3 === m ? u3 = f : (u3 = p, l2 = void 0);
     const w2 = u3 === p && t2[i3 + 1].startsWith("/>") ? " " : "";
     r2 += u3 === f ? s4 + h$1 : v2 >= 0 ? (e2.push(d2), s4.slice(0, v2) + o$2 + s4.slice(v2) + n$3 + w2) : s4 + n$3 + (-2 === v2 ? (e2.push(void 0), i3) : w2);
   }
@@ -299,35 +288,28 @@ let N$1 = class N {
       if (1 === h2.nodeType) {
         if (h2.hasAttributes()) {
           const t3 = [];
-          for (const i3 of h2.getAttributeNames())
-            if (i3.endsWith(o$2) || i3.startsWith(n$3)) {
-              const s3 = f2[d2++];
-              if (t3.push(i3), void 0 !== s3) {
-                const t4 = h2.getAttribute(s3.toLowerCase() + o$2).split(n$3), i4 = /([.?@])?(.*)/.exec(s3);
-                v2.push({ type: 1, index: r2, name: i4[2], strings: t4, ctor: "." === i4[1] ? H$1 : "?" === i4[1] ? L$1 : "@" === i4[1] ? z : k });
-              } else
-                v2.push({ type: 6, index: r2 });
-            }
-          for (const i3 of t3)
-            h2.removeAttribute(i3);
+          for (const i3 of h2.getAttributeNames()) if (i3.endsWith(o$2) || i3.startsWith(n$3)) {
+            const s3 = f2[d2++];
+            if (t3.push(i3), void 0 !== s3) {
+              const t4 = h2.getAttribute(s3.toLowerCase() + o$2).split(n$3), i4 = /([.?@])?(.*)/.exec(s3);
+              v2.push({ type: 1, index: r2, name: i4[2], strings: t4, ctor: "." === i4[1] ? H$1 : "?" === i4[1] ? L$1 : "@" === i4[1] ? z : k });
+            } else v2.push({ type: 6, index: r2 });
+          }
+          for (const i3 of t3) h2.removeAttribute(i3);
         }
         if (y.test(h2.tagName)) {
           const t3 = h2.textContent.split(n$3), i3 = t3.length - 1;
           if (i3 > 0) {
             h2.textContent = s$2 ? s$2.emptyScript : "";
-            for (let s3 = 0; s3 < i3; s3++)
-              h2.append(t3[s3], u2()), C.nextNode(), v2.push({ type: 2, index: ++r2 });
+            for (let s3 = 0; s3 < i3; s3++) h2.append(t3[s3], u2()), C.nextNode(), v2.push({ type: 2, index: ++r2 });
             h2.append(t3[i3], u2());
           }
         }
-      } else if (8 === h2.nodeType)
-        if (h2.data === l$2)
-          v2.push({ type: 2, index: r2 });
-        else {
-          let t3 = -1;
-          for (; -1 !== (t3 = h2.data.indexOf(n$3, t3 + 1)); )
-            v2.push({ type: 7, index: r2 }), t3 += n$3.length - 1;
-        }
+      } else if (8 === h2.nodeType) if (h2.data === l$2) v2.push({ type: 2, index: r2 });
+      else {
+        let t3 = -1;
+        for (; -1 !== (t3 = h2.data.indexOf(n$3, t3 + 1)); ) v2.push({ type: 7, index: r2 }), t3 += n$3.length - 1;
+      }
       r2++;
     }
   }
@@ -338,8 +320,7 @@ let N$1 = class N {
 };
 function S$1(t2, i2, s3 = t2, e2) {
   var o3, n2, l2, h2;
-  if (i2 === T)
-    return i2;
+  if (i2 === T) return i2;
   let r2 = void 0 !== e2 ? null === (o3 = s3._$Co) || void 0 === o3 ? void 0 : o3[e2] : s3._$Cl;
   const u3 = d(i2) ? void 0 : i2._$litDirective$;
   return (null == r2 ? void 0 : r2.constructor) !== u3 && (null === (n2 = null == r2 ? void 0 : r2._$AO) || void 0 === n2 || n2.call(r2, false), void 0 === u3 ? r2 = void 0 : (r2 = new u3(t2), r2._$AT(t2, s3, e2)), void 0 !== e2 ? (null !== (l2 = (h2 = s3)._$Co) && void 0 !== l2 ? l2 : h2._$Co = [])[e2] = r2 : s3._$Cl = r2), void 0 !== r2 && (i2 = S$1(t2, r2._$AS(t2, i2.values), r2, e2)), i2;
@@ -370,8 +351,7 @@ class M {
   }
   v(t2) {
     let i2 = 0;
-    for (const s3 of this._$AV)
-      void 0 !== s3 && (void 0 !== s3.strings ? (s3._$AI(t2, s3, i2), i2 += s3.strings.length - 2) : s3._$AI(t2[i2])), i2++;
+    for (const s3 of this._$AV) void 0 !== s3 && (void 0 !== s3.strings ? (s3._$AI(t2, s3, i2), i2 += s3.strings.length - 2) : s3._$AI(t2[i2])), i2++;
   }
 }
 class R {
@@ -409,8 +389,7 @@ class R {
   g(t2) {
     var i2;
     const { values: s3, _$litType$: e2 } = t2, o3 = "number" == typeof e2 ? this._$AC(t2) : (void 0 === e2.el && (e2.el = N$1.createElement(P$1(e2.h, e2.h[0]), this.options)), e2);
-    if ((null === (i2 = this._$AH) || void 0 === i2 ? void 0 : i2._$AD) === o3)
-      this._$AH.v(s3);
+    if ((null === (i2 = this._$AH) || void 0 === i2 ? void 0 : i2._$AD) === o3) this._$AH.v(s3);
     else {
       const t3 = new M(o3, this), i3 = t3.u(this.options);
       t3.v(s3), this.$(i3), this._$AH = t3;
@@ -424,8 +403,7 @@ class R {
     c(this._$AH) || (this._$AH = [], this._$AR());
     const i2 = this._$AH;
     let s3, e2 = 0;
-    for (const o3 of t2)
-      e2 === i2.length ? i2.push(s3 = new R(this.k(u2()), this.k(u2()), this, this.options)) : s3 = i2[e2], s3._$AI(o3), e2++;
+    for (const o3 of t2) e2 === i2.length ? i2.push(s3 = new R(this.k(u2()), this.k(u2()), this, this.options)) : s3 = i2[e2], s3._$AI(o3), e2++;
     e2 < i2.length && (this._$AR(s3 && s3._$AB.nextSibling, e2), i2.length = e2);
   }
   _$AR(t2 = this._$AA.nextSibling, i2) {
@@ -453,13 +431,11 @@ class k {
   _$AI(t2, i2 = this, s3, e2) {
     const o3 = this.strings;
     let n2 = false;
-    if (void 0 === o3)
-      t2 = S$1(this, t2, i2, 0), n2 = !d(t2) || t2 !== this._$AH && t2 !== T, n2 && (this._$AH = t2);
+    if (void 0 === o3) t2 = S$1(this, t2, i2, 0), n2 = !d(t2) || t2 !== this._$AH && t2 !== T, n2 && (this._$AH = t2);
     else {
       const e3 = t2;
       let l2, h2;
-      for (t2 = o3[0], l2 = 0; l2 < o3.length - 1; l2++)
-        h2 = S$1(this, e3[s3 + l2], i2, l2), h2 === T && (h2 = this._$AH[l2]), n2 || (n2 = !d(h2) || h2 !== this._$AH[l2]), h2 === A ? t2 = A : t2 !== A && (t2 += (null != h2 ? h2 : "") + o3[l2 + 1]), this._$AH[l2] = h2;
+      for (t2 = o3[0], l2 = 0; l2 < o3.length - 1; l2++) h2 = S$1(this, e3[s3 + l2], i2, l2), h2 === T && (h2 = this._$AH[l2]), n2 || (n2 = !d(h2) || h2 !== this._$AH[l2]), h2 === A ? t2 = A : t2 !== A && (t2 += (null != h2 ? h2 : "") + o3[l2 + 1]), this._$AH[l2] = h2;
     }
     n2 && !e2 && this.j(t2);
   }
@@ -490,8 +466,7 @@ class z extends k {
   }
   _$AI(t2, i2 = this) {
     var s3;
-    if ((t2 = null !== (s3 = S$1(this, t2, i2, 0)) && void 0 !== s3 ? s3 : A) === T)
-      return;
+    if ((t2 = null !== (s3 = S$1(this, t2, i2, 0)) && void 0 !== s3 ? s3 : A) === T) return;
     const e2 = this._$AH, o3 = t2 === A && e2 !== A || t2.capture !== e2.capture || t2.once !== e2.once || t2.passive !== e2.passive, n2 = t2 !== A && (e2 === A || o3);
     o3 && this.element.removeEventListener(this.name, this, e2), n2 && this.element.addEventListener(this.name, this, t2), this._$AH = t2;
   }
@@ -631,8 +606,7 @@ class i {
 const o2 = e(class extends i {
   constructor(t$12) {
     var i2;
-    if (super(t$12), t$12.type !== t.ATTRIBUTE || "class" !== t$12.name || (null === (i2 = t$12.strings) || void 0 === i2 ? void 0 : i2.length) > 2)
-      throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.");
+    if (super(t$12), t$12.type !== t.ATTRIBUTE || "class" !== t$12.name || (null === (i2 = t$12.strings) || void 0 === i2 ? void 0 : i2.length) > 2) throw Error("`classMap()` can only be used in the `class` attribute and must be the only part in the attribute.");
   }
   render(t2) {
     return " " + Object.keys(t2).filter((i2) => t2[i2]).join(" ") + " ";
@@ -641,8 +615,7 @@ const o2 = e(class extends i {
     var r2, o3;
     if (void 0 === this.it) {
       this.it = /* @__PURE__ */ new Set(), void 0 !== i2.strings && (this.nt = new Set(i2.strings.join(" ").split(/\s/).filter((t2) => "" !== t2)));
-      for (const t2 in s3)
-        s3[t2] && !(null === (r2 = this.nt) || void 0 === r2 ? void 0 : r2.has(t2)) && this.it.add(t2);
+      for (const t2 in s3) s3[t2] && !(null === (r2 = this.nt) || void 0 === r2 ? void 0 : r2.has(t2)) && this.it.add(t2);
       return this.render(s3);
     }
     const e2 = i2.element.classList;
@@ -759,8 +732,9 @@ function getEasingFunction(definition) {
     return definition;
   if (isCubicBezier(definition))
     return cubicBezier(...definition);
-  if (namedEasings[definition])
-    return namedEasings[definition];
+  const namedEasing = namedEasings[definition];
+  if (namedEasing)
+    return namedEasing;
   if (definition.startsWith("steps")) {
     const args = functionArgsRegex.exec(definition);
     if (args) {
@@ -1381,10 +1355,8 @@ const CODEWORDS_COUNT = [
   3706
 ];
 utils$1.getSymbolSize = function getSymbolSize(version2) {
-  if (!version2)
-    throw new Error('"version" cannot be null or undefined');
-  if (version2 < 1 || version2 > 40)
-    throw new Error('"version" should be in range from 1 to 40');
+  if (!version2) throw new Error('"version" cannot be null or undefined');
+  if (version2 < 1 || version2 > 40) throw new Error('"version" should be in range from 1 to 40');
   return version2 * 4 + 17;
 };
 utils$1.getSymbolTotalCodewords = function getSymbolTotalCodewords(version2) {
@@ -1492,8 +1464,7 @@ function BitMatrix$1(size) {
 BitMatrix$1.prototype.set = function(row, col, value, reserved) {
   const index = row * this.size + col;
   this.data[index] = value;
-  if (reserved)
-    this.reservedBit[index] = true;
+  if (reserved) this.reservedBit[index] = true;
 };
 BitMatrix$1.prototype.get = function(row, col) {
   return this.data[row * this.size + col];
@@ -1509,8 +1480,7 @@ var alignmentPattern = {};
 (function(exports) {
   const getSymbolSize3 = utils$1.getSymbolSize;
   exports.getRowColCoords = function getRowColCoords(version2) {
-    if (version2 === 1)
-      return [];
+    if (version2 === 1) return [];
     const posCount = Math.floor(version2 / 7) + 2;
     const size = getSymbolSize3(version2);
     const intervals = size === 145 ? 26 : Math.ceil((size - 13) / (2 * posCount - 2)) * 2;
@@ -1591,8 +1561,7 @@ var maskPattern = {};
         if (module === lastCol) {
           sameCountCol++;
         } else {
-          if (sameCountCol >= 5)
-            points += PenaltyScores.N1 + (sameCountCol - 5);
+          if (sameCountCol >= 5) points += PenaltyScores.N1 + (sameCountCol - 5);
           lastCol = module;
           sameCountCol = 1;
         }
@@ -1600,16 +1569,13 @@ var maskPattern = {};
         if (module === lastRow) {
           sameCountRow++;
         } else {
-          if (sameCountRow >= 5)
-            points += PenaltyScores.N1 + (sameCountRow - 5);
+          if (sameCountRow >= 5) points += PenaltyScores.N1 + (sameCountRow - 5);
           lastRow = module;
           sameCountRow = 1;
         }
       }
-      if (sameCountCol >= 5)
-        points += PenaltyScores.N1 + (sameCountCol - 5);
-      if (sameCountRow >= 5)
-        points += PenaltyScores.N1 + (sameCountRow - 5);
+      if (sameCountCol >= 5) points += PenaltyScores.N1 + (sameCountCol - 5);
+      if (sameCountRow >= 5) points += PenaltyScores.N1 + (sameCountRow - 5);
     }
     return points;
   };
@@ -1619,8 +1585,7 @@ var maskPattern = {};
     for (let row = 0; row < size - 1; row++) {
       for (let col = 0; col < size - 1; col++) {
         const last = data2.get(row, col) + data2.get(row, col + 1) + data2.get(row + 1, col) + data2.get(row + 1, col + 1);
-        if (last === 4 || last === 0)
-          points++;
+        if (last === 4 || last === 0) points++;
       }
     }
     return points * PenaltyScores.N2;
@@ -1634,11 +1599,9 @@ var maskPattern = {};
       bitsCol = bitsRow = 0;
       for (let col = 0; col < size; col++) {
         bitsCol = bitsCol << 1 & 2047 | data2.get(row, col);
-        if (col >= 10 && (bitsCol === 1488 || bitsCol === 93))
-          points++;
+        if (col >= 10 && (bitsCol === 1488 || bitsCol === 93)) points++;
         bitsRow = bitsRow << 1 & 2047 | data2.get(col, row);
-        if (col >= 10 && (bitsRow === 1488 || bitsRow === 93))
-          points++;
+        if (col >= 10 && (bitsRow === 1488 || bitsRow === 93)) points++;
       }
     }
     return points * PenaltyScores.N3;
@@ -1646,8 +1609,7 @@ var maskPattern = {};
   exports.getPenaltyN4 = function getPenaltyN4(data2) {
     let darkCount = 0;
     const modulesCount = data2.data.length;
-    for (let i2 = 0; i2 < modulesCount; i2++)
-      darkCount += data2.data[i2];
+    for (let i2 = 0; i2 < modulesCount; i2++) darkCount += data2.data[i2];
     const k2 = Math.abs(Math.ceil(darkCount * 100 / modulesCount / 5) - 10);
     return k2 * PenaltyScores.N4;
   };
@@ -1677,8 +1639,7 @@ var maskPattern = {};
     const size = data2.size;
     for (let col = 0; col < size; col++) {
       for (let row = 0; row < size; row++) {
-        if (data2.isReserved(row, col))
-          continue;
+        if (data2.isReserved(row, col)) continue;
         data2.xor(row, col, getMaskAt(pattern, row, col));
       }
     }
@@ -2075,16 +2036,14 @@ const LOG_TABLE = new Uint8Array(256);
   }
 })();
 galoisField.log = function log(n2) {
-  if (n2 < 1)
-    throw new Error("log(" + n2 + ")");
+  if (n2 < 1) throw new Error("log(" + n2 + ")");
   return LOG_TABLE[n2];
 };
 galoisField.exp = function exp(n2) {
   return EXP_TABLE[n2];
 };
 galoisField.mul = function mul(x2, y2) {
-  if (x2 === 0 || y2 === 0)
-    return 0;
+  if (x2 === 0 || y2 === 0) return 0;
   return EXP_TABLE[LOG_TABLE[x2] + LOG_TABLE[y2]];
 };
 (function(exports) {
@@ -2106,8 +2065,7 @@ galoisField.mul = function mul(x2, y2) {
         result[i2] ^= GF.mul(divisor[i2], coeff);
       }
       let offset = 0;
-      while (offset < result.length && result[offset] === 0)
-        offset++;
+      while (offset < result.length && result[offset] === 0) offset++;
       result = result.slice(offset);
     }
     return result;
@@ -2124,8 +2082,7 @@ const Polynomial = polynomial;
 function ReedSolomonEncoder$1(degree) {
   this.genPoly = void 0;
   this.degree = degree;
-  if (this.degree)
-    this.initialize(this.degree);
+  if (this.degree) this.initialize(this.degree);
 }
 ReedSolomonEncoder$1.prototype.initialize = function initialize(degree) {
   this.degree = degree;
@@ -2203,30 +2160,22 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
     bit: -1
   };
   exports.getCharCountIndicator = function getCharCountIndicator(mode2, version2) {
-    if (!mode2.ccBits)
-      throw new Error("Invalid mode: " + mode2);
+    if (!mode2.ccBits) throw new Error("Invalid mode: " + mode2);
     if (!VersionCheck.isValid(version2)) {
       throw new Error("Invalid version: " + version2);
     }
-    if (version2 >= 1 && version2 < 10)
-      return mode2.ccBits[0];
-    else if (version2 < 27)
-      return mode2.ccBits[1];
+    if (version2 >= 1 && version2 < 10) return mode2.ccBits[0];
+    else if (version2 < 27) return mode2.ccBits[1];
     return mode2.ccBits[2];
   };
   exports.getBestModeForData = function getBestModeForData(dataStr) {
-    if (Regex.testNumeric(dataStr))
-      return exports.NUMERIC;
-    else if (Regex.testAlphanumeric(dataStr))
-      return exports.ALPHANUMERIC;
-    else if (Regex.testKanji(dataStr))
-      return exports.KANJI;
-    else
-      return exports.BYTE;
+    if (Regex.testNumeric(dataStr)) return exports.NUMERIC;
+    else if (Regex.testAlphanumeric(dataStr)) return exports.ALPHANUMERIC;
+    else if (Regex.testKanji(dataStr)) return exports.KANJI;
+    else return exports.BYTE;
   };
   exports.toString = function toString(mode2) {
-    if (mode2 && mode2.id)
-      return mode2.id;
+    if (mode2 && mode2.id) return mode2.id;
     throw new Error("Invalid mode");
   };
   exports.isValid = function isValid2(mode2) {
@@ -2307,13 +2256,11 @@ regex.testAlphanumeric = function testAlphanumeric(str) {
     if (!VersionCheck.isValid(version2)) {
       throw new Error("Invalid QR Code version");
     }
-    if (typeof mode2 === "undefined")
-      mode2 = Mode2.BYTE;
+    if (typeof mode2 === "undefined") mode2 = Mode2.BYTE;
     const totalCodewords = Utils2.getSymbolTotalCodewords(version2);
     const ecTotalCodewords = ECCode2.getTotalCodewordsCount(version2, errorCorrectionLevel2);
     const dataTotalCodewordsBits = (totalCodewords - ecTotalCodewords) * 8;
-    if (mode2 === Mode2.MIXED)
-      return dataTotalCodewordsBits;
+    if (mode2 === Mode2.MIXED) return dataTotalCodewordsBits;
     const usableBits = dataTotalCodewordsBits - getReservedBitsCount(mode2, version2);
     switch (mode2) {
       case Mode2.NUMERIC:
@@ -2784,8 +2731,7 @@ var dijkstraExports = dijkstra.exports;
             graph[prevNodeId][key] = getSegmentBitsLength(table[prevNodeId].lastCount + node.length, node.mode) - getSegmentBitsLength(table[prevNodeId].lastCount, node.mode);
             table[prevNodeId].lastCount += node.length;
           } else {
-            if (table[prevNodeId])
-              table[prevNodeId].lastCount = node.length;
+            if (table[prevNodeId]) table[prevNodeId].lastCount = node.length;
             graph[prevNodeId][key] = getSegmentBitsLength(node.length, node.mode) + 4 + Mode2.getCharCountIndicator(node.mode, version2);
           }
         }
@@ -2865,11 +2811,9 @@ function setupFinderPattern(matrix, version2) {
     const row = pos[i2][0];
     const col = pos[i2][1];
     for (let r2 = -1; r2 <= 7; r2++) {
-      if (row + r2 <= -1 || size <= row + r2)
-        continue;
+      if (row + r2 <= -1 || size <= row + r2) continue;
       for (let c2 = -1; c2 <= 7; c2++) {
-        if (col + c2 <= -1 || size <= col + c2)
-          continue;
+        if (col + c2 <= -1 || size <= col + c2) continue;
         if (r2 >= 0 && r2 <= 6 && (c2 === 0 || c2 === 6) || c2 >= 0 && c2 <= 6 && (r2 === 0 || r2 === 6) || r2 >= 2 && r2 <= 4 && c2 >= 2 && c2 <= 4) {
           matrix.set(row + r2, col + c2, true, true);
         } else {
@@ -2945,8 +2889,7 @@ function setupData(matrix, data2) {
   let bitIndex = 7;
   let byteIndex = 0;
   for (let col = size - 1; col > 0; col -= 2) {
-    if (col === 6)
-      col--;
+    if (col === 6) col--;
     while (true) {
       for (let c2 = 0; c2 < 2; c2++) {
         if (!matrix.isReserved(row, col - c2)) {
@@ -3122,8 +3065,7 @@ var utils = {};
         return [c2, c2];
       }));
     }
-    if (hexCode.length === 6)
-      hexCode.push("F", "F");
+    if (hexCode.length === 6) hexCode.push("F", "F");
     const hexValue = parseInt(hexCode.join(""), 16);
     return {
       r: hexValue >> 24 & 255,
@@ -3134,10 +3076,8 @@ var utils = {};
     };
   }
   exports.getOptions = function getOptions2(options) {
-    if (!options)
-      options = {};
-    if (!options.color)
-      options.color = {};
+    if (!options) options = {};
+    if (!options.color) options.color = {};
     const margin = typeof options.margin === "undefined" || options.margin === null || options.margin < 0 ? 4 : options.margin;
     const width = options.width && options.width >= 21 ? options.width : void 0;
     const scale = options.scale || 4;
@@ -3188,8 +3128,7 @@ var utils = {};
   const Utils2 = utils;
   function clearCanvas(ctx, canvas2, size) {
     ctx.clearRect(0, 0, canvas2.width, canvas2.height);
-    if (!canvas2.style)
-      canvas2.style = {};
+    if (!canvas2.style) canvas2.style = {};
     canvas2.height = size;
     canvas2.width = size;
     canvas2.style.height = size + "px";
@@ -3227,8 +3166,7 @@ var utils = {};
       opts = canvas2;
       canvas2 = void 0;
     }
-    if (!opts)
-      opts = {};
+    if (!opts) opts = {};
     const canvasEl = exports.render(qrData, canvas2, opts);
     const type = opts.type || "image/png";
     const rendererOpts = opts.rendererOpts || {};
@@ -3244,8 +3182,7 @@ function getColorAttrib(color, attrib) {
 }
 function svgCmd(cmd, x2, y2) {
   let str = cmd + x2;
-  if (typeof y2 !== "undefined")
-    str += " " + y2;
+  if (typeof y2 !== "undefined") str += " " + y2;
   return str;
 }
 function qrToPath(data2, size, margin) {
@@ -3256,8 +3193,7 @@ function qrToPath(data2, size, margin) {
   for (let i2 = 0; i2 < data2.length; i2++) {
     const col = Math.floor(i2 % size);
     const row = Math.floor(i2 / size);
-    if (!col && !newRow)
-      newRow = true;
+    if (!col && !newRow) newRow = true;
     if (data2[i2]) {
       lineLength++;
       if (!(i2 > 0 && col > 0 && data2[i2 - 1])) {
@@ -3355,11 +3291,8 @@ browser.toString = renderCanvas.bind(null, function(data2, _2, opts) {
   return SvgRenderer.render(data2, opts);
 });
 var et = Object.defineProperty, Se = Object.getOwnPropertySymbols, tt = Object.prototype.hasOwnProperty, ot = Object.prototype.propertyIsEnumerable, Be = (e2, o3, r2) => o3 in e2 ? et(e2, o3, { enumerable: true, configurable: true, writable: true, value: r2 }) : e2[o3] = r2, fe = (e2, o3) => {
-  for (var r2 in o3 || (o3 = {}))
-    tt.call(o3, r2) && Be(e2, r2, o3[r2]);
-  if (Se)
-    for (var r2 of Se(o3))
-      ot.call(o3, r2) && Be(e2, r2, o3[r2]);
+  for (var r2 in o3 || (o3 = {})) tt.call(o3, r2) && Be(e2, r2, o3[r2]);
+  if (Se) for (var r2 of Se(o3)) ot.call(o3, r2) && Be(e2, r2, o3[r2]);
   return e2;
 };
 function rt() {
@@ -3380,8 +3313,7 @@ const h = { getPreset(e2) {
   }
 }, globalCss: i$3`*,::after,::before{margin:0;padding:0;box-sizing:border-box;font-style:normal;text-rendering:optimizeSpeed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent;backface-visibility:hidden}button{cursor:pointer;display:flex;justify-content:center;align-items:center;position:relative;border:none;background-color:transparent;transition:all .2s ease}@media (hover:hover) and (pointer:fine){button:active{transition:all .1s ease;transform:scale(.93)}}button::after{content:'';position:absolute;top:0;bottom:0;left:0;right:0;transition:background-color,.2s ease}button:disabled{cursor:not-allowed}button svg,button wcm-text{position:relative;z-index:1}input{border:none;outline:0;appearance:none}img{display:block}::selection{color:var(--wcm-accent-fill-color);background:var(--wcm-accent-color)}` }, at = i$3`button{border-radius:var(--wcm-secondary-button-border-radius);height:28px;padding:0 10px;background-color:var(--wcm-accent-color)}button path{fill:var(--wcm-accent-fill-color)}button::after{border-radius:inherit;border:1px solid var(--wcm-color-overlay)}button:disabled::after{background-color:transparent}.wcm-icon-left svg{margin-right:5px}.wcm-icon-right svg{margin-left:5px}button:active::after{background-color:var(--wcm-color-overlay)}.wcm-ghost,.wcm-ghost:active::after,.wcm-outline{background-color:transparent}.wcm-ghost:active{opacity:.5}@media(hover:hover){button:hover::after{background-color:var(--wcm-color-overlay)}.wcm-ghost:hover::after{background-color:transparent}.wcm-ghost:hover{opacity:.5}}button:disabled{background-color:var(--wcm-color-bg-3);pointer-events:none}.wcm-ghost::after{border-color:transparent}.wcm-ghost path{fill:var(--wcm-color-fg-2)}.wcm-outline path{fill:var(--wcm-accent-color)}.wcm-outline:disabled{background-color:transparent;opacity:.5}`;
 var lt = Object.defineProperty, it = Object.getOwnPropertyDescriptor, K = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? it(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? it(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && lt(o3, r2, t2), t2;
 };
 let _ = class extends s$1 {
@@ -3397,8 +3329,7 @@ let _ = class extends s$1 {
 _.styles = [h.globalCss, at], K([n$1({ type: Boolean })], _.prototype, "disabled", 2), K([n$1()], _.prototype, "iconLeft", 2), K([n$1()], _.prototype, "iconRight", 2), K([n$1()], _.prototype, "onClick", 2), K([n$1()], _.prototype, "variant", 2), _ = K([e$2("wcm-button")], _);
 const nt = i$3`:host{display:inline-block}button{padding:0 15px 1px;height:40px;border-radius:var(--wcm-button-border-radius);color:var(--wcm-accent-fill-color);background-color:var(--wcm-accent-color)}button::after{content:'';top:0;bottom:0;left:0;right:0;position:absolute;background-color:transparent;border-radius:inherit;transition:background-color .2s ease;border:1px solid var(--wcm-color-overlay)}button:active::after{background-color:var(--wcm-color-overlay)}button:disabled{padding-bottom:0;background-color:var(--wcm-color-bg-3);color:var(--wcm-color-fg-3)}.wcm-secondary{color:var(--wcm-accent-color);background-color:transparent}.wcm-secondary::after{display:none}@media(hover:hover){button:hover::after{background-color:var(--wcm-color-overlay)}}`;
 var ct = Object.defineProperty, st = Object.getOwnPropertyDescriptor, xe = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? st(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? st(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && ct(o3, r2, t2), t2;
 };
 let re = class extends s$1 {
@@ -3413,8 +3344,7 @@ let re = class extends s$1 {
 re.styles = [h.globalCss, nt], xe([n$1({ type: Boolean })], re.prototype, "disabled", 2), xe([n$1()], re.prototype, "variant", 2), re = xe([e$2("wcm-button-big")], re);
 const dt = i$3`:host{background-color:var(--wcm-color-bg-2);border-top:1px solid var(--wcm-color-bg-3)}div{padding:10px 20px;display:inherit;flex-direction:inherit;align-items:inherit;width:inherit;justify-content:inherit}`;
 var ht = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let ye = class extends s$1 {
@@ -3425,8 +3355,7 @@ let ye = class extends s$1 {
 ye.styles = [h.globalCss, dt], ye = ht([e$2("wcm-info-footer")], ye);
 const b = { CROSS_ICON: b$1`<svg width="12" height="12" viewBox="0 0 12 12"><path d="M9.94 11A.75.75 0 1 0 11 9.94L7.414 6.353a.5.5 0 0 1 0-.708L11 2.061A.75.75 0 1 0 9.94 1L6.353 4.586a.5.5 0 0 1-.708 0L2.061 1A.75.75 0 0 0 1 2.06l3.586 3.586a.5.5 0 0 1 0 .708L1 9.939A.75.75 0 1 0 2.06 11l3.586-3.586a.5.5 0 0 1 .708 0L9.939 11Z" fill="#fff"/></svg>`, WALLET_CONNECT_LOGO: b$1`<svg width="178" height="29" viewBox="0 0 178 29" id="wcm-wc-logo"><path d="M10.683 7.926c5.284-5.17 13.85-5.17 19.134 0l.636.623a.652.652 0 0 1 0 .936l-2.176 2.129a.343.343 0 0 1-.478 0l-.875-.857c-3.686-3.607-9.662-3.607-13.348 0l-.937.918a.343.343 0 0 1-.479 0l-2.175-2.13a.652.652 0 0 1 0-.936l.698-.683Zm23.633 4.403 1.935 1.895a.652.652 0 0 1 0 .936l-8.73 8.543a.687.687 0 0 1-.956 0L20.37 17.64a.172.172 0 0 0-.239 0l-6.195 6.063a.687.687 0 0 1-.957 0l-8.73-8.543a.652.652 0 0 1 0-.936l1.936-1.895a.687.687 0 0 1 .957 0l6.196 6.064a.172.172 0 0 0 .239 0l6.195-6.064a.687.687 0 0 1 .957 0l6.196 6.064a.172.172 0 0 0 .24 0l6.195-6.064a.687.687 0 0 1 .956 0ZM48.093 20.948l2.338-9.355c.139-.515.258-1.07.416-1.942.12.872.258 1.427.357 1.942l2.022 9.355h4.181l3.528-13.874h-3.21l-1.943 8.523a24.825 24.825 0 0 0-.456 2.457c-.158-.931-.317-1.625-.495-2.438l-1.883-8.542h-4.201l-2.042 8.542a41.204 41.204 0 0 0-.475 2.438 41.208 41.208 0 0 0-.476-2.438l-1.903-8.542h-3.349l3.508 13.874h4.083ZM63.33 21.304c1.585 0 2.596-.654 3.11-1.605-.059.297-.078.595-.078.892v.357h2.655V15.22c0-2.735-1.248-4.32-4.3-4.32-2.636 0-4.36 1.466-4.52 3.487h2.914c.1-.891.734-1.426 1.705-1.426.911 0 1.407.515 1.407 1.11 0 .435-.258.693-1.03.792l-1.388.159c-2.061.257-3.825 1.01-3.825 3.19 0 1.982 1.645 3.092 3.35 3.092Zm.891-2.041c-.773 0-1.348-.436-1.348-1.19 0-.733.655-1.09 1.645-1.268l.674-.119c.575-.118.892-.218 1.09-.396v.912c0 1.228-.892 2.06-2.06 2.06ZM70.398 7.074v13.874h2.874V7.074h-2.874ZM74.934 7.074v13.874h2.874V7.074h-2.874ZM84.08 21.304c2.735 0 4.5-1.546 4.697-3.567h-2.893c-.139.892-.892 1.387-1.804 1.387-1.228 0-2.12-.99-2.14-2.358h6.897v-.555c0-3.21-1.764-5.312-4.816-5.312-2.933 0-4.994 2.062-4.994 5.173 0 3.37 2.12 5.232 5.053 5.232Zm-2.16-6.421c.119-1.11.932-1.922 2.081-1.922 1.11 0 1.883.772 1.903 1.922H81.92ZM94.92 21.146c.633 0 1.248-.1 1.525-.179v-2.18c-.218.04-.475.06-.693.06-1.05 0-1.427-.595-1.427-1.566v-3.805h2.338v-2.24h-2.338V7.788H91.47v3.448H89.37v2.24h2.1v4.201c0 2.3 1.15 3.469 3.45 3.469ZM104.62 21.304c3.924 0 6.302-2.299 6.599-5.608h-3.111c-.238 1.803-1.506 3.032-3.369 3.032-2.2 0-3.746-1.784-3.746-4.796 0-2.953 1.605-4.638 3.805-4.638 1.883 0 2.953 1.15 3.171 2.834h3.191c-.317-3.448-2.854-5.41-6.342-5.41-3.984 0-7.036 2.695-7.036 7.214 0 4.677 2.676 7.372 6.838 7.372ZM117.449 21.304c2.993 0 5.114-1.882 5.114-5.172 0-3.23-2.121-5.233-5.114-5.233-2.972 0-5.093 2.002-5.093 5.233 0 3.29 2.101 5.172 5.093 5.172Zm0-2.22c-1.327 0-2.18-1.09-2.18-2.952 0-1.903.892-2.973 2.18-2.973 1.308 0 2.2 1.07 2.2 2.973 0 1.862-.872 2.953-2.2 2.953ZM126.569 20.948v-5.689c0-1.208.753-2.1 1.823-2.1 1.011 0 1.606.773 1.606 2.06v5.729h2.873v-6.144c0-2.339-1.229-3.905-3.428-3.905-1.526 0-2.458.734-2.953 1.606a5.31 5.31 0 0 0 .079-.892v-.377h-2.874v9.712h2.874ZM137.464 20.948v-5.689c0-1.208.753-2.1 1.823-2.1 1.011 0 1.606.773 1.606 2.06v5.729h2.873v-6.144c0-2.339-1.228-3.905-3.428-3.905-1.526 0-2.458.734-2.953 1.606a5.31 5.31 0 0 0 .079-.892v-.377h-2.874v9.712h2.874ZM149.949 21.304c2.735 0 4.499-1.546 4.697-3.567h-2.893c-.139.892-.892 1.387-1.804 1.387-1.228 0-2.12-.99-2.14-2.358h6.897v-.555c0-3.21-1.764-5.312-4.816-5.312-2.933 0-4.994 2.062-4.994 5.173 0 3.37 2.12 5.232 5.053 5.232Zm-2.16-6.421c.119-1.11.932-1.922 2.081-1.922 1.11 0 1.883.772 1.903 1.922h-3.984ZM160.876 21.304c3.013 0 4.658-1.645 4.975-4.201h-2.874c-.099 1.07-.713 1.982-2.001 1.982-1.309 0-2.2-1.21-2.2-2.993 0-1.942 1.03-2.933 2.259-2.933 1.209 0 1.803.872 1.883 1.882h2.873c-.218-2.358-1.823-4.142-4.776-4.142-2.874 0-5.153 1.903-5.153 5.193 0 3.25 1.923 5.212 5.014 5.212ZM172.067 21.146c.634 0 1.248-.1 1.526-.179v-2.18c-.218.04-.476.06-.694.06-1.05 0-1.427-.595-1.427-1.566v-3.805h2.339v-2.24h-2.339V7.788h-2.854v3.448h-2.1v2.24h2.1v4.201c0 2.3 1.15 3.469 3.449 3.469Z" fill="#fff"/></svg>`, WALLET_CONNECT_ICON: b$1`<svg width="28" height="20" viewBox="0 0 28 20"><g clip-path="url(#a)"><path d="M7.386 6.482c3.653-3.576 9.575-3.576 13.228 0l.44.43a.451.451 0 0 1 0 .648L19.55 9.033a.237.237 0 0 1-.33 0l-.606-.592c-2.548-2.496-6.68-2.496-9.228 0l-.648.634a.237.237 0 0 1-.33 0L6.902 7.602a.451.451 0 0 1 0-.647l.483-.473Zm16.338 3.046 1.339 1.31a.451.451 0 0 1 0 .648l-6.035 5.909a.475.475 0 0 1-.662 0L14.083 13.2a.119.119 0 0 0-.166 0l-4.283 4.194a.475.475 0 0 1-.662 0l-6.035-5.91a.451.451 0 0 1 0-.647l1.338-1.31a.475.475 0 0 1 .662 0l4.283 4.194c.046.044.12.044.166 0l4.283-4.194a.475.475 0 0 1 .662 0l4.283 4.194c.046.044.12.044.166 0l4.283-4.194a.475.475 0 0 1 .662 0Z" fill="#000000"/></g><defs><clipPath id="a"><path fill="#ffffff" d="M0 0h28v20H0z"/></clipPath></defs></svg>`, WALLET_CONNECT_ICON_COLORED: b$1`<svg width="96" height="96" fill="none"><path fill="#fff" d="M25.322 33.597c12.525-12.263 32.83-12.263 45.355 0l1.507 1.476a1.547 1.547 0 0 1 0 2.22l-5.156 5.048a.814.814 0 0 1-1.134 0l-2.074-2.03c-8.737-8.555-22.903-8.555-31.64 0l-2.222 2.175a.814.814 0 0 1-1.134 0l-5.156-5.049a1.547 1.547 0 0 1 0-2.22l1.654-1.62Zm56.019 10.44 4.589 4.494a1.547 1.547 0 0 1 0 2.22l-20.693 20.26a1.628 1.628 0 0 1-2.267 0L48.283 56.632a.407.407 0 0 0-.567 0L33.03 71.012a1.628 1.628 0 0 1-2.268 0L10.07 50.75a1.547 1.547 0 0 1 0-2.22l4.59-4.494a1.628 1.628 0 0 1 2.267 0l14.687 14.38c.156.153.41.153.567 0l14.685-14.38a1.628 1.628 0 0 1 2.268 0l14.687 14.38c.156.153.41.153.567 0l14.686-14.38a1.628 1.628 0 0 1 2.268 0Z"/><path stroke="#000" d="M25.672 33.954c12.33-12.072 32.325-12.072 44.655 0l1.508 1.476a1.047 1.047 0 0 1 0 1.506l-5.157 5.048a.314.314 0 0 1-.434 0l-2.074-2.03c-8.932-8.746-23.409-8.746-32.34 0l-2.222 2.174a.314.314 0 0 1-.434 0l-5.157-5.048a1.047 1.047 0 0 1 0-1.506l1.655-1.62Zm55.319 10.44 4.59 4.494a1.047 1.047 0 0 1 0 1.506l-20.694 20.26a1.128 1.128 0 0 1-1.568 0l-14.686-14.38a.907.907 0 0 0-1.267 0L32.68 70.655a1.128 1.128 0 0 1-1.568 0L10.42 50.394a1.047 1.047 0 0 1 0-1.506l4.59-4.493a1.128 1.128 0 0 1 1.567 0l14.687 14.379a.907.907 0 0 0 1.266 0l-.35-.357.35.357 14.686-14.38a1.128 1.128 0 0 1 1.568 0l14.687 14.38a.907.907 0 0 0 1.267 0l14.686-14.38a1.128 1.128 0 0 1 1.568 0Z"/></svg>`, BACK_ICON: b$1`<svg width="10" height="18" viewBox="0 0 10 18"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.735.179a.75.75 0 0 1 .087 1.057L2.92 8.192a1.25 1.25 0 0 0 0 1.617l5.902 6.956a.75.75 0 1 1-1.144.97L1.776 10.78a2.75 2.75 0 0 1 0-3.559L7.678.265A.75.75 0 0 1 8.735.18Z" fill="#fff"/></svg>`, COPY_ICON: b$1`<svg width="24" height="24" fill="none"><path fill="#fff" fill-rule="evenodd" d="M7.01 7.01c.03-1.545.138-2.5.535-3.28A5 5 0 0 1 9.73 1.545C10.8 1 12.2 1 15 1c2.8 0 4.2 0 5.27.545a5 5 0 0 1 2.185 2.185C23 4.8 23 6.2 23 9c0 2.8 0 4.2-.545 5.27a5 5 0 0 1-2.185 2.185c-.78.397-1.735.505-3.28.534l-.001.01c-.03 1.54-.138 2.493-.534 3.27a5 5 0 0 1-2.185 2.186C13.2 23 11.8 23 9 23c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C1 19.2 1 17.8 1 15c0-2.8 0-4.2.545-5.27A5 5 0 0 1 3.73 7.545C4.508 7.149 5.46 7.04 7 7.01h.01ZM15 15.5c-1.425 0-2.403-.001-3.162-.063-.74-.06-1.139-.172-1.427-.319a3.5 3.5 0 0 1-1.53-1.529c-.146-.288-.257-.686-.318-1.427C8.501 11.403 8.5 10.425 8.5 9c0-1.425.001-2.403.063-3.162.06-.74.172-1.139.318-1.427a3.5 3.5 0 0 1 1.53-1.53c.288-.146.686-.257 1.427-.318.759-.062 1.737-.063 3.162-.063 1.425 0 2.403.001 3.162.063.74.06 1.139.172 1.427.318a3.5 3.5 0 0 1 1.53 1.53c.146.288.257.686.318 1.427.062.759.063 1.737.063 3.162 0 1.425-.001 2.403-.063 3.162-.06.74-.172 1.139-.319 1.427a3.5 3.5 0 0 1-1.529 1.53c-.288.146-.686.257-1.427.318-.759.062-1.737.063-3.162.063ZM7 8.511c-.444.009-.825.025-1.162.052-.74.06-1.139.172-1.427.318a3.5 3.5 0 0 0-1.53 1.53c-.146.288-.257.686-.318 1.427-.062.759-.063 1.737-.063 3.162 0 1.425.001 2.403.063 3.162.06.74.172 1.139.318 1.427a3.5 3.5 0 0 0 1.53 1.53c.288.146.686.257 1.427.318.759.062 1.737.063 3.162.063 1.425 0 2.403-.001 3.162-.063.74-.06 1.139-.172 1.427-.319a3.5 3.5 0 0 0 1.53-1.53c.146-.287.257-.685.318-1.426.027-.337.043-.718.052-1.162H15c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C7 13.2 7 11.8 7 9v-.489Z" clip-rule="evenodd"/></svg>`, RETRY_ICON: b$1`<svg width="15" height="16" viewBox="0 0 15 16"><path d="M6.464 2.03A.75.75 0 0 0 5.403.97L2.08 4.293a1 1 0 0 0 0 1.414L5.403 9.03a.75.75 0 0 0 1.06-1.06L4.672 6.177a.25.25 0 0 1 .177-.427h2.085a4 4 0 1 1-3.93 4.746c-.077-.407-.405-.746-.82-.746-.414 0-.755.338-.7.748a5.501 5.501 0 1 0 5.45-6.248H4.848a.25.25 0 0 1-.177-.427L6.464 2.03Z" fill="#fff"/></svg>`, DESKTOP_ICON: b$1`<svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.98c0-1.85 0-2.775.394-3.466a3 3 0 0 1 1.12-1.12C2.204 1 3.13 1 4.98 1h6.04c1.85 0 2.775 0 3.466.394a3 3 0 0 1 1.12 1.12C16 3.204 16 4.13 16 5.98v1.04c0 1.85 0 2.775-.394 3.466a3 3 0 0 1-1.12 1.12C13.796 12 12.87 12 11.02 12H4.98c-1.85 0-2.775 0-3.466-.394a3 3 0 0 1-1.12-1.12C0 9.796 0 8.87 0 7.02V5.98ZM4.98 2.5h6.04c.953 0 1.568.001 2.034.043.446.04.608.108.69.154a1.5 1.5 0 0 1 .559.56c.046.08.114.243.154.69.042.465.043 1.08.043 2.033v1.04c0 .952-.001 1.568-.043 2.034-.04.446-.108.608-.154.69a1.499 1.499 0 0 1-.56.559c-.08.046-.243.114-.69.154-.466.042-1.08.043-2.033.043H4.98c-.952 0-1.568-.001-2.034-.043-.446-.04-.608-.108-.69-.154a1.5 1.5 0 0 1-.559-.56c-.046-.08-.114-.243-.154-.69-.042-.465-.043-1.08-.043-2.033V5.98c0-.952.001-1.568.043-2.034.04-.446.108-.608.154-.69a1.5 1.5 0 0 1 .56-.559c.08-.046.243-.114.69-.154.465-.042 1.08-.043 2.033-.043Z" fill="#fff"/><path d="M4 14.25a.75.75 0 0 1 .75-.75h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1-.75-.75Z" fill="#fff"/></svg>`, MOBILE_ICON: b$1`<svg width="16" height="16" viewBox="0 0 16 16"><path d="M6.75 5a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M3 4.98c0-1.85 0-2.775.394-3.466a3 3 0 0 1 1.12-1.12C5.204 0 6.136 0 8 0s2.795 0 3.486.394a3 3 0 0 1 1.12 1.12C13 2.204 13 3.13 13 4.98v6.04c0 1.85 0 2.775-.394 3.466a3 3 0 0 1-1.12 1.12C10.796 16 9.864 16 8 16s-2.795 0-3.486-.394a3 3 0 0 1-1.12-1.12C3 13.796 3 12.87 3 11.02V4.98Zm8.5 0v6.04c0 .953-.001 1.568-.043 2.034-.04.446-.108.608-.154.69a1.499 1.499 0 0 1-.56.559c-.08.045-.242.113-.693.154-.47.042-1.091.043-2.05.043-.959 0-1.58-.001-2.05-.043-.45-.04-.613-.109-.693-.154a1.5 1.5 0 0 1-.56-.56c-.046-.08-.114-.243-.154-.69-.042-.466-.043-1.08-.043-2.033V4.98c0-.952.001-1.568.043-2.034.04-.446.108-.608.154-.69a1.5 1.5 0 0 1 .56-.559c.08-.045.243-.113.693-.154C6.42 1.501 7.041 1.5 8 1.5c.959 0 1.58.001 2.05.043.45.04.613.109.693.154a1.5 1.5 0 0 1 .56.56c.046.08.114.243.154.69.042.465.043 1.08.043 2.033Z" fill="#fff"/></svg>`, ARROW_DOWN_ICON: b$1`<svg width="14" height="14" viewBox="0 0 14 14"><path d="M2.28 7.47a.75.75 0 0 0-1.06 1.06l5.25 5.25a.75.75 0 0 0 1.06 0l5.25-5.25a.75.75 0 0 0-1.06-1.06l-3.544 3.543a.25.25 0 0 1-.426-.177V.75a.75.75 0 0 0-1.5 0v10.086a.25.25 0 0 1-.427.176L2.28 7.47Z" fill="#fff"/></svg>`, ARROW_UP_RIGHT_ICON: b$1`<svg width="15" height="14" fill="none"><path d="M4.5 1.75A.75.75 0 0 1 5.25 1H12a1.5 1.5 0 0 1 1.5 1.5v6.75a.75.75 0 0 1-1.5 0V4.164a.25.25 0 0 0-.427-.176L4.061 11.5A.75.75 0 0 1 3 10.44l7.513-7.513a.25.25 0 0 0-.177-.427H5.25a.75.75 0 0 1-.75-.75Z" fill="#fff"/></svg>`, ARROW_RIGHT_ICON: b$1`<svg width="6" height="14" viewBox="0 0 6 14"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.181 1.099a.75.75 0 0 1 1.024.279l2.433 4.258a2.75 2.75 0 0 1 0 2.729l-2.433 4.257a.75.75 0 1 1-1.303-.744L4.335 7.62a1.25 1.25 0 0 0 0-1.24L1.902 2.122a.75.75 0 0 1 .28-1.023Z" fill="#fff"/></svg>`, QRCODE_ICON: b$1`<svg width="25" height="24" viewBox="0 0 25 24"><path d="M23.748 9a.748.748 0 0 0 .748-.752c-.018-2.596-.128-4.07-.784-5.22a6 6 0 0 0-2.24-2.24c-1.15-.656-2.624-.766-5.22-.784a.748.748 0 0 0-.752.748c0 .414.335.749.748.752 1.015.007 1.82.028 2.494.088.995.09 1.561.256 1.988.5.7.398 1.28.978 1.679 1.678.243.427.41.993.498 1.988.061.675.082 1.479.09 2.493a.753.753 0 0 0 .75.749ZM3.527.788C4.677.132 6.152.022 8.747.004A.748.748 0 0 1 9.5.752a.753.753 0 0 1-.749.752c-1.014.007-1.818.028-2.493.088-.995.09-1.561.256-1.988.5-.7.398-1.28.978-1.679 1.678-.243.427-.41.993-.499 1.988-.06.675-.081 1.479-.088 2.493A.753.753 0 0 1 1.252 9a.748.748 0 0 1-.748-.752c.018-2.596.128-4.07.784-5.22a6 6 0 0 1 2.24-2.24ZM1.252 15a.748.748 0 0 0-.748.752c.018 2.596.128 4.07.784 5.22a6 6 0 0 0 2.24 2.24c1.15.656 2.624.766 5.22.784a.748.748 0 0 0 .752-.748.753.753 0 0 0-.749-.752c-1.014-.007-1.818-.028-2.493-.089-.995-.089-1.561-.255-1.988-.498a4.5 4.5 0 0 1-1.679-1.68c-.243-.426-.41-.992-.499-1.987-.06-.675-.081-1.479-.088-2.493A.753.753 0 0 0 1.252 15ZM22.996 15.749a.753.753 0 0 1 .752-.749c.415 0 .751.338.748.752-.018 2.596-.128 4.07-.784 5.22a6 6 0 0 1-2.24 2.24c-1.15.656-2.624.766-5.22.784a.748.748 0 0 1-.752-.748c0-.414.335-.749.748-.752 1.015-.007 1.82-.028 2.494-.089.995-.089 1.561-.255 1.988-.498a4.5 4.5 0 0 0 1.679-1.68c.243-.426.41-.992.498-1.987.061-.675.082-1.479.09-2.493Z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 4a2.5 2.5 0 0 0-2.5 2.5v2A2.5 2.5 0 0 0 7 11h2a2.5 2.5 0 0 0 2.5-2.5v-2A2.5 2.5 0 0 0 9 4H7Zm2 1.5H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1ZM13.5 6.5A2.5 2.5 0 0 1 16 4h2a2.5 2.5 0 0 1 2.5 2.5v2A2.5 2.5 0 0 1 18 11h-2a2.5 2.5 0 0 1-2.5-2.5v-2Zm2.5-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1ZM7 13a2.5 2.5 0 0 0-2.5 2.5v2A2.5 2.5 0 0 0 7 20h2a2.5 2.5 0 0 0 2.5-2.5v-2A2.5 2.5 0 0 0 9 13H7Zm2 1.5H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1Z" fill="#fff"/><path d="M13.5 15.5c0-.465 0-.697.038-.89a2 2 0 0 1 1.572-1.572C15.303 13 15.535 13 16 13v2.5h-2.5ZM18 13c.465 0 .697 0 .89.038a2 2 0 0 1 1.572 1.572c.038.193.038.425.038.89H18V13ZM18 17.5h2.5c0 .465 0 .697-.038.89a2 2 0 0 1-1.572 1.572C18.697 20 18.465 20 18 20v-2.5ZM13.5 17.5H16V20c-.465 0-.697 0-.89-.038a2 2 0 0 1-1.572-1.572c-.038-.193-.038-.425-.038-.89Z" fill="#fff"/></svg>`, SCAN_ICON: b$1`<svg width="16" height="16" fill="none"><path fill="#fff" d="M10 15.216c0 .422.347.763.768.74 1.202-.064 2.025-.222 2.71-.613a5.001 5.001 0 0 0 1.865-1.866c.39-.684.549-1.507.613-2.709a.735.735 0 0 0-.74-.768.768.768 0 0 0-.76.732c-.009.157-.02.306-.032.447-.073.812-.206 1.244-.384 1.555-.31.545-.761.996-1.306 1.306-.311.178-.743.311-1.555.384-.141.013-.29.023-.447.032a.768.768 0 0 0-.732.76ZM10 .784c0 .407.325.737.732.76.157.009.306.02.447.032.812.073 1.244.206 1.555.384a3.5 3.5 0 0 1 1.306 1.306c.178.311.311.743.384 1.555.013.142.023.29.032.447a.768.768 0 0 0 .76.732.734.734 0 0 0 .74-.768c-.064-1.202-.222-2.025-.613-2.71A5 5 0 0 0 13.477.658c-.684-.39-1.507-.549-2.709-.613a.735.735 0 0 0-.768.74ZM5.232.044A.735.735 0 0 1 6 .784a.768.768 0 0 1-.732.76c-.157.009-.305.02-.447.032-.812.073-1.244.206-1.555.384A3.5 3.5 0 0 0 1.96 3.266c-.178.311-.311.743-.384 1.555-.013.142-.023.29-.032.447A.768.768 0 0 1 .784 6a.735.735 0 0 1-.74-.768c.064-1.202.222-2.025.613-2.71A5 5 0 0 1 2.523.658C3.207.267 4.03.108 5.233.044ZM5.268 14.456a.768.768 0 0 1 .732.76.734.734 0 0 1-.768.74c-1.202-.064-2.025-.222-2.71-.613a5 5 0 0 1-1.865-1.866c-.39-.684-.549-1.507-.613-2.709A.735.735 0 0 1 .784 10c.407 0 .737.325.76.732.009.157.02.306.032.447.073.812.206 1.244.384 1.555a3.5 3.5 0 0 0 1.306 1.306c.311.178.743.311 1.555.384.142.013.29.023.447.032Z"/></svg>`, CHECKMARK_ICON: b$1`<svg width="13" height="12" viewBox="0 0 13 12"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.155.132a.75.75 0 0 1 .232 1.035L5.821 11.535a1 1 0 0 1-1.626.09L.665 7.21a.75.75 0 1 1 1.17-.937L4.71 9.867a.25.25 0 0 0 .406-.023L11.12.364a.75.75 0 0 1 1.035-.232Z" fill="#fff"/></svg>`, SEARCH_ICON: b$1`<svg width="20" height="21"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.432 13.992c-.354-.353-.91-.382-1.35-.146a5.5 5.5 0 1 1 2.265-2.265c-.237.441-.208.997.145 1.35l3.296 3.296a.75.75 0 1 1-1.06 1.061l-3.296-3.296Zm.06-5a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" fill="#949E9E"/></svg>`, WALLET_PLACEHOLDER: b$1`<svg width="60" height="60" fill="none" viewBox="0 0 60 60"><g clip-path="url(#q)"><path id="wallet-placeholder-fill" fill="#fff" d="M0 24.9c0-9.251 0-13.877 1.97-17.332a15 15 0 0 1 5.598-5.597C11.023 0 15.648 0 24.9 0h10.2c9.252 0 13.877 0 17.332 1.97a15 15 0 0 1 5.597 5.598C60 11.023 60 15.648 60 24.9v10.2c0 9.252 0 13.877-1.97 17.332a15.001 15.001 0 0 1-5.598 5.597C48.977 60 44.352 60 35.1 60H24.9c-9.251 0-13.877 0-17.332-1.97a15 15 0 0 1-5.597-5.598C0 48.977 0 44.352 0 35.1V24.9Z"/><path id="wallet-placeholder-dash" stroke="#000" stroke-dasharray="4 4" stroke-width="1.5" d="M.04 41.708a231.598 231.598 0 0 1-.039-4.403l.75-.001L.75 35.1v-2.55H0v-5.1h.75V24.9l.001-2.204h-.75c.003-1.617.011-3.077.039-4.404l.75.016c.034-1.65.099-3.08.218-4.343l-.746-.07c.158-1.678.412-3.083.82-4.316l.713.236c.224-.679.497-1.296.827-1.875a14.25 14.25 0 0 1 1.05-1.585L3.076 5.9A15 15 0 0 1 5.9 3.076l.455.596a14.25 14.25 0 0 1 1.585-1.05c.579-.33 1.196-.603 1.875-.827l-.236-.712C10.812.674 12.217.42 13.895.262l.07.746C15.23.89 16.66.824 18.308.79l-.016-.75C19.62.012 21.08.004 22.695.001l.001.75L24.9.75h2.55V0h5.1v.75h2.55l2.204.001v-.75c1.617.003 3.077.011 4.404.039l-.016.75c1.65.034 3.08.099 4.343.218l.07-.746c1.678.158 3.083.412 4.316.82l-.236.713c.679.224 1.296.497 1.875.827a14.24 14.24 0 0 1 1.585 1.05l.455-.596A14.999 14.999 0 0 1 56.924 5.9l-.596.455c.384.502.735 1.032 1.05 1.585.33.579.602 1.196.827 1.875l.712-.236c.409 1.233.663 2.638.822 4.316l-.747.07c.119 1.264.184 2.694.218 4.343l.75-.016c.028 1.327.036 2.787.039 4.403l-.75.001.001 2.204v2.55H60v5.1h-.75v2.55l-.001 2.204h.75a231.431 231.431 0 0 1-.039 4.404l-.75-.016c-.034 1.65-.099 3.08-.218 4.343l.747.07c-.159 1.678-.413 3.083-.822 4.316l-.712-.236a10.255 10.255 0 0 1-.827 1.875 14.242 14.242 0 0 1-1.05 1.585l.596.455a14.997 14.997 0 0 1-2.824 2.824l-.455-.596c-.502.384-1.032.735-1.585 1.05-.579.33-1.196.602-1.875.827l.236.712c-1.233.409-2.638.663-4.316.822l-.07-.747c-1.264.119-2.694.184-4.343.218l.016.75c-1.327.028-2.787.036-4.403.039l-.001-.75-2.204.001h-2.55V60h-5.1v-.75H24.9l-2.204-.001v.75a231.431 231.431 0 0 1-4.404-.039l.016-.75c-1.65-.034-3.08-.099-4.343-.218l-.07.747c-1.678-.159-3.083-.413-4.316-.822l.236-.712a10.258 10.258 0 0 1-1.875-.827 14.252 14.252 0 0 1-1.585-1.05l-.455.596A14.999 14.999 0 0 1 3.076 54.1l.596-.455a14.24 14.24 0 0 1-1.05-1.585 10.259 10.259 0 0 1-.827-1.875l-.712.236C.674 49.188.42 47.783.262 46.105l.746-.07C.89 44.77.824 43.34.79 41.692l-.75.016Z"/><path fill="#fff" fill-rule="evenodd" d="M35.643 32.145c-.297-.743-.445-1.114-.401-1.275a.42.42 0 0 1 .182-.27c.134-.1.463-.1 1.123-.1.742 0 1.499.046 2.236-.05a6 6 0 0 0 5.166-5.166c.051-.39.051-.855.051-1.784 0-.928 0-1.393-.051-1.783a6 6 0 0 0-5.166-5.165c-.39-.052-.854-.052-1.783-.052h-7.72c-4.934 0-7.401 0-9.244 1.051a8 8 0 0 0-2.985 2.986C16.057 22.28 16.003 24.58 16 29 15.998 31.075 16 33.15 16 35.224A7.778 7.778 0 0 0 23.778 43H28.5c1.394 0 2.09 0 2.67-.116a6 6 0 0 0 4.715-4.714c.115-.58.115-1.301.115-2.744 0-1.31 0-1.964-.114-2.49a4.998 4.998 0 0 0-.243-.792Z" clip-rule="evenodd"/><path fill="#9EA9A9" fill-rule="evenodd" d="M37 18h-7.72c-2.494 0-4.266.002-5.647.126-1.361.122-2.197.354-2.854.728a6.5 6.5 0 0 0-2.425 2.426c-.375.657-.607 1.492-.729 2.853-.11 1.233-.123 2.777-.125 4.867 0 .7 0 1.05.097 1.181.096.13.182.181.343.2.163.02.518-.18 1.229-.581a6.195 6.195 0 0 1 3.053-.8H37c.977 0 1.32-.003 1.587-.038a4.5 4.5 0 0 0 3.874-3.874c.036-.268.039-.611.039-1.588 0-.976-.003-1.319-.038-1.587a4.5 4.5 0 0 0-3.875-3.874C38.32 18.004 37.977 18 37 18Zm-7.364 12.5h-7.414a4.722 4.722 0 0 0-4.722 4.723 6.278 6.278 0 0 0 6.278 6.278H28.5c1.466 0 1.98-.008 2.378-.087a4.5 4.5 0 0 0 3.535-3.536c.08-.397.087-.933.087-2.451 0-1.391-.009-1.843-.08-2.17a3.5 3.5 0 0 0-2.676-2.676c-.328-.072-.762-.08-2.108-.08Z" clip-rule="evenodd"/></g><defs><clipPath id="q"><path fill="#fff" d="M0 0h60v60H0z"/></clipPath></defs></svg>`, GLOBE_ICON: b$1`<svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path fill="#fff" fill-rule="evenodd" d="M15.5 8a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Zm-2.113.75c.301 0 .535.264.47.558a6.01 6.01 0 0 1-2.867 3.896c-.203.116-.42-.103-.334-.32.409-1.018.691-2.274.797-3.657a.512.512 0 0 1 .507-.477h1.427Zm.47-2.058c.065.294-.169.558-.47.558H11.96a.512.512 0 0 1-.507-.477c-.106-1.383-.389-2.638-.797-3.656-.087-.217.13-.437.333-.32a6.01 6.01 0 0 1 2.868 3.895Zm-4.402.558c.286 0 .515-.24.49-.525-.121-1.361-.429-2.534-.83-3.393-.279-.6-.549-.93-.753-1.112a.535.535 0 0 0-.724 0c-.204.182-.474.513-.754 1.112-.4.859-.708 2.032-.828 3.393a.486.486 0 0 0 .49.525h2.909Zm-5.415 0c.267 0 .486-.21.507-.477.106-1.383.389-2.638.797-3.656.087-.217-.13-.437-.333-.32a6.01 6.01 0 0 0-2.868 3.895c-.065.294.169.558.47.558H4.04ZM2.143 9.308c-.065-.294.169-.558.47-.558H4.04c.267 0 .486.21.507.477.106 1.383.389 2.639.797 3.657.087.217-.13.436-.333.32a6.01 6.01 0 0 1-2.868-3.896Zm3.913-.033a.486.486 0 0 1 .49-.525h2.909c.286 0 .515.24.49.525-.121 1.361-.428 2.535-.83 3.394-.279.6-.549.93-.753 1.112a.535.535 0 0 1-.724 0c-.204-.182-.474-.513-.754-1.112-.4-.859-.708-2.033-.828-3.394Z" clip-rule="evenodd"/></svg>` }, pt = i$3`.wcm-toolbar-placeholder{top:0;bottom:0;left:0;right:0;width:100%;position:absolute;display:block;pointer-events:none;height:100px;border-radius:calc(var(--wcm-background-border-radius) * .9);background-color:var(--wcm-background-color);background-position:center;background-size:cover}.wcm-toolbar{height:38px;display:flex;position:relative;margin:5px 15px 5px 5px;justify-content:space-between;align-items:center}.wcm-toolbar img,.wcm-toolbar svg{height:28px;object-position:left center;object-fit:contain}#wcm-wc-logo path{fill:var(--wcm-accent-fill-color)}button{width:28px;height:28px;border-radius:var(--wcm-icon-button-border-radius);border:0;display:flex;justify-content:center;align-items:center;cursor:pointer;background-color:var(--wcm-color-bg-1);box-shadow:0 0 0 1px var(--wcm-color-overlay)}button:active{background-color:var(--wcm-color-bg-2)}button svg{display:block;object-position:center}button path{fill:var(--wcm-color-fg-1)}.wcm-toolbar div{display:flex}@media(hover:hover){button:hover{background-color:var(--wcm-color-bg-2)}}`;
 var ut = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let $e = class extends s$1 {
@@ -3437,8 +3366,7 @@ let $e = class extends s$1 {
 $e.styles = [h.globalCss, pt], $e = ut([e$2("wcm-modal-backcard")], $e);
 const bt = i$3`main{padding:20px;padding-top:0;width:100%}`;
 var yt = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Ce = class extends s$1 {
@@ -3449,8 +3377,7 @@ let Ce = class extends s$1 {
 Ce.styles = [h.globalCss, bt], Ce = yt([e$2("wcm-modal-content")], Ce);
 const $t = i$3`footer{padding:10px;display:flex;flex-direction:column;align-items:inherit;justify-content:inherit;border-top:1px solid var(--wcm-color-bg-2)}`;
 var Ot = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let ke = class extends s$1 {
@@ -3461,8 +3388,7 @@ let ke = class extends s$1 {
 ke.styles = [h.globalCss, $t], ke = Ot([e$2("wcm-modal-footer")], ke);
 const It = i$3`header{display:flex;justify-content:center;align-items:center;padding:20px;position:relative}.wcm-border{border-bottom:1px solid var(--wcm-color-bg-2);margin-bottom:20px}header button{padding:15px 20px}header button:active{opacity:.5}@media(hover:hover){header button:hover{opacity:.5}}.wcm-back-btn{position:absolute;left:0}.wcm-action-btn{position:absolute;right:0}path{fill:var(--wcm-accent-color)}`;
 var Wt = Object.defineProperty, Et = Object.getOwnPropertyDescriptor, ae = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Et(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Et(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Wt(o3, r2, t2), t2;
 };
 let B = class extends s$1 {
@@ -3483,8 +3409,7 @@ let B = class extends s$1 {
 B.styles = [h.globalCss, It], ae([n$1()], B.prototype, "title", 2), ae([n$1()], B.prototype, "onAction", 2), ae([n$1()], B.prototype, "actionIcon", 2), ae([n$1({ type: Boolean })], B.prototype, "border", 2), B = ae([e$2("wcm-modal-header")], B);
 const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_DATA", EXPLORER_WALLET_URL: "https://explorer.walletconnect.com/?type=wallet", getShadowRootElement(e2, o3) {
   const r2 = e2.renderRoot.querySelector(o3);
-  if (!r2)
-    throw new Error(`${o3} not found`);
+  if (!r2) throw new Error(`${o3} not found`);
   return r2;
 }, getWalletIcon({ id: e2, image_id: o3 }) {
   const { walletImages: r2 } = y$1.state;
@@ -3519,12 +3444,11 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
   o3 && i2(o3);
 }, async handleUriCopy() {
   const { walletConnectUri: e2 } = p$1.state;
-  if (e2)
-    try {
-      await navigator.clipboard.writeText(e2), oe.openToast("Link copied", "success");
-    } catch {
-      oe.openToast("Failed to copy", "error");
-    }
+  if (e2) try {
+    await navigator.clipboard.writeText(e2), oe.openToast("Link copied", "success");
+  } catch {
+    oe.openToast("Failed to copy", "error");
+  }
 }, getCustomImageUrls() {
   const { walletImages: e2 } = y$1.state, o3 = Object.values(e2 ?? {});
   return Object.values(o3);
@@ -3556,8 +3480,7 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
   o3 ? t2 ? T$1.push("MobileConnecting") : a2 ? T$1.push("WebConnecting") : T$1.push("InstallWallet") : r2 ? T$1.push("DesktopConnecting") : a2 ? T$1.push("WebConnecting") : t2 ? T$1.push("MobileQrcodeConnecting") : T$1.push("InstallWallet");
 } }, Mt = i$3`.wcm-router{overflow:hidden;will-change:transform}.wcm-content{display:flex;flex-direction:column}`;
 var Pt = Object.defineProperty, Lt = Object.getOwnPropertyDescriptor, Oe = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Lt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Lt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Pt(o3, r2, t2), t2;
 };
 let le = class extends s$1 {
@@ -3614,8 +3537,7 @@ let le = class extends s$1 {
 le.styles = [h.globalCss, Mt], Oe([t$1()], le.prototype, "view", 2), Oe([t$1()], le.prototype, "prevView", 2), le = Oe([e$2("wcm-modal-router")], le);
 const Rt = i$3`div{height:36px;width:max-content;display:flex;justify-content:center;align-items:center;padding:9px 15px 11px;position:absolute;top:12px;box-shadow:0 6px 14px -6px rgba(10,16,31,.3),0 10px 32px -4px rgba(10,16,31,.15);z-index:2;left:50%;transform:translateX(-50%);pointer-events:none;backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border-radius:var(--wcm-notification-border-radius);border:1px solid var(--wcm-color-overlay);background-color:var(--wcm-color-overlay)}svg{margin-right:5px}@-moz-document url-prefix(){div{background-color:var(--wcm-color-bg-3)}}.wcm-success path{fill:var(--wcm-accent-color)}.wcm-error path{fill:var(--wcm-error-color)}`;
 var At = Object.defineProperty, Tt = Object.getOwnPropertyDescriptor, He = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Tt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Tt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && At(o3, r2, t2), t2;
 };
 let de = class extends s$1 {
@@ -3688,8 +3610,7 @@ const Dt = { generate(e2, o3, r2) {
   }), l2;
 } }, Nt = i$3`@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}div{position:relative;user-select:none;display:block;overflow:hidden;aspect-ratio:1/1;animation:fadeIn ease .2s}.wcm-dark{background-color:#fff;border-radius:var(--wcm-container-border-radius);padding:18px;box-shadow:0 2px 5px #000}svg:first-child,wcm-wallet-image{position:absolute;top:50%;left:50%;transform:translateY(-50%) translateX(-50%)}wcm-wallet-image{transform:translateY(-50%) translateX(-50%)}wcm-wallet-image{width:25%;height:25%;border-radius:var(--wcm-wallet-icon-border-radius)}svg:first-child{transform:translateY(-50%) translateX(-50%) scale(.9)}svg:first-child path:first-child{fill:var(--wcm-accent-color)}svg:first-child path:last-child{stroke:var(--wcm-color-overlay)}`;
 var Zt = Object.defineProperty, zt = Object.getOwnPropertyDescriptor, Y = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? zt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? zt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Zt(o3, r2, t2), t2;
 };
 let D = class extends s$1 {
@@ -3708,8 +3629,7 @@ let D = class extends s$1 {
 D.styles = [h.globalCss, Nt], Y([n$1()], D.prototype, "uri", 2), Y([n$1({ type: Number })], D.prototype, "size", 2), Y([n$1()], D.prototype, "imageId", 2), Y([n$1()], D.prototype, "walletId", 2), Y([n$1()], D.prototype, "imageUrl", 2), D = Y([e$2("wcm-qrcode")], D);
 const St = i$3`:host{position:relative;height:28px;width:80%}input{width:100%;height:100%;line-height:28px!important;border-radius:var(--wcm-input-border-radius);font-style:normal;font-family:-apple-system,system-ui,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',sans-serif;font-feature-settings:'case' on;font-weight:500;font-size:16px;letter-spacing:-.03em;padding:0 10px 0 34px;transition:.2s all ease;color:var(--wcm-color-fg-1);background-color:var(--wcm-color-bg-3);box-shadow:inset 0 0 0 1px var(--wcm-color-overlay);caret-color:var(--wcm-accent-color)}input::placeholder{color:var(--wcm-color-fg-2)}svg{left:10px;top:4px;pointer-events:none;position:absolute;width:20px;height:20px}input:focus-within{box-shadow:inset 0 0 0 1px var(--wcm-accent-color)}path{fill:var(--wcm-color-fg-2)}`;
 var Bt = Object.defineProperty, Ut = Object.getOwnPropertyDescriptor, qe = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Ut(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Ut(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Bt(o3, r2, t2), t2;
 };
 let me = class extends s$1 {
@@ -3723,8 +3643,7 @@ let me = class extends s$1 {
 me.styles = [h.globalCss, St], qe([n$1()], me.prototype, "onChange", 2), me = qe([e$2("wcm-search-input")], me);
 const Ht = i$3`@keyframes rotate{100%{transform:rotate(360deg)}}@keyframes dash{0%{stroke-dasharray:1,150;stroke-dashoffset:0}50%{stroke-dasharray:90,150;stroke-dashoffset:-35}100%{stroke-dasharray:90,150;stroke-dashoffset:-124}}svg{animation:rotate 2s linear infinite;display:flex;justify-content:center;align-items:center}svg circle{stroke-linecap:round;animation:dash 1.5s ease infinite;stroke:var(--wcm-accent-color)}`;
 var Ft = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let We = class extends s$1 {
@@ -3735,8 +3654,7 @@ let We = class extends s$1 {
 We.styles = [h.globalCss, Ht], We = Ft([e$2("wcm-spinner")], We);
 const Qt = i$3`span{font-style:normal;font-family:var(--wcm-font-family);font-feature-settings:var(--wcm-font-feature-settings)}.wcm-xsmall-bold{font-family:var(--wcm-text-xsmall-bold-font-family);font-weight:var(--wcm-text-xsmall-bold-weight);font-size:var(--wcm-text-xsmall-bold-size);line-height:var(--wcm-text-xsmall-bold-line-height);letter-spacing:var(--wcm-text-xsmall-bold-letter-spacing);text-transform:var(--wcm-text-xsmall-bold-text-transform)}.wcm-xsmall-regular{font-family:var(--wcm-text-xsmall-regular-font-family);font-weight:var(--wcm-text-xsmall-regular-weight);font-size:var(--wcm-text-xsmall-regular-size);line-height:var(--wcm-text-xsmall-regular-line-height);letter-spacing:var(--wcm-text-xsmall-regular-letter-spacing);text-transform:var(--wcm-text-xsmall-regular-text-transform)}.wcm-small-thin{font-family:var(--wcm-text-small-thin-font-family);font-weight:var(--wcm-text-small-thin-weight);font-size:var(--wcm-text-small-thin-size);line-height:var(--wcm-text-small-thin-line-height);letter-spacing:var(--wcm-text-small-thin-letter-spacing);text-transform:var(--wcm-text-small-thin-text-transform)}.wcm-small-regular{font-family:var(--wcm-text-small-regular-font-family);font-weight:var(--wcm-text-small-regular-weight);font-size:var(--wcm-text-small-regular-size);line-height:var(--wcm-text-small-regular-line-height);letter-spacing:var(--wcm-text-small-regular-letter-spacing);text-transform:var(--wcm-text-small-regular-text-transform)}.wcm-medium-regular{font-family:var(--wcm-text-medium-regular-font-family);font-weight:var(--wcm-text-medium-regular-weight);font-size:var(--wcm-text-medium-regular-size);line-height:var(--wcm-text-medium-regular-line-height);letter-spacing:var(--wcm-text-medium-regular-letter-spacing);text-transform:var(--wcm-text-medium-regular-text-transform)}.wcm-big-bold{font-family:var(--wcm-text-big-bold-font-family);font-weight:var(--wcm-text-big-bold-weight);font-size:var(--wcm-text-big-bold-size);line-height:var(--wcm-text-big-bold-line-height);letter-spacing:var(--wcm-text-big-bold-letter-spacing);text-transform:var(--wcm-text-big-bold-text-transform)}:host(*){color:var(--wcm-color-fg-1)}.wcm-color-primary{color:var(--wcm-color-fg-1)}.wcm-color-secondary{color:var(--wcm-color-fg-2)}.wcm-color-tertiary{color:var(--wcm-color-fg-3)}.wcm-color-inverse{color:var(--wcm-accent-fill-color)}.wcm-color-accnt{color:var(--wcm-accent-color)}.wcm-color-error{color:var(--wcm-error-color)}`;
 var Kt = Object.defineProperty, Yt = Object.getOwnPropertyDescriptor, Ee = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Yt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Yt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Kt(o3, r2, t2), t2;
 };
 let ie = class extends s$1 {
@@ -3751,8 +3669,7 @@ let ie = class extends s$1 {
 ie.styles = [h.globalCss, Qt], Ee([n$1()], ie.prototype, "variant", 2), Ee([n$1()], ie.prototype, "color", 2), ie = Ee([e$2("wcm-text")], ie);
 const Gt = i$3`button{width:100%;height:100%;border-radius:var(--wcm-button-hover-highlight-border-radius);display:flex;align-items:flex-start}button:active{background-color:var(--wcm-color-overlay)}@media(hover:hover){button:hover{background-color:var(--wcm-color-overlay)}}button>div{width:80px;padding:5px 0;display:flex;flex-direction:column;align-items:center}wcm-text{width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}wcm-wallet-image{height:60px;width:60px;transition:all .2s ease;border-radius:var(--wcm-wallet-icon-border-radius);margin-bottom:5px}.wcm-sublabel{margin-top:2px}`;
 var Xt = Object.defineProperty, Jt = Object.getOwnPropertyDescriptor, N2 = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Jt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Jt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Xt(o3, r2, t2), t2;
 };
 let P = class extends s$1 {
@@ -3773,8 +3690,7 @@ let P = class extends s$1 {
 P.styles = [h.globalCss, Gt], N2([n$1()], P.prototype, "onClick", 2), N2([n$1()], P.prototype, "name", 2), N2([n$1()], P.prototype, "walletId", 2), N2([n$1()], P.prototype, "label", 2), N2([n$1()], P.prototype, "imageId", 2), N2([n$1({ type: Boolean })], P.prototype, "installed", 2), N2([n$1({ type: Boolean })], P.prototype, "recent", 2), P = N2([e$2("wcm-wallet-button")], P);
 const eo = i$3`:host{display:block}div{overflow:hidden;position:relative;border-radius:inherit;width:100%;height:100%;background-color:var(--wcm-color-overlay)}svg{position:relative;width:100%;height:100%}div::after{content:'';position:absolute;top:0;bottom:0;left:0;right:0;border-radius:inherit;border:1px solid var(--wcm-color-overlay)}div img{width:100%;height:100%;object-fit:cover;object-position:center}#wallet-placeholder-fill{fill:var(--wcm-color-bg-3)}#wallet-placeholder-dash{stroke:var(--wcm-color-overlay)}`;
 var to = Object.defineProperty, oo = Object.getOwnPropertyDescriptor, we = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? oo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? oo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && to(o3, r2, t2), t2;
 };
 let G = class extends s$1 {
@@ -3789,8 +3705,7 @@ let G = class extends s$1 {
 };
 G.styles = [h.globalCss, eo], we([n$1()], G.prototype, "walletId", 2), we([n$1()], G.prototype, "imageId", 2), we([n$1()], G.prototype, "imageUrl", 2), G = we([e$2("wcm-wallet-image")], G);
 var ro = Object.defineProperty, ao = Object.getOwnPropertyDescriptor, Fe = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? ao(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? ao(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && ro(o3, r2, t2), t2;
 };
 let Me = class extends s$1 {
@@ -3809,8 +3724,7 @@ let Me = class extends s$1 {
       await te.getRecomendedWallets(), p$1.setIsDataLoaded(true);
       const { recomendedWallets: e2 } = te.state, o3 = e2.map((r2) => s2.getWalletIcon(r2));
       await this.loadImages(o3);
-    } else
-      p$1.setIsDataLoaded(true);
+    } else p$1.setIsDataLoaded(true);
   }
   async preloadCustomImages() {
     const e2 = s2.getCustomImageUrls();
@@ -3826,8 +3740,7 @@ let Me = class extends s$1 {
 };
 Fe([t$1()], Me.prototype, "preload", 2), Me = Fe([e$2("wcm-explorer-context")], Me);
 var no = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Qe = class extends s$1 {
@@ -3842,8 +3755,7 @@ let Qe = class extends s$1 {
 Qe = no([e$2("wcm-theme-context")], Qe);
 const co = i$3`@keyframes scroll{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(calc(-70px * 9),0,0)}}.wcm-slider{position:relative;overflow-x:hidden;padding:10px 0;margin:0 -20px;width:calc(100% + 40px)}.wcm-track{display:flex;width:calc(70px * 18);animation:scroll 20s linear infinite;opacity:.7}.wcm-track svg{margin:0 5px}wcm-wallet-image{width:60px;height:60px;margin:0 5px;border-radius:var(--wcm-wallet-icon-border-radius)}.wcm-grid{display:grid;grid-template-columns:repeat(4,80px);justify-content:space-between}.wcm-title{display:flex;align-items:center;margin-bottom:10px}.wcm-title svg{margin-right:6px}.wcm-title path{fill:var(--wcm-accent-color)}wcm-modal-footer .wcm-title{padding:0 10px}wcm-button-big{position:absolute;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);filter:drop-shadow(0 0 17px var(--wcm-color-bg-1))}wcm-info-footer{flex-direction:column;align-items:center;display:flex;width:100%;padding:5px 0}wcm-info-footer wcm-text{text-align:center;margin-bottom:15px}#wallet-placeholder-fill{fill:var(--wcm-color-bg-3)}#wallet-placeholder-dash{stroke:var(--wcm-color-overlay)}`;
 var wo = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Pe = class extends s$1 {
@@ -3864,8 +3776,7 @@ let Pe = class extends s$1 {
 Pe.styles = [h.globalCss, co], Pe = wo([e$2("wcm-android-wallet-selection")], Pe);
 const ho = i$3`@keyframes loading{to{stroke-dashoffset:0}}@keyframes shake{10%,90%{transform:translate3d(-1px,0,0)}20%,80%{transform:translate3d(1px,0,0)}30%,50%,70%{transform:translate3d(-2px,0,0)}40%,60%{transform:translate3d(2px,0,0)}}:host{display:flex;flex-direction:column;align-items:center}div{position:relative;width:110px;height:110px;display:flex;justify-content:center;align-items:center;margin:40px 0 20px 0;transform:translate3d(0,0,0)}svg{position:absolute;width:110px;height:110px;fill:none;stroke:transparent;stroke-linecap:round;stroke-width:2px;top:0;left:0}use{stroke:var(--wcm-accent-color);animation:loading 1s linear infinite}wcm-wallet-image{border-radius:var(--wcm-wallet-icon-large-border-radius);width:90px;height:90px}wcm-text{margin-bottom:40px}.wcm-error svg{stroke:var(--wcm-error-color)}.wcm-error use{display:none}.wcm-error{animation:shake .4s cubic-bezier(.36,.07,.19,.97) both}.wcm-stale svg,.wcm-stale use{display:none}`;
 var po = Object.defineProperty, go = Object.getOwnPropertyDescriptor, X = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? go(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? go(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && po(o3, r2, t2), t2;
 };
 let Z2 = class extends s$1 {
@@ -3904,12 +3815,10 @@ const ee = { manualWallets() {
   return ee.recomendedWallets(e2).map((o3) => x`<wcm-wallet-button name="${o3.name}" walletId="${o3.id}" imageId="${o3.image_id}" .onClick="${() => this.onConnecting(o3)}"></wcm-wallet-button>`);
 }, recentWalletTemplate() {
   const e2 = ee.recentWallet();
-  if (e2)
-    return x`<wcm-wallet-button name="${e2.name}" walletId="${e2.id}" imageId="${l(e2.image_id)}" .recent="${true}" .onClick="${() => this.onConnecting(e2)}"></wcm-wallet-button>`;
+  if (e2) return x`<wcm-wallet-button name="${e2.name}" walletId="${e2.id}" imageId="${l(e2.image_id)}" .recent="${true}" .onClick="${() => this.onConnecting(e2)}"></wcm-wallet-button>`;
 } }, vo = i$3`.wcm-grid{display:grid;grid-template-columns:repeat(4,80px);justify-content:space-between}.wcm-desktop-title,.wcm-mobile-title{display:flex;align-items:center}.wcm-mobile-title{justify-content:space-between;margin-bottom:20px;margin-top:-10px}.wcm-desktop-title{margin-bottom:10px;padding:0 10px}.wcm-subtitle{display:flex;align-items:center}.wcm-subtitle:last-child path{fill:var(--wcm-color-fg-3)}.wcm-desktop-title svg,.wcm-mobile-title svg{margin-right:6px}.wcm-desktop-title path,.wcm-mobile-title path{fill:var(--wcm-accent-color)}`;
 var fo = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Le = class extends s$1 {
@@ -3927,8 +3836,7 @@ let Le = class extends s$1 {
 Le.styles = [h.globalCss, vo], Le = fo([e$2("wcm-desktop-wallet-selection")], Le);
 const xo = i$3`div{background-color:var(--wcm-color-bg-2);padding:10px 20px 15px 20px;border-top:1px solid var(--wcm-color-bg-3);text-align:center}a{color:var(--wcm-accent-color);text-decoration:none;transition:opacity .2s ease-in-out;display:inline}a:active{opacity:.8}@media(hover:hover){a:hover{opacity:.8}}`;
 var Co = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Re = class extends s$1 {
@@ -3940,8 +3848,7 @@ let Re = class extends s$1 {
 Re.styles = [h.globalCss, xo], Re = Co([e$2("wcm-legal-notice")], Re);
 const ko = i$3`div{display:grid;grid-template-columns:repeat(4,80px);margin:0 -10px;justify-content:space-between;row-gap:10px}`;
 var Wo = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Ae = class extends s$1 {
@@ -3962,8 +3869,7 @@ let Ae = class extends s$1 {
 Ae.styles = [h.globalCss, ko], Ae = Wo([e$2("wcm-mobile-wallet-selection")], Ae);
 const Eo = i$3`:host{all:initial}.wcm-overlay{top:0;bottom:0;left:0;right:0;position:fixed;z-index:var(--wcm-z-index);overflow:hidden;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;background-color:var(--wcm-overlay-background-color);backdrop-filter:var(--wcm-overlay-backdrop-filter)}@media(max-height:720px) and (orientation:landscape){.wcm-overlay{overflow:scroll;align-items:flex-start;padding:20px 0}}.wcm-active{pointer-events:auto}.wcm-container{position:relative;max-width:360px;width:100%;outline:0;border-radius:var(--wcm-background-border-radius) var(--wcm-background-border-radius) var(--wcm-container-border-radius) var(--wcm-container-border-radius);border:1px solid var(--wcm-color-overlay);overflow:hidden}.wcm-card{width:100%;position:relative;border-radius:var(--wcm-container-border-radius);overflow:hidden;box-shadow:0 6px 14px -6px rgba(10,16,31,.12),0 10px 32px -4px rgba(10,16,31,.1),0 0 0 1px var(--wcm-color-overlay);background-color:var(--wcm-color-bg-1);color:var(--wcm-color-fg-1)}@media(max-width:600px){.wcm-container{max-width:440px;border-radius:var(--wcm-background-border-radius) var(--wcm-background-border-radius) 0 0}.wcm-card{border-radius:var(--wcm-container-border-radius) var(--wcm-container-border-radius) 0 0}.wcm-overlay{align-items:flex-end}}@media(max-width:440px){.wcm-container{border:0}}`;
 var Mo = Object.defineProperty, Po = Object.getOwnPropertyDescriptor, Te = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Po(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Po(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Mo(o3, r2, t2), t2;
 };
 let ne = class extends s$1 {
@@ -3983,12 +3889,10 @@ let ne = class extends s$1 {
     return s2.getShadowRootElement(this, ".wcm-container");
   }
   toggleBodyScroll(e2) {
-    if (document.querySelector("body"))
-      if (e2) {
-        const o3 = document.getElementById("wcm-styles");
-        o3 == null ? void 0 : o3.remove();
-      } else
-        document.head.insertAdjacentHTML("beforeend", '<style id="wcm-styles">html,body{touch-action:none;overflow:hidden;overscroll-behavior:contain;}</style>');
+    if (document.querySelector("body")) if (e2) {
+      const o3 = document.getElementById("wcm-styles");
+      o3 == null ? void 0 : o3.remove();
+    } else document.head.insertAdjacentHTML("beforeend", '<style id="wcm-styles">html,body{touch-action:none;overflow:hidden;overscroll-behavior:contain;}</style>');
   }
   onCloseModal(e2) {
     e2.target === e2.currentTarget && se$1.close();
@@ -4022,8 +3926,7 @@ let ne = class extends s$1 {
 ne.styles = [h.globalCss, Eo], Te([t$1()], ne.prototype, "open", 2), Te([t$1()], ne.prototype, "active", 2), ne = Te([e$2("wcm-modal")], ne);
 const Lo = i$3`div{display:flex;margin-top:15px}slot{display:inline-block;margin:0 5px}wcm-button{margin:0 5px}`;
 var Ro = Object.defineProperty, Ao = Object.getOwnPropertyDescriptor, ce = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Ao(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Ao(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Ro(o3, r2, t2), t2;
 };
 let U = class extends s$1 {
@@ -4046,8 +3949,7 @@ let U = class extends s$1 {
 U.styles = [h.globalCss, Lo], ce([n$1({ type: Boolean })], U.prototype, "isMobile", 2), ce([n$1({ type: Boolean })], U.prototype, "isDesktop", 2), ce([n$1({ type: Boolean })], U.prototype, "isWeb", 2), ce([n$1({ type: Boolean })], U.prototype, "isRetry", 2), U = ce([e$2("wcm-platform-selection")], U);
 const To = i$3`button{display:flex;flex-direction:column;padding:5px 10px;border-radius:var(--wcm-button-hover-highlight-border-radius);height:100%;justify-content:flex-start}.wcm-icons{width:60px;height:60px;display:flex;flex-wrap:wrap;padding:7px;border-radius:var(--wcm-wallet-icon-border-radius);justify-content:space-between;align-items:center;margin-bottom:5px;background-color:var(--wcm-color-bg-2);box-shadow:inset 0 0 0 1px var(--wcm-color-overlay)}button:active{background-color:var(--wcm-color-overlay)}@media(hover:hover){button:hover{background-color:var(--wcm-color-overlay)}}.wcm-icons img{width:21px;height:21px;object-fit:cover;object-position:center;border-radius:calc(var(--wcm-wallet-icon-border-radius)/ 2);border:1px solid var(--wcm-color-overlay)}.wcm-icons svg{width:21px;height:21px}.wcm-icons img:nth-child(1),.wcm-icons img:nth-child(2),.wcm-icons svg:nth-child(1),.wcm-icons svg:nth-child(2){margin-bottom:4px}wcm-text{width:100%;text-align:center}#wallet-placeholder-fill{fill:var(--wcm-color-bg-3)}#wallet-placeholder-dash{stroke:var(--wcm-color-overlay)}`;
 var Do = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let je = class extends s$1 {
@@ -4058,8 +3960,7 @@ let je = class extends s$1 {
     const { recomendedWallets: e2 } = te.state, o3 = ee.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
     return x`<button @click="${this.onClick}"><div class="wcm-icons">${r2.map((a2) => {
       const t2 = s2.getWalletIcon(a2);
-      if (t2)
-        return x`<img crossorigin="anonymous" src="${t2}">`;
+      if (t2) return x`<img crossorigin="anonymous" src="${t2}">`;
       const l2 = s2.getWalletIcon({ id: a2.id });
       return l2 ? x`<img crossorigin="anonymous" src="${l2}">` : b.WALLET_PLACEHOLDER;
     })} ${[...Array(4 - r2.length)].map(() => b.WALLET_PLACEHOLDER)}</div><wcm-text variant="xsmall-regular">View All</wcm-text></button>`;
@@ -4068,8 +3969,7 @@ let je = class extends s$1 {
 je.styles = [h.globalCss, To], je = Do([e$2("wcm-view-all-wallets-button")], je);
 const No = i$3`.wcm-qr-container{width:100%;display:flex;justify-content:center;align-items:center;aspect-ratio:1/1}`;
 var Zo = Object.defineProperty, zo = Object.getOwnPropertyDescriptor, he = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? zo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? zo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Zo(o3, r2, t2), t2;
 };
 let J = class extends s$1 {
@@ -4088,8 +3988,7 @@ let J = class extends s$1 {
 };
 J.styles = [h.globalCss, No], he([n$1()], J.prototype, "walletId", 2), he([n$1()], J.prototype, "imageId", 2), he([t$1()], J.prototype, "uri", 2), J = he([e$2("wcm-walletconnect-qr")], J);
 var Uo = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let _e = class extends s$1 {
@@ -4103,8 +4002,7 @@ let _e = class extends s$1 {
 _e.styles = [h.globalCss], _e = Uo([e$2("wcm-connect-wallet-view")], _e);
 const Ho = i$3`wcm-info-footer{flex-direction:column;align-items:center;display:flex;width:100%;padding:5px 0}wcm-text{text-align:center}`;
 var Vo = Object.defineProperty, qo = Object.getOwnPropertyDescriptor, Ke = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? qo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? qo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Vo(o3, r2, t2), t2;
 };
 let pe = class extends s$1 {
@@ -4119,8 +4017,7 @@ let pe = class extends s$1 {
       if (a2 === "Puzzle Wallet" && (o3 = window == null ? void 0 : window.aleo) != null && o3.connectPuzzle) {
         const i2 = new URL(l2).searchParams, c2 = i2.get("uri"), u3 = i2.get("requestId"), w2 = i2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: c2, requestId: u3 ?? void 0, sessionTopic: w2 ?? void 0 } });
-      } else
-        i$4.openHref(l2, "_self");
+      } else i$4.openHref(l2, "_self");
     }
   }
   openDesktopApp() {
@@ -4135,8 +4032,7 @@ let pe = class extends s$1 {
 pe.styles = [h.globalCss, Ho], Ke([t$1()], pe.prototype, "isError", 2), pe = Ke([e$2("wcm-desktop-connecting-view")], pe);
 const Fo = i$3`wcm-info-footer{flex-direction:column;align-items:center;display:flex;width:100%;padding:5px 0}wcm-text{text-align:center}wcm-button{margin-top:15px}`;
 var Yo = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let De = class extends s$1 {
@@ -4151,8 +4047,7 @@ let De = class extends s$1 {
 De.styles = [h.globalCss, Fo], De = Yo([e$2("wcm-install-wallet-view")], De);
 const Go = i$3`wcm-wallet-image{border-radius:var(--wcm-wallet-icon-large-border-radius);width:96px;height:96px;margin-bottom:20px}wcm-info-footer{display:flex;width:100%}.wcm-app-store{justify-content:space-between}.wcm-app-store wcm-wallet-image{margin-right:10px;margin-bottom:0;width:28px;height:28px;border-radius:var(--wcm-wallet-icon-small-border-radius)}.wcm-app-store div{display:flex;align-items:center}.wcm-app-store wcm-button{margin-right:-10px}.wcm-note{flex-direction:column;align-items:center;padding:5px 0}.wcm-note wcm-text{text-align:center}wcm-platform-selection{margin-top:-15px}.wcm-note wcm-text{margin-top:15px}.wcm-note wcm-text span{color:var(--wcm-accent-color)}`;
 var Xo = Object.defineProperty, Jo = Object.getOwnPropertyDescriptor, Ye = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? Jo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? Jo(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && Xo(o3, r2, t2), t2;
 };
 let ge = class extends s$1 {
@@ -4167,15 +4062,13 @@ let ge = class extends s$1 {
       if (l2 === "Puzzle Wallet" && (r2 = window == null ? void 0 : window.aleo) != null && r2.connectPuzzle) {
         const w2 = new URL(u3).searchParams, F = w2.get("uri"), T2 = w2.get("requestId"), j = w2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: F, requestId: T2 ?? void 0, sessionTopic: j ?? void 0 } });
-      } else
-        i$4.openHref(u3, "_self");
+      } else i$4.openHref(u3, "_self");
     } else if (c2) {
       const u3 = i$4.formatUniversalUrl(c2, e2, l2);
       if (l2 === "Puzzle Wallet" && (a2 = window == null ? void 0 : window.aleo) != null && a2.connectPuzzle) {
         const w2 = new URL(u3).searchParams, F = w2.get("uri"), T2 = w2.get("requestId"), j = w2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: F, requestId: T2 ?? void 0, sessionTopic: j ?? void 0 } });
-      } else
-        i$4.openHref(u3, "_self");
+      } else i$4.openHref(u3, "_self");
     }
   }
   openMobileApp(e2 = false) {
@@ -4193,8 +4086,7 @@ let ge = class extends s$1 {
 ge.styles = [h.globalCss, Go], Ye([t$1()], ge.prototype, "isError", 2), ge = Ye([e$2("wcm-mobile-connecting-view")], ge);
 const er = i$3`wcm-info-footer{flex-direction:column;align-items:center;display:flex;width:100%;padding:5px 0}wcm-text{text-align:center}`;
 var rr = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Ne = class extends s$1 {
@@ -4205,8 +4097,7 @@ let Ne = class extends s$1 {
 };
 Ne.styles = [h.globalCss, er], Ne = rr([e$2("wcm-mobile-qr-connecting-view")], Ne);
 var ir = (e2, o3, r2, a2) => {
-  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = i2(t2) || t2);
+  for (var t2 = o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = i2(t2) || t2);
   return t2;
 };
 let Ze = class extends s$1 {
@@ -4217,8 +4108,7 @@ let Ze = class extends s$1 {
 Ze.styles = [h.globalCss], Ze = ir([e$2("wcm-qrcode-view")], Ze);
 const nr = i$3`wcm-modal-content{height:clamp(200px,60vh,600px);display:block;overflow:scroll;scrollbar-width:none;position:relative;margin-top:1px}.wcm-grid{display:grid;grid-template-columns:repeat(4,80px);justify-content:space-between;margin:-15px -10px;padding-top:20px}wcm-modal-content::after,wcm-modal-content::before{content:'';position:fixed;pointer-events:none;z-index:1;width:100%;height:20px;opacity:1}wcm-modal-content::before{box-shadow:0 -1px 0 0 var(--wcm-color-bg-1);background:linear-gradient(var(--wcm-color-bg-1),rgba(255,255,255,0))}wcm-modal-content::after{box-shadow:0 1px 0 0 var(--wcm-color-bg-1);background:linear-gradient(rgba(255,255,255,0),var(--wcm-color-bg-1));top:calc(100% - 20px)}wcm-modal-content::-webkit-scrollbar{display:none}.wcm-placeholder-block{display:flex;justify-content:center;align-items:center;height:100px;overflow:hidden}.wcm-empty,.wcm-loading{display:flex}.wcm-loading .wcm-placeholder-block{height:100%}.wcm-end-reached .wcm-placeholder-block{height:0;opacity:0}.wcm-empty .wcm-placeholder-block{opacity:1;height:100%}wcm-wallet-button{margin:calc((100% - 60px)/ 3) 0}`;
 var cr = Object.defineProperty, sr = Object.getOwnPropertyDescriptor, se = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? sr(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? sr(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && cr(o3, r2, t2), t2;
 };
 const ze = 40;
@@ -4250,16 +4140,15 @@ let H2 = class extends s$1 {
   async fetchWallets() {
     var e2;
     const { wallets: o3, search: r2 } = te.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
-    if (!this.endReached && (this.firstFetch || t2 > ze && a2.length < t2))
-      try {
-        this.loading = true;
-        const i2 = (e2 = p$1.state.chains) == null ? void 0 : e2.join(","), { listings: c2 } = await te.getWallets({ page: this.firstFetch ? 1 : l2 + 1, entries: ze, search: this.search, version: 2, chains: i2 }), u3 = c2.map((w2) => s2.getWalletIcon(w2));
-        await Promise.all([...u3.map(async (w2) => s2.preloadImage(w2)), i$4.wait(300)]), this.endReached = this.isLastPage();
-      } catch (i2) {
-        console.error(i2), oe.openToast(s2.getErrorMessage(i2), "error");
-      } finally {
-        this.loading = false, this.firstFetch = false;
-      }
+    if (!this.endReached && (this.firstFetch || t2 > ze && a2.length < t2)) try {
+      this.loading = true;
+      const i2 = (e2 = p$1.state.chains) == null ? void 0 : e2.join(","), { listings: c2 } = await te.getWallets({ page: this.firstFetch ? 1 : l2 + 1, entries: ze, search: this.search, version: 2, chains: i2 }), u3 = c2.map((w2) => s2.getWalletIcon(w2));
+      await Promise.all([...u3.map(async (w2) => s2.preloadImage(w2)), i$4.wait(300)]), this.endReached = this.isLastPage();
+    } catch (i2) {
+      console.error(i2), oe.openToast(s2.getErrorMessage(i2), "error");
+    } finally {
+      this.loading = false, this.firstFetch = false;
+    }
   }
   onConnect(e2) {
     i$4.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
@@ -4279,8 +4168,7 @@ let H2 = class extends s$1 {
 H2.styles = [h.globalCss, nr], se([t$1()], H2.prototype, "loading", 2), se([t$1()], H2.prototype, "firstFetch", 2), se([t$1()], H2.prototype, "search", 2), se([t$1()], H2.prototype, "endReached", 2), H2 = se([e$2("wcm-wallet-explorer-view")], H2);
 const dr = i$3`wcm-info-footer{flex-direction:column;align-items:center;display:flex;width:100%;padding:5px 0}wcm-text{text-align:center}`;
 var mr = Object.defineProperty, wr = Object.getOwnPropertyDescriptor, Ge = (e2, o3, r2, a2) => {
-  for (var t2 = a2 > 1 ? void 0 : a2 ? wr(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
-    (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
+  for (var t2 = a2 > 1 ? void 0 : a2 ? wr(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--) (i2 = e2[l2]) && (t2 = (a2 ? i2(o3, r2, t2) : i2(t2)) || t2);
   return a2 && t2 && mr(o3, r2, t2), t2;
 };
 let ve = class extends s$1 {
@@ -4295,8 +4183,7 @@ let ve = class extends s$1 {
       if (a2 === "Puzzle Wallet" && (o3 = window == null ? void 0 : window.aleo) != null && o3.connectPuzzle) {
         const i2 = new URL(l2).searchParams, c2 = i2.get("uri"), u3 = i2.get("requestId"), w2 = i2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: c2, requestId: u3 ?? void 0, sessionTopic: w2 ?? void 0 } });
-      } else
-        i$4.openHref(l2, "_blank");
+      } else i$4.openHref(l2, "_blank");
     }
   }
   openWebWallet() {
