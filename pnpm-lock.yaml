@@ -12,8 +12,8 @@ importers:
         specifier: ^2.27.1
         version: 2.27.1
       '@puzzlehq/types':
-        specifier: 1.0.22
-        version: 1.0.22
+        specifier: 1.0.23
+        version: 1.0.23
       '@puzzlehq/walletconnect-modal-sign-html':
         specifier: ^0.0.6
         version: 0.0.6(react@18.3.1)
@@ -46,8 +46,8 @@ importers:
   packages/core:
     dependencies:
       '@puzzlehq/types':
-        specifier: 1.0.22
-        version: 1.0.22
+        specifier: 1.0.23
+        version: 1.0.23
       '@puzzlehq/walletconnect-modal-sign-html':
         specifier: ^0.0.6
         version: 0.0.6(react@18.3.1)
@@ -76,8 +76,8 @@ importers:
         specifier: 0.4.2
         version: link:../core
       '@puzzlehq/types':
-        specifier: 1.0.22
-        version: 1.0.22
+        specifier: 1.0.23
+        version: 1.0.23
       '@tanstack/react-query':
         specifier: ^4.29.5
         version: 4.36.1(react-dom@18.3.1)(react@18.3.1)
@@ -799,8 +799,8 @@ packages:
       '@parcel/watcher-win32-x64': 2.4.1
     dev: false
 
-  /@puzzlehq/types@1.0.22:
-    resolution: {integrity: sha512-g5iIr3+HVm6/v6bu9XZRTtwA0B5vJb5JrFYAE2IwIYgqMDDBLniiPyprcpF/xN1+ooVIUUOauBxFuB5M05Wpdw==}
+  /@puzzlehq/types@1.0.23:
+    resolution: {integrity: sha512-l/4DgVnAx1eO9B9lVL1p8nNFtrRqZHf5ULLGAF0ql3egdOzU8/Cmf6hznFH0+eRqnokuIcaFdrXEYBUftfkfrg==}
     dependencies:
       zod: 3.21.1
     dev: false

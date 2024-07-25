@@ -511,7 +511,7 @@ let d$3 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await Promise.resolve().then(() => require("./index-DUmhkW7q-Mxf-6aT5.cjs"));
+      await Promise.resolve().then(() => require("./index-CkWt9B82-f6v5ybgR.cjs"));
       const e2 = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
     }
@@ -20165,7 +20165,9 @@ var EventType;
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
   EventType2["Points"] = "Points";
+  EventType2["Spin"] = "Spin";
   EventType2["Raffle"] = "Raffle";
+  EventType2["Mint"] = "Mint";
 })(EventType || (EventType = {}));
 var EventStatus;
 (function(EventStatus2) {
@@ -20315,7 +20317,7 @@ const repository$1 = {
   url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
 };
 const dependencies$1 = {
-  "@puzzlehq/types": "1.0.22",
+  "@puzzlehq/types": "1.0.23",
   "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
   "@walletconnect/types": "^2.11.2",
   "@walletconnect/utils": "^2.11.2",
@@ -33356,7 +33358,9 @@ exports.EventType = void 0;
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
   EventType2["Points"] = "Points";
+  EventType2["Spin"] = "Spin";
   EventType2["Raffle"] = "Raffle";
+  EventType2["Mint"] = "Mint";
 })(exports.EventType || (exports.EventType = {}));
 exports.EventStatus = void 0;
 (function(EventStatus2) {
@@ -33569,7 +33573,7 @@ const repository = {
   url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
 };
 const dependencies = {
-  "@puzzlehq/types": "1.0.22",
+  "@puzzlehq/types": "1.0.23",
   "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
   "@walletconnect/types": "^2.11.2",
   "@walletconnect/utils": "^2.11.2",

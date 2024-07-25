@@ -506,7 +506,7 @@
     }
     async initUi() {
       if (typeof window < "u") {
-        await Promise.resolve().then(() => indexDUmhkW7q);
+        await Promise.resolve().then(() => indexCkWt9B82);
         const e2 = document.createElement("wcm-modal");
         document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
       }
@@ -20160,7 +20160,9 @@
     EventType2["Unshield"] = "Unshield";
     EventType2["Referral"] = "Referral";
     EventType2["Points"] = "Points";
+    EventType2["Spin"] = "Spin";
     EventType2["Raffle"] = "Raffle";
+    EventType2["Mint"] = "Mint";
   })(EventType || (EventType = {}));
   var EventStatus;
   (function(EventStatus2) {
@@ -20310,7 +20312,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies$1 = {
-    "@puzzlehq/types": "1.0.22",
+    "@puzzlehq/types": "1.0.23",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -33351,7 +33353,9 @@
     EventType2["Unshield"] = "Unshield";
     EventType2["Referral"] = "Referral";
     EventType2["Points"] = "Points";
+    EventType2["Spin"] = "Spin";
     EventType2["Raffle"] = "Raffle";
+    EventType2["Mint"] = "Mint";
   })(exports2.EventType || (exports2.EventType = {}));
   exports2.EventStatus = void 0;
   (function(EventStatus2) {
@@ -33564,7 +33568,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.22",
+    "@puzzlehq/types": "1.0.23",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",
@@ -38513,7 +38517,7 @@
     }
   };
   ve.styles = [h.globalCss, dr], Ge([t$1()], ve.prototype, "isError", 2), ve = Ge([e$2("wcm-web-connecting-view")], ve);
-  const indexDUmhkW7q = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  const indexCkWt9B82 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     __proto__: null,
     get WcmModal() {
       return ne;

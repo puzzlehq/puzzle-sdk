@@ -1,4 +1,4 @@
-import { n as ne$1, s as se$1, T as T$1, o as oe, R as R$1, i as i$4, t as te, p as p$1, y as y$1 } from "./index-2khHZhSl.js";
+import { n as ne$3, s as se$3, T as T$2, o as oe$2, R as R$1, i as i$1$1, t as te$1, p as p$2, y as y$4 } from "./index-C1fGzUU1.js";
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -3364,7 +3364,7 @@ var et = Object.defineProperty, Se = Object.getOwnPropertySymbols, tt = Object.p
 };
 function rt() {
   var e2;
-  const o3 = (e2 = ne$1.state.themeMode) != null ? e2 : "dark", r2 = { light: { foreground: { 1: "rgb(20,20,20)", 2: "rgb(121,134,134)", 3: "rgb(158,169,169)" }, background: { 1: "rgb(255,255,255)", 2: "rgb(241,243,243)", 3: "rgb(228,231,231)" }, overlay: "rgba(0,0,0,0.1)" }, dark: { foreground: { 1: "rgb(228,231,231)", 2: "rgb(148,158,158)", 3: "rgb(110,119,119)" }, background: { 1: "rgb(20,20,20)", 2: "rgb(39,42,42)", 3: "rgb(59,64,64)" }, overlay: "rgba(255,255,255,0.1)" } }[o3];
+  const o3 = (e2 = ne$3.state.themeMode) != null ? e2 : "dark", r2 = { light: { foreground: { 1: "rgb(20,20,20)", 2: "rgb(121,134,134)", 3: "rgb(158,169,169)" }, background: { 1: "rgb(255,255,255)", 2: "rgb(241,243,243)", 3: "rgb(228,231,231)" }, overlay: "rgba(0,0,0,0.1)" }, dark: { foreground: { 1: "rgb(228,231,231)", 2: "rgb(148,158,158)", 3: "rgb(110,119,119)" }, background: { 1: "rgb(20,20,20)", 2: "rgb(39,42,42)", 3: "rgb(59,64,64)" }, overlay: "rgba(255,255,255,0.1)" } }[o3];
   return { "--wcm-color-fg-1": r2.foreground[1], "--wcm-color-fg-2": r2.foreground[2], "--wcm-color-fg-3": r2.foreground[3], "--wcm-color-bg-1": r2.background[1], "--wcm-color-bg-2": r2.background[2], "--wcm-color-bg-3": r2.background[3], "--wcm-color-overlay": r2.overlay };
 }
 function Ue() {
@@ -3373,7 +3373,7 @@ function Ue() {
 const h = { getPreset(e2) {
   return Ue()[e2];
 }, setTheme() {
-  const e2 = document.querySelector(":root"), { themeVariables: o3 } = ne$1.state;
+  const e2 = document.querySelector(":root"), { themeVariables: o3 } = ne$3.state;
   if (e2) {
     const r2 = fe(fe(fe({}, rt()), Ue()), o3);
     Object.entries(r2).forEach(([a2, t2]) => e2.style.setProperty(a2, t2));
@@ -3431,7 +3431,7 @@ var ut = (e2, o3, r2, a2) => {
 };
 let $e = class extends s$1 {
   render() {
-    return x`<div class="wcm-toolbar-placeholder"></div><div class="wcm-toolbar">${b.WALLET_CONNECT_LOGO} <button @click="${se$1.close}">${b.CROSS_ICON}</button></div>`;
+    return x`<div class="wcm-toolbar-placeholder"></div><div class="wcm-toolbar">${b.WALLET_CONNECT_LOGO} <button @click="${se$3.close}">${b.CROSS_ICON}</button></div>`;
   }
 };
 $e.styles = [h.globalCss, pt], $e = ut([e$2("wcm-modal-backcard")], $e);
@@ -3470,13 +3470,13 @@ let B = class extends s$1 {
     super(...arguments), this.title = "", this.onAction = void 0, this.actionIcon = void 0, this.border = false;
   }
   backBtnTemplate() {
-    return x`<button class="wcm-back-btn" @click="${T$1.goBack}">${b.BACK_ICON}</button>`;
+    return x`<button class="wcm-back-btn" @click="${T$2.goBack}">${b.BACK_ICON}</button>`;
   }
   actionBtnTemplate() {
     return x`<button class="wcm-action-btn" @click="${this.onAction}">${this.actionIcon}</button>`;
   }
   render() {
-    const e2 = { "wcm-border": this.border }, o$12 = T$1.state.history.length > 1, r2 = this.title ? x`<wcm-text variant="big-bold">${this.title}</wcm-text>` : x`<slot></slot>`;
+    const e2 = { "wcm-border": this.border }, o$12 = T$2.state.history.length > 1, r2 = this.title ? x`<wcm-text variant="big-bold">${this.title}</wcm-text>` : x`<slot></slot>`;
     return x`<header class="${o2(e2)}">${o$12 ? this.backBtnTemplate() : null} ${r2} ${this.onAction ? this.actionBtnTemplate() : null}</header>`;
   }
 };
@@ -3487,8 +3487,8 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
     throw new Error(`${o3} not found`);
   return r2;
 }, getWalletIcon({ id: e2, image_id: o3 }) {
-  const { walletImages: r2 } = y$1.state;
-  return r2 != null && r2[e2] ? r2[e2] : o3 ? te.getWalletImageUrl(o3) : "";
+  const { walletImages: r2 } = y$4.state;
+  return r2 != null && r2[e2] ? r2[e2] : o3 ? te$1.getWalletImageUrl(o3) : "";
 }, getWalletName(e2, o3 = false) {
   return o3 && e2.length > 8 ? `${e2.substring(0, 8)}..` : e2;
 }, isMobileAnimation() {
@@ -3498,7 +3498,7 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
     const t2 = new Image();
     t2.onload = r2, t2.onerror = a2, t2.crossOrigin = "anonymous", t2.src = e2;
   });
-  return Promise.race([o3, i$4.wait(3e3)]);
+  return Promise.race([o3, i$1$1.wait(3e3)]);
 }, getErrorMessage(e2) {
   return e2 instanceof Error ? e2.message : "Unknown Error";
 }, debounce(e2, o3 = 500) {
@@ -3510,23 +3510,23 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
     r2 && clearTimeout(r2), r2 = setTimeout(t2, o3);
   };
 }, handleMobileLinking(e2) {
-  const { walletConnectUri: o3 } = p$1.state, { mobile: r2, name: a2 } = e2, t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
+  const { walletConnectUri: o3 } = p$2.state, { mobile: r2, name: a2 } = e2, t2 = r2 == null ? void 0 : r2.native, l2 = r2 == null ? void 0 : r2.universal;
   s2.setRecentWallet(e2);
   function i2(c2) {
     let u3 = "";
-    t2 ? u3 = i$4.formatUniversalUrl(t2, c2, a2) : l2 && (u3 = i$4.formatNativeUrl(l2, c2, a2)), i$4.openHref(u3, "_self");
+    t2 ? u3 = i$1$1.formatUniversalUrl(t2, c2, a2) : l2 && (u3 = i$1$1.formatNativeUrl(l2, c2, a2)), i$1$1.openHref(u3, "_self");
   }
   o3 && i2(o3);
 }, async handleUriCopy() {
-  const { walletConnectUri: e2 } = p$1.state;
+  const { walletConnectUri: e2 } = p$2.state;
   if (e2)
     try {
-      await navigator.clipboard.writeText(e2), oe.openToast("Link copied", "success");
+      await navigator.clipboard.writeText(e2), oe$2.openToast("Link copied", "success");
     } catch {
-      oe.openToast("Failed to copy", "error");
+      oe$2.openToast("Failed to copy", "error");
     }
 }, getCustomImageUrls() {
-  const { walletImages: e2 } = y$1.state, o3 = Object.values(e2 ?? {});
+  const { walletImages: e2 } = y$4.state, o3 = Object.values(e2 ?? {});
   return Object.values(o3);
 }, truncate(e2, o3 = 8) {
   return e2.length <= o3 ? e2 : `${e2.substring(0, 4)}...${e2.substring(e2.length - 4)}`;
@@ -3546,14 +3546,14 @@ const s2 = { MOBILE_BREAKPOINT: 600, WCM_RECENT_WALLET_DATA: "WCM_RECENT_WALLET_
 }, caseSafeIncludes(e2, o3) {
   return e2.toUpperCase().includes(o3.toUpperCase());
 }, openWalletExplorerUrl() {
-  i$4.openHref(s2.EXPLORER_WALLET_URL, "_blank");
+  i$1$1.openHref(s2.EXPLORER_WALLET_URL, "_blank");
 }, getCachedRouterWalletPlatforms() {
-  const { desktop: e2, mobile: o3 } = i$4.getWalletRouterData(), r2 = Boolean(e2 == null ? void 0 : e2.native), a2 = Boolean(e2 == null ? void 0 : e2.universal), t2 = Boolean(o3 == null ? void 0 : o3.native) || Boolean(o3 == null ? void 0 : o3.universal);
+  const { desktop: e2, mobile: o3 } = i$1$1.getWalletRouterData(), r2 = Boolean(e2 == null ? void 0 : e2.native), a2 = Boolean(e2 == null ? void 0 : e2.universal), t2 = Boolean(o3 == null ? void 0 : o3.native) || Boolean(o3 == null ? void 0 : o3.universal);
   return { isDesktop: r2, isMobile: t2, isWeb: a2 };
 }, goToConnectingView(e2) {
-  T$1.setData({ Wallet: e2 });
-  const o3 = i$4.isMobile(), { isDesktop: r2, isWeb: a2, isMobile: t2 } = s2.getCachedRouterWalletPlatforms();
-  o3 ? t2 ? T$1.push("MobileConnecting") : a2 ? T$1.push("WebConnecting") : T$1.push("InstallWallet") : r2 ? T$1.push("DesktopConnecting") : a2 ? T$1.push("WebConnecting") : t2 ? T$1.push("MobileQrcodeConnecting") : T$1.push("InstallWallet");
+  T$2.setData({ Wallet: e2 });
+  const o3 = i$1$1.isMobile(), { isDesktop: r2, isWeb: a2, isMobile: t2 } = s2.getCachedRouterWalletPlatforms();
+  o3 ? t2 ? T$2.push("MobileConnecting") : a2 ? T$2.push("WebConnecting") : T$2.push("InstallWallet") : r2 ? T$2.push("DesktopConnecting") : a2 ? T$2.push("WebConnecting") : t2 ? T$2.push("MobileQrcodeConnecting") : T$2.push("InstallWallet");
 } }, Mt = i$3`.wcm-router{overflow:hidden;will-change:transform}.wcm-content{display:flex;flex-direction:column}`;
 var Pt = Object.defineProperty, Lt = Object.getOwnPropertyDescriptor, Oe = (e2, o3, r2, a2) => {
   for (var t2 = a2 > 1 ? void 0 : a2 ? Lt(o3, r2) : o3, l2 = e2.length - 1, i2; l2 >= 0; l2--)
@@ -3562,7 +3562,7 @@ var Pt = Object.defineProperty, Lt = Object.getOwnPropertyDescriptor, Oe = (e2, 
 };
 let le = class extends s$1 {
   constructor() {
-    super(), this.view = T$1.state.view, this.prevView = T$1.state.view, this.unsubscribe = void 0, this.oldHeight = "0px", this.resizeObserver = void 0, this.unsubscribe = T$1.subscribe((e2) => {
+    super(), this.view = T$2.state.view, this.prevView = T$2.state.view, this.unsubscribe = void 0, this.oldHeight = "0px", this.resizeObserver = void 0, this.unsubscribe = T$2.subscribe((e2) => {
       this.view !== e2.view && this.onChangeRoute();
     });
   }
@@ -3605,7 +3605,7 @@ let le = class extends s$1 {
     }
   }
   async onChangeRoute() {
-    await animate(this.routerEl, { opacity: [1, 0], scale: [1, 1.02] }, { duration: 0.15, delay: 0.1 }).finished, this.view = T$1.state.view, animate(this.routerEl, { opacity: [0, 1], scale: [0.99, 1] }, { duration: 0.37, delay: 0.05 });
+    await animate(this.routerEl, { opacity: [1, 0], scale: [1, 1.02] }, { duration: 0.15, delay: 0.1 }).finished, this.view = T$2.state.view, animate(this.routerEl, { opacity: [0, 1], scale: [0.99, 1] }, { duration: 0.37, delay: 0.05 });
   }
   render() {
     return x`<div class="wcm-router"><div class="wcm-content">${this.viewTemplate()}</div></div>`;
@@ -3620,16 +3620,16 @@ var At = Object.defineProperty, Tt = Object.getOwnPropertyDescriptor, He = (e2, 
 };
 let de = class extends s$1 {
   constructor() {
-    super(), this.open = false, this.unsubscribe = void 0, this.timeout = void 0, this.unsubscribe = oe.subscribe((e2) => {
-      e2.open ? (this.open = true, this.timeout = setTimeout(() => oe.closeToast(), 2200)) : (this.open = false, clearTimeout(this.timeout));
+    super(), this.open = false, this.unsubscribe = void 0, this.timeout = void 0, this.unsubscribe = oe$2.subscribe((e2) => {
+      e2.open ? (this.open = true, this.timeout = setTimeout(() => oe$2.closeToast(), 2200)) : (this.open = false, clearTimeout(this.timeout));
     });
   }
   disconnectedCallback() {
     var e2;
-    (e2 = this.unsubscribe) == null || e2.call(this), clearTimeout(this.timeout), oe.closeToast();
+    (e2 = this.unsubscribe) == null || e2.call(this), clearTimeout(this.timeout), oe$2.closeToast();
   }
   render() {
-    const { message: e2, variant: o$12 } = oe.state, r2 = { "wcm-success": o$12 === "success", "wcm-error": o$12 === "error" };
+    const { message: e2, variant: o$12 } = oe$2.state, r2 = { "wcm-success": o$12 === "success", "wcm-error": o$12 === "error" };
     return this.open ? x`<div class="${o2(r2)}">${o$12 === "success" ? b.CHECKMARK_ICON : null} ${o$12 === "error" ? b.CROSS_ICON : null}<wcm-text variant="small-regular">${e2}</wcm-text></div>` : null;
   }
 };
@@ -3697,11 +3697,11 @@ let D = class extends s$1 {
     super(...arguments), this.uri = "", this.size = 0, this.imageId = void 0, this.walletId = void 0, this.imageUrl = void 0;
   }
   svgTemplate() {
-    const e2 = ne$1.state.themeMode === "light" ? this.size : this.size - 36;
+    const e2 = ne$3.state.themeMode === "light" ? this.size : this.size - 36;
     return b$1`<svg height="${e2}" width="${e2}">${Dt.generate(this.uri, e2, e2 / 4)}</svg>`;
   }
   render() {
-    const e2 = { "wcm-dark": ne$1.state.themeMode === "dark" };
+    const e2 = { "wcm-dark": ne$3.state.themeMode === "dark" };
     return x`<div style="${`width: ${this.size}px`}" class="${o2(e2)}">${this.walletId || this.imageUrl ? x`<wcm-wallet-image walletId="${l(this.walletId)}" imageId="${l(this.imageId)}" imageUrl="${l(this.imageUrl)}"></wcm-wallet-image>` : b.WALLET_CONNECT_ICON_COLORED} ${this.svgTemplate()}</div>`;
   }
 };
@@ -3805,12 +3805,12 @@ let Me = class extends s$1 {
     }
   }
   async preloadListings() {
-    if (y$1.state.enableExplorer) {
-      await te.getRecomendedWallets(), p$1.setIsDataLoaded(true);
-      const { recomendedWallets: e2 } = te.state, o3 = e2.map((r2) => s2.getWalletIcon(r2));
+    if (y$4.state.enableExplorer) {
+      await te$1.getRecomendedWallets(), p$2.setIsDataLoaded(true);
+      const { recomendedWallets: e2 } = te$1.state, o3 = e2.map((r2) => s2.getWalletIcon(r2));
       await this.loadImages(o3);
     } else
-      p$1.setIsDataLoaded(true);
+      p$2.setIsDataLoaded(true);
   }
   async preloadCustomImages() {
     const e2 = s2.getCustomImageUrls();
@@ -3820,7 +3820,7 @@ let Me = class extends s$1 {
     try {
       this.preload && (this.preload = false, await Promise.all([this.preloadListings(), this.preloadCustomImages()]));
     } catch (e2) {
-      console.error(e2), oe.openToast("Failed preloading", "error");
+      console.error(e2), oe$2.openToast("Failed preloading", "error");
     }
   }
 };
@@ -3832,7 +3832,7 @@ var no = (e2, o3, r2, a2) => {
 };
 let Qe = class extends s$1 {
   constructor() {
-    super(), this.unsubscribeTheme = void 0, h.setTheme(), this.unsubscribeTheme = ne$1.subscribe(h.setTheme);
+    super(), this.unsubscribeTheme = void 0, h.setTheme(), this.unsubscribeTheme = ne$3.subscribe(h.setTheme);
   }
   disconnectedCallback() {
     var e2;
@@ -3848,13 +3848,13 @@ var wo = (e2, o3, r2, a2) => {
 };
 let Pe = class extends s$1 {
   onConnect(e2) {
-    i$4.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
+    i$1$1.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
   }
   onGoToQrcode() {
-    T$1.push("Qrcode");
+    T$2.push("Qrcode");
   }
   render() {
-    const { recomendedWallets: e2 } = te.state, o3 = [...e2, ...e2], r2 = i$4.RECOMMENDED_WALLET_AMOUNT * 2;
+    const { recomendedWallets: e2 } = te$1.state, o3 = [...e2, ...e2], r2 = i$1$1.RECOMMENDED_WALLET_AMOUNT * 2;
     return x`<wcm-modal-header title="Connect your wallet" .onAction="${this.onGoToQrcode}" .actionIcon="${b.QRCODE_ICON}"></wcm-modal-header><wcm-modal-content><div class="wcm-title">${b.MOBILE_ICON}<wcm-text variant="small-regular" color="accent">WalletConnect</wcm-text></div><div class="wcm-slider"><div class="wcm-track">${[...Array(r2)].map((a2, t2) => {
       const l2 = o3[t2 % o3.length];
       return l2 ? x`<wcm-wallet-image walletId="${l2.id}" imageId="${l2.image_id}"></wcm-wallet-image>` : b.WALLET_PLACEHOLDER;
@@ -3874,7 +3874,7 @@ let Z2 = class extends s$1 {
   }
   svgLoaderTemplate() {
     var e2, o3;
-    const r2 = (o3 = (e2 = ne$1.state.themeVariables) == null ? void 0 : e2["--wcm-wallet-icon-large-border-radius"]) != null ? o3 : h.getPreset("--wcm-wallet-icon-large-border-radius");
+    const r2 = (o3 = (e2 = ne$3.state.themeVariables) == null ? void 0 : e2["--wcm-wallet-icon-large-border-radius"]) != null ? o3 : h.getPreset("--wcm-wallet-icon-large-border-radius");
     let a2 = 0;
     r2.includes("%") ? a2 = 88 / 100 * parseInt(r2, 10) : a2 = parseInt(r2, 10), a2 *= 1.17;
     const t2 = 317 - a2 * 1.57, l2 = 425 - a2 * 1.8;
@@ -3888,13 +3888,13 @@ let Z2 = class extends s$1 {
 Z2.styles = [h.globalCss, ho], X([n$1()], Z2.prototype, "walletId", 2), X([n$1()], Z2.prototype, "imageId", 2), X([n$1({ type: Boolean })], Z2.prototype, "isError", 2), X([n$1({ type: Boolean })], Z2.prototype, "isStale", 2), X([n$1()], Z2.prototype, "label", 2), Z2 = X([e$2("wcm-connector-waiting")], Z2);
 const ee = { manualWallets() {
   var e2, o3;
-  const { mobileWallets: r2, desktopWallets: a2 } = y$1.state, t2 = (e2 = ee.recentWallet()) == null ? void 0 : e2.id, l2 = i$4.isMobile() ? r2 : a2, i2 = l2 == null ? void 0 : l2.filter((c2) => t2 !== c2.id);
-  return (o3 = i$4.isMobile() ? i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, mobile: w2, links: w2 })) : i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, desktop: w2, links: w2 }))) != null ? o3 : [];
+  const { mobileWallets: r2, desktopWallets: a2 } = y$4.state, t2 = (e2 = ee.recentWallet()) == null ? void 0 : e2.id, l2 = i$1$1.isMobile() ? r2 : a2, i2 = l2 == null ? void 0 : l2.filter((c2) => t2 !== c2.id);
+  return (o3 = i$1$1.isMobile() ? i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, mobile: w2, links: w2 })) : i2 == null ? void 0 : i2.map(({ id: c2, name: u3, links: w2 }) => ({ id: c2, name: u3, desktop: w2, links: w2 }))) != null ? o3 : [];
 }, recentWallet() {
   return s2.getRecentWallet();
 }, recomendedWallets(e2 = false) {
   var o3;
-  const r2 = e2 || (o3 = ee.recentWallet()) == null ? void 0 : o3.id, { recomendedWallets: a2 } = te.state;
+  const r2 = e2 || (o3 = ee.recentWallet()) == null ? void 0 : o3.id, { recomendedWallets: a2 } = te$1.state;
   return a2.filter((t2) => r2 !== t2.id);
 } }, S = { onConnecting(e2) {
   s2.goToConnectingView(e2);
@@ -3914,7 +3914,7 @@ var fo = (e2, o3, r2, a2) => {
 };
 let Le = class extends s$1 {
   render() {
-    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$1.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
+    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$4.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
     let l2 = [S.recentWalletTemplate(), ...a2, ...t2];
     l2 = l2.filter(Boolean);
     const i2 = l2.length > 4 || r2;
@@ -3933,7 +3933,7 @@ var Co = (e2, o3, r2, a2) => {
 };
 let Re = class extends s$1 {
   render() {
-    const { termsOfServiceUrl: e2, privacyPolicyUrl: o3 } = y$1.state;
+    const { termsOfServiceUrl: e2, privacyPolicyUrl: o3 } = y$4.state;
     return e2 ?? o3 ? x`<div><wcm-text variant="small-regular" color="secondary">By connecting your wallet to this app, you agree to the app's ${e2 ? x`<a href="${e2}" target="_blank" rel="noopener noreferrer">Terms of Service</a>` : null} ${e2 && o3 ? "and" : null} ${o3 ? x`<a href="${o3}" target="_blank" rel="noopener noreferrer">Privacy Policy</a>` : null}</wcm-text></div>` : null;
   }
 };
@@ -3946,10 +3946,10 @@ var Wo = (e2, o3, r2, a2) => {
 };
 let Ae = class extends s$1 {
   onQrcode() {
-    T$1.push("Qrcode");
+    T$2.push("Qrcode");
   }
   render() {
-    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$1.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
+    const { explorerExcludedWalletIds: e2, enableExplorer: o3 } = y$4.state, r2 = e2 !== "ALL" && o3, a2 = S.manualWalletsTemplate(), t2 = S.recomendedWalletsTemplate();
     let l2 = [S.recentWalletTemplate(), ...a2, ...t2];
     l2 = l2.filter(Boolean);
     const i2 = l2.length > 8 || r2;
@@ -3968,7 +3968,7 @@ var Mo = Object.defineProperty, Po = Object.getOwnPropertyDescriptor, Te = (e2, 
 };
 let ne = class extends s$1 {
   constructor() {
-    super(), this.open = false, this.active = false, this.unsubscribeModal = void 0, this.abortController = void 0, this.unsubscribeModal = se$1.subscribe((e2) => {
+    super(), this.open = false, this.active = false, this.unsubscribeModal = void 0, this.abortController = void 0, this.unsubscribeModal = se$3.subscribe((e2) => {
       e2.open ? this.onOpenModalEvent() : this.onCloseModalEvent();
     });
   }
@@ -3991,7 +3991,7 @@ let ne = class extends s$1 {
         document.head.insertAdjacentHTML("beforeend", '<style id="wcm-styles">html,body{touch-action:none;overflow:hidden;overscroll-behavior:contain;}</style>');
   }
   onCloseModal(e2) {
-    e2.target === e2.currentTarget && se$1.close();
+    e2.target === e2.currentTarget && se$3.close();
   }
   onOpenModalEvent() {
     this.toggleBodyScroll(false), this.addKeyboardEvents(), this.open = true, setTimeout(async () => {
@@ -4007,7 +4007,7 @@ let ne = class extends s$1 {
   addKeyboardEvents() {
     this.abortController = new AbortController(), window.addEventListener("keydown", (e2) => {
       var o3;
-      e2.key === "Escape" ? se$1.close() : e2.key === "Tab" && ((o3 = e2.target) != null && o3.tagName.includes("wcm-") || this.containerEl.focus());
+      e2.key === "Escape" ? se$3.close() : e2.key === "Tab" && ((o3 = e2.target) != null && o3.tagName.includes("wcm-") || this.containerEl.focus());
     }, this.abortController), this.containerEl.focus();
   }
   removeKeyboardEvents() {
@@ -4031,13 +4031,13 @@ let U = class extends s$1 {
     super(...arguments), this.isMobile = false, this.isDesktop = false, this.isWeb = false, this.isRetry = false;
   }
   onMobile() {
-    i$4.isMobile() ? T$1.replace("MobileConnecting") : T$1.replace("MobileQrcodeConnecting");
+    i$1$1.isMobile() ? T$2.replace("MobileConnecting") : T$2.replace("MobileQrcodeConnecting");
   }
   onDesktop() {
-    T$1.replace("DesktopConnecting");
+    T$2.replace("DesktopConnecting");
   }
   onWeb() {
-    T$1.replace("WebConnecting");
+    T$2.replace("WebConnecting");
   }
   render() {
     return x`<div>${this.isRetry ? x`<slot></slot>` : null} ${this.isMobile ? x`<wcm-button .onClick="${this.onMobile}" .iconLeft="${b.MOBILE_ICON}" variant="outline">Mobile</wcm-button>` : null} ${this.isDesktop ? x`<wcm-button .onClick="${this.onDesktop}" .iconLeft="${b.DESKTOP_ICON}" variant="outline">Desktop</wcm-button>` : null} ${this.isWeb ? x`<wcm-button .onClick="${this.onWeb}" .iconLeft="${b.GLOBE_ICON}" variant="outline">Web</wcm-button>` : null}</div>`;
@@ -4052,10 +4052,10 @@ var Do = (e2, o3, r2, a2) => {
 };
 let je = class extends s$1 {
   onClick() {
-    T$1.push("WalletExplorer");
+    T$2.push("WalletExplorer");
   }
   render() {
-    const { recomendedWallets: e2 } = te.state, o3 = ee.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
+    const { recomendedWallets: e2 } = te$1.state, o3 = ee.manualWallets(), r2 = [...e2, ...o3].reverse().slice(0, 4);
     return x`<button @click="${this.onClick}"><div class="wcm-icons">${r2.map((a2) => {
       const t2 = s2.getWalletIcon(a2);
       if (t2)
@@ -4075,7 +4075,7 @@ var Zo = Object.defineProperty, zo = Object.getOwnPropertyDescriptor, he = (e2, 
 let J = class extends s$1 {
   constructor() {
     super(), this.walletId = "", this.imageId = "", this.uri = "", setTimeout(() => {
-      const { walletConnectUri: e2 } = p$1.state;
+      const { walletConnectUri: e2 } = p$2.state;
       this.uri = e2;
     }, 0);
   }
@@ -4094,7 +4094,7 @@ var Uo = (e2, o3, r2, a2) => {
 };
 let _e = class extends s$1 {
   viewTemplate() {
-    return i$4.isAndroid() ? x`<wcm-android-wallet-selection></wcm-android-wallet-selection>` : i$4.isMobile() ? x`<wcm-mobile-wallet-selection></wcm-mobile-wallet-selection>` : x`<wcm-desktop-wallet-selection></wcm-desktop-wallet-selection>`;
+    return i$1$1.isAndroid() ? x`<wcm-android-wallet-selection></wcm-android-wallet-selection>` : i$1$1.isMobile() ? x`<wcm-mobile-wallet-selection></wcm-mobile-wallet-selection>` : x`<wcm-desktop-wallet-selection></wcm-desktop-wallet-selection>`;
   }
   render() {
     return x`${this.viewTemplate()}<wcm-legal-notice></wcm-legal-notice>`;
@@ -4113,22 +4113,22 @@ let pe = class extends s$1 {
   }
   onFormatAndRedirect(e2) {
     var o3;
-    const { desktop: r2, name: a2 } = i$4.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native;
+    const { desktop: r2, name: a2 } = i$1$1.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.native;
     if (t2) {
-      const l2 = i$4.formatNativeUrl(t2, e2, a2);
+      const l2 = i$1$1.formatNativeUrl(t2, e2, a2);
       if (a2 === "Puzzle Wallet" && (o3 = window == null ? void 0 : window.aleo) != null && o3.connectPuzzle) {
         const i2 = new URL(l2).searchParams, c2 = i2.get("uri"), u3 = i2.get("requestId"), w2 = i2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: c2, requestId: u3 ?? void 0, sessionTopic: w2 ?? void 0 } });
       } else
-        i$4.openHref(l2, "_self");
+        i$1$1.openHref(l2, "_self");
     }
   }
   openDesktopApp() {
-    const { walletConnectUri: e2 } = p$1.state, o3 = i$4.getWalletRouterData();
+    const { walletConnectUri: e2 } = p$2.state, o3 = i$1$1.getWalletRouterData();
     s2.setRecentWallet(o3), e2 && this.onFormatAndRedirect(e2);
   }
   render() {
-    const { name: e2, id: o3, image_id: r2 } = i$4.getWalletRouterData(), { isMobile: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
+    const { name: e2, id: o3, image_id: r2 } = i$1$1.getWalletRouterData(), { isMobile: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
     return x`<wcm-modal-header title="${e2}" .onAction="${s2.handleUriCopy}" .actionIcon="${b.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="${`Continue in ${e2}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Connection can continue loading if ${e2} is not installed on your device`}</wcm-text><wcm-platform-selection .isMobile="${a2}" .isWeb="${t2}" .isRetry="${true}"><wcm-button .onClick="${this.openDesktopApp.bind(this)}" .iconRight="${b.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };
@@ -4141,10 +4141,10 @@ var Yo = (e2, o3, r2, a2) => {
 };
 let De = class extends s$1 {
   onInstall(e2) {
-    e2 && i$4.openHref(e2, "_blank");
+    e2 && i$1$1.openHref(e2, "_blank");
   }
   render() {
-    const { name: e2, id: o3, image_id: r2, homepage: a2 } = i$4.getWalletRouterData();
+    const { name: e2, id: o3, image_id: r2, homepage: a2 } = i$1$1.getWalletRouterData();
     return x`<wcm-modal-header title="${e2}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="Not Detected" .isStale="${true}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Download ${e2} to continue. If multiple browser extensions are installed, disable non ${e2} ones and try again`}</wcm-text><wcm-button .onClick="${() => this.onInstall(a2)}" .iconLeft="${b.ARROW_DOWN_ICON}">Download</wcm-button></wcm-info-footer>`;
   }
 };
@@ -4161,32 +4161,32 @@ let ge = class extends s$1 {
   }
   onFormatAndRedirect(e2, o3 = false) {
     var r2, a2;
-    const { mobile: t2, name: l2 } = i$4.getWalletRouterData(), i2 = t2 == null ? void 0 : t2.native, c2 = t2 == null ? void 0 : t2.universal;
+    const { mobile: t2, name: l2 } = i$1$1.getWalletRouterData(), i2 = t2 == null ? void 0 : t2.native, c2 = t2 == null ? void 0 : t2.universal;
     if (i2 && !o3) {
-      const u3 = i$4.formatNativeUrl(i2, e2, l2);
+      const u3 = i$1$1.formatNativeUrl(i2, e2, l2);
       if (l2 === "Puzzle Wallet" && (r2 = window == null ? void 0 : window.aleo) != null && r2.connectPuzzle) {
         const w2 = new URL(u3).searchParams, F = w2.get("uri"), T2 = w2.get("requestId"), j = w2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: F, requestId: T2 ?? void 0, sessionTopic: j ?? void 0 } });
       } else
-        i$4.openHref(u3, "_self");
+        i$1$1.openHref(u3, "_self");
     } else if (c2) {
-      const u3 = i$4.formatUniversalUrl(c2, e2, l2);
+      const u3 = i$1$1.formatUniversalUrl(c2, e2, l2);
       if (l2 === "Puzzle Wallet" && (a2 = window == null ? void 0 : window.aleo) != null && a2.connectPuzzle) {
         const w2 = new URL(u3).searchParams, F = w2.get("uri"), T2 = w2.get("requestId"), j = w2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: F, requestId: T2 ?? void 0, sessionTopic: j ?? void 0 } });
       } else
-        i$4.openHref(u3, "_self");
+        i$1$1.openHref(u3, "_self");
     }
   }
   openMobileApp(e2 = false) {
-    const { walletConnectUri: o3 } = p$1.state, r2 = i$4.getWalletRouterData();
+    const { walletConnectUri: o3 } = p$2.state, r2 = i$1$1.getWalletRouterData();
     s2.setRecentWallet(r2), o3 && this.onFormatAndRedirect(o3, e2);
   }
   onGoToAppStore(e2) {
-    e2 && i$4.openHref(e2, "_blank");
+    e2 && i$1$1.openHref(e2, "_blank");
   }
   render() {
-    const { name: e2, id: o3, image_id: r2, app: a2, mobile: t2 } = i$4.getWalletRouterData(), { isWeb: l$12 } = s2.getCachedRouterWalletPlatforms(), i2 = a2 == null ? void 0 : a2.ios, c2 = t2 == null ? void 0 : t2.universal;
+    const { name: e2, id: o3, image_id: r2, app: a2, mobile: t2 } = i$1$1.getWalletRouterData(), { isWeb: l$12 } = s2.getCachedRouterWalletPlatforms(), i2 = a2 == null ? void 0 : a2.ios, c2 = t2 == null ? void 0 : t2.universal;
     return x`<wcm-modal-header title="${e2}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="Tap 'Open' to continue…" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer class="wcm-note"><wcm-platform-selection .isWeb="${l$12}" .isRetry="${true}"><wcm-button .onClick="${() => this.openMobileApp(false)}" .iconRight="${b.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection>${c2 ? x`<wcm-text color="secondary" variant="small-thin">Still doesn't work? <span tabindex="0" @click="${() => this.openMobileApp(true)}">Try this alternate link</span></wcm-text>` : null}</wcm-info-footer><wcm-info-footer class="wcm-app-store"><div><wcm-wallet-image walletId="${o3}" imageId="${l(r2)}"></wcm-wallet-image><wcm-text>${`Get ${e2}`}</wcm-text></div><wcm-button .iconRight="${b.ARROW_RIGHT_ICON}" .onClick="${() => this.onGoToAppStore(i2)}" variant="ghost">App Store</wcm-button></wcm-info-footer>`;
   }
 };
@@ -4199,7 +4199,7 @@ var rr = (e2, o3, r2, a2) => {
 };
 let Ne = class extends s$1 {
   render() {
-    const { name: e2, id: o3, image_id: r2 } = i$4.getWalletRouterData(), { isDesktop: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
+    const { name: e2, id: o3, image_id: r2 } = i$1$1.getWalletRouterData(), { isDesktop: a2, isWeb: t2 } = s2.getCachedRouterWalletPlatforms();
     return x`<wcm-modal-header title="${e2}" .onAction="${s2.handleUriCopy}" .actionIcon="${b.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-walletconnect-qr walletId="${o3}" imageId="${l(r2)}"></wcm-walletconnect-qr></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`Scan this QR Code with your phone's camera or inside ${e2} app`}</wcm-text><wcm-platform-selection .isDesktop="${a2}" .isWeb="${t2}"></wcm-platform-selection></wcm-info-footer>`;
   }
 };
@@ -4224,8 +4224,8 @@ var cr = Object.defineProperty, sr = Object.getOwnPropertyDescriptor, se = (e2, 
 const ze = 40;
 let H2 = class extends s$1 {
   constructor() {
-    super(...arguments), this.loading = !te.state.wallets.listings.length, this.firstFetch = !te.state.wallets.listings.length, this.search = "", this.endReached = false, this.intersectionObserver = void 0, this.searchDebounce = s2.debounce((e2) => {
-      e2.length >= 1 ? (this.firstFetch = true, this.endReached = false, this.search = e2, te.resetSearch(), this.fetchWallets()) : this.search && (this.search = "", this.endReached = this.isLastPage(), te.resetSearch());
+    super(...arguments), this.loading = !te$1.state.wallets.listings.length, this.firstFetch = !te$1.state.wallets.listings.length, this.search = "", this.endReached = false, this.intersectionObserver = void 0, this.searchDebounce = s2.debounce((e2) => {
+      e2.length >= 1 ? (this.firstFetch = true, this.endReached = false, this.search = e2, te$1.resetSearch(), this.fetchWallets()) : this.search && (this.search = "", this.endReached = this.isLastPage(), te$1.resetSearch());
     });
   }
   firstUpdated() {
@@ -4244,32 +4244,32 @@ let H2 = class extends s$1 {
     }), this.intersectionObserver.observe(this.placeholderEl);
   }
   isLastPage() {
-    const { wallets: e2, search: o3 } = te.state, { listings: r2, total: a2 } = this.search ? o3 : e2;
+    const { wallets: e2, search: o3 } = te$1.state, { listings: r2, total: a2 } = this.search ? o3 : e2;
     return a2 <= ze || r2.length >= a2;
   }
   async fetchWallets() {
     var e2;
-    const { wallets: o3, search: r2 } = te.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
+    const { wallets: o3, search: r2 } = te$1.state, { listings: a2, total: t2, page: l2 } = this.search ? r2 : o3;
     if (!this.endReached && (this.firstFetch || t2 > ze && a2.length < t2))
       try {
         this.loading = true;
-        const i2 = (e2 = p$1.state.chains) == null ? void 0 : e2.join(","), { listings: c2 } = await te.getWallets({ page: this.firstFetch ? 1 : l2 + 1, entries: ze, search: this.search, version: 2, chains: i2 }), u3 = c2.map((w2) => s2.getWalletIcon(w2));
-        await Promise.all([...u3.map(async (w2) => s2.preloadImage(w2)), i$4.wait(300)]), this.endReached = this.isLastPage();
+        const i2 = (e2 = p$2.state.chains) == null ? void 0 : e2.join(","), { listings: c2 } = await te$1.getWallets({ page: this.firstFetch ? 1 : l2 + 1, entries: ze, search: this.search, version: 2, chains: i2 }), u3 = c2.map((w2) => s2.getWalletIcon(w2));
+        await Promise.all([...u3.map(async (w2) => s2.preloadImage(w2)), i$1$1.wait(300)]), this.endReached = this.isLastPage();
       } catch (i2) {
-        console.error(i2), oe.openToast(s2.getErrorMessage(i2), "error");
+        console.error(i2), oe$2.openToast(s2.getErrorMessage(i2), "error");
       } finally {
         this.loading = false, this.firstFetch = false;
       }
   }
   onConnect(e2) {
-    i$4.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
+    i$1$1.isAndroid() ? s2.handleMobileLinking(e2) : s2.goToConnectingView(e2);
   }
   onSearchChange(e2) {
     const { value: o3 } = e2.target;
     this.searchDebounce(o3);
   }
   render() {
-    const { wallets: e2, search: o$12 } = te.state, { listings: r2 } = this.search ? o$12 : e2, a2 = this.loading && !r2.length, t2 = this.search.length >= 3;
+    const { wallets: e2, search: o$12 } = te$1.state, { listings: r2 } = this.search ? o$12 : e2, a2 = this.loading && !r2.length, t2 = this.search.length >= 3;
     let l2 = S.manualWalletsTemplate(), i2 = S.recomendedWalletsTemplate(true);
     t2 && (l2 = l2.filter(({ values: w2 }) => s2.caseSafeIncludes(w2[0], this.search)), i2 = i2.filter(({ values: w2 }) => s2.caseSafeIncludes(w2[0], this.search)));
     const c2 = !this.loading && !r2.length && !i2.length, u3 = { "wcm-loading": a2, "wcm-end-reached": this.endReached || !this.loading, "wcm-empty": c2 };
@@ -4289,22 +4289,22 @@ let ve = class extends s$1 {
   }
   onFormatAndRedirect(e2) {
     var o3;
-    const { desktop: r2, name: a2 } = i$4.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.universal;
+    const { desktop: r2, name: a2 } = i$1$1.getWalletRouterData(), t2 = r2 == null ? void 0 : r2.universal;
     if (t2) {
-      const l2 = i$4.formatUniversalUrl(t2, e2, a2);
+      const l2 = i$1$1.formatUniversalUrl(t2, e2, a2);
       if (a2 === "Puzzle Wallet" && (o3 = window == null ? void 0 : window.aleo) != null && o3.connectPuzzle) {
         const i2 = new URL(l2).searchParams, c2 = i2.get("uri"), u3 = i2.get("requestId"), w2 = i2.get("sessionTopic");
         window.aleo.connectPuzzle({ wc: { uri: c2, requestId: u3 ?? void 0, sessionTopic: w2 ?? void 0 } });
       } else
-        i$4.openHref(l2, "_blank");
+        i$1$1.openHref(l2, "_blank");
     }
   }
   openWebWallet() {
-    const { walletConnectUri: e2 } = p$1.state, o3 = i$4.getWalletRouterData();
+    const { walletConnectUri: e2 } = p$2.state, o3 = i$1$1.getWalletRouterData();
     s2.setRecentWallet(o3), e2 && this.onFormatAndRedirect(e2);
   }
   render() {
-    const { name: e2, id: o3, image_id: r2 } = i$4.getWalletRouterData(), { isMobile: a2, isDesktop: t2 } = s2.getCachedRouterWalletPlatforms(), l$12 = i$4.isMobile();
+    const { name: e2, id: o3, image_id: r2 } = i$1$1.getWalletRouterData(), { isMobile: a2, isDesktop: t2 } = s2.getCachedRouterWalletPlatforms(), l$12 = i$1$1.isMobile();
     return x`<wcm-modal-header title="${e2}" .onAction="${s2.handleUriCopy}" .actionIcon="${b.COPY_ICON}"></wcm-modal-header><wcm-modal-content><wcm-connector-waiting walletId="${o3}" imageId="${l(r2)}" label="${`Continue in ${e2}...`}" .isError="${this.isError}"></wcm-connector-waiting></wcm-modal-content><wcm-info-footer><wcm-text color="secondary" variant="small-thin">${`${e2} web app has opened in a new tab. Go there, accept the connection, and come back`}</wcm-text><wcm-platform-selection .isMobile="${a2}" .isDesktop="${l$12 ? false : t2}" .isRetry="${true}"><wcm-button .onClick="${this.openWebWallet.bind(this)}" .iconRight="${b.RETRY_ICON}">Retry</wcm-button></wcm-platform-selection></wcm-info-footer>`;
   }
 };

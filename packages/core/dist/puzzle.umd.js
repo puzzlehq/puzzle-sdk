@@ -20139,7 +20139,9 @@
     EventType["Unshield"] = "Unshield";
     EventType["Referral"] = "Referral";
     EventType["Points"] = "Points";
+    EventType["Spin"] = "Spin";
     EventType["Raffle"] = "Raffle";
+    EventType["Mint"] = "Mint";
   })(exports2.EventType || (exports2.EventType = {}));
   exports2.EventStatus = void 0;
   (function(EventStatus) {
@@ -20321,7 +20323,7 @@
     url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
   };
   const dependencies = {
-    "@puzzlehq/types": "1.0.22",
+    "@puzzlehq/types": "1.0.23",
     "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
     "@walletconnect/types": "^2.11.2",
     "@walletconnect/utils": "^2.11.2",

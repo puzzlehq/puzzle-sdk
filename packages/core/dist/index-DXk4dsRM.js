@@ -485,7 +485,7 @@ let d$3 = class d {
   }
   async initUi() {
     if (typeof window < "u") {
-      await import("./index-DUmhkW7q.js");
+      await import("./index-CkWt9B82.js");
       const e2 = document.createElement("wcm-modal");
       document.body.insertAdjacentElement("beforeend", e2), p$2.setIsUiLoaded(true);
     }
@@ -20135,7 +20135,9 @@ var EventType;
   EventType2["Unshield"] = "Unshield";
   EventType2["Referral"] = "Referral";
   EventType2["Points"] = "Points";
+  EventType2["Spin"] = "Spin";
   EventType2["Raffle"] = "Raffle";
+  EventType2["Mint"] = "Mint";
 })(EventType || (EventType = {}));
 var EventStatus;
 (function(EventStatus2) {
@@ -20317,7 +20319,7 @@ const repository = {
   url: "git+https://github.com/puzzlehq/puzzle-sdk.git"
 };
 const dependencies = {
-  "@puzzlehq/types": "1.0.22",
+  "@puzzlehq/types": "1.0.23",
   "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
   "@walletconnect/types": "^2.11.2",
   "@walletconnect/utils": "^2.11.2",
