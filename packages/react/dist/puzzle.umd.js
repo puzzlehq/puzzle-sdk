@@ -20235,6 +20235,14 @@
           native: "puzzleapp://",
           universal: ""
         }
+      },
+      {
+        id: "avail",
+        name: "Avail Wallet",
+        links: {
+          native: "avail://",
+          universal: "https://avail.global"
+        }
       }
     ],
     walletImages: {
@@ -20255,6 +20263,14 @@
         links: {
           native: "puzzleapp://",
           universal: ""
+        }
+      },
+      {
+        id: "avail",
+        name: "Avail Wallet",
+        links: {
+          native: "avail://",
+          universal: "https://avail.global"
         }
       }
     ],
@@ -33457,6 +33473,14 @@
           native: "puzzleapp://",
           universal: ""
         }
+      },
+      {
+        id: "avail",
+        name: "Avail Wallet",
+        links: {
+          native: "avail://",
+          universal: "https://avail.global"
+        }
       }
     ],
     walletImages: {
@@ -33477,6 +33501,14 @@
         links: {
           native: "puzzleapp://",
           universal: ""
+        }
+      },
+      {
+        id: "avail",
+        name: "Avail Wallet",
+        links: {
+          native: "avail://",
+          universal: "https://avail.global"
         }
       }
     ],
