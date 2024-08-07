@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+dist 
 
 # misc
 .DS_Store
@@ -15,3 +16,4 @@ yarn-error.log*
 
 .history
 .turbo
+

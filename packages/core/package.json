@@ -3,16 +3,12 @@
   "displayName": "Puzzle SDK",
   "version": "0.4.3",
   "description": "Your portal to privacy",
-  "main": "./dist/puzzle.cjs.js",
-  "module": "./dist/puzzle.es.js",
-  "browser": "./dist/puzzle.umd.js",
+  "main": "./dist/src/index.js",
   "types": "./dist/types/src/index.d.ts",
   "private": false,
   "exports": {
     ".": {
-      "import": "./dist/puzzle.es.js",
-      "require": "./dist/puzzle.cjs.js",
-      "browser": "./dist/puzzle.umd.js",
+      "import": "./dist/src/index.js",
       "types": "./dist/types/src/index.d.ts"
     }
   },
@@ -20,7 +16,7 @@
   "scripts": {
     "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
     "ws-fix": "find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\\"ws\\\")/(() => {try { return require(\\\"ws\\\") } catch (e) { } })()/g' {} +;",
-    "build": "vite build && tsc --declaration --emitDeclarationOnly --outDir dist/types && pnpm fetch-fix && pnpm ws-fix",
+    "build": "tsc && pnpm fetch-fix && pnpm ws-fix",
     "type-check": "tsc --noEmit"
   },
   "repository": {
@@ -29,9 +25,9 @@
   },
   "dependencies": {
     "@puzzlehq/types": "1.0.23",
-    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6",
-    "@walletconnect/types": "^2.11.2",
-    "@walletconnect/utils": "^2.11.2",
+    "@puzzlehq/walletconnect-modal-sign-html": "0.0.6",
+    "@walletconnect/types": "^2.14.0",
+    "@walletconnect/utils": "^2.14.0",
     "debug": "^4.3.4",
     "events": "^3.3.0",
     "ws": "^8.16.0"
