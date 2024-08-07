@@ -1,5 +1,11 @@
 # @puzzlehq/sdk-core
 
+## 0.5.0
+
+### Minor Changes
+
+- bumping to 0.5.0
+
 ## 0.4.13
 
 ### Patch Changes
