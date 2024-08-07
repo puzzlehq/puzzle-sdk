@@ -1,10 +1,10 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle React SDK",
-  "version": "0.4.3",
+  "version": "0.4.13",
   "description": "Your portal to privacy",
   "main": "./dist/src/index.js",
-  "types": "./dist/types/src/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/src/index.js",
@@ -15,14 +15,15 @@
   "scripts": {
     "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
     "ws-fix": "find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\\"ws\\\")/(() => {try { return require(\\\"ws\\\") } catch (e) { } })()/g' {} +;",
-    "build": "tsc && pnpm fetch-fix && pnpm ws-fix",
+    "build": "rm -rf ./dist && tsc && pnpm fetch-fix && pnpm ws-fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@puzzlehq/sdk-core": "0.4.3",
+    "@puzzlehq/sdk-core": "0.4.13",
     "@puzzlehq/types": "1.0.23",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/query-core": "^4.29.5",
+    "@tanstack/react-query-devtools": "^4.29.5",
     "@trpc/server": "^10.31.0",
     "@walletconnect/types": "^2.14.0",
     "@walletconnect/utils": "^2.14.0",
@@ -31,10 +32,10 @@
     "immer": "^9.0.19",
     "use-debounce": "^10.0.0",
     "ws": "^8.16.0",
+    "zod": "3.21.1",
     "zustand": "^4.3.9"
   },
   "devDependencies": {
-    "@tanstack/react-query-devtools": "^4.29.5",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0"
   },

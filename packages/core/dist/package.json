@@ -1,0 +1,54 @@
+{
+    "name": "@puzzlehq/sdk-core",
+    "displayName": "Puzzle SDK",
+    "version": "0.4.13",
+    "description": "Your portal to privacy",
+    "main": "./dist/src/index.js",
+    "types": "./dist/src/index.d.ts",
+    "private": false,
+    "exports": {
+        ".": {
+            "import": "./dist/src/index.js",
+            "types": "./dist/src/index.d.ts"
+        }
+    },
+    "type": "module",
+    "scripts": {
+        "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
+        "ws-fix": "find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\\"ws\\\")/(() => {try { return require(\\\"ws\\\") } catch (e) { } })()/g' {} +;",
+        "build": "rm -rf ./dist && tsc && pnpm fetch-fix && pnpm ws-fix",
+        "type-check": "tsc --noEmit"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/puzzlehq/puzzle-sdk.git"
+    },
+    "dependencies": {
+        "@puzzlehq/types": "1.0.23",
+        "@puzzlehq/walletconnect-modal-sign-html": "0.0.6",
+        "@walletconnect/types": "^2.14.0",
+        "@walletconnect/utils": "^2.14.0",
+        "debug": "^4.3.4",
+        "events": "^3.3.0",
+        "ws": "^8.16.0",
+        "zod": "3.21.1"
+    },
+    "peerDependencies": {
+        "buffer": "^6.0.3"
+    },
+    "keywords": [
+        "puzzle",
+        "cryptocurrency wallet",
+        "privacy",
+        "aleo",
+        "web3",
+        "crypto",
+        "typescript"
+    ],
+    "author": "Puzzle",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/puzzlehq/puzzle-sdk/issues"
+    },
+    "homepage": "https://github.com/puzzlehq/puzzle-sdk#readme"
+}
