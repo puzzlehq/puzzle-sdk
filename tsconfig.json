@@ -18,8 +18,12 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
   },
   "include": ["packages", "./packages/core/src/global.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/react" }
+  ]
 }

@@ -1,6 +1,7 @@
 import type { WalletConnectModalSignRequestArguments } from '@puzzlehq/walletconnect-modal-sign-html';
 import { getWalletConnectModalSignClient } from '@puzzlehq/sdk-core';
-import { QueryKey, UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { UseQueryOptions, useQuery } from '@tanstack/react-query';
+import { QueryKey } from '@tanstack/query-core';
 import { useAsyncAction } from './_useAsyncAction.js';
 
 async function fetchRequest<Result>(

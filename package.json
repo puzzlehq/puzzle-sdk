@@ -1,7 +1,7 @@
 {
   "name": "sdk-monorepo",
   "displayName": "Puzzle SDK",
-  "version": "0.4.0",
+  "version": "0.4.3",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
@@ -10,12 +10,16 @@
   "scripts": {
     "build": "turbo run build",
     "type-check": "turbo run type-check",
-    "pretty": "pnpm exec prettier . --write"
+    "pretty": "pnpm exec prettier . --write",
+    "version-bump": "pnpm changeset && pnpm changeset version",
+    "publish-core": "pnpm build && cd ./packages/core && npm publish",
+    "publish-react": "pnpm build && cd ./packages/react && npm publish",
+    "publish": "pnpm publish-core && pnpm publish-react"
   },
   "dependencies": {
-    "@changesets/cli": "^2.27.1",
-    "@puzzlehq/types": "1.0.22",
-    "@puzzlehq/walletconnect-modal-sign-html": "^0.0.6"
+    "@changesets/cli": "^2.27.7",
+    "@puzzlehq/types": "1.0.23",
+    "@puzzlehq/walletconnect-modal-sign-html": "0.0.6"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",
@@ -23,8 +27,7 @@
     "@types/node": "^18.11.18",
     "prettier": "^3.2.5",
     "process": "^0.11.10",
-    "typescript": "^4.9.4",
-    "vite": "^5.0.10"
+    "typescript": "^4.9.4"
   },
   "peerDependencies": {
     "buffer": "^6.0.3"
