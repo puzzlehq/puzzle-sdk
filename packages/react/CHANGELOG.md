@@ -1,5 +1,13 @@
 # @puzzlehq/sdk
 
+## 0.5.1
+
+### Patch Changes
+
+- Add window checks
+- Updated dependencies
+  - @puzzlehq/sdk-core@0.5.1
+
 ## 0.5.0
 
 ### Minor Changes

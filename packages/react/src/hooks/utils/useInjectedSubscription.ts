@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { SessionTypes } from '@walletconnect/types';
 import {
   AccountSelectedResponse,
