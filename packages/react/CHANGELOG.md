@@ -1,5 +1,13 @@
 # @puzzlehq/sdk
 
+## 0.5.2
+
+### Patch Changes
+
+- Add override to some wallet requests
+- Updated dependencies
+  - @puzzlehq/sdk-core@0.5.2
+
 ## 0.5.1
 
 ### Patch Changes

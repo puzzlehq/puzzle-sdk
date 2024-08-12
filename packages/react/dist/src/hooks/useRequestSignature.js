@@ -23,10 +23,24 @@ export const useRequestSignature = ({ message, address, method, network }) => {
         ? wc_error.message
         : wc_data && wc_data.error;
     const response = wc_data;
-    const requestSignature = () => {
-        if (session && !loading) {
+    const requestSignature = (signatureRequestOverride) => {
+        if (signatureRequestOverride && session && !loading) {
+            log_sdk('useRequestSignature requesting with override...', signatureRequestOverride);
+            return request({
+                topic: session?.topic ?? '',
+                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+                request: {
+                    jsonrpc: '2.0',
+                    method: 'requestSignature',
+                    params: {
+                        ...signatureRequestOverride
+                    },
+                },
+            });
+        }
+        else if (session && !loading) {
             log_sdk('useRequestSignature requesting...', [message, address]);
-            request();
+            return request();
         }
     };
     return { requestSignature, response, loading, error };

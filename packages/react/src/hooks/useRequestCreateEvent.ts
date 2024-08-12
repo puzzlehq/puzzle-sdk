@@ -8,17 +8,22 @@ import {
 } from '@puzzlehq/sdk-core';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
+import { RecordWithPlaintext } from '@puzzlehq/types';
 
-export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
-
-  const inputs = requestData?.inputs.map((input) => {
+const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
+  return inputs?.map((input) => {
     if (typeof input === 'string') {
       return input;
     }
     return input.plaintext;
   });
+}
+
+export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
+  const session: SessionTypes.Struct | undefined = useWalletSession();
+  const [account] = useWalletStore((state) => [state.account]);
+
+  const inputs = normalizeInputs(requestData?.inputs);
 
   const {
     request,
@@ -43,10 +48,25 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     : wc_data && wc_data.error;
   const response: CreateEventResponse | undefined = wc_data;
 
-  const createEvent = () => {
-    if (requestData && session && !loading) {
+  const createEvent = (createEventRequestOverride?: CreateEventRequest) => {
+    if (createEventRequestOverride && session && !loading) {
+      log_sdk('useCreateEvent requesting with override...', createEventRequestOverride);
+      const inputs = normalizeInputs(createEventRequestOverride.inputs);
+      return request({
+        topic: session?.topic ?? '',
+        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        request: {
+          jsonrpc: '2.0',
+          method: 'requestCreateEvent',
+          params: {
+            ...createEventRequestOverride,
+            inputs,
+          } as CreateEventRequest,
+        },
+      });
+    } else if (requestData && session && !loading) {
       log_sdk('useCreateEvent requesting...', requestData);
-      request();
+      return request();
     }
   };
 

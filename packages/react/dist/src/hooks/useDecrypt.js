@@ -23,10 +23,22 @@ export const useDecrypt = (ciphertexts) => {
         ? wc_error.message
         : wc_data && wc_data.error;
     const response = wc_data;
-    const decrypt = () => {
-        log_sdk('useDecrypt', ciphertexts);
-        if (ciphertexts && session && !loading) {
-            request();
+    const decrypt = (decryptRequestOverride) => {
+        if (decryptRequestOverride && session && !loading) {
+            log_sdk('useDecrypt requesting with override...', decryptRequestOverride);
+            return request({
+                topic: session?.topic ?? '',
+                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+                request: {
+                    jsonrpc: '2.0',
+                    method: 'decrypt',
+                    params: { ...decryptRequestOverride }
+                },
+            });
+        }
+        else if (ciphertexts && session && !loading) {
+            log_sdk('useDecrypt requesting...', ciphertexts);
+            return request();
         }
     };
     return { decrypt, plaintexts: response?.plaintexts, loading, error };

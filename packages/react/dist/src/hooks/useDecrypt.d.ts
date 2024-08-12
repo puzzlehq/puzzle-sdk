@@ -1,5 +1,6 @@
+import { DecryptRequest, DecryptResponse } from '@puzzlehq/sdk-core';
 export declare const useDecrypt: (ciphertexts?: string[]) => {
-    decrypt: () => void;
+    decrypt: (decryptRequestOverride?: DecryptRequest) => Promise<DecryptResponse | undefined> | undefined;
     plaintexts: string[] | undefined;
     loading: boolean;
     error: string | undefined;
