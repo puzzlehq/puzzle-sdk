@@ -77,7 +77,7 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => !!id && !multisig,
         onData: () => refetch(),
-        dependencies: [id, multisig]
+        dependencies: [id, multisig],
       },
       {
         subscriptionName: 'onSharedAccountSynced',
@@ -85,7 +85,7 @@ export const useEvent = ({ id, address, multisig = false }: UseEventParams) => {
           return !!id && !!multisig && data?.address === address;
         },
         onData: () => refetch(),
-        dependencies: [id, multisig, address]
+        dependencies: [id, multisig, address],
       },
     ],
   });

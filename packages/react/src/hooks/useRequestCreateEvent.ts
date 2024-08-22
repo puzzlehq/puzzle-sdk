@@ -17,7 +17,7 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
     }
     return input.plaintext;
   });
-}
+};
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
@@ -50,7 +50,10 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
 
   const createEvent = (createEventRequestOverride?: CreateEventRequest) => {
     if (createEventRequestOverride && session && !loading) {
-      log_sdk('useCreateEvent requesting with override...', createEventRequestOverride);
+      log_sdk(
+        'useCreateEvent requesting with override...',
+        createEventRequestOverride,
+      );
       const inputs = normalizeInputs(createEventRequestOverride.inputs);
       return request({
         topic: session?.topic ?? '',

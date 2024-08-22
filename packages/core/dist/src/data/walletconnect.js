@@ -52,13 +52,13 @@ export const web3modal_puzzle_props_android = {
             },
         },
         {
-            id: "avail",
-            name: "Avail Wallet",
+            id: 'avail',
+            name: 'Avail Wallet',
             links: {
-                native: "avail://",
-                universal: "https://avail.global"
-            }
-        }
+                native: 'avail://',
+                universal: 'https://avail.global',
+            },
+        },
     ],
     walletImages: {
         puzzle: 'https://i.imgur.com/p9tHaFC.png',

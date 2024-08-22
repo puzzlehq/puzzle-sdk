@@ -1,7 +1,7 @@
 import { getWalletConnectModalSignClient } from '../client.js';
 import { aleoAddressRegex } from '@puzzlehq/types';
 import { wc_aleo_chains } from '../data/walletconnect.js';
-export const requestSignature = async ({ message, address, network, method }) => {
+export const requestSignature = async ({ message, address, network, method, }) => {
     const connection = await getWalletConnectModalSignClient();
     const session = await connection?.getSession();
     if (!session || !connection) {
@@ -20,7 +20,7 @@ export const requestSignature = async ({ message, address, network, method }) =>
                 params: {
                     message,
                     address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-                    method
+                    method,
                 },
             },
         });

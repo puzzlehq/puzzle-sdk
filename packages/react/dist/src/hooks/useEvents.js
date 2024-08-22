@@ -51,7 +51,7 @@ export const useEvents = ({ filter, page }) => {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => true,
                 onData: () => refetch(),
-                dependencies: []
+                dependencies: [],
             },
         ],
     });

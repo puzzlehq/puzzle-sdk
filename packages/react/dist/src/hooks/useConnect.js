@@ -26,7 +26,7 @@ export function useConnect(showModal = true) {
                         chains: wc_optional_aleo_chains,
                         methods: wc_aleo_methods,
                         events: wc_events,
-                    }
+                    },
                 },
             }, showModal);
             setData(response);

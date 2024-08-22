@@ -59,13 +59,13 @@ export const web3modal_puzzle_props_android = {
       },
     },
     {
-      id: "avail",
-      name: "Avail Wallet",
+      id: 'avail',
+      name: 'Avail Wallet',
       links: {
-        native: "avail://",
-        universal: "https://avail.global"
-      }
-    }
+        native: 'avail://',
+        universal: 'https://avail.global',
+      },
+    },
   ],
   walletImages: {
     puzzle: 'https://i.imgur.com/p9tHaFC.png',
@@ -136,7 +136,10 @@ export const signClient_puzzleProps = {
   },
 };
 
-export const networkToChainId = (network: Network, includePrefix: boolean = true) => {
+export const networkToChainId = (
+  network: Network,
+  includePrefix: boolean = true,
+) => {
   let chain: string;
   switch (network) {
     case Network.AleoMainnet:
@@ -146,15 +149,13 @@ export const networkToChainId = (network: Network, includePrefix: boolean = true
       chain = 'aleo:0';
       break;
     case Network.AleoTestnet:
-      chain = 'aleo:1'
+      chain = 'aleo:1';
       break;
   }
   return includePrefix ? chain : chain.replace('aleo:', '');
 };
 
-export const chainIdToNetwork = (
-  chainId: 'aleo:0' | 'aleo:1'
-) => {
+export const chainIdToNetwork = (chainId: 'aleo:0' | 'aleo:1') => {
   switch (chainId) {
     case 'aleo:0':
       return Network.AleoCanarynet;

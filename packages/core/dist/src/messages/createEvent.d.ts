@@ -8,6 +8,7 @@ export type CreateEventRequestData = {
     fee: number;
     feeRecord?: RecordWithPlaintext;
     inputs: (RecordWithPlaintext | string)[];
+    tokenIds?: string[];
 };
 export type CreateEventRequest = {
     address?: string;
@@ -17,6 +18,7 @@ export type CreateEventRequest = {
     fee: number;
     feeRecord?: RecordWithPlaintext;
     inputs: string[];
+    tokenIds?: string[];
 };
 export type CreateEventResponse = {
     eventId?: string;

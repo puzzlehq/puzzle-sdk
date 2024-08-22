@@ -32,7 +32,7 @@ export const useDecrypt = (ciphertexts) => {
                 request: {
                     jsonrpc: '2.0',
                     method: 'decrypt',
-                    params: { ...decryptRequestOverride }
+                    params: { ...decryptRequestOverride },
                 },
             });
         }

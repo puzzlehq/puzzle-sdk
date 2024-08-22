@@ -23,22 +23,25 @@ export const connect = async (showModal = true) => {
 
   try {
     const newSession: SessionTypes.Struct | undefined =
-      await connection.connect({
-        requiredNamespaces: {
-          aleo: {
-            methods: wc_aleo_methods,
-            chains: wc_required_aleo_chains,
-            events: wc_events,
+      await connection.connect(
+        {
+          requiredNamespaces: {
+            aleo: {
+              methods: wc_aleo_methods,
+              chains: wc_required_aleo_chains,
+              events: wc_events,
+            },
+          },
+          optionalNamespaces: {
+            aleo: {
+              chains: wc_optional_aleo_chains,
+              methods: wc_aleo_methods,
+              events: wc_events,
+            },
           },
         },
-        optionalNamespaces: {
-          aleo: {
-            chains: wc_optional_aleo_chains,
-            methods: wc_aleo_methods,
-            events: wc_events, 
-          }
-        },
-      }, showModal);
+        showModal,
+      );
     emitter.emit('session_change');
 
     if (newSession) {

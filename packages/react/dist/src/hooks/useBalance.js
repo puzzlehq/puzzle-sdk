@@ -47,7 +47,7 @@ export const useBalance = ({ address, multisig } = {}) => {
                     return !multisig;
                 },
                 onData: () => refetch(),
-                dependencies: [multisig]
+                dependencies: [multisig],
             },
             {
                 subscriptionName: 'onSharedAccountSynced',
@@ -55,7 +55,7 @@ export const useBalance = ({ address, multisig } = {}) => {
                     return !!multisig && data?.address === address;
                 },
                 onData: () => refetch(),
-                dependencies: [multisig, address]
+                dependencies: [multisig, address],
             },
         ],
     });

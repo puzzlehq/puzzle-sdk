@@ -65,7 +65,7 @@ export const useAccount = () => {
                         shortenedAddress: shortenAddress(data.address),
                     });
                 },
-                dependencies: []
+                dependencies: [],
             },
         ],
     });

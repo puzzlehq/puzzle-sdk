@@ -12,6 +12,7 @@ export type CreateEventRequestData = {
   fee: number;
   feeRecord?: RecordWithPlaintext;
   inputs: (RecordWithPlaintext | string)[];
+  tokenIds?: string[];
 };
 
 /// sdk maps records to ciphertexts
@@ -23,6 +24,7 @@ export type CreateEventRequest = {
   fee: number;
   feeRecord?: RecordWithPlaintext;
   inputs: string[];
+  tokenIds?: string[];
 };
 
 /// wallet passes this back to dapp

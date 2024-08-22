@@ -58,7 +58,7 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => !multisig,
                 onData: () => refetch(),
-                dependencies: [multisig]
+                dependencies: [multisig],
             },
             {
                 subscriptionName: 'onSharedAccountSynced',
@@ -66,7 +66,7 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
                     return !!multisig && data?.address === address;
                 },
                 onData: () => refetch(),
-                dependencies: [multisig, address]
+                dependencies: [multisig, address],
             },
         ],
     });

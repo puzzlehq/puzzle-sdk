@@ -9,7 +9,12 @@ import { useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 
-export const useRequestSignature = ({message, address, method, network}: SignatureRequest) => {
+export const useRequestSignature = ({
+  message,
+  address,
+  method,
+  network,
+}: SignatureRequest) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
@@ -27,7 +32,7 @@ export const useRequestSignature = ({message, address, method, network}: Signatu
       params: {
         message,
         address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-        method
+        method,
       } as SignatureRequest,
     },
   });
@@ -39,7 +44,10 @@ export const useRequestSignature = ({message, address, method, network}: Signatu
 
   const requestSignature = (signatureRequestOverride?: SignatureRequest) => {
     if (signatureRequestOverride && session && !loading) {
-      log_sdk('useRequestSignature requesting with override...', signatureRequestOverride);
+      log_sdk(
+        'useRequestSignature requesting with override...',
+        signatureRequestOverride,
+      );
       return request({
         topic: session?.topic ?? '',
         chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
@@ -47,7 +55,7 @@ export const useRequestSignature = ({message, address, method, network}: Signatu
           jsonrpc: '2.0',
           method: 'requestSignature',
           params: {
-            ...signatureRequestOverride
+            ...signatureRequestOverride,
           },
         },
       });

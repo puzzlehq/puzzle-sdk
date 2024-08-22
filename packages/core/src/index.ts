@@ -6,9 +6,7 @@ export * from './utils/logger.js';
 export * from './utils/clientInfo.js';
 export * from './client.js';
 
-import {
-  type SessionTypes
-} from '@walletconnect/types'
+import { type SessionTypes } from '@walletconnect/types';
 
 import {
   type Account,
@@ -40,9 +38,7 @@ import {
   zodVisibility,
 } from '@puzzlehq/types';
 
-export {
-  SessionTypes
-}
+export { SessionTypes };
 
 export {
   type Account,

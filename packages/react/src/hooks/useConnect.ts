@@ -28,22 +28,25 @@ export function useConnect(showModal = true) {
       setLoading(true);
       setError(undefined);
       const client = await getWalletConnectModalSignClient();
-      const response: SessionTypes.Struct = await client.connect({
-        requiredNamespaces: {
-          aleo: {
-            methods: wc_aleo_methods,
-            chains: wc_required_aleo_chains,
-            events: wc_events,
+      const response: SessionTypes.Struct = await client.connect(
+        {
+          requiredNamespaces: {
+            aleo: {
+              methods: wc_aleo_methods,
+              chains: wc_required_aleo_chains,
+              events: wc_events,
+            },
+          },
+          optionalNamespaces: {
+            aleo: {
+              chains: wc_optional_aleo_chains,
+              methods: wc_aleo_methods,
+              events: wc_events,
+            },
           },
         },
-        optionalNamespaces: {
-          aleo: {
-            chains: wc_optional_aleo_chains,
-            methods: wc_aleo_methods,
-            events: wc_events, 
-          }
-        },
-      }, showModal);
+        showModal,
+      );
       setData(response);
       await checkForDesktopConnection(response.topic);
       const account = response.namespaces['aleo']['accounts'][0].split(':');

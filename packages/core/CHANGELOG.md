@@ -1,5 +1,11 @@
 # @puzzlehq/sdk-core
 
+## 0.5.3
+
+### Patch Changes
+
+- Adding tokenIds to createEventRequest
+
 ## 0.5.2
 
 ### Patch Changes

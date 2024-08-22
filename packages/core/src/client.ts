@@ -41,7 +41,7 @@ export async function configureConnection(options: {
     metadata: {
       name: options.dAppName,
       description: options.dAppDescription,
-      url: window ? window.location.hostname : options.dAppUrl ?? 'NO URL',
+      url: window ? window.location.hostname : (options.dAppUrl ?? 'NO URL'),
       icons: [options.dAppIconURL],
     },
     modalOptions: { ...web3modal_puzzle_props },

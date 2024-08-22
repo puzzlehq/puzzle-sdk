@@ -51,9 +51,9 @@ export const useDecrypt = (ciphertexts?: string[]) => {
         request: {
           jsonrpc: '2.0',
           method: 'decrypt',
-          params: {...decryptRequestOverride}
+          params: { ...decryptRequestOverride },
         },
-      },);
+      });
     } else if (ciphertexts && session && !loading) {
       log_sdk('useDecrypt requesting...', ciphertexts);
       return request();
