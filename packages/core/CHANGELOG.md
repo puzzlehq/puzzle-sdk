@@ -1,5 +1,11 @@
 # @puzzlehq/sdk-core
 
+## 0.5.4
+
+### Patch Changes
+
+- Adding in the new puzzlehq/types, removing sign method
+
 ## 0.5.3
 
 ### Patch Changes

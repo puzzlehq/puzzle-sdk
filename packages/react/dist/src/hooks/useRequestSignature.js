@@ -3,7 +3,7 @@ import { aleoAddressRegex } from '@puzzlehq/types';
 import { useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
-export const useRequestSignature = ({ message, address, method, network, }) => {
+export const useRequestSignature = ({ message, address, network, }) => {
     const session = useWalletSession();
     const [account] = useWalletStore((state) => [state.account]);
     const { request, data: wc_data, error: wc_error, loading, } = useRequest({
@@ -15,7 +15,6 @@ export const useRequestSignature = ({ message, address, method, network, }) => {
             params: {
                 message,
                 address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-                method,
             },
         },
     });

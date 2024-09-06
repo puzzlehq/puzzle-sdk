@@ -12,7 +12,6 @@ import { useWalletStore } from '../store.js';
 export const useRequestSignature = ({
   message,
   address,
-  method,
   network,
 }: SignatureRequest) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
@@ -32,7 +31,6 @@ export const useRequestSignature = ({
       params: {
         message,
         address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-        method,
       } as SignatureRequest,
     },
   });
