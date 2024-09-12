@@ -6,8 +6,9 @@ import {
   checkForDesktopConnection,
   wc_aleo_methods,
   wc_events,
-  wc_required_aleo_chains,
-  wc_optional_aleo_chains,
+  getAleoMethods,
+  getAleoChains,
+  ConnectProps,
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
@@ -16,7 +17,7 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
 
-export function useConnect(showModal = true) {
+export function useConnect({networks, programIds, showModal}: ConnectProps) {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const isConnected = !!session;
   const { data, error, loading, setData, setError, setLoading } =
@@ -32,15 +33,8 @@ export function useConnect(showModal = true) {
         {
           requiredNamespaces: {
             aleo: {
-              methods: wc_aleo_methods,
-              chains: wc_required_aleo_chains,
-              events: wc_events,
-            },
-          },
-          optionalNamespaces: {
-            aleo: {
-              chains: wc_optional_aleo_chains,
-              methods: wc_aleo_methods,
+              methods: getAleoMethods(networks, programIds),
+              chains: getAleoChains(networks),
               events: wc_events,
             },
           },

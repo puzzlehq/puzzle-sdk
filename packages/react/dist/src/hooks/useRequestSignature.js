@@ -5,10 +5,10 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 export const useRequestSignature = ({ message, address, network, }) => {
     const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
+    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
     const { request, data: wc_data, error: wc_error, loading, } = useRequest({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'requestSignature',
@@ -27,7 +27,7 @@ export const useRequestSignature = ({ message, address, network, }) => {
             log_sdk('useRequestSignature requesting with override...', signatureRequestOverride);
             return request({
                 topic: session?.topic ?? '',
-                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+                chainId: chainIdStr,
                 request: {
                     jsonrpc: '2.0',
                     method: 'requestSignature',

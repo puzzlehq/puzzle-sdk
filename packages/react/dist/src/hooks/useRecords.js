@@ -15,13 +15,13 @@ export const getFormattedRecordPlaintext = (data) => {
 };
 export const useRecords = ({ address, multisig = false, filter, page, }) => {
     const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
+    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
     const useQueryFunction = hasInjectedConnection()
         ? useInjectedRequestQuery
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getRecords',
@@ -37,6 +37,7 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
         queryKey: [
             'useRecords',
             account?.address,
+            chainIdStr,
             address,
             multisig,
             JSON.stringify(debouncedFilter),

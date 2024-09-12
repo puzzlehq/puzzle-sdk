@@ -21,7 +21,7 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [chainIdStr] = useWalletStore((state) => [state.account]);
 
   const inputs = normalizeInputs(requestData?.inputs);
 
@@ -32,7 +32,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     loading,
   } = useRequest<CreateEventResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+    chainId: chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'requestCreateEvent',
@@ -57,7 +57,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
       const inputs = normalizeInputs(createEventRequestOverride.inputs);
       return request({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
           jsonrpc: '2.0',
           method: 'requestCreateEvent',

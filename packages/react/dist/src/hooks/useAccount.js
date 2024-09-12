@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
+import { chainIdToNetwork, hasInjectedConnection, wc_aleo_chains, } from '@puzzlehq/sdk-core';
 import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
 import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
@@ -21,8 +21,9 @@ export const shortenAddress = (address, aleo = true, length = 4, short = true) =
 };
 export const useAccount = () => {
     const session = useWalletSession();
-    const [account, setAccount, onDisconnect] = useWalletStore((state) => [
+    const [account, chainIdStr, setAccount, onDisconnect] = useWalletStore((state) => [
         state.account,
+        state.chainIdStr,
         state.setAccount,
         state.onDisconnect,
     ]);
@@ -31,7 +32,7 @@ export const useAccount = () => {
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getSelectedAccount',
@@ -56,8 +57,17 @@ export const useAccount = () => {
                     return !!data?.address;
                 },
                 onData: (data) => {
+                    if (!session)
+                        return;
                     const network = data.chain?.split(':')[0] ?? 'aleo';
                     const chainId = data.chain?.split(':')[1] ?? '1';
+                    const chainStr = `${network}:${chainId}`;
+                    if (!wc_aleo_chains.includes(chainStr)) {
+                        return { error: `invalid network to switch to: ${chainStr}` };
+                    }
+                    if (session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+                        return { error: `dApp does not have permission to switch to ${chainStr}` };
+                    }
                     setAccount({
                         network,
                         chainId,
@@ -79,6 +89,13 @@ export const useAccount = () => {
             const address = params.event.address ?? params.event.data.address;
             const network = params.chainId.split(':')[0];
             const chainId = params.chainId.split(':')[1];
+            const chainStr = `${network}:${chainId}`;
+            if (!wc_aleo_chains.includes(chainStr)) {
+                return { error: `invalid network to switch to: ${chainStr}` };
+            }
+            if (session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+                return { error: `dApp does not have permission to switch to ${chainStr}` };
+            }
             setAccount({
                 network,
                 chainId,
@@ -88,9 +105,18 @@ export const useAccount = () => {
         }
     });
     useOnSessionUpdate(({ params, topic }) => {
+        if (!session)
+            return;
         const address = params.event.address ?? params.event.data.address;
         const network = params.chainId.split(':')[0];
         const chainId = params.chainId.split(':')[1];
+        const chainStr = `${network}:${chainId}`;
+        if (!wc_aleo_chains.includes(chainStr)) {
+            return { error: `invalid network to switch to: ${chainStr}` };
+        }
+        if (session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+            return { error: `dApp does not have permission to switch to ${chainStr}` };
+        }
         setAccount({
             network,
             chainId,
@@ -120,9 +146,16 @@ export const useAccount = () => {
     const error = wc_error
         ? wc_error.message
         : wc_data && wc_data.error;
+    let network = (() => {
+        if (!account)
+            return undefined;
+        // @ts-ignore
+        return chainIdToNetwork(`${account.network}:${account.chainId}`);
+    })();
     return {
         account,
         error,
         loading,
+        network
     };
 };

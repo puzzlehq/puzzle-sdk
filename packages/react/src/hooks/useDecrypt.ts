@@ -11,7 +11,7 @@ import { useWalletStore } from '../store.js';
 
 export const useDecrypt = (ciphertexts?: string[]) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
 
   const useRequestFunction = hasInjectedConnection()
     ? useInjectedRequest
@@ -25,7 +25,7 @@ export const useDecrypt = (ciphertexts?: string[]) => {
   } = useRequestFunction<DecryptResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+      chainId: chainIdStr,
       request: {
         jsonrpc: '2.0',
         method: 'decrypt',
@@ -47,7 +47,7 @@ export const useDecrypt = (ciphertexts?: string[]) => {
       log_sdk('useDecrypt requesting with override...', decryptRequestOverride);
       return request({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
           jsonrpc: '2.0',
           method: 'decrypt',

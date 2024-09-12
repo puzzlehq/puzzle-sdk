@@ -1,7 +1,22 @@
-import { wc_aleo_methods, wc_events, wc_optional_aleo_chains, wc_required_aleo_chains, } from '../data/walletconnect.js';
+import { networkToChainId, wc_aleo_methods, wc_events, } from '../data/walletconnect.js';
 import { getWalletConnectModalSignClient, emitter } from '../client.js';
 import { checkForDesktopConnection } from '../utils/clientInfo.js';
-export const connect = async (showModal = true) => {
+export const getAleoMethods = (networks, programIds) => {
+    const methods = wc_aleo_methods.slice();
+    for (let network of Object.keys(programIds)) {
+        if (!networks.includes(network))
+            return;
+        for (let programId of programIds[network]) {
+            methods.push(`${network}:${programId}`);
+        }
+    }
+    return methods;
+};
+export const getAleoChains = (networks) => {
+    return networks.map((network) => networkToChainId(network));
+};
+export const connect = async ({ programIds, networks, showModal }) => {
+    networks = Array.from(new Set(networks));
     const connection = await getWalletConnectModalSignClient();
     if (!connection) {
         throw new Error('call configureConnection() first!');
@@ -15,15 +30,8 @@ export const connect = async (showModal = true) => {
         const newSession = await connection.connect({
             requiredNamespaces: {
                 aleo: {
-                    methods: wc_aleo_methods,
-                    chains: wc_required_aleo_chains,
-                    events: wc_events,
-                },
-            },
-            optionalNamespaces: {
-                aleo: {
-                    chains: wc_optional_aleo_chains,
-                    methods: wc_aleo_methods,
+                    methods: getAleoMethods(networks, programIds),
+                    chains: getAleoChains(networks),
                     events: wc_events,
                 },
             },

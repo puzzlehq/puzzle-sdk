@@ -36,7 +36,7 @@ export const useRecords = ({
   page,
 }: UseRecordsParams) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
 
   const useQueryFunction = hasInjectedConnection()
     ? useInjectedRequestQuery
@@ -44,7 +44,7 @@ export const useRecords = ({
 
   const query = {
     topic: session?.topic,
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+    chainId: chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',
@@ -67,6 +67,7 @@ export const useRecords = ({
     queryKey: [
       'useRecords',
       account?.address,
+      chainIdStr,
       address,
       multisig,
       JSON.stringify(debouncedFilter),

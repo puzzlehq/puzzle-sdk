@@ -10,7 +10,7 @@ import { useWalletStore } from '../store.js';
 
 export const useImportSharedState = (seed?: string) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
 
   const useRequestFunction = hasInjectedConnection()
     ? useInjectedRequest
@@ -24,7 +24,7 @@ export const useImportSharedState = (seed?: string) => {
   } = useRequestFunction<ImportSharedStateResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+      chainId: chainIdStr,
       request: {
         jsonrpc: '2.0',
         method: 'importSharedState',

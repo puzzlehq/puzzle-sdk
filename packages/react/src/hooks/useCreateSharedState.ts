@@ -9,7 +9,7 @@ import { useWalletStore } from '../store.js';
 
 export const useCreateSharedState = () => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
 
   const useRequestFunction = hasInjectedConnection()
     ? useInjectedRequest
@@ -23,7 +23,7 @@ export const useCreateSharedState = () => {
   } = useRequestFunction<CreateSharedStateResponse | undefined>(
     {
       topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+      chainId: chainIdStr,
       request: {
         jsonrpc: '2.0',
         method: 'createSharedState',

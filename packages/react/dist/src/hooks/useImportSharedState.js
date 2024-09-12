@@ -4,13 +4,13 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 export const useImportSharedState = (seed) => {
     const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
+    const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
     const useRequestFunction = hasInjectedConnection()
         ? useInjectedRequest
         : useRequest;
     const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'importSharedState',

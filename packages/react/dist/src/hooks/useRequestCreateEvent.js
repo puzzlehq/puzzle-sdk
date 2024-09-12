@@ -12,11 +12,11 @@ const normalizeInputs = (inputs) => {
 };
 export const useRequestCreateEvent = (requestData) => {
     const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
+    const [chainIdStr] = useWalletStore((state) => [state.account]);
     const inputs = normalizeInputs(requestData?.inputs);
     const { request, data: wc_data, error: wc_error, loading, } = useRequest({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'requestCreateEvent',
@@ -36,7 +36,7 @@ export const useRequestCreateEvent = (requestData) => {
             const inputs = normalizeInputs(createEventRequestOverride.inputs);
             return request({
                 topic: session?.topic ?? '',
-                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+                chainId: chainIdStr,
                 request: {
                     jsonrpc: '2.0',
                     method: 'requestCreateEvent',

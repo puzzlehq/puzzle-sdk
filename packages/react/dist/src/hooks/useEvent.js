@@ -7,13 +7,13 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 export const useEvent = ({ id, address, multisig = false }) => {
     const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
+    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
     const useQueryFunction = hasInjectedConnection()
         ? useInjectedRequestQuery
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getEvent',
@@ -32,6 +32,7 @@ export const useEvent = ({ id, address, multisig = false }) => {
         queryKey: [
             'useEvent',
             account?.address,
+            chainIdStr,
             address,
             multisig,
             id,

@@ -1,9 +1,9 @@
-import { emitter, getWalletConnectModalSignClient, checkForDesktopConnection, wc_aleo_methods, wc_events, wc_required_aleo_chains, wc_optional_aleo_chains, } from '@puzzlehq/sdk-core';
+import { emitter, getWalletConnectModalSignClient, checkForDesktopConnection, wc_events, getAleoMethods, getAleoChains, } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
 import { shortenAddress } from './useAccount.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-export function useConnect(showModal = true) {
+export function useConnect({ networks, programIds, showModal }) {
     const session = useWalletSession();
     const isConnected = !!session;
     const { data, error, loading, setData, setError, setLoading } = useAsyncAction();
@@ -16,15 +16,8 @@ export function useConnect(showModal = true) {
             const response = await client.connect({
                 requiredNamespaces: {
                     aleo: {
-                        methods: wc_aleo_methods,
-                        chains: wc_required_aleo_chains,
-                        events: wc_events,
-                    },
-                },
-                optionalNamespaces: {
-                    aleo: {
-                        chains: wc_optional_aleo_chains,
-                        methods: wc_aleo_methods,
+                        methods: getAleoMethods(networks, programIds),
+                        chains: getAleoChains(networks),
                         events: wc_events,
                     },
                 },

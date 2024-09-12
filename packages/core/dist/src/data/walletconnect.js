@@ -12,14 +12,11 @@ export const wc_aleo_methods = [
     'createSharedState',
     'importSharedState',
     'requestSignature',
-];
-export const wc_required_aleo_chains = ['aleo:1'];
-export const wc_optional_aleo_chains = [
-    'aleo:0', // for eventual mainnet
+    'requestNetworkSwitch'
 ];
 export const wc_aleo_chains = [
-    ...wc_required_aleo_chains,
-    ...wc_optional_aleo_chains,
+    'aleo:0',
+    'aleo:1' // testnet
 ];
 // events originating from wallet
 export const wc_events = [
@@ -116,22 +113,10 @@ export const web3modal_puzzle_props_default = {
 export const web3modal_puzzle_props = isAndroid()
     ? web3modal_puzzle_props_android
     : web3modal_puzzle_props_default;
-export const signClient_puzzleProps = {
-    requiredNamespaces: {
-        aleo: {
-            methods: wc_aleo_methods,
-            chains: web3modal_puzzle_props.chains,
-            events: wc_events,
-        },
-    },
-};
 export const networkToChainId = (network, includePrefix = true) => {
     let chain;
     switch (network) {
         case Network.AleoMainnet:
-            chain = 'aleo:0';
-            break;
-        case Network.AleoCanarynet:
             chain = 'aleo:0';
             break;
         case Network.AleoTestnet:
@@ -143,7 +128,7 @@ export const networkToChainId = (network, includePrefix = true) => {
 export const chainIdToNetwork = (chainId) => {
     switch (chainId) {
         case 'aleo:0':
-            return Network.AleoCanarynet;
+            return Network.AleoMainnet;
         case 'aleo:1':
             return Network.AleoTestnet;
     }

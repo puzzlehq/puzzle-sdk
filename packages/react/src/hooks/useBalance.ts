@@ -19,7 +19,7 @@ type UseBalanceParams = {
 
 export const useBalance = ({ address, multisig }: UseBalanceParams = {}) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
 
   const useQueryFunction = hasInjectedConnection()
     ? useInjectedRequestQuery
@@ -27,7 +27,7 @@ export const useBalance = ({ address, multisig }: UseBalanceParams = {}) => {
 
   const query = {
     topic: session?.topic,
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+    chainId: chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'getBalance',
@@ -46,6 +46,7 @@ export const useBalance = ({ address, multisig }: UseBalanceParams = {}) => {
     queryKey: [
       'useBalance',
       address,
+      chainIdStr,
       account?.address ?? '',
       multisig,
       session?.topic,

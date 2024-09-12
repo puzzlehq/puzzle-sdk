@@ -1,7 +1,5 @@
 import { Network } from '@puzzlehq/types';
 export declare const wc_aleo_methods: string[];
-export declare const wc_required_aleo_chains: string[];
-export declare const wc_optional_aleo_chains: string[];
 export declare const wc_aleo_chains: string[];
 export declare const wc_events: string[];
 export declare const projectId = "f0aaeffe71b636da453fce042d79d723";
@@ -67,14 +65,5 @@ export declare const web3modal_puzzle_props: {
         avail: string;
     };
 };
-export declare const signClient_puzzleProps: {
-    requiredNamespaces: {
-        aleo: {
-            methods: string[];
-            chains: string[];
-            events: string[];
-        };
-    };
-};
 export declare const networkToChainId: (network: Network, includePrefix?: boolean) => string;
-export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1') => Network.AleoTestnet | Network.AleoCanarynet;
+export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1') => Network;

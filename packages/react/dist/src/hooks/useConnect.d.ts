@@ -1,5 +1,6 @@
 import { SessionTypes } from '@walletconnect/types';
-export declare function useConnect(showModal?: boolean): {
+import { ConnectProps } from '@puzzlehq/sdk-core';
+export declare function useConnect({ networks, programIds, showModal }: ConnectProps): {
     data: any;
     error: unknown;
     loading: boolean;

@@ -4,13 +4,13 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 export const useDecrypt = (ciphertexts) => {
     const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
+    const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
     const useRequestFunction = hasInjectedConnection()
         ? useInjectedRequest
         : useRequest;
     const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'decrypt',
@@ -28,7 +28,7 @@ export const useDecrypt = (ciphertexts) => {
             log_sdk('useDecrypt requesting with override...', decryptRequestOverride);
             return request({
                 topic: session?.topic ?? '',
-                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+                chainId: chainIdStr,
                 request: {
                     jsonrpc: '2.0',
                     method: 'decrypt',

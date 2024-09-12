@@ -15,7 +15,7 @@ export const useRequestSignature = ({
   network,
 }: SignatureRequest) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
 
   const {
     request,
@@ -24,7 +24,7 @@ export const useRequestSignature = ({
     loading,
   } = useRequest<SignatureResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+    chainId: chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'requestSignature',
@@ -48,7 +48,7 @@ export const useRequestSignature = ({
       );
       return request({
         topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
+        chainId: chainIdStr,
         request: {
           jsonrpc: '2.0',
           method: 'requestSignature',
