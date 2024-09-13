@@ -15,7 +15,7 @@ export const useRequestSignature = ({
   network,
 }: SignatureRequest) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+  const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
 
   const {
     request,
@@ -47,7 +47,7 @@ export const useRequestSignature = ({
         signatureRequestOverride,
       );
       return request({
-        topic: session?.topic ?? '',
+        topic: session.topic,
         chainId: chainIdStr,
         request: {
           jsonrpc: '2.0',

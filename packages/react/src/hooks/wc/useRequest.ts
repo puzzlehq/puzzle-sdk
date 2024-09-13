@@ -80,7 +80,7 @@ export function useRequest<Result>(
       setData(response);
       return response;
     } catch (e) {
-      setError(e);
+      setError(JSON.stringify(e));
       setLoading(false);
       throw e;
     } finally {

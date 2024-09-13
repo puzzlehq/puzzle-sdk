@@ -14,8 +14,8 @@ export const disconnect = async (): Promise<{ error?: string }> => {
   try {
     try {
       await connection.disconnect({
-        reason: getSdkError('USER_DISCONNECTED'),
         topic: session.topic,
+        reason: getSdkError('USER_DISCONNECTED'),
       });
       localStorage.removeItem('puzzle-hasInjectedConnection');
       emitter.emit('session_change');

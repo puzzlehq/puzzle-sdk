@@ -65,7 +65,7 @@ export const useAccount = () => {
                     if (!wc_aleo_chains.includes(chainStr)) {
                         return { error: `invalid network to switch to: ${chainStr}` };
                     }
-                    if (!session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+                    if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
                         return { error: `dApp does not have permission to switch to ${chainStr}` };
                     }
                     setAccount({
@@ -93,7 +93,7 @@ export const useAccount = () => {
             if (!wc_aleo_chains.includes(chainStr)) {
                 return { error: `invalid network to switch to: ${chainStr}` };
             }
-            if (!session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+            if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
                 return { error: `dApp does not have permission to switch to ${chainStr}` };
             }
             setAccount({
@@ -114,7 +114,7 @@ export const useAccount = () => {
         if (!wc_aleo_chains.includes(chainStr)) {
             return { error: `invalid network to switch to: ${chainStr}` };
         }
-        if (!session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+        if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
             return { error: `dApp does not have permission to switch to ${chainStr}` };
         }
         setAccount({

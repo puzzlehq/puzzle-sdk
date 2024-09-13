@@ -14,7 +14,7 @@ export const useRequestNetworkSwitch = ({
   network,
 }: NetworkSwitchRequest) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+  const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
 
   const {
     request,
@@ -26,7 +26,7 @@ export const useRequestNetworkSwitch = ({
     chainId: chainIdStr,
     request: {
       jsonrpc: '2.0',
-      method: 'requestSignature',
+      method: 'requestNetworkSwitch',
       params: {
         network
       } as NetworkSwitchRequest,
@@ -46,8 +46,8 @@ export const useRequestNetworkSwitch = ({
       return { error: `invalid network to switch to: ${network}` };
     }
   
-    if (!session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
-      console.error(session.requiredNamespaces.aleo.chains);
+    if (!session.namespaces.aleo?.chains?.includes(networkToChainId(network))) {
+      console.error(session.namespaces.aleo.chains);
       return { error: `dApp does not have permission to switch to ${network}` };
     }
   
@@ -57,7 +57,7 @@ export const useRequestNetworkSwitch = ({
         networkSwitchRequestOverride,
       );
       return request({
-        topic: session?.topic ?? '',
+        topic: session.topic,
         chainId: chainIdStr,
         request: {
           jsonrpc: '2.0',

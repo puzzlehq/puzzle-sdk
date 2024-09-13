@@ -4,13 +4,13 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 export const useRequestNetworkSwitch = ({ network, }) => {
     const session = useWalletSession();
-    const [chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+    const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
     const { request, data: wc_data, error: wc_error, loading, } = useRequest({
         topic: session?.topic ?? '',
         chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
-            method: 'requestSignature',
+            method: 'requestNetworkSwitch',
             params: {
                 network
             },
@@ -28,14 +28,14 @@ export const useRequestNetworkSwitch = ({ network, }) => {
         if (!wc_aleo_chains.includes(networkToChainId(network))) {
             return { error: `invalid network to switch to: ${network}` };
         }
-        if (!session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
-            console.error(session.requiredNamespaces.aleo.chains);
+        if (!session.namespaces.aleo?.chains?.includes(networkToChainId(network))) {
+            console.error(session.namespaces.aleo.chains);
             return { error: `dApp does not have permission to switch to ${network}` };
         }
         if (networkSwitchRequestOverride) {
             log_sdk('useRequestNetworkSwitch requesting with override...', networkSwitchRequestOverride);
             return request({
-                topic: session?.topic ?? '',
+                topic: session.topic,
                 chainId: chainIdStr,
                 request: {
                     jsonrpc: '2.0',

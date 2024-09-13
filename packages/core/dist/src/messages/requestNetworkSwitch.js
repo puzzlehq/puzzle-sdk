@@ -9,7 +9,7 @@ export const requestNetworkSwitch = async ({ network, }) => {
     if (!wc_aleo_chains.includes(networkToChainId(network))) {
         return { error: `invalid network to switch to: ${network}` };
     }
-    if (!session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
+    if (!session.namespaces.aleo?.chains?.includes(networkToChainId(network))) {
         return { error: `dApp does not have permission to switch to ${network}` };
     }
     try {

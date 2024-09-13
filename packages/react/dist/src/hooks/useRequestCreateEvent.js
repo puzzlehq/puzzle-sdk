@@ -35,7 +35,7 @@ export const useRequestCreateEvent = (requestData) => {
             log_sdk('useCreateEvent requesting with override...', createEventRequestOverride);
             const inputs = normalizeInputs(createEventRequestOverride.inputs);
             return request({
-                topic: session?.topic ?? '',
+                topic: session.topic,
                 chainId: chainIdStr,
                 request: {
                     jsonrpc: '2.0',

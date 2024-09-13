@@ -56,7 +56,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
       );
       const inputs = normalizeInputs(createEventRequestOverride.inputs);
       return request({
-        topic: session?.topic ?? '',
+        topic: session.topic,
         chainId: chainIdStr,
         request: {
           jsonrpc: '2.0',
