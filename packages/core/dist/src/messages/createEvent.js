@@ -1,4 +1,4 @@
-import { wc_aleo_chains } from '../index.js';
+import { networkToChainId, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 export const requestCreateEvent = async (requestData, network) => {
     const connection = await getWalletConnectModalSignClient();
@@ -12,13 +12,13 @@ export const requestCreateEvent = async (requestData, network) => {
         }
         return input.plaintext;
     });
-    if (network && !wc_aleo_chains.includes(network)) {
+    if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
         return { error: 'network not in wc_aleo_chains' };
     }
     try {
         const response = await connection.request({
             topic: session.topic,
-            chainId: network ?? 'aleo:1',
+            chainId: network ? networkToChainId(network) : 'aleo:0',
             request: {
                 jsonrpc: '2.0',
                 method: 'requestCreateEvent',

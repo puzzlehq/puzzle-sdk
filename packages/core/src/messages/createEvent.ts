@@ -1,7 +1,7 @@
-import { EventType, wc_aleo_chains } from '../index.js';
+import { EventType, networkToChainId, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-import { type RecordWithPlaintext } from '@puzzlehq/types';
+import { Network, type RecordWithPlaintext } from '@puzzlehq/types';
 
 /// dapps send this to the sdk
 export type CreateEventRequestData = {
@@ -36,7 +36,7 @@ export type CreateEventResponse = {
 
 export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
-  network?: string,
+  network?: Network,
 ): Promise<CreateEventResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -53,14 +53,14 @@ export const requestCreateEvent = async (
     return input.plaintext;
   });
 
-  if (network && !wc_aleo_chains.includes(network)) {
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
     return { error: 'network not in wc_aleo_chains' };
   }
 
   try {
     const response: CreateEventResponse = await connection.request({
       topic: session.topic,
-      chainId: network ?? 'aleo:1',
+      chainId: network ? networkToChainId(network) : 'aleo:0',
       request: {
         jsonrpc: '2.0',
         method: 'requestCreateEvent',

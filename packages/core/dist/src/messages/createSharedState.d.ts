@@ -1,3 +1,4 @@
+import { Network } from '@puzzlehq/types';
 export type CreateSharedStateResponse = {
     data?: {
         seed: string;
@@ -5,4 +6,4 @@ export type CreateSharedStateResponse = {
     };
     error?: string;
 };
-export declare const createSharedState: (network?: string) => Promise<CreateSharedStateResponse>;
+export declare const createSharedState: (network?: Network) => Promise<CreateSharedStateResponse>;

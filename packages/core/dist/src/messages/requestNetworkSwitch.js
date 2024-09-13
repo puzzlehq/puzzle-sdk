@@ -9,13 +9,13 @@ export const requestNetworkSwitch = async ({ network, }) => {
     if (!wc_aleo_chains.includes(networkToChainId(network))) {
         return { error: `invalid network to switch to: ${network}` };
     }
-    if (session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
+    if (!session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
         return { error: `dApp does not have permission to switch to ${network}` };
     }
     try {
         const response = await connection.request({
             topic: session.topic,
-            chainId: network ?? 'aleo:1',
+            chainId: networkToChainId(network) ?? 'aleo:0',
             request: {
                 jsonrpc: '2.0',
                 method: 'requestNetworkSwitch',

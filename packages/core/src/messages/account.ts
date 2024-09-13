@@ -2,7 +2,8 @@ import { PuzzleAccount } from '../data/types.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
-import { wc_aleo_chains } from '../data/walletconnect.js';
+import { networkToChainId, wc_aleo_chains } from '../data/walletconnect.js';
+import { Network } from '@puzzlehq/types';
 
 export type GetSelectedAccountResponse = {
   account?: PuzzleAccount;
@@ -10,7 +11,7 @@ export type GetSelectedAccountResponse = {
 };
 
 export const getAccount = async (
-  network?: string,
+  network?: Network,
 ): Promise<GetSelectedAccountResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -20,13 +21,13 @@ export const getAccount = async (
     return { error: 'no session or connection' };
   }
 
-  if (network && !wc_aleo_chains.includes(network)) {
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
     return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {
     topic: session.topic,
-    chainId: network ?? 'aleo:1',
+    chainId: network ? networkToChainId(network) : 'aleo:0',
     request: {
       jsonrpc: '2.0',
       method: 'getSelectedAccount',

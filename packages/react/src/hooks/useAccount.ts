@@ -91,7 +91,7 @@ export const useAccount = () => {
             return { error: `invalid network to switch to: ${chainStr}` };
           }
 
-          if (session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+          if (!session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
             return { error: `dApp does not have permission to switch to ${chainStr}` };
           }
 
@@ -125,9 +125,10 @@ export const useAccount = () => {
         return { error: `invalid network to switch to: ${chainStr}` };
       }
 
-      if (session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+      if (!session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
         return { error: `dApp does not have permission to switch to ${chainStr}` };
       }
+
       setAccount({
         network,
         chainId,
@@ -148,7 +149,7 @@ export const useAccount = () => {
       return { error: `invalid network to switch to: ${chainStr}` };
     }
 
-    if (session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
+    if (!session.requiredNamespaces.aleo?.chains?.includes(chainStr)) {
       return { error: `dApp does not have permission to switch to ${chainStr}` };
     }
 
@@ -188,7 +189,6 @@ export const useAccount = () => {
   
   let network: Network | undefined = (() => {
     if (!account) return undefined;
-    // @ts-ignore
     return chainIdToNetwork(`${account.network}:${account.chainId}`)
   })()
 

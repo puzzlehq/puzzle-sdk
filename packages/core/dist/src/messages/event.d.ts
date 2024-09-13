@@ -1,8 +1,8 @@
-import { Event } from '../index.js';
+import { Event, Network } from '../index.js';
 export type GetEventRequest = {
     id: string;
     address?: string;
-    network?: string;
+    network?: Network;
 };
 export type GetEventResponse = {
     event?: Event;

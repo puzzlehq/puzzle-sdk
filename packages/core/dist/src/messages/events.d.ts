@@ -1,4 +1,5 @@
 import { Event, EventType } from '../index.js';
+import { Network } from '@puzzlehq/types';
 export type EventsFilter = {
     type?: EventType;
     programId?: string;
@@ -13,4 +14,4 @@ export type GetEventsResponse = {
     pageCount?: number;
     error?: string;
 };
-export declare const getEvents: (filter: EventsFilter, network?: string) => Promise<GetEventsResponse>;
+export declare const getEvents: (filter: EventsFilter, network?: Network) => Promise<GetEventsResponse>;

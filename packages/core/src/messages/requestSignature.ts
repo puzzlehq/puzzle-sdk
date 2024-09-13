@@ -1,12 +1,12 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
-import { aleoAddressRegex } from '@puzzlehq/types';
-import { wc_aleo_chains } from '../data/walletconnect.js';
+import { aleoAddressRegex, Network } from '@puzzlehq/types';
+import { networkToChainId, wc_aleo_chains } from '../data/walletconnect.js';
 
 export type SignatureRequest = {
   message: string;
   address?: string;
-  network?: string;
+  network?: Network;
 };
 
 export type SignatureResponse = {
@@ -28,14 +28,14 @@ export const requestSignature = async ({
     return { error: 'no session or connection' };
   }
 
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
+    return { error: `${network} not in wc_aleo_chains` };
   }
 
   try {
     const response: SignatureResponse = await connection.request({
       topic: session.topic,
-      chainId: network ?? 'aleo:1',
+      chainId: network ? networkToChainId(network) : 'aleo:0',
       request: {
         jsonrpc: '2.0',
         method: 'requestSignature',

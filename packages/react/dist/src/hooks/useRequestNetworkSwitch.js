@@ -28,7 +28,8 @@ export const useRequestNetworkSwitch = ({ network, }) => {
         if (!wc_aleo_chains.includes(networkToChainId(network))) {
             return { error: `invalid network to switch to: ${network}` };
         }
-        if (session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
+        if (!session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
+            console.error(session.requiredNamespaces.aleo.chains);
             return { error: `dApp does not have permission to switch to ${network}` };
         }
         if (networkSwitchRequestOverride) {

@@ -21,7 +21,7 @@ export const useWalletStore = create<WalletState>()(
       network: undefined,
       setAccount: (account: PuzzleAccount | undefined) => {
         const chainIdStr = account ? `${account.network}:${account.chainId}` : undefined
-        // @ts-ignore
+        console.log('chainIdStr',chainIdStr);
         const network: Network | undefined = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined
         if (network) {
           set({ 

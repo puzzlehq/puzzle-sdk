@@ -6,7 +6,6 @@ import {
   networkToChainId,
   wc_aleo_chains,
 } from '@puzzlehq/sdk-core';
-import { aleoAddressRegex } from '@puzzlehq/types';
 import { useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
@@ -47,7 +46,8 @@ export const useRequestNetworkSwitch = ({
       return { error: `invalid network to switch to: ${network}` };
     }
   
-    if (session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
+    if (!session.requiredNamespaces.aleo?.chains?.includes(networkToChainId(network))) {
+      console.error(session.requiredNamespaces.aleo.chains);
       return { error: `dApp does not have permission to switch to ${network}` };
     }
   

@@ -9,6 +9,7 @@ export * from './hooks/useEvents.js';
 export * from './hooks/useImportSharedState.js';
 export * from './hooks/useRecords.js';
 export * from './hooks/useRequestCreateEvent.js';
+export * from './hooks/useRequestNetworkSwitch.js';
 export * from './hooks/useRequestSignature.js';
 export * from './hooks/wc/useOnSessionDelete.js';
 export * from './hooks/wc/useOnSessionEvent.js';

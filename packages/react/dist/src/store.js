@@ -8,7 +8,7 @@ export const useWalletStore = create()(persist((set, get) => ({
     network: undefined,
     setAccount: (account) => {
         const chainIdStr = account ? `${account.network}:${account.chainId}` : undefined;
-        // @ts-ignore
+        console.log('chainIdStr', chainIdStr);
         const network = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined;
         if (network) {
             set({

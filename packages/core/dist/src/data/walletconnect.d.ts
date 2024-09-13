@@ -66,4 +66,4 @@ export declare const web3modal_puzzle_props: {
     };
 };
 export declare const networkToChainId: (network: Network, includePrefix?: boolean) => string;
-export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1') => Network;
+export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1' | string) => Network | undefined;

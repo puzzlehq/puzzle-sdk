@@ -138,7 +138,7 @@ export const networkToChainId = (
   return includePrefix ? chain : chain.replace('aleo:', '');
 };
 
-export const chainIdToNetwork = (chainId: 'aleo:0' | 'aleo:1') => {
+export const chainIdToNetwork = (chainId: 'aleo:0' | 'aleo:1' | string) => {
   switch (chainId) {
     case 'aleo:0':
       return Network.AleoMainnet;

@@ -1,8 +1,8 @@
-import { type RecordWithPlaintext, RecordStatus } from '@puzzlehq/types';
+import { type RecordWithPlaintext, Network, RecordStatus } from '@puzzlehq/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
-import { wc_aleo_chains } from '../data/walletconnect.js';
+import { networkToChainId, wc_aleo_chains } from '../data/walletconnect.js';
 
 export type RecordStatusFilter = RecordStatus | 'All';
 
@@ -17,7 +17,7 @@ export type GetRecordsRequest = {
   address?: string;
   filter?: RecordsFilter;
   page?: number;
-  network?: string;
+  network?: Network;
 };
 
 export type GetRecordsResponse = {
@@ -40,13 +40,13 @@ export const getRecords = async ({
   if (!session || !connection) {
     return { error: 'no session or connection' };
   }
-  if (network && !wc_aleo_chains.includes(network)) {
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
     return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {
     topic: session.topic,
-    chainId: network ?? 'aleo:1',
+    chainId: network ? networkToChainId(network) : 'aleo:0',
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',

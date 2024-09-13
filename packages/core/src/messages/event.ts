@@ -1,4 +1,4 @@
-import { Event, wc_aleo_chains } from '../index.js';
+import { Event, Network, networkToChainId, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
@@ -6,7 +6,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 export type GetEventRequest = {
   id: string;
   address?: string;
-  network?: string;
+  network?: Network;
 };
 
 export type GetEventResponse = {
@@ -28,13 +28,13 @@ export const getEvent = async ({
     return { event: undefined, error: 'no session or connection' };
   }
 
-  if (network && !wc_aleo_chains.includes(network)) {
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
     return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {
     topic: session.topic,
-    chainId: network ?? 'aleo:1',
+    chainId: network ? networkToChainId(network) : 'aleo:0',
     request: {
       jsonrpc: '2.0',
       method: 'getEvent',

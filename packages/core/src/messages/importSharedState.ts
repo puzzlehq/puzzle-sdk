@@ -1,7 +1,8 @@
 import { SessionTypes } from '@walletconnect/types';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
-import { wc_aleo_chains } from '../data/walletconnect.js';
+import { networkToChainId, wc_aleo_chains } from '../data/walletconnect.js';
+import { Network } from '@puzzlehq/types';
 
 export type ImportSharedStateRequest = {
   seed: string;
@@ -17,7 +18,7 @@ export type ImportSharedStateResponse = {
 
 export const importSharedState = async (
   seed: string,
-  network?: string,
+  network?: Network,
 ): Promise<ImportSharedStateResponse> => {
   const connection = await getWalletConnectModalSignClient();
 
@@ -27,13 +28,13 @@ export const importSharedState = async (
   if (!session || !connection) {
     return { error: 'no session or connection' };
   }
-  if (network && !wc_aleo_chains.includes(network)) {
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
     return { error: 'network not in wc_aleo_chains' };
   }
 
   const query = {
     topic: session.topic,
-    chainId: network ?? 'aleo:1',
+    chainId: network ? networkToChainId(network) : 'aleo:0',
     request: {
       jsonrpc: '2.0',
       method: 'importSharedState',

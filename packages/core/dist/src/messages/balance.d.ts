@@ -1,4 +1,4 @@
-import { Balance } from '@puzzlehq/types';
+import { Balance, Network } from '@puzzlehq/types';
 export type GetBalancesRequest = {
     address?: string;
 };
@@ -8,5 +8,5 @@ export type GetBalancesResponse = {
 };
 export declare const getBalance: ({ address, network, }: {
     address?: string | undefined;
-    network?: string | undefined;
+    network?: Network | undefined;
 }) => Promise<GetBalancesResponse>;
