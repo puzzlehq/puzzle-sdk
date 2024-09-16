@@ -23,7 +23,6 @@ export const wc_aleo_chains = [
 
 // events originating from wallet
 export const wc_events = [
-  'chainChanged',
   'accountSelected',
   'selectedAccountSynced',
   'sharedAccountSynced',

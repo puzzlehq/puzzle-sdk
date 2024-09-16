@@ -6,6 +6,7 @@ import { Balance, Network } from '@puzzlehq/types';
 
 export type GetBalancesRequest = {
   address?: string;
+  network?: Network
 };
 
 export type GetBalancesResponse = {
@@ -16,10 +17,7 @@ export type GetBalancesResponse = {
 export const getBalance = async ({
   address,
   network,
-}: {
-  address?: string;
-  network?: Network;
-}): Promise<GetBalancesResponse> => {
+}: GetBalancesRequest): Promise<GetBalancesResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
     await connection.getSession();

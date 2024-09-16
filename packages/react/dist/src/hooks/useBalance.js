@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
-import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
+import { hasInjectedConnection, networkToChainId, } from '@puzzlehq/sdk-core';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-export const useBalance = ({ address, multisig } = {}) => {
+export const useBalance = ({ address, multisig, network } = {}) => {
     const session = useWalletSession();
-    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+    const [selectedAddress, chainIdStr] = useWalletStore((state) => [state.address, state.chainIdStr]);
     const useQueryFunction = hasInjectedConnection()
         ? useInjectedRequestQuery
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: chainIdStr,
+        chainId: network ? networkToChainId(network) : chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getBalance',
@@ -27,11 +27,11 @@ export const useBalance = ({ address, multisig } = {}) => {
             'useBalance',
             address,
             chainIdStr,
-            account?.address ?? '',
+            selectedAddress,
             multisig,
             session?.topic,
         ],
-        enabled: !!session && !!account && (multisig ? !!address : true),
+        enabled: !!session && !!selectedAddress && (multisig ? !!address : true),
         fetchFunction: async () => {
             const response = await window.aleo.puzzleWalletClient.getBalance.query(query);
             return response;

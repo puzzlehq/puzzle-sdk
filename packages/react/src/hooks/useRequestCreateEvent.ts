@@ -5,6 +5,7 @@ import {
   CreateEventRequestData,
   CreateEventResponse,
   log_sdk,
+  networkToChainId,
 } from '@puzzlehq/sdk-core';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
@@ -21,7 +22,7 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [chainIdStr] = useWalletStore((state) => [state.account]);
+  const [chainIdStr] = useWalletStore((state) => [state.chainIdStr]);
 
   const inputs = normalizeInputs(requestData?.inputs);
 
@@ -32,7 +33,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     loading,
   } = useRequest<CreateEventResponse | undefined>({
     topic: session?.topic ?? '',
-    chainId: chainIdStr,
+    chainId: requestData?.network ? networkToChainId(requestData.network) : chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'requestCreateEvent',
@@ -49,6 +50,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const response: CreateEventResponse | undefined = wc_data;
 
   const createEvent = (createEventRequestOverride?: CreateEventRequest) => {
+    const network = createEventRequestOverride?.network ?? requestData?.network;
     if (createEventRequestOverride && session && !loading) {
       log_sdk(
         'useCreateEvent requesting with override...',
@@ -57,7 +59,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
       const inputs = normalizeInputs(createEventRequestOverride.inputs);
       return request({
         topic: session.topic,
-        chainId: chainIdStr,
+        chainId: network ? networkToChainId(network) : chainIdStr,
         request: {
           jsonrpc: '2.0',
           method: 'requestCreateEvent',

@@ -5,6 +5,8 @@ import {
   GetEventsRequest,
   GetEventsResponse,
   hasInjectedConnection,
+  Network,
+  networkToChainId,
 } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
 import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
@@ -17,11 +19,12 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 type UseEventsParams = {
   filter?: EventsFilter;
   page?: number;
+  network?: Network
 };
 
-export const useEvents = ({ filter, page }: UseEventsParams) => {
+export const useEvents = ({ filter, network, page }: UseEventsParams) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+  const [address, chainIdStr] = useWalletStore((state) => [state.address, state.chainIdStr]);
 
   if (filter?.programId === '') {
     filter.programId = undefined;
@@ -33,7 +36,7 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
 
   const query = {
     topic: session?.topic ?? '',
-    chainId: chainIdStr,
+    chainId: network ? networkToChainId(network) : chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'getEvents',
@@ -54,13 +57,13 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
   } = useQueryFunction<GetEventsResponse | undefined>({
     queryKey: [
       'useEvents',
-      account?.address,
+      address,
       chainIdStr,
       JSON.stringify(debouncedFilter),
       page,
       session?.topic,
     ],
-    enabled: !!session && !!account,
+    enabled: !!session && !!address,
     fetchFunction: async () => {
       const response: GetEventsResponse =
         await window.aleo.puzzleWalletClient.getEvents.query(query);
@@ -91,7 +94,7 @@ export const useEvents = ({ filter, page }: UseEventsParams) => {
   });
 
   // send initial events request
-  const readyToRequest = !!session && !!account;
+  const readyToRequest = !!session && !!address;
   useEffect(() => {
     if (readyToRequest && !loading) {
       refetch();

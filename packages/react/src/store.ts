@@ -1,15 +1,16 @@
 import { create } from 'zustand';
 import { queryClient } from './index.js';
 import { persist } from 'zustand/middleware';
-import { chainIdToNetwork, PuzzleAccount } from '@puzzlehq/sdk-core';
+import { networkToChainId } from '@puzzlehq/sdk-core';
 import { Network } from '@puzzlehq/types';
 
 type WalletState = {
-  account?: PuzzleAccount;
+  address?: string;
   network?: Network;
   chainIdStr?: string
 
-  setAccount: (account: PuzzleAccount | undefined) => void;
+  setAddress: (address: string | undefined) => void;
+  setNetwork: (network: Network | undefined) => void;
   onDisconnect: () => void;
 };
 
@@ -19,21 +20,18 @@ export const useWalletStore = create<WalletState>()(
       account: undefined,
       chainIdStr: undefined, // 'aleo:0' | 'aleo:1'
       network: undefined,
-      setAccount: (account: PuzzleAccount | undefined) => {
-        const chainIdStr = account ? `${account.network}:${account.chainId}` : undefined
-        console.log('chainIdStr',chainIdStr);
-        const network: Network | undefined = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined
-        if (network) {
-          set({ 
-            account,
-            network,
-            chainIdStr
-           });
-        }
+      setAddress: (address) => {
+        set({ address });
+      },
+      setNetwork: (network) => {
+        set({
+          network,
+          chainIdStr: network ? networkToChainId(network) : undefined
+        });
       },
       onDisconnect: () => {
         set({
-          account: undefined,
+          address: undefined,
           chainIdStr: undefined,
           network: undefined,
         });

@@ -1,13 +1,13 @@
-import { emitter, getWalletConnectModalSignClient, checkForDesktopConnection, wc_events, getAleoMethods, getAleoChains, } from '@puzzlehq/sdk-core';
+import { emitter, getWalletConnectModalSignClient, checkForDesktopConnection, wc_events, getAleoMethods, getAleoChains, chainIdToNetwork, } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
-import { shortenAddress } from './useAccount.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-export function useConnect({ networks, programIds, showModal }) {
+export function useConnect({ programIds, showModal }) {
+    const networks = Object.keys(programIds);
     const session = useWalletSession();
     const isConnected = !!session;
     const { data, error, loading, setData, setError, setLoading } = useAsyncAction();
-    const [setAccount] = useWalletStore((state) => [state.setAccount]);
+    const [setAddress, setNetwork] = useWalletStore((state) => [state.setAddress, state.setNetwork]);
     async function connect() {
         try {
             setLoading(true);
@@ -16,7 +16,7 @@ export function useConnect({ networks, programIds, showModal }) {
             const response = await client.connect({
                 requiredNamespaces: {
                     aleo: {
-                        methods: getAleoMethods(networks, programIds),
+                        methods: getAleoMethods(programIds),
                         chains: getAleoChains(networks),
                         events: wc_events,
                     },
@@ -24,13 +24,14 @@ export function useConnect({ networks, programIds, showModal }) {
             }, showModal);
             setData(response);
             await checkForDesktopConnection(response.topic);
-            const account = response.namespaces['aleo']['accounts'][0].split(':');
-            setAccount({
-                network: account[0],
-                chainId: account[1],
-                address: account[2],
-                shortenedAddress: shortenAddress(account[2]),
-            });
+            const split = response.namespaces['aleo']['accounts'][0].split(':');
+            const wcNetwork = split[0];
+            const chainId = split[1];
+            const address = split[2];
+            const chainStr = `${wcNetwork}:${chainId}`;
+            const network = chainIdToNetwork(chainStr);
+            setAddress(address);
+            setNetwork(network);
             emitter.emit('session_change');
             const choice = window.localStorage.getItem('WALLETCONNECT_DEEPLINK_CHOICE');
             if (choice && JSON.parse(choice).name !== 'Android') {

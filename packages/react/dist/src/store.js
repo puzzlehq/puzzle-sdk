@@ -1,26 +1,23 @@
 import { create } from 'zustand';
 import { queryClient } from './index.js';
 import { persist } from 'zustand/middleware';
-import { chainIdToNetwork } from '@puzzlehq/sdk-core';
+import { networkToChainId } from '@puzzlehq/sdk-core';
 export const useWalletStore = create()(persist((set, get) => ({
     account: undefined,
     chainIdStr: undefined,
     network: undefined,
-    setAccount: (account) => {
-        const chainIdStr = account ? `${account.network}:${account.chainId}` : undefined;
-        console.log('chainIdStr', chainIdStr);
-        const network = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined;
-        if (network) {
-            set({
-                account,
-                network,
-                chainIdStr
-            });
-        }
+    setAddress: (address) => {
+        set({ address });
+    },
+    setNetwork: (network) => {
+        set({
+            network,
+            chainIdStr: network ? networkToChainId(network) : undefined
+        });
     },
     onDisconnect: () => {
         set({
-            account: undefined,
+            address: undefined,
             chainIdStr: undefined,
             network: undefined,
         });

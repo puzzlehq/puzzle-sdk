@@ -1,6 +1,6 @@
 export type PuzzleAccount = {
-  network: string;
-  chainId: string;
-  address: string;
-  shortenedAddress: string;
+  network: string; // aleo
+  chainId: string; // 1
+  address: string; // aleo1234...
+  shortenedAddress: string; // ...5678
 };

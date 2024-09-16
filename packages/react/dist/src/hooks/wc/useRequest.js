@@ -39,7 +39,7 @@ export function useRequest(params, fetchFunction) {
             return response;
         }
         catch (e) {
-            setError(e);
+            setError(JSON.stringify(e));
             setLoading(false);
             throw e;
         }

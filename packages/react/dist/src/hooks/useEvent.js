@@ -7,7 +7,7 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 export const useEvent = ({ id, address, multisig = false }) => {
     const session = useWalletSession();
-    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+    const [selectedAddress, chainIdStr] = useWalletStore((state) => [state.address, state.chainIdStr]);
     const useQueryFunction = hasInjectedConnection()
         ? useInjectedRequestQuery
         : useRequestQuery;
@@ -26,12 +26,12 @@ export const useEvent = ({ id, address, multisig = false }) => {
     const isEnabled = id !== undefined &&
         id !== '' &&
         !!session &&
-        !!account &&
+        !!selectedAddress &&
         (multisig ? !!address : true);
     const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useQueryFunction({
         queryKey: [
             'useEvent',
-            account?.address,
+            selectedAddress,
             chainIdStr,
             address,
             multisig,
@@ -79,7 +79,7 @@ export const useEvent = ({ id, address, multisig = false }) => {
         }
     });
     // send initial events request
-    const readyToRequest = !!session && !!account && !!id && (multisig ? !!address : true);
+    const readyToRequest = !!session && !!selectedAddress && !!id && (multisig ? !!address : true);
     useEffect(() => {
         if (readyToRequest && !loading) {
             refetch();

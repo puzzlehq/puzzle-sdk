@@ -4,6 +4,8 @@ import {
   RecordsFilter,
   log_sdk,
   hasInjectedConnection,
+  Network,
+  networkToChainId,
 } from '@puzzlehq/sdk-core';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { SessionTypes } from '@walletconnect/types';
@@ -19,6 +21,7 @@ type UseRecordsParams = {
   multisig?: boolean;
   filter?: RecordsFilter;
   page?: number;
+  network?: Network
 };
 
 export const getFormattedRecordPlaintext = (data: any) => {
@@ -34,9 +37,10 @@ export const useRecords = ({
   multisig = false,
   filter,
   page,
+  network,
 }: UseRecordsParams) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+  const [selectedAddress, chainIdStr] = useWalletStore((state) => [state.address, state.chainIdStr]);
 
   const useQueryFunction = hasInjectedConnection()
     ? useInjectedRequestQuery
@@ -44,7 +48,7 @@ export const useRecords = ({
 
   const query = {
     topic: session?.topic,
-    chainId: chainIdStr,
+    chainId: network ? networkToChainId(network) : chainIdStr,
     request: {
       jsonrpc: '2.0',
       method: 'getRecords',
@@ -66,7 +70,7 @@ export const useRecords = ({
   } = useQueryFunction<GetRecordsResponse | undefined>({
     queryKey: [
       'useRecords',
-      account?.address,
+      address,
       chainIdStr,
       address,
       multisig,
@@ -74,7 +78,7 @@ export const useRecords = ({
       page,
       session?.topic,
     ],
-    enabled: (multisig ? !!address : true) && !!session && !!account,
+    enabled: (multisig ? !!address : true) && !!session && !!selectedAddress,
     fetchFunction: async () => {
       const response: GetRecordsResponse =
         await window.aleo.puzzleWalletClient.getRecords.query(query);
@@ -84,7 +88,7 @@ export const useRecords = ({
   });
 
   const readyToRequest =
-    !!session && !!account && (multisig ? !!address : true);
+    !!session && !!selectedAddress && (multisig ? !!address : true);
 
   useInjectedSubscriptions({
     session,

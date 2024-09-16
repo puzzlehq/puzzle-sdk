@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
+import { hasInjectedConnection, networkToChainId, } from '@puzzlehq/sdk-core';
 import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-export const useEvents = ({ filter, page }) => {
+export const useEvents = ({ filter, network, page }) => {
     const session = useWalletSession();
-    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+    const [address, chainIdStr] = useWalletStore((state) => [state.address, state.chainIdStr]);
     if (filter?.programId === '') {
         filter.programId = undefined;
     }
@@ -17,7 +17,7 @@ export const useEvents = ({ filter, page }) => {
         : useRequestQuery;
     const query = {
         topic: session?.topic ?? '',
-        chainId: chainIdStr,
+        chainId: network ? networkToChainId(network) : chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getEvents',
@@ -31,13 +31,13 @@ export const useEvents = ({ filter, page }) => {
     const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useQueryFunction({
         queryKey: [
             'useEvents',
-            account?.address,
+            address,
             chainIdStr,
             JSON.stringify(debouncedFilter),
             page,
             session?.topic,
         ],
-        enabled: !!session && !!account,
+        enabled: !!session && !!address,
         fetchFunction: async () => {
             const response = await window.aleo.puzzleWalletClient.getEvents.query(query);
             return response;
@@ -64,7 +64,7 @@ export const useEvents = ({ filter, page }) => {
         }
     });
     // send initial events request
-    const readyToRequest = !!session && !!account;
+    const readyToRequest = !!session && !!address;
     useEffect(() => {
         if (readyToRequest && !loading) {
             refetch();

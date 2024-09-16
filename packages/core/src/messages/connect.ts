@@ -8,17 +8,24 @@ import { SessionTypes } from '@walletconnect/types';
 import { checkForDesktopConnection } from '../utils/clientInfo.js';
 import { Network } from '@puzzlehq/types';
 
+type ProgramIds = Partial<Record<Network, string[]>>;
+
 export type ConnectProps = {
-  networks: Network[],
-  programIds: Record<Network, string[]>;
+  programIds: ProgramIds,
   showModal?: boolean
 }
 
-export const getAleoMethods = (networks: Network[], programIds: Record<Network, string[]>) => {
+export const isWcProgramId = (method: string) => {
+  if (/^(AleoTestnet|AleoMainnet):ALL_PROGRAM_IDS/.test(method)) return true;
+  return /^(AleoTestnet|AleoMainnet):[a-zA-Z0-9-_]+\.aleo$/.test(method);
+}
+
+export const getAleoMethods = (programIds: ProgramIds) => {
   const methods: string[] = wc_aleo_methods.slice();
   for (let network of Object.keys(programIds) as Network[]) {
-    if (!networks.includes(network)) return;
-    for (let programId of programIds[network]) {
+    const networkProgramIds = programIds[network];
+    if (!networkProgramIds) continue;
+    for (let programId of networkProgramIds) {
       methods.push(`${network}:${programId}`)
     }
   }
@@ -26,12 +33,32 @@ export const getAleoMethods = (networks: Network[], programIds: Record<Network, 
   return methods;
 }
 
+export const getProgramIdsFromWcMethods = (networks: Network[], methods: string[]): ProgramIds => {
+  const programIds = methods.filter((method) => isWcProgramId(method));
+
+  const programIdsRecord: ProgramIds = {};
+
+  for (let programIdWithNetwork of programIds) {
+    const split = programIdWithNetwork.split(':');
+    const network: Network = split[0] as Network;
+    const programId = split[1];
+    if (networks.includes(network)) {
+      if (!programIdsRecord[network]) {
+        programIdsRecord[network] = []; // Initialize as an empty array if undefined
+      }
+      programIdsRecord[network]?.push(programId);
+    }
+  }
+
+  return programIdsRecord;
+}
+
 export const getAleoChains = (networks: Network[]) => {
   return networks.map((network) => networkToChainId(network))
 }
 
-export const connect = async ({ programIds, networks, showModal }: ConnectProps) => {
-  networks = Array.from(new Set(networks));
+export const connect = async ({ programIds, showModal }: ConnectProps) => {
+  const networks = Object.keys(programIds) as Network[];
   const connection = await getWalletConnectModalSignClient();
   if (!connection) {
     throw new Error('call configureConnection() first!');
@@ -50,7 +77,7 @@ export const connect = async ({ programIds, networks, showModal }: ConnectProps)
         {
           requiredNamespaces: {
             aleo: {
-              methods: getAleoMethods(networks, programIds),
+              methods: getAleoMethods(programIds),
               chains: getAleoChains(networks),
               events: wc_events,
             },

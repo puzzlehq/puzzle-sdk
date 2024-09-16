@@ -9,6 +9,8 @@ import {
   getAleoMethods,
   getAleoChains,
   ConnectProps,
+  Network,
+  chainIdToNetwork,
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
@@ -17,12 +19,13 @@ import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
 
-export function useConnect({networks, programIds, showModal}: ConnectProps) {
+export function useConnect({ programIds, showModal }: ConnectProps) {
+  const networks = Object.keys(programIds) as Network[];
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const isConnected = !!session;
   const { data, error, loading, setData, setError, setLoading } =
     useAsyncAction<Data>();
-  const [setAccount] = useWalletStore((state) => [state.setAccount]);
+  const [setAddress, setNetwork] = useWalletStore((state) => [state.setAddress, state.setNetwork]);
 
   async function connect() {
     try {
@@ -33,7 +36,7 @@ export function useConnect({networks, programIds, showModal}: ConnectProps) {
         {
           requiredNamespaces: {
             aleo: {
-              methods: getAleoMethods(networks, programIds),
+              methods: getAleoMethods(programIds),
               chains: getAleoChains(networks),
               events: wc_events,
             },
@@ -43,13 +46,14 @@ export function useConnect({networks, programIds, showModal}: ConnectProps) {
       );
       setData(response);
       await checkForDesktopConnection(response.topic);
-      const account = response.namespaces['aleo']['accounts'][0].split(':');
-      setAccount({
-        network: account[0],
-        chainId: account[1],
-        address: account[2],
-        shortenedAddress: shortenAddress(account[2]),
-      });
+      const split = response.namespaces['aleo']['accounts'][0].split(':');
+      const wcNetwork = split[0]
+      const chainId = split[1];
+      const address = split[2];
+      const chainStr = `${wcNetwork}:${chainId}`;
+      const network = chainIdToNetwork(chainStr);
+      setAddress(address);
+      setNetwork(network);
       emitter.emit('session_change');
 
       const choice = window.localStorage.getItem(

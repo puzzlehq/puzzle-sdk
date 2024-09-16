@@ -1,4 +1,4 @@
-import { log_sdk, hasInjectedConnection, } from '@puzzlehq/sdk-core';
+import { log_sdk, hasInjectedConnection, networkToChainId, } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
@@ -13,15 +13,15 @@ export const getFormattedRecordPlaintext = (data) => {
         return '';
     }
 };
-export const useRecords = ({ address, multisig = false, filter, page, }) => {
+export const useRecords = ({ address, multisig = false, filter, page, network, }) => {
     const session = useWalletSession();
-    const [account, chainIdStr] = useWalletStore((state) => [state.account, state.chainIdStr]);
+    const [selectedAddress, chainIdStr] = useWalletStore((state) => [state.address, state.chainIdStr]);
     const useQueryFunction = hasInjectedConnection()
         ? useInjectedRequestQuery
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: chainIdStr,
+        chainId: network ? networkToChainId(network) : chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getRecords',
@@ -36,7 +36,7 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
     const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useQueryFunction({
         queryKey: [
             'useRecords',
-            account?.address,
+            address,
             chainIdStr,
             address,
             multisig,
@@ -44,14 +44,14 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
             page,
             session?.topic,
         ],
-        enabled: (multisig ? !!address : true) && !!session && !!account,
+        enabled: (multisig ? !!address : true) && !!session && !!selectedAddress,
         fetchFunction: async () => {
             const response = await window.aleo.puzzleWalletClient.getRecords.query(query);
             return response;
         },
         wcParams: query,
     });
-    const readyToRequest = !!session && !!account && (multisig ? !!address : true);
+    const readyToRequest = !!session && !!selectedAddress && (multisig ? !!address : true);
     useInjectedSubscriptions({
         session,
         configs: [
