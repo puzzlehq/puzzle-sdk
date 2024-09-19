@@ -24,9 +24,11 @@ export const useWalletStore = create<WalletState>()(
         set({ address });
       },
       setNetwork: (network) => {
+        const chainIdStr = network ? networkToChainId(network) : undefined;
+        console.log('setNetwork', { network, chainIdStr });
         set({
           network,
-          chainIdStr: network ? networkToChainId(network) : undefined
+          chainIdStr
         });
       },
       onDisconnect: () => {

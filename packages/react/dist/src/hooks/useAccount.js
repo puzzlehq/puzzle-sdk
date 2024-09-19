@@ -67,10 +67,12 @@ export const useAccount = () => {
                     const chainStr = `${wcNetwork}:${chainId}`;
                     const network = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined;
                     if (!wc_aleo_chains.includes(chainStr)) {
-                        return { error: `invalid network to switch to: ${chainStr}` };
+                        console.warn(`invalid network: ${chainStr}`);
+                        return;
                     }
                     if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
-                        return { error: `dApp does not have permission to switch to ${chainStr}` };
+                        console.warn(`unauthorized network: ${chainStr}`);
+                        return;
                     }
                     setNetwork(network);
                 },
@@ -92,10 +94,12 @@ export const useAccount = () => {
             const chainStr = `${wcNetwork}:${chainId}`;
             const network = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined;
             if (!wc_aleo_chains.includes(chainStr)) {
-                return { error: `invalid network to switch to: ${chainStr}` };
+                console.warn(`invalid network: ${chainStr}`);
+                return;
             }
             if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
-                return { error: `dApp does not have permission to switch to ${chainStr}` };
+                console.warn(`unauthorized network: ${chainStr}`);
+                return;
             }
             setNetwork(network);
         }
@@ -110,10 +114,12 @@ export const useAccount = () => {
         const chainStr = `${wcNetwork}:${chainId}`;
         const network = chainIdToNetwork(chainStr);
         if (!wc_aleo_chains.includes(chainStr)) {
-            return { error: `invalid network to switch to: ${chainStr}` };
+            console.warn(`invalid network: ${chainStr}`);
+            return;
         }
         if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
-            return { error: `dApp does not have permission to switch to ${chainStr}` };
+            console.warn(`unauthorized network: ${chainStr}`);
+            return;
         }
         setNetwork(network);
     });
@@ -139,10 +145,12 @@ export const useAccount = () => {
                 const chainStr = `${wcNetwork}:${chainId}`;
                 const network = chainIdToNetwork(chainStr);
                 if (!wc_aleo_chains.includes(chainStr)) {
-                    console.error(`invalid network to switch to: ${chainStr}`);
+                    console.error(`invalid network: ${chainStr}`);
+                    return;
                 }
                 if (!session?.namespaces.aleo?.chains?.includes(chainStr)) {
-                    console.error(`dApp does not have permission to switch to ${chainStr}`);
+                    console.warn(`unauthorized network: ${chainStr}`);
+                    return;
                 }
                 setNetwork(network);
             }

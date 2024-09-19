@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { hasInjectedConnection, networkToChainId, } from '@puzzlehq/sdk-core';
+import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useWalletStore } from '../store.js';
@@ -13,7 +13,7 @@ export const useBalance = ({ address, multisig, network } = {}) => {
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: network ? networkToChainId(network) : chainIdStr,
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getBalance',

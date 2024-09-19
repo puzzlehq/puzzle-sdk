@@ -1,4 +1,4 @@
-import { log_sdk, hasInjectedConnection, networkToChainId, } from '@puzzlehq/sdk-core';
+import { log_sdk, hasInjectedConnection, } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
 import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
@@ -21,7 +21,7 @@ export const useRecords = ({ address, multisig = false, filter, page, network, }
         : useRequestQuery;
     const query = {
         topic: session?.topic,
-        chainId: network ? networkToChainId(network) : chainIdStr,
+        chainId: chainIdStr,
         request: {
             jsonrpc: '2.0',
             method: 'getRecords',

@@ -46,12 +46,17 @@ export function useConnect({ programIds, showModal }: ConnectProps) {
       );
       setData(response);
       await checkForDesktopConnection(response.topic);
-      const split = response.namespaces['aleo']['accounts'][0].split(':');
+
+      const accounts = response.namespaces.aleo.accounts;
+      console.log('wc_accounts', accounts);
+      const split = accounts[0].split(':');
       const wcNetwork = split[0]
       const chainId = split[1];
       const address = split[2];
       const chainStr = `${wcNetwork}:${chainId}`;
       const network = chainIdToNetwork(chainStr);
+      console.log('chainStr', chainStr)
+      console.log('network', network)
       setAddress(address);
       setNetwork(network);
       emitter.emit('session_change');
