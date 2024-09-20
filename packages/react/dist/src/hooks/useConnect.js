@@ -32,8 +32,6 @@ export function useConnect({ programIds, showModal }) {
             const address = split[2];
             const chainStr = `${wcNetwork}:${chainId}`;
             const network = chainIdToNetwork(chainStr);
-            console.log('chainStr', chainStr);
-            console.log('network', network);
             setAddress(address);
             setNetwork(network);
             emitter.emit('session_change');

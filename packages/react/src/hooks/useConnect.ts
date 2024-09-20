@@ -14,7 +14,6 @@ import {
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './wc/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
-import { shortenAddress } from './useAccount.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 
 type Data = Awaited<ReturnType<WalletConnectModalSignInstance['connect']>>;
@@ -55,8 +54,6 @@ export function useConnect({ programIds, showModal }: ConnectProps) {
       const address = split[2];
       const chainStr = `${wcNetwork}:${chainId}`;
       const network = chainIdToNetwork(chainStr);
-      console.log('chainStr', chainStr)
-      console.log('network', network)
       setAddress(address);
       setNetwork(network);
       emitter.emit('session_change');

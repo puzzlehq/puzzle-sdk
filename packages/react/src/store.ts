@@ -25,7 +25,6 @@ export const useWalletStore = create<WalletState>()(
       },
       setNetwork: (network) => {
         const chainIdStr = network ? networkToChainId(network) : undefined;
-        console.log('setNetwork', { network, chainIdStr });
         set({
           network,
           chainIdStr

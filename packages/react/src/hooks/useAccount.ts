@@ -95,12 +95,12 @@ export const useAccount = () => {
           const network = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined;
 
           if (!wc_aleo_chains.includes(chainStr)) {
-            console.warn(`invalid network: ${chainStr}`);
+            console.error(`invalid network: ${chainStr}`);
             return;
           }
 
           if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
-            console.warn(`unauthorized network: ${chainStr}`);
+            // console.warn(`unauthorized network: ${chainStr}`);
             return;
           }
 
@@ -130,12 +130,12 @@ export const useAccount = () => {
       const chainStr = `${wcNetwork}:${chainId}`;
       const network = chainIdStr ? chainIdToNetwork(chainIdStr) : undefined;
       if (!wc_aleo_chains.includes(chainStr)) {
-        console.warn(`invalid network: ${chainStr}`);
+        console.error(`invalid network: ${chainStr}`);
         return;
       }
 
       if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
-        console.warn(`unauthorized network: ${chainStr}`);
+        // console.warn(`unauthorized network: ${chainStr}`);
         return;
       }
 
@@ -153,12 +153,12 @@ export const useAccount = () => {
     const chainStr = `${wcNetwork}:${chainId}`;
     const network = chainIdToNetwork(chainStr);
     if (!wc_aleo_chains.includes(chainStr)) {
-      console.warn(`invalid network: ${chainStr}`);
+      console.error(`invalid network: ${chainStr}`);
       return;
     }
 
     if (!session.namespaces.aleo?.chains?.includes(chainStr)) {
-      console.warn(`unauthorized network: ${chainStr}`);
+      // console.warn(`unauthorized network: ${chainStr}`);
       return;
     }
     setNetwork(network);
@@ -193,7 +193,7 @@ export const useAccount = () => {
         }
 
         if (!session?.namespaces.aleo?.chains?.includes(chainStr)) {
-          console.warn(`unauthorized network: ${chainStr}`);
+          // console.warn(`unauthorized network: ${chainStr}`);
           return;
         }
 

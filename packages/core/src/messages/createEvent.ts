@@ -38,6 +38,7 @@ export type CreateEventResponse = {
 
 export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
+  network?: Network
 ): Promise<CreateEventResponse> => {
   const connection = await getWalletConnectModalSignClient();
   const session: SessionTypes.Struct | undefined =
@@ -54,14 +55,14 @@ export const requestCreateEvent = async (
     return input.plaintext;
   });
 
-  if (requestData.network && !wc_aleo_chains.includes(networkToChainId(requestData.network))) {
+  if (network && !wc_aleo_chains.includes(networkToChainId(network))) {
     return { error: 'network not in wc_aleo_chains' };
   }
 
   try {
     const response: CreateEventResponse = await connection.request({
       topic: session.topic,
-      chainId: requestData.network ? networkToChainId(requestData.network) : 'aleo:0',
+    chainId: network ? networkToChainId(network) : 'aleo:0',
       request: {
         jsonrpc: '2.0',
         method: 'requestCreateEvent',
