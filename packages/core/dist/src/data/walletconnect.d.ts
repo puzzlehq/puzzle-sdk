@@ -77,4 +77,4 @@ export declare const signClient_puzzleProps: {
     };
 };
 export declare const networkToChainId: (network: Network, includePrefix?: boolean) => string;
-export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1') => Network.AleoTestnet | Network.AleoCanarynet;
+export declare const chainIdToNetwork: (chainId: 'aleo:0' | 'aleo:1') => Network;

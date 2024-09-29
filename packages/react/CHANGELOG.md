@@ -1,5 +1,21 @@
 # @puzzlehq/sdk
 
+## 0.5.5
+
+### Patch Changes
+
+- bump again
+- Updated dependencies
+  - @puzzlehq/sdk-core@0.5.5
+
+## 0.5.5
+
+### Patch Changes
+
+- Assert type json, bump types package
+- Updated dependencies
+  - @puzzlehq/sdk-core@0.5.5
+
 ## 0.5.4
 
 ### Patch Changes

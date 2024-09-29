@@ -145,9 +145,6 @@ export const networkToChainId = (
     case Network.AleoMainnet:
       chain = 'aleo:0';
       break;
-    case Network.AleoCanarynet:
-      chain = 'aleo:0';
-      break;
     case Network.AleoTestnet:
       chain = 'aleo:1';
       break;
@@ -158,7 +155,7 @@ export const networkToChainId = (
 export const chainIdToNetwork = (chainId: 'aleo:0' | 'aleo:1') => {
   switch (chainId) {
     case 'aleo:0':
-      return Network.AleoCanarynet;
+      return Network.AleoMainnet;
     case 'aleo:1':
       return Network.AleoTestnet;
   }

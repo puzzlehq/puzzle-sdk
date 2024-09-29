@@ -4,7 +4,7 @@ import {
   web3modal_puzzle_props,
 } from './data/walletconnect.js';
 import EventEmitter from 'events';
-import pkg from '../package.json';
+import pkg from '../package.json' assert { type: 'json' };
 import { getSdkError } from '@walletconnect/utils';
 import { SessionTypes } from '@walletconnect/types';
 
