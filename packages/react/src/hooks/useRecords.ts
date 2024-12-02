@@ -57,6 +57,15 @@ export const useRecords = ({
   };
 
   const [debouncedFilter] = useDebounce(filter, 500);
+  const queryKey = [
+    'useRecords',
+    account?.address,
+    address,
+    multisig,
+    JSON.stringify(debouncedFilter),
+    page,
+    session?.topic,
+  ]
 
   const {
     refetch,
@@ -64,15 +73,7 @@ export const useRecords = ({
     error: wc_error,
     isLoading: loading,
   } = useQueryFunction<GetRecordsResponse | undefined>({
-    queryKey: [
-      'useRecords',
-      account?.address,
-      address,
-      multisig,
-      JSON.stringify(debouncedFilter),
-      page,
-      session?.topic,
-    ],
+    queryKey,
     enabled: (multisig ? !!address : true) && !!session && !!account,
     fetchFunction: async () => {
       const response: GetRecordsResponse =

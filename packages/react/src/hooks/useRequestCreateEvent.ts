@@ -5,10 +5,14 @@ import {
   CreateEventRequestData,
   CreateEventResponse,
   log_sdk,
+  SettlementStatus,
 } from '@puzzlehq/sdk-core';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 import { RecordWithPlaintext } from '@puzzlehq/types';
+import { useEvent } from './useEvent.js';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { EventStatus } from '@puzzlehq/types';
 
 const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
   return inputs?.map((input) => {
@@ -22,6 +26,7 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
+  const [settlementStatus, setSettlementStatus] = useState<SettlementStatus | undefined>(undefined);
 
   const inputs = normalizeInputs(requestData?.inputs);
 
@@ -48,7 +53,8 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     : wc_data && wc_data.error;
   const response: CreateEventResponse | undefined = wc_data;
 
-  const createEvent = (createEventRequestOverride?: CreateEventRequest) => {
+  const createEvent = useCallback((createEventRequestOverride?: CreateEventRequest) => {
+    setSettlementStatus(undefined);
     if (createEventRequestOverride && session && !loading) {
       log_sdk(
         'useCreateEvent requesting with override...',
@@ -71,7 +77,32 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
       log_sdk('useCreateEvent requesting...', requestData);
       return request();
     }
-  };
+  }, [session?.topic, JSON.stringify(account), loading, request]);
 
-  return { createEvent, eventId: response?.eventId, loading, error };
+  const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId
+
+  const { event, error: eventFetchError } = useEvent({ id: eventId, address: requestData?.address });
+
+  useEffect(() => {
+    console.log('eventId', eventId);
+  }, [eventId])
+
+  useEffect(() => {
+    console.log('event', event);
+  }, [JSON.stringify(event)])
+
+  useEffect(() => {
+    if (event?.status === EventStatus.Creating || loading) setSettlementStatus('Creating');
+    else if (event?.status === EventStatus.Pending) setSettlementStatus('Pending');
+    else if (event?.status === EventStatus.Failed || error) setSettlementStatus('Failed');
+    else if (event?.status === EventStatus.Settled) {
+      if (requestData?.settlementInfo && requestData.settlementInfo.currentRecordCount === requestData.settlementInfo.expectedRecordCount) {
+        setSettlementStatus('SettledWithRecords')
+      } else {
+        setSettlementStatus('Settled')
+      }
+    }
+  }, [loading, JSON.stringify(event), JSON.stringify(eventFetchError), JSON.stringify(requestData?.settlementInfo), error]);
+
+  return { createEvent, eventId: response?.eventId, loading, error, settlementStatus };
 };

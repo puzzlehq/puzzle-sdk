@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "clean": "rm -rf node_modules apps/**/node_modules packages/**/node_modules pnpm-lock.yaml",
     "type-check": "turbo run type-check",
     "pretty": "pnpm exec prettier . --write",
     "version-bump": "pnpm changeset && pnpm changeset version",

@@ -1,5 +1,13 @@
 # @puzzlehq/sdk
 
+## 0.5.6
+
+### Patch Changes
+
+- improve state management for event creation
+- Updated dependencies
+  - @puzzlehq/sdk-core@0.5.6
+
 ## 0.5.5
 
 ### Patch Changes

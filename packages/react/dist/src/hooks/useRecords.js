@@ -33,16 +33,17 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
         },
     };
     const [debouncedFilter] = useDebounce(filter, 500);
+    const queryKey = [
+        'useRecords',
+        account?.address,
+        address,
+        multisig,
+        JSON.stringify(debouncedFilter),
+        page,
+        session?.topic,
+    ];
     const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useQueryFunction({
-        queryKey: [
-            'useRecords',
-            account?.address,
-            address,
-            multisig,
-            JSON.stringify(debouncedFilter),
-            page,
-            session?.topic,
-        ],
+        queryKey,
         enabled: (multisig ? !!address : true) && !!session && !!account,
         fetchFunction: async () => {
             const response = await window.aleo.puzzleWalletClient.getRecords.query(query);

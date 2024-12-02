@@ -1,5 +1,6 @@
 import { EventType } from '../index.js';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
+export type SettlementStatus = 'Settled' | 'SettledWithRecords' | 'Pending' | 'Creating' | 'Failed';
 export type CreateEventRequestData = {
     address?: string;
     type: EventType;
@@ -9,6 +10,11 @@ export type CreateEventRequestData = {
     feeRecord?: RecordWithPlaintext;
     inputs: (RecordWithPlaintext | string)[];
     tokenIds?: string[];
+    settlementInfo?: {
+        eventId?: string;
+        expectedRecordCount: number;
+        currentRecordCount: number;
+    };
 };
 export type CreateEventRequest = {
     address?: string;

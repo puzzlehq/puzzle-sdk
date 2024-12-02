@@ -3,6 +3,8 @@ import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 
+export type SettlementStatus = 'Settled' | 'SettledWithRecords' | 'Pending' | 'Creating' | 'Failed'
+
 /// dapps send this to the sdk
 export type CreateEventRequestData = {
   address?: string;
@@ -13,6 +15,11 @@ export type CreateEventRequestData = {
   feeRecord?: RecordWithPlaintext;
   inputs: (RecordWithPlaintext | string)[];
   tokenIds?: string[];
+  settlementInfo?: {
+    eventId?: string;
+    expectedRecordCount: number,
+    currentRecordCount: number,
+  }
 };
 
 /// sdk maps records to ciphertexts
