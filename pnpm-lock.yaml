@@ -15,8 +15,8 @@ importers:
         specifier: 1.0.27
         version: 1.0.27
       '@puzzlehq/walletconnect-modal-sign-html':
-        specifier: 0.0.6
-        version: 0.0.6(react@18.3.1)
+        specifier: 0.0.9
+        version: 0.0.9(react@18.3.1)
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -46,8 +46,8 @@ importers:
         specifier: 1.0.27
         version: 1.0.27
       '@puzzlehq/walletconnect-modal-sign-html':
-        specifier: 0.0.6
-        version: 0.0.6(react@18.3.1)
+        specifier: 0.0.9
+        version: 0.0.9(react@18.3.1)
       '@walletconnect/types':
         specifier: ^2.14.0
         version: 2.17.2
@@ -739,8 +739,8 @@ packages:
       zod: 3.21.1
     dev: false
 
-  /@puzzlehq/walletconnect-modal-core@0.0.6(react@18.3.1):
-    resolution: {integrity: sha512-ZNQqAPRGTDdETNZbvwFWUU6kEKnVHX6eXlGJQ+aqHQuYcYjMjwNACqo2jWqqaKfNJYmtf14cq6OAGoYzsJZHHg==}
+  /@puzzlehq/walletconnect-modal-core@0.0.9(react@18.3.1):
+    resolution: {integrity: sha512-Fm4BGAY/KelF645aFoS5abrEat9BaEHY0nQL2vfHju8N7sGjXSGytHRAqX4hxYTQy4CXZoR2Xb4He3/FtdEUtg==}
     dependencies:
       valtio: 1.11.2(react@18.3.1)
     transitivePeerDependencies:
@@ -748,10 +748,10 @@ packages:
       - react
     dev: false
 
-  /@puzzlehq/walletconnect-modal-sign-html@0.0.6(react@18.3.1):
-    resolution: {integrity: sha512-GlUXn1nMb4byll0d44gwyTb6IirHx8NaVeJhQlq2WKnALocfPUNED109NJgrmwmqPkStLSIJgNdIatxKjaNNNw==}
+  /@puzzlehq/walletconnect-modal-sign-html@0.0.9(react@18.3.1):
+    resolution: {integrity: sha512-rUS+WIph6A1uBsWa7Qx6moba5guLqwJHnFPUFOP0c7ixYPKhb3yuuVY3ZQ3TaoHlgksf2DmbksPj+O8ysOjYIQ==}
     dependencies:
-      '@puzzlehq/walletconnect-modal': 0.0.6(react@18.3.1)
+      '@puzzlehq/walletconnect-modal': 0.0.9(react@18.3.1)
       '@walletconnect/sign-client': 2.12.2
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -774,11 +774,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@puzzlehq/walletconnect-modal-ui@0.0.6(react@18.3.1):
-    resolution: {integrity: sha512-4mfJgAibplgEsUDUIwOugro+SQWdDKGd9qlLO5WBAU7ItbMjT1BlHDKfTHPFi0Z5fcgCiH+cTWq8EP7fPbDZkA==}
+  /@puzzlehq/walletconnect-modal-ui@0.0.9(react@18.3.1):
+    resolution: {integrity: sha512-dYcYNGlz9R5ZAKCIedqyokdxsN3/fiPXvQWtW+Rvj7b664OwxIBTHUtsRkCBnFU+7VDg62ntNNysEKirA0oZBA==}
     dependencies:
-      '@puzzlehq/walletconnect-modal-core': 0.0.6(react@18.3.1)
+      '@puzzlehq/walletconnect-modal-core': 0.0.9(react@18.3.1)
       lit: 2.8.0
+      lit-html: 2.8.0
       motion: 10.16.2
       qrcode: 1.5.3
     transitivePeerDependencies:
@@ -786,11 +787,11 @@ packages:
       - react
     dev: false
 
-  /@puzzlehq/walletconnect-modal@0.0.6(react@18.3.1):
-    resolution: {integrity: sha512-neqezlqFS6eIeJCrlPr0YUMrZZqydLKQsuLQgGiqEfV1wD7OrUDheyjES0HiSL6r8fc8sHmHewh5NYphoVlH2Q==}
+  /@puzzlehq/walletconnect-modal@0.0.9(react@18.3.1):
+    resolution: {integrity: sha512-KbtO8blBeQIpk+PuiEJY/xls1kXw0Xk0jPcfWG84FCQhirr+pMZAGjI1wKb1EfEG0vnM+PqJD5Pl7DK7l1X6Qw==}
     dependencies:
-      '@puzzlehq/walletconnect-modal-core': 0.0.6(react@18.3.1)
-      '@puzzlehq/walletconnect-modal-ui': 0.0.6(react@18.3.1)
+      '@puzzlehq/walletconnect-modal-core': 0.0.9(react@18.3.1)
+      '@puzzlehq/walletconnect-modal-ui': 0.0.9(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - react

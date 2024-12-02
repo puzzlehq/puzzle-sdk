@@ -25,7 +25,7 @@
     },
     "dependencies": {
         "@puzzlehq/types": "1.0.27",
-        "@puzzlehq/walletconnect-modal-sign-html": "0.0.6",
+        "@puzzlehq/walletconnect-modal-sign-html": "0.0.9",
         "@walletconnect/types": "^2.14.0",
         "@walletconnect/utils": "^2.14.0",
         "debug": "^4.3.4",
