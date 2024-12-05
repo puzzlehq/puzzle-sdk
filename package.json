@@ -28,6 +28,7 @@
     "@types/node": "^18.11.18",
     "prettier": "^3.2.5",
     "process": "^0.11.10",
+    "turbo": "^1.10.8",
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
