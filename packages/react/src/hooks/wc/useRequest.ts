@@ -66,7 +66,6 @@ export function useInjectedRequestQuery<Result>({
 
 export function useRequest<Result>(
   params: WalletConnectModalSignRequestArguments,
-  fetchFunction?: (params: WalletConnectModalSignRequestArguments) => any,
 ) {
   const { data, error, loading, setData, setError, setLoading } =
     useAsyncAction<Result>();

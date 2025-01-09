@@ -1,13 +1,14 @@
-import { EventType, wc_aleo_chains } from '../index.js';
+import { EventType, hasInjectedConnection, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
-import { type RecordWithPlaintext } from '@puzzlehq/types';
+import { Network, type RecordWithPlaintext } from '@puzzlehq/types';
 
 export type SettlementStatus = 'Settled' | 'SettledWithRecords' | 'Pending' | 'Creating' | 'Failed'
 
 /// dapps send this to the sdk
 export type CreateEventRequestData = {
   address?: string;
+  network?: Network;
   type: EventType;
   programId: string;
   functionId: string;
@@ -25,6 +26,7 @@ export type CreateEventRequestData = {
 /// sdk maps records to ciphertexts
 export type CreateEventRequest = {
   address?: string;
+  network?: Network;
   type: EventType;
   programId: string;
   functionId: string;
@@ -64,19 +66,33 @@ export const requestCreateEvent = async (
     return { error: 'network not in wc_aleo_chains' };
   }
 
+  const req = {
+    topic: session.topic,
+    chainId: network ?? 'aleo:1',
+    request: {
+      jsonrpc: '2.0',
+      method: 'requestCreateEvent',
+      params: {
+        ...requestData,
+        inputs,
+      } as CreateEventRequest,
+    },
+  }
+
+  if (hasInjectedConnection() && window.aleo.puzzleWalletClient.requestCreateEvent && window.aleo.puzzleWalletClient.requestCreateEvent.mutate) {
+    try {
+      const response: CreateEventResponse =
+        await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+      return response;
+    } catch (e) {
+      console.error('createEvent error', e);
+      const error = (e as Error).message;
+      return { error };
+    }
+  }
+
   try {
-    const response: CreateEventResponse = await connection.request({
-      topic: session.topic,
-      chainId: network ?? 'aleo:1',
-      request: {
-        jsonrpc: '2.0',
-        method: 'requestCreateEvent',
-        params: {
-          ...requestData,
-          inputs,
-        } as CreateEventRequest,
-      },
-    });
+    const response: CreateEventResponse = await connection.request(req);
     return response;
   } catch (e) {
     console.error('createEvent error', e);

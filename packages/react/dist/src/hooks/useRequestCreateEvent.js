@@ -1,5 +1,5 @@
-import { useRequest } from './wc/useRequest.js';
-import { log_sdk, } from '@puzzlehq/sdk-core';
+import { useInjectedRequest, useRequest } from './wc/useRequest.js';
+import { hasInjectedConnection, log_sdk, } from '@puzzlehq/sdk-core';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 import { useEvent } from './useEvent.js';
@@ -18,7 +18,10 @@ export const useRequestCreateEvent = (requestData) => {
     const [account] = useWalletStore((state) => [state.account]);
     const [settlementStatus, setSettlementStatus] = useState(undefined);
     const inputs = normalizeInputs(requestData?.inputs);
-    const { request, data: wc_data, error: wc_error, loading, } = useRequest({
+    const useRequestFunction = hasInjectedConnection()
+        ? useInjectedRequest
+        : useRequest;
+    const req = {
         topic: session?.topic ?? '',
         chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
         request: {
@@ -29,6 +32,17 @@ export const useRequestCreateEvent = (requestData) => {
                 inputs,
             },
         },
+    };
+    const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction(req, async () => {
+        try {
+            const response = await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+            return response;
+        }
+        catch (e) {
+            console.error('createEvent error', e);
+            const error = e.message;
+            return { error };
+        }
     });
     const error = wc_error
         ? wc_error.message

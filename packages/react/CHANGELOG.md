@@ -1,5 +1,13 @@
 # @puzzlehq/sdk
 
+## 0.5.7
+
+### Patch Changes
+
+- bump for building
+- Updated dependencies
+  - @puzzlehq/sdk-core@0.5.7
+
 ## 0.5.6
 
 ### Patch Changes

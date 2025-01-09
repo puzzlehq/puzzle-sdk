@@ -2,10 +2,11 @@ import { SessionTypes } from '@walletconnect/types';
 import {
   SignatureRequest,
   SignatureResponse,
+  hasInjectedConnection,
   log_sdk,
 } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
-import { useRequest } from './wc/useRequest.js';
+import { useInjectedRequest, useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 
@@ -17,12 +18,11 @@ export const useRequestSignature = ({
   const session: SessionTypes.Struct | undefined = useWalletSession();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const {
-    request,
-    data: wc_data,
-    error: wc_error,
-    loading,
-  } = useRequest<SignatureResponse | undefined>({
+  const useRequestFunction = hasInjectedConnection()
+    ? useInjectedRequest
+    : useRequest;
+
+  const req = {
     topic: session?.topic ?? '',
     chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
     request: {
@@ -33,6 +33,23 @@ export const useRequestSignature = ({
         address: aleoAddressRegex.test(address ?? '') ? address : undefined,
       } as SignatureRequest,
     },
+  }
+
+  const {
+    request,
+    data: wc_data,
+    error: wc_error,
+    loading,
+  } = useRequestFunction<SignatureResponse | undefined>(req, async () => {
+    try {
+      const response: SignatureResponse =
+        await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
+      return response;
+    } catch (e) {
+      console.error('createSignature error', e);
+      const error = (e as Error).message;
+      return { error };
+    }
   });
 
   const error: string | undefined = wc_error

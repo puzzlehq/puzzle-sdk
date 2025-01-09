@@ -28,7 +28,7 @@ export function useInjectedRequestQuery({ queryKey, wcParams, enabled, queryOpti
         retry: true,
     });
 }
-export function useRequest(params, fetchFunction) {
+export function useRequest(params) {
     const { data, error, loading, setData, setError, setLoading } = useAsyncAction();
     async function request(paramsOverride) {
         try {

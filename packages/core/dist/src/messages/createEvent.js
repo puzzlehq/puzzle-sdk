@@ -1,4 +1,4 @@
-import { wc_aleo_chains } from '../index.js';
+import { hasInjectedConnection, wc_aleo_chains } from '../index.js';
 import { getWalletConnectModalSignClient } from '../client.js';
 export const requestCreateEvent = async (requestData, network) => {
     const connection = await getWalletConnectModalSignClient();
@@ -15,19 +15,31 @@ export const requestCreateEvent = async (requestData, network) => {
     if (network && !wc_aleo_chains.includes(network)) {
         return { error: 'network not in wc_aleo_chains' };
     }
-    try {
-        const response = await connection.request({
-            topic: session.topic,
-            chainId: network ?? 'aleo:1',
-            request: {
-                jsonrpc: '2.0',
-                method: 'requestCreateEvent',
-                params: {
-                    ...requestData,
-                    inputs,
-                },
+    const req = {
+        topic: session.topic,
+        chainId: network ?? 'aleo:1',
+        request: {
+            jsonrpc: '2.0',
+            method: 'requestCreateEvent',
+            params: {
+                ...requestData,
+                inputs,
             },
-        });
+        },
+    };
+    if (hasInjectedConnection() && window.aleo.puzzleWalletClient.requestCreateEvent && window.aleo.puzzleWalletClient.requestCreateEvent.mutate) {
+        try {
+            const response = await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+            return response;
+        }
+        catch (e) {
+            console.error('createEvent error', e);
+            const error = e.message;
+            return { error };
+        }
+    }
+    try {
+        const response = await connection.request(req);
         return response;
     }
     catch (e) {

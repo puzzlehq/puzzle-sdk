@@ -7,6 +7,26 @@ import {
 import { getWalletConnectModalSignClient, emitter } from '../client.js';
 import { SessionTypes } from '@walletconnect/types';
 import { checkForDesktopConnection } from '../utils/clientInfo.js';
+import { ProgramIdPermissions } from '../data/types.js';
+
+type BaseConnectRequest = {
+  dAppInfo: {
+    name?: string,
+    description?: string,
+    iconUrl?: string,
+  },
+  permissions: {
+    programIds: ProgramIdPermissions 
+  }
+}
+
+export type ConnectRequest = BaseConnectRequest;
+
+export type ConnectRequestForWallet = BaseConnectRequest & {
+  dAppInfo: {
+    hostname: string
+  }
+}
 
 export const connect = async (showModal = true) => {
   const connection = await getWalletConnectModalSignClient();

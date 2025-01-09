@@ -1,12 +1,15 @@
-import { log_sdk, } from '@puzzlehq/sdk-core';
+import { hasInjectedConnection, log_sdk, } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
-import { useRequest } from './wc/useRequest.js';
+import { useInjectedRequest, useRequest } from './wc/useRequest.js';
 import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 export const useRequestSignature = ({ message, address, network, }) => {
     const session = useWalletSession();
     const [account] = useWalletStore((state) => [state.account]);
-    const { request, data: wc_data, error: wc_error, loading, } = useRequest({
+    const useRequestFunction = hasInjectedConnection()
+        ? useInjectedRequest
+        : useRequest;
+    const req = {
         topic: session?.topic ?? '',
         chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
         request: {
@@ -17,6 +20,17 @@ export const useRequestSignature = ({ message, address, network, }) => {
                 address: aleoAddressRegex.test(address ?? '') ? address : undefined,
             },
         },
+    };
+    const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction(req, async () => {
+        try {
+            const response = await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
+            return response;
+        }
+        catch (e) {
+            console.error('createSignature error', e);
+            const error = e.message;
+            return { error };
+        }
     });
     const error = wc_error
         ? wc_error.message
