@@ -3,4 +3,4 @@ export type GetSelectedAccountResponse = {
     account?: PuzzleAccount;
     error?: string;
 };
-export declare const getAccount: (network?: string) => Promise<GetSelectedAccountResponse>;
+export declare const getAccount: () => Promise<GetSelectedAccountResponse>;

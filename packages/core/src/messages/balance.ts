@@ -15,7 +15,7 @@ export type GetBalancesResponse = {
 
 export const getBalance = async ({address,network}: GetBalancesRequest): Promise<GetBalancesResponse> => {
   if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.getBalance?.query) throw new Error('getSelectedAccount not found!')
+  if (!window.aleo.puzzleWalletClient.getBalance?.query) throw new Error('getBalance.query not found!')
 
   const query: GenericRequest = {
     request: {

@@ -8,4 +8,4 @@ export type ImportSharedStateResponse = {
     };
     error?: string;
 };
-export declare const importSharedState: (seed: string, network?: string) => Promise<ImportSharedStateResponse>;
+export declare const importSharedState: ({ seed, }: ImportSharedStateRequest) => Promise<ImportSharedStateResponse>;

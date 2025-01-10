@@ -46,7 +46,7 @@ export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
 ): Promise<CreateEventResponse> => {
   if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate) throw new Error('requestCreateEvent not found!')
+  if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate) throw new Error('requestCreateEvent.mutate not found!')
 
   const inputs = requestData?.inputs.map((input) => {
     if (typeof input === 'string') {

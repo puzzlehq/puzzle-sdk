@@ -34,7 +34,7 @@ export type ConnectResponse = {
 
 export const connect = async (request: ConnectRequest) => {
   if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.connect.mutate) throw new Error('Connect method not found!');
+  if (!window.aleo.puzzleWalletClient.connect?.mutate) throw new Error('connect.mutate not found!');
 
   try {
     const connectResponse: ConnectResponse = await window.aleo.puzzleWalletClient.connect.mutate(request);

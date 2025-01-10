@@ -1,23 +1,12 @@
-import { getSdkError } from '@walletconnect/utils';
-import { getWalletConnectModalSignClient, emitter } from '../client.js';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { SdkError } from '../data/errors.js';
 export const disconnect = async () => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await connection?.getSession();
-    if (!session || !connection) {
-        return { error: 'no session or connection' };
-    }
+    if (!hasInjectedConnection())
+        throw new Error(SdkError.PuzzleWalletNotDetected);
+    if (!window.aleo.puzzleWalletClient.disconnect?.mutate)
+        throw new Error('disconnect not found!');
     try {
-        try {
-            await connection.disconnect({
-                reason: getSdkError('USER_DISCONNECTED'),
-                topic: session.topic,
-            });
-            localStorage.removeItem('puzzle-hasInjectedConnection');
-            emitter.emit('session_change');
-        }
-        catch (e) {
-            console.warn(e);
-        }
+        await window.aleo.puzzleWalletClient.disconnect.mutate();
         return {};
     }
     catch (e) {

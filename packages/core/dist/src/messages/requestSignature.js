@@ -1,41 +1,22 @@
-import { getWalletConnectModalSignClient } from '../client.js';
-import { aleoAddressRegex } from '@puzzlehq/types';
-import { wc_aleo_chains } from '../data/walletconnect.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { SdkError } from '../data/errors.js';
 export const requestSignature = async ({ message, address, network, }) => {
-    const connection = await getWalletConnectModalSignClient();
-    const session = await connection?.getSession();
-    if (!session || !connection) {
-        return { error: 'no session or connection' };
-    }
-    if (network && !wc_aleo_chains.includes(network)) {
-        return { error: 'network not in wc_aleo_chains' };
-    }
+    if (!hasInjectedConnection())
+        throw new Error(SdkError.PuzzleWalletNotDetected);
+    if (!window.aleo.puzzleWalletClient.requestSignature?.mutate)
+        throw new Error('requestSignature.mutate not found!');
     const req = {
-        topic: session.topic,
-        chainId: network ?? 'aleo:1',
         request: {
-            jsonrpc: '2.0',
             method: 'requestSignature',
             params: {
                 message,
-                address: aleoAddressRegex.test(address ?? '') ? address : undefined,
+                address,
+                network
             },
         }
     };
-    if (hasInjectedConnection() && window.aleo.puzzleWalletClient.requestSignature) {
-        try {
-            const response = await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
-            return response;
-        }
-        catch (e) {
-            console.error('signature error', e);
-            const error = e.message;
-            return { error };
-        }
-    }
     try {
-        const response = await connection.request(req);
+        const response = await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
         return response;
     }
     catch (e) {

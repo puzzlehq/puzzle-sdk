@@ -1,4 +1,3 @@
-import { SessionTypes } from '@walletconnect/types';
 import { ProgramIdPermissions } from '../data/types.js';
 import { Balance, Network } from '@puzzlehq/types';
 export type ConnectRequest = {
@@ -26,4 +25,4 @@ export type ConnectResponse = {
     connection?: ConnectionWithAccountInfo;
     error?: string;
 };
-export declare const connect: (showModal?: boolean) => Promise<SessionTypes.Struct | undefined>;
+export declare const connect: (request: ConnectRequest) => Promise<ConnectResponse>;
