@@ -1,11 +1,11 @@
-import { SessionTypes } from '@walletconnect/types';
-import { getWalletConnectModalSignClient } from '../client.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
-import { wc_aleo_chains } from '../data/walletconnect.js';
-import { Balance } from '@puzzlehq/types';
+import { Balance, Network } from '@puzzlehq/types';
+import { GenericRequest } from '../data/types.js';
+import { SdkError } from '../data/errors.js';
 
 export type GetBalancesRequest = {
   address?: string;
+  network?: Network
 };
 
 export type GetBalancesResponse = {
@@ -13,55 +13,27 @@ export type GetBalancesResponse = {
   error?: string;
 };
 
-export const getBalance = async ({
-  address,
-  network,
-}: {
-  address?: string;
-  network?: string;
-}): Promise<GetBalancesResponse> => {
-  const connection = await getWalletConnectModalSignClient();
-  const session: SessionTypes.Struct | undefined =
-    await connection.getSession();
+export const getBalance = async ({address,network}: GetBalancesRequest): Promise<GetBalancesResponse> => {
+  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.getBalance?.query) throw new Error('getSelectedAccount not found!')
 
-  if (!session || !connection) {
-    return { error: 'no session or connection' };
-  }
-
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
-  }
-
-  const query = {
-    topic: session.topic,
-    chainId: network ?? 'aleo:1',
+  const query: GenericRequest = {
     request: {
-      jsonrpc: '2.0',
       method: 'getBalance',
       params: {
         address,
+        network,
       } as GetBalancesRequest,
     },
   };
-
-  if (hasInjectedConnection()) {
-    try {
-      const response: GetBalancesResponse =
-        await window.aleo.puzzleWalletClient.getBalance.query(query);
-      return response;
-    } catch (e) {
-      const error = (e as Error).message;
-      console.error('getBalance error', e);
-      return { error };
-    }
-  }
-
+  
   try {
-    const response: GetBalancesResponse = await connection.request(query);
+    const response: GetBalancesResponse =
+      await window.aleo.puzzleWalletClient.getBalance.query(query);
     return response;
   } catch (e) {
     const error = (e as Error).message;
     console.error('getBalance error', e);
     return { error };
   }
-};
+}

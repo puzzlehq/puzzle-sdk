@@ -1,7 +1,6 @@
-import { EventType, hasInjectedConnection, wc_aleo_chains } from '../index.js';
-import { getWalletConnectModalSignClient } from '../client.js';
-import { SessionTypes } from '@walletconnect/types';
+import { EventType, GenericRequest, hasInjectedConnection } from '../index.js';
 import { Network, type RecordWithPlaintext } from '@puzzlehq/types';
+import { SdkError } from '../data/errors.js';
 
 export type SettlementStatus = 'Settled' | 'SettledWithRecords' | 'Pending' | 'Creating' | 'Failed'
 
@@ -45,15 +44,9 @@ export type CreateEventResponse = {
 
 export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
-  network?: string,
 ): Promise<CreateEventResponse> => {
-  const connection = await getWalletConnectModalSignClient();
-  const session: SessionTypes.Struct | undefined =
-    await connection?.getSession();
-
-  if (!session || !connection) {
-    return { error: 'no session or connection' };
-  }
+  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate) throw new Error('requestCreateEvent not found!')
 
   const inputs = requestData?.inputs.map((input) => {
     if (typeof input === 'string') {
@@ -62,15 +55,8 @@ export const requestCreateEvent = async (
     return input.plaintext;
   });
 
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
-  }
-
-  const req = {
-    topic: session.topic,
-    chainId: network ?? 'aleo:1',
+  const req: GenericRequest = {
     request: {
-      jsonrpc: '2.0',
       method: 'requestCreateEvent',
       params: {
         ...requestData,
@@ -79,20 +65,9 @@ export const requestCreateEvent = async (
     },
   }
 
-  if (hasInjectedConnection() && window.aleo.puzzleWalletClient.requestCreateEvent && window.aleo.puzzleWalletClient.requestCreateEvent.mutate) {
-    try {
-      const response: CreateEventResponse =
-        await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
-      return response;
-    } catch (e) {
-      console.error('createEvent error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
-  }
-
   try {
-    const response: CreateEventResponse = await connection.request(req);
+    const response: CreateEventResponse =
+      await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
     return response;
   } catch (e) {
     console.error('createEvent error', e);

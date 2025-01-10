@@ -8,3 +8,10 @@ export type PuzzleAccount = {
 };
 
 export type ProgramIdPermissions = Partial<Record<Network, string[]>>; // Network, programId[]
+
+export type GenericRequest = {
+  request: {
+    method: string,
+    params?: any // JSON serializable
+  }
+}

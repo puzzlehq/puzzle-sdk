@@ -1,8 +1,6 @@
-import { SessionTypes } from '@walletconnect/types';
-import { getWalletConnectModalSignClient } from '../client.js';
-import { aleoAddressRegex } from '@puzzlehq/types';
-import { wc_aleo_chains } from '../data/walletconnect.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { SdkError } from '../data/errors.js';
+import { GenericRequest } from '../data/types.js';
 
 export type SignatureRequest = {
   message: string;
@@ -20,46 +18,23 @@ export const requestSignature = async ({
   address,
   network,
 }: SignatureRequest): Promise<SignatureResponse> => {
-  const connection = await getWalletConnectModalSignClient();
+  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.requestSignature?.mutate) throw new Error('requestSignature.mutate not found!')
 
-  const session: SessionTypes.Struct | undefined =
-    await connection?.getSession();
-
-  if (!session || !connection) {
-    return { error: 'no session or connection' };
-  }
-
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
-  }
-
-  const req = {
-    topic: session.topic,
-    chainId: network ?? 'aleo:1',
+  const req: GenericRequest = {
     request: {
-      jsonrpc: '2.0',
       method: 'requestSignature',
       params: {
         message,
-        address: aleoAddressRegex.test(address ?? '') ? address : undefined,
+        address,
+        network
       } as SignatureRequest,
     }
   }
 
-  if (hasInjectedConnection() && window.aleo.puzzleWalletClient.requestSignature) {
-    try {
-      const response: SignatureResponse =
-        await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
-      return response;
-    } catch (e) {
-      console.error('signature error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
-  }
-
   try {
-    const response: SignatureResponse = await connection.request(req);
+    const response: SignatureResponse =
+      await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
     return response;
   } catch (e) {
     console.error('signature error', e);
