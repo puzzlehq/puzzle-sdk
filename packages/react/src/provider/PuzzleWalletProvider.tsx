@@ -1,68 +1,47 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { configureConnection } from '@puzzlehq/sdk-core';
+import { createContext, useContext } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { QueryClient } from '@tanstack/query-core';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import EventEmitter from 'events';
-import { useWalletStore } from '../store.js';
-import { SessionTypes } from '@walletconnect/types';
-import { useSession } from '../hooks/wc/useSession.js';
+import { useInjectedRequestQuery } from '../hooks/utils/useRequest.js';
 
 type PuzzleWalletProviderProps = {
-  dAppName: string;
-  dAppDescription: string;
-  dAppUrl?: string;
-  dAppIconURL: string;
   children: React.ReactNode;
   debugQuery?: boolean;
 };
 
 export const queryClient = new QueryClient();
-const SessionContext = createContext<SessionTypes.Struct | undefined>(
-  undefined,
-);
+const ConnectionContext = createContext<boolean | undefined>(undefined);
 
 export const PuzzleWalletProvider = ({
-  dAppName,
-  dAppDescription,
-  dAppUrl,
-  dAppIconURL,
   children,
   debugQuery = false,
 }: PuzzleWalletProviderProps) => {
-  const [session, setSession] = useState<SessionTypes.Struct | undefined>(
-    undefined,
-  );
 
-  const _session = useSession();
-
-  useEffect(() => {
-    setSession(_session);
-  }, [_session]);
-
-  useEffect(() => {
-    configureConnection({
-      dAppName,
-      dAppDescription,
-      dAppUrl,
-      dAppIconURL,
-      onDisconnect: useWalletStore.getState().onDisconnect,
-    });
-    EventEmitter.defaultMaxListeners = 100;
-  }, []);
+  const {
+    data,
+  } = useInjectedRequestQuery<boolean>({
+    queryKey: [
+      'isConnected',
+    ],
+    enabled: true,
+    fetchFunction: async () => {
+      const response: boolean =
+        await window.aleo.puzzleWalletClient.isConnected.query();
+      return response;
+    },
+  });
 
   return (
-    <SessionContext.Provider value={session}>
+    <ConnectionContext.Provider value={data}>
       <QueryClientProvider client={queryClient}>
         {debugQuery && <ReactQueryDevtools initialIsOpen={false} />}
         {children}
       </QueryClientProvider>
-    </SessionContext.Provider>
+    </ConnectionContext.Provider>
   );
 };
 
-// Custom hook for accessing the session
-export const useWalletSession = () => {
-  const session = useContext(SessionContext);
-  return session;
+export const useIsConnected = () => {
+  const isConnected = useContext(ConnectionContext);
+  return isConnected;
 };

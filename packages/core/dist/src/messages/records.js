@@ -6,14 +6,12 @@ export const getRecords = async ({ filter, page = 0, address, network, }) => {
     if (!window.aleo.puzzleWalletClient.getRecords?.query)
         throw new Error('getRecords.query not found!');
     const query = {
-        request: {
-            method: 'getRecords',
-            params: {
-                filter,
-                page,
-                address,
-                network
-            },
+        method: 'getRecords',
+        params: {
+            filter,
+            page,
+            address,
+            network
         },
     };
     try {

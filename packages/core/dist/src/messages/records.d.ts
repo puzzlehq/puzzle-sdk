@@ -11,6 +11,7 @@ export type GetRecordsRequest = {
     page?: number;
     address?: string;
     network?: Network;
+    multisig?: boolean;
 };
 export type GetRecordsResponse = {
     records?: RecordWithPlaintext[];

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
-const useInjectedSubscriptions = ({ session, configs, }) => {
+const useInjectedSubscriptions = ({ configs, }) => {
     useEffect(() => {
-        if (!hasInjectedConnection() || !session) {
+        if (!hasInjectedConnection()) {
             return;
         }
         const subscriptions = configs.map(({ subscriptionName, condition, onData }) => {
-            const subscription = window.aleo.puzzleWalletClient[subscriptionName].subscribe({ sessionTopic: session.topic }, {
+            const subscription = window.aleo.puzzleWalletClient[subscriptionName].subscribe({
                 onData(data) {
                     if (condition(data)) {
                         onData(data);
@@ -24,6 +24,6 @@ const useInjectedSubscriptions = ({ session, configs, }) => {
                 subscription.unsubscribe();
             });
         };
-    }, [session?.topic, ...configs.flatMap((config) => config.dependencies)]);
+    }, [...configs.flatMap((config) => config.dependencies)]);
 };
 export default useInjectedSubscriptions;

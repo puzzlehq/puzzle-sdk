@@ -1,6 +1,6 @@
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { hasInjectedConnection, log_sdk, } from '@puzzlehq/sdk-core';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { log_sdk, } from '@puzzlehq/sdk-core';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 import { useEvent } from './useEvent.js';
 import { useCallback, useEffect, useState } from 'react';
@@ -14,26 +14,18 @@ const normalizeInputs = (inputs) => {
     });
 };
 export const useRequestCreateEvent = (requestData) => {
-    const session = useWalletSession();
+    const isConnected = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
     const [settlementStatus, setSettlementStatus] = useState(undefined);
     const inputs = normalizeInputs(requestData?.inputs);
-    const useRequestFunction = hasInjectedConnection()
-        ? useInjectedRequest
-        : useRequest;
     const req = {
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-            jsonrpc: '2.0',
-            method: 'requestCreateEvent',
-            params: {
-                ...requestData,
-                inputs,
-            },
+        method: 'requestCreateEvent',
+        params: {
+            ...requestData,
+            inputs,
         },
     };
-    const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction(req, async () => {
+    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async () => {
         try {
             const response = await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
             return response;
@@ -50,29 +42,24 @@ export const useRequestCreateEvent = (requestData) => {
     const response = wc_data;
     const createEvent = useCallback((createEventRequestOverride) => {
         setSettlementStatus(undefined);
-        if (createEventRequestOverride && session && !loading) {
+        if (createEventRequestOverride && isConnected && !loading) {
             log_sdk('useCreateEvent requesting with override...', createEventRequestOverride);
             const inputs = normalizeInputs(createEventRequestOverride.inputs);
             return request({
-                topic: session?.topic ?? '',
-                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-                request: {
-                    jsonrpc: '2.0',
-                    method: 'requestCreateEvent',
-                    params: {
-                        ...createEventRequestOverride,
-                        inputs,
-                    },
+                method: 'requestCreateEvent',
+                params: {
+                    ...createEventRequestOverride,
+                    inputs,
                 },
             });
         }
-        else if (requestData && session && !loading) {
+        else if (requestData && isConnected && !loading) {
             log_sdk('useCreateEvent requesting...', requestData);
             return request();
         }
-    }, [session?.topic, JSON.stringify(account), loading, request]);
+    }, [isConnected, JSON.stringify(account), loading, request]);
     const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId;
-    const { event, error: eventFetchError } = useEvent({ id: eventId, address: requestData?.address });
+    const { event, error: eventFetchError } = useEvent({ id: eventId ?? '', address: requestData?.address });
     useEffect(() => {
         console.log('eventId', eventId);
     }, [eventId]);

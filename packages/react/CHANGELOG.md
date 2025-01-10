@@ -1,5 +1,16 @@
 # @puzzlehq/sdk
 
+## 1.0.0
+
+### Major Changes
+
+- Removing walletconnect from sdk!
+
+### Patch Changes
+
+- Updated dependencies
+  - @puzzlehq/sdk-core@1.0.0
+
 ## 0.5.7
 
 ### Patch Changes

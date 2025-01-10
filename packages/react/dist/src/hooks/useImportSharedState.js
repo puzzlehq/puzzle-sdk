@@ -1,30 +1,22 @@
-import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { importSharedState as _importSharedState, } from '@puzzlehq/sdk-core';
+import { useInjectedRequest } from './utils/useRequest.js';
 import { useWalletStore } from '../store.js';
-export const useImportSharedState = (seed) => {
-    const session = useWalletSession();
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+export const useImportSharedState = ({ seed }) => {
+    const isConnected = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
-    const useRequestFunction = hasInjectedConnection()
-        ? useInjectedRequest
-        : useRequest;
-    const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction({
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-            jsonrpc: '2.0',
-            method: 'importSharedState',
-            params: {
-                seed,
-            },
+    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest({
+        method: 'importSharedState',
+        params: {
+            seed,
         },
-    }, (params) => window.aleo?.puzzleWalletClient.importSharedState.mutate(params));
+    }, async () => await _importSharedState({ seed }));
     const error = wc_error
         ? wc_error.message
         : wc_data && wc_data.error;
     const response = wc_data;
     const importSharedState = async () => {
-        if (session && !loading) {
+        if (isConnected && !loading) {
             return await request();
         }
     };

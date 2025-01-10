@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 import {
+  AccountSelectedResponse,
+  GenericRequest,
   GetSelectedAccountResponse,
-  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
-import { SessionTypes } from '@walletconnect/types';
-import { useOnSessionDelete } from './wc/useOnSessionDelete.js';
-import { useOnSessionUpdate } from './wc/useOnSessionUpdate.js';
-import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
 import { useWalletStore } from '../store.js';
-import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { useInjectedRequestQuery } from './utils/useRequest.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const shortenAddress = (
   address?: string,
@@ -31,53 +28,41 @@ export const shortenAddress = (
 };
 
 export const useAccount = () => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-
+  const isConnected = useIsConnected()
   const [account, setAccount, onDisconnect] = useWalletStore((state) => [
     state.account,
     state.setAccount,
     state.onDisconnect,
   ]);
 
-  const useQueryFunction = hasInjectedConnection()
-    ? useInjectedRequestQuery
-    : useRequestQuery;
-
-  const query = {
-    topic: session?.topic,
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'getSelectedAccount',
-    },
+  const query: GenericRequest = {
+    method: 'getSelectedAccount',
   };
 
   const {
     refetch,
-    data: wc_data,
-    error: wc_error,
+    data,
+    error: _error,
     isLoading: loading,
-  } = useQueryFunction<GetSelectedAccountResponse | undefined>({
-    queryKey: ['useAccount', session?.topic],
-    enabled: !!session,
+  } = useInjectedRequestQuery<GetSelectedAccountResponse | undefined>({
+    queryKey: ['useAccount'],
+    enabled: isConnected,
     fetchFunction: async () => {
       const response: GetSelectedAccountResponse =
         await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);
       return response;
     },
-    wcParams: query,
   });
 
   // listen for injected wallet-originating account updates
   useInjectedSubscriptions({
-    session,
     configs: [
       {
         subscriptionName: 'onAccountSelected',
-        condition: (data) => {
-          return !!data?.address;
+        condition: () => {
+          return true;
         },
-        onData: (data) => {
+        onData: (data: AccountSelectedResponse) => {
           const network = data.chain?.split(':')[0] ?? 'aleo';
           const chainId = data.chain?.split(':')[1] ?? '1';
           setAccount({
@@ -92,65 +77,41 @@ export const useAccount = () => {
     ],
   });
 
-  // listen for mobile wallet-originating account updates
-  useOnSessionEvent(({ params, topic }) => {
-    const eventName = params.event.name;
-    if (
-      !hasInjectedConnection() &&
-      eventName === 'accountSelected' &&
-      session &&
-      session.topic === topic
-    ) {
-      const address = params.event.address ?? params.event.data.address;
-
-      const network = params.chainId.split(':')[0];
-      const chainId = params.chainId.split(':')[1];
-      setAccount({
-        network,
-        chainId,
-        address,
-        shortenedAddress: shortenAddress(address),
-      });
-    }
-  });
-
-  useOnSessionUpdate(({ params, topic }) => {
-    const address = params.event.address ?? params.event.data.address;
-    const network = params.chainId.split(':')[0];
-    const chainId = params.chainId.split(':')[1];
-    setAccount({
-      network,
-      chainId,
-      address,
-      shortenedAddress: shortenAddress(address),
-    });
-  });
-
-  useOnSessionDelete(() => {
-    onDisconnect();
+  useInjectedSubscriptions({
+    configs: [
+      {
+        subscriptionName: 'onDisconnect',
+        condition: () => true,
+        onData: () => {
+          onDisconnect();
+          setAccount(undefined);
+        },
+        dependencies: [],
+      },
+    ],
   });
 
   // send initial account request...
   useEffect(() => {
-    if (session && !loading) {
+    if (isConnected && !loading) {
       refetch();
     }
-  }, [session?.topic]);
+  }, [isConnected]);
 
   // ...and listen for a response
   useEffect(() => {
-    if (wc_data) {
-      const puzzleData: GetSelectedAccountResponse | undefined = wc_data;
+    if (data) {
+      const puzzleData: GetSelectedAccountResponse | undefined = data;
       const account = puzzleData?.account;
       if (account) {
         setAccount(account);
       }
     }
-  }, [wc_data]);
+  }, [data]);
 
-  const error: string | undefined = wc_error
-    ? (wc_error as Error).message
-    : wc_data && wc_data.error;
+  const error: string | undefined = _error
+    ? (_error as Error).message
+    : data && data.error;
 
   return {
     account,

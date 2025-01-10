@@ -56,13 +56,11 @@ export const requestCreateEvent = async (
   });
 
   const req: GenericRequest = {
-    request: {
-      method: 'requestCreateEvent',
-      params: {
-        ...requestData,
-        inputs,
-      } as CreateEventRequest,
-    },
+    method: 'requestCreateEvent',
+    params: {
+      ...requestData,
+      inputs,
+    } as CreateEventRequest,
   }
 
   try {

@@ -1,36 +1,33 @@
-import { SessionTypes } from '@walletconnect/types';
 import {
   CreateSharedStateResponse,
-  hasInjectedConnection,
+  GenericRequest,
 } from '@puzzlehq/sdk-core';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-import { useWalletStore } from '../store.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { SdkError } from '../../../core/src/data/errors.js';
 
 export const useCreateSharedState = () => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const isConnected = useIsConnected();
 
-  const useRequestFunction = hasInjectedConnection()
-    ? useInjectedRequest
-    : useRequest;
+  const query: GenericRequest = {
+    method: 'createSharedState',
+  };
 
   const {
     request,
     data: wc_data,
     error: wc_error,
     loading,
-  } = useRequestFunction<CreateSharedStateResponse | undefined>(
-    {
-      topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-      request: {
-        jsonrpc: '2.0',
-        method: 'createSharedState',
-        params: {},
-      },
+  } = useInjectedRequest<CreateSharedStateResponse | undefined>(
+    query,
+    async (params) => {
+      if (isConnected) {
+        const response: CreateSharedStateResponse = await window.aleo.puzzleWalletClient.createSharedState.mutate(params);
+        return response
+      } else {
+        return { error: SdkError.NotConnected }
+      }
     },
-    (params) => window.aleo.puzzleWalletClient.createSharedState.mutate(params),
   );
 
   const error: string | undefined = wc_error

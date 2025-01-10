@@ -17,6 +17,7 @@ export type GetRecordsRequest = {
   page?: number;
   address?: string;
   network?: Network;
+  multisig?: boolean;
 };
 
 export type GetRecordsResponse = {
@@ -35,15 +36,13 @@ export const getRecords = async ({
   if (!window.aleo.puzzleWalletClient.getRecords?.query) throw new Error('getRecords.query not found!')
 
   const query: GenericRequest = {
-    request: {
-      method: 'getRecords',
-      params: {
-        filter,
-        page,
-        address,
-        network
-      } as GetRecordsRequest,
-    },
+    method: 'getRecords',
+    params: {
+      filter,
+      page,
+      address,
+      network
+    } as GetRecordsRequest,
   };
 
   try {

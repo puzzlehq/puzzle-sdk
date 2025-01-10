@@ -3,6 +3,7 @@ export type GetEventRequest = {
     id: string;
     address?: string;
     network?: string;
+    multisig?: boolean;
 };
 export type GetEventResponse = {
     event?: Event;

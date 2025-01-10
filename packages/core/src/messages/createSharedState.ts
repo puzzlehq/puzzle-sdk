@@ -15,9 +15,7 @@ export const createSharedState = async (): Promise<CreateSharedStateResponse> =>
   if (!window.aleo.puzzleWalletClient.createSharedState?.mutate) throw new Error('createSharedState.mutate not found!')
 
   const query: GenericRequest = {
-    request: {
-      method: 'createSharedState',
-    },
+    method: 'createSharedState',
   };
 
   try {

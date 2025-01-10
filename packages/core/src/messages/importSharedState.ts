@@ -21,12 +21,10 @@ export const importSharedState = async ({
   if (!window.aleo.puzzleWalletClient.importSharedState?.mutate) throw new Error('importSharedState.mutate not found!')
 
   const query: GenericRequest = {
-    request: {
-      method: 'importSharedState',
-      params: {
-        seed,
-      } as ImportSharedStateRequest,
-    },
+    method: 'importSharedState',
+    params: {
+      seed,
+    } as ImportSharedStateRequest,
   };
 
   try {

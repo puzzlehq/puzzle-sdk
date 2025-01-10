@@ -6,13 +6,11 @@ export const decrypt = async ({ ciphertexts, network, address }) => {
     if (!window.aleo.puzzleWalletClient.decrypt?.query)
         throw new Error('decrypt.query not found!');
     const query = {
-        request: {
-            method: 'decrypt',
-            params: {
-                ciphertexts: ciphertexts,
-                address,
-                network
-            },
+        method: 'decrypt',
+        params: {
+            ciphertexts: ciphertexts,
+            address,
+            network
         },
     };
     try {

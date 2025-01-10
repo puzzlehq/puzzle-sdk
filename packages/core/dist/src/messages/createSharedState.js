@@ -6,9 +6,7 @@ export const createSharedState = async () => {
     if (!window.aleo.puzzleWalletClient.createSharedState?.mutate)
         throw new Error('createSharedState.mutate not found!');
     const query = {
-        request: {
-            method: 'createSharedState',
-        },
+        method: 'createSharedState',
     };
     try {
         const response = await window.aleo.puzzleWalletClient.createSharedState.mutate(query);

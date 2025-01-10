@@ -1,4 +1,4 @@
-import { Event, GenericRequest, wc_aleo_chains } from '../index.js';
+import { Event, GenericRequest } from '../index.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 
@@ -6,6 +6,7 @@ export type GetEventRequest = {
   id: string;
   address?: string;
   network?: string;
+  multisig?: boolean
 };
 
 export type GetEventResponse = {
@@ -23,14 +24,12 @@ export const getEvent = async ({
 
 
   const query: GenericRequest = {
-    request: {
-      method: 'getEvent',
-      params: {
-        id,
-        address,
-        network
-      } as GetEventRequest,
-    },
+    method: 'getEvent',
+    params: {
+      id,
+      address,
+      network
+    } as GetEventRequest,
   };
 
   try {

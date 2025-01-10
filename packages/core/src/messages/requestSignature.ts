@@ -22,14 +22,12 @@ export const requestSignature = async ({
   if (!window.aleo.puzzleWalletClient.requestSignature?.mutate) throw new Error('requestSignature.mutate not found!')
 
   const req: GenericRequest = {
-    request: {
-      method: 'requestSignature',
-      params: {
-        message,
-        address,
-        network
-      } as SignatureRequest,
-    }
+    method: 'requestSignature',
+    params: {
+      message,
+      address,
+      network
+    } as SignatureRequest,
   }
 
   try {

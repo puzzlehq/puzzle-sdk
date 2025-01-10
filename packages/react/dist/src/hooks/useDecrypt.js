@@ -1,45 +1,34 @@
-import { hasInjectedConnection, log_sdk, } from '@puzzlehq/sdk-core';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-import { useWalletStore } from '../store.js';
-export const useDecrypt = (ciphertexts) => {
-    const session = useWalletSession();
-    const [account] = useWalletStore((state) => [state.account]);
-    const useRequestFunction = hasInjectedConnection()
-        ? useInjectedRequest
-        : useRequest;
-    const { request, data: wc_data, error: wc_error, loading, } = useRequestFunction({
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-            jsonrpc: '2.0',
-            method: 'decrypt',
-            params: {
-                ciphertexts: ciphertexts,
-            },
+import { useInjectedRequest } from './utils/useRequest.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { SdkError } from '../../../core/src/data/errors.js';
+export const useDecrypt = ({ ciphertexts, address, network }) => {
+    const isConnected = useIsConnected();
+    const query = {
+        method: 'decrypt',
+        params: {
+            ciphertexts: ciphertexts,
+            address,
+            network
         },
-    }, (params) => window.aleo.puzzleWalletClient.decrypt.query(params));
+    };
+    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(query, async (params) => {
+        if (isConnected) {
+            const response = await window.aleo.puzzleWalletClient.decrypt.query(params);
+            return response;
+        }
+        else {
+            return { error: SdkError.NotConnected };
+        }
+    });
     const error = wc_error
         ? wc_error.message
         : wc_data && wc_data.error;
     const response = wc_data;
-    const decrypt = (decryptRequestOverride) => {
-        if (decryptRequestOverride && session && !loading) {
-            log_sdk('useDecrypt requesting with override...', decryptRequestOverride);
-            return request({
-                topic: session?.topic ?? '',
-                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-                request: {
-                    jsonrpc: '2.0',
-                    method: 'decrypt',
-                    params: { ...decryptRequestOverride },
-                },
-            });
-        }
-        else if (ciphertexts && session && !loading) {
-            log_sdk('useDecrypt requesting...', ciphertexts);
-            return request();
-        }
+    const decrypt = async (paramsOverride) => {
+        return await request({
+            method: 'decrypt',
+            params: paramsOverride
+        });
     };
     return { decrypt, plaintexts: response?.plaintexts, loading, error };
 };

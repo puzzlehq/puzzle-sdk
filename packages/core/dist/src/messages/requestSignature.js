@@ -6,14 +6,12 @@ export const requestSignature = async ({ message, address, network, }) => {
     if (!window.aleo.puzzleWalletClient.requestSignature?.mutate)
         throw new Error('requestSignature.mutate not found!');
     const req = {
-        request: {
-            method: 'requestSignature',
-            params: {
-                message,
-                address,
-                network
-            },
-        }
+        method: 'requestSignature',
+        params: {
+            message,
+            address,
+            network
+        },
     };
     try {
         const response = await window.aleo.puzzleWalletClient.requestSignature.mutate(req);

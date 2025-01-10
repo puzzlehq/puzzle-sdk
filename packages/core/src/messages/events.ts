@@ -32,15 +32,13 @@ export const getEvents = async ({
   if (!window.aleo.puzzleWalletClient.getEvents?.query) throw new Error('getEvents.query not found!')
 
   const query: GenericRequest = {
-    request: {
-      method: 'getEvents',
-      params: {
-        filter,
-        page,
-        address,
-        network
-      } as GetEventsRequest,
-    },
+    method: 'getEvents',
+    params: {
+      filter,
+      page,
+      address,
+      network
+    } as GetEventsRequest,
   };
 
   try {

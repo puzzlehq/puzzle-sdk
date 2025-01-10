@@ -1,40 +1,39 @@
-import { SessionTypes } from '@walletconnect/types';
 import {
   DecryptRequest,
   DecryptResponse,
-  hasInjectedConnection,
-  log_sdk,
+  GenericRequest,
 } from '@puzzlehq/sdk-core';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-import { useWalletStore } from '../store.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { SdkError } from '../../../core/src/data/errors.js';
 
-export const useDecrypt = (ciphertexts?: string[]) => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
+  const isConnected = useIsConnected();
 
-  const useRequestFunction = hasInjectedConnection()
-    ? useInjectedRequest
-    : useRequest;
+  const query: GenericRequest = {
+    method: 'decrypt',
+    params: {
+      ciphertexts: ciphertexts,
+      address,
+      network
+    } as DecryptRequest,
+  };
 
   const {
     request,
     data: wc_data,
     error: wc_error,
     loading,
-  } = useRequestFunction<DecryptResponse | undefined>(
-    {
-      topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-      request: {
-        jsonrpc: '2.0',
-        method: 'decrypt',
-        params: {
-          ciphertexts: ciphertexts!,
-        } as DecryptRequest,
-      },
+  } = useInjectedRequest<DecryptResponse | undefined>(
+    query, 
+    async (params) => {
+      if (isConnected) {
+        const response: DecryptResponse = await window.aleo.puzzleWalletClient.decrypt.query(params)
+        return response
+      } else {
+        return { error: SdkError.NotConnected }
+      }
     },
-    (params) => window.aleo.puzzleWalletClient.decrypt.query(params),
   );
 
   const error: string | undefined = wc_error
@@ -42,22 +41,11 @@ export const useDecrypt = (ciphertexts?: string[]) => {
     : wc_data && wc_data.error;
   const response: DecryptResponse | undefined = wc_data;
 
-  const decrypt = (decryptRequestOverride?: DecryptRequest) => {
-    if (decryptRequestOverride && session && !loading) {
-      log_sdk('useDecrypt requesting with override...', decryptRequestOverride);
-      return request({
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-          jsonrpc: '2.0',
-          method: 'decrypt',
-          params: { ...decryptRequestOverride },
-        },
-      });
-    } else if (ciphertexts && session && !loading) {
-      log_sdk('useDecrypt requesting...', ciphertexts);
-      return request();
-    }
+  const decrypt = async (paramsOverride: DecryptRequest) => {
+    return await request({
+      method: 'decrypt',
+      params: paramsOverride
+    })
   };
 
   return { decrypt, plaintexts: response?.plaintexts, loading, error };

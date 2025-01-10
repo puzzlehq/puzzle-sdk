@@ -1,40 +1,30 @@
 import {
   disconnect as _disconnect,
-  emitter,
-  getWalletConnectModalSignClient,
 } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
-import { SessionTypes } from '@walletconnect/types';
-import { getSdkError } from '@walletconnect/utils';
-import { useAsyncAction } from './wc/_useAsyncAction.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useAsyncAction } from './utils/_useAsyncAction.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { SdkError } from '../../../core/src/data/errors.js';
 
 export function useDisconnect() {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
+  const isConnected = useIsConnected();
   const [onDisconnect] = useWalletStore((state) => [state.onDisconnect]);
 
   const { error, loading, setError, setLoading } = useAsyncAction();
 
   async function disconnect() {
-    if (!session || loading) {
-      if (!session) onDisconnect();
+    if (!isConnected) {
+      setError(SdkError.NotConnected);
       return;
     }
     try {
       setLoading(true);
       setError(undefined);
-
-      try {
-        const client = await getWalletConnectModalSignClient();
-        await client.disconnect({
-          topic: session.topic,
-          reason: getSdkError('USER_DISCONNECTED'),
-        });
-        emitter.emit('session_change');
-      } catch (e) {
-        console.warn(e);
+      const response = await _disconnect();
+      if (response.error) {
+        setError(response.error);
       }
-      useWalletStore.getState().onDisconnect();
+      onDisconnect();
     } catch (err) {
       setError(err);
       throw err;

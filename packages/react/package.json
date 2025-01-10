@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk",
   "displayName": "Puzzle React SDK",
-  "version": "0.5.7",
+  "version": "1.0.0",
   "description": "Your portal to privacy",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -13,20 +13,16 @@
   },
   "type": "module",
   "scripts": {
-    "fetch-fix": "find dist -type f \\( -name '*.js' -o -name '*.cjs' \\) -exec sed -i '' 's/self.fetch[[:space:]]*||/fetch ||/g' {} \\;",
-    "ws-fix": "find ./dist -type f -name 'index*' -exec sed -i '' -e 's/require(\\\"ws\\\")/(() => {try { return require(\\\"ws\\\") } catch (e) { } })()/g' {} +;",
-    "build": "rm -rf ./dist && tsc && pnpm fetch-fix && pnpm ws-fix",
+    "build": "rm -rf ./dist && tsc",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@puzzlehq/sdk-core": "0.5.7",
+    "@puzzlehq/sdk-core": "1.0.0",
     "@puzzlehq/types": "1.0.27",
     "@tanstack/react-query": "^4.29.5",
     "@tanstack/query-core": "^4.29.5",
     "@tanstack/react-query-devtools": "^4.29.5",
     "@trpc/server": "^10.31.0",
-    "@walletconnect/types": "^2.14.0",
-    "@walletconnect/utils": "^2.14.0",
     "debug": "^4.3.4",
     "events": "^3.3.0",
     "immer": "^9.0.19",

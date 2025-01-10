@@ -6,9 +6,7 @@ export const getAccount = async () => {
     if (!window.aleo.puzzleWalletClient.getSelectedAccount?.query)
         throw new Error('getSelectedAccount not found!');
     const query = {
-        request: {
-            method: 'getSelectedAccount',
-        },
+        method: 'getSelectedAccount',
     };
     try {
         const response = await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);

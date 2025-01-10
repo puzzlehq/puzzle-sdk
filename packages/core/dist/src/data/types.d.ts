@@ -7,8 +7,6 @@ export type PuzzleAccount = {
 };
 export type ProgramIdPermissions = Partial<Record<Network, string[]>>;
 export type GenericRequest = {
-    request: {
-        method: string;
-        params?: any;
-    };
+    method: string;
+    params?: any;
 };

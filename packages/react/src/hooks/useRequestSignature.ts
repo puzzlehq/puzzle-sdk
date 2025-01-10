@@ -1,38 +1,29 @@
-import { SessionTypes } from '@walletconnect/types';
 import {
+  GenericRequest,
+  requestSignature as _requestSignature,
   SignatureRequest,
   SignatureResponse,
-  hasInjectedConnection,
   log_sdk,
 } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-import { useWalletStore } from '../store.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { SdkError } from '../../../core/src/data/errors.js';
 
 export const useRequestSignature = ({
   message,
   address,
   network,
 }: SignatureRequest) => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const isConnected = useIsConnected();
 
-  const useRequestFunction = hasInjectedConnection()
-    ? useInjectedRequest
-    : useRequest;
-
-  const req = {
-    topic: session?.topic ?? '',
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'requestSignature',
-      params: {
-        message,
-        address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-      } as SignatureRequest,
-    },
+  const req: GenericRequest = {
+    method: 'requestSignature',
+    params: {
+      message,
+      address: aleoAddressRegex.test(address ?? '') ? address : undefined,
+      network
+    } as SignatureRequest,
   }
 
   const {
@@ -40,16 +31,9 @@ export const useRequestSignature = ({
     data: wc_data,
     error: wc_error,
     loading,
-  } = useRequestFunction<SignatureResponse | undefined>(req, async () => {
-    try {
-      const response: SignatureResponse =
-        await window.aleo.puzzleWalletClient.requestSignature.mutate(req);
-      return response;
-    } catch (e) {
-      console.error('createSignature error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
+  } = useInjectedRequest<SignatureResponse | undefined>(req, async (paramsOverride) => {
+    if (!isConnected) return { error: SdkError.NotConnected };
+    return await _requestSignature(paramsOverride.params as SignatureRequest);
   });
 
   const error: string | undefined = wc_error
@@ -58,23 +42,18 @@ export const useRequestSignature = ({
   const response: SignatureResponse | undefined = wc_data;
 
   const requestSignature = (signatureRequestOverride?: SignatureRequest) => {
-    if (signatureRequestOverride && session && !loading) {
+    if (signatureRequestOverride && isConnected && !loading) {
       log_sdk(
         'useRequestSignature requesting with override...',
         signatureRequestOverride,
       );
       return request({
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-          jsonrpc: '2.0',
-          method: 'requestSignature',
-          params: {
-            ...signatureRequestOverride,
-          },
+        method: 'requestSignature',
+        params: {
+          ...signatureRequestOverride,
         },
       });
-    } else if (session && !loading) {
+    } else if (isConnected && !loading) {
       log_sdk('useRequestSignature requesting...', [message, address]);
       return request();
     }

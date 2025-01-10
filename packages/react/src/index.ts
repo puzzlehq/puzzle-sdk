@@ -10,11 +10,6 @@ export * from './hooks/useImportSharedState.js';
 export * from './hooks/useRecords.js';
 export * from './hooks/useRequestCreateEvent.js';
 export * from './hooks/useRequestSignature.js';
-export * from './hooks/wc/useOnSessionDelete.js';
-export * from './hooks/wc/useOnSessionEvent.js';
-export * from './hooks/wc/useOnSessionExpire.js';
-export * from './hooks/wc/useOnSessionUpdate.js';
-export * from './hooks/wc/useSession.js';
 export * from './provider/PuzzleWalletProvider.js';
 
 export * from '@puzzlehq/sdk-core';

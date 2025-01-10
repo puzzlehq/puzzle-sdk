@@ -1,40 +1,30 @@
-import { SessionTypes } from '@walletconnect/types';
 import {
+  importSharedState as _importSharedState,
   ImportSharedStateRequest,
   ImportSharedStateResponse,
-  hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useInjectedRequest } from './utils/useRequest.js';
 import { useWalletStore } from '../store.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
-export const useImportSharedState = (seed?: string) => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
+export const useImportSharedState = ({ seed }: ImportSharedStateRequest) => {
+  const isConnected = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
-
-  const useRequestFunction = hasInjectedConnection()
-    ? useInjectedRequest
-    : useRequest;
 
   const {
     request,
     data: wc_data,
     error: wc_error,
     loading,
-  } = useRequestFunction<ImportSharedStateResponse | undefined>(
+  } = useInjectedRequest<ImportSharedStateResponse | undefined>(
     {
-      topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-      request: {
-        jsonrpc: '2.0',
-        method: 'importSharedState',
-        params: {
-          seed,
-        } as ImportSharedStateRequest,
-      },
+      method: 'importSharedState',
+      params: {
+        seed,
+      } as ImportSharedStateRequest,
     },
-    (params) =>
-      window.aleo?.puzzleWalletClient.importSharedState.mutate(params),
+    async () =>
+      await _importSharedState({seed}),
   );
 
   const error: string | undefined = wc_error
@@ -43,7 +33,7 @@ export const useImportSharedState = (seed?: string) => {
   const response: ImportSharedStateResponse | undefined = wc_data;
 
   const importSharedState = async () => {
-    if (session && !loading) {
+    if (isConnected && !loading) {
       return await request();
     }
   };

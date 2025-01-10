@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { SessionTypes } from '@walletconnect/types';
 import {
   AccountSelectedResponse,
   AccountSyncedResponse,
@@ -8,22 +7,20 @@ import {
 
 type SubscriptionConfig = {
   subscriptionName: string;
-  condition: (data: AccountSelectedResponse) => boolean;
-  onData: (data: AccountSelectedResponse) => void;
+  condition: (data: AccountSelectedResponse | AccountSyncedResponse | void) => boolean;
+  onData: (data: AccountSelectedResponse | AccountSyncedResponse | void) => void;
   dependencies: any[];
 };
 
 type UseInjectedSubscriptionsParams = {
-  session: SessionTypes.Struct | undefined;
   configs: SubscriptionConfig[];
 };
 
 const useInjectedSubscriptions = ({
-  session,
   configs,
 }: UseInjectedSubscriptionsParams) => {
   useEffect(() => {
-    if (!hasInjectedConnection() || !session) {
+    if (!hasInjectedConnection()) {
       return;
     }
     const subscriptions = configs.map(
@@ -31,9 +28,8 @@ const useInjectedSubscriptions = ({
         const subscription = window.aleo.puzzleWalletClient[
           subscriptionName
         ].subscribe(
-          { sessionTopic: session.topic },
           {
-            onData(data: AccountSelectedResponse | AccountSyncedResponse) {
+            onData(data: AccountSelectedResponse | AccountSyncedResponse | void) {
               if (condition(data)) {
                 onData(data);
               }
@@ -56,7 +52,7 @@ const useInjectedSubscriptions = ({
         subscription.unsubscribe();
       });
     };
-  }, [session?.topic, ...configs.flatMap((config) => config.dependencies)]);
+  }, [...configs.flatMap((config) => config.dependencies)]);
 };
 
 export default useInjectedSubscriptions;
