@@ -20,7 +20,6 @@
     },
     "dependencies": {
         "@puzzlehq/sdk-core": "0.5.6",
-        "@puzzlehq/types": "1.0.27",
         "@tanstack/react-query": "^4.29.5",
         "@tanstack/query-core": "^4.29.5",
         "@tanstack/react-query-devtools": "^4.29.5",

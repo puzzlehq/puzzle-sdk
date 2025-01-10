@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@changesets/cli": "^2.27.7",
-    "@puzzlehq/types": "1.0.27",
+    "@puzzlehq/types": "1.0.30",
     "@puzzlehq/walletconnect-modal-sign-html": "0.0.9"
   },
   "devDependencies": {
