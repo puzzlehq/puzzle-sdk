@@ -5,7 +5,7 @@ import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useEvent = ({ id, address, multisig = false, network }) => {
-    const isConnected = useIsConnected();
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
     const isEnabled = id !== undefined &&
         id !== '' &&

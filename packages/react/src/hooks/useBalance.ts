@@ -12,7 +12,7 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useBalance = ({ address, network, multisig }: GetBalancesRequest = {}) => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
 
   const query: GenericRequest = {

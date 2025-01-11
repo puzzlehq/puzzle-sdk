@@ -6,7 +6,6 @@ const useInjectedSubscriptions = ({ configs, }) => {
             return;
         }
         const subscriptions = configs.map(({ subscriptionName, condition, onData: _onData, onError: _onError }) => {
-            console.log(`subscribing to ${subscriptionName}`);
             try {
                 const subscription = (window.aleo.puzzleWalletClient[subscriptionName]).subscribe({ method: subscriptionName }, {
                     next(data) {

@@ -2,7 +2,7 @@ import { SdkError } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useDecrypt = ({ ciphertexts, address, network }) => {
-    const isConnected = useIsConnected();
+    const { isConnected } = useIsConnected();
     const req = {
         method: 'decrypt',
         params: {

@@ -12,7 +12,7 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useEvents = ({ filter, page, address, network }: GetEventsRequest) => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
 
   if (filter?.programId === '') {
@@ -57,11 +57,11 @@ export const useEvents = ({ filter, page, address, network }: GetEventsRequest) 
       {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => true,
-        onData: () => refetch(),
+        onData: () => isConnected && refetch(),
         onError: (e: Error) => {
           console.error(e)
         },
-        dependencies: [],
+        dependencies: [isConnected],
       },
     ],
   });

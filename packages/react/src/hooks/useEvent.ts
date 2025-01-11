@@ -11,7 +11,7 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useEvent = ({ id, address, multisig = false, network }: GetEventRequest) => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
 
   const isEnabled =

@@ -17,15 +17,16 @@ export const useWalletStore = create<WalletState>()(
         set({ account });
       },
       onDisconnect: () => {
+        console.log('onDisconnect called!')
+        queryClient.clear();
         set({
           account: undefined,
         });
-        queryClient.clear();
       },
     }),
     {
       name: 'puzzle-wallet-store',
-      version: 2
+      version: 2,
     },
   ),
 );

@@ -27,7 +27,7 @@ export const useRecords = ({
   page,
   network
 }: GetRecordsRequest) => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
 
   const query: GenericRequest = {

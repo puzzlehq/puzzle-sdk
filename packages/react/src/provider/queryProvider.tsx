@@ -12,7 +12,7 @@ type Props = {
 export const QueryProvider = ({ children, debugQuery }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
-      {<ReactQueryDevtools initialIsOpen={false} />}
+      {debugQuery && <ReactQueryDevtools initialIsOpen={false} />}
       {children}
     </QueryClientProvider>
   )

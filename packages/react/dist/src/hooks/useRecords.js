@@ -13,7 +13,7 @@ export const getFormattedRecordPlaintext = (data) => {
     }
 };
 export const useRecords = ({ address, multisig = false, filter, page, network }) => {
-    const isConnected = useIsConnected();
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
     const query = {
         method: 'getRecords',

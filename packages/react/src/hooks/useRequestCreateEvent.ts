@@ -24,7 +24,7 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
 };
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
   const [settlementStatus, setSettlementStatus] = useState<SettlementStatus | undefined>(undefined);
 

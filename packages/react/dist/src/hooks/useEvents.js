@@ -5,7 +5,7 @@ import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useEvents = ({ filter, page, address, network }) => {
-    const isConnected = useIsConnected();
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
     if (filter?.programId === '') {
         filter.programId = undefined;
@@ -39,11 +39,11 @@ export const useEvents = ({ filter, page, address, network }) => {
             {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => true,
-                onData: () => refetch(),
+                onData: () => isConnected && refetch(),
                 onError: (e) => {
                     console.error(e);
                 },
-                dependencies: [],
+                dependencies: [isConnected],
             },
         ],
     });

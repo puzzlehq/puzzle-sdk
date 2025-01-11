@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
-import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const shortenAddress = (address, aleo = true, length = 4, short = true) => {
     if (!address)
@@ -16,60 +15,24 @@ export const shortenAddress = (address, aleo = true, length = 4, short = true) =
     return `${address.slice(0, length + (aleo ? 'aleo1'.length : 0))}...${address.slice(address.length - length, address.length)}`;
 };
 export const useAccount = () => {
-    const isConnected = useIsConnected();
-    const [account, setAccount, onDisconnect] = useWalletStore((state) => [
+    const { isConnected } = useIsConnected();
+    const [account, setAccount] = useWalletStore((state) => [
         state.account,
         state.setAccount,
-        state.onDisconnect,
     ]);
     const query = {
         method: 'getSelectedAccount',
     };
     const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey: ['useAccount'],
-        enabled: isConnected,
+        enabled: !!isConnected,
         fetchFunction: async () => {
             const response = await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);
+            if (response.account) {
+                setAccount(response.account);
+            }
             return response;
         },
-    });
-    // listen for injected wallet-originating account updates
-    useInjectedSubscriptions({
-        configs: [
-            {
-                subscriptionName: 'onAccountSelected',
-                condition: () => {
-                    return true;
-                },
-                onData: (data) => {
-                    setAccount({
-                        network: data.network,
-                        address: data.address,
-                        shortenedAddress: shortenAddress(data.address),
-                    });
-                },
-                onError: (e) => {
-                    console.error(e);
-                },
-                dependencies: [],
-            },
-        ],
-    });
-    useInjectedSubscriptions({
-        configs: [
-            {
-                subscriptionName: 'onDisconnect',
-                condition: () => true,
-                onData: () => {
-                    onDisconnect();
-                    setAccount(undefined);
-                },
-                onError: (e) => {
-                    console.error(e);
-                },
-                dependencies: [],
-            },
-        ],
     });
     // send initial account request...
     useEffect(() => {
@@ -77,16 +40,6 @@ export const useAccount = () => {
             refetch();
         }
     }, [isConnected]);
-    // ...and listen for a response
-    useEffect(() => {
-        if (data) {
-            const puzzleData = data;
-            const account = puzzleData?.account;
-            if (account) {
-                setAccount(account);
-            }
-        }
-    }, [data]);
     const error = _error
         ? _error.message
         : data && data.error;

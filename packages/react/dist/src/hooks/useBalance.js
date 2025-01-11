@@ -4,7 +4,7 @@ import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useBalance = ({ address, network, multisig } = {}) => {
-    const isConnected = useIsConnected();
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
     const query = {
         method: 'getBalance',

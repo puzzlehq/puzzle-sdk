@@ -7,7 +7,7 @@ import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useCreateSharedState = () => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
 
   const query: GenericRequest = {
     method: 'createSharedState',

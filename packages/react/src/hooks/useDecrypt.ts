@@ -8,7 +8,7 @@ import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
-  const isConnected = useIsConnected();
+  const {isConnected} = useIsConnected();
 
   const req: GenericRequest = {
     method: 'decrypt',
