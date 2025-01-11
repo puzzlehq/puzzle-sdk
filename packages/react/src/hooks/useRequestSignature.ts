@@ -4,11 +4,11 @@ import {
   SignatureRequest,
   SignatureResponse,
   log_sdk,
+  SdkError
 } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { SdkError } from '../../../core/src/data/errors.js';
 
 export const useRequestSignature = ({
   message,

@@ -1,7 +1,8 @@
+import { Network } from '@puzzlehq/types';
 export type SignatureRequest = {
     message: string;
     address?: string;
-    network?: string;
+    network?: Network;
 };
 export type SignatureResponse = {
     signature?: string;

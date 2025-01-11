@@ -5,23 +5,30 @@ const useInjectedSubscriptions = ({ configs, }) => {
         if (!hasInjectedConnection()) {
             return;
         }
-        const subscriptions = configs.map(({ subscriptionName, condition, onData }) => {
-            const subscription = window.aleo.puzzleWalletClient[subscriptionName].subscribe({
-                onData(data) {
-                    if (condition(data)) {
-                        onData(data);
-                    }
-                },
-                onError(err) {
-                    console.error(`${subscriptionName} tRPC subscription error:`, err);
-                },
-            });
-            return subscription;
+        const subscriptions = configs.map(({ subscriptionName, condition, onData: _onData, onError: _onError }) => {
+            console.log(`subscribing to ${subscriptionName}`);
+            try {
+                const subscription = (window.aleo.puzzleWalletClient[subscriptionName]).subscribe({ method: subscriptionName }, {
+                    next(data) {
+                        if (condition(data)) {
+                            _onData(data);
+                        }
+                    },
+                    error(e) {
+                        console.error(`${subscriptionName} tRPC subscription error:`, e);
+                        _onError(e);
+                    },
+                });
+                return subscription;
+            }
+            catch (e) {
+                console.error(e);
+            }
         });
         // Cleanup on unmount or when dependencies change
         return () => {
             subscriptions.forEach((subscription) => {
-                subscription.unsubscribe();
+                subscription?.unsubscribe();
             });
         };
     }, [...configs.flatMap((config) => config.dependencies)]);

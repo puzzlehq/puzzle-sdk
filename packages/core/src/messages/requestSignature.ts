@@ -1,11 +1,12 @@
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 import { GenericRequest } from '../data/types.js';
+import { Network } from '@puzzlehq/types';
 
 export type SignatureRequest = {
   message: string;
   address?: string;
-  network?: string;
+  network?: Network;
 };
 
 export type SignatureResponse = {

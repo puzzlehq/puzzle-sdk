@@ -1,4 +1,5 @@
 export * from './messages/index.js';
+export * from './data/errors.js';
 export * from './data/events.js';
 export * from './data/types.js';
 export * from './utils/logger.js';

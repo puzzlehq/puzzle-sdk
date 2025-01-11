@@ -12,13 +12,6 @@ import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
-type UseRecordsParams = {
-  address?: string;
-  multisig?: boolean;
-  filter?: RecordsFilter;
-  page?: number;
-};
-
 export const getFormattedRecordPlaintext = (data: any) => {
   try {
     return JSON.stringify(data, null, 2).replaceAll('"', '') ?? '';
@@ -81,6 +74,9 @@ export const useRecords = ({
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => !multisig,
         onData: () => refetch(),
+        onError: (e: Error) => {
+          console.error(e)
+        },
         dependencies: [multisig],
       },
       {
@@ -89,6 +85,9 @@ export const useRecords = ({
           return !!multisig && data?.address === address;
         },
         onData: () => refetch(),
+        onError: (e: Error) => {
+          console.error(e)
+        },
         dependencies: [multisig, address],
       },
     ],

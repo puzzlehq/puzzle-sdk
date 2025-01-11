@@ -42,14 +42,14 @@ export const useAccount = () => {
                     return true;
                 },
                 onData: (data) => {
-                    const network = data.chain?.split(':')[0] ?? 'aleo';
-                    const chainId = data.chain?.split(':')[1] ?? '1';
                     setAccount({
-                        network,
-                        chainId,
+                        network: data.network,
                         address: data.address,
                         shortenedAddress: shortenAddress(data.address),
                     });
+                },
+                onError: (e) => {
+                    console.error(e);
                 },
                 dependencies: [],
             },
@@ -63,6 +63,9 @@ export const useAccount = () => {
                 onData: () => {
                     onDisconnect();
                     setAccount(undefined);
+                },
+                onError: (e) => {
+                    console.error(e);
                 },
                 dependencies: [],
             },

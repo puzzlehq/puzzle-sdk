@@ -52,6 +52,9 @@ export const useBalance = ({ address, network, multisig }: GetBalancesRequest = 
           return !multisig;
         },
         onData: () => refetch(),
+        onError: (e: Error) => {
+          console.error(e)
+        },
         dependencies: [multisig],
       },
       {
@@ -60,6 +63,9 @@ export const useBalance = ({ address, network, multisig }: GetBalancesRequest = 
           return !!multisig && data?.address === address;
         },
         onData: () => refetch(),
+        onError: (e: Error) => {
+          console.error(e)
+        },
         dependencies: [multisig, address],
       },
     ],

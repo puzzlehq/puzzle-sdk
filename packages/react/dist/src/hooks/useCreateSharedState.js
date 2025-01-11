@@ -1,6 +1,6 @@
+import { SdkError } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { SdkError } from '../../../core/src/data/errors.js';
 export const useCreateSharedState = () => {
     const isConnected = useIsConnected();
     const query = {

@@ -1,8 +1,8 @@
-import { Balance } from '@puzzlehq/types';
+import { Balance, Network } from '@puzzlehq/types';
 
 export type AccountSelectedResponse = {
   address: string;
   balances: Balance[];
-  chain?: string;
+  network: Network;
 };
 export type AccountSyncedResponse = AccountSelectedResponse;

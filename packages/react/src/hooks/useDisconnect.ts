@@ -1,10 +1,10 @@
 import {
   disconnect as _disconnect,
+  SdkError
 } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { SdkError } from '../../../core/src/data/errors.js';
 
 export function useDisconnect() {
   const isConnected = useIsConnected();

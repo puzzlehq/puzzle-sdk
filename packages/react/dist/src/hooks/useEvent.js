@@ -33,6 +33,9 @@ export const useEvent = ({ id, address, multisig = false, network }) => {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => !!id && !multisig,
                 onData: () => refetch(),
+                onError: (e) => {
+                    console.error(e);
+                },
                 dependencies: [id, multisig],
             },
             {
@@ -41,6 +44,9 @@ export const useEvent = ({ id, address, multisig = false, network }) => {
                     return !!id && !!multisig && data?.address === address;
                 },
                 onData: () => refetch(),
+                onError: (e) => {
+                    console.error(e);
+                },
                 dependencies: [id, multisig, address],
             },
         ],

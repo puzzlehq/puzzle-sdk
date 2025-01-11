@@ -40,6 +40,9 @@ export const useEvents = ({ filter, page, address, network }) => {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => true,
                 onData: () => refetch(),
+                onError: (e) => {
+                    console.error(e);
+                },
                 dependencies: [],
             },
         ],

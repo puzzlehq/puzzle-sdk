@@ -2,15 +2,15 @@ import {
   DecryptRequest,
   DecryptResponse,
   GenericRequest,
+  SdkError
 } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { SdkError } from '../../../core/src/data/errors.js';
 
 export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
   const isConnected = useIsConnected();
 
-  const query: GenericRequest = {
+  const req: GenericRequest = {
     method: 'decrypt',
     params: {
       ciphertexts: ciphertexts,
@@ -25,7 +25,7 @@ export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
     error: wc_error,
     loading,
   } = useInjectedRequest<DecryptResponse | undefined>(
-    query, 
+    req, 
     async (params) => {
       if (isConnected) {
         const response: DecryptResponse = await window.aleo.puzzleWalletClient.decrypt.query(params)
@@ -41,10 +41,10 @@ export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
     : wc_data && wc_data.error;
   const response: DecryptResponse | undefined = wc_data;
 
-  const decrypt = async (paramsOverride: DecryptRequest) => {
+  const decrypt = async (requestOverride?: DecryptRequest) => {
     return await request({
       method: 'decrypt',
-      params: paramsOverride
+      params: requestOverride ?? req
     })
   };
 

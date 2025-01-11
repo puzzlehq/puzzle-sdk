@@ -4,11 +4,13 @@ import {
   AccountSyncedResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
+import { Observable } from '@trpc/server/observable'
 
 type SubscriptionConfig = {
   subscriptionName: string;
   condition: (data: AccountSelectedResponse | AccountSyncedResponse | void) => boolean;
   onData: (data: AccountSelectedResponse | AccountSyncedResponse | void) => void;
+  onError: (error: Error) => void;
   dependencies: any[];
 };
 
@@ -24,32 +26,39 @@ const useInjectedSubscriptions = ({
       return;
     }
     const subscriptions = configs.map(
-      ({ subscriptionName, condition, onData }) => {
-        const subscription = window.aleo.puzzleWalletClient[
-          subscriptionName
-        ].subscribe(
-          {
-            onData(data: AccountSelectedResponse | AccountSyncedResponse | void) {
-              if (condition(data)) {
-                onData(data);
-              }
+      ({ subscriptionName, condition, onData: _onData, onError: _onError }) => {
+        console.log(`subscribing to ${subscriptionName}`);
+        try {
+          const subscription = (window.aleo.puzzleWalletClient[
+            subscriptionName
+          ]).subscribe(
+            { method: subscriptionName },
+            {
+              next(data: AccountSelectedResponse | AccountSyncedResponse | void) {
+                if (condition(data)) {
+                  _onData(data);
+                }
+              },
+              error(e: Error) {
+                console.error(
+                  `${subscriptionName} tRPC subscription error:`,
+                  e,
+                );
+                _onError(e);
+              },
             },
-            onError(err: Error) {
-              console.error(
-                `${subscriptionName} tRPC subscription error:`,
-                err,
-              );
-            },
-          },
-        );
-        return subscription;
+          );
+          return subscription;
+        } catch (e) {
+          console.error(e);
+        }
       },
     );
 
     // Cleanup on unmount or when dependencies change
     return () => {
       subscriptions.forEach((subscription) => {
-        subscription.unsubscribe();
+        subscription?.unsubscribe();
       });
     };
   }, [...configs.flatMap((config) => config.dependencies)]);

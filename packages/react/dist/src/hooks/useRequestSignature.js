@@ -1,8 +1,7 @@
-import { requestSignature as _requestSignature, log_sdk, } from '@puzzlehq/sdk-core';
+import { requestSignature as _requestSignature, log_sdk, SdkError } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { SdkError } from '../../../core/src/data/errors.js';
 export const useRequestSignature = ({ message, address, network, }) => {
     const isConnected = useIsConnected();
     const req = {

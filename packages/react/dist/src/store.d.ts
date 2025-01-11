@@ -1,9 +1,7 @@
 import { PuzzleAccount } from '@puzzlehq/sdk-core';
 type WalletState = {
     account?: PuzzleAccount;
-    chainId?: string;
     setAccount: (account: PuzzleAccount | undefined) => void;
-    setChainId: (chainId: string) => void;
     onDisconnect: () => void;
 };
 export declare const useWalletStore: import("zustand").UseBoundStore<Omit<import("zustand").StoreApi<WalletState>, "persist"> & {
