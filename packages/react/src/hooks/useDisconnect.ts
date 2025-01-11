@@ -13,8 +13,6 @@ export function useDisconnect() {
 
   const { error, loading, setError, setLoading } = useAsyncAction();
 
-  console.log('useDisconnect: isConnected', isConnected)
-
   async function disconnect() {
     if (!isConnected) {
       setError(SdkError.NotConnected);

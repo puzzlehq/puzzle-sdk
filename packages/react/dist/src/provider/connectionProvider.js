@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useInjectedRequestQuery } from '../hooks/utils/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js';
@@ -34,7 +34,7 @@ export const ConnectionProvider = ({ children }) => {
             {
                 subscriptionName: 'onAccountSelected',
                 condition: () => {
-                    return true;
+                    return isConnected;
                 },
                 onData: (data) => {
                     setAccount({
@@ -46,12 +46,12 @@ export const ConnectionProvider = ({ children }) => {
                 onError: (e) => {
                     console.error(e);
                 },
-                dependencies: [],
+                dependencies: [isConnected],
             },
             {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => {
-                    return true;
+                    return isConnected;
                 },
                 onData: (data) => {
                     setAccount({
@@ -63,25 +63,21 @@ export const ConnectionProvider = ({ children }) => {
                 onError: (e) => {
                     console.error(e);
                 },
-                dependencies: [],
+                dependencies: [isConnected],
             },
             {
                 subscriptionName: 'onDisconnect',
-                condition: () => true,
+                condition: () => isConnected,
                 onData: () => {
-                    console.log('onDisconnect called!!');
                     onDisconnect();
                     setIsConnected(false);
                 },
                 onError: (e) => {
                     console.error(e);
                 },
-                dependencies: [],
+                dependencies: [isConnected],
             },
         ],
     });
-    useEffect(() => {
-        console.log('ConnectionProvider isConnected', isConnected);
-    }, [isConnected]);
     return (_jsx(ConnectionContext.Provider, { value: { isConnected, setIsConnected }, children: children }));
 };

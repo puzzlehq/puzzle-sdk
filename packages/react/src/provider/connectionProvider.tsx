@@ -51,7 +51,7 @@ export const ConnectionProvider = ({
       {
         subscriptionName: 'onAccountSelected',
         condition: () => {
-          return true;
+          return isConnected;
         },
         onData: (data: AccountSelectedResponse) => {
           setAccount({
@@ -63,12 +63,12 @@ export const ConnectionProvider = ({
         onError: (e: Error) => {
           console.error(e)
         },
-        dependencies: [],
+        dependencies: [isConnected],
       },
       {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => {
-          return true;
+          return isConnected;
         },
         onData: (data: AccountSyncedResponse) => {
           setAccount({
@@ -80,27 +80,22 @@ export const ConnectionProvider = ({
         onError: (e: Error) => {
           console.error(e)
         },
-        dependencies: [],
+        dependencies: [isConnected],
       },
       {
         subscriptionName: 'onDisconnect',
-        condition: () => true,
+        condition: () => isConnected,
         onData: () => {
-          console.log('onDisconnect called!!');
           onDisconnect();
           setIsConnected(false);
         },
         onError: (e: Error) => {
           console.error(e)
         },
-        dependencies: [],
+        dependencies: [isConnected],
       },
     ],
   });
-
-  useEffect(() => {
-    console.log('ConnectionProvider isConnected', isConnected);
-  }, [isConnected])
 
   return (
     <ConnectionContext.Provider value={{isConnected, setIsConnected}}>

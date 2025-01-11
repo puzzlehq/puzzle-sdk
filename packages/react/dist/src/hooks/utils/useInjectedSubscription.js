@@ -8,12 +8,12 @@ const useInjectedSubscriptions = ({ configs, }) => {
         const subscriptions = configs.map(({ subscriptionName, condition, onData: _onData, onError: _onError }) => {
             try {
                 const subscription = (window.aleo.puzzleWalletClient[subscriptionName]).subscribe({ method: subscriptionName }, {
-                    next(data) {
+                    onData(data) {
                         if (condition(data)) {
                             _onData(data);
                         }
                     },
-                    error(e) {
+                    onError(e) {
                         console.error(`${subscriptionName} tRPC subscription error:`, e);
                         _onError(e);
                     },

@@ -4,7 +4,6 @@ import {
   AccountSyncedResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
-import { Observable } from '@trpc/server/observable'
 
 type SubscriptionConfig = {
   subscriptionName: string;
@@ -33,12 +32,12 @@ const useInjectedSubscriptions = ({
           ]).subscribe(
             { method: subscriptionName },
             {
-              next(data: AccountSelectedResponse | AccountSyncedResponse | void) {
+              onData(data: AccountSelectedResponse | AccountSyncedResponse | void) {
                 if (condition(data)) {
                   _onData(data);
                 }
               },
-              error(e: Error) {
+              onError(e: Error) {
                 console.error(
                   `${subscriptionName} tRPC subscription error:`,
                   e,

@@ -6,7 +6,6 @@ export function useDisconnect() {
     const { isConnected, setIsConnected } = useIsConnected();
     const [onDisconnect] = useWalletStore((state) => [state.onDisconnect]);
     const { error, loading, setError, setLoading } = useAsyncAction();
-    console.log('useDisconnect: isConnected', isConnected);
     async function disconnect() {
         if (!isConnected) {
             setError(SdkError.NotConnected);
