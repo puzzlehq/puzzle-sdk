@@ -9,10 +9,11 @@ import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { useShallow } from 'zustand/react/shallow';
 
 export const useEvent = ({ id, address, multisig = false, network }: GetEventRequest) => {
   const {isConnected} = useIsConnected();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [account] = useWalletStore(useShallow((state) => [state.account]));
 
   const isEnabled =
     id !== undefined &&

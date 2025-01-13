@@ -3,14 +3,16 @@ import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
 import { shortenAddress } from './useAccount.js';
 import { useIsConnected } from '../provider/connectionProvider.js';
+import { useShallow } from 'zustand/react/shallow';
 export function useConnect(request) {
     const { isConnected, setIsConnected } = useIsConnected();
     const { data, error, loading, setData, setError, setLoading } = useAsyncAction();
-    const [setAccount] = useWalletStore((state) => [state.setAccount]);
+    const [setAccount] = useWalletStore(useShallow((state) => [state.setAccount]));
     async function connect() {
         try {
             setLoading(true);
             setError(undefined);
+            console.log('connect request', request);
             const response = await _connect(request);
             if (response.connection) {
                 setData(response);

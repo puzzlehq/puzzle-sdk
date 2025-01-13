@@ -1,10 +1,8 @@
 import { importSharedState as _importSharedState, } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
-import { useWalletStore } from '../store.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useImportSharedState = ({ seed }) => {
     const isConnected = useIsConnected();
-    const [account] = useWalletStore((state) => [state.account]);
     const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest({
         method: 'importSharedState',
         params: {

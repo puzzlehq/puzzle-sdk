@@ -4,6 +4,7 @@ import {
   AccountSyncedResponse,
   hasInjectedConnection,
 } from '@puzzlehq/sdk-core';
+import { useIsConnected } from '../../provider/connectionProvider.js';
 
 type SubscriptionConfig = {
   subscriptionName: string;
@@ -20,6 +21,8 @@ type UseInjectedSubscriptionsParams = {
 const useInjectedSubscriptions = ({
   configs,
 }: UseInjectedSubscriptionsParams) => {
+  const { isConnected } = useIsConnected();
+
   useEffect(() => {
     if (!hasInjectedConnection()) {
       return;
@@ -38,17 +41,19 @@ const useInjectedSubscriptions = ({
                 }
               },
               onError(e: Error) {
-                console.error(
-                  `${subscriptionName} tRPC subscription error:`,
-                  e,
-                );
-                _onError(e);
+                if (isConnected) {
+                  console.error(
+                    `${subscriptionName} tRPC subscription error:`,
+                    e,
+                  );
+                  _onError(e);
+                }
               },
             },
           );
           return subscription;
         } catch (e) {
-          console.error(e);
+          isConnected && console.error(e);
         }
       },
     );
@@ -59,7 +64,7 @@ const useInjectedSubscriptions = ({
         subscription?.unsubscribe();
       });
     };
-  }, [...configs.flatMap((config) => config.dependencies)]);
+  }, [...configs.flatMap((config) => config.dependencies), isConnected]);
 };
 
 export default useInjectedSubscriptions;

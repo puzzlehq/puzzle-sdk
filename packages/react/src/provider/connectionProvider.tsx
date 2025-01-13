@@ -4,6 +4,7 @@ import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js';
 import { AccountSelectedResponse, AccountSyncedResponse } from '@puzzlehq/sdk-core';
 import { shortenAddress } from '../hooks/useAccount.js';
+import { useShallow } from 'zustand/react/shallow';
 
 type Props = {
   children: React.ReactNode;
@@ -28,7 +29,7 @@ export const ConnectionProvider = ({
   children
 }: Props) => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [account, onDisconnect, setAccount] = useWalletStore((state) => [state.account, state.onDisconnect, state.setAccount])
+  const [account, onDisconnect, setAccount] = useWalletStore(useShallow((state) => [state.account, state.onDisconnect, state.setAccount]))
 
   useInjectedRequestQuery<boolean>({
     queryKey: [

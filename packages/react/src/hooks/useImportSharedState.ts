@@ -9,7 +9,6 @@ import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useImportSharedState = ({ seed }: ImportSharedStateRequest) => {
   const isConnected = useIsConnected();
-  const [account] = useWalletStore((state) => [state.account]);
 
   const {
     request,

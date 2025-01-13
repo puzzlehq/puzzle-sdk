@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { useShallow } from 'zustand/react/shallow';
 export const shortenAddress = (address, aleo = true, length = 4, short = true) => {
     if (!address)
         return '';
@@ -16,10 +17,10 @@ export const shortenAddress = (address, aleo = true, length = 4, short = true) =
 };
 export const useAccount = () => {
     const { isConnected } = useIsConnected();
-    const [account, setAccount] = useWalletStore((state) => [
+    const [account, setAccount] = useWalletStore(useShallow((state) => [
         state.account,
         state.setAccount,
-    ]);
+    ]));
     const query = {
         method: 'getSelectedAccount',
     };

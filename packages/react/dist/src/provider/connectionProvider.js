@@ -4,6 +4,7 @@ import { useInjectedRequestQuery } from '../hooks/utils/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js';
 import { shortenAddress } from '../hooks/useAccount.js';
+import { useShallow } from 'zustand/react/shallow';
 export const ConnectionContext = createContext(undefined);
 export const useIsConnected = () => {
     const context = useContext(ConnectionContext);
@@ -14,7 +15,7 @@ export const useIsConnected = () => {
 };
 export const ConnectionProvider = ({ children }) => {
     const [isConnected, setIsConnected] = useState(false);
-    const [account, onDisconnect, setAccount] = useWalletStore((state) => [state.account, state.onDisconnect, state.setAccount]);
+    const [account, onDisconnect, setAccount] = useWalletStore(useShallow((state) => [state.account, state.onDisconnect, state.setAccount]));
     useInjectedRequestQuery({
         queryKey: [
             'isConnected',

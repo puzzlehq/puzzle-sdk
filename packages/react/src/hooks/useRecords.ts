@@ -11,6 +11,7 @@ import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { useShallow } from 'zustand/react/shallow';
 
 export const getFormattedRecordPlaintext = (data: any) => {
   try {
@@ -28,7 +29,7 @@ export const useRecords = ({
   network
 }: GetRecordsRequest) => {
   const {isConnected} = useIsConnected();
-  const [account] = useWalletStore((state) => [state.account]);
+  const [account] = useWalletStore(useShallow((state) => [state.account]));
 
   const query: GenericRequest = {
     method: 'getRecords',
