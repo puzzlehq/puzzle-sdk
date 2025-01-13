@@ -38,7 +38,6 @@ export type CreateEventRequest = {
 /// wallet passes this back to dapp
 export type CreateEventResponse = {
   eventId?: string;
-  /// pass in whole event here?
   error?: string;
 };
 
