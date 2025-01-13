@@ -52,4 +52,4 @@ git clone https://github.com/puzzlehq/build-a-token.git
 ## Work in progress
 
 The Puzzle SDK and Aleo are in early development.
-The Puzzle SDK is open source. If you find something that's not working, [open an issue on Github](https://github.com/puzzlehq/puzzle-sdk/issues/new/choose) or let us know on [Telegram](https://t.me/puzzledev).
+The Puzzle SDK is open source. If you find something that's not working, [open an issue on Github](https://github.com/puzzlehq/puzzle-sdk/issues/new/choose) or let us know on [Discord](https://discord.com/invite/puzzlearcade).
