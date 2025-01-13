@@ -5,6 +5,7 @@ import {
 import { useWalletStore } from '../store.js';
 import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useIsConnected } from '../provider/connectionProvider.js';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 export function useDisconnect() {
   const { isConnected, setIsConnected } = useIsConnected();
@@ -37,4 +38,22 @@ export function useDisconnect() {
   }
 
   return { error, loading, disconnect };
+}
+
+export function useOnDisconnect(callback: () => void, dependencies: React.DependencyList) {
+  useInjectedSubscriptions({
+    configs: [
+      {
+        subscriptionName: 'onDisconnect',
+        condition: () => true,
+        onData: () => {
+          callback()
+        },
+        onError: (e: Error) => {
+          console.error(e)
+        },
+        dependencies: [...dependencies],
+      },
+    ],
+  });
 }
