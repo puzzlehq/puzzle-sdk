@@ -65,8 +65,7 @@ export const useEvent = ({ id, address, multisig = false, network }: GetEventReq
         },
         dependencies: [id, multisig, address],
       },
-    ],
-    isConnected
+    ]
   });
 
   // send initial events request

@@ -58,7 +58,6 @@ export function useOnDisconnect(callback: () => void, dependencies: React.Depend
         },
         dependencies: [...dependencies],
       },
-    ],
-    isConnected
+    ]
   });
 }

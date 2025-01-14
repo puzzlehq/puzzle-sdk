@@ -65,8 +65,7 @@ export const useRecords = ({ address, multisig = false, filter, page, network })
                 },
                 dependencies: [multisig, address],
             },
-        ],
-        isConnected
+        ]
     });
     const fetchPage = () => {
         if (readyToRequest && !loading) {

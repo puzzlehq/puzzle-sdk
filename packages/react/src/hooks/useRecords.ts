@@ -91,8 +91,7 @@ export const useRecords = ({
         },
         dependencies: [multisig, address],
       },
-    ],
-    isConnected
+    ]
   });
 
   const fetchPage = () => {

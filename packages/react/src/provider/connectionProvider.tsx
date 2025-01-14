@@ -1,9 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useInjectedRequestQuery } from '../hooks/utils/useRequest.js';
 import { useWalletStore } from '../store.js';
-import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js';
-import { AccountSelectedResponse, AccountSyncedResponse } from '@puzzlehq/sdk-core';
-import { shortenAddress } from '../hooks/useAccount.js';
 import { useShallow } from 'zustand/react/shallow';
 
 type Props = {
@@ -29,7 +26,7 @@ export const ConnectionProvider = ({
   children
 }: Props) => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [account, onDisconnect, setAccount] = useWalletStore(useShallow((state) => [state.account, state.onDisconnect, state.setAccount]))
+  const [account, onDisconnect] = useWalletStore(useShallow((state) => [state.account, state.onDisconnect, state.setAccount]))
 
   useInjectedRequestQuery<boolean>({
     queryKey: [
@@ -45,58 +42,6 @@ export const ConnectionProvider = ({
       setIsConnected(response);
       return response;
     },
-  });
-
-  useInjectedSubscriptions({
-    configs: [
-      {
-        subscriptionName: 'onAccountSelected',
-        condition: () => {
-          return isConnected;
-        },
-        onData: (data: AccountSelectedResponse) => {
-          setAccount({
-            network: data.network,
-            address: data.address,
-            shortenedAddress: shortenAddress(data.address),
-          });
-        },
-        onError: (e: Error) => {
-          console.error(e)
-        },
-        dependencies: [isConnected],
-      },
-      {
-        subscriptionName: 'onSelectedAccountSynced',
-        condition: () => {
-          return isConnected;
-        },
-        onData: (data: AccountSyncedResponse) => {
-          setAccount({
-            network: data.network,
-            address: data.address,
-            shortenedAddress: shortenAddress(data.address),
-          });
-        },
-        onError: (e: Error) => {
-          console.error(e)
-        },
-        dependencies: [isConnected],
-      },
-      {
-        subscriptionName: 'onDisconnect',
-        condition: () => isConnected,
-        onData: () => {
-          onDisconnect();
-          setIsConnected(false);
-        },
-        onError: (e: Error) => {
-          console.error(e)
-        },
-        dependencies: [isConnected],
-      },
-    ],
-    isConnected
   });
 
   return (

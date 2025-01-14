@@ -50,8 +50,7 @@ export const useEvent = ({ id, address, multisig = false, network }) => {
                 },
                 dependencies: [id, multisig, address],
             },
-        ],
-        isConnected
+        ]
     });
     // send initial events request
     const readyToRequest = !!isConnected && !!account && !!id && (multisig ? !!address : true);

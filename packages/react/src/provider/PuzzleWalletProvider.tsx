@@ -1,5 +1,6 @@
 import { QueryProvider } from './queryProvider.js';
 import { ConnectionProvider, useIsConnected } from './connectionProvider.js';
+import { SubscriptionProvider } from './subscriptionProvider.js';
 
 type PuzzleWalletProviderProps = {
   children: React.ReactNode;
@@ -14,7 +15,9 @@ export const PuzzleWalletProvider = ({
   return (
     <QueryProvider debugQuery={debugQuery}>
       <ConnectionProvider>
-      {children}
+        <SubscriptionProvider>
+          {children}
+        </SubscriptionProvider>
       </ConnectionProvider>
     </QueryProvider>
   );

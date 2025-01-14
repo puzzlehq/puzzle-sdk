@@ -49,7 +49,6 @@ export function useOnDisconnect(callback, dependencies) {
                 },
                 dependencies: [...dependencies],
             },
-        ],
-        isConnected
+        ]
     });
 }
