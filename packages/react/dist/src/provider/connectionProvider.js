@@ -79,6 +79,7 @@ export const ConnectionProvider = ({ children }) => {
                 dependencies: [isConnected],
             },
         ],
+        isConnected
     });
     return (_jsx(ConnectionContext.Provider, { value: { isConnected, setIsConnected }, children: children }));
 };

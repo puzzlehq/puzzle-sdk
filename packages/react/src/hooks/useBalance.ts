@@ -70,6 +70,7 @@ export const useBalance = ({ address, network, multisig }: GetBalancesRequest = 
         dependencies: [multisig, address],
       },
     ],
+    isConnected
   });
 
   // send initial balance request...

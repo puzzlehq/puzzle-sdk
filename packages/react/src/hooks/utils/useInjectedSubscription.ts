@@ -16,12 +16,13 @@ type SubscriptionConfig = {
 
 type UseInjectedSubscriptionsParams = {
   configs: SubscriptionConfig[];
+  isConnected?: boolean
 };
 
 const useInjectedSubscriptions = ({
   configs,
+  isConnected
 }: UseInjectedSubscriptionsParams) => {
-  const { isConnected } = useIsConnected();
 
   useEffect(() => {
     if (!hasInjectedConnection()) {

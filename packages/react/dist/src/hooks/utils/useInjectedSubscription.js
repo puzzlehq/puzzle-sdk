@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
-import { useIsConnected } from '../../provider/connectionProvider.js';
-const useInjectedSubscriptions = ({ configs, }) => {
-    const { isConnected } = useIsConnected();
+const useInjectedSubscriptions = ({ configs, isConnected }) => {
     useEffect(() => {
         if (!hasInjectedConnection()) {
             return;

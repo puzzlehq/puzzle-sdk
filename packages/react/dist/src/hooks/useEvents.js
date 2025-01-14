@@ -47,6 +47,7 @@ export const useEvents = ({ filter, page, address, network }) => {
                 dependencies: [isConnected],
             },
         ],
+        isConnected
     });
     // send initial events request
     const readyToRequest = !!isConnected && !!account;

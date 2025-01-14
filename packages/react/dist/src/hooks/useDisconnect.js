@@ -35,6 +35,7 @@ export function useDisconnect() {
     return { error, loading, disconnect };
 }
 export function useOnDisconnect(callback, dependencies) {
+    const { isConnected } = useIsConnected();
     useInjectedSubscriptions({
         configs: [
             {
@@ -49,5 +50,6 @@ export function useOnDisconnect(callback, dependencies) {
                 dependencies: [...dependencies],
             },
         ],
+        isConnected
     });
 }

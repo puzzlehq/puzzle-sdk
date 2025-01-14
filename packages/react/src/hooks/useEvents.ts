@@ -65,6 +65,7 @@ export const useEvents = ({ filter, page, address, network }: GetEventsRequest) 
         dependencies: [isConnected],
       },
     ],
+    isConnected
   });
 
   // send initial events request

@@ -28,7 +28,7 @@ export const useRecords = ({
   page,
   network
 }: GetRecordsRequest) => {
-  const {isConnected} = useIsConnected();
+  const { isConnected } = useIsConnected();
   const [account] = useWalletStore(useShallow((state) => [state.account]));
 
   const query: GenericRequest = {
@@ -76,7 +76,7 @@ export const useRecords = ({
         condition: () => !multisig,
         onData: () => refetch(),
         onError: (e: Error) => {
-          console.error(e)
+          isConnected && console.error(e)
         },
         dependencies: [multisig],
       },
@@ -92,6 +92,7 @@ export const useRecords = ({
         dependencies: [multisig, address],
       },
     ],
+    isConnected
   });
 
   const fetchPage = () => {

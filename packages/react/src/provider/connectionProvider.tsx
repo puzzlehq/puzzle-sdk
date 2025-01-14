@@ -96,6 +96,7 @@ export const ConnectionProvider = ({
         dependencies: [isConnected],
       },
     ],
+    isConnected
   });
 
   return (

@@ -8,6 +8,7 @@ type SubscriptionConfig = {
 };
 type UseInjectedSubscriptionsParams = {
     configs: SubscriptionConfig[];
+    isConnected?: boolean;
 };
-declare const useInjectedSubscriptions: ({ configs, }: UseInjectedSubscriptionsParams) => void;
+declare const useInjectedSubscriptions: ({ configs, isConnected }: UseInjectedSubscriptionsParams) => void;
 export default useInjectedSubscriptions;

@@ -53,6 +53,7 @@ export const useBalance = ({ address, network, multisig } = {}) => {
                 dependencies: [multisig, address],
             },
         ],
+        isConnected
     });
     // send initial balance request...
     useEffect(() => {
