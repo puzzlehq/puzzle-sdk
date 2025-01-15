@@ -17,6 +17,7 @@ export type CreateEventRequestData = {
   programId: string;
   functionId: string;
   fee: number;
+  feeRecord?: RecordWithPlaintext;
   inputs: (RecordWithPlaintext | string)[];
   tokenIds?: string[];
   settlementInfo?: {
@@ -34,6 +35,7 @@ export type CreateEventRequest = {
   programId: string;
   functionId: string;
   fee: number;
+  feeRecord?: RecordWithPlaintext;
   inputs: string[];
   tokenIds?: string[];
 };
