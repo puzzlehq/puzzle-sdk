@@ -8,8 +8,12 @@ import { useIsConnected } from '../../provider/connectionProvider.js';
 
 type SubscriptionConfig = {
   subscriptionName: string;
-  condition: (data: AccountSelectedResponse | AccountSyncedResponse | void) => boolean;
-  onData: (data: AccountSelectedResponse | AccountSyncedResponse | void) => void;
+  condition: (
+    data: AccountSelectedResponse | AccountSyncedResponse | void,
+  ) => boolean;
+  onData: (
+    data: AccountSelectedResponse | AccountSyncedResponse | void,
+  ) => void;
   onError: (error: Error) => void;
   dependencies: any[];
 };
@@ -30,12 +34,14 @@ const useInjectedSubscriptions = ({
     const subscriptions = configs.map(
       ({ subscriptionName, condition, onData: _onData, onError: _onError }) => {
         try {
-          const subscription = (window.aleo.puzzleWalletClient[
+          const subscription = window.aleo.puzzleWalletClient[
             subscriptionName
-          ]).subscribe(
+          ].subscribe(
             { method: subscriptionName },
             {
-              onData(data: AccountSelectedResponse | AccountSyncedResponse | void) {
+              onData(
+                data: AccountSelectedResponse | AccountSyncedResponse | void,
+              ) {
                 if (condition(data)) {
                   _onData(data);
                 }

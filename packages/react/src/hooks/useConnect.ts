@@ -1,7 +1,7 @@
 import {
   connect as _connect,
-  ConnectRequest,
-  ConnectResponse
+  ConnectRequestParams,
+  ConnectResponse,
 } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
@@ -9,12 +9,14 @@ import { shortenAddress } from './useAccount.js';
 import { useIsConnected } from '../provider/connectionProvider.js';
 import { useShallow } from 'zustand/react/shallow';
 
-export function useConnect(request: ConnectRequest) {
+export function useConnect(request: ConnectRequestParams) {
   const { isConnected, setIsConnected } = useIsConnected();
 
   const { data, error, loading, setData, setError, setLoading } =
     useAsyncAction<ConnectResponse>();
-  const [setAccount] = useWalletStore(useShallow((state) => [state.setAccount]));
+  const [setAccount] = useWalletStore(
+    useShallow((state) => [state.setAccount]),
+  );
 
   async function connect() {
     try {
@@ -27,8 +29,8 @@ export function useConnect(request: ConnectRequest) {
         setAccount({
           address: response.connection.address,
           network: response.connection.network,
-          shortenedAddress: shortenAddress(response.connection.address)
-        })
+          shortenedAddress: shortenAddress(response.connection.address),
+        });
         setIsConnected?.(true);
       } else if (response.error) {
         setError(response.error);

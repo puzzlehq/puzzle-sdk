@@ -1,12 +1,13 @@
 import { Event, GenericRequest } from '../index.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
+import { Network } from '@puzzlehq/types';
 
 export type GetEventRequest = {
   id: string;
   address?: string;
-  network?: string;
-  multisig?: boolean
+  network?: Network;
+  multisig?: boolean;
 };
 
 export type GetEventResponse = {
@@ -19,16 +20,17 @@ export const getEvent = async ({
   address,
   network,
 }: GetEventRequest): Promise<GetEventResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.getEvent?.query) throw new Error('getEvent.query not found!')
-
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.getEvent?.query)
+    throw new Error('getEvent.query not found!');
 
   const query: GenericRequest = {
     method: 'getEvent',
     params: {
       id,
       address,
-      network
+      network,
     } as GetEventRequest,
   };
 

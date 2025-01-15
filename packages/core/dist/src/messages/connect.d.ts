@@ -1,6 +1,6 @@
 import { ProgramIdPermissions } from '../data/types.js';
 import { Balance, Network } from '@puzzlehq/types';
-export type ConnectRequest = {
+export type ConnectRequestParams = {
     dAppInfo: {
         name?: string;
         description?: string;
@@ -10,7 +10,7 @@ export type ConnectRequest = {
         programIds: ProgramIdPermissions;
     };
 };
-export type Connection = ConnectRequest & {
+export type Connection = ConnectRequestParams & {
     dAppInfo: {
         hostname: string;
     };
@@ -21,8 +21,12 @@ export type ConnectionWithAccountInfo = Connection & {
     network: Network;
     balances: Balance[];
 };
+export type ConnectRequest = {
+    method: 'connect';
+    params: ConnectRequestParams;
+};
 export type ConnectResponse = {
     connection?: ConnectionWithAccountInfo;
     error?: string;
 };
-export declare const connect: (request: ConnectRequest) => Promise<ConnectResponse>;
+export declare const connect: (request: ConnectRequestParams) => Promise<ConnectResponse>;

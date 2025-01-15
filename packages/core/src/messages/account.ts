@@ -8,13 +8,15 @@ export type GetSelectedAccountResponse = {
 };
 
 export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.getSelectedAccount?.query) throw new Error('getSelectedAccount not found!')
-  
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.getSelectedAccount?.query)
+    throw new Error('getSelectedAccount not found!');
+
   const query: GenericRequest = {
     method: 'getSelectedAccount',
   };
-  
+
   try {
     const response: GetSelectedAccountResponse =
       await window.aleo.puzzleWalletClient.getSelectedAccount.query(query);

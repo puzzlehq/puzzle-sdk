@@ -28,8 +28,10 @@ export const getEvents = async ({
   address,
   network,
 }: GetEventsRequest): Promise<GetEventsResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.getEvents?.query) throw new Error('getEvents.query not found!')
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.getEvents?.query)
+    throw new Error('getEvents.query not found!');
 
   const query: GenericRequest = {
     method: 'getEvents',
@@ -37,7 +39,7 @@ export const getEvents = async ({
       filter,
       page,
       address,
-      network
+      network,
     } as GetEventsRequest,
   };
 

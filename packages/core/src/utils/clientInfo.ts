@@ -3,6 +3,6 @@ export const hasInjectedConnection = () => {
     return false;
   }
   const injectedConnection = !!window?.aleo?.puzzleWalletClient;
-  
+
   return injectedConnection;
 };

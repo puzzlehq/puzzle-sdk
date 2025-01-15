@@ -11,16 +11,13 @@ export const PuzzleWalletProvider = ({
   children,
   debugQuery = false,
 }: PuzzleWalletProviderProps) => {
-
   return (
     <QueryProvider debugQuery={debugQuery}>
       <ConnectionProvider>
-        <SubscriptionProvider>
-          {children}
-        </SubscriptionProvider>
+        <SubscriptionProvider>{children}</SubscriptionProvider>
       </ConnectionProvider>
     </QueryProvider>
   );
 };
 
-export { useIsConnected }; 
+export { useIsConnected };

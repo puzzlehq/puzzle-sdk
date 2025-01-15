@@ -1,11 +1,12 @@
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 import { GenericRequest } from '../data/types.js';
+import { Network } from '@puzzlehq/types';
 
 export type DecryptRequest = {
   ciphertexts: string[];
-  address?: string,
-  network?: string
+  address?: string;
+  network?: Network;
 };
 
 export type DecryptResponse = {
@@ -16,17 +17,19 @@ export type DecryptResponse = {
 export const decrypt = async ({
   ciphertexts,
   network,
-  address
+  address,
 }: DecryptRequest): Promise<DecryptResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.decrypt?.query) throw new Error('decrypt.query not found!')
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.decrypt?.query)
+    throw new Error('decrypt.query not found!');
 
   const query: GenericRequest = {
     method: 'decrypt',
     params: {
       ciphertexts: ciphertexts,
       address,
-      network
+      network,
     } as DecryptRequest,
   };
 

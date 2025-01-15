@@ -1,8 +1,9 @@
 import { Event } from '../index.js';
+import { Network } from '@puzzlehq/types';
 export type GetEventRequest = {
     id: string;
     address?: string;
-    network?: string;
+    network?: Network;
     multisig?: boolean;
 };
 export type GetEventResponse = {

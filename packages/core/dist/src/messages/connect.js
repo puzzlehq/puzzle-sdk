@@ -6,7 +6,11 @@ export const connect = async (request) => {
     if (!window.aleo.puzzleWalletClient.connect?.mutate)
         throw new Error('connect.mutate not found!');
     try {
-        const connectResponse = await window.aleo.puzzleWalletClient.connect.mutate(request);
+        const connectRequest = {
+            method: 'connect',
+            params: request
+        };
+        const connectResponse = await window.aleo.puzzleWalletClient.connect.mutate(connectRequest);
         return connectResponse;
     }
     catch (e) {

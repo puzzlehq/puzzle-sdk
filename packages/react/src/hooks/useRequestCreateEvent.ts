@@ -25,19 +25,21 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
 };
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
-  const {isConnected} = useIsConnected();
+  const { isConnected } = useIsConnected();
   const [account] = useWalletStore(useShallow((state) => [state.account]));
-  const [settlementStatus, setSettlementStatus] = useState<SettlementStatus | undefined>(undefined);
+  const [settlementStatus, setSettlementStatus] = useState<
+    SettlementStatus | undefined
+  >(undefined);
 
   const inputs = normalizeInputs(requestData?.inputs);
-  
+
   const req: GenericRequest = {
     method: 'requestCreateEvent',
     params: {
       ...requestData,
       inputs,
     } as CreateEventRequest,
-  }
+  };
 
   const {
     request,
@@ -61,51 +63,76 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     : wc_data && wc_data.error;
   const response: CreateEventResponse | undefined = wc_data;
 
-  const createEvent = useCallback((createEventRequestOverride?: CreateEventRequest) => {
-    setSettlementStatus(undefined);
-    if (createEventRequestOverride && isConnected && !loading) {
-      log_sdk(
-        'useCreateEvent requesting with override...',
-        createEventRequestOverride,
-      );
-      const inputs = normalizeInputs(createEventRequestOverride.inputs);
-      return request({
-        method: 'requestCreateEvent',
-        params: {
-          ...createEventRequestOverride,
-          inputs,
-        } as CreateEventRequest,
-      });
-    } else if (requestData && isConnected && !loading) {
-      log_sdk('useCreateEvent requesting...', requestData);
-      return request();
-    }
-  }, [isConnected, JSON.stringify(account), loading, request]);
+  const createEvent = useCallback(
+    (createEventRequestOverride?: CreateEventRequest) => {
+      setSettlementStatus(undefined);
+      if (createEventRequestOverride && isConnected && !loading) {
+        log_sdk(
+          'useCreateEvent requesting with override...',
+          createEventRequestOverride,
+        );
+        const inputs = normalizeInputs(createEventRequestOverride.inputs);
+        return request({
+          method: 'requestCreateEvent',
+          params: {
+            ...createEventRequestOverride,
+            inputs,
+          } as CreateEventRequest,
+        });
+      } else if (requestData && isConnected && !loading) {
+        log_sdk('useCreateEvent requesting...', requestData);
+        return request();
+      }
+    },
+    [isConnected, JSON.stringify(account), loading, request],
+  );
 
-  const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId
+  const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId;
 
-  const { event, error: eventFetchError } = useEvent({ id: eventId ?? '', address: requestData?.address });
+  const { event, error: eventFetchError } = useEvent({
+    id: eventId ?? '',
+    address: requestData?.address,
+  });
 
   useEffect(() => {
     console.log('eventId', eventId);
-  }, [eventId])
+  }, [eventId]);
 
   useEffect(() => {
     console.log('event', event);
-  }, [JSON.stringify(event)])
+  }, [JSON.stringify(event)]);
 
   useEffect(() => {
-    if (event?.status === EventStatus.Creating || loading) setSettlementStatus('Creating');
-    else if (event?.status === EventStatus.Pending) setSettlementStatus('Pending');
-    else if (event?.status === EventStatus.Failed || error) setSettlementStatus('Failed');
+    if (event?.status === EventStatus.Creating || loading)
+      setSettlementStatus('Creating');
+    else if (event?.status === EventStatus.Pending)
+      setSettlementStatus('Pending');
+    else if (event?.status === EventStatus.Failed || error)
+      setSettlementStatus('Failed');
     else if (event?.status === EventStatus.Settled) {
-      if (requestData?.settlementInfo && requestData.settlementInfo.currentRecordCount === requestData.settlementInfo.expectedRecordCount) {
-        setSettlementStatus('SettledWithRecords')
+      if (
+        requestData?.settlementInfo &&
+        requestData.settlementInfo.currentRecordCount ===
+          requestData.settlementInfo.expectedRecordCount
+      ) {
+        setSettlementStatus('SettledWithRecords');
       } else {
-        setSettlementStatus('Settled')
+        setSettlementStatus('Settled');
       }
     }
-  }, [loading, JSON.stringify(event), JSON.stringify(eventFetchError), JSON.stringify(requestData?.settlementInfo), error]);
+  }, [
+    loading,
+    JSON.stringify(event),
+    JSON.stringify(eventFetchError),
+    JSON.stringify(requestData?.settlementInfo),
+    error,
+  ]);
 
-  return { createEvent, eventId: response?.eventId, loading, error, settlementStatus };
+  return {
+    createEvent,
+    eventId: response?.eventId,
+    loading,
+    error,
+    settlementStatus,
+  };
 };

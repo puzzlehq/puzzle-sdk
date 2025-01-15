@@ -1,7 +1,8 @@
+import { Network } from '@puzzlehq/types';
 export type DecryptRequest = {
     ciphertexts: string[];
     address?: string;
-    network?: string;
+    network?: Network;
 };
 export type DecryptResponse = {
     plaintexts?: string[];

@@ -1,7 +1,4 @@
-import {
-  disconnect as _disconnect,
-  SdkError
-} from '@puzzlehq/sdk-core';
+import { disconnect as _disconnect, SdkError } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useIsConnected } from '../provider/connectionProvider.js';
@@ -12,7 +9,9 @@ import { useConnect } from './useConnect.js';
 export function useDisconnect() {
   const { isConnected, setIsConnected } = useIsConnected();
 
-  const [onDisconnect] = useWalletStore(useShallow((state) => [state.onDisconnect]));
+  const [onDisconnect] = useWalletStore(
+    useShallow((state) => [state.onDisconnect]),
+  );
 
   const { error, loading, setError, setLoading } = useAsyncAction();
 
@@ -42,22 +41,25 @@ export function useDisconnect() {
   return { error, loading, disconnect };
 }
 
-export function useOnDisconnect(callback: () => void, dependencies: React.DependencyList) {
+export function useOnDisconnect(
+  callback: () => void,
+  dependencies: React.DependencyList,
+) {
   const { isConnected } = useIsConnected();
-  
+
   useInjectedSubscriptions({
     configs: [
       {
         subscriptionName: 'onDisconnect',
         condition: () => true,
         onData: () => {
-          callback()
+          callback();
         },
         onError: (e: Error) => {
-          console.error(e)
+          console.error(e);
         },
         dependencies: [...dependencies],
       },
-    ]
+    ],
   });
 }

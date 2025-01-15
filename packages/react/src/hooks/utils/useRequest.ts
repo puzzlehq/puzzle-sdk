@@ -35,9 +35,7 @@ export function useInjectedRequest<Result>(
 ) {
   const { data, error, loading, setData, setError, setLoading } =
     useAsyncAction<Result>();
-  async function request(
-    paramsOverride?: GenericRequest,
-  ) {
+  async function request(paramsOverride?: GenericRequest) {
     try {
       setLoading(true);
       setError(undefined);

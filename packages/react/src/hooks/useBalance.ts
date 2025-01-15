@@ -12,8 +12,12 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useShallow } from 'zustand/react/shallow';
 
-export const useBalance = ({ address, network, multisig }: GetBalancesRequest = {}) => {
-  const {isConnected} = useIsConnected();
+export const useBalance = ({
+  address,
+  network,
+  multisig,
+}: GetBalancesRequest = {}) => {
+  const { isConnected } = useIsConnected();
   const [account] = useWalletStore(useShallow((state) => [state.account]));
 
   const query: GenericRequest = {
@@ -54,7 +58,7 @@ export const useBalance = ({ address, network, multisig }: GetBalancesRequest = 
         },
         onData: () => refetch(),
         onError: (e: Error) => {
-          console.error(e)
+          console.error(e);
         },
         dependencies: [multisig],
       },
@@ -65,11 +69,11 @@ export const useBalance = ({ address, network, multisig }: GetBalancesRequest = 
         },
         onData: () => refetch(),
         onError: (e: Error) => {
-          console.error(e)
+          console.error(e);
         },
         dependencies: [multisig, address],
       },
-    ]
+    ],
   });
 
   // send initial balance request...

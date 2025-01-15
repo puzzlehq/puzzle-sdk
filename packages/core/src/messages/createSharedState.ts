@@ -10,21 +10,24 @@ export type CreateSharedStateResponse = {
   error?: string;
 };
 
-export const createSharedState = async (): Promise<CreateSharedStateResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.createSharedState?.mutate) throw new Error('createSharedState.mutate not found!')
+export const createSharedState =
+  async (): Promise<CreateSharedStateResponse> => {
+    if (!hasInjectedConnection())
+      throw new Error(SdkError.PuzzleWalletNotDetected);
+    if (!window.aleo.puzzleWalletClient.createSharedState?.mutate)
+      throw new Error('createSharedState.mutate not found!');
 
-  const query: GenericRequest = {
-    method: 'createSharedState',
+    const query: GenericRequest = {
+      method: 'createSharedState',
+    };
+
+    try {
+      const response: CreateSharedStateResponse =
+        await window.aleo.puzzleWalletClient.createSharedState.mutate(query);
+      return response;
+    } catch (e) {
+      console.error('createSharedState error', e);
+      const error = (e as Error).message;
+      return { error };
+    }
   };
-
-  try {
-    const response: CreateSharedStateResponse =
-      await window.aleo.puzzleWalletClient.createSharedState.mutate(query);
-    return response;
-  } catch (e) {
-    console.error('createSharedState error', e);
-    const error = (e as Error).message;
-    return { error };
-  }
-};

@@ -26,7 +26,7 @@ export const useRecords = ({
   multisig = false,
   filter,
   page,
-  network
+  network,
 }: GetRecordsRequest) => {
   const { isConnected } = useIsConnected();
   const [account] = useWalletStore(useShallow((state) => [state.account]));
@@ -37,7 +37,7 @@ export const useRecords = ({
       address,
       filter,
       page,
-      network
+      network,
     } as GetRecordsRequest,
   };
 
@@ -49,7 +49,7 @@ export const useRecords = ({
     multisig,
     JSON.stringify(debouncedFilter),
     page,
-  ]
+  ];
 
   const {
     refetch,
@@ -76,7 +76,7 @@ export const useRecords = ({
         condition: () => !multisig,
         onData: () => refetch(),
         onError: (e: Error) => {
-          isConnected && console.error(e)
+          isConnected && console.error(e);
         },
         dependencies: [multisig],
       },
@@ -87,11 +87,11 @@ export const useRecords = ({
         },
         onData: () => refetch(),
         onError: (e: Error) => {
-          console.error(e)
+          console.error(e);
         },
         dependencies: [multisig, address],
       },
-    ]
+    ],
   });
 
   const fetchPage = () => {

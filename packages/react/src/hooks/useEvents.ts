@@ -12,8 +12,13 @@ import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useShallow } from 'zustand/react/shallow';
 
-export const useEvents = ({ filter, page, address, network }: GetEventsRequest) => {
-  const {isConnected} = useIsConnected();
+export const useEvents = ({
+  filter,
+  page,
+  address,
+  network,
+}: GetEventsRequest) => {
+  const { isConnected } = useIsConnected();
   const [account] = useWalletStore(useShallow((state) => [state.account]));
 
   if (filter?.programId === '') {
@@ -25,8 +30,8 @@ export const useEvents = ({ filter, page, address, network }: GetEventsRequest) 
     params: {
       filter,
       page,
-      address, 
-      network
+      address,
+      network,
     } as GetEventsRequest,
   };
 
@@ -60,11 +65,11 @@ export const useEvents = ({ filter, page, address, network }: GetEventsRequest) 
         condition: () => true,
         onData: () => isConnected && refetch(),
         onError: (e: Error) => {
-          console.error(e)
+          console.error(e);
         },
         dependencies: [isConnected],
       },
-    ]
+    ],
   });
 
   // send initial events request

@@ -2,7 +2,12 @@ import { EventType, GenericRequest, hasInjectedConnection } from '../index.js';
 import { Network, type RecordWithPlaintext } from '@puzzlehq/types';
 import { SdkError } from '../data/errors.js';
 
-export type SettlementStatus = 'Settled' | 'SettledWithRecords' | 'Pending' | 'Creating' | 'Failed'
+export type SettlementStatus =
+  | 'Settled'
+  | 'SettledWithRecords'
+  | 'Pending'
+  | 'Creating'
+  | 'Failed';
 
 /// dapps send this to the sdk
 export type CreateEventRequestData = {
@@ -12,14 +17,13 @@ export type CreateEventRequestData = {
   programId: string;
   functionId: string;
   fee: number;
-  feeRecord?: RecordWithPlaintext;
   inputs: (RecordWithPlaintext | string)[];
   tokenIds?: string[];
   settlementInfo?: {
     eventId?: string;
-    expectedRecordCount: number,
-    currentRecordCount: number,
-  }
+    expectedRecordCount: number;
+    currentRecordCount: number;
+  };
 };
 
 /// sdk maps records to ciphertexts
@@ -30,7 +34,6 @@ export type CreateEventRequest = {
   programId: string;
   functionId: string;
   fee: number;
-  feeRecord?: RecordWithPlaintext;
   inputs: string[];
   tokenIds?: string[];
 };
@@ -44,8 +47,10 @@ export type CreateEventResponse = {
 export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
 ): Promise<CreateEventResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate) throw new Error('requestCreateEvent.mutate not found!')
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate)
+    throw new Error('requestCreateEvent.mutate not found!');
 
   const inputs = requestData?.inputs.map((input) => {
     if (typeof input === 'string') {
@@ -60,7 +65,7 @@ export const requestCreateEvent = async (
       ...requestData,
       inputs,
     } as CreateEventRequest,
-  }
+  };
 
   try {
     const response: CreateEventResponse =

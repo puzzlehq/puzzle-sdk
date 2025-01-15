@@ -20,7 +20,9 @@ export const ConnectionProvider = ({ children }) => {
         ],
         enabled: true,
         fetchFunction: async () => {
-            const response = await window.aleo.puzzleWalletClient.isConnected.query();
+            const response = await window.aleo.puzzleWalletClient.isConnected.query({
+                method: 'isConnected'
+            });
             if (response === false && account) {
                 onDisconnect();
             }

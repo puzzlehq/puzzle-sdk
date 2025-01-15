@@ -6,7 +6,7 @@ import { SdkError } from '../data/errors.js';
 export type GetBalancesRequest = {
   address?: string;
   network?: Network;
-  multisig?: boolean
+  multisig?: boolean;
 };
 
 export type GetBalancesResponse = {
@@ -14,19 +14,25 @@ export type GetBalancesResponse = {
   error?: string;
 };
 
-export const getBalance = async ({address, network, multisig}: GetBalancesRequest): Promise<GetBalancesResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.getBalance?.query) throw new Error('getBalance.query not found!')
+export const getBalance = async ({
+  address,
+  network,
+  multisig,
+}: GetBalancesRequest): Promise<GetBalancesResponse> => {
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.getBalance?.query)
+    throw new Error('getBalance.query not found!');
 
   const query: GenericRequest = {
     method: 'getBalance',
     params: {
       address,
       network,
-      multisig
+      multisig,
     } as GetBalancesRequest,
   };
-  
+
   try {
     const response: GetBalancesResponse =
       await window.aleo.puzzleWalletClient.getBalance.query(query);
@@ -36,4 +42,4 @@ export const getBalance = async ({address, network, multisig}: GetBalancesReques
     console.error('getBalance error', e);
     return { error };
   }
-}
+};

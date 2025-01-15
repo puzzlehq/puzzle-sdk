@@ -2,20 +2,24 @@ import {
   DecryptRequest,
   DecryptResponse,
   GenericRequest,
-  SdkError
+  SdkError,
 } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
-export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
-  const {isConnected} = useIsConnected();
+export const useDecrypt = ({
+  ciphertexts,
+  address,
+  network,
+}: DecryptRequest) => {
+  const { isConnected } = useIsConnected();
 
   const req: GenericRequest = {
     method: 'decrypt',
     params: {
       ciphertexts: ciphertexts,
       address,
-      network
+      network,
     } as DecryptRequest,
   };
 
@@ -24,17 +28,15 @@ export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
     data: wc_data,
     error: wc_error,
     loading,
-  } = useInjectedRequest<DecryptResponse | undefined>(
-    req, 
-    async (params) => {
-      if (isConnected) {
-        const response: DecryptResponse = await window.aleo.puzzleWalletClient.decrypt.query(params)
-        return response
-      } else {
-        return { error: SdkError.NotConnected }
-      }
-    },
-  );
+  } = useInjectedRequest<DecryptResponse | undefined>(req, async (params) => {
+    if (isConnected) {
+      const response: DecryptResponse =
+        await window.aleo.puzzleWalletClient.decrypt.query(params);
+      return response;
+    } else {
+      return { error: SdkError.NotConnected };
+    }
+  });
 
   const error: string | undefined = wc_error
     ? (wc_error as Error).message
@@ -44,8 +46,8 @@ export const useDecrypt = ({ciphertexts, address, network}: DecryptRequest) => {
   const decrypt = async (requestOverride?: DecryptRequest) => {
     return await request({
       method: 'decrypt',
-      params: requestOverride ?? req
-    })
+      params: requestOverride ?? req,
+    });
   };
 
   return { decrypt, plaintexts: response?.plaintexts, loading, error };

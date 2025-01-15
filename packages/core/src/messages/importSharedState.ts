@@ -17,8 +17,10 @@ export type ImportSharedStateResponse = {
 export const importSharedState = async ({
   seed,
 }: ImportSharedStateRequest): Promise<ImportSharedStateResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.importSharedState?.mutate) throw new Error('importSharedState.mutate not found!')
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.importSharedState?.mutate)
+    throw new Error('importSharedState.mutate not found!');
 
   const query: GenericRequest = {
     method: 'importSharedState',

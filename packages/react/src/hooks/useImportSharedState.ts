@@ -22,8 +22,7 @@ export const useImportSharedState = ({ seed }: ImportSharedStateRequest) => {
         seed,
       } as ImportSharedStateRequest,
     },
-    async () =>
-      await _importSharedState({seed}),
+    async () => await _importSharedState({ seed }),
   );
 
   const error: string | undefined = wc_error

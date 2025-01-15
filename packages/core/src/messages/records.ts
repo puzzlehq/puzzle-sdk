@@ -1,4 +1,8 @@
-import { type RecordWithPlaintext, Network, RecordStatus } from '@puzzlehq/types';
+import {
+  type RecordWithPlaintext,
+  Network,
+  RecordStatus,
+} from '@puzzlehq/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 import { GenericRequest } from '../data/types.js';
@@ -32,8 +36,10 @@ export const getRecords = async ({
   address,
   network,
 }: GetRecordsRequest): Promise<GetRecordsResponse> => {
-  if (!hasInjectedConnection()) throw new Error(SdkError.PuzzleWalletNotDetected);
-  if (!window.aleo.puzzleWalletClient.getRecords?.query) throw new Error('getRecords.query not found!')
+  if (!hasInjectedConnection())
+    throw new Error(SdkError.PuzzleWalletNotDetected);
+  if (!window.aleo.puzzleWalletClient.getRecords?.query)
+    throw new Error('getRecords.query not found!');
 
   const query: GenericRequest = {
     method: 'getRecords',
@@ -41,7 +47,7 @@ export const getRecords = async ({
       filter,
       page,
       address,
-      network
+      network,
     } as GetRecordsRequest,
   };
 

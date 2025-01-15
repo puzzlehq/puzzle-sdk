@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
-import {
-  GenericRequest,
-  GetSelectedAccountResponse,
-} from '@puzzlehq/sdk-core';
+import { GenericRequest, GetSelectedAccountResponse } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
@@ -27,11 +24,10 @@ export const shortenAddress = (
 };
 
 export const useAccount = () => {
-  const {isConnected} = useIsConnected()
-  const [account, setAccount] = useWalletStore(useShallow((state) => [
-    state.account,
-    state.setAccount,
-  ]));
+  const { isConnected } = useIsConnected();
+  const [account, setAccount] = useWalletStore(
+    useShallow((state) => [state.account, state.setAccount]),
+  );
 
   const query: GenericRequest = {
     method: 'getSelectedAccount',

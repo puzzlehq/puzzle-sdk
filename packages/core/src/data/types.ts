@@ -1,4 +1,4 @@
-import { Network } from "@puzzlehq/types";
+import { Network } from '@puzzlehq/types';
 
 export type PuzzleAccount = {
   address: string;
@@ -9,6 +9,6 @@ export type PuzzleAccount = {
 export type ProgramIdPermissions = Partial<Record<Network, string[]>>; // Network, programId[]
 
 export type GenericRequest = {
-  method: string,
-  params?: any // JSON serializable
-}
+  method: string;
+  params?: any; // JSON serializable
+};
