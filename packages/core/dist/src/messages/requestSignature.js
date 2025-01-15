@@ -10,7 +10,7 @@ export const requestSignature = async ({ message, address, network, }) => {
         params: {
             message,
             address,
-            network
+            network,
         },
     };
     try {

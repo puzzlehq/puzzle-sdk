@@ -1,9 +1,9 @@
 import { Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
-import useInjectedSubscriptions from "../hooks/utils/useInjectedSubscription.js";
+import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js';
 import { shortenAddress } from '../hooks/useAccount.js';
-import { useIsConnected } from "./connectionProvider.js";
-import { useWalletStore } from "../store.js";
-import { useShallow } from "zustand/react/shallow";
+import { useIsConnected } from './connectionProvider.js';
+import { useWalletStore } from '../store.js';
+import { useShallow } from 'zustand/react/shallow';
 export const SubscriptionProvider = ({ children }) => {
     const { isConnected, setIsConnected } = useIsConnected();
     const [onDisconnect, setAccount] = useWalletStore(useShallow((state) => [state.onDisconnect, state.setAccount]));
@@ -51,7 +51,7 @@ export const SubscriptionProvider = ({ children }) => {
                 },
                 dependencies: [isConnected],
             },
-        ]
+        ],
     });
     return _jsx(_Fragment, { children: children });
 };

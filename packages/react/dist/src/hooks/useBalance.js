@@ -4,7 +4,7 @@ import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useShallow } from 'zustand/react/shallow';
-export const useBalance = ({ address, network, multisig } = {}) => {
+export const useBalance = ({ address, network, multisig, } = {}) => {
     const { isConnected } = useIsConnected();
     const [account] = useWalletStore(useShallow((state) => [state.account]));
     const query = {
@@ -52,7 +52,7 @@ export const useBalance = ({ address, network, multisig } = {}) => {
                 },
                 dependencies: [multisig, address],
             },
-        ]
+        ],
     });
     // send initial balance request...
     useEffect(() => {

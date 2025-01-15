@@ -1,6 +1,6 @@
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
-export const getBalance = async ({ address, network, multisig }) => {
+export const getBalance = async ({ address, network, multisig, }) => {
     if (!hasInjectedConnection())
         throw new Error(SdkError.PuzzleWalletNotDetected);
     if (!window.aleo.puzzleWalletClient.getBalance?.query)
@@ -10,7 +10,7 @@ export const getBalance = async ({ address, network, multisig }) => {
         params: {
             address,
             network,
-            multisig
+            multisig,
         },
     };
     try {

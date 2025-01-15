@@ -47,15 +47,9 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     error: wc_error,
     loading,
   } = useInjectedRequest<CreateEventResponse | undefined>(req, async () => {
-    try {
-      const response: CreateEventResponse =
-        await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
-      return response;
-    } catch (e) {
-      console.error('createEvent error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
+    const response: CreateEventResponse =
+      await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+    return response;
   });
 
   const error: string | undefined = wc_error

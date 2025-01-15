@@ -10,7 +10,7 @@ export const getEvent = async ({ id, address, network, }) => {
         params: {
             id,
             address,
-            network
+            network,
         },
     };
     try {

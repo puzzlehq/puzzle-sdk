@@ -11,7 +11,7 @@ export const getRecords = async ({ filter, page = 0, address, network, }) => {
             filter,
             page,
             address,
-            network
+            network,
         },
     };
     try {

@@ -1,4 +1,4 @@
-import { requestSignature as _requestSignature, log_sdk, SdkError } from '@puzzlehq/sdk-core';
+import { requestSignature as _requestSignature, log_sdk, SdkError, } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
@@ -9,12 +9,12 @@ export const useRequestSignature = ({ message, address, network, }) => {
         params: {
             message,
             address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-            network
+            network,
         },
     };
     const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async (paramsOverride) => {
         if (!isConnected)
-            return { error: SdkError.NotConnected };
+            throw new Error(SdkError.NotConnected);
         return await _requestSignature(paramsOverride.params);
     });
     const error = wc_error

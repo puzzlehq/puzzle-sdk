@@ -6,7 +6,7 @@ export const disconnect = async () => {
     if (!window.aleo.puzzleWalletClient.disconnect?.mutate)
         throw new Error('disconnect.mutate not found!');
     const req = {
-        method: 'disconnect'
+        method: 'disconnect',
     };
     try {
         await window.aleo.puzzleWalletClient.disconnect.mutate(req);

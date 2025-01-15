@@ -9,19 +9,24 @@ export const useIsConnected = () => {
     if (!context) {
         throw new Error('useIsConnected must be used within a ConnectionProvider');
     }
-    return { isConnected: context?.isConnected, setIsConnected: context?.setIsConnected };
+    return {
+        isConnected: context?.isConnected,
+        setIsConnected: context?.setIsConnected,
+    };
 };
 export const ConnectionProvider = ({ children }) => {
     const [isConnected, setIsConnected] = useState(false);
-    const [account, onDisconnect] = useWalletStore(useShallow((state) => [state.account, state.onDisconnect, state.setAccount]));
+    const [account, onDisconnect] = useWalletStore(useShallow((state) => [
+        state.account,
+        state.onDisconnect,
+        state.setAccount,
+    ]));
     useInjectedRequestQuery({
-        queryKey: [
-            'isConnected',
-        ],
+        queryKey: ['isConnected'],
         enabled: true,
         fetchFunction: async () => {
             const response = await window.aleo.puzzleWalletClient.isConnected.query({
-                method: 'isConnected'
+                method: 'isConnected',
             });
             if (response === false && account) {
                 onDisconnect();

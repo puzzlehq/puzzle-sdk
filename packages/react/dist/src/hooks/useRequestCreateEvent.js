@@ -27,15 +27,8 @@ export const useRequestCreateEvent = (requestData) => {
         },
     };
     const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async () => {
-        try {
-            const response = await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
-            return response;
-        }
-        catch (e) {
-            console.error('createEvent error', e);
-            const error = e.message;
-            return { error };
-        }
+        const response = await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+        return response;
     });
     const error = wc_error
         ? wc_error.message
@@ -60,7 +53,10 @@ export const useRequestCreateEvent = (requestData) => {
         }
     }, [isConnected, JSON.stringify(account), loading, request]);
     const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId;
-    const { event, error: eventFetchError } = useEvent({ id: eventId ?? '', address: requestData?.address });
+    const { event, error: eventFetchError } = useEvent({
+        id: eventId ?? '',
+        address: requestData?.address,
+    });
     useEffect(() => {
         console.log('eventId', eventId);
     }, [eventId]);
@@ -75,13 +71,27 @@ export const useRequestCreateEvent = (requestData) => {
         else if (event?.status === EventStatus.Failed || error)
             setSettlementStatus('Failed');
         else if (event?.status === EventStatus.Settled) {
-            if (requestData?.settlementInfo && requestData.settlementInfo.currentRecordCount === requestData.settlementInfo.expectedRecordCount) {
+            if (requestData?.settlementInfo &&
+                requestData.settlementInfo.currentRecordCount ===
+                    requestData.settlementInfo.expectedRecordCount) {
                 setSettlementStatus('SettledWithRecords');
             }
             else {
                 setSettlementStatus('Settled');
             }
         }
-    }, [loading, JSON.stringify(event), JSON.stringify(eventFetchError), JSON.stringify(requestData?.settlementInfo), error]);
-    return { createEvent, eventId: response?.eventId, loading, error, settlementStatus };
+    }, [
+        loading,
+        JSON.stringify(event),
+        JSON.stringify(eventFetchError),
+        JSON.stringify(requestData?.settlementInfo),
+        error,
+    ]);
+    return {
+        createEvent,
+        eventId: response?.eventId,
+        loading,
+        error,
+        settlementStatus,
+    };
 };

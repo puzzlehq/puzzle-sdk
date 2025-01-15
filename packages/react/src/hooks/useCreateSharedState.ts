@@ -26,7 +26,7 @@ export const useCreateSharedState = () => {
           await window.aleo.puzzleWalletClient.createSharedState.mutate(params);
         return response;
       } else {
-        return { error: SdkError.NotConnected };
+        throw new Error(SdkError.NotConnected);
       }
     },
   );

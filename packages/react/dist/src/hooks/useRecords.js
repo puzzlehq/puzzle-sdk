@@ -13,7 +13,7 @@ export const getFormattedRecordPlaintext = (data) => {
         return '';
     }
 };
-export const useRecords = ({ address, multisig = false, filter, page, network }) => {
+export const useRecords = ({ address, multisig = false, filter, page, network, }) => {
     const { isConnected } = useIsConnected();
     const [account] = useWalletStore(useShallow((state) => [state.account]));
     const query = {
@@ -22,7 +22,7 @@ export const useRecords = ({ address, multisig = false, filter, page, network })
             address,
             filter,
             page,
-            network
+            network,
         },
     };
     const [debouncedFilter] = useDebounce(filter, 500);
@@ -65,7 +65,7 @@ export const useRecords = ({ address, multisig = false, filter, page, network })
                 },
                 dependencies: [multisig, address],
             },
-        ]
+        ],
     });
     const fetchPage = () => {
         if (readyToRequest && !loading) {

@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/query-core";
+import { QueryClient } from '@tanstack/query-core';
 export declare const queryClient: QueryClient;
 type Props = {
     children: React.ReactNode;

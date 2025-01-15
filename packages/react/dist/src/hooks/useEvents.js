@@ -5,7 +5,7 @@ import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useShallow } from 'zustand/react/shallow';
-export const useEvents = ({ filter, page, address, network }) => {
+export const useEvents = ({ filter, page, address, network, }) => {
     const { isConnected } = useIsConnected();
     const [account] = useWalletStore(useShallow((state) => [state.account]));
     if (filter?.programId === '') {
@@ -17,7 +17,7 @@ export const useEvents = ({ filter, page, address, network }) => {
             filter,
             page,
             address,
-            network
+            network,
         },
     };
     const [debouncedFilter] = useDebounce(filter, 500);
@@ -46,7 +46,7 @@ export const useEvents = ({ filter, page, address, network }) => {
                 },
                 dependencies: [isConnected],
             },
-        ]
+        ],
     });
     // send initial events request
     const readyToRequest = !!isConnected && !!account;

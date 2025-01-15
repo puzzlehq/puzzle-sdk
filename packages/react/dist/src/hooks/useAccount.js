@@ -17,10 +17,7 @@ export const shortenAddress = (address, aleo = true, length = 4, short = true) =
 };
 export const useAccount = () => {
     const { isConnected } = useIsConnected();
-    const [account, setAccount] = useWalletStore(useShallow((state) => [
-        state.account,
-        state.setAccount,
-    ]));
+    const [account, setAccount] = useWalletStore(useShallow((state) => [state.account, state.setAccount]));
     const query = {
         method: 'getSelectedAccount',
     };

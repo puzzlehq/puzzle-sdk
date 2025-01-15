@@ -34,7 +34,7 @@ export const useDecrypt = ({
         await window.aleo.puzzleWalletClient.decrypt.query(params);
       return response;
     } else {
-      return { error: SdkError.NotConnected };
+      throw new Error(SdkError.NotConnected);
     }
   });
 

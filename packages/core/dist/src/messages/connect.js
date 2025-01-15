@@ -8,7 +8,7 @@ export const connect = async (request) => {
     try {
         const connectRequest = {
             method: 'connect',
-            params: request
+            params: request,
         };
         const connectResponse = await window.aleo.puzzleWalletClient.connect.mutate(connectRequest);
         return connectResponse;

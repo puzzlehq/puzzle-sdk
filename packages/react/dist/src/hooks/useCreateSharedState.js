@@ -1,4 +1,4 @@
-import { SdkError } from '@puzzlehq/sdk-core';
+import { SdkError, } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useCreateSharedState = () => {
@@ -12,7 +12,7 @@ export const useCreateSharedState = () => {
             return response;
         }
         else {
-            return { error: SdkError.NotConnected };
+            throw new Error(SdkError.NotConnected);
         }
     });
     const error = wc_error

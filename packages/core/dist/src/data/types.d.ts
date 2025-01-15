@@ -1,4 +1,4 @@
-import { Network } from "@puzzlehq/types";
+import { Network } from '@puzzlehq/types';
 export type PuzzleAccount = {
     address: string;
     shortenedAddress: string;

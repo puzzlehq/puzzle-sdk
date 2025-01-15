@@ -1,6 +1,6 @@
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
-export const decrypt = async ({ ciphertexts, network, address }) => {
+export const decrypt = async ({ ciphertexts, network, address, }) => {
     if (!hasInjectedConnection())
         throw new Error(SdkError.PuzzleWalletNotDetected);
     if (!window.aleo.puzzleWalletClient.decrypt?.query)
@@ -10,7 +10,7 @@ export const decrypt = async ({ ciphertexts, network, address }) => {
         params: {
             ciphertexts: ciphertexts,
             address,
-            network
+            network,
         },
     };
     try {

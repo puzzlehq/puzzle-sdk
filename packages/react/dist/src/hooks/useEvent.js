@@ -5,7 +5,7 @@ import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useShallow } from 'zustand/react/shallow';
-export const useEvent = ({ id, address, multisig = false, network }) => {
+export const useEvent = ({ id, address, multisig = false, network, }) => {
     const { isConnected } = useIsConnected();
     const [account] = useWalletStore(useShallow((state) => [state.account]));
     const isEnabled = id !== undefined &&
@@ -14,14 +14,7 @@ export const useEvent = ({ id, address, multisig = false, network }) => {
         !!account &&
         (multisig ? !!address : true);
     const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
-        queryKey: [
-            'useEvent',
-            account?.address,
-            address,
-            network,
-            multisig,
-            id,
-        ],
+        queryKey: ['useEvent', account?.address, address, network, multisig, id],
         enabled: isEnabled,
         fetchFunction: async () => {
             return await getEvent({ id, address, network, multisig });
@@ -50,7 +43,7 @@ export const useEvent = ({ id, address, multisig = false, network }) => {
                 },
                 dependencies: [id, multisig, address],
             },
-        ]
+        ],
     });
     // send initial events request
     const readyToRequest = !!isConnected && !!account && !!id && (multisig ? !!address : true);

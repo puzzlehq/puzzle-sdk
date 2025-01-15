@@ -1,4 +1,4 @@
-import { connect as _connect } from '@puzzlehq/sdk-core';
+import { connect as _connect, } from '@puzzlehq/sdk-core';
 import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useWalletStore } from '../store.js';
 import { shortenAddress } from './useAccount.js';
@@ -19,7 +19,7 @@ export function useConnect(request) {
                 setAccount({
                     address: response.connection.address,
                     network: response.connection.network,
-                    shortenedAddress: shortenAddress(response.connection.address)
+                    shortenedAddress: shortenAddress(response.connection.address),
                 });
                 setIsConnected?.(true);
             }

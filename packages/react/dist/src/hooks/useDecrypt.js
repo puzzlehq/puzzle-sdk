@@ -1,14 +1,14 @@
-import { SdkError } from '@puzzlehq/sdk-core';
+import { SdkError, } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-export const useDecrypt = ({ ciphertexts, address, network }) => {
+export const useDecrypt = ({ ciphertexts, address, network, }) => {
     const { isConnected } = useIsConnected();
     const req = {
         method: 'decrypt',
         params: {
             ciphertexts: ciphertexts,
             address,
-            network
+            network,
         },
     };
     const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async (params) => {
@@ -17,7 +17,7 @@ export const useDecrypt = ({ ciphertexts, address, network }) => {
             return response;
         }
         else {
-            return { error: SdkError.NotConnected };
+            throw new Error(SdkError.NotConnected);
         }
     });
     const error = wc_error
@@ -27,7 +27,7 @@ export const useDecrypt = ({ ciphertexts, address, network }) => {
     const decrypt = async (requestOverride) => {
         return await request({
             method: 'decrypt',
-            params: requestOverride ?? req
+            params: requestOverride ?? req,
         });
     };
     return { decrypt, plaintexts: response?.plaintexts, loading, error };
