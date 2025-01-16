@@ -68,7 +68,7 @@ importers:
   packages/react:
     dependencies:
       '@puzzlehq/sdk-core':
-        specifier: 1.0.0-beta.12
+        specifier: 1.0.0-beta.13
         version: link:../core
       '@puzzlehq/types':
         specifier: 1.0.30
