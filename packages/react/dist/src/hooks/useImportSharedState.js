@@ -3,12 +3,13 @@ import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useImportSharedState = ({ seed }) => {
     const { isConnected } = useIsConnected();
-    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest({
+    const req = {
         method: 'importSharedState',
         params: {
             seed,
         },
-    }, async (req) => {
+    };
+    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async (req) => {
         if (!isConnected)
             throw new Error(SdkError.NotConnected);
         const response = await _importSharedState(req.params);

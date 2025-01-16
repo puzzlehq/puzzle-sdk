@@ -26,7 +26,7 @@ export const useRequestCreateEvent = (requestData) => {
             inputs,
         },
     };
-    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req.params, async (req) => {
+    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async (req) => {
         if (!isConnected)
             throw new Error(SdkError.NotConnected);
         const response = await requestCreateEvent(req.params);
