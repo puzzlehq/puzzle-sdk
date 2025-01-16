@@ -33,9 +33,11 @@ export const useRequestSignature = ({
     loading,
   } = useInjectedRequest<SignatureResponse | undefined>(
     req,
-    async (paramsOverride) => {
+    async (req) => {
       if (!isConnected) throw new Error(SdkError.NotConnected);
-      return await _requestSignature(paramsOverride.params as SignatureRequest);
+      const response = await _requestSignature(req.params as SignatureRequest);
+      if (response.error) throw new Error(response.error);
+      return response;
     },
   );
 

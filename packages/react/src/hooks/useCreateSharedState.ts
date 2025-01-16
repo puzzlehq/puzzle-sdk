@@ -1,15 +1,16 @@
 import {
+  createSharedState as _createSharedState,
   CreateSharedStateResponse,
   GenericRequest,
   SdkError,
 } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
-import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+import { useIsConnected } from '../provider/connectionProvider.js';
 
 export const useCreateSharedState = () => {
-  const { isConnected } = useIsConnected();
-
-  const query: GenericRequest = {
+  const { isConnected } = useIsConnected()
+  
+  const req: GenericRequest = {
     method: 'createSharedState',
   };
 
@@ -19,15 +20,12 @@ export const useCreateSharedState = () => {
     error: wc_error,
     loading,
   } = useInjectedRequest<CreateSharedStateResponse | undefined>(
-    query,
-    async (params) => {
-      if (isConnected) {
-        const response: CreateSharedStateResponse =
-          await window.aleo.puzzleWalletClient.createSharedState.mutate(params);
-        return response;
-      } else {
-        throw new Error(SdkError.NotConnected);
-      }
+    req,
+    async () => {
+      if (!isConnected) throw new Error(SdkError.NotConnected);
+      const response = await _createSharedState();
+      if (response.error) throw new Error(response.error);
+      return response;
     },
   );
 

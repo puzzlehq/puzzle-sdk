@@ -1,5 +1,5 @@
 import { useInjectedRequest } from './utils/useRequest.js';
-import { log_sdk, } from '@puzzlehq/sdk-core';
+import { log_sdk, requestCreateEvent, SdkError, } from '@puzzlehq/sdk-core';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 import { useEvent } from './useEvent.js';
@@ -26,8 +26,12 @@ export const useRequestCreateEvent = (requestData) => {
             inputs,
         },
     };
-    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async () => {
-        const response = await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req.params, async (req) => {
+        if (!isConnected)
+            throw new Error(SdkError.NotConnected);
+        const response = await requestCreateEvent(req.params);
+        if (response.error)
+            throw new Error(response.error);
         return response;
     });
     const error = wc_error
@@ -37,21 +41,22 @@ export const useRequestCreateEvent = (requestData) => {
     const createEvent = useCallback((createEventRequestOverride) => {
         setSettlementStatus(undefined);
         if (createEventRequestOverride && isConnected && !loading) {
-            log_sdk('useCreateEvent requesting with override...', createEventRequestOverride);
             const inputs = normalizeInputs(createEventRequestOverride.inputs);
-            return request({
+            const _request = {
                 method: 'requestCreateEvent',
                 params: {
                     ...createEventRequestOverride,
                     inputs,
                 },
-            });
+            };
+            log_sdk('useCreateEvent requesting with override...', _request);
+            return request(_request);
         }
         else if (requestData && isConnected && !loading) {
             log_sdk('useCreateEvent requesting...', requestData);
             return request();
         }
-    }, [isConnected, JSON.stringify(account), loading, request]);
+    }, [isConnected, JSON.stringify(account), loading, request, JSON.stringify(inputs)]);
     const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId;
     const { event, error: eventFetchError } = useEvent({
         id: eventId ?? '',

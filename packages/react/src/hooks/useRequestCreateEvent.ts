@@ -5,6 +5,8 @@ import {
   CreateEventResponse,
   GenericRequest,
   log_sdk,
+  requestCreateEvent,
+  SdkError,
   SettlementStatus,
 } from '@puzzlehq/sdk-core';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
@@ -46,9 +48,10 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     data: wc_data,
     error: wc_error,
     loading,
-  } = useInjectedRequest<CreateEventResponse | undefined>(req, async () => {
-    const response: CreateEventResponse =
-      await window.aleo.puzzleWalletClient.requestCreateEvent.mutate(req);
+  } = useInjectedRequest<CreateEventResponse | undefined>(req.params, async (req) => {
+    if (!isConnected) throw new Error(SdkError.NotConnected);
+    const response = await requestCreateEvent(req.params as CreateEventRequestData);
+    if (response.error) throw new Error(response.error);
     return response;
   });
 
@@ -61,24 +64,25 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     (createEventRequestOverride?: CreateEventRequest) => {
       setSettlementStatus(undefined);
       if (createEventRequestOverride && isConnected && !loading) {
-        log_sdk(
-          'useCreateEvent requesting with override...',
-          createEventRequestOverride,
-        );
         const inputs = normalizeInputs(createEventRequestOverride.inputs);
-        return request({
+        const _request: GenericRequest = {
           method: 'requestCreateEvent',
           params: {
             ...createEventRequestOverride,
             inputs,
           } as CreateEventRequest,
-        });
+        }
+        log_sdk(
+          'useCreateEvent requesting with override...',
+          _request,
+        );
+        return request(_request);
       } else if (requestData && isConnected && !loading) {
         log_sdk('useCreateEvent requesting...', requestData);
         return request();
       }
     },
-    [isConnected, JSON.stringify(account), loading, request],
+    [isConnected, JSON.stringify(account), loading, request, JSON.stringify(inputs)],
   );
 
   const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId;

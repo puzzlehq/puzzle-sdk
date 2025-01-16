@@ -1,4 +1,5 @@
 import {
+  decrypt as _decrypt,
   DecryptRequest,
   DecryptResponse,
   GenericRequest,
@@ -28,14 +29,11 @@ export const useDecrypt = ({
     data: wc_data,
     error: wc_error,
     loading,
-  } = useInjectedRequest<DecryptResponse | undefined>(req, async (params) => {
-    if (isConnected) {
-      const response: DecryptResponse =
-        await window.aleo.puzzleWalletClient.decrypt.query(params);
-      return response;
-    } else {
-      throw new Error(SdkError.NotConnected);
-    }
+  } = useInjectedRequest<DecryptResponse | undefined>(req, async (req) => {
+    if (!isConnected) throw new Error(SdkError.NotConnected);
+    const response = await _decrypt(req.params as DecryptRequest)
+    if (response.error) throw new Error(response.error);
+    return response;
   });
 
   const error: string | undefined = wc_error

@@ -1,14 +1,21 @@
-import { importSharedState as _importSharedState, } from '@puzzlehq/sdk-core';
+import { importSharedState as _importSharedState, SdkError, } from '@puzzlehq/sdk-core';
 import { useInjectedRequest } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useImportSharedState = ({ seed }) => {
-    const isConnected = useIsConnected();
+    const { isConnected } = useIsConnected();
     const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest({
         method: 'importSharedState',
         params: {
             seed,
         },
-    }, async () => await _importSharedState({ seed }));
+    }, async (req) => {
+        if (!isConnected)
+            throw new Error(SdkError.NotConnected);
+        const response = await _importSharedState(req.params);
+        if (response.error)
+            throw new Error(response.error);
+        return response;
+    });
     const error = wc_error
         ? wc_error.message
         : wc_data && wc_data.error;

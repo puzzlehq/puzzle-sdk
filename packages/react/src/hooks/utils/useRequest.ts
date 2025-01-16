@@ -39,6 +39,7 @@ export function useInjectedRequest<Result>(
     try {
       setLoading(true);
       setError(undefined);
+      console.log('useInjectedRequest sending request', paramsOverride ?? params)
       const response: Result = await fetchFunction!(paramsOverride ?? params);
       setData(response);
       return response;

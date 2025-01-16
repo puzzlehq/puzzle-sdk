@@ -4,7 +4,6 @@ import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useIsConnected } from '../provider/connectionProvider.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useShallow } from 'zustand/react/shallow';
-import { useConnect } from './useConnect.js';
 
 export function useDisconnect() {
   const { isConnected, setIsConnected } = useIsConnected();
@@ -45,7 +44,6 @@ export function useOnDisconnect(
   callback: () => void,
   dependencies: React.DependencyList,
 ) {
-  const { isConnected } = useIsConnected();
 
   useInjectedSubscriptions({
     configs: [
