@@ -1,7 +1,7 @@
 {
   "name": "@puzzlehq/sdk-core",
   "displayName": "Puzzle SDK",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.12",
   "description": "Your portal to privacy",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -22,6 +22,7 @@
     "url": "git+https://github.com/puzzlehq/puzzle-sdk.git"
   },
   "dependencies": {
+    "@puzzlehq/types": "1.0.30",
     "debug": "^4.3.4",
     "events": "^3.3.0",
     "ws": "^8.16.0",

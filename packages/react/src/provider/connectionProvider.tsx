@@ -46,6 +46,7 @@ export const ConnectionProvider = ({ children }: Props) => {
           method: 'isConnected',
         });
       if (response === false && account) {
+        console.log(`ConnectionProvider isConnected: false, disconnecting`)
         onDisconnect();
       }
       setIsConnected(response);

@@ -17,6 +17,7 @@ export const useWalletStore = create<WalletState>()(
         set({ account });
       },
       onDisconnect: () => {
+        console.log('useWalletStore onDisconnect called');
         queryClient.clear();
         set({
           account: undefined,

@@ -43,6 +43,7 @@ export const SubscriptionProvider = ({ children }) => {
                 subscriptionName: 'onDisconnect',
                 condition: () => !!isConnected,
                 onData: () => {
+                    console.log('Wallet-originated disconnect');
                     onDisconnect();
                     setIsConnected(false);
                 },
