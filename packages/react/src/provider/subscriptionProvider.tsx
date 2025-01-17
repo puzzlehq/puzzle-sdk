@@ -6,7 +6,6 @@ import {
 import { shortenAddress } from '../hooks/useAccount.js';
 import { useIsConnected } from './connectionProvider.js';
 import { useWalletStore } from '../store.js';
-import { useShallow } from 'zustand/react/shallow';
 
 type Props = {
   children: React.ReactNode;
@@ -15,7 +14,7 @@ type Props = {
 export const SubscriptionProvider = ({ children }: Props) => {
   const { isConnected, setIsConnected } = useIsConnected();
   const [onDisconnect, setAccount] = useWalletStore(
-    useShallow((state) => [state.onDisconnect, state.setAccount]),
+    (state) => [state.onDisconnect, state.setAccount],
   );
 
   useInjectedSubscriptions({

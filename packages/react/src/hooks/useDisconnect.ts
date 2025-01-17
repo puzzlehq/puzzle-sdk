@@ -3,13 +3,12 @@ import { useWalletStore } from '../store.js';
 import { useAsyncAction } from './utils/_useAsyncAction.js';
 import { useIsConnected } from '../provider/connectionProvider.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
-import { useShallow } from 'zustand/react/shallow';
 
 export function useDisconnect() {
   const { isConnected, setIsConnected } = useIsConnected();
 
   const [onDisconnect] = useWalletStore(
-    useShallow((state) => [state.onDisconnect]),
+    (state) => [state.onDisconnect],
   );
 
   const { error, loading, setError, setLoading } = useAsyncAction();

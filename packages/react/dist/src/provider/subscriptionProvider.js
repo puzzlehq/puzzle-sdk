@@ -3,10 +3,9 @@ import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js'
 import { shortenAddress } from '../hooks/useAccount.js';
 import { useIsConnected } from './connectionProvider.js';
 import { useWalletStore } from '../store.js';
-import { useShallow } from 'zustand/react/shallow';
 export const SubscriptionProvider = ({ children }) => {
     const { isConnected, setIsConnected } = useIsConnected();
-    const [onDisconnect, setAccount] = useWalletStore(useShallow((state) => [state.onDisconnect, state.setAccount]));
+    const [onDisconnect, setAccount] = useWalletStore((state) => [state.onDisconnect, state.setAccount]);
     useInjectedSubscriptions({
         configs: [
             {

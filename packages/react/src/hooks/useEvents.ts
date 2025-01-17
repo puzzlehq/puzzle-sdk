@@ -10,7 +10,6 @@ import { useWalletStore } from '../store.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { useShallow } from 'zustand/react/shallow';
 
 export const useEvents = ({
   filter,
@@ -19,7 +18,7 @@ export const useEvents = ({
   network,
 }: GetEventsRequest) => {
   const { isConnected } = useIsConnected();
-  const [account] = useWalletStore(useShallow((state) => [state.account]));
+  const [account] = useWalletStore((state) => [state.account]);
 
   if (filter?.programId === '') {
     filter.programId = undefined;

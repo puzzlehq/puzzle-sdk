@@ -3,7 +3,6 @@ import { GenericRequest, GetSelectedAccountResponse } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
-import { useShallow } from 'zustand/react/shallow';
 
 export const shortenAddress = (
   address?: string,
@@ -26,7 +25,7 @@ export const shortenAddress = (
 export const useAccount = () => {
   const { isConnected } = useIsConnected();
   const [account, setAccount] = useWalletStore(
-    useShallow((state) => [state.account, state.setAccount]),
+    (state) => [state.account, state.setAccount],
   );
 
   const query: GenericRequest = {

@@ -15,7 +15,6 @@ import { RecordWithPlaintext } from '@puzzlehq/types';
 import { useEvent } from './useEvent.js';
 import { useCallback, useEffect, useState } from 'react';
 import { EventStatus } from '@puzzlehq/types';
-import { useShallow } from 'zustand/react/shallow';
 
 const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
   return inputs?.map((input) => {
@@ -28,7 +27,7 @@ const normalizeInputs = (inputs?: (string | RecordWithPlaintext)[]) => {
 
 export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
   const { isConnected } = useIsConnected();
-  const [account] = useWalletStore(useShallow((state) => [state.account]));
+  const [account] = useWalletStore((state) => [state.account]);
   const [settlementStatus, setSettlementStatus] = useState<
     SettlementStatus | undefined
   >(undefined);

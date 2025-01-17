@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { useInjectedRequestQuery } from '../hooks/utils/useRequest.js';
 import { useWalletStore } from '../store.js';
-import { useShallow } from 'zustand/react/shallow';
 
 type Props = {
   children: React.ReactNode;
@@ -30,11 +29,11 @@ export const useIsConnected = () => {
 export const ConnectionProvider = ({ children }: Props) => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [account, onDisconnect] = useWalletStore(
-    useShallow((state) => [
+    (state) => [
       state.account,
       state.onDisconnect,
       state.setAccount,
-    ]),
+    ],
   );
 
   useInjectedRequestQuery<boolean>({
