@@ -3,6 +3,6 @@ export declare const useRequestCreateEvent: (requestData?: CreateEventRequestDat
     createEvent: (createEventRequestOverride?: CreateEventRequest) => Promise<CreateEventResponse | undefined> | undefined;
     eventId: string | undefined;
     loading: boolean;
-    error: string | undefined;
+    error: string;
     settlementStatus: SettlementStatus | undefined;
 };

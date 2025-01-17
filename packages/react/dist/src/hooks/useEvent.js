@@ -57,9 +57,7 @@ export const useEvent = ({ id, address, multisig = false, network, }) => {
             refetch();
         }
     };
-    const error = _error
-        ? _error.message
-        : data && data.error;
+    const error = _error?.message ?? undefined;
     const response = data;
     const event = response?.event;
     return { fetchEvent, event, error, loading };

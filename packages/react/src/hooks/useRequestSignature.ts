@@ -28,23 +28,20 @@ export const useRequestSignature = ({
 
   const {
     request,
-    data: wc_data,
-    error: wc_error,
+    data,
+    error: _error,
     loading,
   } = useInjectedRequest<SignatureResponse | undefined>(
     req,
     async (req) => {
       if (!isConnected) throw new Error(SdkError.NotConnected);
       const response = await _requestSignature(req.params as SignatureRequest);
-      if (response.error) throw new Error(response.error);
       return response;
     },
   );
 
-  const error: string | undefined = wc_error
-    ? (wc_error as Error).message
-    : wc_data && wc_data.error;
-  const response: SignatureResponse | undefined = wc_data;
+  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const response: SignatureResponse | undefined = data;
 
   const requestSignature = (signatureRequestOverride?: SignatureRequest) => {
     if (signatureRequestOverride && isConnected && !loading) {

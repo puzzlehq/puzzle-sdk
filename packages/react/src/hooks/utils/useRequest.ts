@@ -44,7 +44,7 @@ export function useInjectedRequest<Result>(
       setData(response);
       return response;
     } catch (e) {
-      setError(e);
+      setError((e as Error).message);
       setLoading(false);
       throw e;
     } finally {

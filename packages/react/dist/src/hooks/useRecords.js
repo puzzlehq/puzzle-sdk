@@ -34,7 +34,7 @@ export const useRecords = ({ address, multisig = false, filter, page, network, }
         JSON.stringify(debouncedFilter),
         page,
     ];
-    const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useInjectedRequestQuery({
+    const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey,
         enabled: (multisig ? !!address : true) && !!isConnected && !!account,
         fetchFunction: async () => {
@@ -73,10 +73,8 @@ export const useRecords = ({ address, multisig = false, filter, page, network, }
             refetch();
         }
     };
-    const error = wc_error
-        ? wc_error.message
-        : wc_data && wc_data.error;
-    const response = wc_data;
+    const error = _error?.message ?? undefined;
+    const response = data;
     const records = response?.records;
     const pageCount = response?.pageCount ?? 0;
     return { fetchPage, records, error, loading, page, pageCount };

@@ -23,10 +23,7 @@ export function useDisconnect() {
     try {
       setLoading(true);
       setError(undefined);
-      const response = await _disconnect();
-      if (response.error) {
-        setError(response.error);
-      }
+      await _disconnect();
       onDisconnect();
       setIsConnected?.(false);
     } catch (err) {

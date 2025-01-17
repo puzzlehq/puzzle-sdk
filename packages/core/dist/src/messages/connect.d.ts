@@ -26,7 +26,6 @@ export type ConnectRequest = {
     params: ConnectRequestParams;
 };
 export type ConnectResponse = {
-    connection?: ConnectionWithAccountInfo;
-    error?: string;
+    connection: ConnectionWithAccountInfo;
 };
 export declare const connect: (request: ConnectRequestParams) => Promise<ConnectResponse>;

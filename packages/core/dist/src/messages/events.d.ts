@@ -12,8 +12,7 @@ export type GetEventsRequest = {
     network?: Network;
 };
 export type GetEventsResponse = {
-    events?: Event[];
-    pageCount?: number;
-    error?: string;
+    events: Event[];
+    pageCount: number;
 };
 export declare const getEvents: ({ filter, page, address, network, }: GetEventsRequest) => Promise<GetEventsResponse>;

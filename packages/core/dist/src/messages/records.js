@@ -20,7 +20,6 @@ export const getRecords = async ({ filter, page = 0, address, network, }) => {
     }
     catch (e) {
         console.error('getRecords error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

@@ -5,7 +5,6 @@ export type DecryptRequest = {
     network?: Network;
 };
 export type DecryptResponse = {
-    plaintexts?: string[];
-    error?: string;
+    plaintexts: string[];
 };
 export declare const decrypt: ({ ciphertexts, network, address, }: DecryptRequest) => Promise<DecryptResponse>;

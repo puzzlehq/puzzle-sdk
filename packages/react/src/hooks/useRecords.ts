@@ -1,7 +1,6 @@
 import {
   GetRecordsRequest,
   GetRecordsResponse,
-  RecordsFilter,
   log_sdk,
   GenericRequest,
 } from '@puzzlehq/sdk-core';
@@ -53,8 +52,8 @@ export const useRecords = ({
 
   const {
     refetch,
-    data: wc_data,
-    error: wc_error,
+    data,
+    error: _error,
     isLoading: loading,
   } = useInjectedRequestQuery<GetRecordsResponse | undefined>({
     queryKey,
@@ -101,10 +100,8 @@ export const useRecords = ({
     }
   };
 
-  const error: string | undefined = wc_error
-    ? (wc_error as Error).message
-    : wc_data && wc_data.error;
-  const response: GetRecordsResponse | undefined = wc_data;
+  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const response: GetRecordsResponse | undefined = data;
   const records: RecordWithPlaintext[] | undefined = response?.records;
   const pageCount = response?.pageCount ?? 0;
 

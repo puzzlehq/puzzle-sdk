@@ -17,7 +17,6 @@ export const importSharedState = async ({ seed, }) => {
     }
     catch (e) {
         console.error('importSharedState error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

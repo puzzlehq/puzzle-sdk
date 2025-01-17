@@ -21,7 +21,7 @@ export const useEvents = ({ filter, page, address, network, }) => {
         },
     };
     const [debouncedFilter] = useDebounce(filter, 500);
-    const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useInjectedRequestQuery({
+    const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey: [
             'useEvents',
             account?.address,
@@ -60,10 +60,8 @@ export const useEvents = ({ filter, page, address, network, }) => {
             refetch();
         }
     };
-    const error = wc_error
-        ? wc_error.message
-        : wc_data && wc_data.error;
-    const response = wc_data;
+    const error = _error?.message ?? undefined;
+    const response = data;
     const events = response?.events;
     const pageCount = response?.pageCount ?? 0;
     return { fetchPage, events, error, loading, page, pageCount };

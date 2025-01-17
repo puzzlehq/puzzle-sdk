@@ -38,9 +38,7 @@ export const useAccount = () => {
             refetch();
         }
     }, [isConnected]);
-    const error = _error
-        ? _error.message
-        : data && data.error;
+    const error = _error?.message ?? undefined;
     return {
         account,
         error,

@@ -3,7 +3,7 @@ import { Event } from '@puzzlehq/types';
 export declare const useEvents: ({ filter, page, address, network, }: GetEventsRequest) => {
     fetchPage: () => void;
     events: Event[] | undefined;
-    error: string | undefined;
+    error: string;
     loading: boolean;
     page: number | undefined;
     pageCount: number;

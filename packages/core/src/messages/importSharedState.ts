@@ -7,11 +7,10 @@ export type ImportSharedStateRequest = {
 };
 
 export type ImportSharedStateResponse = {
-  data?: {
+  data: {
     address: string;
     seed: string;
   };
-  error?: string;
 };
 
 export const importSharedState = async ({
@@ -35,7 +34,6 @@ export const importSharedState = async ({
     return response;
   } catch (e) {
     console.error('importSharedState error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e
   }
 };

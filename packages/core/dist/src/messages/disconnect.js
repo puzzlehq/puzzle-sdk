@@ -10,11 +10,9 @@ export const disconnect = async () => {
     };
     try {
         await window.aleo.puzzleWalletClient.disconnect.mutate(req);
-        return {};
     }
     catch (e) {
         console.error('error disconnecting', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

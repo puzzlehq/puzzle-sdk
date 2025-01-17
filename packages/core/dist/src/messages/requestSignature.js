@@ -19,7 +19,6 @@ export const requestSignature = async ({ message, address, network, }) => {
     }
     catch (e) {
         console.error('signature error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

@@ -3,5 +3,5 @@ export declare const useDecrypt: ({ ciphertexts, address, network, }: DecryptReq
     decrypt: (requestOverride?: DecryptRequest) => Promise<DecryptResponse | undefined>;
     plaintexts: string[] | undefined;
     loading: boolean;
-    error: string | undefined;
+    error: string;
 };

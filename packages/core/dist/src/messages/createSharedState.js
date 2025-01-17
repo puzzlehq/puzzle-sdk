@@ -14,7 +14,6 @@ export const createSharedState = async () => {
     }
     catch (e) {
         console.error('createSharedState error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

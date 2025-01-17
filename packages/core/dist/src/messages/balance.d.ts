@@ -5,7 +5,6 @@ export type GetBalancesRequest = {
     multisig?: boolean;
 };
 export type GetBalancesResponse = {
-    balances?: Balance[];
-    error?: string;
+    balances: Balance[];
 };
 export declare const getBalance: ({ address, network, multisig, }: GetBalancesRequest) => Promise<GetBalancesResponse>;

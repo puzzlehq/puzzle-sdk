@@ -14,6 +14,6 @@ export const getAccount = async () => {
     }
     catch (e) {
         console.error('getAccount error', e);
-        return { error: e.message };
+        throw e;
     }
 };

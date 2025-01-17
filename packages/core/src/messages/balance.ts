@@ -10,8 +10,7 @@ export type GetBalancesRequest = {
 };
 
 export type GetBalancesResponse = {
-  balances?: Balance[];
-  error?: string;
+  balances: Balance[];
 };
 
 export const getBalance = async ({
@@ -38,8 +37,7 @@ export const getBalance = async ({
       await window.aleo.puzzleWalletClient.getBalance.query(query);
     return response;
   } catch (e) {
-    const error = (e as Error).message;
     console.error('getBalance error', e);
-    return { error };
+    throw e
   }
 };

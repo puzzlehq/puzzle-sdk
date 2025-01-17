@@ -59,10 +59,8 @@ export const useAccount = () => {
     }
   }, [isConnected]);
 
-  const error: string | undefined = _error
-    ? (_error as Error).message
-    : data && data.error;
-
+  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  
   return {
     account,
     error,

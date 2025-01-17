@@ -20,6 +20,6 @@ export const decrypt = async ({ ciphertexts, network, address, }) => {
     catch (e) {
         const error = e.message;
         console.error('decrypt error', e);
-        return { error };
+        throw e;
     }
 };

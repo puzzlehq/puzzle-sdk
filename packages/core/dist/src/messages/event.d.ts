@@ -7,7 +7,6 @@ export type GetEventRequest = {
     multisig?: boolean;
 };
 export type GetEventResponse = {
-    event?: Event;
-    error?: string;
+    event: Event;
 };
 export declare const getEvent: ({ id, address, network, }: GetEventRequest) => Promise<GetEventResponse>;

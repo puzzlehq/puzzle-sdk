@@ -20,7 +20,6 @@ export const getEvents = async ({ filter, page = 0, address, network, }) => {
     }
     catch (e) {
         console.error('getEvents error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

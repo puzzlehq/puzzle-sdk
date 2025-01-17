@@ -25,9 +25,8 @@ export type GetRecordsRequest = {
 };
 
 export type GetRecordsResponse = {
-  records?: RecordWithPlaintext[];
-  pageCount?: number;
-  error?: string;
+  records: RecordWithPlaintext[];
+  pageCount: number;
 };
 
 export const getRecords = async ({
@@ -57,7 +56,6 @@ export const getRecords = async ({
     return response;
   } catch (e) {
     console.error('getRecords error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e;
   }
 };

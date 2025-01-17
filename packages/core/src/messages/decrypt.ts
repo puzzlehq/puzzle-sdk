@@ -10,8 +10,7 @@ export type DecryptRequest = {
 };
 
 export type DecryptResponse = {
-  plaintexts?: string[];
-  error?: string;
+  plaintexts: string[];
 };
 
 export const decrypt = async ({
@@ -40,6 +39,6 @@ export const decrypt = async ({
   } catch (e) {
     const error = (e as Error).message;
     console.error('decrypt error', e);
-    return { error };
+    throw e
   }
 };

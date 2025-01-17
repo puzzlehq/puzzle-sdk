@@ -11,8 +11,7 @@ export type GetEventRequest = {
 };
 
 export type GetEventResponse = {
-  event?: Event;
-  error?: string;
+  event: Event;
 };
 
 export const getEvent = async ({
@@ -40,7 +39,6 @@ export const getEvent = async ({
     return response;
   } catch (e) {
     console.error('getEvent error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e
   }
 };

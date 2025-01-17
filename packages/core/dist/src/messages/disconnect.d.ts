@@ -1,3 +1,1 @@
-export declare const disconnect: () => Promise<{
-    error?: string;
-}>;
+export declare const disconnect: () => Promise<void>;

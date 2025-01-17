@@ -6,18 +6,14 @@ export const useCreateSharedState = () => {
     const req = {
         method: 'createSharedState',
     };
-    const { request, data: wc_data, error: wc_error, loading, } = useInjectedRequest(req, async () => {
+    const { request, data, error: _error, loading, } = useInjectedRequest(req, async () => {
         if (!isConnected)
             throw new Error(SdkError.NotConnected);
         const response = await _createSharedState();
-        if (response.error)
-            throw new Error(response.error);
         return response;
     });
-    const error = wc_error
-        ? wc_error.message
-        : wc_data && wc_data.error;
-    const response = wc_data;
+    const error = _error?.message ?? undefined;
+    const response = data;
     const createSharedState = async () => {
         return await request();
     };

@@ -60,9 +60,7 @@ export const useBalance = ({ address, network, multisig, } = {}) => {
             refetch();
         }
     }, [isConnected]);
-    const error = _error
-        ? _error.message
-        : data && data.error;
+    const error = _error?.message ?? undefined;
     const response = data;
     const balances = response?.balances;
     return { balances, error, loading };

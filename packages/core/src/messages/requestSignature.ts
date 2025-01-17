@@ -10,8 +10,7 @@ export type SignatureRequest = {
 };
 
 export type SignatureResponse = {
-  signature?: string;
-  error?: string;
+  signature: string;
 };
 
 export const requestSignature = async ({
@@ -39,7 +38,6 @@ export const requestSignature = async ({
     return response;
   } catch (e) {
     console.error('signature error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e
   }
 };

@@ -24,7 +24,6 @@ export const requestCreateEvent = async (requestData) => {
     }
     catch (e) {
         console.error('createEvent error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

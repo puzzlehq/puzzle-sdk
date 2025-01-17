@@ -15,6 +15,6 @@ export const connect = async (request) => {
     }
     catch (e) {
         console.error('connect error', e);
-        return { error: e.message };
+        throw e;
     }
 };

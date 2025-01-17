@@ -14,8 +14,7 @@ export type GetRecordsRequest = {
     multisig?: boolean;
 };
 export type GetRecordsResponse = {
-    records?: RecordWithPlaintext[];
-    pageCount?: number;
-    error?: string;
+    records: RecordWithPlaintext[];
+    pageCount: number;
 };
 export declare const getRecords: ({ filter, page, address, network, }: GetRecordsRequest) => Promise<GetRecordsResponse>;

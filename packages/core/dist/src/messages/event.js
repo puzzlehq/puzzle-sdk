@@ -19,7 +19,6 @@ export const getEvent = async ({ id, address, network, }) => {
     }
     catch (e) {
         console.error('getEvent error', e);
-        const error = e.message;
-        return { error };
+        throw e;
     }
 };

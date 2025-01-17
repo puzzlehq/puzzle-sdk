@@ -3,11 +3,10 @@ import { GenericRequest } from '../data/types.js';
 import { SdkError } from '../data/errors.js';
 
 export type CreateSharedStateResponse = {
-  data?: {
+  data: {
     seed: string;
     address: string;
   };
-  error?: string;
 };
 
 export const createSharedState =
@@ -27,7 +26,6 @@ export const createSharedState =
       return response;
     } catch (e) {
       console.error('createSharedState error', e);
-      const error = (e as Error).message;
-      return { error };
+      throw e
     }
   };

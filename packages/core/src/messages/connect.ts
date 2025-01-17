@@ -33,8 +33,7 @@ export type ConnectRequest = {
 };
 
 export type ConnectResponse = {
-  connection?: ConnectionWithAccountInfo;
-  error?: string;
+  connection: ConnectionWithAccountInfo;
 };
 
 export const connect = async (request: ConnectRequestParams) => {
@@ -53,6 +52,6 @@ export const connect = async (request: ConnectRequestParams) => {
     return connectResponse;
   } catch (e) {
     console.error('connect error', e);
-    return { error: (e as Error).message };
+    throw e
   }
 };

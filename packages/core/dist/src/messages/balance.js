@@ -18,8 +18,7 @@ export const getBalance = async ({ address, network, multisig, }) => {
         return response;
     }
     catch (e) {
-        const error = e.message;
         console.error('getBalance error', e);
-        return { error };
+        throw e;
     }
 };

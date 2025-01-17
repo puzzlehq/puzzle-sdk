@@ -3,8 +3,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 
 export type GetSelectedAccountResponse = {
-  account?: PuzzleAccount;
-  error?: string;
+  account: PuzzleAccount;
 };
 
 export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
@@ -23,6 +22,6 @@ export const getAccount = async (): Promise<GetSelectedAccountResponse> => {
     return response;
   } catch (e) {
     console.error('getAccount error', e);
-    return { error: (e as Error).message };
+    throw e
   }
 };

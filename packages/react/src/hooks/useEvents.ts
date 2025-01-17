@@ -39,8 +39,8 @@ export const useEvents = ({
 
   const {
     refetch,
-    data: wc_data,
-    error: wc_error,
+    data,
+    error: _error,
     isLoading: loading,
   } = useInjectedRequestQuery<GetEventsResponse | undefined>({
     queryKey: [
@@ -85,11 +85,8 @@ export const useEvents = ({
       refetch();
     }
   };
-
-  const error: string | undefined = wc_error
-    ? (wc_error as Error).message
-    : wc_data && wc_data.error;
-  const response: GetEventsResponse | undefined = wc_data;
+  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const response: GetEventsResponse | undefined = data;
   const events: Event[] | undefined = response?.events;
   const pageCount = response?.pageCount ?? 0;
 

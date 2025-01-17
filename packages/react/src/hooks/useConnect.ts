@@ -24,17 +24,13 @@ export function useConnect(request: ConnectRequestParams) {
       setError(undefined);
       console.log('connect request', request);
       const response = await _connect(request);
-      if (response.connection) {
-        setData(response);
-        setAccount({
-          address: response.connection.address,
-          network: response.connection.network,
-          shortenedAddress: shortenAddress(response.connection.address),
-        });
-        setIsConnected?.(true);
-      } else if (response.error) {
-        setError(response.error);
-      }
+      setData(response);
+      setAccount({
+        address: response.connection.address,
+        network: response.connection.network,
+        shortenedAddress: shortenAddress(response.connection.address),
+      });
+      setIsConnected?.(true);
       return response;
     } catch (err) {
       setError(err);

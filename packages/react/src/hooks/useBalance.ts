@@ -83,9 +83,8 @@ export const useBalance = ({
     }
   }, [isConnected]);
 
-  const error: string | undefined = _error
-    ? (_error as Error).message
-    : data && data.error;
+  const error: string | undefined = (_error as Error)?.message ?? undefined;
+
   const response: GetBalancesResponse | undefined = data;
   const balances: Balance[] | undefined = response?.balances;
 

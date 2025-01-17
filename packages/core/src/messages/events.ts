@@ -17,9 +17,8 @@ export type GetEventsRequest = {
 };
 
 export type GetEventsResponse = {
-  events?: Event[];
-  pageCount?: number;
-  error?: string;
+  events: Event[];
+  pageCount: number;
 };
 
 export const getEvents = async ({
@@ -49,7 +48,6 @@ export const getEvents = async ({
     return response;
   } catch (e) {
     console.error('getEvents error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e
   }
 };

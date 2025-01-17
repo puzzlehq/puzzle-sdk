@@ -21,7 +21,7 @@ export function useInjectedRequest(params, fetchFunction) {
             return response;
         }
         catch (e) {
-            setError(e);
+            setError(e.message);
             setLoading(false);
             throw e;
         }
