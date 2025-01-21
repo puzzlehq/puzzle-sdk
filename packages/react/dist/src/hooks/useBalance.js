@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { getBalance, } from '@puzzlehq/sdk-core';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
@@ -6,12 +7,6 @@ import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const useBalance = ({ address, network, multisig, } = {}) => {
     const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
-    const query = {
-        method: 'getBalance',
-        params: {
-            address,
-        },
-    };
     const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey: [
             'useBalance',
@@ -22,8 +17,7 @@ export const useBalance = ({ address, network, multisig, } = {}) => {
         ],
         enabled: !!isConnected,
         fetchFunction: async () => {
-            const response = await window.aleo.puzzleWalletClient.getBalance.query(query);
-            return response;
+            return await getBalance({ address, network });
         },
     });
     // listen for injected wallet-originating account updates

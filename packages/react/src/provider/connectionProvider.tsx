@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useInjectedRequestQuery } from '../hooks/utils/useRequest.js';
 import { useWalletStore } from '../store.js';
+import { ConnectResponse, PuzzleWalletSDKEventEmitter, shortenAddress } from '@puzzlehq/sdk-core';
 
 type Props = {
   children: React.ReactNode;
@@ -20,6 +21,11 @@ export const useIsConnected = () => {
   if (!context) {
     throw new Error('useIsConnected must be used within a ConnectionProvider');
   }
+
+  useEffect(() => {
+    console.log(`isConnected: ${context.isConnected}`)
+  }, [context.isConnected])
+
   return {
     isConnected: context?.isConnected,
     setIsConnected: context?.setIsConnected,
@@ -28,13 +34,27 @@ export const useIsConnected = () => {
 
 export const ConnectionProvider = ({ children }: Props) => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [account, onDisconnect] = useWalletStore(
+  const [account, onDisconnect, setAccount] = useWalletStore(
     (state) => [
       state.account,
       state.onDisconnect,
       state.setAccount,
     ],
   );
+
+  useEffect(() => {
+    PuzzleWalletSDKEventEmitter.on('connectSuccess', (response: ConnectResponse) => {
+      console.log('PuzzleWalletSDKEventEmitter.on(\'connectSuccess\') called!')
+      if (response.connection) {
+        setIsConnected(true);
+        setAccount({
+          address: response.connection.address,
+          network: response.connection.network,
+          shortenedAddress: shortenAddress(response.connection.address)
+        })
+      }
+    })
+  }, [])
 
   useInjectedRequestQuery<boolean>({
     queryKey: ['isConnected'],

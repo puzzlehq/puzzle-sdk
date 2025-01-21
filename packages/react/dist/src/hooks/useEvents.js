@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { getEvents, } from '@puzzlehq/sdk-core';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useWalletStore } from '../store.js';
 import { useDebounce } from 'use-debounce';
@@ -10,15 +11,6 @@ export const useEvents = ({ filter, page, address, network, }) => {
     if (filter?.programId === '') {
         filter.programId = undefined;
     }
-    const query = {
-        method: 'getEvents',
-        params: {
-            filter,
-            page,
-            address,
-            network,
-        },
-    };
     const [debouncedFilter] = useDebounce(filter, 500);
     const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey: [
@@ -29,8 +21,12 @@ export const useEvents = ({ filter, page, address, network, }) => {
         ],
         enabled: !!isConnected,
         fetchFunction: async () => {
-            const response = await window.aleo.puzzleWalletClient.getEvents.query(query);
-            return response;
+            return await getEvents({
+                filter,
+                page,
+                address,
+                network,
+            });
         },
     });
     // listen for injected wallet-originating account updates

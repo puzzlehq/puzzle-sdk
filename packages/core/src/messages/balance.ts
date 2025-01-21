@@ -19,7 +19,7 @@ export const getBalance = async ({
   multisig,
 }: GetBalancesRequest): Promise<GetBalancesResponse> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`getBalance ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.getBalance?.query)
     throw new Error('getBalance.query not found!');
 

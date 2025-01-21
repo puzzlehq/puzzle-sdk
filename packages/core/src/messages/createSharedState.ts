@@ -12,7 +12,7 @@ export type CreateSharedStateResponse = {
 export const createSharedState =
   async (): Promise<CreateSharedStateResponse> => {
     if (!hasInjectedConnection())
-      throw new Error(SdkError.PuzzleWalletNotDetected);
+      throw new Error(`createSharedState ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.createSharedState?.mutate)
       throw new Error('createSharedState.mutate not found!');
 

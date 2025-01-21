@@ -14,7 +14,11 @@ export const useDecrypt = ({ ciphertexts, address, network, }) => {
     const { request, data, error: _error, loading, } = useInjectedRequest(req, async (req) => {
         if (!isConnected)
             throw new Error(SdkError.NotConnected);
-        const response = await _decrypt(req.params);
+        const response = await _decrypt({
+            ciphertexts,
+            address,
+            network
+        });
         return response;
     });
     const error = _error?.message ?? undefined;

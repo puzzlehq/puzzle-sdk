@@ -2,7 +2,7 @@ import {
   GetRecordsRequest,
   GetRecordsResponse,
   log_sdk,
-  GenericRequest,
+  getRecords,
 } from '@puzzlehq/sdk-core';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
 import { useWalletStore } from '../store.js';
@@ -29,16 +29,6 @@ export const useRecords = ({
   const { isConnected } = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const query: GenericRequest = {
-    method: 'getRecords',
-    params: {
-      address,
-      filter,
-      page,
-      network,
-    } as GetRecordsRequest,
-  };
-
   const [debouncedFilter] = useDebounce(filter, 500);
   const queryKey = [
     'useRecords',
@@ -58,9 +48,12 @@ export const useRecords = ({
     queryKey,
     enabled: (multisig ? !!address : true) && !!isConnected && !!account,
     fetchFunction: async () => {
-      const response: GetRecordsResponse =
-        await window.aleo.puzzleWalletClient.getRecords.query(query);
-      return response;
+      return await getRecords({
+        filter,
+        page,
+        address,
+        network,
+      })
     },
   });
 

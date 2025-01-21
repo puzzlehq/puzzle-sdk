@@ -2,7 +2,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 export const requestSignature = async ({ message, address, network, }) => {
     if (!hasInjectedConnection())
-        throw new Error(SdkError.PuzzleWalletNotDetected);
+        throw new Error(`requestSignature ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.requestSignature?.mutate)
         throw new Error('requestSignature.mutate not found!');
     const req = {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import {
   GenericRequest,
+  getEvents,
   GetEventsRequest,
   GetEventsResponse,
 } from '@puzzlehq/sdk-core';
@@ -24,16 +25,6 @@ export const useEvents = ({
     filter.programId = undefined;
   }
 
-  const query: GenericRequest = {
-    method: 'getEvents',
-    params: {
-      filter,
-      page,
-      address,
-      network,
-    } as GetEventsRequest,
-  };
-
   const [debouncedFilter] = useDebounce(filter, 500);
 
   const {
@@ -50,9 +41,12 @@ export const useEvents = ({
     ],
     enabled: !!isConnected,
     fetchFunction: async () => {
-      const response: GetEventsResponse =
-        await window.aleo.puzzleWalletClient.getEvents.query(query);
-      return response;
+      return await getEvents({
+        filter,
+        page,
+        address,
+        network,
+      })
     },
   });
 

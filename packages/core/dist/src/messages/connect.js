@@ -1,8 +1,9 @@
 import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
+import { PuzzleWalletSDKEventEmitter } from '../utils/eventEmitter.js';
 export const connect = async (request) => {
     if (!hasInjectedConnection())
-        throw new Error(SdkError.PuzzleWalletNotDetected);
+        throw new Error(`connect ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.connect?.mutate)
         throw new Error('connect.mutate not found!');
     try {
@@ -11,6 +12,7 @@ export const connect = async (request) => {
             params: request,
         };
         const connectResponse = await window.aleo.puzzleWalletClient.connect.mutate(connectRequest);
+        PuzzleWalletSDKEventEmitter.emit('connectSuccess', connectResponse); // Emit the event on success
         return connectResponse;
     }
     catch (e) {

@@ -19,7 +19,7 @@ export const requestSignature = async ({
   network,
 }: SignatureRequest): Promise<SignatureResponse> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`requestSignature ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.requestSignature?.mutate)
     throw new Error('requestSignature.mutate not found!');
 

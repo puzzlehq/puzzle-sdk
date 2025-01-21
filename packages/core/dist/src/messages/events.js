@@ -2,7 +2,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 export const getEvents = async ({ filter, page = 0, address, network, }) => {
     if (!hasInjectedConnection())
-        throw new Error(SdkError.PuzzleWalletNotDetected);
+        throw new Error(`getEvents ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.getEvents?.query)
         throw new Error('getEvents.query not found!');
     const query = {

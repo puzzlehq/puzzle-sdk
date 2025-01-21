@@ -2,7 +2,7 @@ import { hasInjectedConnection } from '../index.js';
 import { SdkError } from '../data/errors.js';
 export const requestCreateEvent = async (requestData) => {
     if (!hasInjectedConnection())
-        throw new Error(SdkError.PuzzleWalletNotDetected);
+        throw new Error(`requestCreateEvent ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate)
         throw new Error('requestCreateEvent.mutate not found!');
     const inputs = requestData?.inputs.map((input) => {

@@ -49,7 +49,7 @@ export const requestCreateEvent = async (
   requestData: CreateEventRequestData,
 ): Promise<CreateEventResponse> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`requestCreateEvent ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.requestCreateEvent?.mutate)
     throw new Error('requestCreateEvent.mutate not found!');
 

@@ -1,4 +1,4 @@
-import { log_sdk, } from '@puzzlehq/sdk-core';
+import { log_sdk, getRecords, } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
 import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useDebounce } from 'use-debounce';
@@ -15,15 +15,6 @@ export const getFormattedRecordPlaintext = (data) => {
 export const useRecords = ({ address, multisig = false, filter, page, network, }) => {
     const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
-    const query = {
-        method: 'getRecords',
-        params: {
-            address,
-            filter,
-            page,
-            network,
-        },
-    };
     const [debouncedFilter] = useDebounce(filter, 500);
     const queryKey = [
         'useRecords',
@@ -37,8 +28,12 @@ export const useRecords = ({ address, multisig = false, filter, page, network, }
         queryKey,
         enabled: (multisig ? !!address : true) && !!isConnected && !!account,
         fetchFunction: async () => {
-            const response = await window.aleo.puzzleWalletClient.getRecords.query(query);
-            return response;
+            return await getRecords({
+                filter,
+                page,
+                address,
+                network,
+            });
         },
     });
     const readyToRequest = !!isConnected && !!account && (multisig ? !!address : true);

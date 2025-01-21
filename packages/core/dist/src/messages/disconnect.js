@@ -2,7 +2,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 export const disconnect = async () => {
     if (!hasInjectedConnection())
-        throw new Error(SdkError.PuzzleWalletNotDetected);
+        throw new Error(`disconnect ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.disconnect?.mutate)
         throw new Error('disconnect.mutate not found!');
     const req = {

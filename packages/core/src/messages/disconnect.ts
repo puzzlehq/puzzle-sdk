@@ -4,7 +4,7 @@ import { GenericRequest } from '../data/types.js';
 
 export const disconnect = async (): Promise<void> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`disconnect ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.disconnect?.mutate)
     throw new Error('disconnect.mutate not found!');
 

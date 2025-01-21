@@ -2,7 +2,7 @@ import { hasInjectedConnection } from '../utils/clientInfo.js';
 import { SdkError } from '../data/errors.js';
 export const getAccount = async () => {
     if (!hasInjectedConnection())
-        throw new Error(SdkError.PuzzleWalletNotDetected);
+        throw new Error(`getAccount ${SdkError.PuzzleWalletNotDetected}`);
     if (!window.aleo.puzzleWalletClient.getSelectedAccount?.query)
         throw new Error('getSelectedAccount not found!');
     const query = {

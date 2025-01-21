@@ -28,7 +28,7 @@ export const getEvents = async ({
   network,
 }: GetEventsRequest): Promise<GetEventsResponse> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`getEvents ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.getEvents?.query)
     throw new Error('getEvents.query not found!');
 

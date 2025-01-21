@@ -17,7 +17,7 @@ export const importSharedState = async ({
   seed,
 }: ImportSharedStateRequest): Promise<ImportSharedStateResponse> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`importSharedState ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.importSharedState?.mutate)
     throw new Error('importSharedState.mutate not found!');
 

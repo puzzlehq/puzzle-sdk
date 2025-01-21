@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {
   AccountSyncedResponse,
   GenericRequest,
+  getBalance,
   GetBalancesRequest,
   GetBalancesResponse,
 } from '@puzzlehq/sdk-core';
@@ -19,13 +20,6 @@ export const useBalance = ({
   const { isConnected } = useIsConnected();
   const [account] = useWalletStore((state) => [state.account]);
 
-  const query: GenericRequest = {
-    method: 'getBalance',
-    params: {
-      address,
-    } as GetBalancesRequest,
-  };
-
   const {
     refetch,
     data,
@@ -41,9 +35,7 @@ export const useBalance = ({
     ],
     enabled: !!isConnected,
     fetchFunction: async () => {
-      const response: GetBalancesResponse =
-        await window.aleo.puzzleWalletClient.getBalance.query(query);
-      return response;
+      return await getBalance({ address, network });
     },
   });
 

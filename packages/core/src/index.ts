@@ -2,8 +2,10 @@ export * from './messages/index.js';
 export * from './data/errors.js';
 export * from './data/events.js';
 export * from './data/types.js';
-export * from './utils/logger.js';
 export * from './utils/clientInfo.js';
+export * from './utils/eventEmitter.js';
+export * from './utils/logger.js';
+export * from './utils/misc.js';
 
 import {
   type Account,

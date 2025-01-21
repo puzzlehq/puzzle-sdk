@@ -2,8 +2,8 @@ import useInjectedSubscriptions from '../hooks/utils/useInjectedSubscription.js'
 import {
   AccountSelectedResponse,
   AccountSyncedResponse,
+  shortenAddress
 } from '@puzzlehq/sdk-core';
-import { shortenAddress } from '../hooks/useAccount.js';
 import { useIsConnected } from './connectionProvider.js';
 import { useWalletStore } from '../store.js';
 
@@ -38,6 +38,7 @@ export const SubscriptionProvider = ({ children }: Props) => {
         subscriptionName: 'onSelectedAccountSynced',
         condition: () => !!isConnected,
         onData: (data: AccountSyncedResponse) => {
+          setIsConnected(true);
           setAccount({
             network: data.network,
             address: data.address,

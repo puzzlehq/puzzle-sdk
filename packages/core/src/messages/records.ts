@@ -36,7 +36,7 @@ export const getRecords = async ({
   network,
 }: GetRecordsRequest): Promise<GetRecordsResponse> => {
   if (!hasInjectedConnection())
-    throw new Error(SdkError.PuzzleWalletNotDetected);
+    throw new Error(`getRecords ${SdkError.PuzzleWalletNotDetected}`);
   if (!window.aleo.puzzleWalletClient.getRecords?.query)
     throw new Error('getRecords.query not found!');
 
