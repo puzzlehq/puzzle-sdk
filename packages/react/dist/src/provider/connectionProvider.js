@@ -36,6 +36,10 @@ export const ConnectionProvider = ({ children }) => {
                 });
             }
         });
+        PuzzleWalletSDKEventEmitter.on('disconnectSuccess', () => {
+            setIsConnected(false);
+            onDisconnect();
+        });
     }, []);
     useInjectedRequestQuery({
         queryKey: ['isConnected'],

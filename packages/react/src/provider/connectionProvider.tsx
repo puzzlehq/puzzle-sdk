@@ -54,6 +54,11 @@ export const ConnectionProvider = ({ children }: Props) => {
         })
       }
     })
+
+    PuzzleWalletSDKEventEmitter.on('disconnectSuccess', () => {
+      setIsConnected(false);
+      onDisconnect();
+    });
   }, [])
 
   useInjectedRequestQuery<boolean>({
