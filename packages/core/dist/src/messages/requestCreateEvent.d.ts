@@ -29,6 +29,7 @@ export type CreateEventRequest = {
     tokenIds?: string[];
 };
 export type CreateEventResponse = {
-    eventId: string;
+    eventId?: string;
+    error?: string;
 };
 export declare const requestCreateEvent: (requestData: CreateEventRequestData) => Promise<CreateEventResponse>;

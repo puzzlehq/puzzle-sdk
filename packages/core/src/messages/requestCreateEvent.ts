@@ -42,7 +42,8 @@ export type CreateEventRequest = {
 
 /// wallet passes this back to dapp
 export type CreateEventResponse = {
-  eventId: string;
+  eventId?: string;
+  error?: string;
 };
 
 export const requestCreateEvent = async (

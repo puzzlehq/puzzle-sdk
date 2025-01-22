@@ -53,7 +53,7 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
     return response;
   });
 
-  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const error: string | undefined = (_error as Error)?.message ?? data?.error ?? undefined;
   const response: CreateEventResponse | undefined = data;
 
   const createEvent = useCallback(
