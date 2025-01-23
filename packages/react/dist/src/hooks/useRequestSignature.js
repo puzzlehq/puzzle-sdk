@@ -18,7 +18,7 @@ export const useRequestSignature = ({ message, address, network, }) => {
         const response = await _requestSignature(req.params);
         return response;
     });
-    const error = _error?.message ?? undefined;
+    const error = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
     const response = data;
     const requestSignature = (signatureRequestOverride) => {
         if (signatureRequestOverride && isConnected && !loading) {

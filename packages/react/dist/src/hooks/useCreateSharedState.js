@@ -12,7 +12,7 @@ export const useCreateSharedState = () => {
         const response = await _createSharedState();
         return response;
     });
-    const error = _error?.message ?? undefined;
+    const error = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
     const response = data;
     const createSharedState = async () => {
         return await request();

@@ -6,5 +6,5 @@ export declare const useCreateSharedState: () => {
         address: string;
     } | undefined;
     loading: boolean;
-    error: string;
+    error: string | undefined;
 };

@@ -15,7 +15,7 @@ export const useImportSharedState = ({ seed }) => {
         const response = await _importSharedState(req.params);
         return response;
     });
-    const error = _error?.message ?? undefined;
+    const error = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
     const response = data;
     const importSharedState = async () => {
         if (isConnected && !loading) {

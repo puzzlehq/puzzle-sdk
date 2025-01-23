@@ -39,7 +39,7 @@ export const useDecrypt = ({
     return response;
   });
 
-  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const error: string | undefined = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
   const response: DecryptResponse | undefined = data;
 
   const decrypt = async (requestOverride?: DecryptRequest) => {

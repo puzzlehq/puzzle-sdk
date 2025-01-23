@@ -40,7 +40,7 @@ export const useRequestSignature = ({
     },
   );
 
-  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const error: string | undefined = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
   const response: SignatureResponse | undefined = data;
 
   const requestSignature = (signatureRequestOverride?: SignatureRequest) => {

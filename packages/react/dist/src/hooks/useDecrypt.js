@@ -21,7 +21,7 @@ export const useDecrypt = ({ ciphertexts, address, network, }) => {
         });
         return response;
     });
-    const error = _error?.message ?? undefined;
+    const error = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
     const response = data;
     const decrypt = async (requestOverride) => {
         return await request({

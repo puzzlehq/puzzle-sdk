@@ -6,5 +6,5 @@ export declare const useImportSharedState: ({ seed }: ImportSharedStateRequest) 
         seed: string;
     } | undefined;
     loading: boolean;
-    error: string;
+    error: string | undefined;
 };

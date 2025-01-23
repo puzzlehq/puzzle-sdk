@@ -31,7 +31,7 @@ export const useRequestCreateEvent = (requestData) => {
         const response = await requestCreateEvent(req.params);
         return response;
     });
-    const error = _error?.message ?? data?.error ?? undefined;
+    const error = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
     const response = data;
     const createEvent = useCallback((createEventRequestOverride) => {
         setSettlementStatus(undefined);

@@ -3,5 +3,5 @@ export declare const useRequestSignature: ({ message, address, network, }: Signa
     requestSignature: (signatureRequestOverride?: SignatureRequest) => Promise<SignatureResponse | undefined> | undefined;
     response: SignatureResponse | undefined;
     loading: boolean;
-    error: string;
+    error: string | undefined;
 };

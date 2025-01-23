@@ -28,7 +28,7 @@ export const useCreateSharedState = () => {
     },
   );
 
-  const error: string | undefined = (_error as Error)?.message ?? undefined;
+  const error: string | undefined = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
   const response: CreateSharedStateResponse | undefined = data;
 
   const createSharedState = async () => {

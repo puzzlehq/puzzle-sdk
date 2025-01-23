@@ -17,6 +17,7 @@ export function useDisconnect() {
     if (!isConnected) {
       setError(SdkError.NotConnected);
       console.error(SdkError.NotConnected);
+      onDisconnect();
       return;
     }
     try {
