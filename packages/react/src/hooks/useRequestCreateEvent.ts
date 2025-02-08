@@ -61,6 +61,12 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
       setSettlementStatus(undefined);
       if (createEventRequestOverride && isConnected && !loading) {
         const inputs = normalizeInputs(createEventRequestOverride.inputs);
+
+        const undefinedIndex = inputs?.findIndex(i => i === undefined);
+        if (undefinedIndex !== -1) {
+          throw new Error(`Input ${undefinedIndex} is undefined. Inputs: ${inputs}`);
+        }
+
         const _request: GenericRequest = {
           method: 'requestCreateEvent',
           params: {
@@ -75,6 +81,12 @@ export const useRequestCreateEvent = (requestData?: CreateEventRequestData) => {
         return request(_request);
       } else if (requestData && isConnected && !loading) {
         log_sdk('useCreateEvent requesting...', requestData);
+        
+        const undefinedIndex = requestData.inputs?.findIndex(i => i === undefined);
+        if (undefinedIndex !== -1) {
+          throw new Error(`Input ${undefinedIndex} is undefined. Inputs: ${requestData.inputs}`);
+        }
+
         return request();
       }
     },

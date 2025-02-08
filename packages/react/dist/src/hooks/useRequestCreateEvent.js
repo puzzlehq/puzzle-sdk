@@ -37,6 +37,10 @@ export const useRequestCreateEvent = (requestData) => {
         setSettlementStatus(undefined);
         if (createEventRequestOverride && isConnected && !loading) {
             const inputs = normalizeInputs(createEventRequestOverride.inputs);
+            const undefinedIndex = inputs?.findIndex(i => i === undefined);
+            if (undefinedIndex !== -1) {
+                throw new Error(`Input ${undefinedIndex} is undefined. Inputs: ${inputs}`);
+            }
             const _request = {
                 method: 'requestCreateEvent',
                 params: {
@@ -49,6 +53,10 @@ export const useRequestCreateEvent = (requestData) => {
         }
         else if (requestData && isConnected && !loading) {
             log_sdk('useCreateEvent requesting...', requestData);
+            const undefinedIndex = requestData.inputs?.findIndex(i => i === undefined);
+            if (undefinedIndex !== -1) {
+                throw new Error(`Input ${undefinedIndex} is undefined. Inputs: ${requestData.inputs}`);
+            }
             return request();
         }
     }, [isConnected, JSON.stringify(account), loading, request, JSON.stringify(inputs)]);

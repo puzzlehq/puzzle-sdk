@@ -1,4 +1,4 @@
-import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { hasInjectedConnection, waitForInjectedConnection } from '../utils/clientInfo.js';
 import { ProgramIdPermissions } from '../data/types.js';
 import { Balance, Network } from '@puzzlehq/types';
 import { SdkError } from '../data/errors.js';
@@ -38,8 +38,7 @@ export type ConnectResponse = {
 };
 
 export const connect = async (request: ConnectRequestParams) => {
-  if (!hasInjectedConnection())
-    throw new Error(`connect ${SdkError.PuzzleWalletNotDetected}`);
+  await waitForInjectedConnection();
   if (!window.aleo.puzzleWalletClient.connect?.mutate)
     throw new Error('connect.mutate not found!');
 
