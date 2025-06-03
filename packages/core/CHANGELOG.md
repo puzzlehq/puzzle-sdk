@@ -1,5 +1,11 @@
 # @puzzlehq/sdk-core
 
+## 1.0.3
+
+### Patch Changes
+
+- Update puzzle types
+
 ## 1.0.0
 
 ### Major Changes

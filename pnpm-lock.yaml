@@ -12,8 +12,8 @@ importers:
         specifier: ^2.27.7
         version: 2.27.12
       '@puzzlehq/types':
-        specifier: 1.0.30
-        version: 1.0.30
+        specifier: 1.0.31
+        version: 1.0.31
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -43,8 +43,8 @@ importers:
   packages/core:
     dependencies:
       '@puzzlehq/types':
-        specifier: 1.0.30
-        version: 1.0.30
+        specifier: 1.0.31
+        version: 1.0.31
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -71,8 +71,8 @@ importers:
         specifier: 1.0.2
         version: link:../core
       '@puzzlehq/types':
-        specifier: 1.0.30
-        version: 1.0.30
+        specifier: 1.0.31
+        version: 1.0.31
       '@tanstack/query-core':
         specifier: ^4.29.5
         version: 4.36.1
@@ -349,8 +349,8 @@ packages:
       fastq: 1.19.0
     dev: false
 
-  /@puzzlehq/types@1.0.30:
-    resolution: {integrity: sha512-I7WI400NBYqEU0yiE1dLw86gw/7ATnnz2zPg5j7tcY+bs2Ig2Ieis+F/c0GxVmhVKZmmmUQCXrzczQRIyEi/dA==}
+  /@puzzlehq/types@1.0.31:
+    resolution: {integrity: sha512-m2VoTfuIs/hNr15MkQbZAtOO2cbf4OsrSyqKEbJ18WCzfYAk5oqbpgaoNDa5e4VAE6mcehtK7sy1VXxXJZqZoQ==}
     dependencies:
       zod: 3.21.1
     dev: false
