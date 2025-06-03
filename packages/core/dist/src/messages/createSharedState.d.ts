@@ -1,8 +1,7 @@
 export type CreateSharedStateResponse = {
-    data?: {
+    data: {
         seed: string;
         address: string;
     };
-    error?: string;
 };
-export declare const createSharedState: (network?: string) => Promise<CreateSharedStateResponse>;
+export declare const createSharedState: () => Promise<CreateSharedStateResponse>;

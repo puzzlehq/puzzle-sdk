@@ -1,66 +1,39 @@
-import { SessionTypes } from '@walletconnect/types';
-import { getWalletConnectModalSignClient } from '../client.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
-import { wc_aleo_chains } from '../data/walletconnect.js';
+import { SdkError } from '../data/errors.js';
+import { GenericRequest } from '../data/types.js';
 
 export type ImportSharedStateRequest = {
   seed: string;
 };
 
 export type ImportSharedStateResponse = {
-  data?: {
+  data: {
     address: string;
     seed: string;
   };
-  error?: string;
 };
 
-export const importSharedState = async (
-  seed: string,
-  network?: string,
-): Promise<ImportSharedStateResponse> => {
-  const connection = await getWalletConnectModalSignClient();
+export const importSharedState = async ({
+  seed,
+}: ImportSharedStateRequest): Promise<ImportSharedStateResponse> => {
+  if (!hasInjectedConnection())
+    throw new Error(`importSharedState ${SdkError.PuzzleWalletNotDetected}`);
+  if (!window.aleo.puzzleWalletClient.importSharedState?.mutate)
+    throw new Error('importSharedState.mutate not found!');
 
-  const session: SessionTypes.Struct | undefined =
-    await connection?.getSession();
-
-  if (!session || !connection) {
-    return { error: 'no session or connection' };
-  }
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
-  }
-
-  const query = {
-    topic: session.topic,
-    chainId: network ?? 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'importSharedState',
-      params: {
-        seed,
-      } as ImportSharedStateRequest,
-    },
+  const query: GenericRequest = {
+    method: 'importSharedState',
+    params: {
+      seed,
+    } as ImportSharedStateRequest,
   };
 
-  if (hasInjectedConnection()) {
-    try {
-      const response: ImportSharedStateResponse =
-        await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
-      return response;
-    } catch (e) {
-      console.error('importSharedState error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
-  }
-
   try {
-    const response: ImportSharedStateResponse = await connection.request(query);
+    const response: ImportSharedStateResponse =
+      await window.aleo.puzzleWalletClient.importSharedState.mutate(query);
     return response;
   } catch (e) {
     console.error('importSharedState error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e
   }
 };

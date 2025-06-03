@@ -1,8 +1,8 @@
-import { SessionTypes } from '@walletconnect/types';
-export declare function useConnect(showModal?: boolean): {
-    data: any;
+import { ConnectRequestParams, ConnectResponse } from '@puzzlehq/sdk-core';
+export declare function useConnect(request: ConnectRequestParams): {
+    data: ConnectResponse | undefined;
     error: unknown;
     loading: boolean;
-    isConnected: boolean;
-    connect: () => Promise<SessionTypes.Struct>;
+    isConnected: boolean | undefined;
+    connect: () => Promise<ConnectResponse>;
 };

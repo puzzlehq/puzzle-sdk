@@ -1,42 +1,35 @@
-import { SessionTypes } from '@walletconnect/types';
 import {
+  createSharedState as _createSharedState,
   CreateSharedStateResponse,
-  hasInjectedConnection,
+  GenericRequest,
+  SdkError,
 } from '@puzzlehq/sdk-core';
-import { useInjectedRequest, useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-import { useWalletStore } from '../store.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { useIsConnected } from '../provider/connectionProvider.js';
 
 export const useCreateSharedState = () => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
-
-  const useRequestFunction = hasInjectedConnection()
-    ? useInjectedRequest
-    : useRequest;
+  const { isConnected } = useIsConnected()
+  
+  const req: GenericRequest = {
+    method: 'createSharedState',
+  };
 
   const {
     request,
-    data: wc_data,
-    error: wc_error,
+    data,
+    error: _error,
     loading,
-  } = useRequestFunction<CreateSharedStateResponse | undefined>(
-    {
-      topic: session?.topic ?? '',
-      chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-      request: {
-        jsonrpc: '2.0',
-        method: 'createSharedState',
-        params: {},
-      },
+  } = useInjectedRequest<CreateSharedStateResponse | undefined>(
+    req,
+    async () => {
+      if (!isConnected) throw new Error(SdkError.NotConnected);
+      const response = await _createSharedState();
+      return response;
     },
-    (params) => window.aleo.puzzleWalletClient.createSharedState.mutate(params),
   );
 
-  const error: string | undefined = wc_error
-    ? (wc_error as Error).message
-    : wc_data && wc_data.error;
-  const response: CreateSharedStateResponse | undefined = wc_data;
+  const error: string | undefined = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
+  const response: CreateSharedStateResponse | undefined = data;
 
   const createSharedState = async () => {
     return await request();

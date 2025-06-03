@@ -1,14 +1,13 @@
-import { SessionTypes } from '@walletconnect/types';
-import { AccountSelectedResponse } from '@puzzlehq/sdk-core';
+import { AccountSelectedResponse, AccountSyncedResponse } from '@puzzlehq/sdk-core';
 type SubscriptionConfig = {
     subscriptionName: string;
-    condition: (data: AccountSelectedResponse) => boolean;
-    onData: (data: AccountSelectedResponse) => void;
+    condition: (data: AccountSelectedResponse | AccountSyncedResponse | void) => boolean;
+    onData: (data: AccountSelectedResponse | AccountSyncedResponse | void) => void;
+    onError: (error: Error) => void;
     dependencies: any[];
 };
 type UseInjectedSubscriptionsParams = {
-    session: SessionTypes.Struct | undefined;
     configs: SubscriptionConfig[];
 };
-declare const useInjectedSubscriptions: ({ session, configs, }: UseInjectedSubscriptionsParams) => void;
+declare const useInjectedSubscriptions: ({ configs, }: UseInjectedSubscriptionsParams) => void;
 export default useInjectedSubscriptions;

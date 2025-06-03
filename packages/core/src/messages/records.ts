@@ -1,8 +1,11 @@
-import { type RecordWithPlaintext, RecordStatus } from '@puzzlehq/types';
-import { getWalletConnectModalSignClient } from '../client.js';
-import { SessionTypes } from '@walletconnect/types';
+import {
+  type RecordWithPlaintext,
+  Network,
+  RecordStatus,
+} from '@puzzlehq/types';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
-import { wc_aleo_chains } from '../data/walletconnect.js';
+import { SdkError } from '../data/errors.js';
+import { GenericRequest } from '../data/types.js';
 
 export type RecordStatusFilter = RecordStatus | 'All';
 
@@ -14,73 +17,45 @@ export type RecordsFilter = {
 };
 
 export type GetRecordsRequest = {
-  address?: string;
   filter?: RecordsFilter;
   page?: number;
-  network?: string;
+  address?: string;
+  network?: Network;
+  multisig?: boolean;
 };
 
 export type GetRecordsResponse = {
-  records?: RecordWithPlaintext[];
-  pageCount?: number;
-  error?: string;
+  records: RecordWithPlaintext[];
+  pageCount: number;
 };
 
 export const getRecords = async ({
-  address,
   filter,
   page = 0,
+  address,
   network,
 }: GetRecordsRequest): Promise<GetRecordsResponse> => {
-  const connection = await getWalletConnectModalSignClient();
+  if (!hasInjectedConnection())
+    throw new Error(`getRecords ${SdkError.PuzzleWalletNotDetected}`);
+  if (!window.aleo.puzzleWalletClient.getRecords?.query)
+    throw new Error('getRecords.query not found!');
 
-  const session: SessionTypes.Struct | undefined =
-    await connection?.getSession();
-
-  if (!session || !connection) {
-    return { error: 'no session or connection' };
-  }
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
-  }
-
-  const query = {
-    topic: session.topic,
-    chainId: network ?? 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'getRecords',
-      params: {
-        address,
-        filter,
-        page,
-      } as GetRecordsRequest,
-    },
-  };
-
-  if (hasInjectedConnection()) {
-    try {
-      const response: GetRecordsResponse =
-        await window.aleo.puzzleWalletClient.getRecords.query(query);
-      return response;
-    } catch (e) {
-      console.error('getRecords error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
-  }
-
-  const fetchPage = async (page = 0) => {
-    const response: GetRecordsResponse = await connection.request(query);
-    return response;
+  const query: GenericRequest = {
+    method: 'getRecords',
+    params: {
+      filter,
+      page,
+      address,
+      network,
+    } as GetRecordsRequest,
   };
 
   try {
-    const response = await fetchPage();
+    const response: GetRecordsResponse =
+      await window.aleo.puzzleWalletClient.getRecords.query(query);
     return response;
   } catch (e) {
     console.error('getRecords error', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e;
   }
 };

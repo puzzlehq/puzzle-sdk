@@ -1,10 +1,9 @@
-import { log_sdk, hasInjectedConnection, } from '@puzzlehq/sdk-core';
+import { log_sdk, getRecords, } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
-import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
-import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
+import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useDebounce } from 'use-debounce';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 export const getFormattedRecordPlaintext = (data) => {
     try {
         return JSON.stringify(data, null, 2).replaceAll('"', '') ?? '';
@@ -13,25 +12,9 @@ export const getFormattedRecordPlaintext = (data) => {
         return '';
     }
 };
-export const useRecords = ({ address, multisig = false, filter, page, }) => {
-    const session = useWalletSession();
+export const useRecords = ({ address, multisig = false, filter, page, network, }) => {
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
-    const useQueryFunction = hasInjectedConnection()
-        ? useInjectedRequestQuery
-        : useRequestQuery;
-    const query = {
-        topic: session?.topic,
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-            jsonrpc: '2.0',
-            method: 'getRecords',
-            params: {
-                address,
-                filter,
-                page,
-            },
-        },
-    };
     const [debouncedFilter] = useDebounce(filter, 500);
     const queryKey = [
         'useRecords',
@@ -40,25 +23,29 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
         multisig,
         JSON.stringify(debouncedFilter),
         page,
-        session?.topic,
     ];
-    const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useQueryFunction({
+    const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey,
-        enabled: (multisig ? !!address : true) && !!session && !!account,
+        enabled: (multisig ? !!address : true) && !!isConnected && !!account,
         fetchFunction: async () => {
-            const response = await window.aleo.puzzleWalletClient.getRecords.query(query);
-            return response;
+            return await getRecords({
+                filter,
+                page,
+                address,
+                network,
+            });
         },
-        wcParams: query,
     });
-    const readyToRequest = !!session && !!account && (multisig ? !!address : true);
+    const readyToRequest = !!isConnected && !!account && (multisig ? !!address : true);
     useInjectedSubscriptions({
-        session,
         configs: [
             {
                 subscriptionName: 'onSelectedAccountSynced',
                 condition: () => !multisig,
                 onData: () => refetch(),
+                onError: (e) => {
+                    isConnected && console.error(e);
+                },
                 dependencies: [multisig],
             },
             {
@@ -67,20 +54,12 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
                     return !!multisig && data?.address === address;
                 },
                 onData: () => refetch(),
+                onError: (e) => {
+                    console.error(e);
+                },
                 dependencies: [multisig, address],
             },
         ],
-    });
-    useOnSessionEvent(({ params }) => {
-        const eventName = params.event.name;
-        const _address = params.event.address ?? params.event.data.address;
-        if (!hasInjectedConnection() &&
-            ((eventName === 'selectedAccountSynced' && !multisig) ||
-                (eventName === 'sharedAccountSynced' &&
-                    multisig &&
-                    _address === address))) {
-            refetch();
-        }
     });
     const fetchPage = () => {
         if (readyToRequest && !loading) {
@@ -88,10 +67,8 @@ export const useRecords = ({ address, multisig = false, filter, page, }) => {
             refetch();
         }
     };
-    const error = wc_error
-        ? wc_error.message
-        : wc_data && wc_data.error;
-    const response = wc_data;
+    const error = _error?.message ?? undefined;
+    const response = data;
     const records = response?.records;
     const pageCount = response?.pageCount ?? 0;
     return { fetchPage, records, error, loading, page, pageCount };

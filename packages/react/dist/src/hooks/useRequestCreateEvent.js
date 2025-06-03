@@ -1,6 +1,6 @@
-import { useRequest } from './wc/useRequest.js';
-import { log_sdk, } from '@puzzlehq/sdk-core';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { log_sdk, requestCreateEvent, SdkError, } from '@puzzlehq/sdk-core';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 import { useWalletStore } from '../store.js';
 import { useEvent } from './useEvent.js';
 import { useCallback, useEffect, useState } from 'react';
@@ -14,51 +14,57 @@ const normalizeInputs = (inputs) => {
     });
 };
 export const useRequestCreateEvent = (requestData) => {
-    const session = useWalletSession();
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
     const [settlementStatus, setSettlementStatus] = useState(undefined);
     const inputs = normalizeInputs(requestData?.inputs);
-    const { request, data: wc_data, error: wc_error, loading, } = useRequest({
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-            jsonrpc: '2.0',
-            method: 'requestCreateEvent',
-            params: {
-                ...requestData,
-                inputs,
-            },
+    const req = {
+        method: 'requestCreateEvent',
+        params: {
+            ...requestData,
+            inputs,
         },
+    };
+    const { request, data, error: _error, loading, } = useInjectedRequest(req, async (req) => {
+        if (!isConnected)
+            throw new Error(SdkError.NotConnected);
+        const response = await requestCreateEvent(req.params);
+        return response;
     });
-    const error = wc_error
-        ? wc_error.message
-        : wc_data && wc_data.error;
-    const response = wc_data;
+    const error = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
+    const response = data;
     const createEvent = useCallback((createEventRequestOverride) => {
         setSettlementStatus(undefined);
-        if (createEventRequestOverride && session && !loading) {
-            log_sdk('useCreateEvent requesting with override...', createEventRequestOverride);
+        if (createEventRequestOverride && isConnected && !loading) {
             const inputs = normalizeInputs(createEventRequestOverride.inputs);
-            return request({
-                topic: session?.topic ?? '',
-                chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-                request: {
-                    jsonrpc: '2.0',
-                    method: 'requestCreateEvent',
-                    params: {
-                        ...createEventRequestOverride,
-                        inputs,
-                    },
+            const undefinedIndex = inputs?.findIndex(i => i === undefined);
+            if (undefinedIndex !== -1) {
+                throw new Error(`Input ${undefinedIndex} is undefined. Inputs: ${inputs}`);
+            }
+            const _request = {
+                method: 'requestCreateEvent',
+                params: {
+                    ...createEventRequestOverride,
+                    inputs,
                 },
-            });
+            };
+            log_sdk('useCreateEvent requesting with override...', _request);
+            return request(_request);
         }
-        else if (requestData && session && !loading) {
+        else if (requestData && isConnected && !loading) {
             log_sdk('useCreateEvent requesting...', requestData);
+            const undefinedIndex = requestData.inputs?.findIndex(i => i === undefined);
+            if (undefinedIndex !== -1) {
+                throw new Error(`Input ${undefinedIndex} is undefined. Inputs: ${requestData.inputs}`);
+            }
             return request();
         }
-    }, [session?.topic, JSON.stringify(account), loading, request]);
+    }, [isConnected, JSON.stringify(account), loading, request, JSON.stringify(inputs)]);
     const eventId = response?.eventId ?? requestData?.settlementInfo?.eventId;
-    const { event, error: eventFetchError } = useEvent({ id: eventId, address: requestData?.address });
+    const { event, error: eventFetchError } = useEvent({
+        id: eventId ?? '',
+        address: requestData?.address,
+    });
     useEffect(() => {
         console.log('eventId', eventId);
     }, [eventId]);
@@ -73,13 +79,27 @@ export const useRequestCreateEvent = (requestData) => {
         else if (event?.status === EventStatus.Failed || error)
             setSettlementStatus('Failed');
         else if (event?.status === EventStatus.Settled) {
-            if (requestData?.settlementInfo && requestData.settlementInfo.currentRecordCount === requestData.settlementInfo.expectedRecordCount) {
+            if (requestData?.settlementInfo &&
+                requestData.settlementInfo.currentRecordCount ===
+                    requestData.settlementInfo.expectedRecordCount) {
                 setSettlementStatus('SettledWithRecords');
             }
             else {
                 setSettlementStatus('Settled');
             }
         }
-    }, [loading, JSON.stringify(event), JSON.stringify(eventFetchError), JSON.stringify(requestData?.settlementInfo), error]);
-    return { createEvent, eventId: response?.eventId, loading, error, settlementStatus };
+    }, [
+        loading,
+        JSON.stringify(event),
+        JSON.stringify(eventFetchError),
+        JSON.stringify(requestData?.settlementInfo),
+        error,
+    ]);
+    return {
+        createEvent,
+        eventId: response?.eventId,
+        loading,
+        error,
+        settlementStatus,
+    };
 };

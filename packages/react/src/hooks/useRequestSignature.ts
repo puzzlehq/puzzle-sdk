@@ -1,63 +1,61 @@
-import { SessionTypes } from '@walletconnect/types';
 import {
+  GenericRequest,
+  requestSignature as _requestSignature,
   SignatureRequest,
   SignatureResponse,
   log_sdk,
+  SdkError,
 } from '@puzzlehq/sdk-core';
 import { aleoAddressRegex } from '@puzzlehq/types';
-import { useRequest } from './wc/useRequest.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-import { useWalletStore } from '../store.js';
+import { useInjectedRequest } from './utils/useRequest.js';
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
 
 export const useRequestSignature = ({
   message,
   address,
   network,
 }: SignatureRequest) => {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [account] = useWalletStore((state) => [state.account]);
+  const isConnected = useIsConnected();
+
+  const req: GenericRequest = {
+    method: 'requestSignature',
+    params: {
+      message,
+      address: aleoAddressRegex.test(address ?? '') ? address : undefined,
+      network,
+    } as SignatureRequest,
+  };
 
   const {
     request,
-    data: wc_data,
-    error: wc_error,
+    data,
+    error: _error,
     loading,
-  } = useRequest<SignatureResponse | undefined>({
-    topic: session?.topic ?? '',
-    chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'requestSignature',
-      params: {
-        message,
-        address: aleoAddressRegex.test(address ?? '') ? address : undefined,
-      } as SignatureRequest,
+  } = useInjectedRequest<SignatureResponse | undefined>(
+    req,
+    async (req) => {
+      if (!isConnected) throw new Error(SdkError.NotConnected);
+      const response = await _requestSignature(req.params as SignatureRequest);
+      return response;
     },
-  });
+  );
 
-  const error: string | undefined = wc_error
-    ? (wc_error as Error).message
-    : wc_data && wc_data.error;
-  const response: SignatureResponse | undefined = wc_data;
+  const error: string | undefined = typeof _error === 'string' ? _error : _error instanceof Error ? _error.message : undefined;
+  const response: SignatureResponse | undefined = data;
 
   const requestSignature = (signatureRequestOverride?: SignatureRequest) => {
-    if (signatureRequestOverride && session && !loading) {
+    if (signatureRequestOverride && isConnected && !loading) {
       log_sdk(
         'useRequestSignature requesting with override...',
         signatureRequestOverride,
       );
       return request({
-        topic: session?.topic ?? '',
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-          jsonrpc: '2.0',
-          method: 'requestSignature',
-          params: {
-            ...signatureRequestOverride,
-          },
+        method: 'requestSignature',
+        params: {
+          ...signatureRequestOverride,
         },
       });
-    } else if (session && !loading) {
+    } else if (isConnected && !loading) {
       log_sdk('useRequestSignature requesting...', [message, address]);
       return request();
     }

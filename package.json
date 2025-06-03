@@ -1,7 +1,7 @@
 {
   "name": "sdk-monorepo",
   "displayName": "Puzzle SDK",
-  "version": "0.5.6",
+  "version": "1.0.2",
   "description": "Your portal to privacy",
   "type": "module",
   "workspaces": [
@@ -19,8 +19,7 @@
   },
   "dependencies": {
     "@changesets/cli": "^2.27.7",
-    "@puzzlehq/types": "1.0.27",
-    "@puzzlehq/walletconnect-modal-sign-html": "0.0.9"
+    "@puzzlehq/types": "1.0.31"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.228",

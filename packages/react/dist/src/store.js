@@ -1,24 +1,19 @@
 import { create } from 'zustand';
-import { queryClient } from './index.js';
+import { queryClient } from './provider/queryProvider.js';
 import { persist } from 'zustand/middleware';
-export const useWalletStore = create()(persist((set, get) => ({
+export const useWalletStore = create()(persist((set) => ({
     account: undefined,
-    chainId: 'aleo:1',
     setAccount: (account) => {
         set({ account });
     },
-    setChainId: (chainId) => {
-        set({ chainId });
-    },
     onDisconnect: () => {
+        console.log('useWalletStore onDisconnect called');
+        queryClient.clear();
         set({
             account: undefined,
-            chainId: undefined,
         });
-        queryClient.clear();
-        localStorage.removeItem('puzzle-hasInjectedConnection');
-        console.log('onDisconnect called!');
     },
 }), {
     name: 'puzzle-wallet-store',
+    version: 2,
 }));

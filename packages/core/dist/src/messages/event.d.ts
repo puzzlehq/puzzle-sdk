@@ -1,11 +1,12 @@
 import { Event } from '../index.js';
+import { Network } from '@puzzlehq/types';
 export type GetEventRequest = {
     id: string;
     address?: string;
-    network?: string;
+    network?: Network;
+    multisig?: boolean;
 };
 export type GetEventResponse = {
-    event?: Event;
-    error?: string;
+    event: Event;
 };
 export declare const getEvent: ({ id, address, network, }: GetEventRequest) => Promise<GetEventResponse>;

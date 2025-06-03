@@ -1,4 +1,4 @@
-import { type RecordWithPlaintext, RecordStatus } from '@puzzlehq/types';
+import { type RecordWithPlaintext, Network, RecordStatus } from '@puzzlehq/types';
 export type RecordStatusFilter = RecordStatus | 'All';
 export type RecordsFilter = {
     programIds?: string[];
@@ -7,14 +7,14 @@ export type RecordsFilter = {
     names?: string[];
 };
 export type GetRecordsRequest = {
-    address?: string;
     filter?: RecordsFilter;
     page?: number;
-    network?: string;
+    address?: string;
+    network?: Network;
+    multisig?: boolean;
 };
 export type GetRecordsResponse = {
-    records?: RecordWithPlaintext[];
-    pageCount?: number;
-    error?: string;
+    records: RecordWithPlaintext[];
+    pageCount: number;
 };
-export declare const getRecords: ({ address, filter, page, network, }: GetRecordsRequest) => Promise<GetRecordsResponse>;
+export declare const getRecords: ({ filter, page, address, network, }: GetRecordsRequest) => Promise<GetRecordsResponse>;

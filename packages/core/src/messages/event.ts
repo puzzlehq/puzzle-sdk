@@ -1,17 +1,17 @@
-import { Event, wc_aleo_chains } from '../index.js';
-import { getWalletConnectModalSignClient } from '../client.js';
-import { SessionTypes } from '@walletconnect/types';
+import { Event, GenericRequest } from '../index.js';
 import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { SdkError } from '../data/errors.js';
+import { Network } from '@puzzlehq/types';
 
 export type GetEventRequest = {
   id: string;
   address?: string;
-  network?: string;
+  network?: Network;
+  multisig?: boolean;
 };
 
 export type GetEventResponse = {
-  event?: Event;
-  error?: string;
+  event: Event;
 };
 
 export const getEvent = async ({
@@ -19,55 +19,26 @@ export const getEvent = async ({
   address,
   network,
 }: GetEventRequest): Promise<GetEventResponse> => {
-  const connection = await getWalletConnectModalSignClient();
+  if (!hasInjectedConnection())
+    throw new Error(`getEvent ${SdkError.PuzzleWalletNotDetected}`);
+  if (!window.aleo.puzzleWalletClient.getEvent?.query)
+    throw new Error('getEvent.query not found!');
 
-  const session: SessionTypes.Struct | undefined =
-    await connection?.getSession();
-
-  if (!session || !connection) {
-    return { event: undefined, error: 'no session or connection' };
-  }
-
-  if (network && !wc_aleo_chains.includes(network)) {
-    return { error: 'network not in wc_aleo_chains' };
-  }
-
-  const query = {
-    topic: session.topic,
-    chainId: network ?? 'aleo:1',
-    request: {
-      jsonrpc: '2.0',
-      method: 'getEvent',
-      params: {
-        id,
-        address,
-      } as GetEventRequest,
-    },
-  };
-
-  if (hasInjectedConnection()) {
-    try {
-      const response: GetEventResponse =
-        await window.aleo.puzzleWalletClient.getEvent.query(query);
-      return response;
-    } catch (e) {
-      console.error('getEvent error', e);
-      const error = (e as Error).message;
-      return { error };
-    }
-  }
-
-  const fetchEvent = async () => {
-    const response: GetEventResponse = await connection.request(query);
-    return response;
+  const query: GenericRequest = {
+    method: 'getEvent',
+    params: {
+      id,
+      address,
+      network,
+    } as GetEventRequest,
   };
 
   try {
-    const response = await fetchEvent();
+    const response: GetEventResponse =
+      await window.aleo.puzzleWalletClient.getEvent.query(query);
     return response;
   } catch (e) {
-    console.error('getEvents error', e);
-    const error = (e as Error).message;
-    return { error };
+    console.error('getEvent error', e);
+    throw e
   }
 };

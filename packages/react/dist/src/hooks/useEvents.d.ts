@@ -1,15 +1,10 @@
-import { EventsFilter } from '@puzzlehq/sdk-core';
+import { GetEventsRequest } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
-type UseEventsParams = {
-    filter?: EventsFilter;
-    page?: number;
-};
-export declare const useEvents: ({ filter, page }: UseEventsParams) => {
+export declare const useEvents: ({ filter, page, address, network, }: GetEventsRequest) => {
     fetchPage: () => void;
     events: Event[] | undefined;
-    error: string | undefined;
+    error: string;
     loading: boolean;
     page: number | undefined;
     pageCount: number;
 };
-export {};

@@ -1,13 +1,8 @@
+import { GetEventRequest } from '@puzzlehq/sdk-core';
 import { Event } from '@puzzlehq/types';
-type UseEventParams = {
-    id?: string;
-    address?: string;
-    multisig?: boolean;
-};
-export declare const useEvent: ({ id, address, multisig }: UseEventParams) => {
+export declare const useEvent: ({ id, address, multisig, network, }: GetEventRequest) => {
     fetchEvent: () => void;
     event: Event | undefined;
-    error: string | undefined;
+    error: string;
     loading: boolean;
 };
-export {};

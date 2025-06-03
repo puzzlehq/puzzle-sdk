@@ -1,45 +1,27 @@
 import { useEffect } from 'react';
-import { hasInjectedConnection, } from '@puzzlehq/sdk-core';
-import { useOnSessionEvent } from './wc/useOnSessionEvent.js';
-import { useInjectedRequestQuery, useRequestQuery } from './wc/useRequest.js';
+import { getBalance, } from '@puzzlehq/sdk-core';
+import { useInjectedRequestQuery } from './utils/useRequest.js';
 import { useWalletStore } from '../store.js';
 import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
-export const useBalance = ({ address, multisig } = {}) => {
-    const session = useWalletSession();
+import { useIsConnected } from '../provider/PuzzleWalletProvider.js';
+export const useBalance = ({ address, network, multisig, } = {}) => {
+    const { isConnected } = useIsConnected();
     const [account] = useWalletStore((state) => [state.account]);
-    const useQueryFunction = hasInjectedConnection()
-        ? useInjectedRequestQuery
-        : useRequestQuery;
-    const query = {
-        topic: session?.topic,
-        chainId: account ? `${account.network}:${account.chainId}` : 'aleo:1',
-        request: {
-            jsonrpc: '2.0',
-            method: 'getBalance',
-            params: {
-                address,
-            },
-        },
-    };
-    const { refetch, data: wc_data, error: wc_error, isLoading: loading, } = useQueryFunction({
+    const { refetch, data, error: _error, isLoading: loading, } = useInjectedRequestQuery({
         queryKey: [
             'useBalance',
             address,
             account?.address ?? '',
+            network,
             multisig,
-            session?.topic,
         ],
-        enabled: !!session && !!account && (multisig ? !!address : true),
+        enabled: !!isConnected,
         fetchFunction: async () => {
-            const response = await window.aleo.puzzleWalletClient.getBalance.query(query);
-            return response;
+            return await getBalance({ address, network });
         },
-        wcParams: query,
     });
     // listen for injected wallet-originating account updates
     useInjectedSubscriptions({
-        session,
         configs: [
             {
                 subscriptionName: 'onSelectedAccountSynced',
@@ -47,6 +29,9 @@ export const useBalance = ({ address, multisig } = {}) => {
                     return !multisig;
                 },
                 onData: () => refetch(),
+                onError: (e) => {
+                    console.error(e);
+                },
                 dependencies: [multisig],
             },
             {
@@ -55,32 +40,21 @@ export const useBalance = ({ address, multisig } = {}) => {
                     return !!multisig && data?.address === address;
                 },
                 onData: () => refetch(),
+                onError: (e) => {
+                    console.error(e);
+                },
                 dependencies: [multisig, address],
             },
         ],
     });
-    // listen for mobile wallet-originating account updates
-    useOnSessionEvent(({ params, topic }) => {
-        const eventName = params.event.name;
-        const _address = params.event.address ?? params.event.data.address;
-        if (!hasInjectedConnection() &&
-            ((eventName === 'selectedAccountSynced' && !multisig) ||
-                (eventName === 'sharedAccountSynced' &&
-                    multisig &&
-                    _address === address))) {
-            refetch();
-        }
-    });
     // send initial balance request...
     useEffect(() => {
-        if (session && !loading) {
+        if (isConnected && !loading) {
             refetch();
         }
-    }, [session?.topic]);
-    const error = wc_error
-        ? wc_error.message
-        : wc_data && wc_data.error;
-    const response = wc_data;
+    }, [isConnected]);
+    const error = _error?.message ?? undefined;
+    const response = data;
     const balances = response?.balances;
     return { balances, error, loading };
 };

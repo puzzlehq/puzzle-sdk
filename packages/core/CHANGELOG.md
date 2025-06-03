@@ -1,5 +1,23 @@
 # @puzzlehq/sdk-core
 
+## 1.0.3
+
+### Patch Changes
+
+- Update puzzle types
+
+## 1.0.0
+
+### Major Changes
+
+- Removing walletconnect from sdk!
+
+## 0.5.7
+
+### Patch Changes
+
+- bump for building
+
 ## 0.5.6
 
 ### Patch Changes

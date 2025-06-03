@@ -1,8 +1,9 @@
 import { EventType } from '../index.js';
-import { type RecordWithPlaintext } from '@puzzlehq/types';
+import { Network, type RecordWithPlaintext } from '@puzzlehq/types';
 export type SettlementStatus = 'Settled' | 'SettledWithRecords' | 'Pending' | 'Creating' | 'Failed';
 export type CreateEventRequestData = {
     address?: string;
+    network?: Network;
     type: EventType;
     programId: string;
     functionId: string;
@@ -18,6 +19,7 @@ export type CreateEventRequestData = {
 };
 export type CreateEventRequest = {
     address?: string;
+    network?: Network;
     type: EventType;
     programId: string;
     functionId: string;
@@ -30,4 +32,4 @@ export type CreateEventResponse = {
     eventId?: string;
     error?: string;
 };
-export declare const requestCreateEvent: (requestData: CreateEventRequestData, network?: string) => Promise<CreateEventResponse>;
+export declare const requestCreateEvent: (requestData: CreateEventRequestData) => Promise<CreateEventResponse>;

@@ -1,40 +1,31 @@
-import {
-  disconnect as _disconnect,
-  emitter,
-  getWalletConnectModalSignClient,
-} from '@puzzlehq/sdk-core';
+import { disconnect as _disconnect, SdkError } from '@puzzlehq/sdk-core';
 import { useWalletStore } from '../store.js';
-import { SessionTypes } from '@walletconnect/types';
-import { getSdkError } from '@walletconnect/utils';
-import { useAsyncAction } from './wc/_useAsyncAction.js';
-import { useWalletSession } from '../provider/PuzzleWalletProvider.js';
+import { useAsyncAction } from './utils/_useAsyncAction.js';
+import { useIsConnected } from '../provider/connectionProvider.js';
+import useInjectedSubscriptions from './utils/useInjectedSubscription.js';
 
 export function useDisconnect() {
-  const session: SessionTypes.Struct | undefined = useWalletSession();
-  const [onDisconnect] = useWalletStore((state) => [state.onDisconnect]);
+  const { isConnected, setIsConnected } = useIsConnected();
+
+  const [onDisconnect] = useWalletStore(
+    (state) => [state.onDisconnect],
+  );
 
   const { error, loading, setError, setLoading } = useAsyncAction();
 
   async function disconnect() {
-    if (!session || loading) {
-      if (!session) onDisconnect();
+    if (!isConnected) {
+      setError(SdkError.NotConnected);
+      console.error(SdkError.NotConnected);
+      onDisconnect();
       return;
     }
     try {
       setLoading(true);
       setError(undefined);
-
-      try {
-        const client = await getWalletConnectModalSignClient();
-        await client.disconnect({
-          topic: session.topic,
-          reason: getSdkError('USER_DISCONNECTED'),
-        });
-        emitter.emit('session_change');
-      } catch (e) {
-        console.warn(e);
-      }
-      useWalletStore.getState().onDisconnect();
+      await _disconnect();
+      onDisconnect();
+      setIsConnected?.(false);
     } catch (err) {
       setError(err);
       throw err;
@@ -44,4 +35,26 @@ export function useDisconnect() {
   }
 
   return { error, loading, disconnect };
+}
+
+export function useOnDisconnect(
+  callback: () => void,
+  dependencies: React.DependencyList,
+) {
+
+  useInjectedSubscriptions({
+    configs: [
+      {
+        subscriptionName: 'onDisconnect',
+        condition: () => true,
+        onData: () => {
+          callback();
+        },
+        onError: (e: Error) => {
+          console.error(e);
+        },
+        dependencies: [...dependencies],
+      },
+    ],
+  });
 }

@@ -3,3 +3,4 @@ export declare function useDisconnect(): {
     loading: boolean;
     disconnect: () => Promise<void>;
 };
+export declare function useOnDisconnect(callback: () => void, dependencies: React.DependencyList): void;

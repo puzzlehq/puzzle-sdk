@@ -1,31 +1,23 @@
-import { getSdkError } from '@walletconnect/utils';
-import { getWalletConnectModalSignClient, emitter } from '../client.js';
-import { SessionTypes } from '@walletconnect/types';
+import { hasInjectedConnection } from '../utils/clientInfo.js';
+import { SdkError } from '../data/errors.js';
+import { GenericRequest } from '../data/types.js';
+import { PuzzleWalletSDKEventEmitter } from '../utils/eventEmitter.js';
 
-export const disconnect = async (): Promise<{ error?: string }> => {
-  const connection = await getWalletConnectModalSignClient();
-  const session: SessionTypes.Struct | undefined =
-    await connection?.getSession();
+export const disconnect = async (): Promise<void> => {
+  if (!hasInjectedConnection())
+    throw new Error(`disconnect ${SdkError.PuzzleWalletNotDetected}`);
+  if (!window.aleo.puzzleWalletClient.disconnect?.mutate)
+    throw new Error('disconnect.mutate not found!');
 
-  if (!session || !connection) {
-    return { error: 'no session or connection' };
-  }
+  const req: GenericRequest = {
+    method: 'disconnect',
+  };
 
   try {
-    try {
-      await connection.disconnect({
-        reason: getSdkError('USER_DISCONNECTED'),
-        topic: session.topic,
-      });
-      localStorage.removeItem('puzzle-hasInjectedConnection');
-      emitter.emit('session_change');
-    } catch (e) {
-      console.warn(e);
-    }
-    return {};
+    await window.aleo.puzzleWalletClient.disconnect.mutate(req);
+    PuzzleWalletSDKEventEmitter.emit('disconnectSuccess', 'disconnected');
   } catch (e) {
     console.error('error disconnecting', e);
-    const error = (e as Error).message;
-    return { error };
+    throw e
   }
 };

@@ -1,43 +1,19 @@
-export const checkForDesktopConnection = async (sessionTopic: string) => {
-  if (typeof window === 'undefined') {
-    return false;
-  }
-  const injectedConnection = !!window?.aleo?.puzzleWalletClient;
-  if (!injectedConnection) {
-    console.log('!!window?.aleo?.puzzleWalletClient', injectedConnection);
-    localStorage.setItem('puzzle-hasInjectedConnection', 'false');
-    return false;
-  }
-
-  try {
-    const res: boolean = await window.aleo.puzzleWalletClient.isConnected.query(
-      { sessionTopic },
-    );
-    if (res) {
-      localStorage.setItem('puzzle-hasInjectedConnection', 'true');
-      return true;
-    } else {
-      localStorage.setItem('puzzle-hasInjectedConnection', 'false');
-      return false;
-    }
-  } catch (e) {
-    console.warn(e);
-    localStorage.setItem('puzzle-hasInjectedConnection', 'false');
-    return false;
-  }
-};
-
 export const hasInjectedConnection = () => {
   if (typeof window === 'undefined') {
     return false;
   }
   const injectedConnection = !!window?.aleo?.puzzleWalletClient;
-  if (!injectedConnection) {
-    return false;
-  }
 
-  const puzzleHasDesktopConnection = localStorage.getItem(
-    'puzzle-hasInjectedConnection',
-  );
-  return puzzleHasDesktopConnection === 'true';
+  return injectedConnection;
 };
+
+export const waitForInjectedConnection = async () => {
+  const startTime = Date.now();
+  while (!hasInjectedConnection()) {
+    if (Date.now() - startTime > 5000) {
+      throw new Error('Puzzle wallet not detected within 5 seconds');
+    }
+    console.log('Puzzle wallet not detected! Waiting for 0.25 seconds');
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+}

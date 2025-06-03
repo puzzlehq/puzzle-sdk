@@ -1,18 +1,11 @@
-import { RecordsFilter } from '@puzzlehq/sdk-core';
+import { GetRecordsRequest } from '@puzzlehq/sdk-core';
 import { type RecordWithPlaintext } from '@puzzlehq/types';
-type UseRecordsParams = {
-    address?: string;
-    multisig?: boolean;
-    filter?: RecordsFilter;
-    page?: number;
-};
 export declare const getFormattedRecordPlaintext: (data: any) => string;
-export declare const useRecords: ({ address, multisig, filter, page, }: UseRecordsParams) => {
+export declare const useRecords: ({ address, multisig, filter, page, network, }: GetRecordsRequest) => {
     fetchPage: () => void;
     records: RecordWithPlaintext[] | undefined;
-    error: string | undefined;
+    error: string;
     loading: boolean;
     page: number | undefined;
     pageCount: number;
 };
-export {};
