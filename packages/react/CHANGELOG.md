@@ -1,5 +1,13 @@
 # @puzzlehq/sdk
 
+## 1.0.4
+
+### Patch Changes
+
+- upgrade types package
+- Updated dependencies
+  - @puzzlehq/sdk-core@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
